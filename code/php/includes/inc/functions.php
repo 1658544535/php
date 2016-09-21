@@ -1,0 +1,1108 @@
+<?php
+
+/*
+ * 功能：获取需要调用的Bean对象
+ * 此函数包含的动作：
+ * 1、加载Bean文件
+ * 2、实例化Bean对象
+ * */
+function get_bean_obj( $path, $bean_name, $arrParam="" )
+{
+	require_once $path . $bean_name . '.php';
+	$obj = new $bean_name();
+
+	if ( ! empty( $arrParam ) )
+	{
+		foreach( $arrParam as $key=>$val )
+		{
+			$obj->$key = $val;
+		}
+	}
+
+	return $obj;
+}
+
+
+/*
+ * 获取当前正在操作的功能
+ * */
+function get_now_func()
+{
+	$rs_data = preg_split( '#\/#', $_SERVER['REQUEST_URI'] );		// 截取第一段功能段
+	preg_match( '#(\w+)(.php)*.*#', $rs_data[1],$data);				// 如果是php则去掉.php和后面的参数，如果是文档则直接返回文档
+	return $data[1];
+}
+
+/*
+ * 远程获取url的数据，用于微信
+ * */
+function get_url_data_from_wx( $url, $data="" )
+{
+ $curl = curl_init();
+
+ curl_setopt ( $curl, CURLOPT_SSL_VERIFYPEER, FALSE );
+ curl_setopt ( $curl, CURLOPT_SSL_VERIFYHOST, FALSE );
+ curl_setopt ($curl, CURLOPT_TIMEOUT, 10 );
+ curl_setopt($curl, CURLOPT_HEADER, 0);
+ curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+ if ( $data != "" )
+ {
+ 	curl_setopt($curl, CURLOPT_POST, 1);
+ 	curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+ }
+ curl_setopt($curl, CURLOPT_USERAGENT,'MicroMessenger');
+ curl_setopt($curl, CURLOPT_URL, $url );
+
+ $result = curl_exec ($curl);
+ curl_close ( $curl );
+ return  $result;
+}
+/*
+ * 判断是否为微信浏览器
+ * @return boolean
+ */
+function is_weixin()
+{
+	//if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false && (strpos($agent, 'windows phone') !== false) )
+	if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
+	{
+		return true;
+	}
+	return false;
+}
+
+/**
+ * set back url
+ *
+ */
+function setBackUrl() {
+	$url = $_SERVER['REQUEST_URI'];
+	setSession('BackUrl', $url);
+}
+
+/**
+ * get back url
+ *
+ * @param string $default
+ */
+function getBackUrl($default = '') {
+	$default = trim($default) == '' ? 'index.php' : $default;
+	$url = getSession('BackUrl');
+	$url = $url == null ? '' : $url;
+	$url = $url == '' ? $default : $url;
+	return $url;
+}
+/**
+ * Url
+ *
+ * @param string $url
+ */
+function redirect($url = '', $msg = '') {
+	if($url == '')
+		$url = 'index.php';
+
+	$strs = '<script type="text/javascript">location.href="' . $url . '";</script>';
+	if($msg != '')
+		$strs = '<script type="text/javascript">alert("' . $msg . '");location.href="' . $url . '";</script>';
+
+	echo $strs;
+	exit();
+}
+
+function getSession($key = '') {
+	if(isset($_SESSION['Team.Hn1'])) {
+		$arr = $_SESSION['Team.Hn1'];
+		return isset($arr[$key]) ? $arr[$key] : null;
+
+	} else {
+		return null;
+	}
+}
+function getSession_userid() {
+	//如果没有登录，则根据登录时间，生成一个临时的userid
+	if($_SESSION['userinfo'] == null && $_SESSION['tempuserinfo'] == null){
+		$_SESSION['tempuserinfo'] = time();
+	//	$_SESSION['tempuserinfo'] = 5;
+	}
+	$user = $_SESSION['userinfo'];
+	if($user != null){
+		$userid = $user->id;
+	}else{
+		$userid = "250";//$_SESSION['tempuserinfo'];
+	}
+	return $userid;
+}
+function setSession($key = '', $value = '') {
+	if(isset($_SESSION['Team.Hn1'])) {
+		$arr = $_SESSION['Team.Hn1'];
+		$arr[$key] = $value;
+		$_SESSION['Team.Hn1'] = $arr;
+
+	} else {
+		$_SESSION['Team.Hn1'] = array(
+			$key => $value,
+		);
+	}
+}
+function uploadfile($uploader = 'file', $path = '../upfiles/')
+{
+	$return = '';
+	$uptypes = array('image/jpg','image/jpeg','image/png','image/pjpeg','image/gif','image/bmp','image/x-png','audio/mpeg','audio/mp3');
+	$time = date('YmdHis');
+	if( !file_exists($path) )
+	{
+		mkdir($path, 0777);
+	}
+
+	if( is_uploaded_file($_FILES[$uploader]['tmp_name']) )
+	{
+		$file = $_FILES[$uploader];
+		if(in_array($file['type'], $uptypes))
+		{
+			$filename = $file['tmp_name'];
+			$pinfo = pathinfo($file['name']);
+			$dest = $path . $time . '.' . $pinfo['extension'];
+			if(move_uploaded_file($filename, $dest))
+			{
+				//上传完成
+				$pinfo = pathinfo($dest);
+				$return = $pinfo['basename'];
+			}
+		}
+		else
+		{
+			echo 'bb';
+		}
+	}
+	return $return;
+}
+
+function ResizeImage($up_folder,$up_mixfolder,$name,$newwidth){
+
+    	$res=explode(".",$name);
+   // 	echo $res[1];
+    	if($res[1] == "pjpeg"||$res[1] == "PJPEG"||$res[1] == "jpg"||$res[1] == "JPG"||$res[1]== "jpeg"||$res[1]== "JPEG"){
+            $im = imagecreatefromjpeg($up_folder.$name);
+        }else if($res[1] == "x-png"||$res[1] == "X-PNG"||$res[1] == "png"||$res[1] == "PNG"){
+            $im = imagecreatefrompng($up_folder.$name);
+        }else if($res[1]== "gif"||$res[1] == "GIF"){
+            $im = imagecreatefromgif($up_folder.$name);
+        }
+
+    	 if($im){
+
+        //取得当前图片大小
+        $width = imagesx($im);
+        $height = imagesy($im);
+//        $newwidth=250;
+        $newheight=$height*$newwidth/$width;
+        //生成缩略图的大小
+
+        if($width>$newwidth){
+            if(function_exists("imagecopyresampled")){
+                $newim = imagecreatetruecolor($newwidth, $newheight);
+                imagecopyresampled($newim, $im, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+            }else{
+                $newim = imagecreate($newwidth, $newheight);
+                imagecopyresized($newim, $im, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+            }
+            ImageJpeg ($newim,$up_mixfolder.$name);
+            ImageDestroy ($newim);
+        }else{
+            ImageJpeg ($im,$up_mixfolder.$name);
+        }
+        @ImageDestroy ($newim);
+        @ImageDestroy ($im);
+    	}
+}
+/**
+ * HTML编辑器
+ * 仅在panel目录中使用
+ * @param string $name
+ * @param string $value
+ * @param string $width
+ * @param string $height
+ * @param bool $defaultStyle
+ */
+//function htmlEditor($name = 'htmlEditor1', $value = '', $width = '100%', $height = '100%', $defaultStyle = true) {
+//	include("../fckeditor/fckeditor.php");
+//	$sBasePath = dirname($_SERVER['PHP_SELF']);
+//	$sBasePath = 'fckeditor/' ;
+//
+//	$oFCKeditor = new FCKeditor($name) ;
+//	$oFCKeditor->BasePath = $sBasePath ;
+//	$oFCKeditor->ToolbarSet = $defaultStyle ? 'Default' : 'Basic';
+//	$oFCKeditor->Value = $value;
+//	$oFCKeditor->Width = $width;
+//	$oFCKeditor->Height = $height;
+//	$oFCKeditor->Create() ;
+//}
+
+
+function get_pager_data($link, $sql = '', $page = 1, $pageSize = 20) {
+	$recordCount = 0;
+	$pageCount = 1;
+	$fPageIdx= $pPageIdx = $nPageIdx = $lPageIdx = 1;
+	$rows = null;
+	$recordCount = $link->get_var("select count(*) from ($sql) as pagertable");
+
+	if($recordCount > 0) {
+		$pageCount = $lPageIdx = ceil($recordCount/$pageSize);
+
+		$page = $page <= 0 ? 1 : $page;
+		$page = $page > $pageCount ? $pageCount : $page;
+		$pPageIdx = $page > 1 ? $page - 1 : 1;
+		$nPageIdx = $page >= $pageCount ? $pageCount : $page + 1;
+		$start = ($page - 1)*$pageSize;
+
+		$rows = $link->get_results($sql . " limit " . $start . "," . $pageSize);
+	}
+
+	$data = array(
+		'RecordCount' => $recordCount,
+		'PageCount' => $pageCount,
+		'PageSize' => $pageSize,
+		'CurrentPage' => $page,
+		'First'	=> $fPageIdx,
+		'Prev' => $pPageIdx,
+		'Next' => $nPageIdx,
+		'Last' => $lPageIdx,
+		'PagerStr' => '',
+		'DataSet' => $rows,
+	);
+
+	return $data;
+}
+
+function getPageredData($link, $sql = '', $page = 1, $pageSize = 20, $url, $argvs) {
+	$pdata = get_pager_data($link, $sql, $page, $pageSize);
+
+	$pagerStr = '';
+	$pagerUrl = '';
+	if(trim($argvs) != '') {
+		$xargvs = explode('&', $argvs);
+		foreach ($xargvs as $argv)
+		{
+			if(strpos($argv, 'page=') === false)
+				$pagerUrl .= ($pagerUrl == '' ? '' : '&') . $argv;
+		}
+	}
+	$pagerUrl .= ($pagerUrl == '' ? '' : '&') . 'page=';
+	$pagerUrl = $url . ($pagerUrl == '' ? '' : '?' . $pagerUrl);
+
+	$pagerStr = 'Page&nbsp;&nbsp;<strong>' . $pdata['CurrentPage'] . '</strong>&nbsp;of&nbsp;<strong>' . $pdata['PageCount'] . '</strong>&nbsp;,&nbsp;&nbsp;&nbsp;';
+	$pagerStr .= '<a href="' . $pagerUrl . $pdata['First'] . '">First</a>&nbsp;&nbsp;&nbsp;&nbsp;';
+	$pagerStr .= '<a href="' . $pagerUrl . $pdata['Prev'] . '">Previous</a>&nbsp;&nbsp;&nbsp;&nbsp;';
+	$pagerStr .= '<a href="' . $pagerUrl . $pdata['Next'] . '">Next</a>&nbsp;&nbsp;&nbsp;&nbsp;';
+	$pagerStr .= '<a href="' . $pagerUrl . $pdata['Last'] . '">Last</a>';
+
+	$pdata['PagerStr'] = $pagerStr;
+
+	return $pdata;
+}
+function getPageredDataCNWap($link, $sql = '', $page = 1, $pageSize = 20, $url, $argvs) {
+	$pdata = get_pager_data($link, $sql, $page, $pageSize);
+
+	$pagerStr = '';
+	$pagerUrl = '';
+	if(trim($argvs) != '') {
+		$xargvs = explode('&', $argvs);
+		foreach ($xargvs as $argv)
+		{
+			if(strpos($argv, 'page=') === false)
+				$pagerUrl .= ($pagerUrl == '' ? '' : '&') . $argv;
+		}
+	}
+	$pagerUrl .= ($pagerUrl == '' ? '' : '&') . 'page=';
+	$pagerUrl = $url . ($pagerUrl == '' ? '' : '?' . $pagerUrl);
+
+	$pagerStr = '&nbsp;&nbsp;第<strong>' . $pdata['CurrentPage'] . '</strong>页&nbsp;&nbsp;共<strong>' . $pdata['PageCount'] . '</strong>页&nbsp;&nbsp;';
+
+	$pagerStr .= '<a href="' . $pagerUrl . $pdata['Prev'] . '">上一页</a>&nbsp;&nbsp;';
+	$pagerStr .= '<a href="' . $pagerUrl . $pdata['Next'] . '">下一页</a>&nbsp;&nbsp;';
+
+
+	$pdata['PagerStr'] = $pagerStr;
+
+	return $pdata;
+}
+function getPageredDataCN($link, $sql = '', $page = 1, $pageSize = 20, $url, $argvs) {
+	$pdata = get_pager_data($link, $sql, $page, $pageSize);
+
+	$pagerStr = '';
+	$pagerUrl = '';
+	if(trim($argvs) != '') {
+		$xargvs = explode('&', $argvs);
+		foreach ($xargvs as $argv)
+		{
+			if(strpos($argv, 'page=') === false)
+				$pagerUrl .= ($pagerUrl == '' ? '' : '&') . $argv;
+		}
+	}
+	$pagerUrl .= ($pagerUrl == '' ? '' : '&') . 'page=';
+	$pagerUrl = $url . ($pagerUrl == '' ? '' : '?' . $pagerUrl);
+
+	$pagerStr = '&nbsp;&nbsp;第<strong>' . $pdata['CurrentPage'] . '</strong>页&nbsp;&nbsp;共<strong>' . $pdata['PageCount'] . '</strong>页&nbsp;,&nbsp;&nbsp;&nbsp;';
+	$pagerStr .= '<a href="' . $pagerUrl . $pdata['First'] . '">第一页</a>&nbsp;&nbsp;&nbsp;&nbsp;';
+	$pagerStr .= '<a href="' . $pagerUrl . $pdata['Prev'] . '">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;';
+	$pagerStr .= '<a href="' . $pagerUrl . $pdata['Next'] . '">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;';
+	$pagerStr .= '<a href="' . $pagerUrl . $pdata['Last'] . '">最后一页</a>';
+
+	$pdata['PagerStr'] = $pagerStr;
+
+	return $pdata;
+}
+/**================================================================*/
+function get_pager_data2($link, $sql = '', $page = 1, $pageSize = 20) {
+	$recordCount = 0;
+	$pageCount = 1;
+	$fPageIdx= $pPageIdx = $nPageIdx = $lPageIdx = 1;
+	$rows = null;
+	$recordCount = $link->get_var("select count(*) from ($sql) as pagertable");
+
+	if($recordCount > 0) {
+		$pageCount = $lPageIdx = ceil($recordCount/$pageSize);
+
+		$page = $page <= 0 ? 1 : $page;
+		$page = $page > $pageCount ? $pageCount : $page;
+		$pPageIdx = $page > 1 ? $page - 1 : 1;
+		$nPageIdx = $page >= $pageCount ? $pageCount : $page + 1;
+
+		$start = ($page - 1)*$pageSize;
+		$rows = $link->get_results($sql);
+	}
+
+	$data = array(
+		'RecordCount' => $recordCount,
+		'PageCount' => $pageCount,
+		'PageSize' => $pageSize,
+		'CurrentPage' => $page,
+		'First'	=> $fPageIdx,
+		'Prev' => $pPageIdx,
+		'Next' => $nPageIdx,
+		'Last' => $lPageIdx,
+		'PagerStr' => '',
+		'DataSet' => $rows,
+	);
+
+	return $data;
+}
+
+function brhtml($str)
+{
+   $str = str_replace(chr(13),'<br>',$str);
+  return $str;
+}
+function uh($str)
+{
+   $str = str_replace("'","&#8217;",$str);
+  return $str;
+}
+
+
+
+	function sqlFilter($sql)
+	{
+		if (!get_magic_quotes_gpc()) {
+		  $sql = addslashes($sql);
+		}
+		$sql = str_replace('%','\%',$sql);
+		return $sql;
+	}
+
+	function sqlUpdateFilter($sql)
+	{
+		if (!get_magic_quotes_gpc()) {
+		  $sql = addslashes($sql);
+		}
+		return $sql;
+	}
+	function GetIP(){
+	   if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown"))
+			   $ip = getenv("HTTP_CLIENT_IP");
+		   else if (getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"), "unknown"))
+			   $ip = getenv("HTTP_X_FORWARDED_FOR");
+		   else if (getenv("REMOTE_ADDR") && strcasecmp(getenv("REMOTE_ADDR"), "unknown"))
+			   $ip = getenv("REMOTE_ADDR");
+		   else if (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], "unknown"))
+			   $ip = $_SERVER['REMOTE_ADDR'];
+		   else
+			   $ip = "unknown";
+	   return($ip);
+	}
+
+	function get_token() {
+    	global $app_info;
+		$url  = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$app_info['appid']."&secret=".$app_info['secret'];
+		list($return_code, $return_content) = http_post_data($url,'');
+		$return_content= json_decode($return_content, true);
+        return $return_content['access_token'];
+    }
+
+
+/*
+	function get_access_token($CODE) 	//feng add
+	{
+    	global $app_info;
+		$url  = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$app_info['appid']."&secret=".$app_info['secret']."&code=".$CODE."&grant_type=authorization_code";
+		list($return_code, $return_content) = http_post_data($url,'');
+		$return_content= json_decode($return_content, true);
+        return $return_content;
+    }
+*/
+
+    function downloadImage($url, $filepath) {
+        //服务器返回的头信息
+        $responseHeaders = array();
+        //原始图片名
+        $originalfilename = '';
+        //图片的后缀名
+        $ext = '';
+        $ch = curl_init($url);
+        //设置curl_exec返回的值包含Http头
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        //设置curl_exec返回的值包含Http内容
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //设置抓取跳转（http 301，302）后的页面
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
+        //设置最多的HTTP重定向的数量
+        curl_setopt($ch, CURLOPT_MAXREDIRS, 1);
+
+        //服务器返回的数据（包括http头信息和内容）
+        $html = curl_exec($ch);
+        //获取此次抓取的相关信息
+        $httpinfo = curl_getinfo($ch);
+        curl_close($ch);
+        if ($html !== false) {
+            //分离response的header和body，由于服务器可能使用了302跳转，所以此处需要将字符串分离为 2+跳转次数 个子串
+            $httpArr = explode("\r\n\r\n", $html, 2 + $httpinfo['redirect_count']);
+            //倒数第二段是服务器最后一次response的http头
+            $header = $httpArr[count($httpArr) - 2];
+            //倒数第一段是服务器最后一次response的内容
+            $body = $httpArr[count($httpArr) - 1];
+            $header.="\r\n";
+
+            //获取最后一次response的header信息
+            preg_match_all('/([a-z0-9-_]+):\s*([^\r\n]+)\r\n/i', $header, $matches);
+            if (!empty($matches) && count($matches) == 3 && !empty($matches[1]) && !empty($matches[1])) {
+                for ($i = 0; $i < count($matches[1]); $i++) {
+                    if (array_key_exists($i, $matches[2])) {
+                        $responseHeaders[$matches[1][$i]] = $matches[2][$i];
+                    }
+                }
+            }
+            //获取图片后缀名
+            if (0 < preg_match('{(?:[^\/\\\\]+)\.(jpg|jpeg|gif|png|bmp)$}i', $url, $matches)) {
+                $originalfilename = $matches[0];
+                $ext = $matches[1];
+            } else {
+                if (array_key_exists('Content-Type', $responseHeaders)) {
+                    if (0 < preg_match('{image/(\w+)}i', $responseHeaders['Content-Type'], $extmatches)) {
+                        $ext = $extmatches[1];
+                    }
+                }
+            }
+            //保存文件
+            if (!empty($ext)) {
+            	//echo  $ext;
+                $filepath .= ".$ext";
+//echo $filepath;die;
+                //如果目录不存在，则先要创建目录
+                //CFiles::createDirectory(dirname($filepath));
+                $local_file = fopen($filepath, 'w');
+                if (false !== $local_file) {
+                    if (false !== fwrite($local_file, $body)) {
+                        fclose($local_file);
+                        $sizeinfo = getimagesize($filepath);
+                       return true;
+                     //  return array('filepath' => realpath($filepath), 'width' => $sizeinfo[0], 'height' => $sizeinfo[1], 'orginalfilename' => $originalfilename, 'filename' => pathinfo($filepath, PATHINFO_BASENAME));
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+	function http_post_data($url, $data_string) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json; charset=utf-8',
+            'Content-Length: ' . strlen($data_string))
+        );
+		if(file_exists(SCRIPT_ROOT.'localweixin.txt')){//本地测试微信
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		}
+        ob_start();
+
+        curl_exec($ch);
+        $return_content = ob_get_contents();
+        ob_end_clean();
+
+        $return_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        return array($return_code, $return_content);
+    }
+
+	function get_group($token) {
+		$url  = "https://api.weixin.qq.com/cgi-bin/groups/get?access_token=".$token;
+		list($return_code, $return_content) = http_post_data($url,'');
+		$return_content= json_decode($return_content, true);
+		return  $return_content;
+    }
+
+	function get_userinfo($token,$openid) {//feng add
+		$url  = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$token."&openid=".$openid;
+		list($return_code, $return_content) = http_post_data($url,'');
+		$return_content= json_decode($return_content, true);
+		return  $return_content;
+    }
+
+    function create_meun($data,$token) {
+
+
+	$url  = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$token;
+	list($return_code, $return_content) = http_post_data($url,$data);
+	print_R($return_code);
+	print_R($return_content);
+	$return_content= json_decode($return_content, true);
+
+
+
+    if($return_content['errcode']==0){
+    	return true;
+        }else{
+        	 return false;
+        }
+    }
+
+      function product_qrcode($business_id){
+		global $site;
+		$website=$site."product_detail.php?id=".$business_id;
+		include "../qrcode/phpqrcode/phpqrcode.php";
+		if (preg_match('/^http:\/\//', $website) || preg_match('/^https:\/\//', $website)) {
+			$data= $website;
+		} else {
+			$data= '<a href="http://'.$website.'>http://'.$website.'</a>';
+		}
+				//        $data.="MEBKM:TITLE:".$title.";URL:".$website.";;";
+		$errorCorrectionLevel="L";
+		$matrixPointSize="20";
+		$picname=$business_id.".png";
+		QRcode::png($data,"../qrcode/qrcode/pic/product/".$picname,$errorCorrectionLevel,$matrixPointSize);
+		$filename="../qrcode/qrcode/pic/product/".$picname;
+	}
+
+
+/*
+ * 	匿名
+ */
+function hide_name($name)
+{
+	if(strlen($name) > 6)
+	{
+		return substr($name,0,3)."**".substr($name,strlen($name)-3,strlen($name));
+	}
+	else if(strlen($name)>3 && strlen($name)<=6)
+	{
+		return substr($name,0,3)."**";
+	}
+	else
+	{
+		return $name;
+	}
+}
+
+
+/*
+ * 	微信帐号与网站帐号绑定
+ */
+function get_access_token($CODE) 	//feng add
+{
+	global $app_info;
+	$url  = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$app_info['appid']."&secret=".$app_info['secret']."&code=".$CODE."&grant_type=authorization_code";
+	$return_content = http_post_data($url,'');
+	return  json_decode($return_content[1], true);
+}
+
+/*
+ *	功能：获取产品数量对应的的商品价格
+ *
+ *	参数：
+ *  $strPrices:    商品梯阶价格(json格式)
+ *  $product_num:  购买的商品数量
+ *
+ *  返回值：
+ *  商品数量所对应的商品单价
+ * */
+ function get_price( $strPrices, $product_num )
+ {
+ 	$arrPrices = json_decode( $strPrices );
+
+ 	foreach( $arrPrices as $price )
+	{
+		if( $price->max == $price->min )
+	  	{
+	  		$now_price = $price->price;
+	  	}
+	  	else
+	  	{
+		  	if ( $price->max == 0 )
+		  	{
+		  		if( $product_num >= $price->min && $product_num<=10000)
+				{
+			  	 	$now_price = $price->price;
+				}
+		  	}
+		  	else
+		  	{
+				if(  $product_num >= $price->min  && $product_num <= $price->max )
+				{
+				   $now_price = $price->price;
+				}
+		  	}
+	  	}
+	}
+
+	return $now_price;
+}
+
+
+/*
+ * 	功能：获取邮费信息
+ * 	参数：
+ * 	$province:  省份的ID
+ * 	$weight:	物体的重量
+ */
+function get_espress_price( $province, $weight )
+{
+	$espress 		=  0;
+	$need_espress 	= array( 6,27,29,30,31,32 );
+	if ( in_array( $province, $need_espress ) && $weight > 1 )
+	{
+		$espress =  15 * ( $weight - 1 );
+	}
+
+	return $espress;
+	exit;
+
+
+	// 获取用户选定地区的运费
+	global $db;
+	$ep 			= $db->get_results("SELECT a.`postage`, a.`postage2`, a.`add_postage`, a.`add_postage2` FROM `sys_area` as a WHERE `id`= $province ");
+	$postage 		= $ep[0]->postage; 		// 邮费（3公斤内）
+	$postage2 		= $ep[0]->postage2; 	// 邮费（3公斤外）
+	$add_postage 	= $ep[0]->add_postage; 	// 续费（3公斤内）
+	$add_postage2 	= $ep[0]->add_postage2; // 续费（3公斤外）
+	$weight 		= ceil($weight);
+
+	if ( $weight == 0 )
+	{
+		$espress_price = 0;
+	}
+	else
+	{
+		// 当重量在3公斤以内
+		if ($weight <= 3)
+		{
+			$espress_price = $postage; // 获取3公斤内首重的邮费
+			if ($weight > 1) {
+				$espress_price += $add_postage * ($weight -1); // 超过1公斤部分的续重费
+			}
+		}
+		 else // 如果超过3公斤则加续重费
+		{
+			$espress_price = $postage2; // 获取3公斤内首重的邮费
+			$espress_price += $add_postage2 * ($weight -1); // 超过1公斤部分的续重费
+		}
+	}
+	return $espress_price;
+}
+
+/**
+ * 打印结构，调试使用(print data缩写)
+ *
+ * @param mix $data 要打印的数据
+ * @param boolean $exit 中止
+ * @param boolean $bFormat 是否输出变量格式
+ */
+function PD($data, $exit=true, $bFormat=FALSE)
+{
+	if ( $bFormat )
+	{
+		var_dump($data);
+	}
+	else
+	{
+		if ( $data == NULL )
+		{
+			var_dump($data);
+		}
+		else
+		{
+			echo '<pre>'.print_r($data,true).'</pre>';
+		}
+	}
+
+	if($exit) exit();
+}
+
+/**
+ * 检测提交变量，并返回相应的值
+ *
+ * @param string $val_name 变量名
+ * @param string $default_val 默认值
+ * @param string $submit_type 提交方式 （POST|GET|REQUEST）
+ */
+function CheckDatas( $val_name, $default_val='', $submit_type= 'REQUEST' )
+{
+	if ( strtoupper($submit_type) == 'POST' )
+	{
+		$data = isset( $_POST[$val_name] ) ? $_POST[$val_name] : $default_val;
+	}
+	else if( strtoupper($submit_type) == 'GET' )
+	{
+		$data = isset( $_GET[$val_name] ) ? $_GET[$val_name] : $default_val;
+	}
+	else
+	{
+		$data = isset( $_REQUEST[$val_name] ) ? $_REQUEST[$val_name] : $default_val;
+	}
+
+	return $data;
+}
+
+/**
+ * 获取数组格式的地区列表
+ *
+ * @todo 根据需要待完善
+ * @return array
+ */
+function getAreas(){
+	global $db;
+	$areaDir = SCRIPT_ROOT.'data/';
+	$areaFile = $areaDir.'area.php';
+	!file_exists($areaDir) && mkdir($areaDir, 0777, true);
+	//数据文件不存在，或者数据文件修改超过一天(地区数据每24小时更新一次)
+	if(!file_exists($areaFile) || (time() - filemtime($areaFile) > 86400)){
+		$sql = 'SELECT `id`,`name`,`pid`,`postcode`,`postage`,`postage2`,`add_postage`,`add_postage2` FROM `sys_area` ORDER BY `pid` ASC,`id` ASC';
+		$rs = $db->get_results($sql);
+		$areas = array();
+		$map = array();
+		$tmpMap = array();
+		foreach($rs as $v){
+			if($v->pid == 0){//一级
+				$areas[$v->id] = array('id'=>$v->id, 'name'=>$v->name);
+			}elseif(isset($areas[$v->pid])) {//二级
+				$areas[$v->pid]['child'][$v->id] = array('id'=>$v->id, 'name'=>$v->name);
+				//下级地区已先获得，将其下级放入数据链中
+				if(isset($tmpMap[$v->id])){
+					$areas[$v->pid]['child'][$v->id]['child'] = $tmpMap[$v->id];
+					unset($tmpMap[$v->id]);
+				}
+			}elseif(isset($map[$v->pid]) && isset($map[$map[$v->pid]['pid']])) {//三级
+				$areas[$map[$v->pid]['pid']]['child'][$v->pid]['child'][$v->id] = array('id' => $v->id, 'name' => $v->name);
+			}else{//当前地区非一级，且上级排在后面尚未存在于数据中
+				$tmpMap[$v->pid][$v->id] = array('id'=>$v->id, 'name'=>$v->name);
+			}
+			$map[$v->id] = array('pid'=>$v->pid);
+		}
+		file_put_contents($areaFile, "<?php\r\nreturn ".var_export($areas, true).";\r\n?>");
+		unset($map, $tmpMap);
+	}else{
+		$areas = include($areaFile);
+	}
+	return $areas;
+}
+
+/**
+ * 获取json格式的地区列表
+ *
+ * @return string
+ */
+function getAreasJson(){
+	$areaDir = SCRIPT_ROOT.'data/';
+	$areaFile = $areaDir.'area.json';
+	!file_exists($areaDir) && mkdir($areaDir, 0777, true);
+	if(!file_exists($areaFile)){
+		$areas = getAreas();
+		$data = array();
+		foreach($areas as $one){
+			$_one = array('id'=>$one['id'], 'name'=>$one['name']);
+			if($one['child']){
+				$levTwo = array();
+				foreach($one['child'] as $two){
+					$_two = array('id'=>$two['id'], 'name'=>$two['name']);
+					if($two['child']){
+						$levThree = array();
+						foreach($two['child'] as $three){
+							$levThree[] = array('id'=>$three['id'], 'name'=>$three['name']);
+						}
+						!empty($levThree) && $_two['child'] = $levThree;
+					}
+					$levTwo[] = $_two;
+				}
+				!empty($levTwo) && $_one['child'] = $levTwo;
+			}
+			$data[] = $_one;
+		}
+		$areaData = array('data'=>$data);
+		$areaData = json_encode($areaData);
+		file_put_contents($areaFile, $areaData);
+	}else{
+		$areaData = file_get_contents($areaFile);
+	}
+	return $areaData;
+}
+
+/*
+ * 功能：获取对外订单号
+ * */
+function set_out_trade_no()
+{
+	$time = explode(" ", microtime());
+	return date('Ymd') . $time[1] . rand(100,999);
+}
+
+/*
+ * 功能：生成随机码
+ * */
+function createCode($length = 4, $is_number=true)
+{
+	$chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+	if ( $is_number )
+	{
+		$chars .= "0123456789";
+	}
+
+	$str = "";
+	for ($i = 0; $i < $length; $i++)
+	{
+		$str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+	}
+	return $str;
+}
+
+/**
+ * 生成优惠券劵码(时间戳+5位随机数字)
+ *
+ * @return string
+ */
+function genCouponNo()
+{
+	$str1 = '0123456789';
+	return time(). rand( 1000,9999 );
+}
+
+/*
+ * 功能：获取json数据
+ * */
+function get_json_data_public( $code, $msg, $data='' )
+{
+	$rs = array(
+		'code' 	=> $code,
+		'msg'	=> $msg,
+		'data'	=> $data
+	);
+
+	return json_encode( $rs );
+}
+
+// 打印log
+function  log_result( $file, $word, $err_level='DEBUG' )
+{
+    $fp = fopen( LOG_INC . $file,"a");
+    flock($fp, LOCK_EX) ;
+	fwrite( $fp,"================================================\n");
+    fwrite( $fp,"[". date('Y-m-d H：i:s')."][{$err_level}]　{$word}\n");
+    flock($fp, LOCK_UN);
+    fclose($fp);
+}
+
+/**
+ * ajax返回信息
+ *
+ * @param boolean $state 状态
+ * @param string $msg 信息
+ * @param array $data 扩展信息
+ */
+function ajaxResponse($state, $msg, $data=array()){
+	$info = array('state'=>$state ? 1 : 0, 'msg'=>$msg);
+	!empty($data) && $info = array_merge($info, $data);
+	echo json_encode($info);
+	exit();
+}
+
+
+
+/**
+ * 	模型类
+ *
+ * 	@param $dbName  数据表名
+ *  @param $conn	数据库链接
+ */
+function M( $dbName, $db='' )
+{
+	global $db;
+	static $_model  = array();
+	require_once APP_INC . '/Model.class.php';
+
+	if ( ! isset($_model[$dbName]) )
+	{
+		$_model[$dbName] = new Model( $db,$dbName);
+	}
+
+	return $_model[$dbName];
+}
+
+/**
+ * 	模型类
+ *
+ * 	@param $dbName  模块名
+ *  @param $conn	数据库链接
+ * 	@param $conn	数据表名
+ */
+function D( $ModelName, $db='',  $dbName='' )
+{
+	global $db;
+	static $_D  = array();
+	require_once MODEL_DIR .'/'. $ModelName . 'Model.class.php';
+	$strModel = $ModelName . 'Model';
+
+	if ( ! isset($_D[$ModelName]) )
+	{
+		$_D[$ModelName] = new $strModel($db);
+	}
+
+	return $_D[$ModelName];
+}
+
+/**
+ *	功能：判断提交方式是否为POST
+ */
+function IS_POST()
+{
+	return $_SERVER['REQUEST_METHOD'] == 'POST' ? TRUE : FALSE;
+}
+
+/**
+ *	功能：判断提交方式是否为GET
+ */
+function IS_GET()
+{
+	return $_SERVER['REQUEST_METHOD'] == 'GET' ? TRUE : FALSE;
+}
+
+
+/**
+ *	功能：判断是否微信登录（任何页面首次进入都需去调用微信API获取微信相关信息）
+ */
+ function IS_USER_WX_LOGIN()
+ {
+ 	if( !isset($_SESSION['openid']) ||$_SESSION['openid'] == null )
+	{
+		redirect("/login?dir=" . urlencode($_SERVER['REQUEST_URI']));
+		return;
+	}
+ }
+
+/**
+ *	功能：判断是否平台登录（通过判断is_login是否为true来获取是否可操作跟用户相关的信息）
+ */
+ function IS_USER_LOGIN()
+ {
+ 	if( !isset($_SESSION['is_login']) || $_SESSION['is_login'] === FALSE )
+	{
+		redirect("/user_binding?dir=" . $_SERVER['REQUEST_URI'] );
+		return;
+	}
+ }
+
+ /**
+  * 功能：通过时间获取时间离现在剩余的时间，显示格式
+  * 参数：
+  * @param datetime $date 时间
+  * @param strting  $type -:剩余时间 +: 即将开始时间
+  * */
+ function DataTip( $date, $type='-' )
+ {
+ 	$date_tip = '';
+
+	// 计算剩余的天数
+ 	$date_num = floor((strtotime($date) - time())/86400);
+
+	// 计算当天剩余的秒数
+	$date_time = strtotime($date) - ( time() + $date_num * 86400 );
+
+ 	if ( $date_num >= 0 )
+	{
+		if ( $date_num > 30 )
+		{
+			$date_tip = floor($date_num / 30) . '个月';
+		}
+		else
+		{
+			 if ($date_num == 0)
+			 {
+			 	$date_tip = $type == '-' ? '即将结束' : '距活动开始：';
+			 }
+			 else
+			 {
+			 	$date_tip = '剩' . $date_num . '天';
+			 }
+
+		}
+	}
+
+	return array( 'date_num'=> $date_num, 'date_time'=>$date_time, 'date_tip'=>$date_tip );
+ }
+
+
+ /*=================================================================
+ * 	功能：调用发送短信接口，并获取结果
+ *
+ *  参数：
+ *  $phone:手机号
+ * 	$source: 1=注册；  2=修改密码
+ *
+ *  返回结果:
+ * object(stdClass)[15]
+  	'phone' => string '13414057505' (length=11)
+  	'captcha' => string '229640' (length=6)
+  	'success' => boolean true
+  	'error_msg' => string '发送成功！' (length=15)
+ *
+ =================================================================*/
+function apireturn($phone, $source, $arrGeetestParam )
+{
+	global $log;
+
+	// 给url参数设置一个sign用于接口验证
+	include_once(LIB_ROOT . 'SetKey.php');
+	$SetKey = new SetKey();
+	$SetKey->getUrlParam( 'phone=' . $phone . '&source=' . $source . '&geetest_challenge=' . $arrGeetestParam['geetest_challenge'] . '&geetest_validate=' . $arrGeetestParam['geetest_validate'] . '&geetest_seccode=' . $arrGeetestParam['geetest_seccode'] );
+	$sign 	= $SetKey->getSign();
+
+	$url 	= APIURL . '/captcha.do?phone=' . $phone . '&source=' . $source . '&sign=' . $sign . '&geetest_challenge=' . $arrGeetestParam['geetest_challenge'] . '&geetest_validate=' . $arrGeetestParam['geetest_validate'] . '&geetest_seccode=' . $arrGeetestParam['geetest_seccode'];
+	$ch 	= curl_init($url) ;
+	curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']) ; 					// 获取数据返回
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true) ; 									// 获取数据返回
+	curl_setopt($ch, CURLOPT_BINARYTRANSFER, true) ; 									// 在启用 CURLOPT_RETURNTRANSFER 时候将获取数据返回
+	$output = curl_exec($ch) ;
+	curl_close($ch);
+
+	$log->put('/user/binding', '调用接口！');												// 记录日志
+	$log->put('/user/binding',  $output );												// 记录日志
+
+	return json_decode($output);
+}
+
+
+
+?>

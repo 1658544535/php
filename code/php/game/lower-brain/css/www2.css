@@ -1,0 +1,27 @@
+*{ margin:0px; padding:0px; }
+body{ background:#d6a770; font-family:'Microsoft YaHei'; }
+
+/*===============  对战页面  ==================*/
+.share_warp{ min-width:320px;  max-width:580px; min-height:560px; margin:0px auto; }
+.share_warp #bg_img{ margin: 0 auto; width:100%; position:relative; }
+
+
+/*小于 380px */
+@media ( max-width: 380px ) {
+/*===============  对战页面  ==================*/
+.share_warp #top{ width:30%; position:absolute; top:24%;right:40%;}
+.share_warp #top img{ width:150%;}
+.share_warp #tip{ width:40%; margin:5%;  position:absolute; top:38%;right:20%;}
+.share_warp #tip a{ font-size:13px; color:#6a3906; font-weight:bold;text-decoration:none;}
+.share_warp #tip1{ width:100%; margin:0%;  position:absolute; top:50%;left:40%;}
+.share_warp #tip1 img{width:50%}
+.share_warp #tip1 span{position: absolute;top:56%; left: 18%;font-size:175%;color:#FFFFFF; font-weight:bold;}
+.share_warp #tip2{ width:100%; margin:5%; position:absolute; top:60%;}
+.share_warp #tip2 .www_warp{ position:absolute; width:100%;}
+.share_warp #tip2 .www_warp dd .dd1{ font-size:50px;font-weight:bold;color:#FFFFFF; }
+.share_warp #tip2 .www_warp dd .dd2{text-align:center;font-size:16px;font-weight:bold;color:#000000; }
+.share_warp #bottom1{ width:100%; margin:5%;position:absolute; top:82%;}
+.share_warp #bottom1  .img1{width:25%;float:left;}
+.share_warp #bottom2{ width:100%; margin-left:-5%;position:absolute; top:84%;}
+.share_warp #bottom2  .img2{width:25%;float:right;}
+ }

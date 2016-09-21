@@ -1,0 +1,24 @@
+
+
+
+user login success ============
+username:dennis 
+userid:6
+openid:o6MuHtzGVyS8xi5VxCs3RjhEhQfk
+Time:17:34 11/05/2015
+
+
+
+user insert success ============
+username:dennis 
+userid:
+openid:o6MuHtzGVyS8xi5VxCs3RjhEhQfk
+Time:11:04 12/05/2015
+
+
+
+user insert success ============
+username:dennis 
+userid:
+openid:o6MuHtzGVyS8xi5VxCs3RjhEhQfk
+Time:11:05 12/05/2015
