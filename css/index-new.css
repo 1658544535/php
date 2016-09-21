@@ -1,0 +1,52 @@
+/*
+	Author: xujk.cc
+	date: 2016.08.28
+*/
+
+
+.header-index .header_title{color:#c0504d;font-size:20px;font-weight:bold;line-height:34px;}
+.header-index .header_title img{display:inline-block;height:20px;vertical-align:middle;}
+.header-icon{position:absolute;top:0;width:40px;height:40px;background-repeat:no-repeat;background-image:url(../images/header_btn.png);background-size:100% auto;}
+.header-left{left:0;}
+.header-right{right:0;}
+.header-search{background-position:0 -80px;}
+.header-cart{background-position:0 -240px;}
+
+.index-banner{position:relative;padding-bottom:46.666667%;background:#fff;}
+.index-banner .swiper-wrapper{position:absolute;top:0;left:0;width:100%;height:100%;}
+.index-banner .swiper-pagination{text-align:right;padding:0 10px;}
+.index-banner .swiper-pagination-bullet-active{background:#c0504d;}
+.index-banner a,.index-banner img{display:block;width:100%;height:100%;}
+
+.index-class{background:#fff;}
+.index-class ul{overflow:hidden;margin:0 10px;padding:20px 0;}
+.index-class li{float:left;width:25%;}
+.index-class li a{display:block;margin:5px;color:#000;font-size:13px;text-align:center;}
+.index-class li a div{margin:5px 15px;}
+.index-class li a img{display:block;width:100%;margin-bottom:8px;}
+.index-class li a p{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+.index-brand{margin-top:10px;background:#fff;}
+.index-brand>.title{padding:15px 0;text-align:center;font-size:13px;color:#000;font-weight:normal;}
+.index-brand ul{overflow:hidden;margin:0 10px;padding-bottom:15px;}
+.index-brand li{float:left;width:33.333333333%;}
+.index-brand li a{display:block;margin:5px 10px;text-align:center;}
+
+.index-goods{margin:10px 0 20px;background:#fff;}
+.index-goods .tab-title{height:40px;line-height:40px;border-bottom:1px solid #f2f2f2;text-align:center;overflow:hidden;}
+.index-goods .tab-title>div{float:left;padding:0 20px;font-size:13px;color:#333;}
+.index-goods .tab-title>div.active{height:39px;color:#f8b725;border-bottom:1px solid #f8b725;}
+.index-goods .tab-main li{padding:10px;border-bottom:1px solid #f2f2f2;}
+.index-goods .tab-main a{display:block;overflow:hidden;}
+.index-goods .tab-main .img{float:left;width:120px;}
+.index-goods .tab-main .img img{display:block;width:100%;}
+.index-goods .tab-main .info{margin-left:130px;text-align:right;}
+.index-goods .tab-main .title{font-size:14px;color:#0f0f0f;margin:10px 0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.index-goods .tab-main .tips{font-size:12px;color:#a6a6a6;margin-bottom:5px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.index-goods .tab-main .oldPrice{font-size:12px;color:#b2b2b2;text-decoration:line-through;margin-bottom:5px;}
+.index-goods .tab-main .price{font-size:18px;color:#fe2742;}
+.index-goods .tab-main .price span{font-size:10px;color:#fe2742;}
+
+
+
+
