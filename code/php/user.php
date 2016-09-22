@@ -22,64 +22,52 @@ $UserOrderModel 			= D('UserOrder');
 	-- 基本资料
 -----------------------------------------------------------------------------------------------------*/
 
-if ( ! $bLogin )
-{
-	// 如果未登录，则数据都为0
-	IS_USER_LOGIN();
-}
-else
-{
-	$objUserInfo   				= $UserInfoModel->get( array('user_id'=>$userid) );
+$objUserInfo   				= $UserInfoModel->get( array('user_id'=>$userid) );
 
-	// 婴儿年龄
-	$babyAge = '';
-	if(!empty($objUserInfo->baby_birthday))
+// 婴儿年龄
+$babyAge = '';
+if(!empty($objUserInfo->baby_birthday))
+{
+	$babyBirth = strtotime($objUserInfo->baby_birthday);
+	$babySec = time() - $babyBirth;
+	if($babySec > 0)
 	{
-		$babyBirth = strtotime($objUserInfo->baby_birthday);
-		$babySec = time() - $babyBirth;
-		if($babySec > 0)
+		if($babySec > 86400*365)
 		{
-			if($babySec > 86400*365)
-			{
-				$babyAge = floor($babySec / (86400*365)).'岁';
-			}
-			elseif($babySec > 86400*30)
-			{
-				$babyAge = floor($babySec / (86400*30)).'个月';
-			}
-			else
-			{
-				$babyAge = floor($babySec / 86400).'天';
-			}
+			$babyAge = floor($babySec / (86400*365)).'岁';
+		}
+		elseif($babySec > 86400*30)
+		{
+			$babyAge = floor($babySec / (86400*30)).'个月';
+		}
+		else
+		{
+			$babyAge = floor($babySec / 86400).'天';
 		}
 	}
-
-	// 商品收藏数量
-	$count_product = $UserCollectModel->getCollectNum( $userid );
-
-	// 专场收藏数量
-	$count_special = $UserSpecialCollectModel->getCollectNum( $userid );
-
-	// 足迹浏览数量
-	$count_history = $HistoryModel->getHistoryCount( $userid );
-
-	// 订单数
-	$onway_orders1 	  = $UserOrderModel->getOrderStatus( $userid, 1 );	 				// 待付款
-	$onway_orders2 	  = $UserOrderModel->getOrderStatus( $userid, 2 );	 				// 待发货订单
-	$onway_orders3 	  = $UserOrderModel->getOrderStatus( $userid, 3 );	 				// 待收货订单
-	$onway_orders4 	  = $UserOrderModel->getOrderStatus( $userid, 4 );	 				// 待评价订单
-
-	// 售后
-	$UserOrderRefundModel = D('UserOrderRefund');
-	$order_refund_num 	  = $UserOrderRefundModel->getUserOrderRefundCount( $userid );	 // 我的足迹
-
-	$objLogin = M('sys_login');
-	$user = $objLogin->get(array('id'=>$userid));
-   
 }
 
+// 商品收藏数量
+$count_product = $UserCollectModel->getCollectNum( $userid );
+
+// 专场收藏数量
+$count_special = $UserSpecialCollectModel->getCollectNum( $userid );
+
+// 足迹浏览数量
+$count_history = $HistoryModel->getHistoryCount( $userid );
+
+// 订单数
+$onway_orders1 	  = $UserOrderModel->getOrderStatus( $userid, 1 );	 				// 待付款
+$onway_orders2 	  = $UserOrderModel->getOrderStatus( $userid, 2 );	 				// 待发货订单
+$onway_orders3 	  = $UserOrderModel->getOrderStatus( $userid, 3 );	 				// 待收货订单
+$onway_orders4 	  = $UserOrderModel->getOrderStatus( $userid, 4 );	 				// 待评价订单
+
+// 售后
+$UserOrderRefundModel = D('UserOrderRefund');
+$order_refund_num 	  = $UserOrderRefundModel->getUserOrderRefundCount( $userid );	 // 我的足迹
+
+$objLogin = M('sys_login');
+$user = $objLogin->get(array('id'=>$userid));
 
 include "tpl/user_web.php";
-
-
 ?>

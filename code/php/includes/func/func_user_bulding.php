@@ -212,8 +212,8 @@
 					'create_by' 	=> -3,
 					'create_date' 	=> date("Y-m-d H:i:s"),
 					'update_date' 	=> date("Y-m-d H:i:s"),
-					'baby_sex'		=> $obj_user_info->baby_sex,
-					'baby_birthday'	=> $obj_user_info->baby_birthday,
+//					'baby_sex'		=> $obj_user_info->baby_sex,
+//					'baby_birthday'	=> $obj_user_info->baby_birthday,
 				);
 
 				$user_info_id = $this->db->create( 'user_info', $arrParam );

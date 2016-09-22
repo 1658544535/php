@@ -119,7 +119,7 @@
 
 	<div class="user_block_list">
 		<ul>
-			<li><a href="orders?return_url=user"><i class="user_icon_order"></i>我的订单</a></li>
+			<li><a href="orders"><i class="user_icon_order"></i>我的订单</a></li>
 			<li><a href="/user_info?act=product_collect&return_url=/user"><i class="user_icon_collect"></i>我的收藏</a></li>
 			<li><a href="/user_info.php?act=coupon&return_url=user"><i class="user_icon_coupon"></i>优惠券</a></li>
 			<li><a href="user_info?act=history&return_url=/user"><i class="user_icon_history"></i>我的浏览</a></li>
