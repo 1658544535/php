@@ -86,6 +86,12 @@
   color: #ff464e;
   border: 1px solid #ff464e;
   border-radius: 0.2rem;
+  background: #fff;
+}
+.edit-list-icon .list li .btn-gray {
+  display: none;
+  border-color: #979797;
+  color: #979797;
 }
 .edit-list-icon .list li:last-child {
   border-bottom: none;
@@ -96,7 +102,7 @@
   line-height: 2.45rem;
   color: #fff;
   background: #ff464e;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   overflow: hidden;
 }
 .bin-btn * {

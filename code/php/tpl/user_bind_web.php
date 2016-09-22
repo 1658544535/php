@@ -35,7 +35,7 @@
                                 <i class="icon icon-code"></i>
                                 <div class="input-controll"><input type="text" name="code" id="code" class="txt" placeholder="验证码" /></div>
                                 <a href="javascript:;" class="btn" id="JS-vcodebtn" onclick="show_captcha()">发送验证码</a>
-								<span id='tip' style="font-size:12px; padding-left:10px;" ><span id="time">60</span> 秒后重发</span>
+								<span id='tip' class="btn btn-gray">&nbsp;&nbsp;<span id="time">0</span>&nbsp;秒后重发</span>
                             </li>
                         </ul>
 						<div id="captcha" style="margin:0 10px;"></div>
@@ -55,9 +55,6 @@
     <script type='text/javascript' src='js/app.min.js' charset='utf-8'></script>
 	<script src="http://static.geetest.com/static/tools/gt.js"></script>
 	<script type="text/javascript">
-		$(function(){
-			$("#tip").hide();
-		})
 
 		function get_code( v_geetest_challenge, v_geetest_validate, v_geetest_seccode,captchaObj  )
 		{
@@ -72,13 +69,13 @@
 	          	},
              	success: function(data){
              		if(data.code > 0){
-             			alert("验证码发送成功！");
+						$.toast("验证码发送成功！");
          				$(".code_btn").hide();
          				$("#tip").show();
          				getclock();
          				$("#captcha").empty();
              		}else{
-             			alert(data.msg);
+						$.toast(data.msg);
              			captchaObj.refresh();
              			// show_captcha();
              		}
@@ -109,14 +106,14 @@
 			var mobile=$("#mobile").val();
 			if($.trim(mobile) == "")
 			{
-				alert('请输入帐号');
+				$.toast("请输入帐号");
 				return false;
 			}
 
 			var code=$("#code").val();
 			if($.trim(code) == "")
 			{
-				alert('请输入验证码');
+				$.toast("请输入验证码");
 				return false;
 			}
 
@@ -143,10 +140,10 @@
 	    function show_captcha(){
 			var mobile = $.trim($("#mobile").val());
 			if(mobile == ""){
-				alert("请输入手机号");
+				$.toast("请输入手机号");
 				return false;
 			}else if(!_checkMobile(mobile)){
-				alert("请正确输入手机号");
+				$.toast("请正确输入手机号");
 				return false;
 			}
 	     	if(!!xhr){
