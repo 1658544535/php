@@ -41,11 +41,10 @@
 
             <section class="swiper-container index-class">
                 <div class="swiper-wrapper">
-                    <a class="swiper-slide active" data-type="index" data-href="index_new.php">首页</a>
+                   <a class="swiper-slide active" data-type="index" data-href="ajaxtpl/ajax_index.php">首页</a>
                     <?php foreach ($objProductType as $type){?>
-                    <a class="swiper-slide" data-type="class" data-href="2"><?php echo $type->name?></a>
-                    <?php }?>
-                   
+                      <a class="swiper-slide" data-type="class" data-href="ajaxtpl/ajax_index.php?tid=<?php echo $type->id;?>"><?php echo $type->name;?></a>
+                    <?php }?>           
                 </div>
             </section>
 
