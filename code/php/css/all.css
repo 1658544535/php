@@ -352,6 +352,84 @@
   font-size: 0.5rem;
   color: #979797;
 }
+/*首页弹窗*/
+.popup-coupon > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 76%;
+  background: #fff;
+  border-radius: 0.25rem;
+  padding: 1.0rem 0.5rem;
+}
+.popup-coupon > div .close-popup {
+  position: absolute;
+  width: 1.2rem;
+  height: 1.2rem;
+  top: -0.4rem;
+  right: -0.4rem;
+  background: url(../images/popup-close.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.popup-coupon > div .title1 {
+  margin: 0.5rem 0 1.0rem;
+  font-size: 0.75rem;
+  color: #1c1c1c;
+  font-weight: normal;
+  text-align: center;
+}
+.popup-coupon > div .freeCoupon {
+  position: relative;
+  height: 3.7rem;
+  padding: 0.5rem;
+  background: #f9f9f9;
+}
+.popup-coupon > div .freeCoupon .name {
+  font-size: 0.7rem;
+  color: #ff464e;
+}
+.popup-coupon > div .freeCoupon .name span {
+  font-size: 0.65rem;
+}
+.popup-coupon > div .freeCoupon .tips {
+  font-size: 0.6rem;
+  color: #1c1c1c;
+}
+.popup-coupon > div .freeCoupon .time {
+  font-size: 0.6rem;
+  color: #979797;
+}
+.popup-coupon > div .freeCoupon .price {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4.35rem;
+  height: 3.7rem;
+  line-height: 3.7rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.6rem;
+  background: url(../images/index-popup.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.popup-coupon > div .freeCoupon .price span {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+.popup-coupon > div .go {
+  display: block;
+  width: 7.0rem;
+  height: 1.7rem;
+  margin: 0.9rem auto 0;
+  line-height: 1.7rem;
+  font-size: 0.85rem;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25rem;
+  background: #ff464e;
+}
 /*详情页返回*/
 .deta-back {
   display: block;

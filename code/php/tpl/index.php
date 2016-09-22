@@ -62,12 +62,26 @@
                         </div>
                     </div>
                 </div>
-
-                
-
             </div>
         </div>
     </div>
+
+    <div class="popup popup-coupon">
+        <div>
+            <a href="#" class="close-popup"></a>
+            <h3 class="title1">您有1张团免券未使用</h3>
+            <div class="freeCoupon">
+                <div class="info">
+                    <div class="name">团长免单券 <span>(团长免费开团)</span></div>
+                    <div class="tips">点击选择团免商品</div>
+                    <div class="time">有效期: 2016.9.15-2016.9.22</div>
+                </div>
+                <div class="price"><div>￥<span>0</span></div></div>
+            </div>
+            <a href="#" class="go">立即前往</a>
+        </div>
+    </div>
+
     <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
