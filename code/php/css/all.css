@@ -38,6 +38,77 @@
 .bar-tab .tab-item.active .i-user {
   background-position: -1.2rem -3.6rem;
 }
+.edit-list-icon {
+  margin-top: 0.5rem;
+  background: #fff;
+}
+.edit-list-icon .list {
+  margin: 0 0.5rem;
+  list-style: none;
+  padding: 0;
+}
+.edit-list-icon .list li {
+  position: relative;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e7e7e7;
+}
+.edit-list-icon .list li .icon {
+  float: left;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin-top: 0.2rem;
+  margin-left: 0.25rem;
+  background: url(../images/login.png) no-repeat;
+  background-size: auto 1.6rem;
+}
+.edit-list-icon .list li .icon-tel {
+  background-position: 0 0;
+}
+.edit-list-icon .list li .icon-code {
+  background-position: 0 -0.8rem;
+}
+.edit-list-icon .list li .input-controll {
+  margin-left: 1.7rem;
+}
+.edit-list-icon .list li input.txt {
+  display: block;
+  width: 100%;
+  border: none;
+  font-size: 0.9rem;
+  color: #666;
+}
+.edit-list-icon .list li .btn {
+  position: absolute;
+  right: 0.25rem;
+  top: 0.4rem;
+  padding: 0.1rem 0.2rem;
+  font-size: 0.75rem;
+  color: #ff464e;
+  border: 1px solid #ff464e;
+  border-radius: 0.2rem;
+}
+.edit-list-icon .list li:last-child {
+  border-bottom: none;
+}
+.bin-btn {
+  margin: 1.1rem 0.9rem;
+  height: 2.45rem;
+  line-height: 2.45rem;
+  color: #fff;
+  background: #ff464e;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.bin-btn * {
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 2.45rem;
+  color: #fff;
+  border: none;
+  font-size: 1.15rem;
+  background: none;
+}
 /*首页logo*/
 .title-img {
   display: inline-block;
@@ -69,6 +140,7 @@
 .index-banner.swiper-container {
   position: relative;
   padding-bottom: 45.33333333%;
+  margin-bottom: 0.5rem;
 }
 .index-banner.swiper-container .swiper-wrapper {
   position: absolute;
@@ -118,7 +190,7 @@
   display: block;
 }
 .index-index .index-pro-title {
-  margin: 1.3rem 0 0.75rem;
+  margin: 0.8rem 0 0.75rem;
   padding-bottom: 4.8%;
   background: url(../images/index-pro-title.png) no-repeat center center;
   background-size: 100% auto;
