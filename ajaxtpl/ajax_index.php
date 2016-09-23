@@ -23,16 +23,26 @@ $ObjGrouponList = $GrouponRecommendModel->query("SELECT gr.activity_id,  g.price
 	
 //获取分类拼团活动数据
 	
-   $ObjProductList = $GrouponActivityModel->query("SELECT g.product_id, count( * ), g.is_default, g.id as gid, g.price,  g.status, g.activity_status, g.type, g.banner, g.num, p.id, p.product_name, p.image , p.selling_price, p.sell_number, p.product_sketch, p.image_main, p.image_small FROM `groupon_activity` AS g LEFT JOIN product AS p on p.`id` = g.`product_id` WHERE 1=1 AND g.status =1 AND g.type =1 AND g.activity_status !=0  AND p.product_type_ids like '%".$typeId."%' GROUP BY g.product_id ORDER BY g.sorting DESC,g.create_date DESC ",false,true,$page,20);
-   
-
+		$ObjProductList = $GrouponActivityModel->query("SELECT  g.id as gid, g.price,  g.status, g.activity_status, g.type, g.banner, g.num, p.id, p.product_name, p.image , p.selling_price, p.sell_number, p.product_sketch, p.image_main, p.image_small FROM `groupon_activity` AS g LEFT JOIN product AS p on p.`id` = g.`product_id` WHERE 1=1 AND g.status =1 AND g.type =1 AND g.activity_status !=0  AND p.product_type_ids like '%".$typeId."%' AND g.is_default =1  ORDER BY g.sorting DESC,g.create_date DESC ",false,true,$page,20);
+	   
+		foreach ($ObjProductList['DataSet'] as $o){
+			$data[]=$o->id;
+		}
+		foreach ($data as $key =>$a){
+			
+			$ObjProduct = $GrouponActivityModel->query("SELECT product_id, count( * ) FROM `groupon_activity`  WHERE 1=1 AND type =1 AND status !=0  AND product_id = '".$a."' GROUP BY product_id ",false,false);
+		     $arr[]=$ObjProduct; 
+		}
+		
 	$Data = array(
 			'image'   =>$objBannerImages,
-	        'groupon' =>$ObjGrouponList,
-	        'product' =>$ObjProductList
-	);	
+			'groupon' =>$ObjGrouponList,
+			'product' =>$ObjProductList,
+			'count'   =>$arr
+	);
+	
+	
+	echo get_json_data_public( 1,'获取成功',$Data );
 
-
-	echo	get_json_data_public( 1,'获取成功',$Data );
 
 	?>
