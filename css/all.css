@@ -683,3 +683,84 @@
 .deta-footer .buy a.one {
   background: #ff6b71;
 }
+/*团免列表*/
+.freeList-tips {
+  font-size: 0.65rem;
+  color: #898989;
+  line-height: 0.9rem;
+  padding: 0.8rem 0.75rem;
+}
+.freeList-tips::before {
+  content: '';
+  display: inline-block;
+  vertical-align: sub;
+  margin-right: 0.25rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  background: url(../images/tips.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.freeList .list-container {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.freeList .list-container li {
+  min-height: 5.45rem;
+  margin-bottom: 0.5rem;
+  padding: 0.65rem;
+  background: #fff;
+}
+.freeList .list-container li a {
+  display: block;
+}
+.freeList .list-container li a .img {
+  float: left;
+  width: 4.15rem;
+  height: 4.15rem;
+  border: 1px solid #c9c9c9;
+  border-radius: 2px;
+}
+.freeList .list-container li a .img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.freeList .list-container li a .info {
+  margin-left: 4.75rem;
+}
+.freeList .list-container li a .info .name {
+  height: 2.1rem;
+  line-height: 1.05rem;
+  font-size: 0.7rem;
+  color: #1c1c1c;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.freeList .list-container li a .info .price {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: #ff464e;
+}
+.freeList .list-container li a .info .price .price1 {
+  font-size: 1.0rem;
+}
+.freeList .list-container li a .info .price .price2 {
+  display: inline-block;
+  margin-left: 0.2rem;
+  color: #979797;
+}
+.freeList .list-container li a .info .price .btn {
+  float: right;
+  width: 3.65rem;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  border-radius: 0.15rem;
+  font-size: 0.7rem;
+  color: #fff;
+  text-align: center;
+  background: #ff464e;
+}
