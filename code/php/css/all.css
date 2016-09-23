@@ -4,6 +4,9 @@
   text-align: center;
   padding: 1.0rem 0;
 }
+.themeColor {
+  color: #ff464e;
+}
 /*顶部*/
 .bar-nav .icon {
   width: 2.2rem;
@@ -104,8 +107,8 @@
 }
 .bin-btn {
   margin: 1.1rem 0.9rem;
-  height: 2.45rem;
-  line-height: 2.45rem;
+  height: 1.75rem;
+  line-height: 1.75rem;
   color: #fff;
   background: #ff464e;
   border-radius: 0.25rem;
@@ -115,10 +118,10 @@
   display: block;
   width: 100%;
   height: 100%;
-  line-height: 2.45rem;
+  line-height: 1.75rem;
   color: #fff;
   border: none;
-  font-size: 1.15rem;
+  font-size: 0.75rem;
   background: none;
 }
 /*首页logo*/
@@ -454,7 +457,7 @@
 .deta-banner img {
   position: absolute;
   width: 100%;
-  hegiht: 100%;
+  height: 100%;
   top: 0;
   left: 0;
 }
@@ -711,6 +714,12 @@
   color: #898989;
   line-height: 0.9rem;
   padding: 0.8rem 0.75rem;
+}
+.freeList-tips a {
+  float: right;
+  font-size: 0.6rem;
+  line-height: .9rem;
+  color: #898989;
 }
 .freeList-tips::before {
   content: '';
@@ -1080,4 +1089,238 @@
   border-radius: 0.15rem;
   color: #fff;
   background: #666;
+}
+/*猜价格-用户参与列表*/
+.guessTab ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+.guessTab ul li {
+  float: left;
+  width: 33.333333%;
+  height: 2.0rem;
+  line-height: 2.0rem;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #fff;
+  background: #c9caca;
+}
+.guessTab ul li.active {
+  background: #ff464e;
+}
+.guessJoinList {
+  background: #fff;
+  padding: 0 0.5rem 1px;
+}
+.guessJoinList ul {
+  margin: 0;
+  list-style: none;
+  padding: 0.85rem 1.0rem 0;
+}
+.guessJoinList ul li {
+  position: relative;
+  height: 2.3rem;
+  margin-bottom: 0.7rem;
+  padding: 0.25rem 5%;
+  border: 1px solid #ff464e;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+.guessJoinList ul li .img {
+  float: left;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #bfc0c0;
+}
+.guessJoinList ul li .img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.guessJoinList ul li .info {
+  position: relative;
+  height: 100%;
+  margin-left: 2.3rem;
+}
+.guessJoinList ul li .name {
+  position: absolute;
+  width: 30%;
+  left: 0;
+  top: 55%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 0.6rem;
+  color: #3e3e3e;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.guessJoinList ul li .price {
+  position: absolute;
+  width: 30%;
+  left: 30%;
+  top: 55%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 0.6rem;
+  color: #3e3e3e;
+  text-align: center;
+}
+.guessJoinList ul li .price p {
+  display: inline-block;
+  margin: 0;
+}
+.guessJoinList ul li .price .real {
+  font-size: 0.75rem;
+}
+.guessJoinList ul li .time {
+  position: absolute;
+  width: 40%;
+  left: 60%;
+  top: 55%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 0.6rem;
+  color: #3e3e3e;
+  text-align: right;
+}
+.guessJoinList .bin-btn {
+  margin-top: 0;
+}
+/*猜价格-详情*/
+.guessDeta-banner .swiper-slide {
+  padding-bottom: 55.55555555%;
+}
+.guessDeta-info {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background: #fff;
+}
+.guessDeta-info .name {
+  padding-bottom: 0.25rem;
+  font-size: 0.75rem;
+  color: #1c1c1c;
+}
+.guessDeta-info .list {
+  font-size: 0.7rem;
+  color: #454545;
+  line-height: 1.35rem;
+}
+.guessDeta-info .list > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+.guessDeta-info .price {
+  font-size: 0.85rem;
+  color: #ff464e;
+}
+.guessDeta-info .downTime {
+  font-size: 0.7rem;
+  color: #9fa0a0;
+  font-weight: bold;
+}
+.guessDeta-info .downTime span {
+  display: inline-block;
+  width: 1.4rem;
+  height: 1.4rem;
+  font-weight: normal;
+  margin: 0 0.25rem;
+  line-height: 1.4rem;
+  text-align: center;
+  border-radius: 0.15rem;
+  color: #fff;
+  background: #666;
+}
+.guessDeta-info.center {
+  text-align: center;
+}
+.guessDeta-info.center .name {
+  font-size: 1.0rem;
+}
+.guessDeta-info.center .tips {
+  padding-bottom: 0.25rem;
+  font-size: 0.8rem;
+  color: #454545;
+}
+.guessDeta-info.center .tips.themeColor {
+  color: #ff464e;
+}
+.guessDeta-info.center .finalPrice {
+  font-size: 0.65rem;
+  color: #454545;
+}
+.guessDetaJoinList {
+  margin-bottom: 0.5rem;
+  padding: 0 0.7rem 1px;
+}
+.guessDetaJoinList .freeList-tips {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e7e7e7;
+}
+.guessDetaJoinList ul {
+  padding: 0.7rem 0.3rem 0;
+}
+.popup-guessCoupon > div {
+  position: absolute;
+  width: 78.34%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+.popup-guessCoupon > div .bg-top {
+  width: 100%;
+  padding-bottom: 21.15%;
+  background: url(../images/popup-top.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.popup-guessCoupon > div .bg-footer {
+  width: 100%;
+  padding-bottom: 7.5%;
+  background: url(../images/popup-footer.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.popup-guessCoupon > div .close-popup {
+  position: absolute;
+  width: 9.87%;
+  padding-bottom: 9.87%;
+  right: 6.99%;
+  top: 12.39%;
+}
+.popup-guessCoupon > div .main {
+  background: #fff;
+  padding: 0 6%;
+  margin: -1px auto;
+}
+.popup-guessCoupon > div .main .title1 {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #1c1c1c;
+  font-weight: normal;
+  text-align: center;
+}
+.popup-guessCoupon > div .main .tips1 {
+  font-size: 0.75rem;
+  color: #3e3a39;
+}
+.popup-guessCoupon > div .main .tips2 {
+  font-size: 0.6rem;
+  color: #9d9d9d;
+}
+.popup-guessCoupon > div .main .go {
+  display: block;
+  width: 7.0rem;
+  height: 1.7rem;
+  margin: 0.5rem auto 0;
+  line-height: 1.7rem;
+  font-size: 0.85rem;
+  color: #fff;
+  text-align: center;
+  border-radius: 1.7rem;
+  background: #ff464e;
 }
