@@ -83,6 +83,7 @@
     </div>
 <?php }?>
     <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/baiduTemplate.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/app.min.js' charset='utf-8'></script>

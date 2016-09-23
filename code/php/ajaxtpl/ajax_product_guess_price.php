@@ -1,6 +1,6 @@
 <?php
 define('HN1', true);
-require_once('./global.php');
+require_once('../global.php');
 
 $GrouponActivityModel = M('groupon_activity');
 $GrouponUserRecordModel = M('groupon_user_record');
