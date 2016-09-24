@@ -108,9 +108,6 @@ if ( $user != null )
 	$userid			= $user->id;
 }
 
-//$SetKey = new SetKey();
-//$SetKey->getUrlParam( 'id=123&aparam=haha' );
-//PD($SetKey->getSign());
-//exit;
-
+//不配送的省份id，甘肃 海南 内蒙古 宁夏 青海 西藏 新疆
+$unSendProviceIds = array(29,22,6,31,27,32);
 ?>
