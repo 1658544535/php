@@ -1408,3 +1408,211 @@
   border-radius: 1.7rem;
   background: #ff464e;
 }
+/*订单确认*/
+.oc-state {
+  position: relative;
+  height: 5.4rem;
+  font-size: 0.9rem;
+  color: #fff;
+  background: #ff464e;
+}
+.oc-state span {
+  position: absolute;
+  top: 40%;
+  left: 9%;
+  width: 82%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.oc-tips {
+  padding: 0.5rem;
+  font-size: 0.65rem;
+  color: #666;
+}
+.oc-tips.themeColor {
+  color: #ff464e;
+}
+.oc-adress {
+  position: relative;
+  padding: 0.75rem 1.0rem 0.75rem 2.0rem;
+  font-size: 0.7rem;
+  color: #727171;
+  background: #fff;
+}
+.oc-adress div {
+  padding: 0.15rem 0;
+}
+.oc-adress a {
+  display: block;
+  color: #727171;
+}
+.oc-adress::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.0rem;
+  height: 100%;
+  background: url(../images/order-address.png) no-repeat center center;
+  background-size: 0.8rem auto;
+}
+.oc-adress::after {
+  content: '';
+  position: absolute;
+  right: 0.5rem;
+  top: 0;
+  width: 0.4rem;
+  height: 100%;
+  background: url(../images/go.png) no-repeat center center;
+  background-size: 0.4rem auto;
+}
+.oc-pro {
+  margin-top: 0.5rem;
+}
+.oc-pro .list-container li {
+  margin-bottom: 0;
+}
+.oc-pro .num {
+  margin: 0 0.5rem;
+  line-height: 1.4rem;
+  padding: 0.45rem 0;
+  border-top: 1px solid #e7e7e7;
+  font-size: 0.7rem;
+  color: #1c1c1c;
+}
+.oc-pro .num .quantity {
+  float: right;
+}
+.oc-pro .subTotal {
+  margin: 0 0.5rem;
+  padding: 0.45rem 0;
+  border-top: 1px solid #e7e7e7;
+  font-size: 0.7rem;
+  color: #1c1c1c;
+  text-align: right;
+}
+.oc-pro .subTotal .price {
+  font-size: 0.8rem;
+}
+.quantity {
+  display: inline-block;
+  vertical-align: middle;
+  height: 1.4rem;
+  font-size: 0.85rem;
+}
+.quantity * {
+  display: inline-block;
+  vertical-align: middle;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  border: none;
+  text-align: center;
+  color: #1c1c1c;
+  background: #e8e8e8;
+  outline: none;
+}
+.quantity span {
+  width: 1.4rem;
+}
+.quantity input {
+  width: 2.6rem;
+}
+.oc-pay {
+  margin-top: 0.5rem;
+  background: #fff;
+}
+.oc-pay .list {
+  list-style: none;
+  margin: 0 0.5rem;
+  padding: 0;
+}
+.oc-pay .list li {
+  position: relative;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid #e7e7e7;
+  line-height: 1.1rem;
+  font-size: 0.7rem;
+  color: #1c1c1c;
+}
+.oc-pay .list li input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.oc-pay .list li * {
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+.oc-pay .list li img {
+  width: 1.1rem;
+  margin-right: 0.5rem;
+}
+.oc-pay .list li .label {
+  font-size: 0.6rem;
+  border: 1px solid #ff464e;
+  padding: 0 0.15rem;
+  color: #ff464e;
+  line-height: 0.8rem;
+  border-radius: 0.15rem;
+}
+.oc-pay .list li:last-child {
+  border-bottom: none;
+}
+.oc-pay .list li.active {
+  background: url(../images/checkbox.png) no-repeat right center;
+  background-size: 0.7rem auto;
+}
+.oc-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2.7rem;
+  line-height: 2.7rem;
+  text-align: right;
+  overflow: hidden;
+  background: #fff;
+}
+.oc-footer .price {
+  font-size: 1.0rem;
+}
+.oc-footer .btn {
+  float: right;
+  width: 30%;
+  height: 100%;
+  margin-left: 0.5rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.85rem;
+  border: none;
+  background: #ff464e;
+}
+.oc-footer2 {
+  height: 2.7rem;
+  line-height: 2.7rem;
+  text-align: right;
+  overflow: hidden;
+}
+.oc-footer2 .btn {
+  display: inline-block;
+  vertical-align: middle;
+  width: 5.0rem;
+  height: 1.75rem;
+  line-height: 1.75rem;
+  margin: 0 0.25rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.75rem;
+  border: 1px solid #ff464e;
+  border-radius: 0.15rem;
+  background: #ff464e;
+}
+.oc-footer2 .btn.gray {
+  color: #595757;
+  border-color: #e8e8e8;
+  background: #e8e8e8;
+}
