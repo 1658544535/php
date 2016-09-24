@@ -3,7 +3,7 @@
 		<span class="icon i-home"></span>
 		<span class="tab-label">首页</span>
 	</a>
-	<a class="tab-item <?php echo $footerNavActive['guess'];?>" href="demo2.html">
+	<a class="tab-item <?php echo $footerNavActive['guess'];?>" href="product_guess_price.php">
 		<span class="icon i-price"></span>
 		<span class="tab-label">猜价格</span>
 	</a>
