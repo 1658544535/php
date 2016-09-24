@@ -10,6 +10,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="css/sm.min.css">
     <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="js/swiper/swiper.min.css">
+    <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/baiduTemplate.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/app.min.js' charset='utf-8'></script>
+	<script src="http://static.geetest.com/static/tools/gt.js"></script>
 </head>
 
 <body>
@@ -50,10 +57,6 @@
 
         </div>
     </div>
-    <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/app.min.js' charset='utf-8'></script>
-	<script src="http://static.geetest.com/static/tools/gt.js"></script>
 	<script type="text/javascript">
 
 		function get_code( v_geetest_challenge, v_geetest_validate, v_geetest_seccode,captchaObj  )
