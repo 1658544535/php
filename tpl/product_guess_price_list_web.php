@@ -57,16 +57,16 @@
             </div>
 
             <script id='tpl_pull' type="text/template">
-                <%for(var i=0;i<data["listData"].length; i++){%>
-                    <li><a href="<%=data["listData"][i]["id"]%>">
-                        <div class="img"><img src="<%=data["listData"][i]["imgSrc"]%>" /></div>
+                <%for(var i=0;i<data["GrouponList"]["DataSet"].length; i++){%>
+                    <li><a href="<%=data["GrouponList"]["DataSet"][i]["id"]%>">
+                        <div class="img"><img src="<%=data["GrouponList"]["DataSet"][i]["image"]%>" /></div>
                         <div class="info">
-                            <div class="name"><%=data["listData"][i]["name"]%></div>
+                            <div class="name"><%=data["GrouponList"]["DataSet"][i]["product_name"]%></div>
                             <div class="time">
                                 <span class="btn">立即猜价</span>
-                                <div class="downTime" data-timer="<%=data["listData"][i]["timer"]%>"></div>
+                                <div class="downTime" data-timer="<%=data["TimeDiff"][i]%>"></div>
                             </div>
-                            <div class="tips">提示区间：1.00-178.00 丨 已有<span><%=data["listData"][i]["num"]%></span>人参与</div>
+                            <div class="tips">提示区间：1.00-178.00 丨 已有<span><%=data["GrouponList"]["DataSet"][i]["num"]%></span>人参与</div>
                         </div>
                     </a></li>
                 <%}%>
