@@ -25,7 +25,7 @@ switch($act)
     
     	
 	    //猜价格活动列表
-	    $ObjGrouponList = $GrouponActivityModel->query("SELECT g.price_min, g.price_max, g.begin_time, g.end_time, g.status, g.activity_status, g.type, g.banner, g.num, p.id, p.product_name, p.image FROM `groupon_activity` AS g LEFT JOIN product AS p on p.`id` = g.`product_id` WHERE 1=1 AND g.status =1 AND g.type =3 AND g.activity_status !=0 ORDER BY g.sorting DESC,g.create_date DESC ",false,true,$page);
+	    $ObjGrouponList = $GrouponActivityModel->query("SELECT g.id as gid, g.product_id as pid, g.price_min, g.price_max, g.begin_time, g.end_time, g.status, g.activity_status, g.type, g.banner, g.num,  p.product_name, p.image FROM `groupon_activity` AS g LEFT JOIN product AS p on p.`id` = g.`product_id` WHERE 1=1 AND g.status =1 AND g.type =3 AND g.activity_status !=0 ORDER BY g.sorting DESC,g.create_date DESC ",false,true,$page);
 	    
 	  
 		
