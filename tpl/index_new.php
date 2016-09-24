@@ -20,26 +20,7 @@
                 <h1 class="title"><img class="title-img" src="images/logo.png" alt="淘竹马" /></h1>
             </header>
 
-            <nav class="bar bar-tab">
-                <a class="tab-item active" href="index.php">
-                    <span class="icon i-home"></span>
-                    <span class="tab-label">首页</span>
-                </a>
-                <a class="tab-item" href="product_guess_price.php">
-                    <span class="icon i-price"></span>
-                    <span class="tab-label">猜价格</span>
-                </a>
-                <a class="tab-item" href="#">
-                    <span class="icon i-search"></span>
-                    <span class="tab-label">搜索</span>
-                </a>
-                <a class="tab-item" href="#">
-                    <span class="icon i-user"></span>
-                    <span class="tab-label">个人中心</span>
-                </a>
-            </nav>
-
-            <section class="swiper-container index-class">
+			<section class="swiper-container index-class">
                 <div class="swiper-wrapper">
                    <a class="swiper-slide active" data-type="index" data-href="ajaxtpl/ajax_index.php">首页</a>
                     <?php foreach ($objProductType as $type){?>
@@ -63,6 +44,8 @@
                     </div>
                 </div>
             </div>
+
+			<?php include_once('footer_nav_web.php');?>
         </div>
     </div>
 <?php if($ObjUserCouPon->status ==1){?>
