@@ -2065,6 +2065,9 @@
 .user-tab3 ul li {
   width: 33.33333%;
 }
+.user-tab6 ul li {
+  width: 16.666667%;
+}
 .user-guess {
   margin-top: 0.5rem;
 }
@@ -2140,6 +2143,13 @@
 .user-guess ul li .u-g-2 .info .price .price2 {
   float: right;
 }
+.user-guess ul li .u-g-2 .info .price .price3 {
+  float: right;
+}
+.user-guess ul li .u-g-2 .info .price .price3 span {
+  color: #ff464e;
+  font-size: 0.75rem;
+}
 .user-guess ul li .u-g-3 {
   border-top: 1px solid #e7e7e7;
   padding: 0.5rem 0;
@@ -2155,6 +2165,16 @@
   color: #ff464e;
   border: 1px solid #ff464e;
   border-radius: 0.15rem;
+}
+.user-guess ul li .u-g-3 a.gray {
+  color: #898989;
+  border-color: #898989;
+}
+.user-guess ul li.null {
+  margin-top: 40%;
+  padding-bottom: 53%;
+  background: url(../images/orderList-null.png) no-repeat center center;
+  background-size: 100% auto;
 }
 .user-coupon ul {
   margin: 0.5rem;
