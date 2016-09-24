@@ -41,50 +41,53 @@
                     </section>
 
                     <section class="guessDeta-info">
-                        <div class="name">小泰克 little tikes 游戏车海盗船 1.5岁以上...</div>
+                        <div class="name"><?php echo $ObjGrouponInfo->product_name;?></div>
                         <div class="list">
                             <span class="label">距离结束：</span>
                             <div id="downTime" class="downTime" data-timer="60"></div>
                         </div>
                         <div class="list">
                             <span class="label">价格区间：</span>
-                            <div class="price">9.90-189.90</div>
+                            <div class="price"><?php echo $ObjGrouponInfo->price_min ;?>-<?php echo $ObjGrouponInfo->price_max ;?></div>
                         </div>
                     </section>
-
-                    <section class="guessJoinList guessDetaJoinList">
-                        <div class="freeList-tips">已有<span class="themeColor">32个</span>小伙伴参与，您需要提交价格才可以看到其它记录</div>
-                        <ul class="list-container">
-                            <li><a href="#">
-                                <div class="img"><img src="" /></div>
-                                <div class="info">
-                                    <div class="name">Jackson</div>
-                                    <div class="price"><p>出价</p><p class="themeColor">￥<span class="real">19.99</span></p></div>
-                                    <div class="time">2016-04-16  23：22：56</div>
-                                </div>
-                            </a></li>
-                            <li><a href="#">
-                                <div class="img"><img src="" /></div>
-                                <div class="info">
-                                    <div class="name">Jackson</div>
-                                    <div class="price"><p>出价</p><p class="themeColor">￥<span class="real">19.99</span></p></div>
-                                    <div class="time">2016-04-16  23：22：56</div>
-                                </div>
-                            </a></li>
-                            <li><a href="#">
-                                <div class="img"><img src="" /></div>
-                                <div class="info">
-                                    <div class="name">Jackson</div>
-                                    <div class="price"><p>出价</p><p class="themeColor">￥<span class="real">19.99</span></p></div>
-                                    <div class="time">2016-04-16  23：22：56</div>
-                                </div>
-                            </a></li>
-                        </ul>
+                       <section class="guessJoinList guessDetaJoinList">
+                        <?php if( $ObjUserInfo =null){?>
+	                        <ul class="list-container">
+	                            <li><a href="#">
+	                                <div class="img"><img src="<?php echo $site_image;?>userlogo/<?php echo $ul->$ObjUserInfo;?>" /></div>
+	                                <div class="info">
+	                                    <div class="name"><?php echo $ObjUserInfo->name;?></div>
+	                                    <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $ObjUserInfo->price;?></span></p></div>
+	                                    <div class="time"><?php echo $ObjUserInfo->attend_time;?></div>
+	                                </div>
+	                            </a></li>
+	                          </ul>
+                        <?php }?>
+                        <div class="freeList-tips">已有<span class="themeColor"><?php echo $ObjGrouponInfo->num;?>个</span>小伙伴参与，您需要提交价格才可以看到其它记录</div>
+                        <?php if( $ObjUserInfo =null){?>
+	                        <ul class="list-container">
+	                            <?php foreach ($ObjUserList as $ul){?>
+	                            <li><a href="#">
+	                                <div class="img"><img src="<?php echo $site_image;?>userlogo/<?php echo $ul->image;?>" /></div>
+	                                <div class="info">
+	                                    <div class="name"><?php echo $ul->name;?></div>
+	                                    <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo  $ul->price;?></span></p></div>
+	                                    <div class="time"><?php echo $ul->attend_time;?></div>
+	                                </div>
+	                            </a></li>
+	                        <?php }?>
+	                        </ul>
+                      <?php }?>
                     </section>
 
                     <section class="deta-img">
-                        <img src="images/img/deta-img.png" />
-                        <img src="images/img/deta-img.png" />
+                       <?php if($content !=''){?>
+                          <?php echo $url3;?>
+                        <?php }else{?>
+                       <?php foreach ($imageList as $image){?>
+                        <img src="<?php echo $site_image;?>productImages/<?php echo $image->images;?>"/>
+                       <?php }}?> 
                     </section>
 
                 </div>
