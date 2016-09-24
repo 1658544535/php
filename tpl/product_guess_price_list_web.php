@@ -55,7 +55,9 @@
                 </section>
 
             </div>
-
+               <?php if ( $bLogin == false ){					// 如果用户未登录   ?>
+						<a id="addFavor" href="/user_binding?act=user_bind" class="collections" title="收藏"></a>
+				  	<?php }else{?>
             <script id='tpl_pull' type="text/template">
                 <%for(var i=0;i<data["GrouponList"]["DataSet"].length; i++){%>
                     <li><a href="product_guess_price.php?act=detail&gid=<%=data["GrouponList"]["DataSet"][i]["gid"]%>&pid=<%=data["GrouponList"]["DataSet"][i]["pid"]%>">
@@ -71,7 +73,7 @@
                     </a></li>
                 <%}%>
             </script>
-
+<?php }?>
         </div>
     </div>
     
