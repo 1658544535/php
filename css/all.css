@@ -1609,6 +1609,11 @@
   border: none;
   background: #ff464e;
 }
+.oc-footer .btn.gray {
+  color: #595757;
+  border-color: #e8e8e8;
+  background: #e8e8e8;
+}
 .oc-footer2 {
   height: 2.7rem;
   line-height: 2.7rem;
