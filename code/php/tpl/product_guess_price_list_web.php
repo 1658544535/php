@@ -58,7 +58,7 @@
 
             <script id='tpl_pull' type="text/template">
                 <%for(var i=0;i<data["GrouponList"]["DataSet"].length; i++){%>
-                    <li><a href="<%=data["GrouponList"]["DataSet"][i]["id"]%>">
+                    <li><a href="product_guess_price.php?act=detail&gid=<%=data["GrouponList"]["DataSet"][i]["gid"]%>&pid=<%=data["GrouponList"]["DataSet"][i]["pid"]%>">
                         <div class="img"><img src="<%=data["GrouponList"]["DataSet"][i]["image"]%>" /></div>
                         <div class="info">
                             <div class="name"><%=data["GrouponList"]["DataSet"][i]["product_name"]%></div>
