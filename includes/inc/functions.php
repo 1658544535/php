@@ -1176,4 +1176,16 @@ function ajaxJson($code, $msg='', $data=array(), $curPage=null, $pageCount=null)
 	echo json_encode($arr);
 	exit();
 }
+
+/**
+ * 获取头像完整地址
+ *
+ * @param string $avatar 头像地址
+ * @return string
+ */
+function getFullAvatar($avater){
+	global $site_image;
+	!preg_match("/^http/i", $avater) && $avater = $site_image.$avater;
+	return $avater;
+}
 ?>

@@ -14,7 +14,7 @@ define('LIB_ROOT', dirname(__FILE__) . '/includes/lib/');
 define('WXPAID_ROOT', dirname(__FILE__) . '/wxpay/');
 define('MODEL_DIR', dirname(__FILE__) . '/logic/Model/');
 
-$isTest =  ($_SERVER['SERVER_NAME'] == 'www.taozhuma.b2c') ? true : false;			// 是否为测试模式
+$isTest =  ($_SERVER['SERVER_NAME'] == 'www.maduoduo.loc') ? true : false;			// 是否为测试模式
 
 //数据接口
 define('API_URL', 'http://rap.taozhuma.com/mockjs/2');
@@ -65,16 +65,25 @@ else
 	error_reporting(E_ALL);
 	error_reporting(0);
 
-	$test = $db->get_row("select * from sys_login  where id='1053' ");
+	if(empty($_SESSION['userinfo'])){
+		$test = $db->get_row("select * from sys_login where `loginname`='15816620443'");
 
-	$_SESSION['userinfo'] 	= $test;
-	$_SESSION['openid'] 	= "o6MuHtwL7s7gntl6xYmXHikcD6zQ";
-	$_SESSION['is_login']	= FALSE;
+		$_SESSION['userinfo'] 	= $test;
+		$_SESSION['openid'] 	= '1111112222333445555566666777888';//"o6MuHtwL7s7gntl6xYmXHikcD6zQ";
+		$_SESSION['is_login']	= empty($test) ? false : true;
+
+		$__testWXUserInfo = array(
+			'openid' => $_SESSION['openid'],
+			'nickname' => '测试昵称',
+			'unionid' => '111111199',
+			'headimgurl' => 'http://wx.qlogo.cn/mmopen/PiajxSqBRaEJKhQAPsIWmuMdVDPichItjJp9ejypBuZsE6lRFqkXp9B3nFqpwkVwtibd04kEicuRhuMr24IofQics1A/0',
+			'sex' => 1,
+			'province' => '广东省',
+			'city' => '汕头市',
+		);
+	}
 }
 
-
-//$_SESSION['userinfo'] = null;
-//$_SESSION['is_login'] = null;
 
 
 /*============================== 如果还未微信登录（即openid为空）则先进行微信登录 =============================================*/

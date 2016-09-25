@@ -32,7 +32,7 @@ switch( $act )
 		-- 提交选取地址返回操作
 	-----------------------------------------------------------------------------------------------------*/
 	case 'address_add':
-		$_SESSION['cart_info']['address_id']	= 	CheckDatas( 'aids', '' );
+		$_SESSION['order']['address_id']	= 	CheckDatas( 'aids', '' );
 		redirect( '/orders?act=add' );
 	break;
 
