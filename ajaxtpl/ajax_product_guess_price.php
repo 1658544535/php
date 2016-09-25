@@ -40,10 +40,12 @@ switch($act)
 		 		}
 		 	   
 		 	   $Data =array(
-		 				'Tip'=>$dateTip,
-		 				'TimeDiff'=>$seckillTimeDiff,
-		 		         'GrouponList'=>$ObjGrouponList
-		 				
+	 		         // 'GrouponList'=>$ObjGrouponList,
+	 				'pageCount'=>$ObjGrouponList['PageCount'],
+	 				'pageNow'=>$ObjGrouponList['CurrentPage'],
+	 				'data'=>$ObjGrouponList['DataSet'],
+	 				'Tip'=>$dateTip,
+	 				'TimeDiff'=>$seckillTimeDiff,
 		 		);
 
 		 		

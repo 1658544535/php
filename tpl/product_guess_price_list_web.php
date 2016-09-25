@@ -61,25 +61,27 @@
                 </section>
 
             </div>
-               <?php if ( $bLogin == false ){					// 如果用户未登录   ?>
-						<a id="addFavor" href="/user_binding?act=user_bind" class="collections" title="收藏"></a>
-				  	<?php }else{?>
+
+            <?php if ( $bLogin == false ){					// 如果用户未登录   ?>
+				<a id="addFavor" href="/user_binding?act=user_bind" class="collections" title="收藏"></a>
+		  	<?php }else{?>
             <script id='tpl_pull' type="text/template">
-                <%for(var i=0;i<data["GrouponList"]["DataSet"].length; i++){%>
-                    <li><a href="product_guess_price.php?act=detail&gid=<%=data["GrouponList"]["DataSet"][i]["gid"]%>&pid=<%=data["GrouponList"]["DataSet"][i]["pid"]%>">
-                        <div class="img"><img src="<%=data["GrouponList"]["DataSet"][i]["image"]%>" /></div>
+                <%for(var i=0;i<data["data"].length; i++){%>
+                    <li><a href="product_guess_price.php?act=detail&gid=<%=data["data"][i]["gid"]%>&pid=<%=data["data"][i]["pid"]%>">
+                        <div class="img"><img src="<%=data["data"][i]["image"]%>" /></div>
                         <div class="info">
-                            <div class="name"><%=data["GrouponList"]["DataSet"][i]["product_name"]%></div>
+                            <div class="name"><%=data["data"][i]["product_name"]%></div>
                             <div class="time">
                                 <span class="btn">立即猜价</span>
                                 <div class="downTime" data-timer="<%=data["TimeDiff"][i]%>"></div>
                             </div>
-                            <div class="tips">提示区间：1.00-178.00 丨 已有<span><%=data["GrouponList"]["DataSet"][i]["num"]%></span>人参与</div>
+                            <div class="tips">提示区间：1.00-178.00 丨 已有<span><%=data["data"][i]["num"]%></span>人参与</div>
                         </div>
                     </a></li>
                 <%}%>
             </script>
-<?php }?>
+            <?php }?>
+            
         </div>
     </div>
     

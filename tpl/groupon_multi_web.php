@@ -41,15 +41,15 @@
 			<?php include_once('footer_nav_web.php');?>
 
             <script id='tpl_pull' type="text/template">
-                <%for(var i=0;i<data["listData"].length; i++){%>
-                    <li><a href="groupon.php?id=<%=data["listData"][i]["id"]%>">
-                        <div class="img"><img src="<%=data["listData"][i]["imgSrc"]%>" /></div>
+                <%for(var i=0;i<data["data"].length; i++){%>
+                    <li><a href="groupon.php?id=<%=data["data"][i]["id"]%>">
+                        <div class="img"><img src="<%=data["data"][i]["imgSrc"]%>" /></div>
                         <div class="name">
-                            <span class="num"><%=data["listData"][i]["num"]%>人团</span> <%=data["listData"][i]["name"]%>
+                            <span class="num"><%=data["data"][i]["num"]%>人团</span> <%=data["data"][i]["name"]%>
                         </div>
                         <div class="info">
-                            ￥<span class="price"><%=data["listData"][i]["price"]%></span>
-                            <span class="sales">已团<%=data["listData"][i]["sales"]%>件</span>
+                            ￥<span class="price"><%=data["data"][i]["price"]%></span>
+                            <span class="sales">已团<%=data["data"][i]["sales"]%>件</span>
                         </div>
                     </a></li>
                 <%}%>
