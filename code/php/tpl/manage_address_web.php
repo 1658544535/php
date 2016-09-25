@@ -197,7 +197,7 @@
 					$.confirm("确定要删除此地址吗？", function(){
 						$.post(_apiUrl+"address_del", {"id":_id}, function(r){
 							if(r.code == 1){
-								$("ul.list-container li[data-id="+_id+"]").remove();
+								$("ul.list-container li[data-id='"+_id+"']").remove();
 							}else{
 								$.toast(r.msg);
 							}
