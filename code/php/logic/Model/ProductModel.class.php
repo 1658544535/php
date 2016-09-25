@@ -879,5 +879,33 @@ class ProductModel extends Model
 	 	return $UserBrandModel->get( $arrParam );
 	 }
 
+	/**
+	 * 获取商品信息
+	 *
+	 * @param integer $id 商品id
+	 * @param array $getInfo 获取除基本信息外其他的信息
+	 *		sku sku信息
+	 *		carousel 轮播的内容
+	 * @return array
+	 */
+	public function getInfo($id, $getInfo=array('sku','carousel')){
+		$pfield = 'id,product_name,selling_price,sell_number,distribution_price,content,video_url,tvideo_url,tvideo_url_image,image_small,image_main,status';
+		$product = $this->get(array('id'=>$id), $pfield, ARRAY_A);
+		$product['order_price'] = $product['distribution_price'];
+		$product['stock'] = 0;
+		//轮播
+		if(in_array('sku', $getInfo)){
+			$product['carousel_images'] = $this->getAll(array('product_id'=>$id,'status'=>1), 'id,images', array('sorting'=>'desc','id'=>'asc'), '', ARRAY_A, 'product_focus_images');
+		}
+		//sku
+		if(in_array('carousel', $getInfo)){
+			$product['sku'] = $this->get(array('product_id'=>$id,'status'=>1), 'Id,product_id,sku_color,sku_format,image,stock_num,stock,price', ARRAY_A, 'product_sku_link');
+			if(!empty($product['sku'])){
+				$product['order_price'] = $product['sku']['price'];//下单价
+				$product['stock'] = $product['sku']['stock'];
+			}
+		}
+		return $product;
+	}
 }
 ?>

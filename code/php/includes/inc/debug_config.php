@@ -2,10 +2,16 @@
 !defined('HN1') && exit('Access Denied.');
 
 /*============================== 数据库配置信息  =============================================*/
-
+//开发
 $dbHost = '10.10.66.250';
 $dbUser = 'maduoduo';
 $dbPass = 'maduoduo123';
+$dbName = 'maduoduo';
+
+//本地
+$dbHost = 'localhost';
+$dbUser = 'root';
+$dbPass = 'root';
 $dbName = 'maduoduo';
 
 /*============================== 网站的基本配置信息  =============================================*/

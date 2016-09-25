@@ -5,6 +5,9 @@ require_once('./global.php');
 $productId = intval($_GET['id']);
 $objGroupon = M('groupon_activity');
 
+$objPro = D('Product');
+$product = $objPro->get(array('id'=>$productId,'status'=>1), 'product_name,image_small', ARRAY_A);
+
 if(isAjax()){
 	empty($productId) && ajaxResponse(false, '参数错误');
 
@@ -31,9 +34,9 @@ if(isAjax()){
 		foreach($rs['DataSet'] as $k => $v){
 			$list[] = array(
 				'id' => $v->id,
-				'name' => $v->title,
+				'name' => $product['product_name'],
 				'price' => $v->price,
-				'imgSrc' => $site_image.$v->banner,
+				'imgSrc' => $site_image.$product['image_small'],
 				'num' => $v->num,
 				'sales' => isset($recordList[$v->id]) ? $recordList[$v->id] : 0,
 			);
@@ -48,10 +51,8 @@ if(isAjax()){
 	echo get_json_data_public(1, "获取成功", $Data);
 }else{
 	empty($productId) && redirect('/');
-	$backUrl = empty($_SERVER['HTTP_REFERER']) ? '/' : $_SERVER['HTTP_REFERER'];
-	
-//	$active = $objGroupon->get(array('product_id'=>$productId), '*', ARRAY_A);
-//	$activeCount = $objGroupon->getCount(array('product_id'=>$productId));
+
+	empty($product) && redirect(getPrevUrl(), '商品已下架');
 	
 	include_once('tpl/groupon_multi_web.php');
 }
