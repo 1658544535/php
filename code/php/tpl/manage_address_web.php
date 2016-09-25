@@ -188,12 +188,12 @@
 			$(document).on("pageInit", "#page-address", function(e, pageId, page) {
 		    	var _apiUrl = "api_action.php?act=";
 
-		    	fn_pull(page, function(){
-		    		$("ul.list-container li a.default").off("click").on("click", function(){
-						var _id = $(this).attr("data-id");
-					});
+		    	$(document).off("click", "ul.list-container li a.default").on("click", "ul.list-container li a.default", function(){
+					var _id = $(this).attr("data-id");
+				});
 
-					$("ul.list-container li a.del").off("click").on("click", function(){
+		    	$(document).off("click", "ul.list-container li a.del").on("click", "ul.list-container li a.del", function(){
+					$.confirm("确定要删除此地址吗？", function(){
 						$.confirm("确定要删除此地址吗？", function(){
 							var _id = $(this).attr("data-id");
 							$.post(_apiUrl+"address_del", {"id":_id}, function(r){
@@ -205,7 +205,7 @@
 							}, "json");
 						});
 					});
-		    	});
+				});
 		    });
 			</script>
 
