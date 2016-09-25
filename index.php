@@ -36,7 +36,7 @@ $GrouponFreeCouponModel    = M('groupon_free_coupon');
    $ObjUserCouPon    = $GrouponFreeCouponModel ->get(array('user_id'=>$userid,'status'=>1));
 //    $ObjUserCouPon    = $GrouponFreeCouponModel ->getUserCoupon($userid,$ext=array('valid'=>true,'intime'=>false));
 
-$footerNavActive['index'] = 'active';
+$footerNavActive = 'index';
 
 include "tpl/index_new.php";
 ?>

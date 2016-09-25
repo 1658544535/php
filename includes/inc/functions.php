@@ -1103,6 +1103,77 @@ function apireturn($phone, $source, $arrGeetestParam )
 	return json_decode($output);
 }
 
+/**
+ * 是否ajax请求
+ *
+ * @param string $param ajax提交的参数名
+ * @return boolean
+ */
+function isAjax($param='ajax'){
+	return ((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') || !empty($_POST[$param]) || !empty($_GET[$param])) ? true : false;
+}
 
+/**
+ * 获取上一页面地址
+ *
+ * @return string
+ */
+function getPrevUrl(){
+	return empty($_SERVER['HTTP_REFERER']) ? '/' : $_SERVER['HTTP_REFERER'];
+}
 
+/**
+ * 通过接口获取数据
+ *
+ * @param string $url 接口地址
+ * @param array $param 接口参数，参数名=>值
+ * @param string $method 接口调用方式，get/post
+ * @return array
+ */
+function apiData($url, $param, $method='get'){
+	$method = strtolower($method);
+	!in_array($method, array('get', 'post')) && $method = 'get';
+
+	$url = API_URL.((substr(API_URL, -1)=='/') ? '' : '/').$url;
+	if($method == 'get'){
+		$arr = array();
+		foreach($param as $k => $v){
+			$arr[] = $k.'='.$v;
+		}
+		$url .= '?'.implode('&', $arr);
+	}
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HEADER, false);
+	curl_setopt($ch, CURLOPT_USERAGENT,'MicroMessenger');
+	if($method == 'post'){
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+	}
+
+	$data = curl_exec($ch);
+	curl_close($ch);
+	return json_decode($data, true);
+}
+
+/**
+ * 获取ajax请求的json格式数据
+ *
+ * @param integer $code 状态标识码，0失败，1成功
+ * @param string $msg 提示信息
+ * @param array $data 数据
+ * @param integer $curPage 当前页数(列表使用)，null时不返回
+ * @param integer $pageCount 总页数(列表使用)，null时不返回
+ * @return string
+ */
+function ajaxJson($code, $msg='', $data=array(), $curPage=null, $pageCount=null){
+	$arr = array('msg'=>$msg, 'code'=>$code);
+	$arr['data']['data'] = $data;
+	!is_null($curPage) && $arr['data']['pageNow'] = $curPage;
+	!is_null($pageCount) && $arr['data']['pageCount'] = $pageCount;
+	echo json_encode($arr);
+	exit();
+}
 ?>

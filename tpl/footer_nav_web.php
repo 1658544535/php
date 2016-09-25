@@ -7,7 +7,7 @@
 		<span class="icon i-price"></span>
 		<span class="tab-label">猜价格</span>
 	</a>
-	<a class="tab-item <?php echo ($footerNavActive=='search')?'active':'';?>" href="#">
+	<a class="tab-item <?php echo ($footerNavActive=='search')?'active':'';?>" href="search.php">
 		<span class="icon i-search"></span>
 		<span class="tab-label">搜索</span>
 	</a>
