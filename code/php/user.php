@@ -5,7 +5,7 @@ require_once('./global.php');
 /*----------------------------------------------------------------------------------------------------
 	-- 判断是否登录
 -----------------------------------------------------------------------------------------------------*/
-$bLogin = $_SESSION['is_login'];
+//$bLogin = $_SESSION['is_login'];
 
 /*----------------------------------------------------------------------------------------------------
 	-- 配置
@@ -23,29 +23,6 @@ $UserOrderModel 			= D('UserOrder');
 -----------------------------------------------------------------------------------------------------*/
 
 $objUserInfo   				= $UserInfoModel->get( array('user_id'=>$userid) );
-
-// 婴儿年龄
-$babyAge = '';
-if(!empty($objUserInfo->baby_birthday))
-{
-	$babyBirth = strtotime($objUserInfo->baby_birthday);
-	$babySec = time() - $babyBirth;
-	if($babySec > 0)
-	{
-		if($babySec > 86400*365)
-		{
-			$babyAge = floor($babySec / (86400*365)).'岁';
-		}
-		elseif($babySec > 86400*30)
-		{
-			$babyAge = floor($babySec / (86400*30)).'个月';
-		}
-		else
-		{
-			$babyAge = floor($babySec / 86400).'天';
-		}
-	}
-}
 
 // 商品收藏数量
 $count_product = $UserCollectModel->getCollectNum( $userid );
@@ -68,6 +45,8 @@ $order_refund_num 	  = $UserOrderRefundModel->getUserOrderRefundCount( $userid )
 
 $objLogin = M('sys_login');
 $user = $objLogin->get(array('id'=>$userid));
+
+$footerNavActive = 'user';
 
 include "tpl/user_web.php";
 ?>

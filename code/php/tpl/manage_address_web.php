@@ -1,3 +1,5 @@
+<?php
+/*
 <!doctype html>
 <html lang="zh">
 <head>
@@ -110,3 +112,106 @@
 	</script>
 </body>
 </html>
+*/
+?>
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>淘竹马</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=0" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/sm.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="js/swiper/swiper.min.css">
+    <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/baiduTemplate.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/app.min.js' charset='utf-8'></script>
+</head>
+
+<body>
+    <div class="page-group" id="page-address">
+        <div id="page-nav-bar" class="page page-current">
+            <header class="bar bar-nav">
+                <a class="button button-link button-nav pull-left back" href="">
+                    <span class="icon icon-back"></span>
+                </a>
+                <h1 class="title">我的地址</h1>
+            </header>
+
+            <div class="content native-scroll" style="bottom:2.5rem;">
+
+                <section class="user-address pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="api_action.php?act=address">
+                    <ul class="list-container"></ul>
+                    <!-- 加载提示符 -->
+                    <div class="infinite-scroll-preloader">
+                        <div class="preloader"></div>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="user-address-add">
+                <a href="javascript:;">添加新地址</a>
+            </div>
+
+            <script id='tpl_pull' type="text/template">
+                <%for(var i=0,len=data["data"].length;i<len; i++){%>
+                    <li data-id="<%=data["data"][i].addId%>">
+                        <div class="txt">
+                            <div class="info">
+                                <span class="phone"><%=data["data"][i].tel%></span>
+                                <span><%=data["data"][i].name%></span>
+                            </div>
+                            <div class="address"><%=data["data"][i].address%></div>
+                        </div>
+                        <div class="option">
+                            <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="default"><i></i>设为默认</a>
+                            <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="edit"><i></i>编辑</a>
+                            <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="del"><i></i>删除</a>
+                        </div>
+                    </li>
+                <%}%>
+            </script>
+
+        </div>
+    </div>
+
+	<script type="text/javascript">
+	$(function(){
+		var _apiUrl = "api_action.php?act=";
+
+		$("ul.list-container li a.default").on("click", function(){
+			var _id = $(this).attr("data-id");
+			
+		});
+
+		$("ul.list-container li a.del").on("click", function(){
+			alert("eee");
+			if(window.confirm("确定要删除此地址吗？")){
+				var _id = $(this).attr("data-id");
+				$.post(_apiUrl+"address_del", {"id":_id}, function(r){
+					if(r.code == 1){
+						$("ul.list-container li[data-id="+_id+"]").remove();
+					}else{
+						$.toast(r.msg);
+					}
+				}, "json");
+			}
+		});
+	});
+	</script>
+</body>
+
+</html>
+
