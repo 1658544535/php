@@ -193,17 +193,15 @@
 				});
 
 		    	$(document).off("click", "ul.list-container li a.del").on("click", "ul.list-container li a.del", function(){
+					var _id = $(this).attr("data-id");
 					$.confirm("确定要删除此地址吗？", function(){
-						$.confirm("确定要删除此地址吗？", function(){
-							var _id = $(this).attr("data-id");
-							$.post(_apiUrl+"address_del", {"id":_id}, function(r){
-								if(r.code == 1){
-									$("ul.list-container li[data-id="+_id+"]").remove();
-								}else{
-									$.toast(r.msg);
-								}
-							}, "json");
-						});
+						$.post(_apiUrl+"address_del", {"id":_id}, function(r){
+							if(r.code == 1){
+								$("ul.list-container li[data-id="+_id+"]").remove();
+							}else{
+								$.toast(r.msg);
+							}
+						}, "json");
 					});
 				});
 		    });
