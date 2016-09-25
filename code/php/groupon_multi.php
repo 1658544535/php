@@ -40,14 +40,12 @@ if(isAjax()){
 		}
 	}
 
-	$data = array(
-		'data' => array(
-			'pageNow' => $rs['CurrentPage'],
-			'pageCount' => $rs['PageCount'],
-			'listData' => $list,
-		),
+	$Data =array(
+        'pageNow' => $rs['CurrentPage'],
+		'pageCount' => $rs['PageCount'],
+		'data' => $list
 	);
-	ajaxResponse(true, '', $data);
+	echo get_json_data_public(1, "获取成功", $Data);
 }else{
 	empty($productId) && redirect('/');
 	$backUrl = empty($_SERVER['HTTP_REFERER']) ? '/' : $_SERVER['HTTP_REFERER'];

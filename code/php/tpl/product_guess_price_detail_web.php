@@ -100,10 +100,29 @@
                     <span class="tab-label">首页</span>
                 </a>
                 <div class="more1">
-                    <a class="btn" href="#"><span>我要参与</span></a>
+                    <a id="guess-join" class="btn" href="javascript:;"><span>我要参与</span></a>
                 </div>
             </div>
 
+            <script>
+                $(document).on("pageInit", "#page-guessDeta", function(e, pageId, page) {
+                    //参与
+                    $("#guess-join").on("click", function(){
+                        $.popup('.popup-join');
+                    });
+                });
+            </script>
+
+        </div>
+    </div>
+    <div class="popup popup-join">
+        <div>
+            <a href="#" class="close-popup"></a>
+            <div class="main">
+                <span>我的估价:</span>
+                <input type="text" class="big" /><b>.</b><input type="text" class="small" />
+            </div>
+            <a href="#" class="go">立即前往</a>
         </div>
     </div>
 </body>
