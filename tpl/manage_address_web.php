@@ -184,33 +184,33 @@
                 <%}%>
             </script>
 
+			<script type="text/javascript">
+			$(document).on("pageInit", "#page-address", function(e, pageId, page) {
+		    	var _apiUrl = "api_action.php?act=";
+
+		    	fn_pull(page, function(){
+		    		$("ul.list-container li a.default").off("click").on("click", function(){
+						var _id = $(this).attr("data-id");
+					});
+
+					$("ul.list-container li a.del").off("click").on("click", function(){
+						$.confirm("确定要删除此地址吗？", function(){
+							var _id = $(this).attr("data-id");
+							$.post(_apiUrl+"address_del", {"id":_id}, function(r){
+								if(r.code == 1){
+									$("ul.list-container li[data-id="+_id+"]").remove();
+								}else{
+									$.toast(r.msg);
+								}
+							}, "json");
+						});
+					});
+		    	});
+		    });
+			</script>
+
         </div>
     </div>
-
-	<script type="text/javascript">
-	$(function(){
-		var _apiUrl = "api_action.php?act=";
-
-		$("ul.list-container li a.default").on("click", function(){
-			var _id = $(this).attr("data-id");
-			
-		});
-
-		$("ul.list-container li a.del").on("click", function(){
-			alert("eee");
-			if(window.confirm("确定要删除此地址吗？")){
-				var _id = $(this).attr("data-id");
-				$.post(_apiUrl+"address_del", {"id":_id}, function(r){
-					if(r.code == 1){
-						$("ul.list-container li[data-id="+_id+"]").remove();
-					}else{
-						$.toast(r.msg);
-					}
-				}, "json");
-			}
-		});
-	});
-	</script>
 </body>
 
 </html>
