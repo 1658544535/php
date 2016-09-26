@@ -13,6 +13,9 @@
   text-align: center;
   padding: 1.0rem 0;
 }
+.bgWhite {
+  background: #fff;
+}
 /*顶部*/
 .bar-nav .icon {
   width: 2.2rem;
@@ -2179,6 +2182,9 @@
   padding: 0 0.2rem;
   font-size: 0.75rem;
   color: #1c1c1c;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .user-tab ul li.active a {
   color: #ff464e;
@@ -2189,6 +2195,9 @@
 }
 .user-tab6 ul li {
   width: 16.666667%;
+}
+.user-tab5 ul li {
+  width: 20%;
 }
 .user-guess {
   margin-top: 0.5rem;
@@ -2277,10 +2286,17 @@
   padding: 0.5rem 0;
   text-align: right;
 }
+.user-guess ul li .u-g-3 .reason {
+  float: left;
+  line-height: 1.25rem;
+  font-size: 0.6rem;
+  color: #9fa0a0;
+}
 .user-guess ul li .u-g-3 a {
   display: inline-block;
   height: 1.25rem;
   line-height: 1.25rem;
+  margin: 2px 0;
   padding: 0 0.3rem;
   text-align: center;
   font-size: 0.7rem;
@@ -2592,4 +2608,121 @@
   height: 1.2rem;
   background: url(../images/close.png) no-repeat 0 0;
   background-size: 100% 100%;
+}
+.afterSales-form ul {
+  margin: 1.0rem 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+.afterSales-form ul li {
+  overflow: hidden;
+  padding-bottom: 1.0rem;
+}
+.afterSales-form ul li .item {
+  position: relative;
+  min-height: 2.2rem;
+  line-height: 2.2rem;
+  overflow: hidden;
+  padding: 0 0.5rem;
+  border-radius: 0.2rem;
+  background-color: #efefef;
+}
+.afterSales-form ul li .item .label {
+  float: left;
+  width: 4.0rem;
+  text-align: right;
+  font-size: 0.8rem;
+  color: #b3b3b3;
+}
+.afterSales-form ul li .item .main {
+  margin-left: 5.5rem;
+  margin-right: 2.3rem;
+}
+.afterSales-form ul li .item .main .txt {
+  display: inline-block;
+  vertical-align: middle;
+  border: none;
+  background: none;
+  font-size: 0.65rem;
+  color: #44494c;
+}
+.afterSales-form ul li .item::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0.5rem;
+  top: 0;
+  width: 1.05rem;
+  height: 100%;
+  background: url(../images/down.png) no-repeat right center;
+  background-size: 100% auto;
+}
+.afterSales-form ul li .tips {
+  clear: both;
+  padding-top: 0.1rem;
+  font-size: 0.7rem;
+  color: #b3b3b3;
+}
+.uploadImg {
+  font-size: 0;
+  margin-bottom: 2.7rem;
+}
+.uploadImg .uploadImg-item {
+  position: relative;
+  display: inline-block;
+  width: 4.75rem;
+  height: 4.75rem;
+  obrder-radius: 0.4rem;
+  overflow: hidden;
+}
+.uploadImg .uploadImg-item input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  opacity: 0;
+}
+.uploadImg .uploadImg-item .img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.uploadImg .uploadImg-item .img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.uploadImg .uploadImg-item .img.noImg {
+  background: url(../images/upload.png) no-repeat 0 0;
+  background-size: 100% 100%;
+  background-color: #fff;
+}
+.afterSales-submit {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2.7rem;
+  line-height: 2.7rem;
+  text-align: center;
+  background: #fff;
+  border-top: 1px solid #e6e5e5;
+  z-index: 2;
+}
+.afterSales-submit input {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 auto;
+  width: 3.75rem;
+  height: 1.4rem;
+  line-height: 1.2rem;
+  border: 1px solid #ff464e;
+  border-radius: 0.15rem;
+  color: #ff464e;
+  font-size: 0.7rem;
+  text-align: center;
+  background: none;
 }
