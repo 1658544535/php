@@ -110,21 +110,41 @@
                     $("#guess-join").on("click", function(){
                         $.popup('.popup-join');
                     });
+                    $("#guess-price").on("click", function(){
+                        var price1 = parseInt($(".popup-join input.big").val()),
+                            price2 = parseInt($(".popup-join input.small").val());
+                        if(!!price1){
+                            price2 = !!price2 ? price2 : 0;
+                            var price = price1 + '.' + price2;
+                            $.post("product_guess_price.php?act=detail_save", {price: price, gid: <?php echo $gId;?>}, function(req){
+                                if(req.code > 0){
+                                    $.toast('估价成功');
+                                    location.href=document.location;
+                                }
+                            });
+                        }else{
+                            $.toast('请填写价格');
+                        }
+                        
+                    });
                 });
             </script>
 
         </div>
-    </div>
-    <div class="popup popup-join">
-        <div>
-            <a href="#" class="close-popup"></a>
-            <div class="main">
-                <span>我的估价:</span>
-                <input type="text" class="big" /><b>.</b><input type="text" class="small" />
+
+        <div class="popup popup-join">
+            <div>
+                <a href="#" class="close-popup"></a>
+                <div class="main">
+                    <span>我的估价:</span>
+                    <input type="text" class="big" /><b>.</b><input type="text" class="small" />
+                </div>
+                <a id="guess-price" href="javascript:;" class="go">立即前往</a>
             </div>
-            <a href="#" class="go">立即前往</a>
         </div>
+
     </div>
+    
 </body>
 
 </html>
