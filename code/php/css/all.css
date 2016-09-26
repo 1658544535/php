@@ -7,6 +7,12 @@
 .themeColor {
   color: #ff464e;
 }
+#errorTips {
+  font-size: 0.7rem;
+  color: #999;
+  text-align: center;
+  padding: 1.0rem 0;
+}
 /*顶部*/
 .bar-nav .icon {
   width: 2.2rem;
@@ -2280,4 +2286,206 @@
   height: 15px;
   background: #fff;
   z-index: 2;
+}
+.popup-address > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 87.44%;
+  background: #fff;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #1c1c1c;
+  border-radius: 0.5rem;
+}
+.popup-address > div ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.popup-address > div ul li {
+  overflow: hidden;
+  padding-bottom: 0.75rem;
+}
+.popup-address > div ul .label {
+  float: left;
+  width: 3.5rem;
+  text-align: right;
+}
+.popup-address > div ul .main {
+  margin-left: 4.0rem;
+}
+.popup-address > div ul .main .txt {
+  display: block;
+  width: 100%;
+  padding: 0 0.2rem;
+  font-size: 0.6rem;
+  color: #666;
+  line-height: 1.3rem;
+  border: 1px solid #c9c9c9;
+  border-radius: 0.2rem;
+}
+.popup-address > div ul .main textarea.txt {
+  margin-top: 0.6rem;
+}
+.popup-address > div .go {
+  display: block;
+  width: 9.5rem;
+  height: 1.9rem;
+  margin: 0.4rem auto 0;
+  line-height: 1.9rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #fff;
+  background: #ff464e;
+  border: none;
+  border-radius: 0.25rem;
+}
+.popup-address > div .close-popup {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  background: url(../images/close.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.popup-sku > div {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  padding: 0 0.8rem 0.8rem;
+  font-size: 0.95rem;
+  color: #1c1c1c;
+}
+.popup-sku > div .info {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e7e7e7;
+}
+.popup-sku > div .info .img {
+  float: left;
+  width: 5.5rem;
+  height: 5.5rem;
+  border: 1px solid #c9c9c9;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.popup-sku > div .info .img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.popup-sku > div .info .main {
+  margin-left: 6.0rem;
+}
+.popup-sku > div .info .main .name {
+  margin-right: 3.0rem;
+  font-size: 0.75rem;
+  color: #1c1c1c;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.popup-sku > div .info .main .price {
+  font-size: 0.85rem;
+  color: #ff464e;
+}
+.popup-sku > div .info .main .skuTxt {
+  font-size: 0.75rem;
+  color: #7e7e7e;
+}
+.popup-sku > div .sku-item {
+  font-size: 0.75rem;
+}
+.popup-sku > div .sku-item .title1 {
+  margin: 0;
+  font-weight: normal;
+  padding: 1.1rem 0 0;
+}
+.popup-sku > div .sku-item .list a,
+.popup-sku > div .sku-item .list span {
+  display: inline-block;
+  width: 3.3rem;
+  height: 1.6rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  line-height: 1.6rem;
+  text-align: center;
+  color: #1c1c1c;
+  border: 1px solid #c8c8c8;
+  border-radius: 0.2rem;
+}
+.popup-sku > div .sku-item .list a.active,
+.popup-sku > div .sku-item .list span.active {
+  border-color: #ff464e;
+  color: #ff464e;
+}
+.popup-sku > div .sku-item .list a.disable,
+.popup-sku > div .sku-item .list span.disable {
+  border: 1px dashed #c8c8c9;
+  color: #c8c8c9;
+}
+.popup-sku > div .sku-number {
+  margin-top: 1.0rem;
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+  padding: 0.5rem 0;
+  font-size: 0.75rem;
+  padding-left: 0.9rem;
+  text-align: right;
+}
+.popup-sku > div .sku-number .label {
+  float: left;
+  line-height: 1.6rem;
+}
+.popup-sku > div .sku-number .quantity {
+  border: 1px solid #c4c4c4;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.popup-sku > div .sku-number .quantity .minus {
+  width: 1.6rem;
+  border-right: 1px solid #c4c4c4;
+}
+.popup-sku > div .sku-number .quantity .plus {
+  width: 1.6rem;
+  border-left: 1px solid #c4c4c4;
+}
+.popup-sku > div .sku-number .quantity input {
+  font-weight: bold;
+}
+.popup-sku > div .sku-number .quantity,
+.popup-sku > div .sku-number .quantity * {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  background: #fff;
+}
+.popup-sku > div .go {
+  display: block;
+  width: 8.3rem;
+  height: 1.9rem;
+  margin: 0.8rem auto 0;
+  line-height: 1.9rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #fff;
+  background: #ff464e;
+  border: none;
+  border-radius: 0.25rem;
+}
+.popup-sku > div .close-popup {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  background: url(../images/close.png) no-repeat 0 0;
+  background-size: 100% 100%;
 }
