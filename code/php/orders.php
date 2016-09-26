@@ -32,8 +32,25 @@ switch( $act )
 		-- 提交选取地址返回操作
 	-----------------------------------------------------------------------------------------------------*/
 	case 'address_add':
-		$_SESSION['order']['address_id']	= 	CheckDatas( 'aids', '' );
-		redirect( '/orders?act=add' );
+		$_SESSION['order']['addressId']	= CheckDatas('aids', '');
+		switch($_SESSION['order']['type']){
+			case 'free':
+				$_url = 'order_free.php?id='.$_SESSION['order']['grouponId'];
+				break;
+			case 'groupon':
+				$_url = 'order_groupon.php?id='.$_SESSION['order']['grouponId'];
+				break;
+			case 'join':
+				$_url = 'order_join.php?id='.$_SESSION['order']['grouponId'];
+				break;
+			case 'alone':
+				$_url = 'order_alone.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSIOIN['order']['productId'];
+				break;
+			case 'guess':
+				$_url = 'order_guess.php?id='.;
+				break;
+		}
+		redirect($_url);
 	break;
 
 	/*----------------------------------------------------------------------------------------------------

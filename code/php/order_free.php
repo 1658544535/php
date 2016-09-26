@@ -9,6 +9,8 @@ $prevUrl = getPrevUrl();
 $grouponId = intval($_GET['id']);
 empty($grouponId) && redirect($prevUrl);
 
+$productId = intval($_GET['pid']);
+
 $time = time();
 
 //拼团活动信息
@@ -28,9 +30,8 @@ $isLeader = true;
 
 $_SESSION['order']['type'] = 'free';
 $factOrderPrice = 0;
-$productId = $groupon['product_id'];
 
-define('GROUPON_FREE', true);
+$_SESSION['order']['grouponId'] = $grouponId;
 
 include_once('order_common.php');
 ?>

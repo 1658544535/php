@@ -11,7 +11,7 @@ $product = $objPro->getInfo($productId);
 
 //地址
 $UserAddressModel = D('UserAddress');
-$addressID = isset($_SESSION['order']['address_id']) ? $_SESSION['order']['address_id'] : '';
+$addressID = isset($_SESSION['order']['addressId']) ? $_SESSION['order']['addressId'] : '';
 //获取运费
 if($addressID != ''){
 	$UserAddressInfo = $UserAddressModel->getUserAddressInfo($userid, $addressID);
@@ -27,7 +27,7 @@ if($addressID == NULL){
 	$UserAddressInfo = $UserAddressModel->getUserAddressOne($userid);
 	if ( $UserAddressInfo != NULL )
 	{
-		$_SESSION['order']['address_id'] = $UserAddressInfo->id;
+		$_SESSION['order']['addressId'] = $UserAddressInfo->id;
 	}
 }
 else
@@ -37,6 +37,8 @@ else
 
 //地址是否可配送
 $canDispatch = in_array($UserAddressInfo->province, $unSendProviceIds) ? false : true;
+
+$_SESSION['order']['productId'] = $productId;
 
 include_once('tpl/order_web.php');
 ?>

@@ -47,7 +47,7 @@
                     <ul class="list">
 						<?php foreach($otherActives as $_active){ ?>
 						<li>
-                            <a class="btn" href="groupon_join.php?id=<?php echo $_active->id;?>">参团&nbsp;&gt;</a>
+                            <a class="btn" href="groupon_join.php?id=<?php echo $_active->id;?>&pid=<?php echo $_active->product_id;?>">参团&nbsp;&gt;</a>
                             <div class="info">
                                 <div class="img"><img src="<?php echo $leaders[$_active->id]->image;?>" /></div>
                                 <div class="name"><?php echo $leaders[$_active->id]->name;?></div>
@@ -96,12 +96,12 @@
 							 <p>单独购买</p>
 						</a>
 						<?php if($isLeader){ ?>
-							<a class="more" href="order_groupon.php?id=<?php echo $groupon['id'];?>" id="btn-groupon">
+							<a class="more" href="order_free.php?id=<?php echo $groupon['id'];?>&pid=<?php echo $product['id'];?>" id="btn-groupon">
 								 <p>￥<b>0.00</b></p>
 								 <p>0元开团</p>
 							</a>
 						<?php }else{ ?>
-							<a class="more" href="order_groupon.php?id=<?php echo $groupon['id'];?>" id="btn-groupon">
+							<a class="more" href="order_groupon.php?id=<?php echo $groupon['id'];?>&pid=<?php echo $product['id'];?>" id="btn-groupon">
 								 <p>￥<b><?php echo $groupon['price'];?></b></p>
 								 <p><?php echo $groupon['num'];?>人团</p>
 							</a>

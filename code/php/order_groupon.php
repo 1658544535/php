@@ -10,6 +10,8 @@ $prevUrl = getPrevUrl();
 $grouponId = intval($_GET['id']);
 empty($grouponId) && redirect($prevUrl);
 
+$productId = intval($_GET['pid']);
+
 $time = time();
 
 //拼团活动信息
@@ -24,9 +26,8 @@ empty($groupon) && redirect($prevUrl);
 //实际下单价格
 $factOrderPrice = $groupon['price'];
 
-$productId = $groupon['product_id'];
-
 $_SESSION['order']['type'] = 'groupon';
+$_SESSION['order']['grouponId'] = $grouponId;
 
 include_once('order_common.php');
 ?>

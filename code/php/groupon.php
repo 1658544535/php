@@ -26,7 +26,7 @@ $product = $objPro->getInfo($groupon['product_id']);
 //其他团购
 $time = time();
 $date = date('Y-m-d H:i:s', $time);
-$sql = "SELECT ga.`id`,ga.`end_time`,ga.`num`,IFNULL(tmp.`buyernum`,0) AS buyernum,(ga.`num`-IFNULL(tmp.`buyernum`,0)) AS remain FROM `groupon_activity` AS ga LEFT JOIN (SELECT `activity_id`,`user_id`,COUNT(*) AS buyernum FROM `groupon_user_record` GROUP BY `activity_id`) AS tmp ON ga.`id`=tmp.`activity_id` LEFT JOIN `sys_login` AS sl ON tmp.`user_id`=sl.`id` WHERE ga.`status`=1 AND ga.`type`=1 AND ga.`is_delete`=0 AND ga.`begin_time`<='{$date}' AND ga.`end_time`>'{$date}' AND ga.`id`<>{$groupon['id']} ORDER BY remain ASC,ga.`end_time` ASC LIMIT 3";
+$sql = "SELECT ga.`id`,ga.`product_id`,ga.`end_time`,ga.`num`,IFNULL(tmp.`buyernum`,0) AS buyernum,(ga.`num`-IFNULL(tmp.`buyernum`,0)) AS remain FROM `groupon_activity` AS ga LEFT JOIN (SELECT `activity_id`,`user_id`,COUNT(*) AS buyernum FROM `groupon_user_record` GROUP BY `activity_id`) AS tmp ON ga.`id`=tmp.`activity_id` LEFT JOIN `sys_login` AS sl ON tmp.`user_id`=sl.`id` WHERE ga.`status`=1 AND ga.`type`=1 AND ga.`is_delete`=0 AND ga.`begin_time`<='{$date}' AND ga.`end_time`>'{$date}' AND ga.`id`<>{$groupon['id']} ORDER BY remain ASC,ga.`end_time` ASC LIMIT 3";
 $otherActives = $objGroupon->query($sql);
 $otherActIds = array();
 foreach($otherActives as $k => $v){
