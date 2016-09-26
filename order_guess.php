@@ -12,7 +12,8 @@ empty($productId) && redirect($prevUrl);
 
 $grouponId = intval($_GET['id']);
 
-$_SESSION['order']['type'] = 'alone';
+$_SESSION['order']['grouponId'] = $grouponId;
+$_SESSION['order']['type'] = 'guess';
 
 include_once('order_common.php');
 ?>

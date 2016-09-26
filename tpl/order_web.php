@@ -19,7 +19,7 @@
 </head>
 
 <body>
-	<form action="orders" method='post' onsubmit="return submitPay()">
+	<form action="order.php" method="post" onsubmit="return submitPay()">
 		<div class="page-group" id="page-orderCofirm">
 			<div id="page-nav-bar" class="page page-current">
 				<header class="bar bar-nav">
@@ -60,18 +60,16 @@
 								</div>
 							</a></li>
 						</ul>
+						<?php if(!in_array($_SESSION['order']['type'], array('free', 'guess')){ ?>
 						<div class="num">
 							<span class="label">数量</span>
 							<div class="quantity">
-								<?php if(ORDER_TYPE == 'alone'){ ?>
-									<span class="minus">-</span>
-									<input type="text" value="1" />
-									<span class="plus">+</span>
-								<?php }else{ ?>
-									1
-								<?php } ?>
+								<span class="minus">-</span>
+								<input type="text" name="num" value="1" />
+								<span class="plus">+</span>
 							</div>
 						</div>
+						<?php } ?>
 						<div class="subTotal">合计：<font class="themeColor">￥<span class="price"><?php echo $factOrderPrice;?></span></font>（全场包邮）</div>
 					</section>
 
@@ -88,8 +86,9 @@
 				</div>
 
 				<div class="oc-footer">
-					实付款：<font class="themeColor">￥<span class="price">29.8</span></font>
-					<a class="btn<?php if(!$canDispatch){ ?> gray<?php } ?>" href="">立即支付</a>
+					实付款：<font class="themeColor">￥<span class="price"><?php echo $factOrderPrice;?></span></font>
+					<input type="submit" value="立即支付" class="btn<?php if(!$canDispatch){ ?> gray<?php } ?>" />
+					<?php /* ?><a class="btn<?php if(!$canDispatch){ ?> gray<?php } ?>" href="">立即支付</a><?php */ ?>
 				</div>
 			</div>
 		</div>

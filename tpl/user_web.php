@@ -229,6 +229,7 @@
 						</div>
                     </div>
                     <div class="name"><?php echo $user->name; ?></div>
+					<div class="orderTips">还有<span class="themeColor">2个订单</span>未付款 ></div>
                     <ul class="orderTab">
                         <li><a href="#">
                             <span>0</span>
