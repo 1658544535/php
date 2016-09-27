@@ -23,8 +23,8 @@
 
                 <section class="swiper-container deta-banner" data-space-between="0">
                     <div class="swiper-wrapper">
-						<?php foreach($product['carousel_images'] as $v){ ?>
-							<div class="swiper-slide"><img src="<?php echo $site_image.$v->images;?>" /></div>
+						<?php foreach($info['banners'] as $v){ ?>
+							<div class="swiper-slide"><img src="<?php echo $v->bannerImage;?>" /></div>
 						<?php } ?>
                     </div>
                     <div class="swiper-pagination"></div>
@@ -32,26 +32,26 @@
 
                 <section class="deta-info">
                     <div class="d-i-1">
-                        <span class="sales">累积销量：<?php echo $product['sell_number'];?>件</span>
-                        ￥<span class="nowPrice"><?php echo $groupon['price'];?></span>
-                        <span class="oldPrice">￥<?php echo $product['selling_price'];?></span>
+                        <span class="sales">累积销量：<?php echo $info['proSellrNum'];?>件</span>
+                        ￥<span class="nowPrice"><?php echo $info['producrtPrice'];?></span>
+                        <span class="oldPrice">￥<?php echo $info['alonePrice'];?></span>
                     </div>
-                    <div class="name"><?php echo $product['product_name'];?></div>
-                    <div class="txt"><?php echo $groupon['title'];?></div>
+                    <div class="name"><?php echo $info['productName'];?></div>
+                    <div class="txt"><?php echo $info['title'];?></div>
                     <div class="tips"><img src="images/deta-tips.png" /></div>
                 </section>
 				
-				<?php if(!empty($otherActives)){ ?>
+				<?php if(!empty($info['waitGroupList'])){ ?>
                 <section class="deta-group">
                     <h3 class="title1">欢迎您直接参与其他小伙伴发起的拼团</h3>
                     <ul class="list">
-						<?php foreach($otherActives as $_active){ ?>
+						<?php foreach($info['waitGroupList'] as $_active){ ?>
 						<li>
-                            <a class="btn" href="groupon_join.php?id=<?php echo $_active->id;?>&pid=<?php echo $_active->product_id;?>">参团&nbsp;&gt;</a>
+                            <a class="btn" href="groupon_join.php?id=<?php echo $_active->groupRecId;?>&pid=<?php echo $_active->product_id;?>">参团&nbsp;&gt;</a>
                             <div class="info">
-                                <div class="img"><img src="<?php echo $leaders[$_active->id]->image;?>" /></div>
-                                <div class="name"><?php echo $leaders[$_active->id]->name;?></div>
-                                <div class="num">还差 <?php echo $_active->remain;?> 人成团</div>
+                                <div class="img"><img src="<?php echo $_active->userImage;?>" /></div>
+                                <div class="name"><?php echo $_active->userName;?></div>
+                                <div class="num">还差 <?php echo $_active->oweNum;?> 人成团</div>
                                 <div class="timer" data-timer="<?php echo $_active->remainSec;?>"><i class="icon-timer"></i><span></span> 后结束</div>
                             </div>
                         </li>
@@ -84,26 +84,23 @@
                     <span class="tab-label">首页</span>
                 </a>
                 <div class="buy">
-					<?php if(empty($product['sku']['stock'])){ ?>
-						<a class="one">售罄</a>
-						<a class="more" href="/">查看更多</a>
-					<?php }elseif(!$product['status']){ ?>
+					<?php if($info['productStatus'] == 2){ ?>
 						<a class="one">下架</a>
 						<a class="more" href="/">查看更多</a>
 					<?php }else{ ?>
-						<a class="one" href="order_alone.php?id=<?php echo $groupon['id'];?>&pid=<?php echo $product['id'];?>" id="btn-alone">
+						<a class="one" href="order_alone.php?id=<?php echo $grouponId;?>&pid=<?php echo $product['id'];?>" id="btn-alone">
 							 <p>￥<b><?php echo $product['order_price'];?></b></p>
 							 <p>单独购买</p>
 						</a>
-						<?php if($isLeader){ ?>
-							<a class="more" href="order_free.php?id=<?php echo $groupon['id'];?>&pid=<?php echo $product['id'];?>" id="btn-groupon">
+						<?php if($info['isGroupFree']){ ?>
+							<a class="more" href="order_free.php?id=<?php echo $grouponId;?>&pid=<?php echo $product['id'];?>" id="btn-groupon">
 								 <p>￥<b>0.00</b></p>
 								 <p>0元开团</p>
 							</a>
 						<?php }else{ ?>
-							<a class="more" href="order_groupon.php?id=<?php echo $groupon['id'];?>&pid=<?php echo $product['id'];?>" id="btn-groupon">
-								 <p>￥<b><?php echo $groupon['price'];?></b></p>
-								 <p><?php echo $groupon['num'];?>人团</p>
+							<a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $product['id'];?>" id="btn-groupon">
+								 <p>￥<b><?php echo $info['producrtPrice'];?></b></p>
+								 <p><?php echo $info['groupNum'];?>人团</p>
 							</a>
 						<?php } ?>
 					<?php } ?>

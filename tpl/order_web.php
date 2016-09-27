@@ -79,6 +79,7 @@
 								<input type="radio" name="payWay" checked />
 								<img src="images/pay-wx.png" />
 								<p>微信支付</p>
+								<span class="label">推荐</span>
 							</li>
 						</ul>
 					</section>
