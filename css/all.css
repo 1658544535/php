@@ -2636,7 +2636,8 @@
 }
 .afterSales-form ul li .item .main {
   margin-left: 5.5rem;
-  margin-right: 2.3rem;
+  font-size: 0.65rem;
+  color: #44494c;
 }
 .afterSales-form ul li .item .main .txt {
   display: inline-block;
@@ -2658,16 +2659,14 @@
   top: 0;
   left: 0;
 }
-.afterSales-form ul li .item::after {
-  content: '';
-  display: block;
-  position: absolute;
-  right: 0.5rem;
-  top: 0;
-  width: 1.05rem;
-  height: 100%;
-  background: url(../images/down.png) no-repeat right center;
-  background-size: 100% auto;
+.afterSales-form ul li .label1 {
+  padding-bottom: 1rem;
+  font-size: 0.7rem;
+  color: #44494c;
+}
+.afterSales-form ul li .label1 span {
+  font-size: 0.6rem;
+  color: #b3b3b3;
 }
 .afterSales-form ul li .tips {
   clear: both;
@@ -2684,7 +2683,7 @@
   display: inline-block;
   width: 4.75rem;
   height: 4.75rem;
-  obrder-radius: 0.4rem;
+  margin: 0.1rem;
   overflow: hidden;
 }
 .uploadImg .uploadImg-item input {
@@ -2701,6 +2700,8 @@
   top: 0;
   left: 0;
   z-index: 2;
+  border-radius: 0.4rem;
+  overflow: hidden;
 }
 .uploadImg .uploadImg-item .img img {
   display: block;
