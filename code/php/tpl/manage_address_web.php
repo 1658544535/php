@@ -197,7 +197,7 @@
                             <div class="address a-t-4"><%=data["data"][i].address%></div>
                         </div>
                         <div class="option">
-                            <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="default"><i></i>设为默认</a>
+                            <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="default<%if(data["data"][i].isDefault==1){%> active<%}%>"><i></i>设为默认</a>
                             <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="edit"><i></i>编辑</a>
                             <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="del"><i></i>删除</a>
                         </div>
@@ -278,7 +278,7 @@
                         </li>
                         <li>
                             <span class="label">联系方式:</span>
-                            <div class="main"><input type="text" name="phone" class="txt p-a-1" placeholder="请输入联系方式" /></div>
+                            <div class="main"><input type="text" name="tel" class="txt p-a-1" placeholder="请输入联系方式" /></div>
                         </li>
                         <li>
                             <span class="label">收货地址:</span>
