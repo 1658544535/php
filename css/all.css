@@ -16,6 +16,10 @@
 .bgWhite {
   background: #fff;
 }
+.b-refresh {
+  color: #ff464e;
+  padding: 0 0.2rem;
+}
 /*顶部*/
 .bar-nav .icon {
   width: 2.2rem;
