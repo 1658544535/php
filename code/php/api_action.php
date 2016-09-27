@@ -44,5 +44,12 @@ switch($act){
 	case 'user_guess'://我的猜价
 		$type = CheckDatas();
 		break;
+	case 'user_groupon'://我的拼团
+		$status = intval($_POST['type']);
+		$page = intval($_POST['page']);
+		$page = max(1, $page);
+		$result = apiData('myGroupListApi.do', array('pageNo'=>$page, 'status'=>$status, 'userId'=>$userid));
+		$result['success'] ? ajaxJson(1, '', $result['result'], $page) : ajaxJson(0, $result['error_msg']);
+		break;
 }
 ?>
