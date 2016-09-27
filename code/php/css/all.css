@@ -2645,6 +2645,18 @@
   background: none;
   font-size: 0.65rem;
   color: #44494c;
+  resize: none;
+}
+.afterSales-form ul li .item .main .txt.price {
+  position: relative;
+  color: #ff464e;
+}
+.afterSales-form ul li .item .main .txt::after {
+  display: block;
+  content: '￥';
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .afterSales-form ul li .item::after {
   content: '';
