@@ -117,29 +117,27 @@ window.LArea = (function() {
             function areaCtrlInit() {
                 if(!!_self.valueTo.value){
                     _self.value = _self.valueTo.value.split(",");
-                }
 
-                var trueAreaArr = [];
-                for(var j=0; j<_self.data.length; j++){
-                    if(_self.data[j].id == _self.value[0]){
-                        trueAreaArr.push(j);
-                        for(var k=0; k<_self.data[j]["child"].length; k++){
-                            if(self.data[j]["child"][k]["id"] == _self.value[1]){
-                                trueAreaArr.push(k);
-                                for(var o=0; k<_self.data[j]["child"][k]["child"].length; o++){
-                                    if(_self.data[j]["child"][k]["child"]["id"] == _self.value[2]){
-                                        trueAreaArr.push(o);
-                                        return false;
+                    var trueAreaArr = [];
+                    for(var j=0; j<_self.data.length; j++){
+                        if(_self.data[j].id == _self.value[0]){
+                            trueAreaArr.push(j);
+                            for(var k=0; k<_self.data[j]["child"].length; k++){
+                                if(_self.data[j]["child"][k]["id"] == _self.value[1]){
+                                    trueAreaArr.push(k);
+                                    for(var o=0; o<_self.data[j]["child"][k]["child"].length; o++){
+                                        if(_self.data[j]["child"][k]["child"][o]["id"] == _self.value[2]){
+                                            trueAreaArr.push(o);
+                                        }
                                     }
                                 }
-                                return false;
                             }
                         }
-                        return false;
-                    }
-                };
-                console.log(trueAreaArr);
-                
+                    };
+                    _self.value = trueAreaArr;
+                }
+
+
 
                 _self.gearArea.querySelector(".area_province").setAttribute("val", _self.value[0]);
                 _self.gearArea.querySelector(".area_city").setAttribute("val", _self.value[1]);
