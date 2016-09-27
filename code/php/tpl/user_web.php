@@ -196,7 +196,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>淘竹马</title>
+    <title><?php echo $site_name;?></title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=0" name="viewport">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -217,53 +217,47 @@
                 <section class="user-header">
                     <div class="photo">
                         <div class="img">
-							<?php if ( ! $bLogin || $user->image == "" ){ ?>
-								<img src="images/user/photo.png"/>
-							<?php }else{ ?>
-								<?php if ( preg_match('#^http://.*#', $user->image) ){ ?>
-									<img src="<?php echo $user->image; ?>" style="" />
-								<?php }else{ ?>
-									<img src="<?php echo $site_image; ?>userlogo/<?php echo $user->image; ?>">
-								<?php } ?>
-							<?php } ?>
+							<img src="<?php echo $info['userImage'];?>"/>
 						</div>
                     </div>
-                    <div class="name"><?php echo $user->name; ?></div>
-					<div class="orderTips">还有<span class="themeColor">2个订单</span>未付款 ></div>
+                    <div class="name"><?php echo $info['name']; ?></div>
+					<?php if($info['waitPayNum'] > 0){ ?><div class="orderTips">还有<a class="themeColor" href="#"><?php echo $info['waitPayNum'];?>个订单</a>未付款 ></div><?php } ?>
                     <ul class="orderTab">
                         <li><a href="#">
-                            <span>0</span>
+                            <span><?php echo $info['groupingNum'];?></span>
                             <p>拼团中</p>
                         </a></li>
                         <li><a href="#">
-                            <span>0</span>
+                            <span><?php echo $info['waitSendNum'];?></span>
                             <p>待发货</p>
                         </a></li>
                         <li><a href="#">
-                            <span>0</span>
+                            <span><?php echo $info['waitRecNum'];?></span>
                             <p>待收货</p>
                         </a></li>
                         <li><a href="#">
-                            <span>0</span>
+                            <span><?php echo $info['waitComNum'];?></span>
                             <p>待评价</p>
                         </a></li>
                         <li><a href="#">
-                            <span>0</span>
+                            <span><?php echo $info['saleSerNum'];?></span>
                             <p>退款/售后</p>
                         </a></li>
                     </ul>
                 </section>
 
+				<?php if($info['isGroupFree']){ ?>
                 <section class="user-coupon-show">
                     <div class="freeCoupon">
                         <div class="info">
                             <div class="name">团长免单券 <span>(团长免费开团)</span></div>
                             <div class="tips">点击选择团免商品</div>
-                            <div class="time">有效期: 2016.9.15-2016.9.22</div>
+                            <div class="time">有效期: <?php echo date('Y.n.j', $info['couponBTime']);?>-<?php echo date('Y.n.j', $info['couponETime']);?></div>
                         </div>
                         <div class="price"><div>￥<span>0</span></div></div>
                     </div>
                 </section>
+				<?php } ?>
 
                 <section class="user-list">
                     <ul>
