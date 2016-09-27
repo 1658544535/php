@@ -14,6 +14,13 @@ switch($act){
 		$result = apiData('deleteAddress.do', array('addId'=>$addrId, 'uid'=>$userid));
 		$result['success'] ? ajaxJson(1, '') : ajaxJson(0, $result['error_msg']);
 		break;
+	case 'address_default'://设置默认地址
+		$addrId = CheckDatas('id', 0);
+		empty($addrId) && ajaxJson(0, '参数错误');
+		$result = apiData('selectAddress.do', array('addId'=>$addrId, 'uid'=>$userid));
+		$result['success'] ? ajaxJson(1, '操作成功') : ajaxJson(0, $result['error_msg']);
+		break;
+		break;
 	case 'user_guess'://我的猜价
 		$type = CheckDatas();
 		break;
