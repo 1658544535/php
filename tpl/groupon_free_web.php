@@ -31,28 +31,27 @@
             <div class="content native-scroll">
                 <div class="freeList-tips">选择一个商品免费开团，成团后可收货</div>
 
-                <section class="freeList pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="groupon_free.php">
+                <section class="freeList pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="api_action.php?act=groupon_free">
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader">
                         <div class="preloader"></div>
                     </div>
                 </section>
-
             </div>
 
 			<?php include_once('footer_nav_web.php');?>
 
             <script id='tpl_pull' type="text/template">
-                <%for(var i=0;i<data["listData"].length; i++){%>
-                    <li><a href="groupon.php?id=<%=data["listData"][i]["id"]%>">
-                        <div class="img"><img src="<%=data["listData"][i]["imgSrc"]%>" /></div>
+                <%for(var i=0;i<data["data"].length; i++){%>
+                    <li><a href="groupon.php?id=<%=data["data"][i].activityId%>">
+                        <div class="img"><img src="<%=data["data"][i].productImage%>" /></div>
                             <div class="info">
-                                <div class="name"><%=data["listData"][i]["name"]%></div>
+                                <div class="name"><%=data["data"][i].productName%></div>
                                 <div class="price">
                                 <div class="btn">免费开团</div>
-                                ￥<span class="price1"><%=data["listData"][i]["oldPrice"]%></span>/件
-                                <span class="price2">拼团价：￥<%=data["listData"][i]["price"]%></span>
+                                ￥<span class="price1"><%=data["data"][i].alonePrice%></span>/件
+                                <span class="price2">拼团价：￥<%=data["data"][i].productPrice%></span>
                             </div>
                         </div>
                     </a></li>
