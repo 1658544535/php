@@ -30,15 +30,15 @@
             <section class="swiper-container index-class">
                 <div class="swiper-wrapper">
                     <a class="swiper-slide active" data-id="0">首页</a>
-                    <?php foreach ($objProductType as $type){?>
-                    <a class="swiper-slide" data-id="?"><?php echo $type->name;?></a>
+                    <?php foreach($cates as $_cate){?>
+	                    <a class="swiper-slide" data-id="<?php echo $_cate['id'];?>"><?php echo $_cate['name'];?></a>
                     <?php }?>           
                 </div>
             </section>
 
             <div class="content native-scroll" style="top:4.2rem;">
 
-                <div class="swiper-container index-page" data-href="index.php">
+                <div class="swiper-container index-page" data-href="api_action.php?act=index">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <section class="index-pro infinite-scroll infinite-scroll-bottom" data-distance="30">

@@ -14,10 +14,11 @@ define('LIB_ROOT', dirname(__FILE__) . '/includes/lib/');
 define('WXPAID_ROOT', dirname(__FILE__) . '/wxpay/');
 define('MODEL_DIR', dirname(__FILE__) . '/logic/Model/');
 
-$isTest =  ($_SERVER['SERVER_NAME'] == 'www.maduoduo.loc') ? true : false;			// 是否为测试模式
+$isTest =  ($_SERVER['SERVER_NAME'] == 'pinwx.taozhuma.com') ? true : false;			// 是否为测试模式
 
 //数据接口
-define('API_URL', 'http://rap.taozhuma.com/mockjsdata/2');
+//define('API_URL', 'http://rap.taozhuma.com/mockjsdata/2');
+define('API_URL', 'http://pin.taozhuma.com/v3.5');
 
 /*============================== 加载基本文件 =============================================*/
 include_once(APP_INC . 'ez_sql_core.php');
@@ -66,16 +67,16 @@ else
 	error_reporting(0);
 
 	if(empty($_SESSION['userinfo'])){
-		$test = $db->get_row("select * from sys_login where `loginname`='15816620443'");
+		$test = $db->get_row("select * from sys_login where `loginname`='13666666666'");
 
 		$_SESSION['userinfo'] 	= $test;
-		$_SESSION['openid'] 	= '1111112222333445555566666777888';//"o6MuHtwL7s7gntl6xYmXHikcD6zQ";
+		$_SESSION['openid'] 	= '1111111111222222222299';//"o6MuHtwL7s7gntl6xYmXHikcD6zQ";
 		$_SESSION['is_login']	= empty($test) ? false : true;
 
 		$__testWXUserInfo = array(
 			'openid' => $_SESSION['openid'],
 			'nickname' => '测试昵称',
-			'unionid' => '111111199',
+			'unionid' => '1111111111',
 			'headimgurl' => 'http://wx.qlogo.cn/mmopen/PiajxSqBRaEJKhQAPsIWmuMdVDPichItjJp9ejypBuZsE6lRFqkXp9B3nFqpwkVwtibd04kEicuRhuMr24IofQics1A/0',
 			'sex' => 1,
 			'province' => '广东省',

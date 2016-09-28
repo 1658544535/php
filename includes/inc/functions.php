@@ -1007,7 +1007,7 @@ function IS_GET()
  {
  	if( !isset($_SESSION['openid']) ||$_SESSION['openid'] == null )
 	{
-		redirect("/login?dir=" . urlencode($_SERVER['REQUEST_URI']));
+		redirect("/login.php?dir=" . urlencode($_SERVER['REQUEST_URI']));
 		return;
 	}
  }
@@ -1019,7 +1019,7 @@ function IS_GET()
  {
  	if( !isset($_SESSION['is_login']) || $_SESSION['is_login'] === FALSE )
 	{
-		redirect("/user_binding?dir=" . $_SERVER['REQUEST_URI'] );
+		redirect("/user_binding.php?dir=" . $_SERVER['REQUEST_URI'] );
 		return;
 	}
  }
@@ -1167,7 +1167,7 @@ function apiData($url, $param, $method='get'){
  * @param integer $curPage 当前页数(列表使用)，null时不返回
  * @return string
  */
-function ajaxJson($code, $msg='', $data=array(), $curPage=null){
+function ajaxJson($code, $msg='', $data=array(), $curPage=null, $ext=array()){
 	$arr = array('msg'=>$msg, 'code'=>$code);
 	$arr['data']['data'] = $data;
 	$arr['data']['ifLoad'] = empty($data) ? 0 : 1;

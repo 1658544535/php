@@ -3,7 +3,7 @@
 
 /*============================== 数据库配置信息  =============================================*/
 
-$dbHost = '10.10.66.250';
+$dbHost = '120.25.81.49';
 $dbUser = 'maduoduo';
 $dbPass = 'maduoduo123';
 $dbName = 'maduoduo';
@@ -12,9 +12,9 @@ $dbName = 'maduoduo';
 
 $dbCharset 		= 'utf8';
 $pfx 			= 'f_';
-$site 			= ( $isTest ) ? 'http://tzm/' : 'http://weixinm2c.taozhuma.com/';		// 网站地址
-$site_admin 	= 'http://m2c.taozhuma.com/doLogin.do';									// 网站后台地址
-$site_image		= 'http://b2c.taozhuma.com/upfiles/';									// 获取图片地址
+$site 			= ( $isTest ) ? 'http://pinwx.taozhuma.com/' : 'http://pintuanwx.taozhuma.com/';		// 网站地址
+$site_admin 	= 'http://pinwx.taozhuma.com/doLogin.do';									// 网站后台地址
+$site_image		= 'http://pinwx.taozhuma.com/upfiles/';									// 获取图片地址
 $site_name		= '拼得好';//网站名称
 
 
