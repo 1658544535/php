@@ -183,11 +183,11 @@
 
             <div class="content native-scroll">
 
-                <section class="user-tab user-tab3" data-href="">
+                <section class="user-tab user-tab3" data-href="ajaxtpl/ajax_user_coupon_new.php">
                     <ul>
-                        <li data-type="0"><a href="javascript:;">未使用（3）</a></li>
-                        <li data-type="1"><a href="javascript:;">已过期（2）</a></li>
-                        <li data-type="2"><a href="javascript:;">已使用（3）</a></li>
+                        <li data-type="1"><a href="javascript:;">未使用（3）</a></li>
+                        <li data-type="2"><a href="javascript:;">已过期（2）</a></li>
+                        <li data-type="3"><a href="javascript:;">已使用（3）</a></li>
                     </ul>
                 </section>
 
@@ -202,13 +202,13 @@
             </div>
 
             <script id='tpl_pull_tab' type="text/template">
-                <%for(var i=0;i<data["listData"].length; i++){%>
+                <%for(var i=0;i<data["data"].length; i++){%>
                     <li>
                         <div class="freeCoupon">
                             <div class="info">
-                                <div class="name">团长免单券 <span>(团长免费开团)</span></div>
+                                <div class="name"><%=data["data"][0]["couponList"][i]["couponName"]%><span>(团长免费开团)</span></div>
                                 <div class="tips">点击选择团免商品</div>
-                                <div class="time">有效期: 2016.9.15-2016.9.22</div>
+                                <div class="time">有效期: <%=data["data"][0]["couponList"][i]["validStime"]%>-<%=data["data"][0]["couponList"][i]["validEtime"]%></div>
                             </div>
                             <div class="price"><div>￥<span>0</span></div></div>
                             <div class="overdue"><!--已过期--></div>
