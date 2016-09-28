@@ -28,6 +28,8 @@
                 <h1 class="title">选择拼团</h1>
             </header>
 
+            <?php include_once('footer_nav_web.php');?>
+
             <div class="content native-scroll">
                 <section class="index-pro pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="groupon_multi.php?id=<?php echo $productId;?>">
                     <ul class="list-container"></ul>
@@ -37,8 +39,6 @@
                     </div>
                 </section>
             </div>
-
-			<?php include_once('footer_nav_web.php');?>
 
             <script id='tpl_pull' type="text/template">
                 <%for(var i=0;i<data["data"].length; i++){%>

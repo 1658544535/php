@@ -27,6 +27,7 @@
                 </a>
                 <h1 class="title">猜价赢好礼</h1>
             </header>
+            <?php include_once('footer_nav_web.php');?>
 
             
 
@@ -65,7 +66,6 @@
                 <div class="tips-null">暂无商品</div>
             <%}%>
             </script>
-            <?php include_once('footer_nav_web.php');?>
         </div>
       
       

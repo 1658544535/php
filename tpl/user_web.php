@@ -214,6 +214,8 @@
 <body>
     <div class="page-group" id="page-user">
         <div id="page-nav-bar" class="page page-current">
+
+			<?php include_once('footer_nav_web.php');?>
             <div class="content native-scroll">
                 <section class="user-header">
                     <div class="photo">
@@ -270,8 +272,6 @@
                     </ul>
                 </section>
             </div>
-
-			<?php include_once('footer_nav_web.php');?>
         </div>
     </div>
 </body>

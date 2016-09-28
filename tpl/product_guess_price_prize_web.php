@@ -27,6 +27,7 @@
                 </a>
                 <h1 class="title">参与用户列表</h1>
             </header>
+            <?php include_once('footer_nav_web.php');?>
 
             <nav class="bar bar-tab">
                 <a class="tab-item" href="index.html">
@@ -84,7 +85,6 @@
                     </a></li>
                 <%}%>
             </script>
-  <?php include_once('footer_nav_web.php');?>
         </div>
     </div>
 </body>

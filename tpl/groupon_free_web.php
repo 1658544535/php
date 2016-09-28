@@ -28,6 +28,8 @@
                 <h1 class="title">团免列表</h1>
             </header>
 
+            <?php include_once('footer_nav_web.php');?>
+
             <div class="content native-scroll">
                 <div class="freeList-tips">选择一个商品免费开团，成团后可收货</div>
 
@@ -39,8 +41,6 @@
                     </div>
                 </section>
             </div>
-
-			<?php include_once('footer_nav_web.php');?>
 
             <script id='tpl_pull' type="text/template">
                 <%for(var i=0;i<data["data"].length; i++){%>
