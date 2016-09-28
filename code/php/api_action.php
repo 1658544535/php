@@ -22,11 +22,12 @@ switch($act){
 		break;
 	case 'address_edit'://添加/编辑地址
 		$addrId = intval($_POST['id']);
+		list($province, $city, $area) = explode(',', trim($_POST['area']));
 		$data = array(
 			'address' => trim($_POST['addr']),
-			'area' => intval($_POST['area']),
-			'city' => intval($_POST['city']),
-			'province' => intval($_POST['province']),
+			'area' => intval($area),
+			'city' => intval($city),
+			'province' => intval($province),
 			'isDefault' => 0,
 			'name' => trim($_POST['name']),
 			'postCode' => trim($_POST['post']),
@@ -62,7 +63,6 @@ switch($act){
 		$result['success'] ? ajaxJson(1, '', $result['result'], $page) : ajaxJson(0, $result['error_msg']);
 		break;
 	case 'index_cate_groupon'://首页分类拼团
-		
 		$id = intval($_REQUEST['id']);
 		$result = apiData('findGroupByTypeId.do', array('pageNo'=>$page, 'id'=>$id));
 		$result['success'] ? ajaxJson(1, '', $result['result'], $page) : ajaxJson(0, $result['error_msg']);
@@ -103,6 +103,10 @@ switch($act){
 			echo json_encode($arr);
 			exit();
 		}
+		break;
+	case 'areas'://生成地区
+		getAreasJson();
+		ajaxJson(1, '');
 		break;
 }
 ?>

@@ -258,6 +258,8 @@ switch ($act)
 		$returnUrl 		= (isset($_GET['return_url']) && $_GET['return_url']!=null) ? urlencode($_GET['return_url']) : '';
 		$addressList 	= $UserAddressModel->getUserAddressList($userid);
 
+		$jsonArea = file_get_contents('./data/area.json');
+
 		include "tpl/manage_address_web.php";
 	break;
 }

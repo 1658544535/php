@@ -54,16 +54,14 @@
 
             <script id='tpl_indexBanner' type="text/template">
                 <%for(var i=0;i<data["banner"].length; i++){%>
-                    <%if(data["banner"][i]["type"] == 0){%>
-                    <a class="swiper-slide">
-                    <%}if(data["banner"][i]["type"] == 1){%>
-                    <a class="swiper-slide">
-                    <%}if(data["banner"][i]["type"] == 2){%>
-                    <a class="swiper-slide" href='groupon.php?id=<%=data["banner"][i]["typeId"]%>'>
-                    <%}if(data["banner"][i]["type"] == 3){%>
-                    <a class="swiper-slide" href='product_guess_price.php?act=detail&gid=<%=data["banner"][i]["typeId"]%>'>
+                    <%if(data["banner"][i]["type"] == 2){%>
+						<a class="swiper-slide" href='groupon.php?id=<%=data["banner"][i]["typeId"]%>'>
+                    <%}else if(data["banner"][i]["type"] == 3){%>
+						<a class="swiper-slide" href='product_guess_price.php?act=detail&gid=<%=data["banner"][i]["typeId"]%>'>
+					<%}else{%>
+						<a class="swiper-slide">
                     <%}%>
-                        <img src='http://ext1.taozhuma.com/upfiles/focusbanner/<%=data["banner"][i]["img"]%>'>
+                        <img src="<%=data["banner"][i].banner%>">
                     </a>
                 <%}%>
             </script>
@@ -72,7 +70,7 @@
                 <%if(data["proData"]["listData"].length>0){%>
                     <%for(var i=0;i<data["proData"]["listData"].length; i++){%>
                         <li><a href="groupon.php?id=<%=data["proData"]["listData"][i]["activityId"]%>">
-                            <div class="img"><img src='http://ext1.taozhuma.com/upfiles/product/<%=data["proData"]["listData"][i]["productImage"]%>' /></div>
+                            <div class="img"><img src='<%=data["proData"]["listData"][i]["productImage"]%>' /></div>
                             <div class="info">
                                 <p class="name"><%=data["proData"]["listData"][i]["productName"]%></p>
                                 <span class="sales">销量：<%=data["proData"]["listData"][i]["proSellerNum"]%></span>
@@ -109,7 +107,7 @@
             </script>
 
         </div>
-        <?php if($ObjUserCouPon->status ==1){?>
+        <?php if(!empty($freeCpn)){?>
             <div class="popup popup-coupon">
                 <div>
                     <a href="#" class="close-popup"></a>
@@ -118,7 +116,7 @@
                         <div class="info">
                             <div class="name">团长免单券 <span>(团长免费开团)</span></div>
                             <div class="tips">点击选择团免商品</div>
-                            <div class="time">有效期: <?php echo $ObjUserCouPon->active_time;?>-<?php echo $ObjUserCouPon->invalid_time;?></div>
+                            <div class="time">有效期: <?php echo $freeCpn['beginTime'];?>-<?php echo $freeCpn['endTime'];?></div>
                         </div>
                         <div class="price"><div>￥<span>0</span></div></div>
                     </div>
