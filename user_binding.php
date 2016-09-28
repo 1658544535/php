@@ -34,6 +34,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 	$referUrl = isset($_SESSION['loginReferUrl']) ? urldecode($_SESSION['loginReferUrl']) : '/';
 
+	$a = $user_bulding->check_user_loginname($mobile);
+	var_dump($a);die;
+
 	if($user_bulding->check_user_loginname($mobile) == 1){//已注册，进行登录
 		$objSysLogin = M('sys_login');
 		$userInfo = $objSysLogin->get(array('loginname'=>$mobile));
