@@ -28,6 +28,8 @@
                 <h1 class="title">查看物流</h1>
             </header>
 
+            <?php include_once('footer_nav_web.php');?>
+
             <div class="content native-scroll">
 				<?php if(!$info['success']){ ?>
 					<div>网络异常，请稍候再试</div>
@@ -51,8 +53,6 @@
 					</section>
 				<?php } ?>
             </div>
-
-			<?php include_once('footer_nav_web.php');?>
 
         </div>
     </div>

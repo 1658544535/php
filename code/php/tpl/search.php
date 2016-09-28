@@ -32,6 +32,8 @@
                     </form>
                 </div>
             </header>
+            
+            <?php include_once('footer_nav_web.php');?>
 
             <div class="content native-scroll">
 
@@ -41,8 +43,6 @@
                 </section>
 
             </div>
-			
-			<?php include_once('footer_nav_web.php');?>
         </div>
     </div>
 </body>
