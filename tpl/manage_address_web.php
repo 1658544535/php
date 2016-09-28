@@ -166,6 +166,7 @@
             </div>
 
 			<script id='tpl_pull' type="text/template">
+            <%if(data["data"].length>0){%>
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li data-id="<%=data["data"][i].addId%>">
                         <div class="txt">
@@ -182,6 +183,9 @@
                         </div>
                     </li>
                 <%}%>
+            <%}else{%>
+                <div class="tips-null">暂无地址</div>
+            <%}%>
             </script>
 
 
