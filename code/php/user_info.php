@@ -134,36 +134,7 @@ switch($act)
 		-- 产品收藏列表
 	-----------------------------------------------------------------------------------------------------*/
 	case 'product_collect':
-		$favoriteList = $UserCollectModel->getCollectList( $userid );
-	
-		$arrFavoriteList = array();
-
-		if ( is_array( $favoriteList ) )
-		{
-			foreach( $favoriteList as $key=>$favs )
-			{
-				$ProductInfo = $ProductModel->getProductInfo( $favs->product_id, '', $favs->activity_id );
-				
-				if( $ProductInfo != NULL )
-				{
-					$arrFavoriteList[$key]['product_id'] 			= $ProductInfo->id;
-					$arrFavoriteList[$key]['product_name'] 			= $ProductInfo->product_name;
-					$arrFavoriteList[$key]['image'] 				= $ProductInfo->image;
-					$arrFavoriteList[$key]['distribution_price'] 	= $ProductInfo->active_price;
-					$arrFavoriteList[$key]['status'] 				= $ProductInfo->status;
-					$arrFavoriteList[$key]['fav_id'] 				= $favs->id;
-					$arrFavoriteList[$key]['enable'] 				= $ProductInfo->enable;
-					$arrFavoriteList[$key]['msg_tip'] 				= $ProductInfo->msg_tip;
-					$arrFavoriteList[$key]['activity_id'] 			= $favs->activity_id;
-
-					if ( $ProductInfo->enable > 0 )
-					{
-						$arrFavoriteList[$key]['type'] 					= $ProductInfo->activity_type;
-					}
-				}
-			}
-		}
-
+		
 		include "tpl/favorites_web.php";
 	break;
 
@@ -317,64 +288,64 @@ switch($act)
 	-----------------------------------------------------------------------------------------------------*/
 	// 获取钱包余额
 	case 'coupon':
-		$from = CheckDatas( 'from', '' );
-		if ( $from == 'order_comfire' )
-		{
-			$link = '/orders.php?act=coupon_add&cid=';
-			$objUserCouponList = $UserCouponModel->getCanUseCouponList( $userid, $_SESSION['cart_info']['all_price'] );
-		}
-		else
-		{
-			$link = 'javascript:void(0);';
-			$objUserCouponList = $UserCouponModel->getUserCouponList( $userid );
-		}
+// 		$from = CheckDatas( 'from', '' );
+// 		if ( $from == 'order_comfire' )
+// 		{
+// 			$link = '/orders.php?act=coupon_add&cid=';
+// 			$objUserCouponList = $UserCouponModel->getCanUseCouponList( $userid, $_SESSION['cart_info']['all_price'] );
+// 		}
+// 		else
+// 		{
+// 			$link = 'javascript:void(0);';
+// 			$objUserCouponList = $UserCouponModel->getUserCouponList( $userid );
+// 		}
 
-		$arrUserCouponList 		= array();
-		$time 					= time();
+// 		$arrUserCouponList 		= array();
+// 		$time 					= time();
 
-		if ( $objUserCouponList != NULL )
-		{
-			foreach( $objUserCouponList as $key=>$UserCouponInfo )
-			{
-				$arrUserCouponList[$key] = $UserCouponInfo;
+// 		if ( $objUserCouponList != NULL )
+// 		{
+// 			foreach( $objUserCouponList as $key=>$UserCouponInfo )
+// 			{
+// 				$arrUserCouponList[$key] = $UserCouponInfo;
 
-				if( ! $UserCouponInfo->status || ! $UserCouponInfo->cpn_status )
-			    {
-			        $arrUserCouponList[$key]->useStatus = 0;
-			        $arrUserCouponList[$key]->statusMsg = '不可用';
-			    }
-			    elseif( $UserCouponInfo->userconpon_valid_etime && ($UserCouponInfo->userconpon_valid_etime < $time ) )
-			    {
-			        $arrUserCouponList[$key]->useStatus = 0;
-			        $arrUserCouponList[$key]->statusMsg = '已过期';
-			    }
-			    elseif($UserCouponInfo->used)
-			    {
-			        $arrUserCouponList[$key]->useStatus = 0;
-			        $arrUserCouponList[$key]->statusMsg = '已使用';
-			    }
-			    else
-			    {
-			        $arrUserCouponList[$key]->useStatus = 1;
-			        $arrUserCouponList[$key]->statusMsg = '可使用';
-			    }
+// 				if( ! $UserCouponInfo->status || ! $UserCouponInfo->cpn_status )
+// 			    {
+// 			        $arrUserCouponList[$key]->useStatus = 0;
+// 			        $arrUserCouponList[$key]->statusMsg = '不可用';
+// 			    }
+// 			    elseif( $UserCouponInfo->userconpon_valid_etime && ($UserCouponInfo->userconpon_valid_etime < $time ) )
+// 			    {
+// 			        $arrUserCouponList[$key]->useStatus = 0;
+// 			        $arrUserCouponList[$key]->statusMsg = '已过期';
+// 			    }
+// 			    elseif($UserCouponInfo->used)
+// 			    {
+// 			        $arrUserCouponList[$key]->useStatus = 0;
+// 			        $arrUserCouponList[$key]->statusMsg = '已使用';
+// 			    }
+// 			    else
+// 			    {
+// 			        $arrUserCouponList[$key]->useStatus = 1;
+// 			        $arrUserCouponList[$key]->statusMsg = '可使用';
+// 			    }
 
-				$arrUserCouponList[$key]->validEndTime = $UserCouponInfo->userconpon_valid_etime ? date('Y-m-d', $UserCouponInfo->userconpon_valid_etime) : '永久有效';
+// 				$arrUserCouponList[$key]->validEndTime = $UserCouponInfo->userconpon_valid_etime ? date('Y-m-d', $UserCouponInfo->userconpon_valid_etime) : '永久有效';
 
-				//规则
-				$_content = json_decode( $UserCouponInfo->content, true );
-				switch($UserCouponInfo->type)
-				{
-					case 1://满m减n
-						$arrUserCouponList[$key]->money = $_content['m'];
-						$arrUserCouponList[$key]->rule = '订单满'.$_content['om'].'元可用';
-						break;
-					case 2://直减
-						$arrUserCouponList[$key]->money = $_content['m'];
-						break;
-				}
-			}
-		}
+// 				//规则
+// 				$_content = json_decode( $UserCouponInfo->content, true );
+// 				switch($UserCouponInfo->type)
+// 				{
+// 					case 1://满m减n
+// 						$arrUserCouponList[$key]->money = $_content['m'];
+// 						$arrUserCouponList[$key]->rule = '订单满'.$_content['om'].'元可用';
+// 						break;
+// 					case 2://直减
+// 						$arrUserCouponList[$key]->money = $_content['m'];
+// 						break;
+// 				}
+// 			}
+// 		}
 
 
 		include "tpl/user_coupon_web.php";
@@ -503,7 +474,8 @@ switch($act)
 	/*----------------------------------------------------------------------------------------------------
 		-- 我的猜价
 	-----------------------------------------------------------------------------------------------------*/
-	case 'guess':
+	case 'guess':		
+		
 		include_once('tpl/user_guess_web.php');
 		break;
 

@@ -189,7 +189,7 @@
 
             <div class="content native-scroll">
 
-                <section class="user-collection pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="">
+                <section class="user-collection pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_product_collect.php">
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader">
@@ -200,14 +200,14 @@
             </div>
 
             <script id='tpl_pull' type="text/template">
-                <%for(var i=0;i<data["listData"].length; i++){%>
+                <%for(var i=0;i<data["data"].length; i++){%>
                     <li>
-                        <a href="#" class="img"><img src="" /></a>
+                        <a href="#" class="img"><img src="<%=data["data"][i]["productImage"]%>" /></a>
                         <div class="info">
-                            <a href="#" class="name">优彼思维训练机优比早教机学习机逻辑故事平板电脑幼儿童点读机</a>
+                            <a href="#" class="name"><%=data["data"][i]["productName"]%></a>
                             <div class="option">
                                 <a href="#" class="group">
-                                    2人团&nbsp;&nbsp;<font class="themeColor">￥<span class="price">49.9</span></font>
+                                    <%=data["data"][i]["groupNum"]%>人团&nbsp;&nbsp;<font class="themeColor">￥<span class="price"><%=data["data"][i]["productPrice"]%></span></font>
                                     <span class="btn">去开团&nbsp;&gt;</span>
                                 </a>
                                 <a href="javascript:;" class="collecting"></a>

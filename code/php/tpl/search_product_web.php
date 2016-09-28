@@ -33,16 +33,37 @@
                 </div>
             </header>
 
+            
+
             <div class="content native-scroll">
 
-                <section class="search-history">
-                    <h3 class="title1">历史搜索</h3>
-                    <div class="list" data-href="search_product.php?name="></div>
+                <div class="searchTips">共找到<span id="searchNum">25</span>条相关结果</div>
+
+                <section class="index-pro pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_search.php?name=<?php echo $name ;?>">
+                    <ul class="list-container"></ul>
+                    <!-- 加载提示符 -->
+                    <div class="infinite-scroll-preloader">
+                        <div class="preloader"></div>
+                    </div>
                 </section>
 
             </div>
-			
-			<?php include_once('footer_nav_web.php');?>
+
+            <script id='tpl_pull' type="text/template">
+                <%for(var i=0;i<data["data"].length; i++){%>
+                    <li><a href="groupon.php?id=<%=data["data"][i]["activityId"]%>">
+                        <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
+                        <div class="name">
+                            <span class="num"><%=data["data"][i]["groupNum"]%>人团</span><%=data["data"][i]["productName"]%>
+                        </div>
+                        <div class="info">
+                            ￥<span class="price"><%=data["data"][i]["productPrice"]%></span>
+                            <span class="sales">已团<%=data["data"][i]["attendNum"]%>件</span>
+                        </div>
+                    </a></li>
+                <%}%>
+            </script>
+<?php include_once('footer_nav_web.php');?>
         </div>
     </div>
 </body>

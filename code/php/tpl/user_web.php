@@ -127,6 +127,7 @@
 			<li><a href="user_info?act=history&return_url=/user"><i class="user_icon_history"></i>我的浏览</a></li>
 			<li><a href="/address?act=manage"><i class="user_icon_address"></i>地址管理</a></li>
 			<li><a href="help"><i class="user_icon_help"></i>客服与帮助</a></li>
+			<li><a href="/product_guess_price.php?act=user_price"><i class="user_icon_help"></i>我的猜价</a></li>
 		</ul>
 	</div>
 
@@ -223,23 +224,23 @@
                     <div class="name"><?php echo $info['name']; ?></div>
 					<?php if($info['waitPayNum'] > 0){ ?><div class="orderTips">还有<a class="themeColor" href="#"><?php echo $info['waitPayNum'];?>个订单</a>未付款 ></div><?php } ?>
                     <ul class="orderTab">
-                        <li><a href="#">
+                        <li><a href="user_orders.php">
                             <span><?php echo $info['groupingNum'];?></span>
                             <p>拼团中</p>
                         </a></li>
-                        <li><a href="#">
+                        <li><a href="user_orders.php">
                             <span><?php echo $info['waitSendNum'];?></span>
                             <p>待发货</p>
                         </a></li>
-                        <li><a href="#">
+                        <li><a href="user_orders.php">
                             <span><?php echo $info['waitRecNum'];?></span>
                             <p>待收货</p>
                         </a></li>
-                        <li><a href="#">
+                        <li><a href="user_orders.php">
                             <span><?php echo $info['waitComNum'];?></span>
                             <p>待评价</p>
                         </a></li>
-                        <li><a href="#">
+                        <li><a href="user_orders.php">
                             <span><?php echo $info['saleSerNum'];?></span>
                             <p>退款/售后</p>
                         </a></li>

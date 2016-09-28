@@ -30,7 +30,7 @@
 
             <div class="content native-scroll">
 
-                <section class="user-tab" data-href="">
+                <section class="user-tab" data-href="ajaxtpl/ajax_user_guess.php">
                     <ul>
                         <li data-type="0"><a href="javascript:;">全部</a></li>
                         <li data-type="1"><a href="javascript:;">进行中</a></li>
@@ -50,24 +50,32 @@
             </div>
 
             <script id='tpl_pull_tab' type="text/template">
-                <%for(var i=0;i<data["listData"].length; i++){%>
+                <%for(var i=0;i<data["data"].length; i++){%>
                     <li>
                         <div class="u-g-1">
-                            <span class="type">拼团商品</span>
-                            <span class="state">进行中</span>
-                        </div>
+                            <span class="type">猜价商品</span>
+                              <span class="state">
+                                <%if(data["data"][i].activityStatus ==1){%> 
+                                                                                   进行中
+                                <% }else if(data["data"][i].activityStatus ==2){%>      
+                                                                                    已结束，未得奖
+                                 <% }else if(data["data"][i].activityStatus ==3){%>
+                                                                                     已结束，已得奖
+                                 <%}%>
+                               </span>
+                          </div>
                         <a href="" class="u-g-2">
-                            <div class="img"><img src="" /></div>
+                            <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
                             <div class="info">
-                                <div class="name">优彼思维训练机优比早教机学习机逻辑故事平板电脑幼儿童点读机</div>
+                                <div class="name"><%=data["data"][i]["productName"]%></div>
                                 <div class="price">
-                                    <span>价格区间：<font class="themeColor">￥9.9-39.9</font></span>
-                                    <span class="price2">我的猜价：<font class="themeColor">￥19.9</font></span>
+                                    <span>价格区间：<font class="themeColor">￥<%=data["data"][i]["minPrice"]%>-<%=data["data"][i]["maxPrice"]%></font></span>
+                                    <span class="price2">我的猜价：<font class="themeColor">￥<%=data["data"][i]["userPrice"]%></font></span>
                                 </div>
                             </div>
                         </a>
                         <div class="u-g-3">
-                            <a href="#">查看详情</a>
+                            <a href="product_guess_price.php?act=detail&gid=<%=data["data"][i]["userPrice"]%>&pid=<%=data["data"][i]["userPrice"]%>">查看详情</a>
                         </div>
                     </li>
                 <%}%>
