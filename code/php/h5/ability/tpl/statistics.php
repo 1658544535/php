@@ -1,1 +1,0 @@
-<?php require_once CURRENT_ROOT.'cs.php';echo '<img src="'._cnzzTrackPageView(1260105835).'" width="0" height="0"/>';?>
