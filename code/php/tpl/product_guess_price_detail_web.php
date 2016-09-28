@@ -117,8 +117,6 @@
                     <?php }?>
                     </section>
 
-
-
            <?php if( $ObjGrouponInfo['result']['isJoin'] ==1 && $ObjGrouponInfo['result']['isPublic'] ==1 && $ObjGrouponInfo['result']['isWin'] ==1   && $ObjGrouponInfo['result']['isStart'] ==2){?>
 					<section class="guessJoinList guessDetaJoinList">
 					                        <div class="freeList-tips">

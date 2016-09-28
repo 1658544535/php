@@ -141,9 +141,8 @@ switch($act)
         //获取活动banner图
 		
 		
-		
-		
-		$ObjBanner     =  $FocusSettingModel->get(array('type'=>2,'param_type'=>3,'status'=>1));
+			$ObjBanner = apiData('guessBannerApi.do');
+
 		
 		
  		
