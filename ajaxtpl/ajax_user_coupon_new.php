@@ -3,7 +3,7 @@ define('HN1', true);
 require_once('../global.php');
 
 
-$page = CheckDatas( 'page', '' );
+$page = max(1, intval($_POST['page']));
 $Type = CheckDatas( 'type', '' );
 
 $coupon = apiData('getUserCouponList.do', array('type'=>$Type,'uid'=>$userid,'pageNo'=>$page));
