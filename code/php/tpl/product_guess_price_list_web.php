@@ -47,6 +47,7 @@
             </div>
 
            <script id='tpl_pull' type="text/template">
+            <%if(data["data"].length>0){%>
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li><a href="product_guess_price.php?act=detail&gid=<%=data["data"][i]["activityId"]%>&pid=<%=data["data"][i]["productId"]%>">
                         <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
@@ -60,6 +61,9 @@
                         </div>
                     </a></li>
                 <%}%>
+            <%}else{%>
+                <div class="tips-null">暂无商品</div>
+            <%}%>
             </script>
             <?php include_once('footer_nav_web.php');?>
         </div>

@@ -52,6 +52,7 @@
             </div>
 
             <script id='tpl_pull_tab' type="text/template">
+            <%if(data["data"].length>0){%>
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li>
                         <div class="u-g-1">
@@ -99,6 +100,9 @@
                        </div>
                     </li>
                 <%}%>
+            <%}else{%>
+                <li class="null"></li>
+            <%}%>
             </script>
 
         </div>

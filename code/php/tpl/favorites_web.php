@@ -200,6 +200,7 @@
             </div>
 
             <script id='tpl_pull' type="text/template">
+            <%if(data["data"].length>0){%>
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li>
                         <a href="#" class="img"><img src="<%=data["data"][i]["productImage"]%>" /></a>
@@ -215,6 +216,9 @@
                         </div>
                     </li>
                 <%}%>
+            <%}else{%>
+                <div class="tips-null">暂无收藏</div>
+            <%}%>
             </script>
 
         </div>
