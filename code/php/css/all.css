@@ -951,8 +951,8 @@
 }
 .freeList .option a {
   display: inline-block;
-  height: 1.4rem;
-  line-height: 1.3rem;
+  height: 1.25rem;
+  line-height: 1.2rem;
   margin: 0 0.25rem;
   padding: 0 0.25rem;
   border: 1px solid #ff464e;
@@ -1898,6 +1898,7 @@
 }
 .user-coupon-show .freeCoupon {
   margin: 0.5rem;
+  background: #fff;
 }
 .user-list {
   background: #fff;
@@ -2325,6 +2326,9 @@
 }
 .user-coupon ul li {
   margin-bottom: 0.5rem;
+}
+.user-coupon ul li .freeCoupon {
+  background: #fff;
 }
 .user-coupon ul li.null {
   margin-top: 40%;
