@@ -24,7 +24,7 @@
                 <section class="swiper-container deta-banner" data-space-between="0">
                     <div class="swiper-wrapper">
 						<?php foreach($info['banners'] as $v){ ?>
-							<div class="swiper-slide"><img src="<?php echo $v->bannerImage;?>" /></div>
+							<div class="swiper-slide"><img src="<?php echo $v['bannerImage'];?>" /></div>
 						<?php } ?>
                     </div>
                     <div class="swiper-pagination"></div>
@@ -47,12 +47,12 @@
                     <ul class="list">
 						<?php foreach($info['waitGroupList'] as $_active){ ?>
 						<li>
-                            <a class="btn" href="groupon_join.php?id=<?php echo $_active->groupRecId;?>&pid=<?php echo $_active->product_id;?>">参团&nbsp;&gt;</a>
+                            <a class="btn" href="groupon_join.php?id=<?php echo $_active['groupRecId'];?>&pid=<?php echo $info['productId'];?>">参团&nbsp;&gt;</a>
                             <div class="info">
-                                <div class="img"><img src="<?php echo $_active->userImage;?>" /></div>
-                                <div class="name"><?php echo $_active->userName;?></div>
-                                <div class="num">还差 <?php echo $_active->oweNum;?> 人成团</div>
-                                <div class="timer" data-timer="<?php echo $_active->remainSec;?>"><i class="icon-timer"></i><span></span> 后结束</div>
+                                <div class="img"><img src="<?php echo $_active['userImage'];?>" /></div>
+                                <div class="name"><?php echo $_active['userName'];?></div>
+                                <div class="num">还差 <?php echo $_active['oweNum'];?> 人成团</div>
+                                <div class="timer" data-timer="<?php echo $_active['remainSec'];?>"><i class="icon-timer"></i><span></span> 后结束</div>
                             </div>
                         </li>
 						<?php } ?>
@@ -88,17 +88,17 @@
 						<a class="one">下架</a>
 						<a class="more" href="/">查看更多</a>
 					<?php }else{ ?>
-						<a class="one" href="order_alone.php?id=<?php echo $grouponId;?>&pid=<?php echo $product['id'];?>" id="btn-alone">
-							 <p>￥<b><?php echo $product['order_price'];?></b></p>
+						<a class="one" href="order_alone.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-alone">
+							 <p>￥<b><?php echo $info['alonePrice'];?></b></p>
 							 <p>单独购买</p>
 						</a>
 						<?php if($info['isGroupFree']){ ?>
-							<a class="more" href="order_free.php?id=<?php echo $grouponId;?>&pid=<?php echo $product['id'];?>" id="btn-groupon">
+							<a class="more" href="order_free.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon">
 								 <p>￥<b>0.00</b></p>
 								 <p>0元开团</p>
 							</a>
 						<?php }else{ ?>
-							<a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $product['id'];?>" id="btn-groupon">
+							<a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon">
 								 <p>￥<b><?php echo $info['producrtPrice'];?></b></p>
 								 <p><?php echo $info['groupNum'];?>人团</p>
 							</a>
