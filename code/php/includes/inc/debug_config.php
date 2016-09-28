@@ -20,9 +20,6 @@ $dbUser = 'maduoduo1';
 $dbPass = 'maduoduo123';
 $dbName = 'maduoduo';
 
-$dbCharset 		= 'utf8';
-$pfx 			= 'f_';
-
 ///*============================== 网站的基本配置信息  =============================================*/
 //
 //$dbCharset 		= 'utf8';
