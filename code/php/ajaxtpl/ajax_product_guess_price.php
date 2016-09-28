@@ -18,7 +18,7 @@ $gId   	        = CheckDatas( 'gid', '' );
 $Prize   	    = CheckDatas( 'type', '' );
 $Price          = CheckDatas( 'price', '' );
 $as             = CheckDatas( 'activity_status', '' );
-$page           = CheckDatas( 'page', '' );
+$page           = max(1, intval($_POST['page']));
 
 
 
@@ -76,11 +76,11 @@ switch($act)
     
     
     default:
-    	$page          = CheckDatas( 'page', '' );
+    	
     	
 	    //猜价格活动列表
 
-	    $ObjGrouponList = apiData('guessActivityApi.do', array('page'=>$page));
+	    $ObjGrouponList = apiData('guessActivityApi.do', array('pageNo'=>$page));
 	   
 	     
 
@@ -101,8 +101,11 @@ switch($act)
 	 				'TimeDiff'=>$seckillTimeDiff,
 		 		);
 
-		 		
+		 	if($ObjGrouponList !=''){	
 		 		echo	get_json_data_public( 1,'获取成功',$Data );
+		 	}else{
+		 		echo	get_json_data_public( 0,'获取失败' );
+		 	}
 }
 
 

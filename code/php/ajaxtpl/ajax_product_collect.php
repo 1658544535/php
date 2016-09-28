@@ -3,7 +3,7 @@ define('HN1', true);
 require_once('../global.php');
 
 
-$page           = CheckDatas( 'page', '' );
+$page           = max(1, intval($_POST['page']));
 
 $favorites = apiData('myCollectListApi.do', array('userId'=>$userid,'pageNo'=>$page));
 

@@ -13,7 +13,7 @@ $ProductFocusImagesModel      = M('product_focus_images');
 
 
 $act  = CheckDatas( 'act', 'info' );
-$page           = CheckDatas( 'page', '' );
+$page           = max(1, intval($_POST['page']));
 $Type           = CheckDatas( 'type', '' );
 
 
