@@ -28,24 +28,7 @@
                 <h1 class="title">猜价赢好礼</h1>
             </header>
 
-            <nav class="bar bar-tab">
-                <a class="tab-item active" href="index.html">
-                    <span class="icon i-home"></span>
-                    <span class="tab-label">首页</span>
-                </a>
-                <a class="tab-item" href="demo2.html">
-                    <span class="icon i-price"></span>
-                    <span class="tab-label">猜价格</span>
-                </a>
-                <a class="tab-item" href="#">
-                    <span class="icon i-search"></span>
-                    <span class="tab-label">搜索</span>
-                </a>
-                <a class="tab-item" href="#">
-                    <span class="icon i-user"></span>
-                    <span class="tab-label">个人中心</span>
-                </a>
-            </nav>
+            
 
             <div class="content native-scroll">
                 <div class="guessList-banner"><img src="<?php echo $site_image ;?>focusbanner/<?php echo $ObjBanner->banner ;?>" /></div>
@@ -59,32 +42,37 @@
                         <div class="preloader"></div>
                     </div>
                 </section>
-
+              
             </div>
 
-            <?php if ( $bLogin == false ){					// 如果用户未登录   ?>
-				<a id="addFavor" href="/user_binding?act=user_bind" class="collections" title="收藏"></a>
-		  	<?php }else{?>
-            <script id='tpl_pull' type="text/template">
+           <script id='tpl_pull' type="text/template">
                 <%for(var i=0;i<data["data"].length; i++){%>
-                    <li><a href="product_guess_price.php?act=detail&gid=<%=data["data"][i]["gid"]%>&pid=<%=data["data"][i]["pid"]%>">
-                        <div class="img"><img src="<%=data["data"][i]["image"]%>" /></div>
+                    <li><a href="product_guess_price.php?act=detail&gid=<%=data["data"][i]["activityId"]%>&pid=<%=data["data"][i]["productId"]%>">
+                        <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
                         <div class="info">
-                            <div class="name"><%=data["data"][i]["product_name"]%></div>
+                            <div class="name"><%=data["data"][i]["productName"]%></div>
                             <div class="time">
                                 <span class="btn">立即猜价</span>
                                 <div class="downTime" data-timer="<%=data["TimeDiff"][i]%>"></div>
                             </div>
-                            <div class="tips">提示区间：1.00-178.00 丨 已有<span><%=data["data"][i]["num"]%></span>人参与</div>
+                            <div class="tips">提示区间：<%=data["data"][i]["minPrice"]%>-<%=data["data"][i]["maxPrice"]%> 丨 已有<span><%=data["data"][i]["joinNum"]%></span>人参与</div>
                         </div>
                     </a></li>
                 <%}%>
             </script>
-            <?php }?>
-            
+            <?php include_once('footer_nav_web.php');?>
         </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
     </div>
-    
+   
 </body>
 
 </html>

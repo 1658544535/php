@@ -2,35 +2,91 @@
 define('HN1', true);
 require_once('../global.php');
 
-$GrouponActivityModel = M('groupon_activity');
-$GrouponUserRecordModel = M('groupon_user_record');
+$GrouponActivityModel         = M('groupon_activity');
+$GrouponActivityRecordModel   = M('groupon_activity_record');
+$GrouponUserRecordModel       = M('groupon_user_record');
+$FocusSettingModel            = M('focus_setting');
+$UserInfoModel 				  = M('user_info');
+$ProductFocusImagesModel      = M('product_focus_images');
+
+
 
 $act  = CheckDatas( 'act', 'info' );
 $productId   	= CheckDatas( 'pid', '' );
 $uId   	        = CheckDatas( 'uid', '' );
 $gId   	        = CheckDatas( 'gid', '' );
-$Prize   	    = CheckDatas( 'prize', '' );
+$Prize   	    = CheckDatas( 'type', '' );
 $Price          = CheckDatas( 'price', '' );
 $as             = CheckDatas( 'activity_status', '' );
+$page           = CheckDatas( 'page', '' );
+
+
+
+
+
+
+
 switch($act)
 {
     
 	
-    case 'more':
+    case 'user':
+   
     	//获取更多用户参与信息数据
-    	$UserList = $GrouponUserRecordModel->gets(array('activity_type'=>3,'activity_id'=>$gId,'prize'=>$Prize),'',array('attend_time'=>'DESC'),$page,20);
+
+
+        $ObjUserList    = apiData('userJoinInfoApi.do', array('activityId'=>$gId,'pageNo'=>$page,'pageSize'=>20));
+
+        if($ObjUserList !='')
+        {
+        	echo	ajaxJson( 1,'获取成功',$ObjUserList['result'][0]['joinUserList']);
+        }
+        else
+        {
+        	echo	ajaxJson( 0,'获取失败');
+        
+        }
     	
     break;
-    default:
     
+    
+    
+    case 'prize':
+    	 
+    	//获取更多中奖用户信息数据
+    
+    
+    	$ObjPrizeList    = apiData('winListApi.do', array('activityId'=>$gId,'pageNo'=>$page,'prize'=>$Prize));
+  
+    	
+        if($ObjPrizeList !='')
+        {
+        	echo	ajaxJson( 1,'获取成功',$ObjPrizeList['result'][0]['prizeList']);
+        }
+        else
+        {
+        	echo	ajaxJson( 0,'获取失败');
+        
+        }
+    	 
+    	break;
+    
+    
+    
+    
+    
+    default:
+    	$page          = CheckDatas( 'page', '' );
     	
 	    //猜价格活动列表
-	    $ObjGrouponList = $GrouponActivityModel->query("SELECT g.id as gid, g.product_id as pid, g.price_min, g.price_max, g.begin_time, g.end_time, g.status, g.activity_status, g.type, g.banner, g.num,  p.product_name, p.image FROM `groupon_activity` AS g LEFT JOIN product AS p on p.`id` = g.`product_id` WHERE 1=1 AND g.status =1 AND g.type =3 AND g.activity_status !=0 ORDER BY g.sorting DESC,g.create_date DESC ",false,true,$page);
-	    
-	  
+
+	    $ObjGrouponList = apiData('guessActivityApi.do', array('page'=>$page));
+	   
+	     
+
 		
 // 		        //显示活动倒计时
-		 		foreach ($ObjGrouponList['DataSet'] as $gro){
+		 		foreach ($ObjGrouponList['result'] as $gro){
 		 			if($gro !=''){
 		 				$date 	= DataTip( $gro->end_time, '-' );
 		 			}
@@ -40,10 +96,7 @@ switch($act)
 		 		}
 		 	   
 		 	   $Data =array(
-	 		         // 'GrouponList'=>$ObjGrouponList,
-	 				'pageCount'=>$ObjGrouponList['PageCount'],
-	 				'pageNow'=>$ObjGrouponList['CurrentPage'],
-	 				'data'=>$ObjGrouponList['DataSet'],
+	 				'data'=>$ObjGrouponList['result'],
 	 				'Tip'=>$dateTip,
 	 				'TimeDiff'=>$seckillTimeDiff,
 		 		);
