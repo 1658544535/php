@@ -15,7 +15,7 @@ $pfx 			= 'f_';
 $site 			= ( $isTest ) ? 'http://tzm/' : 'http://weixinm2c.taozhuma.com/';		// 网站地址
 $site_admin 	= 'http://m2c.taozhuma.com/doLogin.do';									// 网站后台地址
 $site_image		= 'http://b2c.taozhuma.com/upfiles/';									// 获取图片地址
-$site_name		= '淘竹马玩具特卖';//网站名称
+$site_name		= '拼得好';//网站名称
 
 
 
@@ -37,9 +37,9 @@ $JSSDKCONFIRE = array(
 	'WXJSNONCESTR'	=> $arrWxJsParam['nonceStr'],
 	'WXJSSIGNATURE'	=> $arrWxJsParam['signature'],
 	'WEBLINK'		=> 'http://weixinm2c.taozhuma.com',
-	'WEBDESC'		=> '妈妈圈玩具专属特卖',
+	'WEBDESC'		=> '拼得好',
 	'WEBLOGO'		=>'http://weixinm2c.taozhuma.com/images/user_photo.png',
-	'WEBTITLE'		=> '淘竹马玩具特卖'
+	'WEBTITLE'		=> '拼得好'
 );
 
 
