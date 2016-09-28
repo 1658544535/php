@@ -56,5 +56,10 @@ switch($act){
 		$result = apiData('refundListApi.do', array('pageNo'=>$page, 'status'=>$status, 'userId'=>$userid));
 		$result['success'] ? ajaxJson(1, '', $result['result'], $page) : ajaxJson(0, $result['error_msg']);
 		break;
+	case 'groupon_free'://免团列表
+		$page = max(1, intval($_POST['page']));
+		$result = apiData('groupFreeListApi.do', array('pageNo'=>$page, 'userId'=>$userid));
+		$result['success'] ? ajaxJson(1, '', $result['result'], $page) : ajaxJson(0, $result['error_msg']);
+		break;
 }
 ?>

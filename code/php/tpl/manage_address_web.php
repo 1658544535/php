@@ -165,27 +165,6 @@
                 <a href="javascript:;">添加新地址</a>
             </div>
 
-<!--
-            <script id='tpl_pull' type="text/template">
-                <%for(var i=0,len=data["data"].length;i<len; i++){%>
-                    <li data-id="<%=data["data"][i].addId%>">
-                        <div class="txt">
-                            <div class="info">
-                                <span class="phone"><%=data["data"][i].tel%></span>
-                                <span><%=data["data"][i].name%></span>
-                            </div>
-                            <div class="address"><%=data["data"][i].address%></div>
-                        </div>
-                        <div class="option">
-                            <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="default"><i></i>设为默认</a>
-                            <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="edit"><i></i>编辑</a>
-                            <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="del"><i></i>删除</a>
-                        </div>
-                    </li>
-                <%}%>
-            </script>
-			-->
-
 			<script id='tpl_pull' type="text/template">
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li data-id="<%=data["data"][i].addId%>">
@@ -265,12 +244,10 @@
 			</script>
         </div>
 
-		<script type="text/javascript" src="js/sui/sm-city-picker.min.js" charset="utf-8"></script>
-        <div class="popup popup-address">
+		<div class="popup popup-address">
             <div>
                 <a href="#" class="close-popup"></a>
                 <form action="" method="" accept-charset="utf-8">
-					<input type="hidden" name="id" />
                     <ul>
                         <li>
                             <span class="label">收货人:</span>
@@ -283,7 +260,8 @@
                         <li>
                             <span class="label">收货地址:</span>
                             <div class="main">
-                                <input id="city-picker" type="text" class="txt p-a-3" placeholder="请选择省市区" value="" />
+                                <input id="city-picker" type="text" class="txt p-a-3" placeholder="请选择省市区" value="" readonly />
+                                <input id="city-picker-value" type="hidden" />
                                 <textarea rows="2" name="addr" class="txt p-a-4" placeholder="请输入详细地址"></textarea>
                             </div>
                         </li>
@@ -292,6 +270,19 @@
                 </form>
             </div>
         </div>
+
+        <script type="text/javascript" src="js/lArea/LArea.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/lArea/LAreaData.js" charset="utf-8"></script>
+        <script>
+            var area = new LArea();
+            area.init({
+                'trigger': '#city-picker',//触发选择控件的文本框，同时选择完毕后name属性输出到该位置
+                'valueTo':'#city-picker-value',//选择完毕后id属性输出到该位置
+                'keys':{id:'id',name:'name'},//绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
+                'type':1,//数据源类型
+                'data':LAreaData//数据源
+            });
+        </script>
     </div>
 </body>
 
