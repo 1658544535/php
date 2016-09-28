@@ -39,7 +39,7 @@ switch($act)
 
         if($ObjUserList !='')
         {
-        	echo	ajaxJson( 1,'获取成功',$ObjUserList['result'][0]['joinUserList']);
+        	echo	ajaxJson( 1,'获取成功',$ObjUserList['result'][0]['joinUserList'],$page);
         }
         else
         {
@@ -61,7 +61,7 @@ switch($act)
     	
         if($ObjPrizeList !='')
         {
-        	echo	ajaxJson( 1,'获取成功',$ObjPrizeList['result'][0]['prizeList']);
+        	echo	ajaxJson( 1,'获取成功',$ObjPrizeList['result'][0]['prizeList'],$page);
         }
         else
         {
@@ -102,7 +102,7 @@ switch($act)
 		 		);
 
 		 	if($ObjGrouponList !=''){	
-		 		echo	get_json_data_public( 1,'获取成功',$Data );
+		 		echo	get_json_data_public( 1,'获取成功',$Data ,$page);
 		 	}else{
 		 		echo	get_json_data_public( 0,'获取失败' );
 		 	}

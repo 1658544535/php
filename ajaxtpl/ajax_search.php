@@ -11,7 +11,7 @@ $page           = max(1, intval($_POST['page']));
 	
 	if($search !='')
 	{
-		echo	ajaxJson( 1,'获取成功',$search['result']);
+		echo	ajaxJson( 1,'获取成功',$search['result'],$page);
 	}
 	else
 	{
