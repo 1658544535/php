@@ -4,7 +4,7 @@
 /*============================== 数据库配置信息  =============================================*/
 
 $dbHost = '120.25.81.49';
-$dbUser = 'maduoduo';
+$dbUser = 'maduoduo1';
 $dbPass = 'maduoduo123';
 $dbName = 'maduoduo';
 

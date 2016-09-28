@@ -75,7 +75,7 @@
 		 * */
 		 public function get_wx_openid( $code )
 		 {
-		 	global $isTest;
+		 	global $isTest, $__testWXUserInfo;
 
 		 	try
 			{
@@ -84,16 +84,16 @@
 					// 测试数据
 					$arrResult = array(
 					  "subscribe"   => 1,
-					  "openid"      => "o5Tz0ssOJBADNFMRlnMLYEO2W5-0",
-					  "nickname"    => "Band",
-					  "sex"         => 1,
+					  "openid"      => $__testWXUserInfo['openid'],// "o5Tz0ssOJBADNFMRlnMLYEO2W5-0",
+					  "nickname"    => $__testWXUserInfo['nickname'],// "Band",
+					  "sex"         => $__testWXUserInfo['sex'],// 1,
 					  "language"    => "zh_CN",
-					  "city"        => "广州",
-					  "province"    => "广东",
+					  "city"        => $__testWXUserInfo['city'],// "广州",
+					  "province"    => $__testWXUserInfo['province'],// "广东",
 					  "country"     => "中国",
-					  "headimgurl"  => "http://wx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/0",
+					  "headimgurl"  => $__testWXUserInfo['headimgurl'],// "http://wx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/0",
 					  "subscribe_time"  => 1382694957,
-					  "unionid"     => " o6_bmasdasdsad6_2sgVt7hMZOPfL",
+					  "unionid"     => $__testWXUserInfo['unionid'],// " o6_bmasdasdsad6_2sgVt7hMZOPfL",
 					  "remark"      => "",
 					  "groupid"     => 0
 					);
