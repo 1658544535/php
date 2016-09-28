@@ -20,10 +20,10 @@ $Price          = CheckDatas( 'price', '' );
 $as             = CheckDatas( 'activity_status', '' );
 
 //判断是否登录
-if ( ! $bLogin )
-{
-	IS_USER_LOGIN();
-}
+// if ( ! $bLogin )
+// {
+// 	IS_USER_LOGIN();
+// }
 
 
 switch($act)
