@@ -116,7 +116,7 @@
 							<div class="info">
 								<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
 								￥<span class="price1"><?php echo $info['groupPrice'];?></span>&nbsp;
-								<span class="price2">￥<?php echo $info['alonePrice'];?></span>    
+								<span class="price2">￥<?php echo $info['alonePrice'];?></span>
 							</div>
 							<span class="btn">我要拼团 ></span>
 						</a>

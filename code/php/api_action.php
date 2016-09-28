@@ -6,7 +6,7 @@ $act = CheckDatas('act', '');
 switch($act){
 	case 'address'://我的地址列表
 		$addrs = apiData('myaddress.do', array('uid'=>$userid));
-		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], 1, 1) : ajaxJson(0, $addrs['error_msg']);
+		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], 1) : ajaxJson(0, $addrs['error_msg']);
 		break;
 	case 'address_del'://删除地址
 		$addrId = intval($_POST['id']);
@@ -60,6 +60,49 @@ switch($act){
 		$page = max(1, intval($_POST['page']));
 		$result = apiData('groupFreeListApi.do', array('pageNo'=>$page, 'userId'=>$userid));
 		$result['success'] ? ajaxJson(1, '', $result['result'], $page) : ajaxJson(0, $result['error_msg']);
+		break;
+	case 'index_cate_groupon'://首页分类拼团
+		
+		$id = intval($_REQUEST['id']);
+		$result = apiData('findGroupByTypeId.do', array('pageNo'=>$page, 'id'=>$id));
+		$result['success'] ? ajaxJson(1, '', $result['result'], $page) : ajaxJson(0, $result['error_msg']);
+		break;
+	case 'index'://首页
+		$cateId = intval($_REQUEST['id']);
+		$page = max(1, intval($_POST['page']));
+		if($cateId){
+			$result = apiData('findGroupByTypeId.do', array('id'=>$cateId, 'pageNo'=>$page));
+			$arr = array(
+				'code' => 1,
+				'msg' => '成功',
+				'data' => array(
+					'proData' => array(
+						'pageNow' => $page,
+						'ifLoad' => empty($result['result']) ? 0 : 1,
+						'listData' => $result['result'],
+					),
+				),
+			);
+			echo json_encode($arr);
+			exit();
+		}else{
+			$lunbo = apiData('groupHomeApi.do');
+			$recom = apiData('homeGroupProductsApi.do', array('pageNo'=>$page));
+			$arr = array(
+				'code' => 1,
+				'msg' => '成功',
+				'data' => array(
+					'banner' => $lunbo['result'],
+					'proData' => array(
+						'pageNow' => $page,
+						'ifLoad' => empty($recom['result']) ? 0 : 1,
+						'listData' => $recom['result'],
+					),
+				),
+			);
+			echo json_encode($arr);
+			exit();
+		}
 		break;
 }
 ?>

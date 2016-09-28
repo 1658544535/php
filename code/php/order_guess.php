@@ -1,5 +1,5 @@
 <?php
-//直购下单
+//猜价下单
 define('HN1', true);
 require_once('./global.php');
 
