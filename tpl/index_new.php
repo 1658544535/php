@@ -25,18 +25,20 @@
                 <h1 class="title"><img class="title-img" src="images/logo.png" alt="淘竹马" /></h1>
             </header>
 
-			<section class="swiper-container index-class">
+            <?php include_once('footer_nav_web.php');?>
+
+            <section class="swiper-container index-class">
                 <div class="swiper-wrapper">
-                   <a class="swiper-slide active" data-type="index" data-href="ajaxtpl/ajax_index.php">首页</a>
+                    <a class="swiper-slide active" data-id="0">首页</a>
                     <?php foreach ($objProductType as $type){?>
-                      <a class="swiper-slide" data-type="class" data-href="ajaxtpl/ajax_index.php?tid=<?php echo $type->id;?>"><?php echo $type->name;?></a>
+                    <a class="swiper-slide" data-id="?"><?php echo $type->name;?></a>
                     <?php }?>           
                 </div>
             </section>
 
             <div class="content native-scroll" style="top:4.2rem;">
 
-                <div class="swiper-container index-page">
+                <div class="swiper-container index-page" data-href="index.php">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <section class="index-pro infinite-scroll infinite-scroll-bottom" data-distance="30">
@@ -50,26 +52,81 @@
                 </div>
             </div>
 
-			<?php include_once('footer_nav_web.php');?>
+            <script id='tpl_indexBanner' type="text/template">
+                <%for(var i=0;i<data["banner"].length; i++){%>
+                    <%if(data["banner"][i]["type"] == 0){%>
+                    <a class="swiper-slide">
+                    <%}if(data["banner"][i]["type"] == 1){%>
+                    <a class="swiper-slide">
+                    <%}if(data["banner"][i]["type"] == 2){%>
+                    <a class="swiper-slide" href='groupon.php?id=<%=data["banner"][i]["typeId"]%>'>
+                    <%}if(data["banner"][i]["type"] == 3){%>
+                    <a class="swiper-slide" href='product_guess_price.php?act=detail&gid=<%=data["banner"][i]["typeId"]%>'>
+                    <%}%>
+                        <img src='http://ext1.taozhuma.com/upfiles/focusbanner/<%=data["banner"][i]["img"]%>'>
+                    </a>
+                <%}%>
+            </script>
+
+            <script id='tpl_indexPro' type="text/template">
+                <%if(data["proData"]["listData"].length>0){%>
+                    <%for(var i=0;i<data["proData"]["listData"].length; i++){%>
+                        <li><a href='groupon.php?id=<%=data["proData"]["listData"][i]["activityId"]%>'>
+                            <div class="img"><img src='http://ext1.taozhuma.com/upfiles/product/<%=data["proData"]["listData"][i]["productImage"]%>' /></div>
+                            <div class="info">
+                                <p class="name"><%=data["proData"]["listData"][i]["productName"]%></p>
+                                <span class="sales">销量：<%=data["proData"]["listData"][i]["proSellerNum"]%></span>
+                            </div>
+                            <div class="group">
+                                <span class="num"><%=data["proData"]["listData"][i]["groupNum"]%>人团</span>
+                                ￥<span class="now-price"><%=data["proData"]["listData"][i]["productPrice"]%></span>
+                                <span class="old-price">￥<%=data["proData"]["listData"][i]["alonePrice"]%></span>
+                            </div>
+                        </a></li>
+                    <%}%>
+                <%}else{%>
+                    <div class="tips-null">暂无商品</div>
+                <%}%>
+            </script>
+
+            <script id='tpl_indexClass' type="text/template">
+                <%if(data["proData"]["listData"].length>0){%>
+                    <%for(var i=0;i<data["proData"]["listData"].length; i++){%>
+                        <li><a href="groupon.php?id=<%=data["proData"]["listData"][i]["activityId"]%>">
+                            <div class="img"><img src="<%=data["proData"]["listData"][i]["productImage"]%>" /></div>
+                            <div class="name">
+                                <span class="num"><%=data["proData"]["listData"][i]["groupNum"]%>人团</span><%=data["proData"]["listData"][i]["productName"]%>
+                            </div>
+                            <div class="info">
+                                ￥<span class="price"><%=data["proData"]["listData"][i]["productPrice"]%></span>
+                                <span class="sales">已团<%=data["proData"]["listData"][i]["attendNum"]%>件</span>
+                            </div>
+                        </a></li>
+                    <%}%>
+                <%}else{%>
+                    <div class="tips-null">暂无商品</div>
+                <%}%>
+            </script>
+
         </div>
-    </div>
-<?php if($ObjUserCouPon->status ==1){?>
-    <div class="popup popup-coupon">
-        <div>
-            <a href="#" class="close-popup"></a>
-            <h3 class="title1">您有1张团免券未使用</h3>
-            <div class="freeCoupon">
-                <div class="info">
-                    <div class="name">团长免单券 <span>(团长免费开团)</span></div>
-                    <div class="tips">点击选择团免商品</div>
-                    <div class="time">有效期: <?php echo $ObjUserCouPon->active_time;?>-<?php echo $ObjUserCouPon->invalid_time;?></div>
+        <?php if($ObjUserCouPon->status ==1){?>
+            <div class="popup popup-coupon">
+                <div>
+                    <a href="#" class="close-popup"></a>
+                    <h3 class="title1">您有1张团免券未使用</h3>
+                    <div class="freeCoupon">
+                        <div class="info">
+                            <div class="name">团长免单券 <span>(团长免费开团)</span></div>
+                            <div class="tips">点击选择团免商品</div>
+                            <div class="time">有效期: <?php echo $ObjUserCouPon->active_time;?>-<?php echo $ObjUserCouPon->invalid_time;?></div>
+                        </div>
+                        <div class="price"><div>￥<span>0</span></div></div>
+                    </div>
+                    <a href="groupon_free.php" class="go">立即前往</a>
                 </div>
-                <div class="price"><div>￥<span>0</span></div></div>
             </div>
-            <a href="groupon_free.php" class="go">立即前往</a>
-        </div>
+        <?php }?>
     </div>
-<?php }?>
 </body>
 
 </html>
