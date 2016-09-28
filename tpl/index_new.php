@@ -71,7 +71,7 @@
             <script id='tpl_indexPro' type="text/template">
                 <%if(data["proData"]["listData"].length>0){%>
                     <%for(var i=0;i<data["proData"]["listData"].length; i++){%>
-                        <li><a href='groupon.php?id=<%=data["proData"]["listData"][i]["activityId"]%>'>
+                        <li><a href="groupon.php?id=<%=data["proData"]["listData"][i]["activityId"]%>">
                             <div class="img"><img src='http://ext1.taozhuma.com/upfiles/product/<%=data["proData"]["listData"][i]["productImage"]%>' /></div>
                             <div class="info">
                                 <p class="name"><%=data["proData"]["listData"][i]["productName"]%></p>
