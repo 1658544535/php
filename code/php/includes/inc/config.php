@@ -36,9 +36,9 @@ $JSSDKCONFIRE = array(
 	'WXJSTIMESTAMP'	=> $arrWxJsParam['timestamp'],
 	'WXJSNONCESTR'	=> $arrWxJsParam['nonceStr'],
 	'WXJSSIGNATURE'	=> $arrWxJsParam['signature'],
-	'WEBLINK'		=> 'http://weixinm2c.taozhuma.com',
+	'WEBLINK'		=> 'http://pinwx.taozhuma.com',
 	'WEBDESC'		=> '拼得好',
-	'WEBLOGO'		=>'http://weixinm2c.taozhuma.com/images/user_photo.png',
+	'WEBLOGO'		=> 'http://pinwx.taozhuma.com/images/user_photo.png',
 	'WEBTITLE'		=> '拼得好'
 );
 

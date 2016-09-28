@@ -14,8 +14,8 @@ define('LIB_ROOT', dirname(__FILE__) . '/includes/lib/');
 define('WXPAID_ROOT', dirname(__FILE__) . '/wxpay/');
 define('MODEL_DIR', dirname(__FILE__) . '/logic/Model/');
 
+$isTest =  ($_SERVER['SERVER_NAME'] == 'www.maduoduo.loc') ? true : false;			// 是否为测试模式
 $isTest =  ($_SERVER['SERVER_NAME'] == 'pinwx.taozhuma.com') ? true : false;			// 是否为测试模式
-//$isTest =  ($_SERVER['SERVER_NAME'] == 'www.maduoduo.loc') ? true : false;			// 是否为测试模式
 
 //数据接口
 //define('API_URL', 'http://rap.taozhuma.com/mockjsdata/2');
@@ -31,8 +31,8 @@ include_once(APP_INC . 'inic_log.php');
 include_once(APP_INC . 'Model.class.php');
 include_once(APP_INC . 'sys_parameter.php');
 
-include_once(APP_INC . 'config.php');
-$isTest && include_once(APP_INC . 'debug_config.php');
+
+$isTest ? include_once(APP_INC . 'debug_config.php') : include_once(APP_INC . 'config.php');;
 
 /*============================== 初始化 =============================================*/
 $db 	= new ezSQL_mysql($dbUser, $dbPass, $dbName, $dbHost);
