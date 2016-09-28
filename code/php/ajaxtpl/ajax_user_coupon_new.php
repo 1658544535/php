@@ -12,7 +12,7 @@ $coupon = apiData('getUserCouponList.do', array('type'=>$Type,'uid'=>$userid,'pa
 
 if($coupon !='')
 {
-	echo	ajaxJson( 1,'获取成功',$coupon['result']);
+	echo	ajaxJson( 1,'获取成功',$coupon['result'],$page);
 }
 else
 {

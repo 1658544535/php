@@ -24,7 +24,7 @@ $guess = apiData('myGuessListApi.do', array('userId'=>$userid,'type'=>$Type,'pag
 
 if($guess !='')
 {
-     echo	ajaxJson( 1,'获取成功',$guess['result']);
+     echo	ajaxJson( 1,'获取成功',$guess['result'],$page);
 }
 else
 {

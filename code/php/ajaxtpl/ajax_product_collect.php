@@ -9,7 +9,7 @@ $favorites = apiData('myCollectListApi.do', array('userId'=>$userid,'pageNo'=>$p
 
 if($favorites !='')
 {
-	echo	ajaxJson( 1,'获取成功',$favorites['result']);
+	echo	ajaxJson( 1,'获取成功',$favorites['result'],$page);
 }
 else
 {

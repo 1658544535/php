@@ -14,7 +14,7 @@ $orders = apiData('myorder.do', array('orderStatus'=>$OrderStatus,'pageNo'=>$pag
 
 if($orders['result'] !='')
 {
-	echo	ajaxJson( 1,'获取成功',$orders['result']);
+	echo	ajaxJson( 1,'获取成功',$orders['result'],$page);
 }
 else
 {
