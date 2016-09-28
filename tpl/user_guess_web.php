@@ -27,7 +27,7 @@
                 </a>
                 <h1 class="title">我的猜价</h1>
             </header>
-
+       <?php include_once('footer_nav_web.php');?>
             <div class="content native-scroll">
 
                 <section class="user-tab" data-href="ajaxtpl/ajax_user_guess.php">

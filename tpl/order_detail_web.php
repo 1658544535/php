@@ -102,7 +102,7 @@
             </div>
 
             <div class="deta-footer">
-                <a class="goIndex" href="index.html">
+                <a class="goIndex" href="index.php">
                     <span class="icon i-home"></span>
                     <span class="tab-label">首页</span>
                 </a>
