@@ -189,7 +189,7 @@
             </div>
 
             <div class="deta-footer">
-                <a class="goIndex" href="index.html">
+                <a class="goIndex" href="index.php">
                     <span class="icon i-home"></span>
                     <span class="tab-label">首页</span>
                 </a>
@@ -250,7 +250,7 @@
 
         <div class="popup popup-join">
             <div>
-                <a href="#" class="close-popup"></a>
+                <a href="javascript:;" class="close-popup"></a>
                 <div class="main">
                     <span>我的估价:</span>
                     <input type="text" class="big" /><b>.</b><input type="text" class="small" />
