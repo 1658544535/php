@@ -1152,7 +1152,7 @@ function apiData($url, $param, $method='get'){
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
 	}
-
+	curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
 	$data = curl_exec($ch);
 	curl_close($ch);
 	return json_decode($data, true);
@@ -1165,14 +1165,13 @@ function apiData($url, $param, $method='get'){
  * @param string $msg 提示信息
  * @param array $data 数据
  * @param integer $curPage 当前页数(列表使用)，null时不返回
- * @param integer $pageCount 总页数(列表使用)，null时不返回
  * @return string
  */
-function ajaxJson($code, $msg='', $data=array(), $curPage=null, $pageCount=null){
+function ajaxJson($code, $msg='', $data=array(), $curPage=null){
 	$arr = array('msg'=>$msg, 'code'=>$code);
 	$arr['data']['data'] = $data;
+	$arr['data']['ifLoad'] = empty($data) ? 0 : 1;
 	!is_null($curPage) && $arr['data']['pageNow'] = $curPage;
-	!is_null($pageCount) && $arr['data']['pageCount'] = $pageCount;
 	echo json_encode($arr);
 	exit();
 }
