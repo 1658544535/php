@@ -32,7 +32,7 @@ switch( $act )
 		-- 提交选取地址返回操作
 	-----------------------------------------------------------------------------------------------------*/
 	case 'address_add':
-		$_SESSION['order']['addressId']	= CheckDatas('aids', '');
+//		$_SESSION['order']['addressId']	= CheckDatas('aids', '');
 		$addr = $_COOKIE['orderaddr'];
 		$addr = json_decode($addr, true);
 		$_SESSION['order']['addressId'] = $addr['id'];
@@ -40,13 +40,13 @@ switch( $act )
 		unset($_COOKIE['orderaddr']);
 		switch($_SESSION['order']['type']){
 			case 'free':
-				$_url = 'order_free.php?id='.$_SESSION['order']['grouponId'];
+				$_url = 'order_free.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
 				break;
 			case 'groupon':
-				$_url = 'order_groupon.php?id='.$_SESSION['order']['grouponId'];
+				$_url = 'order_groupon.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
 				break;
 			case 'join':
-				$_url = 'order_join.php?id='.$_SESSION['order']['grouponId'];
+				$_url = 'order_join.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
 				break;
 			case 'alone':
 				$_url = 'order_alone.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
