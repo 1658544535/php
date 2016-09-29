@@ -44,16 +44,13 @@ switch($act)
     	$seckillTimeDiff 	= $date['date_time'];
 
     	//获取产品详情
-//     	$content 	= $ObjGrouponInfo->content;
+
     	
     	
-//     	$url = split('>',$content);
-//     	foreach ($url as $u){
-//     		$ok=preg_replace('/(img.+src=\"?.+)(\/upfiles\/)(.+\.\"?.+)/i',"\${1}$site_image\${3}",$u);
-//     		$url2 .= $ok.'>';
-//     	}
-//     	$i=strlen($url2);
-//     	$url3=substr($url2,0,$i-1);
+
+    	$content = apiData('getProductInfoView.do', array('id'=>$productId));
+    
+    
     	
     	//获取产品详情图
     	$ProductImagesModel = M('product_images');
@@ -122,14 +119,14 @@ switch($act)
     
     
     
-    case 'user_price':
-    	//获取个人参加猜价活动数据
-    	$UserPriceList = $GrouponUserRecordModel->query("SELECT gu.user_id, gu.status, gu.prize, gu.attend_time, gu.price, g.product_id, g.activity_status, p.product_name, p.image FROM `groupon_user_record` AS gu LEFT JOIN `groupon_activity` AS g on gu.`activity_id` = g.`id` LEFT JOIN `product` AS p on g.`product_id` = p.`id` WHERE 1=1 AND gu.activity_type =3   AND gu.id = '".$uId."' AND gu.prize = '".$Prize."' AND g.activity_status = '".$as."' ORDER BY gu.create_date DESC ",false,true,$page);
+//     case 'user_price':
+//     	//获取个人参加猜价活动数据
+//     	$UserPriceList = $GrouponUserRecordModel->query("SELECT gu.user_id, gu.status, gu.prize, gu.attend_time, gu.price, g.product_id, g.activity_status, p.product_name, p.image FROM `groupon_user_record` AS gu LEFT JOIN `groupon_activity` AS g on gu.`activity_id` = g.`id` LEFT JOIN `product` AS p on g.`product_id` = p.`id` WHERE 1=1 AND gu.activity_type =3   AND gu.id = '".$uId."' AND gu.prize = '".$Prize."' AND g.activity_status = '".$as."' ORDER BY gu.create_date DESC ",false,true,$page);
     
     	
     	
-    	include "tpl/product_guess_price_user.php";
-    	break;
+//     	include "tpl/product_guess_price_user.php";
+//     	break;
     
     
     
@@ -141,7 +138,7 @@ switch($act)
 		
 		$ObjBanner = apiData('guessBannerApi.do');
  		
-		
+		$footerNavActive = 'guess';
 		include "tpl/product_guess_price_list_web.php";
 }
 
