@@ -12,7 +12,7 @@ $ORDER_TYPES = array('free', 'groupon', 'join', 'alone', 'guess');
 (!in_array($orderType, $ORDER_TYPES) || (($orderType != 'alone') && empty($grouponId))) && redirect('/', '非法下单');
 
 $prevUrl = getPrevUrl();
-(empty($addressId) || empty($grouponId) || empty($productId)) && redirect($prevUrl, '参数错误');
+(empty($addressId) || empty($productId) || (($orderType != 'alone') && empty($grouponId))) && redirect($prevUrl, '参数错误');
 
 $num = intval($_POST['num']);
 empty($num) && redirect($prevUrl, '数量不能为0');
@@ -30,6 +30,7 @@ $apiParam = array(
 	'activityId' => $grouponId,
 );
 $result = apiData('addOrderByPurchase.do', $apiParam);
+PD($result);
 !$result['success'] && redirect($prevUrl, $result['error_msg']);
 
 //使用接口获取JS支付所需的数据
