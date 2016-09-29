@@ -38,9 +38,9 @@
             
 
             <div class="content native-scroll">
-
+<?php if( !$search['result'] ==''){?>
                 <div class="searchTips">共找到<span id="searchNum">25</span>条相关结果</div>
-
+<?php }?>
                 <section class="index-pro pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_search.php?name=<?php echo $name ;?>">
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->

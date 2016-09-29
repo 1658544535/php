@@ -35,7 +35,7 @@ switch($act)
     	
     	//获取轮播图
 
-    	$ProductImage = apiData('productFocusImagsApi.do', array('productId'=>$pId));
+    	$ProductImage = apiData('productFocusImagsApi.do', array('productId'=>$productId));
     	
     	//显示活动倒计时
     	$date 	= DataTip( $ObjGrouponInfo['result']['endTime'], '-' );
