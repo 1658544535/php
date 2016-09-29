@@ -27,7 +27,7 @@ $time = time();
 //$factOrderPrice = $groupon['price'];
 
 
-$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>1,'pid'=>$productId,'skuLinkId'=>'','source'=>1,'uid'=>$userid));
+$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>1,'pid'=>$productId,'source'=>1,'uid'=>$userid));
 if($info['success']){
 	$info = $info['result'];
 }else{

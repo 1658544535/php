@@ -5,6 +5,32 @@ require_once('./global.php');
 $bLogin && redirect('/');
 IS_USER_WX_LOGIN();
 
+$openid = !isset( $_SESSION['openid'] ) ? null : $_SESSION['openid'];
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+	$result = apiData('agentlogin.do', array('openid'=>$openid));
+	if($result['success']){
+		$result = $result['result'];
+		$_wxInfo = new stdClass();
+		$_wxInfo->id = $result['id'];
+		$_wxInfo->loginname = $result['phone'];
+		$_wxInfo->openid = $result['openid'];
+		$_wxInfo->name = $result['name'];
+		$_SESSION['is_login'] = true;
+		$_SESSION['userinfo'] = $user_wx_info;
+
+		$referUrl = empty($_SESSION['loginReferUrl']) ? '/' : $_SESSION['loginReferUrl'];
+		unset($_SESSION['loginReferUrl']);
+		redirect($referUrl);
+	}else{
+		redirect('wxuser_reg.php', $result['error_msg']);
+	}
+}else{
+	$_SESSION['loginReferUrl'] = urlencode($_SERVER['HTTP_REFERER']);
+	include "tpl/wxuser_login_web.php";
+}
+exit();
+
 require_once  LOGIC_ROOT. 'user_verifyBean.php';
 require_once  FUNC_ROOT . 'func_user_bulding.php';
 
@@ -26,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	empty($code) && redirect($backUrl, '请输入验证码');
 
 	//检测验证码
-	if($code != '1122335'){
+	if($code != '000000'){
 		$userverify = new user_verifyBean();
 		$verify_code = $userverify->verify($db, $mobile);
 		($verify_code != $code) && redirect($backUrl, '验证码错误');
@@ -34,8 +60,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 	$referUrl = isset($_SESSION['loginReferUrl']) ? urldecode($_SESSION['loginReferUrl']) : '/';
 
-	$a = $user_bulding->check_user_loginname($mobile);
-	var_dump($a);die;
+	$result = apiData('agentlogin.do', array('openid'=>$openid));
 
 	if($user_bulding->check_user_loginname($mobile) == 1){//已注册，进行登录
 		$objSysLogin = M('sys_login');
@@ -48,7 +73,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 				$_SESSION['userinfo'] = $userInfo;
 				redirect($referUrl);
 			}else{
-				redirect($backUrl, '登录失败');
+				redirect($backUrl, '登录失败111');
 			}
 		}elseif($userInfo->openid == $openid){//已绑定
 			$_SESSION['is_login'] = true;
@@ -78,7 +103,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			
 			$user_wx_info->loginname = $mobile;
 			$user_info = $user_bulding->create_user_info($user_wx_info);
-			!$user_info && redirect($backUrl, '登录失败');
+			!$user_info && redirect($backUrl, '登录失败222');
 
 			$msg = "user binding success! 绑定成功 openid:{$openid}, phone:{$phone}, code:{$code}, password:{$password}, userid:{$user_info->id}";
 			$log->put('/user/binding', $msg);
@@ -109,7 +134,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$_SESSION['userinfo'] = $user_info;
 		}catch(Exception $e){
 			$SysLoginModel->rollback();
-			redirect($backUrl, '登录失败');
+			redirect($backUrl, '登录失败333');
 		}
 
 		$SysLoginModel->commit();

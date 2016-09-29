@@ -53,26 +53,26 @@ switch($act)
 				/*----------------------------------------------------------------------------------------------------
 					-- 获取用户的微信信息，来获取unionid和是否关注微信
 				-----------------------------------------------------------------------------------------------------*/
-				$user_info = $user_bulding->get_userinfo_from_openid( $arrWxinfo['openid'], $arrWxinfo['unionid'] );
-
-				if ( ! $user_info )
-				{
-					// 该微信用户不存在，则添加
-					$msg = "user login !!  输出： 该用户未绑定，将前往绑定页面！ openid:{$arrWxinfo['openid']}";
-					$log->put('/user/login', $msg);														// 记录日志
-					$_SESSION['is_login'] 	= FALSE;													// 登录状态为false
-					//$redirect_url 			= '/user_binding';										// 跳转到绑定页面
-				}
-				else
-				{
-					// 该微信用户存在，则判断sys_login.loginname是否为空
-					$msg = "user login !!   输出： 该用户已绑定，将前往指定页面！  id:{$user_info->id}, openid:{$user_info->openid}, loginname:{$user_info->loginname}, name:{$user_info->name}";
-					$log->put('/user/login', $msg);														// 记录日志
-					$_SESSION['is_login'] = TRUE;														// 登录状态为true
-					$_SESSION['userinfo'] = $user_info;
-
-					$user_bulding->addUserLoginLog( $user_info->id );									// 添加用户登录日志
-				}
+//				$user_info = $user_bulding->get_userinfo_from_openid( $arrWxinfo['openid'], $arrWxinfo['unionid'] );
+//
+//				if ( ! $user_info )
+//				{
+//					// 该微信用户不存在，则添加
+//					$msg = "user login !!  输出： 该用户未绑定，将前往绑定页面！ openid:{$arrWxinfo['openid']}";
+//					$log->put('/user/login', $msg);														// 记录日志
+//					$_SESSION['is_login'] 	= FALSE;													// 登录状态为false
+//					//$redirect_url 			= '/user_binding';										// 跳转到绑定页面
+//				}
+//				else
+//				{
+//					// 该微信用户存在，则判断sys_login.loginname是否为空
+//					$msg = "user login !!   输出： 该用户已绑定，将前往指定页面！  id:{$user_info->id}, openid:{$user_info->openid}, loginname:{$user_info->loginname}, name:{$user_info->name}";
+//					$log->put('/user/login', $msg);														// 记录日志
+//					$_SESSION['is_login'] = TRUE;														// 登录状态为true
+//					$_SESSION['userinfo'] = $user_info;
+//
+//					$user_bulding->addUserLoginLog( $user_info->id );									// 添加用户登录日志
+//				}
 
 				$_SESSION['openid']   = $arrWxinfo['openid'];											// 用openid来判断是否已触发登录页
 				$_SESSION['unionid']  = $arrWxinfo['unionid'];											// unionid

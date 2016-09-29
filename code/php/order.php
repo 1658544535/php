@@ -28,7 +28,7 @@ $apiParam = array(
 	'addressId' => $addressId,
 	'buyer_message' => '',
 	'couponNo' => '',
-	'skuLinkId' => 0,
+//	'skuLinkId' => 0,
 	'activityId' => $grouponId,
 	'source' => $mapSource[$orderType],
 );
