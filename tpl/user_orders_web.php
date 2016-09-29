@@ -71,7 +71,7 @@
                                <%}%>
                              </span>
                         </div>
-                        <a href="order_detail.php?oid=<%=data["data"][i]["orderId"]%>" class="u-g-2">
+                        <a href="order_detail.php?oid=<%=data["data"][i]["id"]%>" class="u-g-2">
                             <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
                             <div class="info">
                                 <div class="name"><%=data["data"][i]["productName"]%></div>
