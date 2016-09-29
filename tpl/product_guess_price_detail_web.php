@@ -203,8 +203,8 @@
                <?php }?>
                     
                    
-                    <div>
-	<iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $productId?>" frameborder="0" width="100%"></iframe>
+                    <div class="deta-iframe">
+	<iframe id="proInfo"> src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $productId?>" frameborder="0" width="100%"></iframe>
           </div>
            
                <script>
