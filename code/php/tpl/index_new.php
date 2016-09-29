@@ -55,9 +55,9 @@
             <script id='tpl_indexBanner' type="text/template">
                 <%for(var i=0;i<data["banner"].length; i++){%>
                     <%if(data["banner"][i]["type"] == 2){%>
-						<a class="swiper-slide" href='groupon.php?id=<%=data["banner"][i]["typeId"]%>'>
+						<a class="swiper-slide" href="groupon.php?id=<%=data["banner"][i].typeId%>">
                     <%}else if(data["banner"][i]["type"] == 3){%>
-						<a class="swiper-slide" href='product_guess_price.php?act=detail&gid=<%=data["banner"][i]["typeId"]%>'>
+						<a class="swiper-slide" href="product_guess_price.php?act=detail&gid=<%=data["banner"][i].typeId%>">
 					<%}else{%>
 						<a class="swiper-slide">
                     <%}%>
@@ -90,7 +90,7 @@
             <script id='tpl_indexClass' type="text/template">
                 <%if(data["proData"]["listData"].length>0){%>
                     <%for(var i=0;i<data["proData"]["listData"].length; i++){%>
-                        <li><a href='groupon.php?id=<%=data["proData"]["listData"][i]["activityId"]%>'>
+                        <li><a href="groupon.php?id=<%=data["proData"]["listData"][i].activityId%>">
                             <div class="img"><img src="<%=data["proData"]["listData"][i]["productImage"]%>" /></div>
                             <div class="name">
                                 <span class="num"><%=data["proData"]["listData"][i]["groupNum"]%>人团</span><%=data["proData"]["listData"][i]["productName"]%>
