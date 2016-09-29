@@ -65,7 +65,7 @@
                                  <%}%>
                                </span>
                           </div>
-                        <a href="" class="u-g-2">
+                        <a href="product_guess_price.php?act=detail&gid=<%=data["data"][i]["activityId"]%>&pid=<%=data["data"][i]["productId"]%>" class="u-g-2">
                             <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
                             <div class="info">
                                 <div class="name"><%=data["data"][i]["productName"]%></div>
