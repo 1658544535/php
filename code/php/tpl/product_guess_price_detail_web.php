@@ -52,7 +52,7 @@
                         </div>
 	                        <ul class="list-container">
 	                            <?php foreach ($ObjUserList['result']['joinUserList'] as $ul){?>
-	                            <li><a href="#">
+	                            <li><a href="javascript:;">
 	                                <div class="img"><img src="<?php echo $ul['userImage'] ;?>" /></div>
 	                                <div class="info">
 	                                    <div class="name"><?php echo $ul['userName'];?></div>
@@ -107,8 +107,8 @@
                         <?php if( $ObjGrouponInfo['result']['isJoin'] ==1 && $ObjGrouponInfo['result']['isStart'] ==1){?>
 	                        <ul class="list-container">
 	                                                  您的出价信息如下：
-	                            <li><a href="#">
-	                                <div class="img"><img src="<?php echo $ObjGrouponInfo['result']['userInfo']['userImage'];?>" /></div>
+	                            <li><a href="javascript:;">
+	                                <div class="img"><img src="<?php echo $ObjUser['result']['userImage'];?>" /></div>
 	                                <div class="info">
 	                                    <div class="name"><?php echo $ObjGrouponInfo['result']['userInfo']['userName'];?></div>
 	                                    <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $ObjGrouponInfo['result']['userInfo']['userPrice'];?></span></p></div>
@@ -122,7 +122,7 @@
                         </div>
 	                        <ul class="list-container">
 	                            <?php foreach ($ObjUserList['result']['joinUserList'] as $ul){?>
-	                            <li><a href="#">
+	                            <li><a href="javascript:;">
 	                                <div class="img"><img src="<?php echo $ul['userImage'] ;?>" /></div>
 	                                <div class="info">
 	                                    <div class="name"><?php echo $ul['userName'];?></div>
@@ -151,7 +151,7 @@
 					                        </div>
 					                        <?php foreach ($ObjPrizeList['result']['friPrizeList'] as $p1){?>
 					                        <ul class="list-container">
-					                            <li><a href="#">
+					                            <li><a href="javascript:;">
 					                                <div class="img"><img src="<?php echo $p1['userImage'];?>" /></div>
 					                                <div class="info">
 					                                    <div class="name"><?php echo $p1['userName']?></div>
@@ -170,7 +170,7 @@
 					                        </div>
 					                        <?php foreach ($ObjPrizeList['result']['twoPrizeList'] as $p2){?>
 					                        <ul class="list-container">
-					                            <li><a href="#">
+					                            <li><a href="javascript:;">
 					                                <div class="img"><img src="<?php echo $p2['userImage'];?>" /></div>
 					                                <div class="info">
 					                                    <div class="name"><?php echo $p2['userName'];?></div>
@@ -189,7 +189,7 @@
 					                        </div>
 					                        <?php foreach ($ObjPrizeList['result']['thrPrizeList'] as $p3){?>
 					                        <ul class="list-container">
-					                            <li><a href="#">
+					                            <li><a href="javascript:;">
 					                                <div class="img"><img src="<?php echo $p3['userImage'];?>" /></div>
 					                                <div class="info">
 					                                    <div class="name"><?php echo $p3['userName'];?></div>
