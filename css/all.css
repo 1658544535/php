@@ -31,6 +31,13 @@
   background-size: 0.45rem auto;
   background-position: 50% 50%;
 }
+.bar-nav .search {
+  top: 0;
+  width: 2.2rem!important;
+  height: 2.2rem;
+  color: #ff464e;
+  font-size: 0.7rem;
+}
 /*底部菜单图标*/
 .bar-tab .tab-item .icon {
   background: url(../images/bar-tab.png) no-repeat;
@@ -177,11 +184,13 @@
 }
 .index-banner.swiper-container .swiper-wrapper .swiper-slide {
   display: block;
+  background: #fff;
 }
 .index-banner.swiper-container .swiper-wrapper .swiper-slide img {
   display: block;
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
+  margin: auto;
 }
 .index-banner.swiper-container .swiper-pagination {
   text-align: right;

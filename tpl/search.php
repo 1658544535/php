@@ -25,6 +25,7 @@
                 <a class="button button-link button-nav pull-left back" href="">
                     <span class="icon icon-back"></span>
                 </a>
+                <a class="button button-link button-nav pull-right search" onclick="$('#searchForm').submit()">搜索</a>
                 <div class="bar-search">
                     <form id="searchForm" action="search_product.php">
                         <div class="txt"><input type="text" name="name" placeholder="搜索商品" /></div>

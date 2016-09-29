@@ -214,10 +214,11 @@
 				});
 
 				$(document).on("click", ".user-address .edit", function(){
-					$(".p-a-1").val($(".a-t-1").html());
-					$(".p-a-2").val($(".a-t-2").html());
-					$(".p-a-3").val($(".a-t-3").html());
-					$(".p-a-4").val($(".a-t-4").html());
+					var obj = $(this).parents("li");
+					$(".p-a-1").val(obj.find(".a-t-1").html());
+					$(".p-a-2").val(obj.find(".a-t-2").html());
+					$(".p-a-3").val(obj.find(".a-t-3").html());
+					$(".p-a-4").val(obj.find(".a-t-4").html());
 					$("input[name='id']").val($(this).attr("data-id"));
 					$.popup('.popup-address');
 				});
