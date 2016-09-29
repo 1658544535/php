@@ -76,7 +76,7 @@
                             </div>
                         </a>
                         <div class="u-g-3">
-                            <a href="product_guess_price.php?act=detail&gid=<%=data["data"][i]["userPrice"]%>&pid=<%=data["data"][i]["userPrice"]%>">查看详情</a>
+                            <a href="product_guess_price.php?act=detail&gid=<%=data["data"][i]["activityId"]%>&pid=<%=data["data"][i]["productId"]%>">查看详情</a>
                         </div>
                     </li>
                 <%}%>
