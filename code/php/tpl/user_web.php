@@ -31,21 +31,21 @@
 						</div>
                     </div>
                     <div class="name"><?php echo $info['name']; ?></div>
-					<?php if($info['waitPayNum'] > 0){ ?><div class="orderTips">还有<a class="themeColor" href="#"><?php echo $info['waitPayNum'];?>个订单</a>未付款 ></div><?php } ?>
+					<?php if($info['waitPayNum'] > 0){ ?><div class="orderTips">还有<a class="themeColor" href="user_orders.php?type=1"><?php echo $info['waitPayNum'];?>个订单</a>未付款 ></div><?php } ?>
                     <ul class="orderTab">
-                        <li><a href="user_orders.php">
+                        <li><a href="user_orders.php?type=2">
                             <span><?php echo $info['groupingNum'];?></span>
                             <p>拼团中</p>
                         </a></li>
-                        <li><a href="user_orders.php">
+                        <li><a href="user_orders.php?type=21">
                             <span><?php echo $info['waitSendNum'];?></span>
                             <p>待发货</p>
                         </a></li>
-                        <li><a href="user_orders.php">
+                        <li><a href="user_orders.php?type=3">
                             <span><?php echo $info['waitRecNum'];?></span>
                             <p>待收货</p>
                         </a></li>
-                        <li><a href="user_orders.php">
+                        <li><a href="user_orders.php?type=4">
                             <span><?php echo $info['waitComNum'];?></span>
                             <p>待评价</p>
                         </a></li>
