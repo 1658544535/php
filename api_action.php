@@ -92,7 +92,7 @@ switch($act){
 				'code' => 1,
 				'msg' => '成功',
 				'data' => array(
-					'banner' => $lunbo['result'],
+					'banner' => empty($lunbo['result']) ? array() : $lunbo['result'],
 					'proData' => array(
 						'pageNow' => $page,
 						'ifLoad' => empty($recom['result']) ? 0 : 1,
