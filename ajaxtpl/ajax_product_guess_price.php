@@ -88,7 +88,7 @@ switch($act)
 // 		        //显示活动倒计时
 		 		foreach ($ObjGrouponList['result'] as $gro){
 		 			if($gro !=''){
-		 				$date 	= DataTip( $gro->end_time, '-' );
+		 				$date 	= DataTip( $gro['endTime'], '-' );
 		 			}
 		 			$dateTip[]  			= $date['date_tip'];
 		 			$seckillTimeDiff[] 	    = $date['date_time'];
