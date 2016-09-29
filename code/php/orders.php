@@ -33,6 +33,12 @@ switch( $act )
 	-----------------------------------------------------------------------------------------------------*/
 	case 'address_add':
 		$_SESSION['order']['addressId']	= CheckDatas('aids', '');
+		$addr = $_COOKIE['orderaddr'];
+//		var_dump($addr);
+//		$addr = json_decode($addr);
+//		var_dump($addr);
+//		die;
+		$_SESSION['order']['addressId'] = $addr['id'];
 		switch($_SESSION['order']['type']){
 			case 'free':
 				$_url = 'order_free.php?id='.$_SESSION['order']['grouponId'];
@@ -47,7 +53,7 @@ switch( $act )
 				$_url = 'order_alone.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSIOIN['order']['productId'];
 				break;
 			case 'guess':
-				$_url = 'order_guess.php?id='.;
+				$_url = 'order_guess.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSIOIN['order']['productId'];
 				break;
 		}
 		redirect($_url);
