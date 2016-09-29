@@ -42,7 +42,7 @@
             <?php if($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==0 && $ObjGrouponInfo['result']['isStart']  ==2){?>
                  <section class="guessDeta-info center">
                         <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
-                        <div class="tips">即将开奖，请耐心等待</div>
+                        <div class="tips" style="color:red;">即将开奖，请耐心等待</div>
                     </section>
                     
                     <section class="guessJoinList guessDetaJoinList">
