@@ -33,6 +33,7 @@ switch($act)
     	//获取活动商品信息
     	$ObjGrouponInfo = apiData('readyJoinApi.do', array('activityId'=>$gId,'userId'=>$userid));
     	
+    	$ObjUser = apiData('myInfoApi.do', array('userId'=>$userid));
     	//获取轮播图
 
     	$ProductImage = apiData('productFocusImagsApi.do', array('productId'=>$productId));
@@ -65,7 +66,7 @@ switch($act)
         //获取参与人信息(进行中)
     	
 	    $ObjUserList    = apiData('userJoinInfoApi.do', array('activityId'=>$gId,'pageNo'=>$page));
-	  
+	 
 
 	    
 		//统计得奖人数
