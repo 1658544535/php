@@ -10,8 +10,5 @@ $OrderDetail = apiData('orderdetail.do', array('oid'=>$Oid));
 
 
 
-
-
-
 include_once('tpl/order_detail_web.php');
 ?>

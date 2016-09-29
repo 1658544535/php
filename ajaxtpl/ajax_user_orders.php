@@ -8,6 +8,9 @@ $gId   	        = CheckDatas( 'gid', '' );
 $page           = max(1, intval($_POST['page']));
 $OrderStatus    = CheckDatas( 'type', '' );
 $OrderId        = CheckDatas( 'oid', '' );
+
+
+
 //获取个人订单列表数据
 $orders = apiData('myorder.do', array('orderStatus'=>$OrderStatus,'pageNo'=>$page,'uid'=>$userid));
 
@@ -20,7 +23,7 @@ else
 {
 	echo	ajaxJson( 0,'获取失败');
 }
-$orders = apiData('cancelOrder.do', array('oid'=>$OrderStatus));
+
 
 
 

@@ -32,12 +32,12 @@
 
                 <section class="user-tab user-tab6" data-href="ajaxtpl/ajax_user_orders.php">
                     <ul>
-                        <li data-type="0"><a href="javascript:;">全部</a></li>
+                        <li data-type="7"><a href="javascript:;">全部</a></li>
                         <li data-type="1"><a href="javascript:;">待付款</a></li>
                         <li data-type="2"><a href="javascript:;">拼团中</a></li>
-                        <li data-type="3"><a href="javascript:;">待发货</a></li>
+                        <li data-type="21"><a href="javascript:;">待发货</a></li>
                         <li data-type="3"><a href="javascript:;">待收货</a></li>
-                        <li data-type="3"><a href="javascript:;">待评价</a></li>
+                        <li data-type="4"><a href="javascript:;">已完成</a></li>
                     </ul>
                 </section>
 
@@ -60,13 +60,13 @@
                              <span class="state">
                                <%if(data["data"][i].orderStatus ==1){%>                                  
                                                                            待支付
-                               <%}else if(data["data"][i].orderStatus ==2){%>
+                               <%}else if(data["data"][i].orderStatus ==21){%>
                                                                            已成团，待发货
                                <%}else if(data["data"][i].orderStatus ==3){%>    
                                                                             待收货 
-                               <%}else if(data["data"][i].orderStatus ==5){%>
+                               <%}else if(data["data"][i].orderStatus ==4){%>
                                                                              已完成                               
-                               <%}else if(data["data"][i].orderStatus ==6){%>
+                               <%}else if(data["data"][i].orderStatus ==2){%>
                                                                              拼团中，还差<%=data["data"][i]["oweNum"]%>人
                                <%}%>
                              </span>
@@ -84,17 +84,17 @@
                            <%if(data["data"][i].orderStatus ==1){%>  
                             <a class="gray" href="#">取消</a>
                             <a href="#">去支付</a>
-                           <%}else if(data["data"][i].orderStatus ==2){%>
+                           <%}else if(data["data"][i].orderStatus ==21){%>
                             <a class="gray" href="#">延长收货</a>
                             <a class="gray" href="user_logistics.php?oid=<%=data["data"][i]["id"]%>">查看物流</a>
                             <a href="#">确认收货</a>
                            <%}else if(data["data"][i].orderStatus ==3){%>
                             <a href="aftersale.php?act=apply&oid=<%=data["data"][i]["id"]%>">申请退款</a>
-                           <%}else if(data["data"][i].orderStatus ==5){%>
+                           <%}else if(data["data"][i].orderStatus ==4){%>
                             <a class="gray" href="#">查看物流</a>
                             <a href="#">立即评价</a>
-                           <%}else if(data["data"][i].orderStatus ==6){%> 
-                            <a class="gray" href="#">查看</a>
+                           <%}else if(data["data"][i].orderStatus ==2){%> 
+                            <a class="gray" href="order_detail.php?oid=<%=data["data"][i]["id"]%>">查看</a>
                             <a href="#">邀请好友拼团</a>
                            <%}%>                        
                        </div>
