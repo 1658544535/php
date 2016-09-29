@@ -54,7 +54,7 @@
 									<div class="name"><?php echo $info['products']['productName'];?></div>
 									<div class="price">
 										<div class="btn">商品详情</div>
-										拼团价：<span class="price1"><?php echo $info['products']['price'];?></span>
+										拼团价：<span class="price1" id="price"><?php echo $info['products']['price'];?></span>
 										<span class="price2">￥<?php echo $info['products']['sellingPrice'];?></span>
 									</div>
 								</div>
@@ -65,7 +65,7 @@
 							<span class="label">数量</span>
 							<div class="quantity">
 								<span class="minus">-</span>
-								<input type="text" name="num" value="<?php echo $info['allCount'];?>" />
+								<input type="text" id="number" name="num" value="<?php echo $info['allCount'];?>" />
 								<span class="plus">+</span>
 							</div>
 						</div>
@@ -95,6 +95,29 @@
 	</form>
 
 	<script type="text/javascript">
+	$(document).on("pageInit", "#page-orderCofirm", function(e, pageId, page) {
+    	//数量增减
+    	$(".quantity .minus").on("click", function(){
+    		var num = parseInt($(this).next().val());
+    		if(num>1){
+    			$(this).next().val(--num);
+    		}else{
+    			return false;
+    		}
+    		priceChange();
+    	});
+    	$(".quantity .plus").on("click", function(){
+    		var num = parseInt($(this).prev().val());
+    		$(this).prev().val(++num)
+    		priceChange();
+    	});
+
+		function priceChange(){
+			var num = parseInt($("#number").val());
+			var price = parseFloat($("#price").html());
+			$("#totol-amount").html(parseFloat(num*price).toFixed(2));
+		}
+    });
 	function submitPay(){
 		<?php if(empty($address)){ ?>
 			$.toast("请设置收货地址");
