@@ -2802,10 +2802,12 @@
 .loginWay .loginWay-wx {
   display: block;
   width: 79.47%;
+  height: 0;
   margin: 0 auto;
   padding-bottom: 11.836%;
   background: url(../images/login-wx.png) no-repeat 0 0;
   background-size: 100% 100%;
+  border: none;
 }
 /*select*/
 .area_btn,
