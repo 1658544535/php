@@ -48,19 +48,17 @@
 					<section class="freeList proTips-2 oc-pro">
 						<h3 class="title1">拼团商品</h3>
 						<ul class="list-container">
-							<?php foreach($info['products'] as $v){ ?>
 							<li><a href="groupon.php?id=<?php echo $grouponId;?>">
-								<div class="img"><img src="<?php echo $v['productImage'];?>"></div>
+								<div class="img"><img src="<?php echo $info['products']['productImage'];?>"></div>
 								<div class="info">
-									<div class="name"><?php echo $v['productName'];?></div>
+									<div class="name"><?php echo $info['products']['productName'];?></div>
 									<div class="price">
 										<div class="btn">商品详情</div>
-										拼团价：<span class="price1"><?php echo $v['price'];?></span>
-										<span class="price2">￥<?php echo $v['sellingPrice'];?></span>
+										拼团价：<span class="price1"><?php echo $info['products']['price'];?></span>
+										<span class="price2">￥<?php echo $info['products']['sellingPrice'];?></span>
 									</div>
 								</div>
 							</a></li>
-							<?php } ?>
 						</ul>
 						<?php if(!in_array($_SESSION['order']['type'], array('free', 'guess'))){ ?>
 						<div class="num">

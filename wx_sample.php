@@ -8,6 +8,14 @@ define('APP_INC', dirname(__FILE__) . '/includes/inc/');
 define('LOG_INC', dirname(__FILE__) . '/logs/');
 define('SCRIPT_ROOT',  dirname(__FILE__).'/');
 
+define("TOKEN", "weixin");
+$wechatObj = new wechatCallbackapiTest($db);
+
+
+
+//$wechatObj->valid();
+$wechatObj->responseMsg();
+
 $isTest = false;
 require_once APP_INC.'wxjssdk.php';
 include_once(APP_INC . 'config.php');
@@ -25,13 +33,7 @@ $db 	= new ezSQL_mysql($dbUser, $dbPass, $dbName, $dbHost);
 $db->query('SET character_set_connection=' . $dbCharset . ', character_set_results=' . $dbCharset . ', character_set_client=binary');
 
 
-define("TOKEN", "weixin");
-$wechatObj = new wechatCallbackapiTest($db);
 
-
-
-//$wechatObj->valid();
-$wechatObj->responseMsg();
 
 class wechatCallbackapiTest
 {
