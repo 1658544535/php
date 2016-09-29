@@ -38,7 +38,6 @@ if($info['success']){
 
 
 $_SESSION['order']['type'] = 'free';
-$factOrderPrice = 0;
 
 $_SESSION['order']['grouponId'] = $grouponId;
 
