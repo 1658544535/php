@@ -14,8 +14,9 @@ define('LIB_ROOT', dirname(__FILE__) . '/includes/lib/');
 define('WXPAID_ROOT', dirname(__FILE__) . '/wxpay/');
 define('MODEL_DIR', dirname(__FILE__) . '/logic/Model/');
 
-$isTest =  ($_SERVER['SERVER_NAME'] == 'www.maduoduo.loc') ? true : false;			// 是否为测试模式
-$isTest =  ($_SERVER['SERVER_NAME'] == 'pinwx.taozhuma.com') ? true : false;			// 是否为测试模式
+$isTest =  in_array($_SERVER['SERVER_NAME'], array('www.maduoduo.loc', 'duo.taozhuma.com')) ? true : false;			// 是否为测试模式
+//$isTest =  ($_SERVER['SERVER_NAME'] == 'pinwx.taozhuma.com') ? true : false;			// 是否为测试模式
+$isTest = false;
 
 //数据接口
 //define('API_URL', 'http://rap.taozhuma.com/mockjsdata/2');

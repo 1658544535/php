@@ -12,7 +12,7 @@ $dbName = 'maduoduo';
 
 $dbCharset 		= 'utf8';
 $pfx 			= 'f_';
-$site 			= ( $isTest ) ? 'http://pinwx.taozhuma.com/' : 'http://pintuanwx.taozhuma.com/';		// 网站地址
+$site 			= ( $isTest ) ? 'http://pinwx.taozhuma.com/' : 'http://pinwx.taozhuma.com/';		// 网站地址
 $site_admin 	= 'http://pinwx.taozhuma.com/doLogin.do';									// 网站后台地址
 $site_image		= 'http://pinwx.taozhuma.com/upfiles/';									// 获取图片地址
 $site_name		= '拼得好';//网站名称
@@ -22,8 +22,8 @@ $site_name		= '拼得好';//网站名称
 /*============================== 微信配置信息  =============================================*/
 
 $app_info = array(
-	'appid' => '',
-	'secret' => ''
+	'appid' => 'wx9d700af5085c2b6a',
+	'secret' => 'd582b0f73e82a729391ffbd9f6c75c1c'
 );
 
 /*============================== 基本配置  =============================================*/
