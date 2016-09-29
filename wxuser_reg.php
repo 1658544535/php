@@ -39,7 +39,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 		$referUrl = empty($_SESSION['regReferUrl']) ? '/' : $_SESSION['regReferUrl'];
 		unset($_SESSION['regReferUrl']);
-		@unset($_SESSION['loginReferUrl']);
+		if(isset($_SESSION['loginReferUrl'])) unset($_SESSION['loginReferUrl']);
 		redirect($referUrl, '注册成功');
 	}else{
 		redirect($prevUrl, $result['error_msg']);

@@ -1130,7 +1130,7 @@ function getPrevUrl(){
  * @param string $method 接口调用方式，get/post
  * @return array
  */
-function apiData($url, $param, $method='get'){
+function apiData($url, $param, $method='get', $exit=false){
 	$method = strtolower($method);
 	!in_array($method, array('get', 'post')) && $method = 'get';
 
@@ -1142,7 +1142,7 @@ function apiData($url, $param, $method='get'){
 		}
 		$url .= '?'.implode('&', $arr);
 	}
-
+if($exit){echo $url;die;}
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
