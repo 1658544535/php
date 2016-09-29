@@ -271,6 +271,16 @@
                     $("#guess-join").on("click", function(){
                         $.popup('.popup-join');
                     });
+                    $(".popup-join input.big").on("keyup", function(){
+                    	var val = $(this).val();
+                    	$(this).val(parseInt(val));
+                    });
+                    $(".popup-join input.small").on("keyup", function(){
+                    	var val = $(this).val();
+                    	if(val.length>1){
+                    		$(this).val(val.substring(0,1));
+                    	}
+                    });
                     $("#guess-price").on("click", function(){
                         var price1 = parseInt($(".popup-join input.big").val()),
                             price2 = parseInt($(".popup-join input.small").val());
