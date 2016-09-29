@@ -149,7 +149,7 @@
 					                            获一等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result']['friPrizeNum'];?>人】</b>
 					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>">点击查看更多</a>
 					                        </div>
-					                        <?php foreach ($ObjPrizeList['result'][0]['friPrizeList'] as $p1){?>
+					                        <?php foreach ($ObjPrizeList['result']['friPrizeList'] as $p1){?>
 					                        <ul class="list-container">
 					                            <li><a href="#">
 					                                <div class="img"><img src="<?php echo $p1['userImage'];?>" /></div>
@@ -168,7 +168,7 @@
 					                            获二等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result']['twoPrizeNum'];?>人】</b>
 					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>">点击查看更多</a>
 					                        </div>
-					                        <?php foreach ($ObjPrizeList['result'][0]['twoPrizeList'] as $p2){?>
+					                        <?php foreach ($ObjPrizeList['result']['twoPrizeList'] as $p2){?>
 					                        <ul class="list-container">
 					                            <li><a href="#">
 					                                <div class="img"><img src="<?php echo $p2['userImage'];?>" /></div>
@@ -187,7 +187,7 @@
 					                            获三等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result']['thrPrizeNum'];?>人】</b>
 					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>">点击查看更多</a>
 					                        </div>
-					                        <?php foreach ($ObjPrizeList['result'][0]['thrPrizeList'] as $p3){?>
+					                        <?php foreach ($ObjPrizeList['result']['thrPrizeList'] as $p3){?>
 					                        <ul class="list-container">
 					                            <li><a href="#">
 					                                <div class="img"><img src="<?php echo $p3['userImage'];?>" /></div>
