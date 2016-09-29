@@ -17,6 +17,8 @@ $prevUrl = getPrevUrl();
 $num = intval($_POST['num']);
 empty($num) && redirect($prevUrl, '数量不能为0');
 
+$mapSource = array('groupon'=>1, 'free'=>2, 'guess'=>3, 'alone'=>4);
+
 $apiParam = array(
 	'uid' => $userid,
 	'pid' => $productId,
@@ -28,9 +30,13 @@ $apiParam = array(
 	'couponNo' => '',
 	'skuLinkId' => 0,
 	'activityId' => $grouponId,
+	'source' => $mapSource[$orderType],
 );
+($orderType == 'join') && $apiParam['attendId'] = $grouponId;
 $result = apiData('addOrderByPurchase.do', $apiParam);
 !$result['success'] && redirect($prevUrl, $result['error_msg']);
+
+redirect('user_orders.php', '下单成功');
 
 //使用接口获取JS支付所需的数据
 $payParam = $result['result']['wxpay'];
