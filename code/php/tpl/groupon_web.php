@@ -71,7 +71,7 @@
                     <span class="tab-label">首页</span>
                 </a>
                 <div class="buy">
-					<?php if($info['productStatus'] == 2){ ?>
+					<?php if($info['productStatus'] == 0){ ?>
 						<a class="one">下架</a>
 						<a class="more" href="/">查看更多</a>
 					<?php }else{ ?>

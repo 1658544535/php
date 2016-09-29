@@ -33,7 +33,7 @@ $info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>1,'pid'=
 if($info['success']){
 	$info = $info['result'];
 }else{
-	redirect($prevUrl, '网络异常');
+	redirect($prevUrl, $info['error_msg']);
 }
 
 

@@ -34,11 +34,10 @@ switch( $act )
 	case 'address_add':
 		$_SESSION['order']['addressId']	= CheckDatas('aids', '');
 		$addr = $_COOKIE['orderaddr'];
-//		var_dump($addr);
-//		$addr = json_decode($addr);
-//		var_dump($addr);
-//		die;
+		$addr = json_decode($addr, true);
 		$_SESSION['order']['addressId'] = $addr['id'];
+		$_SESSION['order']['address'] = $addr;
+		unset($_COOKIE['orderaddr']);
 		switch($_SESSION['order']['type']){
 			case 'free':
 				$_url = 'order_free.php?id='.$_SESSION['order']['grouponId'];
