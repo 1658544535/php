@@ -49,10 +49,10 @@ switch( $act )
 				$_url = 'order_join.php?id='.$_SESSION['order']['grouponId'];
 				break;
 			case 'alone':
-				$_url = 'order_alone.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSIOIN['order']['productId'];
+				$_url = 'order_alone.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
 				break;
 			case 'guess':
-				$_url = 'order_guess.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSIOIN['order']['productId'];
+				$_url = 'order_guess.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
 				break;
 		}
 		redirect($_url);
