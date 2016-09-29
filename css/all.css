@@ -8,6 +8,9 @@
 .themeColor {
   color: #ff464e;
 }
+.grayColor {
+  color: #979797;
+}
 #errorTips {
   clear: both;
   font-size: 0.7rem;
@@ -1201,9 +1204,20 @@
   text-decoration: line-through;
 }
 /* 猜价格 */
+.guessList-banner {
+  position: relative;
+  padding-bottom: 45.33333333%;
+  background: #fff;
+}
 .guessList-banner img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
   display: block;
-  width: 100%;
+  width: auto;
+  height: 100%;
 }
 .guessList {
   background: #fff;
