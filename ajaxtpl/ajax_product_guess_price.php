@@ -83,37 +83,24 @@ switch($act)
 	    $ObjGrouponList = apiData('guessActivityApi.do', array('pageNo'=>$page));
 	   
 	     
-	    if ($objProductInfo->activity_info->status == 2)
-	    {
 	    
-	    	$date 	= DataTip( $objProductInfo->activity_info->begin_time, '+' );
-	    
-	    }
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-// 		        //显示活动倒计时
+ 		        //显示活动倒计时
 		 		foreach ($ObjGrouponList['result'] as $gro){
 		 		
-		 			if($gro !='' )
-		 			{
-		 				$date 	= DataTip( $gro['endTime'], '-' );
-		 			}
-		 			$dateTip[]  			= $date['date_tip'];
-		 			$seckillTimeDiff[] 	    = $date['date_time'];
+		 			$seckillTimeDiff[] = strtotime($gro['endTime']) - strtotime($gro['nowTime']);
+		 		
+		 			
+// 		 			if($gro !='' )
+// 		 			{
+// 		 				$date 	= DataTip( $gro['endTime'], '-' );
+// 		 			}
+// 		 			$dateTip[]  			= $date['date_tip'];
+// 		 			$seckillTimeDiff[] 	    = $date['date_time'];
 		 			 
 		 		}
 		 	   
 		 	   $Data =array(
 	 				'data'=>$ObjGrouponList['result'],
-	 				'Tip'=>$dateTip,
 	 				'TimeDiff'=>$seckillTimeDiff,
 		 		);
 

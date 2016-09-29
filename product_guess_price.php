@@ -38,16 +38,17 @@ switch($act)
     	$ProductImage = apiData('productFocusImagsApi.do', array('productId'=>$productId));
     	
     	//显示活动倒计时
-    	$date 	= DataTip( $ObjGrouponInfo['result']['endTime'], '-' );
+//     	$date 	= DataTip( $ObjGrouponInfo['result']['endTime'], '-' );
 
-    	$dateTip  			= $date['date_tip'];
-    	$seckillTimeDiff 	= $date['date_time'];
+//     	$dateTip  			= $date['date_tip'];
+//     	$seckillTimeDiff 	= $date['date_time'];
 
+    	
+    	$seckillTimeDiff        = strtotime($ObjGrouponInfo['result']['endTime']) - strtotime($ObjGrouponInfo['result']['nowTime']);
+    	           
+    	
+    	
     	//获取产品详情
-
-    	
-    	
-
     	$content = apiData('getProductInfoView.do', array('id'=>$productId));
     
     
