@@ -118,9 +118,13 @@
 			$("#totol-amount,#fact-amount").html(parseFloat(num*price).toFixed(2));
 		}
     });
-	function submitPay(){
+	function submitPay(e){
 		<?php if(empty($address)){ ?>
 			$.toast("请设置收货地址");
+			return false;
+		<?php } ?>
+
+		<?php if(!$canDispatch){ ?>
 			return false;
 		<?php } ?>
 		return true;

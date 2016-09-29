@@ -46,6 +46,7 @@ if(isset($_SESSION['order']['address'])){
 $canDispatch = (!empty($address) && in_array($address['province'], $unSendProviceIds)) ? false : true;
 
 $_SESSION['order']['productId'] = $productId;
+$_SESSION['order']['addressId'] = $address['id'];
 
 include_once('tpl/order_web.php');
 ?>
