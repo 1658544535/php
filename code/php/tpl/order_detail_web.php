@@ -48,10 +48,10 @@
             
 
 
-                <div class="oc-tips">当然地址不在配送范围内</div>
+              
 
-                <section class="oc-adress">
-                    <a href="#">
+                <section class="oc-adress oc-adress-disable">
+                    <a >
                         <div><?php echo $OrderDetail['result']['name'];?>&nbsp;&nbsp;&nbsp;<?php echo $OrderDetail['result']['tel'];?></div>
                         <div><?php echo $OrderDetail['result']['address'];?></div>
                     </a>

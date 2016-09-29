@@ -236,13 +236,13 @@
 	                </div>
                <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==0 && $ObjGrouponInfo['result']['isStart']  ==2 ){?>
                 <div class="more3">
-                    <a class="btn" href="#"><span>购买商品</span></a>
+                    <a class="btn" href="order_guess.php?id=<?php echo $gId;?>&pid=<?php echo $productId;?>"><span>购买商品</span></a>
                     <a class="btn light" href="product_guess_price.php"><span>查看更多</span></a>
                     <div class="txt"><span>来晚了! 活动已结束</span></div>
                 </div>
                 <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2){?>
 	        	<div class="more2">
-	                    <a class="btn" href="#"><span>我想购买</span></a>
+	                    <a class="btn" href="order_guess.php?id=<?php echo $gId;?>&pid=<?php echo $productId;?>"><span>我想购买</span></a>
 	                    <div class="txt" href="order_guess.php?id=<?php echo $ObjGrouponInfo->id;?>&pid=<?php echo $ObjGrouponInfo->product_id;?>"><span>活动结束，恭喜您已得奖！<br/>填写收货信息</span></div>
 	                </div>
         	<?php }else{?>
