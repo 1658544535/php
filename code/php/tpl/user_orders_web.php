@@ -91,7 +91,7 @@
                            <%}else if(data["data"][i].orderStatus ==3){%>
                             <a href="aftersale.php?act=apply&oid=<%=data["data"][i]["id"]%>">申请退款</a>
                            <%}else if(data["data"][i].orderStatus ==4){%>
-                            <a class="gray" href="#">查看物流</a>
+                            <a class="gray" href="user_logistics.php?oid=<%=data["data"][i]["id"]%>">查看物流</a>
                             <a href="#">立即评价</a>
                            <%}else if(data["data"][i].orderStatus ==2){%> 
                             <a class="gray" href="order_detail.php?oid=<%=data["data"][i]["id"]%>">查看</a>
