@@ -52,6 +52,6 @@ if(!empty($info['waitGroupList'])){
 		$info['waitGroupList'][$k]['remainSec'] = $v['endTime'] - $v['nowTime'];
 	}
 }
-
+!is_numeric($info['productId']) && $info['productId'] = 1;
 include_once('tpl/groupon_web.php');
 ?>

@@ -5,8 +5,9 @@ require_once('./global.php');
 $act = CheckDatas('act', '');
 switch($act){
 	case 'address'://我的地址列表
+		$page = max(1, intval($_POST['page']));
 		$addrs = apiData('myaddress.do', array('uid'=>$userid));
-		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], 1) : ajaxJson(0, $addrs['error_msg']);
+		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
 		break;
 	case 'address_del'://删除地址
 		$addrId = intval($_POST['id']);
