@@ -70,10 +70,10 @@
                 <%if(data["proData"]["listData"].length>0){%>
                     <%for(var i=0;i<data["proData"]["listData"].length; i++){%>
                         <li><a href="groupon.php?id=<%=data["proData"]["listData"][i]["activityId"]%>">
-                            <div class="img"><img src='<%=data["proData"]["listData"][i]["productImage"]%>' /></div>
+                            <div class="img"><img src="<%=data["proData"]["listData"][i]["productImage"]%>" /></div>
                             <div class="info">
                                 <p class="name"><%=data["proData"]["listData"][i]["productName"]%></p>
-                                <span class="sales">销量：<%=data["proData"]["listData"][i]["proSellerNum"]%></span>
+                                <span class="sales">销量：<%=data["proData"]["listData"][i]["proSellrNum"]%></span>
                             </div>
                             <div class="group">
                                 <span class="num"><%=data["proData"]["listData"][i]["groupNum"]%>人团</span>

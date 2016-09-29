@@ -244,9 +244,7 @@ switch ($act)
 		-- 用户收货地址列表页面(用于在确认订单时的地址选择)
 	-----------------------------------------------------------------------------------------------------*/
 	case 'choose':
-		$returnUrl 		= (isset($_GET['return_url']) && $_GET['return_url']!=null) ? urlencode($_GET['return_url']) : '';
-		$addressList 	= $UserAddressModel->getUserAddressList($userid);
-
+		$jsonArea = file_get_contents('./data/area.json');
 		include "tpl/choose_address_web.php";
 	break;
 
@@ -255,9 +253,6 @@ switch ($act)
 		-- 用户收货地址列表页面
 	-----------------------------------------------------------------------------------------------------*/
 	default:
-		$returnUrl 		= (isset($_GET['return_url']) && $_GET['return_url']!=null) ? urlencode($_GET['return_url']) : '';
-		$addressList 	= $UserAddressModel->getUserAddressList($userid);
-
 		$jsonArea = file_get_contents('./data/area.json');
 
 		include "tpl/manage_address_web.php";

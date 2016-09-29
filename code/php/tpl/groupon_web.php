@@ -19,7 +19,7 @@
 
             <div class="content native-scroll" style="top:0rem;bottom:2.75rem;">
 
-                <a href="#" class="back deta-back"></a>
+                <a href="javascript:;" class="back deta-back"></a>
 
                 <section class="swiper-container deta-banner" data-space-between="0">
                     <div class="swiper-wrapper">

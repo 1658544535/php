@@ -36,11 +36,11 @@
 
 					<section class="oc-adress">
 						<a href="/address?act=choose">
-							<?php if ( $UserAddressInfo == NULL ){ ?>
+							<?php if ( $address == NULL ){ ?>
 								<div>您的地址信息为空，点击进行添加</div>
 							<?php }else{ ?>
-								<div><?php echo $UserAddressInfo->consignee; ?>&nbsp;&nbsp;&nbsp;<?php echo $UserAddressInfo->consignee_phone; ?></div>
-								<div><?php if(!$canDispatch){ ?><strong>（无法配送至该地址）</strong><?php } ?><?php echo $UserAddressInfo->desc; ?></div>
+								<div><?php echo $address['name']; ?>&nbsp;&nbsp;&nbsp;<?php echo $address['tel']; ?></div>
+								<div><?php if(!$canDispatch){ ?><strong>（无法配送至该地址）</strong><?php } ?><?php echo $address['address']; ?></div>
 							<?php } ?>
 						</a>
 					</section>
@@ -48,29 +48,31 @@
 					<section class="freeList proTips-2 oc-pro">
 						<h3 class="title1">拼团商品</h3>
 						<ul class="list-container">
+							<?php foreach($info['products'] as $v){ ?>
 							<li><a href="groupon.php?id=<?php echo $grouponId;?>">
-								<div class="img"><img src="<?php echo $site_image;?>product/<?php echo $Product->image_small;?>"></div>
+								<div class="img"><img src="<?php echo $v['productImage'];?>"></div>
 								<div class="info">
-									<div class="name"><?php echo $product['product_name'];?></div>
+									<div class="name"><?php echo $v['productName'];?></div>
 									<div class="price">
 										<div class="btn">商品详情</div>
-										拼团价：<span class="price1"><?php echo $factOrderPrice;?></span>
-										<span class="price2">￥<?php echo $product['order_price'];?></span>
+										拼团价：<span class="price1"><?php echo $v['price'];?></span>
+										<span class="price2">￥<?php echo $v['sellingPrice'];?></span>
 									</div>
 								</div>
 							</a></li>
+							<?php } ?>
 						</ul>
-						<?php if(!in_array($_SESSION['order']['type'], array('free', 'guess')){ ?>
+						<?php if(!in_array($_SESSION['order']['type'], array('free', 'guess'))){ ?>
 						<div class="num">
 							<span class="label">数量</span>
 							<div class="quantity">
 								<span class="minus">-</span>
-								<input type="text" name="num" value="1" />
+								<input type="text" name="num" value="<?php echo $info['allCount'];?>" />
 								<span class="plus">+</span>
 							</div>
 						</div>
 						<?php } ?>
-						<div class="subTotal">合计：<font class="themeColor">￥<span class="price"><?php echo $factOrderPrice;?></span></font>（全场包邮）</div>
+						<div class="subTotal">合计：<font class="themeColor">￥<span class="price" id="totol-amount"><?php echo $info['sumPrice'];?></span></font>（全场包邮）</div>
 					</section>
 
 					<section class="oc-pay">
@@ -87,9 +89,8 @@
 				</div>
 
 				<div class="oc-footer">
-					实付款：<font class="themeColor">￥<span class="price"><?php echo $factOrderPrice;?></span></font>
+					实付款：<font class="themeColor">￥<span class="price" id="fact-amount"><?php echo $info['sumPrice'];?></span></font>
 					<input type="submit" value="立即支付" class="btn<?php if(!$canDispatch){ ?> gray<?php } ?>" />
-					<?php /* ?><a class="btn<?php if(!$canDispatch){ ?> gray<?php } ?>" href="">立即支付</a><?php */ ?>
 				</div>
 			</div>
 		</div>
@@ -97,7 +98,7 @@
 
 	<script type="text/javascript">
 	function submitPay(){
-		<?php if($UserAddressInfo == NULL){ ?>
+		<?php if(empty($address)){ ?>
 			$.toast("请设置收货地址");
 			return false;
 		<?php } ?>

@@ -13,20 +13,29 @@ $productId = intval($_GET['pid']);
 
 $time = time();
 
-//拼团活动信息
-$objGroupon = D('Groupon');
-$groupon = $objGroupon->getInfo($grouponId);
-empty($groupon) && redirect($prevUrl);
-($groupon['type'] != 2) && redirect($prevUrl, '参数错误');
-($groupon['status'] != 1) && redirect($prevUrl, '活动不存在');
-(($groupon['activity_status'] == 0) || (strtotime($groupon['begin_time']) > $time)) && redirect($prevUrl, '活动未开始');
-(($groupon['activity_status'] == 2) || (strtotime($groupon['end_time']) < $time)) && redirect($prevUrl, '活动已结束');
+////拼团活动信息
+//$objGroupon = D('Groupon');
+//$groupon = $objGroupon->getInfo($grouponId);
+//empty($groupon) && redirect($prevUrl);
+//($groupon['type'] != 2) && redirect($prevUrl, '参数错误');
+//($groupon['status'] != 1) && redirect($prevUrl, '活动不存在');
+//(($groupon['activity_status'] == 0) || (strtotime($groupon['begin_time']) > $time)) && redirect($prevUrl, '活动未开始');
+//(($groupon['activity_status'] == 2) || (strtotime($groupon['end_time']) < $time)) && redirect($prevUrl, '活动已结束');
+//
+////是否有团免券
+//$objGCpn = D('GrouponFreeCoupon');
+//$gCpn = $objGCpn->getUserCoupon($userid, array('valid'=>true,'intime'=>true));
+//empty($gCpn) && redirect($prevUrl, '没有有效团免券');
+//$isLeader = true;
 
-//是否有团免券
-$objGCpn = D('GrouponFreeCoupon');
-$gCpn = $objGCpn->getUserCoupon($userid, array('valid'=>true,'intime'=>true));
-empty($gCpn) && redirect($prevUrl, '没有有效团免券');
-$isLeader = true;
+
+$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>1,'pid'=>$productId,'skuLinkId'=>'','source'=>2,'uid'=>$userid));
+if($info['success']){
+	$info = $info['result'];
+}else{
+	redirect($prevUrl, '网络异常');
+}
+
 
 $_SESSION['order']['type'] = 'free';
 $factOrderPrice = 0;
