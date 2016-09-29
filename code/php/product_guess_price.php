@@ -64,7 +64,7 @@ switch($act)
         //获取参与人信息(进行中)
     	
 	    $ObjUserList    = apiData('userJoinInfoApi.do', array('activityId'=>$gId,'pageNo'=>$page));
-	   
+	  
 
 	    
 		//统计得奖人数

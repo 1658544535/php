@@ -61,7 +61,7 @@ switch($act)
     	
         if($ObjPrizeList !='')
         {
-        	echo	ajaxJson( 1,'获取成功',$ObjPrizeList['result'][0]['prizeList'],$page);
+        	echo	ajaxJson( 1,'获取成功',$ObjPrizeList['result']['prizeList'],$page);
         }
         else
         {
@@ -83,11 +83,27 @@ switch($act)
 	    $ObjGrouponList = apiData('guessActivityApi.do', array('pageNo'=>$page));
 	   
 	     
-
-		
+	    if ($objProductInfo->activity_info->status == 2)
+	    {
+	    
+	    	$date 	= DataTip( $objProductInfo->activity_info->begin_time, '+' );
+	    
+	    }
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 // 		        //显示活动倒计时
 		 		foreach ($ObjGrouponList['result'] as $gro){
-		 			if($gro !=''){
+		 		
+		 			if($gro !='' )
+		 			{
 		 				$date 	= DataTip( $gro['endTime'], '-' );
 		 			}
 		 			$dateTip[]  			= $date['date_tip'];
