@@ -16,7 +16,7 @@ $productId   	= CheckDatas( 'pid', '' );
 $uId   	        = CheckDatas( 'uid', '' );
 $gId   	        = CheckDatas( 'gid', '' );
 $Prize   	    = CheckDatas( 'prize', '' );
-$Price          = CheckDatas( 'price', '' );
+$page           = max(1, intval($_POST['page']));
 $as             = CheckDatas( 'activity_status', '' );
 
 //判断是否登录
@@ -44,16 +44,16 @@ switch($act)
     	$seckillTimeDiff 	= $date['date_time'];
 
     	//获取产品详情
-    	$content 	= $ObjGrouponInfo->content;
+//     	$content 	= $ObjGrouponInfo->content;
     	
     	
-    	$url = split('>',$content);
-    	foreach ($url as $u){
-    		$ok=preg_replace('/(img.+src=\"?.+)(\/upfiles\/)(.+\.\"?.+)/i',"\${1}$site_image\${3}",$u);
-    		$url2 .= $ok.'>';
-    	}
-    	$i=strlen($url2);
-    	$url3=substr($url2,0,$i-1);
+//     	$url = split('>',$content);
+//     	foreach ($url as $u){
+//     		$ok=preg_replace('/(img.+src=\"?.+)(\/upfiles\/)(.+\.\"?.+)/i',"\${1}$site_image\${3}",$u);
+//     		$url2 .= $ok.'>';
+//     	}
+//     	$i=strlen($url2);
+//     	$url3=substr($url2,0,$i-1);
     	
     	//获取产品详情图
     	$ProductImagesModel = M('product_images');
@@ -61,13 +61,12 @@ switch($act)
 
     	
     	
-    	//获取个人参与信息(进行中)
-    	$ObjUserInfo    = $GrouponActivityRecordModel ->query("SELECT gu.user_id, gu.status, gu.prize, gu.attend_time, gu.price, s.name, s.image, g.num FROM `groupon_user_record` AS gu LEFT JOIN `sys_login` AS s on gu.`user_id` = s.`id` LEFT JOIN `groupon_activity` AS g on gu.`activity_id` = g.`id` WHERE 1=1 AND gu.activity_type =3  AND g.id ='".$gId."' AND gu.activity_id = '".$gId."' AND s.id = '".$userid."' ",true,false);
+    
   
 
         //获取参与人信息(进行中)
     	
-	    $ObjUserList    = apiData('userJoinInfoApi.do', array('activityId'=>$gId,'pageNo'=>1));
+	    $ObjUserList    = apiData('userJoinInfoApi.do', array('activityId'=>$gId,'pageNo'=>$page));
 	   
 
 	    
