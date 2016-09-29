@@ -1812,6 +1812,9 @@
   background: url(../images/close.png) no-repeat 0 0;
   background-size: 100% 100%;
 }
+.search-history {
+  position: relative;
+}
 .search-history .title1 {
   margin: 0.65rem 0.65rem;
   padding-left: 1.0rem;
@@ -1820,6 +1823,15 @@
   color: #999;
   background: url(../images/search.png) no-repeat 0 center;
   background-size: 0.65rem auto;
+}
+.search-history .del {
+  position: absolute;
+  right: 0.5rem;
+  top: 0;
+  width: 0.8rem;
+  height: 0.8rem;
+  background: url(../images/del.png) no-repeat 0 0;
+  background-size: 100% 100%;
 }
 .search-history .list {
   margin: 0 0.3rem;
