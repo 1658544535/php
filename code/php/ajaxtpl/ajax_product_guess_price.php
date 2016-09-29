@@ -39,7 +39,7 @@ switch($act)
 
         if($ObjUserList !='')
         {
-        	echo	ajaxJson( 1,'获取成功',$ObjUserList['result'][0]['joinUserList'],$page);
+        	echo	ajaxJson( 1,'获取成功',$ObjUserList['result']['joinUserList'],$page);
         }
         else
         {
@@ -106,6 +106,7 @@ switch($act)
 		 	}else{
 		 		echo	get_json_data_public( 0,'获取失败' );
 		 	}
+		 	
 }
 
 
