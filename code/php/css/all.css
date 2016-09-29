@@ -2536,6 +2536,7 @@
 .popup-sku > div .info {
   padding: 0.5rem 0;
   border-bottom: 1px solid #e7e7e7;
+  overflow: hidden;
 }
 .popup-sku > div .info .img {
   float: left;
@@ -2788,6 +2789,23 @@
   font-size: 0.7rem;
   text-align: center;
   background: none;
+}
+.loginWay {
+  text-align: center;
+  margin-top: 40%;
+}
+.loginWay h3 {
+  font-size: 1.0rem;
+  font-weight: normal;
+  color: #1c1c1c;
+}
+.loginWay .loginWay-wx {
+  display: block;
+  width: 79.47%;
+  margin: 0 auto;
+  padding-bottom: 11.836%;
+  background: url(../images/login-wx.png) no-repeat 0 0;
+  background-size: 100% 100%;
 }
 /*select*/
 .area_btn,
