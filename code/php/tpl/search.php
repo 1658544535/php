@@ -39,6 +39,7 @@
             <div class="content native-scroll">
 
                 <section class="search-history">
+                    <a href="#" class="del"></a>
                     <h3 class="title1">历史搜索</h3>
                     <div class="list" data-href="search_product.php?name="></div>
                 </section>
