@@ -115,7 +115,7 @@
 		function priceChange(){
 			var num = parseInt($("#number").val());
 			var price = parseFloat($("#price").html());
-			$("#totol-amount").html(parseFloat(num*price).toFixed(2));
+			$("#totol-amount,#fact-amount").html(parseFloat(num*price).toFixed(2));
 		}
     });
 	function submitPay(){
