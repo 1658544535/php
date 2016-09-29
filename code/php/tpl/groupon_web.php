@@ -60,9 +60,14 @@
                 </section>
 				<?php } ?>
 
-				<div>
+				<div class="bgWhite">
 					<iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $info['productId']?>" frameborder="0" width="100%"></iframe>
 				</div>
+
+                <section class="deta-tips">
+                    <h3>活动说明</h3>
+                    <div><img src="images/deta-tips2.png" /></div>
+                </section>
             </div>
 
             <div class="deta-footer">
