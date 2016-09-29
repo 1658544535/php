@@ -15,10 +15,10 @@ $act  = CheckDatas( 'act', 'info' );
 $productId   	= CheckDatas( 'pid', '' );
 $uId   	        = CheckDatas( 'uid', '' );
 $gId   	        = CheckDatas( 'gid', '' );
-$Prize   	    = CheckDatas( 'prize', '' );
+$Prize   	    = CheckDatas( 'type', '' );
 $page           = max(1, intval($_POST['page']));
 $as             = CheckDatas( 'activity_status', '' );
-
+$Price   	    = CheckDatas( 'price', '' );
 //判断是否登录
 // if ( ! $bLogin )
 // {
@@ -85,7 +85,6 @@ switch($act)
 	 //提交猜价价格 
 	    $ObjPrice = apiData('guessPriceApi.do', array('activityId'=>$gId,'price'=>$Price,'userId'=>$userid));
 
-	
 		if($ObjPrice !=null)
 		{
 		   echo	ajaxJson('1','提交成功',$ObjPrice);
@@ -140,10 +139,7 @@ switch($act)
         //获取活动banner图
 		
 		
-			$ObjBanner = apiData('guessBannerApi.do');
-
-		
-		
+		$ObjBanner = apiData('guessBannerApi.do');
  		
 		
 		include "tpl/product_guess_price_list_web.php";
