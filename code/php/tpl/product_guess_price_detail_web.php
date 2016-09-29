@@ -51,7 +51,7 @@
                             <a href="product_guess_price.php?act=user&gid=<?php echo $gId;?>">点击查看更多</a>
                         </div>
 	                        <ul class="list-container">
-	                            <?php foreach ($ObjUserList['result'][0]['joinUserList'] as $ul){?>
+	                            <?php foreach ($ObjUserList['result']['joinUserList'] as $ul){?>
 	                            <li><a href="#">
 	                                <div class="img"><img src="<?php echo $ul['userImage'] ;?>" /></div>
 	                                <div class="info">
@@ -121,7 +121,7 @@
                             <a href="product_guess_price.php?act=user&gid=<?php echo $gId;?>">点击查看更多</a>
                         </div>
 	                        <ul class="list-container">
-	                            <?php foreach ($ObjUserList['result'][0]['joinUserList'] as $ul){?>
+	                            <?php foreach ($ObjUserList['result']['joinUserList'] as $ul){?>
 	                            <li><a href="#">
 	                                <div class="img"><img src="<?php echo $ul['userImage'] ;?>" /></div>
 	                                <div class="info">
@@ -146,7 +146,7 @@
            <?php if( $ObjGrouponInfo['result']['isJoin'] ==1 && $ObjGrouponInfo['result']['isPublic'] ==1 && $ObjGrouponInfo['result']['isWin'] ==1   && $ObjGrouponInfo['result']['isStart'] ==2){?>
 					<section class="guessJoinList guessDetaJoinList">
 					                        <div class="freeList-tips">
-					                            获一等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result'][0]['friPrizeNum'];?>人】</b>
+					                            获一等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result']['friPrizeNum'];?>人】</b>
 					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>">点击查看更多</a>
 					                        </div>
 					                        <?php foreach ($ObjPrizeList['result'][0]['friPrizeList'] as $p1){?>
@@ -165,7 +165,7 @@
 					
 					                    <section class="guessJoinList guessDetaJoinList">
 					                        <div class="freeList-tips">
-					                            获二等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result'][0]['twoPrizeNum'];?>人】</b>
+					                            获二等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result']['twoPrizeNum'];?>人】</b>
 					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>">点击查看更多</a>
 					                        </div>
 					                        <?php foreach ($ObjPrizeList['result'][0]['twoPrizeList'] as $p2){?>
@@ -184,7 +184,7 @@
 					
 					                    <section class="guessJoinList guessDetaJoinList">
 					                        <div class="freeList-tips">
-					                            获三等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result'][0]['thrPrizeNum'];?>人】</b>
+					                            获三等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result']['thrPrizeNum'];?>人】</b>
 					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>">点击查看更多</a>
 					                        </div>
 					                        <?php foreach ($ObjPrizeList['result'][0]['thrPrizeList'] as $p3){?>
