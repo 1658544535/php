@@ -60,22 +60,9 @@
                 </section>
 				<?php } ?>
 
-				<?php if($product['video_url']){ ?>
-                <section class="deta-video">
-                    <div class="iframeVideo"><iframe src="<?php echo $product['video_url'];?>" frameborder=0 allowfullscreen></iframe></div>
-                    <!-- <video src="" poster="images/img/video-img.png" width="100%" controls="controls"></video> -->
-                </section>
-				<?php } ?>
-
-                <section class="deta-img">
-                    <?php echo $product['content'];?>
-                </section>
-
-                <section class="deta-tips">
-                    <h3>活动说明</h3>
-                    <div><img src="images/deta-tips2.png" /></div>
-                </section>
-
+				<div>
+					<iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $info['productId']?>" frameborder="0" width="100%"></iframe>
+				</div>
             </div>
 
             <div class="deta-footer">
@@ -106,7 +93,20 @@
 					<?php } ?>
                 </div>
             </div>
-
+			<script>
+				document.domain='taozhuma.com';
+				function setIframeHeight(iframe) {
+					if (iframe) {
+						var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+						if (iframeWin.document.body) {
+							iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+						}
+					}
+				};
+				window.onload = function () {
+					setIframeHeight(document.getElementById('proInfo'));
+				};
+			</script>
         </div>
     </div>
     <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
