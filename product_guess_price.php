@@ -98,7 +98,7 @@ switch($act)
     	//获取更多用户参与信息数据
 
      	$num            = apiData('userJoinInfoApi.do', array('activityId'=>$gId,'pageNo'=>$page,'pageSize'=>20));
-
+     	$footerNavActive = 'guess';
     	include "tpl/product_guess_price_user_web.php";
     break;
     
@@ -111,7 +111,7 @@ switch($act)
     	
     	$num            = apiData('winListApi.do', array('activityId'=>$gId,'pageNo'=>$page,'prize'=>$Prize));
     	
-    	
+    	$footerNavActive = 'guess';
     	include "tpl/product_guess_price_prize_web.php";
     	break;
     
