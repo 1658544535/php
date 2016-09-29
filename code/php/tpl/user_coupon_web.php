@@ -185,9 +185,9 @@
 
                 <section class="user-tab user-tab3" data-href="ajaxtpl/ajax_user_coupon_new.php">
                     <ul>
-                        <li data-type="1"><a href="javascript:;">未使用</a></li>
-                        <li data-type="2"><a href="javascript:;">已过期</a></li>
-                        <li data-type="3"><a href="javascript:;">已使用</a></li>
+                        <li data-type="1"><a href="javascript:;">未使用（<?php if($coupon['result']['notUsedNum'] !=''){ echo $coupon['result']['notUsedNum'];}else{ echo 0; } ?>）</a></li>
+                        <li data-type="2"><a href="javascript:;">已过期（<?php if($coupon['result']['overdueNum'] !=''){echo $coupon['result']['overdueNum'];}else{ echo 0; } ?>）</a></li>
+                        <li data-type="3"><a href="javascript:;">已使用（<?php if($coupon['result']['usedNum'] !=''){echo $coupon['result']['usedNum'];}else{ echo 0;} ?>）</a></li>
                     </ul>
                 </section>
 
