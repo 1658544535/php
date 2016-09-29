@@ -201,15 +201,34 @@
 					                        <?php }?>
 					                    </section>
                <?php }?>
-                    <section class="deta-img">
-                       <?php if($content !=''){?>
-                          <?php echo $url3;?>
-                        <?php }else{?>
-                       <?php foreach ($imageList as $image){?>
-                        <img src="<?php echo $site_image;?>productImages/<?php echo $image->images;?>"/>
-                       <?php }}?> 
-                    </section>
-
+                    
+                   
+                    <div>
+	<iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $productId?>" frameborder="0" width="100%"></iframe>
+          </div>
+           
+               <script>
+				document.domain='taozhuma.com';
+				function setIframeHeight(iframe) {
+					if (iframe) {
+						var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+						if (iframeWin.document.body) {
+							iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+						}
+					}
+				};
+				window.onload = function () {
+					setIframeHeight(document.getElementById('proInfo'));
+				};
+			</script>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                   
                 </div>
 
             </div>
