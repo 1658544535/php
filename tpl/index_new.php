@@ -90,8 +90,8 @@
             <script id='tpl_indexClass' type="text/template">
                 <%if(data["proData"]["listData"].length>0){%>
                     <%for(var i=0;i<data["proData"]["listData"].length; i++){%>
-                        <li><a href="groupon.php?id=<%=data["proData"]["listData"][i]["activityId"]%>">
-                            <div class="img"><img src="<%=data["proData"]["listData"][i]["productImage"]%>" /></div>
+                        <li><a href='groupon.php?id=<%=data["proData"]["listData"][i]["activityId"]%>'>
+                            <div class="img"><img src='<%=data["proData"]["listData"][i]["productImage"]%>' /></div>
                             <div class="name">
                                 <span class="num"><%=data["proData"]["listData"][i]["groupNum"]%>人团</span><%=data["proData"]["listData"][i]["productName"]%>
                             </div>
