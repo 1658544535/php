@@ -1599,6 +1599,9 @@
   background: url(../images/go.png) no-repeat center center;
   background-size: 0.4rem auto;
 }
+.oc-adress-disable::after {
+  background-image: none;
+}
 .oc-pro {
   margin-top: 0.5rem;
 }
