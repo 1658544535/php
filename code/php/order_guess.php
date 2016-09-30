@@ -12,6 +12,15 @@ $prevUrl = getPrevUrl();
 $productId = intval($_GET['pid']);
 empty($productId) && redirect($prevUrl);
 
+$skuId = intval($_GET['skuid']);
+empty($skuId) && $skuId = '';
+$info = apiData('addPurchase.do', array('activityId'=>0,'num'=>1,'pid'=>$productId,'skuLinkId'=>$skuId,'source'=>3,'uid'=>$userid));
+if($info['success']){
+	$info = $info['result'];
+}else{
+	redirect($prevUrl, $info['error_msg']);
+}
+
 $grouponId = intval($_GET['id']);
 
 $_SESSION['order']['grouponId'] = $grouponId;
