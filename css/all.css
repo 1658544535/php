@@ -558,6 +558,11 @@
 .deta-info .name {
   color: #1c1c1c;
   font-size: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .deta-info .txt {
   padding: 0.5rem 0;
@@ -1412,6 +1417,11 @@
   padding-bottom: 0.25rem;
   font-size: 0.75rem;
   color: #1c1c1c;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .guessDeta-info .list {
   font-size: 0.7rem;
