@@ -110,18 +110,18 @@
         </div>
 
         <script>
-			// document.domain='taozhuma.com';
-			// function setIframeHeight(iframe) {
-			// 	if (iframe) {
-			// 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-			// 		if (iframeWin.document.body) {
-			// 			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-			// 		}
-			// 	}
-			// };
-			// window.onload = function () {
-			// 	setIframeHeight(document.getElementById('proInfo'));
-			// };
+			 document.domain='taozhuma.com';
+			 function setIframeHeight(iframe) {
+			 	if (iframe) {
+			 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+			 		if (iframeWin.document.body) {
+			 			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+			 		}
+			 	}
+			 };
+			 window.onload = function () {
+			 	setIframeHeight(document.getElementById('proInfo'));
+			 };
 
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
                 $(".deta-footer .one, .deta-footer .more").on("click", function(){
@@ -240,7 +240,7 @@
                                         skuId = skuData[item]["id"];
                                     }
                                 }
-                                url += "?skuId=" +skuId;
+                                url += "?skuid=" + skuId + "&id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>";
                                 $("#buy").attr("href", url).removeClass("gray");
                             }else if(!skuFormat && !skuColor){
                                 $("#sku-color .list a, #sku-format .list a").removeClass("disable");
@@ -265,10 +265,10 @@
             <div>
                 <a href="javascript:;" class="close-popup"></a>
                 <div class="info">
-                    <div class="img"><img src="" /></div>
+                    <div class="img"><img src="<?php echo $info['banners'][0]['bannerImage'];?>" /></div>
                     <div class="main">
                         <div class="name"><?php echo $info['products']['productName'];?></div>
-                        <div class="price">￥<span id="sku-price">49.9</span></div>
+                        <div class="price">￥<span id="sku-price">-</span></div>
                         <div class="skuTxt" id="sku-choose">请选择颜色和套餐类型</div>
                     </div>
                 </div>
