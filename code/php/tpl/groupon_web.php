@@ -86,20 +86,20 @@
 						<a class="one">下架</a>
 						<a class="more" href="/">查看更多</a>
 					<?php }else{ ?>
-                        <a class="one" href="order_alone.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-alone">
-						<!-- <a class="one" data-href="order_alone.php" id="btn-alone"> -->
+                        <!-- <a class="one" href="order_alone.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-alone"> -->
+						<a class="one" data-href="order_alone.php" id="btn-alone">
 							 <p>￥<b><?php echo $info['alonePrice'];?></b></p>
 							 <p>单独购买</p>
 						</a>
 						<?php if($info['isGroupFree']){ ?>
-                            <a class="more" href="order_free.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon">
-							<!-- <a class="more" data-href="order_free.php" id="btn-groupon"> -->
+                            <!-- <a class="more" href="order_free.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
+							<a class="more" data-href="order_free.php" id="btn-groupon">
 								 <p>￥<b>0.00</b></p>
 								 <p>0元开团</p>
 							</a>
 						<?php }else{ ?>
-                            <a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon">
-							<!-- <a class="more" data-href="order_groupon.php" id="btn-groupon"> -->
+                            <!-- <a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
+							<a class="more" data-href="order_groupon.php" id="btn-groupon">
 								 <p>￥<b><?php echo $info['producrtPrice'];?></b></p>
 								 <p><?php echo $info['groupNum'];?>人团</p>
 							</a>
@@ -110,22 +110,23 @@
         </div>
 
         <script>
-			document.domain='taozhuma.com';
-			function setIframeHeight(iframe) {
-				if (iframe) {
-					var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-					if (iframeWin.document.body) {
-						iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-					}
-				}
-			};
-			window.onload = function () {
-				setIframeHeight(document.getElementById('proInfo'));
-			};
+			// document.domain='taozhuma.com';
+			// function setIframeHeight(iframe) {
+			// 	if (iframe) {
+			// 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+			// 		if (iframeWin.document.body) {
+			// 			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+			// 		}
+			// 	}
+			// };
+			// window.onload = function () {
+			// 	setIframeHeight(document.getElementById('proInfo'));
+			// };
 
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
                 $(".deta-footer .one, .deta-footer .more").on("click", function(){
                     $(".popup-sku").attr("data-href", $(this).attr("data-href"));
+                    $("#sku-price").html($(this).find("b").html());
                     skuOpen();
                 });
 
@@ -175,69 +176,77 @@
 						}
 
 						//将可选的sku存入一个全局变量
-						skuData = data["validSku"];
+						skuData = data["validSKu"];
 
 						//绑定点击事件
 						$(".sku-item .list a").on("click", function(){
-							$(".popup-sku").attr("data-skuId", "");
-							$("#buy").attr("href", "javascript:;").addClass("gray");
-							var skuColor = null, skuFormat = null, chooseNum = 0;
-							//点击样式
-							if($(this).hasClass("disable")) return;
-							if($(this).hasClass("active")){
-								$(this).removeClass("active");
-							}else{
-								$(this).siblings('a').removeClass("active");
-								$(this).addClass("active");
-							}
+                            if($(this).hasClass("disable")) return;
+                            $(".popup-sku").attr("data-skuId", "");
+                            $("#buy").attr("href", "javascript:;").addClass("gray");
+                            var skuColor = null, skuFormat = null, chooseNum = 0;
+                            //点击样式
+                            if($(this).hasClass("active")){
+                                $(this).removeClass("active");
+                            }else{
+                                $(this).siblings('a').removeClass("active");
+                                $(this).addClass("active");
+                            }
 
-							//选择的值
-							skuColor = $("#sku-color .list a.active").html();
-							skuFormat = $("#sku-format .list a.active").html();
+                            //选择的值
+                            skuColor = $("#sku-color .list a.active").html();
+                            skuFormat = $("#sku-format .list a.active").html();
+                            if(!skuFormat && !skuColor){
+                                $("#sku-choose").html("请选择颜色和套餐类型");
+                            }else{
+                                var chooseTxt = '';
+                                !!skuColor ? chooseTxt+='"' + skuColor + '"' : '';
+                                !!skuFormat ? chooseTxt+='、"' + skuFormat + '"' : '';
+                                $("#sku-choose").html('已选择' + chooseTxt);
+                            }
 
-							if(!!skuFormat){
-								$("#sku-format .list a.active").siblings('a').addClass("disable");
-								$("#sku-color .list a").not(".active").addClass("disable");
-								for(var item in skuData){
-									if(skuData[item]["skuFormat"] == skuFormat){
-										$("#sku-color .list a").each(function(index, el) {
-											if($(el).html() == skuData[item]["skuColor"]){
-												$(el).removeClass("disable");
-											}
-										});
-									}
-								}
-							}
-							if(!!skuColor){
-								$("#sku-color .list a.active").siblings('a').addClass("disable");
-								$("#sku-format .list a").not(".active").addClass("disable");
-								for(var item in skuData){
-									if(skuData[item]["skuColor"] == skuColor){
-										$("#sku-format .list a").each(function(index, el) {
-											if($(el).html() == skuData[item]["skuFormat"]){
-												$(el).removeClass("disable");
-											}
-										});
-									}
-								}
-							}
+                            if(!!skuFormat){
+                                $("#sku-format .list a.active").siblings('a').addClass("disable");
+                                $("#sku-color .list a").not(".active").addClass("disable");
+                                for(var item in skuData){
+                                    if(skuData[item]["skuFormat"] == skuFormat){
+                                        $("#sku-color .list a").each(function(index, el) {
+                                            if($(el).html() == skuData[item]["skuColor"]){
+                                                $(el).removeClass("disable");
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+                            if(!!skuColor){
+                                $("#sku-color .list a.active").siblings('a').addClass("disable");
+                                $("#sku-format .list a").not(".active").addClass("disable");
+                                for(var item in skuData){
+                                    if(skuData[item]["skuColor"] == skuColor){
+                                        $("#sku-format .list a").each(function(index, el) {
+                                            if($(el).html() == skuData[item]["skuFormat"]){
+                                                $(el).removeClass("disable");
+                                            }
+                                        });
+                                    }
+                                }
+                            }
 
-							if(!!skuFormat && !!skuColor){
-								var url = $(".popup-sku").attr("data-href"),
-									skuId = '';
-								for(var item in skuData){
-									if(skuData[item]["skuColor"] == skuColor && skuData[item]["skuFormat"] == skuFormat){
-										// $(".popup-sku").attr("data-skuId", skuData[item]["id"]);
-										skuId = skuData[item]["id"];
-									}
-								}
-								url += "?skuId=" +skuId;
-								$("#buy").attr("href", url).removeClass("gray");
-							}else if(!skuFormat && !skuColor){
-								$("#sku-color .list a, #sku-format .list a").removeClass("disable");
-							}
+                            if(!!skuFormat && !!skuColor){
+                                var url = $(".popup-sku").attr("data-href"),
+                                    skuId = '';
+                                for(var item in skuData){
+                                    if(skuData[item]["skuColor"] == skuColor && skuData[item]["skuFormat"] == skuFormat){
+                                        // $(".popup-sku").attr("data-skuId", skuData[item]["id"]);
+                                        skuId = skuData[item]["id"];
+                                    }
+                                }
+                                url += "?skuId=" +skuId;
+                                $("#buy").attr("href", url).removeClass("gray");
+                            }else if(!skuFormat && !skuColor){
+                                $("#sku-color .list a, #sku-format .list a").removeClass("disable");
+                            }
 
-						});
+                        });
 					}else{
 						$.toast(req.msg);
 					}
