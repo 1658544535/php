@@ -65,7 +65,7 @@
             </section>
             
             
-            <?php }elseif($ObjGrouponInfo['result']['isStart']  ==1 ){?>
+            <?php }elseif($ObjGrouponInfo['result']['isStart']  ==1 && $ObjGrouponInfo['result']['isJoin']  ==0 && $ObjGrouponInfo['result']['isPublic']  ==0 ){?>
                     <section class="guessDeta-info">
                         <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
                         <div class="list">
