@@ -112,7 +112,7 @@
 
 				<?php if($info['endDateline'] > $time){ ?>
 					<section class="proTips-5">
-						<a href="order_join.php?id=<?php echo $gouponId;?>&pid=<?php echo $info['productId'];?>">
+						<a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>">
 							<div class="info">
 								<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
 								￥<span class="price1"><?php echo $info['groupPrice'];?></span>&nbsp;
