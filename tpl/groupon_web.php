@@ -227,17 +227,20 @@
 						<a class="one">下架</a>
 						<a class="more" href="/">查看更多</a>
 					<?php }else{ ?>
-						<a class="one" href="order_alone.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-alone">
+                        <!-- <a class="one" href="order_alone.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-alone"> -->
+						<a class="one" data-href="order_alone.php" id="btn-alone">
 							 <p>￥<b><?php echo $info['alonePrice'];?></b></p>
 							 <p>单独购买</p>
 						</a>
 						<?php if($info['isGroupFree']){ ?>
-							<a class="more" href="order_free.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon">
+                            <!-- <a class="more" href="order_free.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
+							<a class="more" data-href="order_free.php" id="btn-groupon">
 								 <p>￥<b>0.00</b></p>
 								 <p>0元开团</p>
 							</a>
 						<?php }else{ ?>
-							<a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon">
+                            <!-- <a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
+							<a class="more" data-href="order_groupon.php" id="btn-groupon">
 								 <p>￥<b><?php echo $info['producrtPrice'];?></b></p>
 								 <p><?php echo $info['groupNum'];?>人团</p>
 							</a>
@@ -263,107 +266,9 @@
 
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
                 $(".deta-footer .one, .deta-footer .more").on("click", function(){
-                    $(".popup-sku").attr("data-type", $(this).attr("data-type"));
-                    $.popup(".popup-sku");
+                    $(".popup-sku").attr("data-href", $(this).attr("data-href"));
+                    skuOpen();
                 });
-
-                //sku
-                $(document).on('click','.sku_color',function(){
-                    if($(this).hasClass("disable")) return false;
-                    var val = $(this).attr('data-sid');
-                    var now_val = $('#sku-color').attr("data-sid");
-                    $('.sku_color').removeClass("active");
-
-                    if ( now_val != val ){
-                        $(this).addClass('active');
-                        $('#sku-color').attr("data-sid", val);
-                    }else{
-                        $('#sku-color').attr("data-sid", '');
-                        $('.popup-sku').attr('data-sku', '');
-                        val = 0;
-                    }
-                    updatePrice();
-                    var html = '';
-
-                    $.ajax({
-                        url: '/product_detail.php',
-                        data:{
-                            "pid": "<?php echo $objProductInfo->id;?>",
-                            "sid": val,
-                            "act": "sku_format"
-                        },
-                        dataType:'json',
-                        success: function(result){
-
-                            if ( result.code < 1 ){
-                                toast(result.msg);
-                            }else{
-                                $.each(result.data,function(k,v){
-                                    if ( v.has == 1 ){
-                                        if ( $('#sku-format').attr("data-sid") == v.Id ){
-                                            html +=     "<a class='sku_format active' data-sid='"+ v.Id +"'>" + v.value + "</a>";
-                                        }else{
-                                            html +=     "<a class='sku_format' data-sid='"+ v.Id +"' >" + v.value + "</a>";
-                                        }
-                                    }else{
-                                        html +=     "<a class='disable'>" + v.value + "</a>";
-                                    }
-                                })
-
-                                $('#sku-format .list').html(html);
-                            }
-                        }
-                    })
-                })
-
-                $(document).on('click','.sku_format',function(){
-                    if($(this).hasClass("disable")) return false;
-                    var val = $(this).attr('data-sid');
-                    var now_val = $('#sku-format').attr("data-sid");
-                    $('.sku_format').removeClass("active");
-
-                    if ( now_val != val ){
-                        $(this).addClass('active');
-                        $('#sku-format').attr("data-sid", val);
-                    }else{
-                        $('#sku-format').attr("data-sid", '');
-                        $('.popup-sku').attr('data-sku', '');
-                        val = 0;
-                    }
-                    updatePrice();
-                    var html = '';
-
-                    $.ajax({
-                        url: '/product_detail.php',
-                        data: {
-                            "pid": "<?php echo $objProductInfo->id;?>",
-                            "sid": val,
-                            "act": "sku_color",
-                            "acid": "<?php echo $activeId;?>"
-                        },
-                        dataType:'json',
-                        success: function(result){
-                            if ( result.code < 1 ){
-                                toast(result.msg);
-                            }
-                            else{
-                                $.each(result.data,function(k,v){
-                                    if ( v.has == 1 ){
-                                        if ( $('#sku-color').attr("data-sid") == v.Id ){
-                                            html +=     "<a class='sku_color active' data-sid='"+ v.Id +"'>" + v.value + "</a>";
-                                        }else{
-                                            html +=     "<a class='sku_color' data-sid='"+ v.Id +"' >" + v.value + "</a>";
-                                        }
-                                    }else{
-                                        html +=     "<a class='disable'>" + v.value + "</a>";
-                                    }
-                                })
-
-                                $('#sku-color .list').html(html);
-                            }
-                        }
-                    })
-                })
 
                 //数量
                 $(".quantity .minus").on("click", function(){
@@ -379,63 +284,125 @@
                     $(this).prev().val(++num)
                 });
 
-                //购买
-                $("#sku").on("click", function(){
-                    var info = {
-                        id          : "<?php echo $objProductInfo->id;?>",
-                        type        : $(".popup-sku").attr("data-type"),
-                        sku_id      : $(".popup-sku").attr("data-sku")
-                    };
 
+                //打开sku弹窗
+                function skuOpen(){
+                    $.showIndicator();          //打开加载指示器
                     $.ajax({
-                        url:'',
-                        data:info,
-                        type:'POST',
-                        dataType: 'json',
-                        error: function(){
-                            toast('请求超时，请重新添加');
+                        url: '',
+                        data: {
+                            pid: ''
                         },
-                        success: function(result){
-                            if( result.code < 1){
-                                toast( result.msg );
-                            }
-                            else{
-                                
-                            }
-                        }
-                    });
-                });
+                        dataType: 'JSON',
+                        success: function(req){
+                            // var req = {
+                            //     msg: "",
+                            //     code: 1,
+                            //     data: {"skuList":[{"skuTitle":"颜色","skuType":"1","skuValue":["白色","红色","绿色"]},{"skuTitle":"规格","skuType":"2","skuValue":["大","中","小"]}],"validSku":[{"id":"1","pid":"001","skuColor":"红色","skuFormat":"大","status":"???"},{"id":"2","pid":"001","skuColor":"白色","skuFormat":"中","status":"???"},{"id":"3","pid":"001","skuColor":"绿色","skuFormat":"小","status":"???"},{"id":"4","pid":"001","skuColor":"红色","skuFormat":"小","status":"???"}]}
+                            // }
 
-                function updatePrice(){
-                    var skuColorId = $("#sku-color").attr("data-sid");
-                    var skuFormatId = $("#sku-format").attr("data-sid");
-                    var url = "/product_detail.php";
-                    var data = {"act":"price","pid":"<?php echo $objProductInfo->id;?>","scid":skuColorId,"sfid":skuFormatId};
-                    $.get(url, data, function(r){
-                        if(r.code > 0){
-                            $("#sku-price").text(r.data.price);
-                            $('.popup-sku').attr('data-sku', r.data.skuid);
+                            if(req.code>0){
+                                var data = req.data;
+                                //载入全部sku信息
+                                for(var item in data["skuList"]){
+                                    var itemType = parseInt(data["skuList"][item]["skuType"]),
+                                        itemList = data["skuList"][item]["skuValue"],
+                                        itemHtml = '';
+                                    for(var list in itemList){
+                                        itemHtml += '<a>' + itemList[list] + '</a>';
+                                    }
+                                    switch (itemType){
+                                        case 1:
+                                            $("#sku-color .list").html(itemHtml);
+                                            break;
+                                        case 2:
+                                            $("#sku-format .list").html(itemHtml);
+                                            break;
+                                    }
+                                }
 
-                            var chooseTxt = '';
-                            if($(".sku_box a#choose").length<=0){
-                                chooseTxt = '请选择颜色和套餐类型';
-                            }else{
-                                $(".sku_box a.active").each(function(index, el) {
-                                    var txt = $(el).html();
-                                    txt = '“' + txt + '”';
-                                    chooseTxt += txt;
+                                //将可选的sku存入一个全局变量
+                                skuData = data["validSku"];
+
+                                //绑定点击事件
+                                $(".sku-item .list a").on("click", function(){
+                                    $(".popup-sku").attr("data-skuId", "");
+                                    $("#buy").attr("href", "javascript:;").addClass("gray");
+                                    var skuColor = null, skuFormat = null, chooseNum = 0;
+                                    //点击样式
+                                    if($(this).hasClass("disable")) return;
+                                    if($(this).hasClass("active")){
+                                        $(this).removeClass("active");
+                                    }else{
+                                        $(this).siblings('a').removeClass("active");
+                                        $(this).addClass("active");
+                                    }
+
+                                    //选择的值
+                                    skuColor = $("#sku-color .list a.active").html();
+                                    skuFormat = $("#sku-format .list a.active").html();
+
+                                    if(!!skuFormat){
+                                        $("#sku-format .list a.active").siblings('a').addClass("disable");
+                                        $("#sku-color .list a").not(".active").addClass("disable");
+                                        for(var item in skuData){
+                                            if(skuData[item]["skuFormat"] == skuFormat){
+                                                $("#sku-color .list a").each(function(index, el) {
+                                                    if($(el).html() == skuData[item]["skuColor"]){
+                                                        $(el).removeClass("disable");
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    }
+                                    if(!!skuColor){
+                                        $("#sku-color .list a.active").siblings('a').addClass("disable");
+                                        $("#sku-format .list a").not(".active").addClass("disable");
+                                        for(var item in skuData){
+                                            if(skuData[item]["skuColor"] == skuColor){
+                                                $("#sku-format .list a").each(function(index, el) {
+                                                    if($(el).html() == skuData[item]["skuFormat"]){
+                                                        $(el).removeClass("disable");
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    }
+
+                                    if(!!skuFormat && !!skuColor){
+                                        var url = $(".popup-sku").attr("data-href"),
+                                            skuId = '';
+                                        for(var item in skuData){
+                                            if(skuData[item]["skuColor"] == skuColor && skuData[item]["skuFormat"] == skuFormat){
+                                                // $(".popup-sku").attr("data-skuId", skuData[item]["id"]);
+                                                skuId = skuData[item]["id"];
+                                            }
+                                        }
+                                        url += "?skuId=" +skuId;
+                                        $("#buy").attr("href", url).removeClass("gray");
+                                    }else if(!skuFormat && !skuColor){
+                                        $("#sku-color .list a, #sku-format .list a").removeClass("disable");
+                                    }
+
                                 });
-                                chooseTxt = "已选择" + chooseTxt;
+                            }else{
+                                $.toast(req.msg);
                             }
                             
-                            $("#sku-choose").html(chooseTxt);
+
+                            $.popup(".popup-sku");      //弹出弹窗
+                            $.hideIndicator();          //关闭加载指示器
+                        },
+                        error: function(){
+                            $.toast('请求错误,请重试');
                         }
-                    }, "json");
-                    
+                    });
+
                 }
+
             });
         </script>
-<!--
+
         <div class="popup popup-sku" style="display:none">
             <div>
                 <a href="#" class="close-popup"></a>
@@ -449,19 +416,11 @@
                 </div>
                 <div class="sku-item" id="sku-color">
                     <h4 class="title1">颜色</h4>
-                    <div class="list">
-                        <a href="javascript:;" class="sku_color" data-sid="c1">红色</a>
-                        <a href="javascript:;" class="sku_color" data-sid="c2">红色</a>
-                        <a href="javascript:;" class="sku_color" data-sid="c3">红色</a>
-                    </div>
+                    <div class="list"></div>
                 </div>
                 <div class="sku-item" id="sku-format">
                     <h4 class="title1">颜色</h4>
-                    <div class="list">
-                        <a href="javascript:;" class="sku_format" data-sid="s1">啥啥</a>
-                        <a href="javascript:;" class="sku_format" data-sid="s2">啥啥</a>
-                        <a href="javascript:;" class="sku_format" data-sid="s3">啥啥</a>
-                    </div>
+                    <div class="list"></div>
                 </div>
                 <div class="sku-number">
                     <span class="label">购买数量</span>
@@ -474,7 +433,7 @@
                 <a id="buy" class="go">确定</a>
             </div>
         </div>
--->
+
     </div>
 </body>
 
