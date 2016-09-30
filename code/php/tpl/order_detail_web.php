@@ -136,7 +136,8 @@
                 </a>
                 <?php if($OrderDetail['result']['orderStatus'] ==1){?>
                 <div class="buy">
-                    <a class="one" href="order_detail.php?act=cancel&oid=<?php echo $OrderDetail['result']['orderId'] ;?>" data-type="">取消订单</a>
+                    <!-- <a class="one" id="orderCancel"> href="order_detail.php?act=cancel&oid=<?php echo $OrderDetail['result']['orderId'] ;?>">取消订单</a> -->
+                    <a class="one" id="orderCancel">取消订单</a>
                     <a class="more" href="#">去支付</a>
                 </div>
               <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
@@ -152,6 +153,19 @@
              <?php }?>
              
             </div>
+
+            <script>
+                $(document).on("pageInit", "#page-orderCofirm", function(e, pageId, page) {
+                    $("#orderCancel").on("click", function(){
+                        $.post("order_detail.php",{act: "cancel", oid:"<?php echo $OrderDetail['result']['orderId'] ;?>"},function(req){
+                            $.toast(req.msg);
+                            if(req.code>0){
+                                location.href=document.location;
+                            }
+                        },"JSON");
+                    });
+                })
+            </script>
 
         </div>
     </div>
