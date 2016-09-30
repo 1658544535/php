@@ -55,13 +55,37 @@
                     </a>
                 </section>
             <section class="freeList proTips-2 oc-pro">
+                    <?php if($OrderDetail['result']['orderStatus'] ==21 && $OrderDetail['result']['source'] ==1){?>
                     <h3 class="title1">拼团商品<span class="tips">已成团，待发货</span></h3>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==21){?>
+                    <h3 class="title1"><span class="tips">待发货</span></h3>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['source'] ==1){?>               
+                    <h3 class="title1">拼团商品<span class="tips">待支付</span></h3>
+                     <?php }elseif($OrderDetail['result']['orderStatus'] ==1 ){?>
+                     <h3 class="title1"><span class="tips">待支付</span></h3>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==3 && $OrderDetail['result']['source'] ==1){?>
+                    <h3 class="title1">拼团商品<span class="tips">待收货</span></h3>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
+                    <h3 class="title1"><span class="tips">待收货</span></h3>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] ==1){?>
+                    <h3 class="title1">拼团商品<span class="tips">拼团中</span></h3>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==2){?>
+                    <h3 class="title1"><span class="tips">拼团中</span></h3>
+                    <?php }elseif($OrderDetail['result']['isCancel'] ==1 && $OrderDetail['result']['source'] ==1){?>
+                    <h3 class="title1">拼团商品<span class="tips">交易已取消</span></h3>
+                    <?php }elseif($OrderDetail['result']['isCancel'] ==1 ){?>
+                    <h3 class="title1"><span class="tips">交易已取消</span></h3>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==4 && $OrderDetail['result']['source'] ==1){?>
+                    <h3 class="title1">拼团商品<span class="tips">交易成功</span></h3>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
+                    <h3 class="title1"><span class="tips">交易成功</span></h3>
+                    <?php }?>
                     <ul class="list-container">
                         <li><a href="#">
-                            <div class="img"><img src="<?php echo $OrderDetail['result']['product']['productImage'];?>"></div>
+                            <div class="img"><img src="<?php echo $OrderDetail['result']['productImage'];?>"></div>
                             <div class="info">
-                                <div class="name"><?php echo $OrderDetail['result']['product']['productName'];?></div>
-                               <div class="subTotal">共<?php echo $OrderDetail['result']['product']['productNumber'];?>件商品&nbsp;合计：<font class="themeColor">￥<span class="price"><?php echo $OrderDetail['result']['product']['price'];?></span></font>（免运费）</div>
+                                <div class="name"><?php echo $OrderDetail['result']['productName'];?></div>
+                               <div class="subTotal">共<?php echo $OrderDetail['result']['productNumber'];?>件商品&nbsp;合计：<font class="themeColor">￥<span class="price"><?php echo $OrderDetail['result']['allPrice'];?></span></font>（免运费）</div>
                             </div>
                         </a></li>
                     </ul>
@@ -146,7 +170,7 @@
                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderId'];?>" class="gray">查看物流</a>
                     <a class="one" href="order_detail.php?act=edit&oid=<?php echo $OrderDetail['result']['orderId'] ;?>&status=<?php echo $OrderDetail['result']['orderStatus']  ;?>" >确认收货</a>
                 </div>
-             <?php }elseif(OrderDetail['result']['orderStatus'] ==4){?>
+             <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
                    <div class="buy">
                      <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderId'];?>" class="gray">查看物流</a>
                    </div>

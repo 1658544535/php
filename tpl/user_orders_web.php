@@ -58,17 +58,19 @@
                         <div class="u-g-1">
                             <span class="type">拼团商品</span>
                              <span class="state">
-                               <%if(data["data"][i].orderStatus ==1){%>                                  
+                               <%if(data["data"][i].orderStatus ==1 ){%>                                  
                                                                            待支付
-                               <%}else if(data["data"][i].orderStatus ==21){%>
+                               <%}else if(data["data"][i].orderStatus ==21 && data["data"][i].source ==1){%>
                                                                            已成团，待发货
-                               <%}else if(data["data"][i].orderStatus ==3){%>    
+                               <%}else if(data["data"][i].orderStatus ==21 && data["data"][i].source ==0){%>
+                                                                            待发货 
+                               <%}else if(data["data"][i].orderStatus ==3 ){%>    
                                                                             待收货 
-                               <%}else if(data["data"][i].orderStatus ==4){%>
+                               <%}else if(data["data"][i].orderStatus ==4 ){%>
                                                                              已完成                               
-                               <%}else if(data["data"][i].orderStatus ==2){%>
+                               <%}else if(data["data"][i].orderStatus ==2 && data["data"][i].source ==1){%>
                                                                              拼团中，还差<%=data["data"][i]["oweNum"]%>人
-                               <%}%>
+                              <%}%>
                              </span>
                         </div>
                         <a href="order_detail.php?oid=<%=data["data"][i]["id"]%>" class="u-g-2">
