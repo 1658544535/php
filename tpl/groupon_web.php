@@ -193,7 +193,7 @@
                     <ul class="list">
 						<?php foreach($info['waitGroupList'] as $_active){ ?>
 						<li>
-                            <a class="btn" href="groupon_join.php?id=<?php echo $_active['groupRecId'];?>&pid=<?php echo $info['productId'];?>">参团&nbsp;&gt;</a>
+                            <a class="btn" href="groupon_join.php?aid=<?php echo $_active['groupRecId'];?>&pid=<?php echo $info['productId'];?>&free=<?php echo $info['isGroupFree'];?>">参团&nbsp;&gt;</a>
                             <div class="info">
                                 <div class="img"><img src="<?php echo $_active['userImage'];?>" /></div>
                                 <div class="name"><?php echo $_active['userName'];?></div>
@@ -288,124 +288,114 @@
                 //打开sku弹窗
                 function skuOpen(){
                     $.showIndicator();          //打开加载指示器
-                    $.ajax({
-                        url: '',
-                        data: {
-                            pid: ''
-                        },
-                        dataType: 'JSON',
-                        success: function(req){
-                            // var req = {
-                            //     msg: "",
-                            //     code: 1,
-                            //     data: {"skuList":[{"skuTitle":"颜色","skuType":"1","skuValue":["白色","红色","绿色"]},{"skuTitle":"规格","skuType":"2","skuValue":["大","中","小"]}],"validSku":[{"id":"1","pid":"001","skuColor":"红色","skuFormat":"大","status":"???"},{"id":"2","pid":"001","skuColor":"白色","skuFormat":"中","status":"???"},{"id":"3","pid":"001","skuColor":"绿色","skuFormat":"小","status":"???"},{"id":"4","pid":"001","skuColor":"红色","skuFormat":"小","status":"???"}]}
-                            // }
+                    
+					 var req = {
+					     msg: "",
+					     code: 1,
+					     data:  <?php echo empty($skus) ? '{}' : json_encode($skus);?>
+					 }
 
-                            if(req.code>0){
-                                var data = req.data;
-                                //载入全部sku信息
-                                for(var item in data["skuList"]){
-                                    var itemType = parseInt(data["skuList"][item]["skuType"]),
-                                        itemList = data["skuList"][item]["skuValue"],
-                                        itemHtml = '';
-                                    for(var list in itemList){
-                                        itemHtml += '<a>' + itemList[list] + '</a>';
-                                    }
-                                    switch (itemType){
-                                        case 1:
-                                            $("#sku-color .list").html(itemHtml);
-                                            break;
-                                        case 2:
-                                            $("#sku-format .list").html(itemHtml);
-                                            break;
-                                    }
-                                }
+					if(req.code>0){
+						var data = req.data;
+						//载入全部sku信息
+						for(var item in data["skuList"]){
+							var itemType = parseInt(data["skuList"][item]["skuType"]),
+								itemList = data["skuList"][item]["skuValue"],
+								itemHtml = '';
+							for(var list in itemList){
+								itemHtml += '<a>' + itemList[list]["optionValue"] + '</a>';
+							}
+							switch (itemType){
+								case 1:
+									$("#sku-color .list").html(itemHtml);
+									break;
+								case 2:
+									$("#sku-format .list").html(itemHtml);
+									break;
+							}
+						}
 
-                                //将可选的sku存入一个全局变量
-                                skuData = data["validSku"];
+						//将可选的sku存入一个全局变量
+						skuData = data["validSku"];
 
-                                //绑定点击事件
-                                $(".sku-item .list a").on("click", function(){
-                                    $(".popup-sku").attr("data-skuId", "");
-                                    $("#buy").attr("href", "javascript:;").addClass("gray");
-                                    var skuColor = null, skuFormat = null, chooseNum = 0;
-                                    //点击样式
-                                    if($(this).hasClass("disable")) return;
-                                    if($(this).hasClass("active")){
-                                        $(this).removeClass("active");
-                                    }else{
-                                        $(this).siblings('a').removeClass("active");
-                                        $(this).addClass("active");
-                                    }
+						//绑定点击事件
+						$(".sku-item .list a").on("click", function(){
+							$(".popup-sku").attr("data-skuId", "");
+							$("#buy").attr("href", "javascript:;").addClass("gray");
+							var skuColor = null, skuFormat = null, chooseNum = 0;
+							//点击样式
+							if($(this).hasClass("disable")) return;
+							if($(this).hasClass("active")){
+								$(this).removeClass("active");
+							}else{
+								$(this).siblings('a').removeClass("active");
+								$(this).addClass("active");
+							}
 
-                                    //选择的值
-                                    skuColor = $("#sku-color .list a.active").html();
-                                    skuFormat = $("#sku-format .list a.active").html();
+							//选择的值
+							skuColor = $("#sku-color .list a.active").html();
+							skuFormat = $("#sku-format .list a.active").html();
 
-                                    if(!!skuFormat){
-                                        $("#sku-format .list a.active").siblings('a').addClass("disable");
-                                        $("#sku-color .list a").not(".active").addClass("disable");
-                                        for(var item in skuData){
-                                            if(skuData[item]["skuFormat"] == skuFormat){
-                                                $("#sku-color .list a").each(function(index, el) {
-                                                    if($(el).html() == skuData[item]["skuColor"]){
-                                                        $(el).removeClass("disable");
-                                                    }
-                                                });
-                                            }
-                                        }
-                                    }
-                                    if(!!skuColor){
-                                        $("#sku-color .list a.active").siblings('a').addClass("disable");
-                                        $("#sku-format .list a").not(".active").addClass("disable");
-                                        for(var item in skuData){
-                                            if(skuData[item]["skuColor"] == skuColor){
-                                                $("#sku-format .list a").each(function(index, el) {
-                                                    if($(el).html() == skuData[item]["skuFormat"]){
-                                                        $(el).removeClass("disable");
-                                                    }
-                                                });
-                                            }
-                                        }
-                                    }
+							if(!!skuFormat){
+								$("#sku-format .list a.active").siblings('a').addClass("disable");
+								$("#sku-color .list a").not(".active").addClass("disable");
+								for(var item in skuData){
+									if(skuData[item]["skuFormat"] == skuFormat){
+										$("#sku-color .list a").each(function(index, el) {
+											if($(el).html() == skuData[item]["skuColor"]){
+												$(el).removeClass("disable");
+											}
+										});
+									}
+								}
+							}
+							if(!!skuColor){
+								$("#sku-color .list a.active").siblings('a').addClass("disable");
+								$("#sku-format .list a").not(".active").addClass("disable");
+								for(var item in skuData){
+									if(skuData[item]["skuColor"] == skuColor){
+										$("#sku-format .list a").each(function(index, el) {
+											if($(el).html() == skuData[item]["skuFormat"]){
+												$(el).removeClass("disable");
+											}
+										});
+									}
+								}
+							}
 
-                                    if(!!skuFormat && !!skuColor){
-                                        var url = $(".popup-sku").attr("data-href"),
-                                            skuId = '';
-                                        for(var item in skuData){
-                                            if(skuData[item]["skuColor"] == skuColor && skuData[item]["skuFormat"] == skuFormat){
-                                                // $(".popup-sku").attr("data-skuId", skuData[item]["id"]);
-                                                skuId = skuData[item]["id"];
-                                            }
-                                        }
-                                        url += "?skuId=" +skuId;
-                                        $("#buy").attr("href", url).removeClass("gray");
-                                    }else if(!skuFormat && !skuColor){
-                                        $("#sku-color .list a, #sku-format .list a").removeClass("disable");
-                                    }
+							if(!!skuFormat && !!skuColor){
+								var url = $(".popup-sku").attr("data-href"),
+									skuId = '';
+								for(var item in skuData){
+									if(skuData[item]["skuColor"] == skuColor && skuData[item]["skuFormat"] == skuFormat){
+										// $(".popup-sku").attr("data-skuId", skuData[item]["id"]);
+										skuId = skuData[item]["id"];
+									}
+								}
+								url += "?skuId=" +skuId;
+								$("#buy").attr("href", url).removeClass("gray");
+							}else if(!skuFormat && !skuColor){
+								$("#sku-color .list a, #sku-format .list a").removeClass("disable");
+							}
 
-                                });
-                            }else{
-                                $.toast(req.msg);
-                            }
-                            
+						});
+					}else{
+						$.toast(req.msg);
+					}
+					
 
-                            $.popup(".popup-sku");      //弹出弹窗
-                            $.hideIndicator();          //关闭加载指示器
-                        },
-                        error: function(){
-                            $.toast('请求错误,请重试');
-                        }
-                    });
+					$.popup(".popup-sku");      //弹出弹窗
+					$.hideIndicator();          //关闭加载指示器
 
                 }
 
             });
         </script>
 
+		<?php if(!empty($skus)){ ?>
         <div class="popup popup-sku" style="display:none">
             <div>
-                <a href="#" class="close-popup"></a>
+                <a href="javascript:;" class="close-popup"></a>
                 <div class="info">
                     <div class="img"><img src="" /></div>
                     <div class="main">
@@ -414,6 +404,19 @@
                         <div class="skuTxt" id="sku-choose">请选择颜色和套餐类型</div>
                     </div>
                 </div>
+				<?php foreach($skus['skuList'] as $_sku){ ?>
+					<div class="sku-item" id="<?php if($_sku['skuType'] == 1){ ?>sku-color<?php }elseif($_sku['skuType'] == 2){ ?>sku-format<?php } ?>">
+						<h4 class="title1">
+							<?php if($_sku['skuType'] == 1){ ?>
+								颜色
+							<?php }elseif($_sku['skuType'] == 2){ ?>
+								规则
+							<?php } ?>
+						</h4>
+						<div class="list"></div>
+					</div>
+				<?php } ?>
+				<!--
                 <div class="sku-item" id="sku-color">
                     <h4 class="title1">颜色</h4>
                     <div class="list"></div>
@@ -422,6 +425,7 @@
                     <h4 class="title1">颜色</h4>
                     <div class="list"></div>
                 </div>
+				-->
                 <div class="sku-number">
                     <span class="label">购买数量</span>
                     <div class="quantity">
@@ -433,7 +437,7 @@
                 <a id="buy" class="go">确定</a>
             </div>
         </div>
-
+		<?php } ?>
     </div>
 </body>
 
