@@ -81,8 +81,14 @@ switch($act)
 	break;
 	
 	case 'detail_save':
-	 //提交猜价价格 
-	    $ObjPrice = apiData('guessPriceApi.do', array('activityId'=>$gId,'price'=>$Price,'userId'=>$userid));
+	  
+	    
+     // 判断是否登录
+		
+	    IS_USER_LOGIN();
+		
+	//提交猜价价格
+		$ObjPrice = apiData('guessPriceApi.do', array('activityId'=>$gId,'price'=>$Price,'userId'=>$userid));
 
 		if($ObjPrice !=null)
 		{
