@@ -2,23 +2,48 @@
 define('HN1', true);
 require_once('./global.php');
 
-$GrouponActivityModel         = M('groupon_activity');
-$GrouponActivityRecordModel   = M('groupon_activity_record');
-$GrouponUserRecordModel       = M('groupon_user_record');
-$FocusSettingModel            = M('focus_setting');
-$UserInfoModel 				  = M('user_info');
-$ProductFocusImagesModel      = M('product_focus_images');
-
 
 
 $act  = CheckDatas( 'act', 'info' );
 $productId   	= CheckDatas( 'pid', '' );
-$uId   	        = CheckDatas( 'uid', '' );
 $gId   	        = CheckDatas( 'gid', '' );
-$Prize   	    = CheckDatas( 'prize', '' );
-$Price          = CheckDatas( 'price', '' );
-$as             = CheckDatas( 'activity_status', '' );
+$page           = max(1, intval($_POST['page']));
+$OrderStatus    = CheckDatas( 'type', '' );
+$OrderId        = CheckDatas( 'oid', '' );
 
+
+switch($act)
+{
+	case 'cancel':
+		//取消订单
+		$ObjOrderCancel    = apiData('cancelOrder.do', array('oid'=>$OrderId));
+
+		if($ObjOrderCancel !=null)
+		{
+			echo	ajaxJson('1','取消成功',$ObjOrderCancel);
+		}
+		else
+		{
+			echo    ajaxJson('0','取消失败');
+		}
+		break;
+
+
+	case 'edit':
+		//确认订单
+		$ObjOrderEdit    = apiData('editOrderStatus.do', array('oid'=>$OrderId,'status'=>$OrderStatus,'uid'=>$userid));
+
+		if($ObjOrderEdit !=null)
+		{
+			echo	ajaxJson('1','确认收货成功',$ObjOrderEdit);
+		}
+		else
+		{
+			echo    ajaxJson('0','确认收货失败');
+		}
+		break;
+
+}
 
 
 
