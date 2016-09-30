@@ -6,6 +6,7 @@ $orderType = $_SESSION['order']['type'];
 $productId = $_SESSION['order']['productId'];
 $grouponId = $_SESSION['order']['grouponId'];
 $addressId = $_SESSION['order']['addressId'];
+$attendId = $_SESSION['order']['attendId'];
 
 //下单的类型
 $ORDER_TYPES = array('free', 'groupon', 'join', 'alone', 'guess');
@@ -35,7 +36,7 @@ $apiParam = array(
 );
 $skuId && $apiParam['skuLinkId'] = $skuId;
 
-($orderType == 'join') && $apiParam['attendId'] = $grouponId;
+($orderType == 'join') && $apiParam['attendId'] = $attendId;
 $result = apiData('addOrderByPurchase.do', $apiParam);
 !$result['success'] && redirect($prevUrl, $result['error_msg']);
 
