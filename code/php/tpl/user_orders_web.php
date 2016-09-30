@@ -82,13 +82,13 @@
                         </a>
                         <div class="u-g-3">
                            <%if(data["data"][i].orderStatus ==1){%>  
-                            <a class="gray" href="#">取消</a>
+                            <a class="gray" href="user_orders.php?act=cancel?oid=<%=data["data"][i]["id"]%>">取消</a>
                             <a href="#">去支付</a>
-                           <%}else if(data["data"][i].orderStatus ==21){%>
+                           <%}else if(data["data"][i].orderStatus ==3){%>
                             <a class="gray" href="#">延长收货</a>
                             <a class="gray" href="user_logistics.php?oid=<%=data["data"][i]["id"]%>">查看物流</a>
-                            <a href="#">确认收货</a>
-                           <%}else if(data["data"][i].orderStatus ==3){%>
+                            <a href="user_orders.php?act=edit?oid=<%=data["data"][i]["id"]%>&status=<%=data["data"][i]["orderStatus"]%>">确认收货</a>
+                           <%}else if(data["data"][i].orderStatus ==21){%>
                             <a href="aftersale.php?act=apply&oid=<%=data["data"][i]["id"]%>">申请退款</a>
                            <%}else if(data["data"][i].orderStatus ==4){%>
                             <a class="gray" href="user_logistics.php?oid=<%=data["data"][i]["id"]%>">查看物流</a>

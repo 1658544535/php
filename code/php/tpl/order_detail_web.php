@@ -136,18 +136,18 @@
                 </a>
                 <?php if($OrderDetail['result']['orderStatus'] ==1){?>
                 <div class="buy">
-                    <a class="one" href="#" data-type="">取消订单</a>
+                    <a class="one" href="order_detail.php?act=cancel&oid=<?php echo $OrderDetail['result']['orderId'] ;?>" data-type="">取消订单</a>
                     <a class="more" href="#">去支付</a>
                 </div>
               <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
                <div class="buy">
                     <a class="one" href="#" >延长收货</a>
                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderId'];?>" class="gray">查看物流</a>
-                    <a class="one" href="#" >确认收货</a>
+                    <a class="one" href="order_detail.php?act=edit&oid=<?php echo $OrderDetail['result']['orderId'] ;?>&status=<?php echo $OrderDetail['result']['orderStatus']  ;?>" >确认收货</a>
                 </div>
              <?php }elseif(OrderDetail['result']['orderStatus'] ==4){?>
                    <div class="buy">
-                   <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderId'];?>" class="gray">查看物流</a>
+                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderId'];?>" class="gray">查看物流</a>
                    </div>
              <?php }?>
              
