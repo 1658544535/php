@@ -169,7 +169,8 @@
 		{
 			try
 			{
-				$strSQL = "SELECT count(*) as num FROM `sys_login` WHERE `openid`='{$obj_user_info->openid}' OR `unionid`='{$obj_user_info->unionid}'";
+				$strSQL = "SELECT count(*) as num FROM `sys_login` WHERE `openid`='{$obj_user_info->openid}'";
+				!empty($obj_user_info->unionid) && $strSQL .= " OR `unionid`='{$obj_user_info->unionid}'";
 				$rs 	= $this->db->get_row( $strSQL );
 
 				if ( $rs->num >0 )
