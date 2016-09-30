@@ -13,7 +13,7 @@ $info = apiData('openGroupActivityApi.do', array('activityId'=>$grouponId, 'user
 $info = $info['result'];
 if(!empty($info['waitGroupList'])){
 	foreach($info['waitGroupList'] as $k => $v){
-		$info['waitGroupList'][$k]['remainSec'] = $v['endTime'] - $v['nowTime'];
+		$info['waitGroupList'][$k]['remainSec'] = strtotime($v['endTime']) - strtotime($v['nowTime']);
 	}
 }
 
