@@ -260,7 +260,7 @@
                 <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2){?>
 	        	<div class="more2">
 	                    <a class="btn" href="groupon.php?id=<?php echo $gId;?>&pid=<?php echo $productId;?>"><span>我想购买</span></a>
-	                    <div class="txt" href="order_guess.php?id=<?php echo $gId;?>&pid=<?php echo $productId;?>"><span>活动结束，恭喜您已得奖！<br/>填写收货信息</span></div>
+	                    <div class="txt" onClick="location.href='order_guess.php?id=<?php echo $gId;?>&pid=<?php echo $productId;?>'"><span>活动结束，恭喜您已得奖！<br/>填写收货信息</span></div>
 	                </div>
         	<?php }elseif($ObjGrouponInfo['result']['isStart']  ==2 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isWin']  ==0){?>
 	        	<div class="more3">
