@@ -84,12 +84,12 @@
                         </a>
                         <div class="u-g-3">
                            <%if(data["data"][i].orderStatus ==1){%>  
-                            <a class="gray" href="user_orders.php?act=cancel?oid=<%=data["data"][i]["id"]%>">取消</a>
+                            <a class="gray orderCancel" data-id="<%=data["data"][i]["id"]%>">取消</a>
                             <a href="#">去支付</a>
                            <%}else if(data["data"][i].orderStatus ==3){%>
                             <a class="gray" href="#">延长收货</a>
                             <a class="gray" href="user_logistics.php?oid=<%=data["data"][i]["id"]%>">查看物流</a>
-                            <a href="user_orders.php?act=edit?oid=<%=data["data"][i]["id"]%>&status=<%=data["data"][i]["orderStatus"]%>">确认收货</a>
+                            <a class="check" data-id="<%=data["data"][i]["id"]%>" data-status="<%=data["data"][i]["orderStatus"]%>">确认收货</a>
                            <%}else if(data["data"][i].orderStatus ==21){%>
                             <a href="aftersale.php?act=apply&oid=<%=data["data"][i]["id"]%>">申请退款</a>
                            <%}else if(data["data"][i].orderStatus ==4){%>
@@ -106,7 +106,30 @@
                 <li class="null"></li>
             <%}%>
             </script>
-
+			<script>
+				$(document).on("pageInit", "#page-orderList", function(e, pageId, page) {
+		           $(document).on("click", ".orderCancel", function(){
+						var _this = $(this);
+	                	$.confirm("是否取消订单？", function(){
+		                    $.post("user_orders.php",{act: "cancel", _this:$(this).attr("data-id")},function(req){
+		                    	req =  eval("(" + req + ")");;
+		                        $.toast(req.data.data.error_msg);
+								location.href=document.location;
+		                    },"JSON");
+	                	});
+	                });
+	                $(document).on("click", ".check", function(){
+		                var _this = $(this);
+	                	$.confirm("是否确定收货？", function(){
+		                    $.post("user_orders.php",{act: "edit", oid:_this.attr("data-id"), status:_this.attr("data-status")},function(req){
+		                    	req =  eval("(" + req + ")");;
+		                        $.toast(req.data.data.error_msg);
+								location.href=document.location;
+		                    },"JSON");
+	                	});
+	                });
+	            })
+			</script>
         </div>
     </div>
 </body>

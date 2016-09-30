@@ -16,11 +16,11 @@ switch($act)
 {
 	case 'cancel':
 		//取消订单
-		$ObjOrderCancel    = apiData('cancelOrder.do', array('oid'=>$OrderId));
+		$ObjOrderCancel    = apiData('cancelOrder.do', array('oid'=>$Oid));
 
 		if($ObjOrderCancel !=null)
 		{
-			echo	ajaxJson('1','取消成功',$ObjOrderCancel);
+			echo	ajaxJson('','',$ObjOrderCancel);
 		}
 		else
 		{
@@ -31,7 +31,7 @@ switch($act)
 
 	case 'edit':
 		//确认订单
-		$ObjOrderEdit    = apiData('editOrderStatus.do', array('oid'=>$OrderId,'status'=>$OrderStatus,'uid'=>$userid));
+		$ObjOrderEdit    = apiData('editOrderStatus.do', array('oid'=>$Oid,'status'=>$OrderStatus,'uid'=>$userid));
 
 		if($ObjOrderEdit !=null)
 		{
