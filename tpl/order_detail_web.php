@@ -152,43 +152,44 @@
              
             
             </div>
-
-            <div class="deta-footer">
-                <a class="goIndex" href="index.php">
-                    <span class="icon i-home"></span>
-                    <span class="tab-label">首页</span>
-                </a>
-                <?php if($OrderDetail['result']['orderStatus'] ==1){?>
-                <div class="buy">
+            
+            <div class="oc-footer2">
+            	<?php if($OrderDetail['result']['orderStatus'] ==1){?>
                     <!-- <a class="one" id="orderCancel"> href="order_detail.php?act=cancel&oid=<?php echo $OrderDetail['result']['orderId'] ;?>">取消订单</a> -->
-                    <a class="one" id="orderCancel">取消订单</a>
-                    <a class="more" href="#">去支付</a>
-                </div>
+                    <a class="btn" id="orderCancel">取消订单</a>
+                    <a class="btn" href="#">去支付</a>
               <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
-               <div class="buy">
-                    <a class="one" href="#" >延长收货</a>
-                    <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderId'];?>" class="gray">查看物流</a>
-                    <a class="one" href="order_detail.php?act=edit&oid=<?php echo $OrderDetail['result']['orderId'] ;?>&status=<?php echo $OrderDetail['result']['orderStatus']  ;?>" >确认收货</a>
-                </div>
+                    <a class="btn" href="#" >延长收货</a>
+                    <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderId'];?>" class="btn gray">查看物流</a>
+                    <a id="check" class="btn" data-id="<?php echo $OrderDetail['result']['orderId'] ;?>" data-status="<?php echo $OrderDetail['result']['orderStatus']  ;?>">确认收货</a>
              <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
-                   <div class="buy">
-                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderId'];?>" class="gray">查看物流</a>
-                   </div>
+                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderId'];?>" class="btn gray">查看物流</a>
              <?php }?>
-             
             </div>
 
             <script>
                 $(document).on("pageInit", "#page-orderCofirm", function(e, pageId, page) {
                     $("#orderCancel").on("click", function(){
-                        $.post("order_detail.php",{act: "cancel", oid:"<?php echo $OrderDetail['result']['orderId'] ;?>"},function(req){
-                            $.toast(req.msg);
-                            if(req.code>0){
-                                location.href=document.location;
-                            }
-                        },"JSON");
+                    	var _this = $(this);
+	                	$.confirm("是否取消订单？", function(){
+	                        $.post("order_detail.php",{act: "cancel", oid:"<?php echo $OrderDetail['result']['orderId'] ;?>"},function(req){
+	                        	req =  eval("(" + req + ")");;
+	                            $.toast(req.data.data.error_msg);
+	                            history.back(-1);
+	                        },"JSON");
+	                	})
                     });
                 })
+                $(document).on("click", "#check", function(){
+	                var _this = $(this);
+                	$.confirm("是否确定收货？", function(){
+	                    $.post("order_detail.php",{act: "edit", oid:_this.attr("data-id"), status:_this.attr("data-status")},function(req){
+	                    	req =  eval("(" + req + ")");;
+	                        $.toast(req.data.data.error_msg);
+							history.back(-1);
+	                    },"JSON");
+                	});
+                });
             </script>
 
         </div>
