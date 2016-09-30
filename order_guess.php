@@ -3,6 +3,8 @@
 define('HN1', true);
 require_once('./global.php');
 
+IS_USER_LOGIN();
+
 define('ORDER_IN', true);
 
 $prevUrl = getPrevUrl();

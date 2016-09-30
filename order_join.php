@@ -3,6 +3,8 @@
 define('HN1', true);
 require_once('./global.php');
 
+IS_USER_LOGIN();
+
 define('ORDER_IN', true);
 
 $prevUrl = getPrevUrl();
@@ -12,27 +14,19 @@ empty($grouponId) && redirect($prevUrl);
 
 $productId = intval($_GET['pid']);
 
-$time = time();
-
-//是否已开团
-$objGUS = M('groupon_user_record');
-$leader = $objGUS->get(array('activity_id'=>$grouponId,'is_head'=>1), '*', ARRAY_A);
-empty($leader) && redirect('groupon.php?id='.$grouponId, '未开团，现在去开团');
-
-//拼团活动信息
-$objGroupon = D('Groupon');
-$groupon = $objGroupon->getInfo($grouponId);
-empty($groupon) && redirect($prevUrl);
-($groupon['status'] != 1) && redirect($prevUrl, '活动不存在');
-($groupon['type'] != 1) && redirect($prevUrl, '参数错误');
-(($groupon['activity_status'] == 0) || (strtotime($groupon['begin_time']) > $time)) && redirect($prevUrl, '活动未开始');
-(($groupon['activity_status'] == 2) || (strtotime($groupon['end_time']) < $time)) && redirect($prevUrl, '活动已结束');
-
-//实际下单价格
-$factOrderPrice = $groupon['price'];
+$isGrouponFree = intval($_GET['free']);
+$attendId = intval($_GET['aid']);//参团id
+$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>1,'pid'=>$productId,'source'=>$isGrouponFree?2:1,'uid'=>$userid));
+if($info['success']){
+	$info = $info['result'];
+}else{
+	redirect($prevUrl, $info['error_msg']);
+}
 
 $_SESSION['order']['type'] = 'join';
 $_SESSION['order']['grouponId'] = $grouponId;
+$_SESSION['order']['attendId'] = $attendId;
+$_SESSION['order']['isfree'] = $isGrouponFree ? 1 : 0;//参加的团的类型
 
 include_once('order_common.php');
 ?>

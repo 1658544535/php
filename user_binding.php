@@ -7,29 +7,29 @@ IS_USER_WX_LOGIN();
 
 $openid = !isset( $_SESSION['openid'] ) ? null : $_SESSION['openid'];
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-	$result = apiData('agentlogin.do', array('openid'=>$openid));
-	if($result['success']){
-		$result = $result['result'];
-		$_wxInfo = new stdClass();
-		$_wxInfo->id = $result['id'];
-		$_wxInfo->loginname = $result['phone'];
-		$_wxInfo->openid = $result['openid'];
-		$_wxInfo->name = $result['name'];
-		$_SESSION['is_login'] = true;
-		$_SESSION['userinfo'] = $user_wx_info;
-
-		$referUrl = empty($_SESSION['loginReferUrl']) ? '/' : $_SESSION['loginReferUrl'];
-		unset($_SESSION['loginReferUrl']);
-		redirect($referUrl);
-	}else{
-		redirect('wxuser_reg.php', $result['error_msg']);
-	}
-}else{
-	$_SESSION['loginReferUrl'] = urlencode($_SERVER['HTTP_REFERER']);
-	include "tpl/wxuser_login_web.php";
-}
-exit();
+//if($_SERVER['REQUEST_METHOD'] == 'POST'){
+//	$result = apiData('agentlogin.do', array('openid'=>$openid));
+//	if($result['success']){
+//		$result = $result['result'];
+//		$_wxInfo = new stdClass();
+//		$_wxInfo->id = $result['id'];
+//		$_wxInfo->loginname = $result['phone'];
+//		$_wxInfo->openid = $result['openid'];
+//		$_wxInfo->name = $result['name'];
+//		$_SESSION['is_login'] = true;
+//		$_SESSION['userinfo'] = $user_wx_info;
+//
+//		$referUrl = empty($_SESSION['loginReferUrl']) ? '/' : $_SESSION['loginReferUrl'];
+//		unset($_SESSION['loginReferUrl']);
+//		redirect($referUrl);
+//	}else{
+//		redirect('wxuser_reg.php', $result['error_msg']);
+//	}
+//}else{
+//	$_SESSION['loginReferUrl'] = urlencode($_SERVER['HTTP_REFERER']);
+//	include "tpl/wxuser_login_web.php";
+//}
+//exit();
 
 require_once  LOGIC_ROOT. 'user_verifyBean.php';
 require_once  FUNC_ROOT . 'func_user_bulding.php';

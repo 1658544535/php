@@ -60,6 +60,7 @@
 								</div>
 							</a></li>
 						</ul>
+						<input type="hidden" name="skuid" value="<?php echo $info['products']['skuLinkId'];?>" />
 						<?php if(!in_array($_SESSION['order']['type'], array('free', 'guess'))){ ?>
 						<div class="num">
 							<span class="label">数量</span>

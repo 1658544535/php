@@ -50,6 +50,7 @@ switch($act){
 		$status = intval($_POST['type']);
 		$page = max(1, intval($_POST['page']));
 		$result = apiData('myGroupListApi.do', array('pageNo'=>$page, 'status'=>$status, 'userId'=>$userid));
+		file_put_contents(LOG_INC.'zzzzzzzzzz.txt', var_export($result, true)."\r\n", FILE_APPEND);
 		$result['success'] ? ajaxJson(1, '', $result['result'], $page) : ajaxJson(0, $result['error_msg']);
 		break;
 	case 'aftersale'://售后列表

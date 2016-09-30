@@ -3,6 +3,8 @@
 define('HN1', true);
 require_once('./global.php');
 
+IS_USER_LOGIN();
+
 define('ORDER_IN', true);
 
 $prevUrl = getPrevUrl();
@@ -10,7 +12,9 @@ $prevUrl = getPrevUrl();
 $productId = intval($_GET['pid']);
 empty($productId) && redirect($prevUrl);
 
-$info = apiData('addPurchase.do', array('activityId'=>0,'num'=>1,'pid'=>$productId,'skuLinkId'=>'','source'=>4,'uid'=>$userid));
+$skuId = intval($_GET['skuid']);
+empty($skuId) && $skuId = '';
+$info = apiData('addPurchase.do', array('activityId'=>0,'num'=>1,'pid'=>$productId,'skuLinkId'=>$skuId,'source'=>4,'uid'=>$userid));
 if($info['success']){
 	$info = $info['result'];
 }else{

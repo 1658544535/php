@@ -18,7 +18,9 @@ $num = intval($_POST['num']);
 empty($num) && redirect($prevUrl, '数量不能为0');
 
 $mapSource = array('groupon'=>1, 'free'=>2, 'guess'=>3, 'alone'=>4);
+$source = ($orderType == 'join') ? ($_SESSION['order']['isfree'] ? 2 : 1) : $mapSource[$orderType];
 
+$skuId = intval($_POST['skuid']);
 $apiParam = array(
 	'uid' => $userid,
 	'pid' => $productId,
@@ -28,13 +30,16 @@ $apiParam = array(
 	'addressId' => $addressId,
 	'buyer_message' => '',
 	'couponNo' => '',
-//	'skuLinkId' => 0,
-	'activityId' => $grouponId,
-	'source' => $mapSource[$orderType],
+	'activityId' => ($orderType == 'alone') ? 0 : $grouponId,
+	'source' => $source,
 );
+$skuId && $apiParam['skuLinkId'] = $skuId;
+
 ($orderType == 'join') && $apiParam['attendId'] = $grouponId;
 $result = apiData('addOrderByPurchase.do', $apiParam);
 !$result['success'] && redirect($prevUrl, $result['error_msg']);
+
+unset($_SESSION['order']);
 
 redirect('user_orders.php', '下单成功');
 
