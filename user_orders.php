@@ -2,7 +2,7 @@
 define('HN1', true);
 require_once('./global.php');
 
-
+IS_USER_LOGIN();
 
 $act  = CheckDatas( 'act', 'info' );
 $productId   	= CheckDatas( 'pid', '' );
