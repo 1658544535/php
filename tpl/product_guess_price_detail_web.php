@@ -29,7 +29,7 @@
                     </a>
                     <h1 class="title">猜价赢好礼</h1>
                 </header>
-<?php if($bLogin !=false){?>
+<?php if($bLogin ==false){?>
    <div class="content native-scroll">
                     <section class="swiper-container deta-banner guessDeta-banner" data-space-between="0">
                         <div class="swiper-wrapper">
