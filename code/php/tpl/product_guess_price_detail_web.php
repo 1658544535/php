@@ -39,7 +39,7 @@
                         </div>
                         <div class="swiper-pagination"></div>
                     </section>
-                  <?php if($ObjGrouponInfo['result']['isStart']  ==2  && $ObjGrouponInfo['result']['isJoin']  ==0){?>   
+                  <?php if($ObjGrouponInfo['result']['isStart']  ==2 ){?>   
                      <section class="guessDeta-info center">
                         <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
                         <div class="tips">来晚啦！该活动已经结束</div>
@@ -48,7 +48,7 @@
                    <section class="guessJoinList guessDetaJoinList">
 	                        <div class="freeList-tips">需参与者才可以看到其他参与者信息</div>
 	               </section>
-                  <?php }elseif($ObjGrouponInfo['result']['isStart']  ==1  && $ObjGrouponInfo['result']['isJoin']  ==0){?>
+                  <?php }else{?>
                    <section class="guessDeta-info">
                         <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
                         
@@ -92,7 +92,7 @@
                     <span class="tab-label">首页</span>
                 </a>
 	            
-	            <?php if($ObjGrouponInfo['result']['isStart']  ==2 && $ObjGrouponInfo['result']['isJoin']  ==0){?>
+	            <?php if($ObjGrouponInfo['result']['isStart']  ==2){?>
 	            <div class="more3">
                     <a class="btn" href="groupon.php?id=<?php echo $gId;?>"><span>购买商品</span></a>
                     <a class="btn light" href="product_guess_price.php"><span>查看更多</span></a>
