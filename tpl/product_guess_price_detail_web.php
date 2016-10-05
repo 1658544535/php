@@ -48,7 +48,7 @@
                    <section class="guessJoinList guessDetaJoinList">
 	                        <div class="freeList-tips">需参与者才可以看到其他参与者信息</div>
 	               </section>
-                  <?php }else{?>
+                  <?php }?>
                    <section class="guessDeta-info">
                         <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
                         
@@ -64,7 +64,7 @@
                     <section class="guessJoinList guessDetaJoinList">
                             <div class="freeList-tips">已有<span class="themeColor"><?php echo $ObjGrouponInfo['result']['joinNum'];?>个</span>小伙伴参与，您需要提交价格才可以看到其它记录</div>
                     </section>
-                  <?php }?>
+                  
         <div class="deta-iframe">
 	       <iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $productId?>" frameborder="0" width="100%"></iframe>
         </div>
@@ -98,11 +98,10 @@
                     <a class="btn light" href="product_guess_price.php"><span>查看更多</span></a>
                     <div class="txt"><span>来晚了! 活动已结束</span></div>
                 </div>  
-	            <?php }else{?>
+	            <?php }?>
 	             <div class="more1">
 	                      <a id="guess-join" class="btn" href="/user_binding.php?dir=<?php echo $_SERVER['REQUEST_URI']; ?>" ><span>我要参与</span></a>
 	             </div>
-            <?php }?>
             </div>
     </div>
 <?php }else{?>
