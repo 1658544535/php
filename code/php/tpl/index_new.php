@@ -110,13 +110,13 @@
         <?php if(!empty($freeCpn)){?>
             <div class="popup popup-coupon">
                 <div>
-                    <a href="#" class="close-popup"></a>
+                    <a href="javascript:;" class="close-popup"></a>
                     <h3 class="title1">您有1张团免券未使用</h3>
                     <div class="freeCoupon">
                         <div class="info">
                             <div class="name">团长免单券 <span>(团长免费开团)</span></div>
                             <div class="tips">点击选择团免商品</div>
-                            <div class="time">有效期: <?php echo $freeCpn['beginTime'];?>-<?php echo $freeCpn['endTime'];?></div>
+                            <div class="time">有效期: <?php echo $cpnStart;?> - <?php echo $cpnEnd;?></div>
                         </div>
                         <div class="price"><div>￥<span>0</span></div></div>
                     </div>

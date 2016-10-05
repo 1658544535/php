@@ -9,6 +9,10 @@ $cates = $cates['result'];
 //团免券
 $freeCpn = apiData('checkGroupFreeApi.do', array('userId'=>$userid));
 $freeCpn = $freeCpn['success'] ? $freeCpn['result'] : null;
+if(!empty($freeCpn)){
+	$cpnStart = date('Y.n.j', strtotime($freeCpn['beginTime']));
+	$cpnEnd = date('Y.n.j', strtotime($freeCpn['endTime']));
+}
 
 $footerNavActive = 'index';
 
