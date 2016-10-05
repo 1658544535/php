@@ -39,9 +39,6 @@
                         </div>
                         <div class="swiper-pagination"></div>
                     </section>
-                   
-                        
-                 
                   <?php if($ObjGrouponInfo['result']['isStart']  ==2  && $ObjGrouponInfo['result']['isJoin']  ==0){?>   
                      <section class="guessDeta-info center">
                         <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
@@ -51,7 +48,7 @@
                    <section class="guessJoinList guessDetaJoinList">
 	                        <div class="freeList-tips">需参与者才可以看到其他参与者信息</div>
 	               </section>
-                  <?php }else{?>
+                  <?php }elseif($ObjGrouponInfo['result']['isStart']  ==1  && $ObjGrouponInfo['result']['isJoin']  ==0){?>
                    <section class="guessDeta-info">
                         <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
                         
