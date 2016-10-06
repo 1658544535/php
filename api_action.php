@@ -110,5 +110,11 @@ switch($act){
 		getAreasJson();
 		ajaxJson(1, '');
 		break;
+	case 'address_detail'://地址详情
+		$addrId = intval($_POST['id']);
+		empty($addrId) && ajaxJson(0, '参数错误');
+		$result = apiData('addressDetail.do', array('addId'=>$addrId, 'uid'=>$userid));
+		$result['success'] ? ajaxJson(1, '', $result['result']) : ajaxJson(0, $result['error_msg']);
+		break;
 }
 ?>

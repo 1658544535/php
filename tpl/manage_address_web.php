@@ -47,7 +47,7 @@
 			<script id='tpl_pull' type="text/template">
             <%if(data["data"].length>0){%>
                 <%for(var i=0;i<data["data"].length; i++){%>
-                    <li data-id="<%=data["data"][i].addId%>" data-province="" data-city="" data-area="">
+                    <li data-id="<%=data["data"][i].addId%>">
                         <div class="txt">
                             <div class="info">
                                 <span class="phone a-t-1"><%=data["data"][i].tel%></span>
@@ -93,14 +93,22 @@
 				});
 
 				$(document).on("click", ".user-address .edit", function(){
-					var obj = $(this).parents("li");
-					$(".p-a-1").val(obj.find(".a-t-1").html());
-					$(".p-a-2").val(obj.find(".a-t-2").html());
-					$(".p-a-3").val(obj.find(".a-t-3").html());
-					$(".p-a-4").val(obj.find(".a-t-4").html());
-					$("input[name='id']").val($(this).attr("data-id"));
-					$("#city-picker-value").val(obj.attr("data-province")+","+obj.attr("data-city")+","+obj.attr("data-area"));
-					$.popup('.popup-address');
+					var _id = $(this).attr("data-id");
+					$.post(_apiUrl+"address_detail", {"id":_id}, function(r){
+						if(r.code == 1){
+							var _info = r.data.data;
+
+							$(".p-a-1").val(_info.tel);
+							$(".p-a-2").val(_info.name);
+							$(".p-a-3").val(_info.provinceName+","+_info.cityName+","+_info.areaName);
+							$(".p-a-4").val(_info.address);
+							$("input[name='id']").val(_id);
+							$("#city-picker-value").val(_info.province+","+_info.city+","+_info.area);
+							$.popup('.popup-address');
+						}else{
+							$.toast(r.msg);
+						}
+					}, "json");
 				});
 
 				$(document).on("click", ".user-address-add a", function(){
@@ -134,6 +142,7 @@
             <div>
                 <a href="javascript:;" class="close-popup"></a>
                 <form action="" method="" accept-charset="utf-8">
+					<input type="hidden" name="id" />
                     <ul>
                         <li>
                             <span class="label">收货人:</span>
