@@ -6,7 +6,7 @@ $act = CheckDatas('act', '');
 switch($act){
 	case 'address'://我的地址列表
 		$page = max(1, intval($_POST['page']));
-		$addrs = apiData('myaddress.do', array('uid'=>$userid));
+		$addrs = apiData('myaddress.do', array('uid'=>$userid,'pageId'=>$page));
 		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
 		break;
 	case 'address_del'://删除地址
