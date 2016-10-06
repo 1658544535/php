@@ -42,7 +42,7 @@
                         <span class="oldPrice">￥<?php echo $info['alonePrice'];?></span>
                     </div>
                     <div class="name"><?php echo $info['productName'];?></div>
-                    <div class="txt"><?php echo $info['title'];?></div>
+                    <div class="txt"><?php echo $info['productSketch'];?></div>
                     <div class="tips"><img src="images/deta-tips.png" /></div>
                 </section>
 
@@ -91,7 +91,7 @@
 							 <p>￥<b><?php echo $info['alonePrice'];?></b></p>
 							 <p>单独购买</p>
 						</a>
-						<?php if($info['isGroupFree']){ ?>
+						<?php if($isFreeBuy){ ?>
                             <!-- <a class="more" href="order_free.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
 							<a class="more" data-href="order_free.php" id="btn-groupon" data-ref="free">
 								 <p>￥<b>0.00</b></p>
