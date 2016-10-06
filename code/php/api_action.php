@@ -6,7 +6,7 @@ $act = CheckDatas('act', '');
 switch($act){
 	case 'address'://我的地址列表
 		$page = max(1, intval($_POST['page']));
-		$addrs = apiData('myaddress.do', array('uid'=>$userid,'pageId'=>$page));
+		$addrs = apiData('myaddress.do', array('uid'=>$userid,'pageNo'=>$page));
 		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
 		break;
 	case 'address_del'://删除地址
@@ -50,7 +50,7 @@ switch($act){
 		$status = intval($_POST['type']);
 		$page = max(1, intval($_POST['page']));
 		$result = apiData('myGroupListApi.do', array('pageNo'=>$page, 'status'=>$status, 'userId'=>$userid));
-		file_put_contents(LOG_INC.'zzzzzzzzzz.txt', var_export($result, true)."\r\n", FILE_APPEND);
+//		file_put_contents(LOG_INC.'zzzzzzzzzz.txt', var_export($result, true)."\r\n", FILE_APPEND);
 		$result['success'] ? ajaxJson(1, '', $result['result'], $page) : ajaxJson(0, $result['error_msg']);
 		break;
 	case 'aftersale'://售后列表
