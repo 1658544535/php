@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>淘竹马</title>
+    <title><?php echo $site_name;?></title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=0" name="viewport">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -58,9 +58,9 @@
                               <span class="state">
                                 <%if(data["data"][i].activityStatus ==1){%> 
                                                                                         进行中
-                                <% }else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==1){%>      
+                                  <% }else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==1){%>      
                                                                                          一等奖，获得商品                                         
-                                 <% }else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==2 &&　data["data"][i].isRecCoupon ==1){%>
+                                  <% }else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==2 &&　data["data"][i].isRecCoupon ==1){%>
                                  　　　　　　　　　　　　　　　二等奖，已发券
 　　　　　　　　　　　　　　　　　　<% }else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==2 &&　data["data"][i].isRecCoupon ==0){%>
 　　　　　　　　　　　　　　　　　　                      二等奖，未发券
