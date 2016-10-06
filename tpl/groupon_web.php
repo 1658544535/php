@@ -126,6 +126,7 @@
 			<?php if($info['productStatus'] != 0){ ?>
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
 				var jsonUrlParam = {"id":"<?php echo $grouponId;?>","pid":"<?php echo $info['productId'];?>","skuid":"","num":1};
+				var clickBuy = false;
 
                 $(".deta-footer .one, .deta-footer .more").on("click", function(){
                     $(".popup-sku").attr("data-href", $(this).attr("data-href"));
@@ -158,13 +159,14 @@
                 });
 
 				$("#buy").on("click", function(){
-					$("#buy").attr("href", _genUrl());
+					if(clickBuy) $("#buy").attr("href", _genUrl());
 				});
 
 
                 //打开sku弹窗
                 function skuOpen(){
                     $.showIndicator();          //打开加载指示器
+					$("#buy").attr("href", "javascript:;").addClass("gray");
                     
 					 var req = {
 					     msg: "",
@@ -259,10 +261,12 @@
                                 }
 								_genUrl({"skuid":skuId});
 								$("#buy").removeClass("gray");
+								clickBuy = true;
 //                                url += "?skuid=" + skuId + "&id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&num="+$("#buy-num").val();
 //                                $("#buy").attr("href", url).removeClass("gray");
                             }else if(!skuFormat && !skuColor){
                                 $("#sku-color .list a, #sku-format .list a").removeClass("disable");
+								clickBuy = false;
                             }
                         });
 					}else{

@@ -85,7 +85,7 @@
                     </li>
                 <%}%>
             <%}else{%>
-                <div class="tips-null">暂无拼团</div>
+                <div class="tips-null">没有更多拼团</div>
             <%}%>
             </script>
 
