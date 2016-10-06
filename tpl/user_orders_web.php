@@ -99,7 +99,7 @@
                             <a href="#">立即评价</a>
                            <%}else if(data["data"][i].orderStatus ==2 &&  data["data"][i].source ==1  && data["data"][i].isSuccess ==0 ){%> 
                             <a class="gray" href="order_detail.php?oid=<%=data["data"][i]["id"]%>">查看</a>
-                            <a href="#">邀请好友拼团</a>
+                            <a href="groupon_join.php?aid=<%=data["data"][i]["attendId"]%>">邀请好友拼团</a>
                            <%}%>                        
                        </div>
                     </li>
