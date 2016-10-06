@@ -19,11 +19,7 @@ $Prize   	    = CheckDatas( 'type', '' );
 $page           = max(1, intval($_POST['page']));
 $as             = CheckDatas( 'activity_status', '' );
 $Price   	    = CheckDatas( 'price', '' );
-//判断是否登录
-// if ( ! $bLogin )
-// {
-// 	IS_USER_LOGIN();
-// }
+
 
 
 switch($act)
@@ -65,9 +61,9 @@ switch($act)
 
         //获取参与人信息(进行中)
     	
-	    $ObjUserList    = apiData('userJoinInfoApi.do', array('activityId'=>$gId,'pageNo'=>$page));
+	    $ObjUserList    = apiData('userJoinInfoApi.do', array('activityId'=>$gId,'pageNo'=>$page,'pageSize'=>5));
 	 
-
+        
 	    
 		//统计得奖人数
 		
@@ -83,9 +79,7 @@ switch($act)
 	case 'detail_save':
 	  
 	    
-     // 判断是否登录
-		
-	    IS_USER_LOGIN();
+
 		
 	//提交猜价价格
 		$ObjPrice = apiData('guessPriceApi.do', array('activityId'=>$gId,'price'=>$Price,'userId'=>$userid));
