@@ -16,9 +16,12 @@ $productId = intval($_GET['pid']);
 
 $time = time();
 
+$num = intval($_GET['num']);
+$num = max(1, $num);
+
 $skuId = intval($_GET['skuid']);
 empty($skuId) && $skuId = '';
-$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>1,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>1,'uid'=>$userid));
+$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>1,'uid'=>$userid));
 if($info['success']){
 	$info = $info['result'];
 }else{

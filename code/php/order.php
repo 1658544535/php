@@ -22,7 +22,7 @@ $prevUrl = getPrevUrl();
 //	empty($num) && redirect($prevUrl, '数量不能为0');
 //}
 $num = intval($_POST['num']);
-empty($num) && $num = 1;
+$num = max(1, $num);
 
 $mapSource = array('groupon'=>1, 'free'=>2, 'guess'=>3, 'alone'=>4);
 $source = ($orderType == 'join') ? ($_SESSION['order']['isfree'] ? 2 : 1) : $mapSource[$orderType];
