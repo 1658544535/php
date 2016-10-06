@@ -34,8 +34,8 @@
                     <ul>
                         <li data-type="0"><a href="javascript:;">全部</a></li>
                         <li data-type="1"><a href="javascript:;">进行中</a></li>
-                        <li data-type="2"><a href="javascript:;">未得奖</a></li>
-                        <li data-type="3"><a href="javascript:;">已得奖</a></li>
+                        <li data-type="2"><a href="javascript:;">已结束</a></li>
+                        <li data-type="3"><a href="javascript:;">待开奖</a></li>
                     </ul>
                 </section>
 
@@ -57,11 +57,19 @@
                             <span class="type">猜价商品</span>
                               <span class="state">
                                 <%if(data["data"][i].activityStatus ==1){%> 
-                                                                                   进行中
-                                <% }else if(data["data"][i].activityStatus ==2){%>      
-                                                                                    已结束，未得奖
-                                 <% }else if(data["data"][i].activityStatus ==3){%>
-                                                                                     已结束，已得奖
+                                                                                        进行中
+                                <% }else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==1){%>      
+                                                                                         一等奖，获得商品                                         
+                                 <% }else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==2 &&　data["data"][i].isRecCoupon ==1){%>
+                                 　　　　　　　　　　　　　　　二等奖，已发券
+　　　　　　　　　　　　　　　　　　<% }else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==2 &&　data["data"][i].isRecCoupon ==0){%>
+　　　　　　　　　　　　　　　　　　                      二等奖，未发券
+                                  <% }else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==3 &&　data["data"][i].isRecCoupon ==1){%>
+                                                                                          三等奖，已发券
+                                  <% }else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==3 &&　data["data"][i].isRecCoupon ==0){%>
+                                                                                          三等奖，未发券
+                                  <% }else if(data["data"][i].activityStatus ==3){%>
+                                                                                          待开奖
                                  <%}%>
                                </span>
                           </div>
