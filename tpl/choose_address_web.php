@@ -83,6 +83,29 @@
 				$(document).on("submit", ".popup-address form", function(e){
 					var _this = $(this);
 					e.preventDefault();
+					
+					if($.trim(_this.find("input.p-a-2").val()) == ""){
+						$.toast("请填写收货人");
+						return;
+					}
+					var _tel = _this.find("input.p-a-1").val();
+					var _re = /((^1\d{10}$)|(^(\d{3,4}-)?\d{7,8}$))/;
+					if($.trim(_tel) == ""){
+						$.toast("请填写联系方式");
+						return;
+					}else if(!_re.test(_tel)){
+						$.toast("请正确填写联系方式");
+						return;
+					}
+					if($.trim(_this.find("#city-picker-value").val()) == ""){
+						$.toast("请选择省市区");
+						return;
+					}
+					if($.trim(_this.find(".p-a-4").val()) == ""){
+						$.toast("请填写详细地址");
+						return;
+					}
+
 					$.ajax({
 						url: _apiUrl+'address_edit',
 						data: _this.serialize(),
