@@ -87,19 +87,19 @@
 						<a class="more" href="/">查看更多</a>
 					<?php }else{ ?>
                         <!-- <a class="one" href="order_alone.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-alone"> -->
-						<a class="one" data-href="order_alone.php" id="btn-alone">
+						<a class="one" data-href="order_alone.php" id="btn-alone" data-ref="alone">
 							 <p>￥<b><?php echo $info['alonePrice'];?></b></p>
 							 <p>单独购买</p>
 						</a>
 						<?php if($info['isGroupFree']){ ?>
                             <!-- <a class="more" href="order_free.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
-							<a class="more" data-href="order_free.php" id="btn-groupon">
+							<a class="more" data-href="order_free.php" id="btn-groupon" data-ref="free">
 								 <p>￥<b>0.00</b></p>
 								 <p>0元开团</p>
 							</a>
 						<?php }else{ ?>
                             <!-- <a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
-							<a class="more" data-href="order_groupon.php" id="btn-groupon">
+							<a class="more" data-href="order_groupon.php" id="btn-groupon" data-ref="groupon">
 								 <p>￥<b><?php echo $info['producrtPrice'];?></b></p>
 								 <p><?php echo $info['groupNum'];?>人团</p>
 							</a>
@@ -124,9 +124,17 @@
 			 };
 
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
+				var jsonUrlParam = {"id":"<?php echo $grouponId;?>","pid":"<?php echo $info['productId'];?>","skuid":"","num":1};
+
                 $(".deta-footer .one, .deta-footer .more").on("click", function(){
                     $(".popup-sku").attr("data-href", $(this).attr("data-href"));
                     $("#sku-price").html($(this).find("b").html());
+					if($(this).attr("data-ref") == "free"){
+						$(".popup-sku .sku-number").hide();
+						$("#buy-num").val("1");
+					}else{
+						$(".popup-sku .sku-number").show();
+					}
                     skuOpen();
                 });
 
@@ -134,15 +142,23 @@
                 $(".quantity .minus").on("click", function(){
                     var num = parseInt($(this).next().val());
                     if(num>1){
-                        $(this).next().val(--num);
+						--num;
+						_genUrl({"num":num});
+                        $(this).next().val(num);
                     }else{
                         return false;
                     }
                 });
                 $(".quantity .plus").on("click", function(){
                     var num = parseInt($(this).prev().val());
-                    $(this).prev().val(++num)
+					++num;
+					_genUrl({"num":num});
+                    $(this).prev().val(num);
                 });
+
+				$("#buy").on("click", function(){
+					$("#buy").attr("href", _genUrl());
+				});
 
 
                 //打开sku弹窗
@@ -152,7 +168,7 @@
 					 var req = {
 					     msg: "",
 					     code: 1,
-					     data:  <?php echo empty($skus) ? '{}' : json_encode($skus);?>
+					     data:  <?php echo empty($skus) ? '{}' : json_encode($skus);?> 
 					 }
 
 					if(req.code>0){
@@ -240,22 +256,34 @@
                                         skuId = skuData[item]["id"];
                                     }
                                 }
-                                url += "?skuid=" + skuId + "&id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>";
-                                $("#buy").attr("href", url).removeClass("gray");
+								_genUrl({"skuid":skuId});
+								$("#buy").removeClass("gray");
+//                                url += "?skuid=" + skuId + "&id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&num="+$("#buy-num").val();
+//                                $("#buy").attr("href", url).removeClass("gray");
                             }else if(!skuFormat && !skuColor){
                                 $("#sku-color .list a, #sku-format .list a").removeClass("disable");
                             }
-
                         });
 					}else{
 						$.toast(req.msg);
 					}
 					
-
 					$.popup(".popup-sku");      //弹出弹窗
 					$.hideIndicator();          //关闭加载指示器
-
                 }
+
+				function _genUrl(_json){
+					if(typeof(_json) != "undefined"){
+						for(var o in _json){
+							jsonUrlParam[o] = _json[o];
+						}
+					}
+					var _arr = [];
+					for(var o in jsonUrlParam){
+						_arr.push(o+"="+jsonUrlParam[o]);
+					}
+					return $(".popup-sku").attr("data-href")+"?"+_arr.join("&");
+				}
 
             });
         </script>
@@ -288,7 +316,7 @@
                     <span class="label">购买数量</span>
                     <div class="quantity">
                         <span class="minus">-</span>
-                        <input type="text" value="1" />
+                        <input type="text" value="1" id="buy-num" class="num" />
                         <span class="plus">+</span>
                     </div>
                 </div>

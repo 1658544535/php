@@ -14,9 +14,12 @@ empty($grouponId) && redirect($prevUrl);
 
 $productId = intval($_GET['pid']);
 
+$num = intval($_GET['num']);
+$num = max(1, $num);
+
 $isGrouponFree = intval($_GET['free']);
 $attendId = intval($_GET['aid']);//参团id
-$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>1,'pid'=>$productId,'source'=>$isGrouponFree?2:1,'uid'=>$userid));
+$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>$num,'pid'=>$productId,'source'=>$isGrouponFree?2:1,'uid'=>$userid));
 if($info['success']){
 	$info = $info['result'];
 }else{
