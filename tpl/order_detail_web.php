@@ -67,7 +67,7 @@
                     <h3 class="title1">拼团商品<span class="tips">已成团，待发货</span></h3>
                     <?php }elseif($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] ==0){?>
                     <h3 class="title1"><span class="tips">待发货</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['source'] ==1){?>               
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['source'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>               
                     <h3 class="title1">拼团商品<span class="tips">待支付</span></h3>
                      <?php }elseif($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['source'] ==0){?>
                      <h3 class="title1"><span class="tips">待支付</span></h3>
