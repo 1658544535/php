@@ -52,7 +52,7 @@
                     <ul class="list">
 						<?php foreach($info['waitGroupList'] as $_active){ ?>
 						<li>
-                            <a class="btn" href="groupon_join.php?aid=<?php echo $_active['groupRecId'];?>&pid=<?php echo $info['productId'];?>&free=<?php echo $info['isGroupFree'];?>">参团&nbsp;&gt;</a>
+                            <a class="btn" href="groupon_join.php?aid=<?php echo $_active['groupRecId'];?>&pid=<?php echo $info['productId'];?>&free=<?php echo ($info['activityType']==2)?1:0;?>">参团&nbsp;&gt;</a>
                             <div class="info">
                                 <div class="img"><img src="<?php echo $_active['userImage'];?>" /></div>
                                 <div class="name"><?php echo $_active['userName'];?></div>

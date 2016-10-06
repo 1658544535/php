@@ -39,6 +39,7 @@ $apiParam = array(
 	'couponNo' => '',
 	'activityId' => ($orderType == 'alone') ? 0 : $grouponId,
 	'source' => $source,
+	'channel' => 2,
 );
 $skuId && $apiParam['skuLinkId'] = $skuId;
 
