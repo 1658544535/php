@@ -82,7 +82,7 @@
                             </div>
                         </a></li>
                     <%}%>
-                <%}else{%>
+                <%}else if(data["pageNow"] == 1){%>
                     <div class="tips-null">没有更多商品</div>
                 <%}%>
             </script>
@@ -101,7 +101,7 @@
                             </div>
                         </a></li>
                     <%}%>
-                <%}else{%>
+                <%}else if(data["pageNow"] == 1){%>
                     <div class="tips-null">没有更多商品</div>
                 <%}%>
             </script>
