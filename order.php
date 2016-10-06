@@ -15,8 +15,14 @@ $ORDER_TYPES = array('free', 'groupon', 'join', 'alone', 'guess');
 $prevUrl = getPrevUrl();
 //(empty($addressId) || empty($productId) || (($orderType != 'alone') && empty($grouponId))) && redirect($prevUrl, '参数错误');
 
+//if(in_array($orderType, array('free'))){
+//	$num = 1;
+//}else{
+//	$num = intval($_POST['num']);
+//	empty($num) && redirect($prevUrl, '数量不能为0');
+//}
 $num = intval($_POST['num']);
-empty($num) && redirect($prevUrl, '数量不能为0');
+empty($num) && $num = 1;
 
 $mapSource = array('groupon'=>1, 'free'=>2, 'guess'=>3, 'alone'=>4);
 $source = ($orderType == 'join') ? ($_SESSION['order']['isfree'] ? 2 : 1) : $mapSource[$orderType];
