@@ -39,7 +39,7 @@
                     <div class="d-i-1">
                         <span class="sales">累积销量：<?php echo $info['proSellrNum'];?>件</span>
                         ￥<span class="nowPrice"><?php echo $info['productPrice'];?></span>
-                        <span class="oldPrice">￥<?php echo $info['alonePrice'];?></span>
+                        <span class="oldPrice">￥<?php echo $info['sellingPrice'];?></span>
                     </div>
                     <div class="name"><?php echo $info['productName'];?></div>
                     <div class="txt"><?php echo $info['productSketch'];?></div>
