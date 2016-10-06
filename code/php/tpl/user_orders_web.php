@@ -58,7 +58,7 @@
                         <div class="u-g-1">
                             <span class="type">拼团商品</span>
                              <span class="state">
-                               <%if(data["data"][i].orderStatus ==1 ){%>                                  
+                               <%if(data["data"][i].orderStatus ==1 && data["data"][i].isCancel ==0 ){%>                                  
                                                                            待支付
                                <%}else if(data["data"][i].orderStatus ==2 && data["data"][i].source ==1  && data["data"][i].isSuccess ==1){%>
                                                                            已成团，待发货
@@ -70,7 +70,9 @@
                                                                              已完成                               
                                <%}else if(data["data"][i].orderStatus ==2 && data["data"][i].source ==1  && data["data"][i].isSuccess ==0){%>
                                                                              拼团中，还差<%=data["data"][i].oweNum %>人
-                              <%}%>
+                               <%}else if(data["data"][i].orderStatus ==1 && data["data"][i].source ==1  && data["data"][i].isCancel ==1){%>
+                                                                             交易已取消                        
+                               <%}%>
                              </span>
                         </div>
                         <a href="order_detail.php?oid=<%=data["data"][i]["id"]%>" class="u-g-2">
@@ -83,7 +85,7 @@
                             </div>
                         </a>
                         <div class="u-g-3">
-                           <%if(data["data"][i].orderStatus ==1){%>  
+                           <%if(data["data"][i].orderStatus ==1 && data["data"][i].isCancel ==0){%>  
                             <a class="gray orderCancel" data-id="<%=data["data"][i]["id"]%>">取消</a>
                             <a href="#">去支付</a>
                            <%}else if(data["data"][i].orderStatus ==3){%>
