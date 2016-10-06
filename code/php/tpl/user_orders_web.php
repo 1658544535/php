@@ -94,9 +94,7 @@
                             <a class="check" data-id="<%=data["data"][i]["id"]%>" data-status="<%=data["data"][i]["orderStatus"]%>">确认收货</a>
                            <%}else if(data["data"][i].orderStatus ==2 &&  data["data"][i].source ==1  && data["data"][i].isSuccess ==1 ){%>
                             <a href="aftersale.php?act=apply&oid=<%=data["data"][i]["id"]%>">申请退款</a>
-                           <%}else if(data["data"][i].orderStatus ==4){%>
-                            <a class="gray" href="logistics.php?oid=<%=data["data"][i]["id"]%>">查看物流</a>
-                            <a href="#">立即评价</a>
+    
                            <%}else if(data["data"][i].orderStatus ==2 &&  data["data"][i].source ==1  && data["data"][i].isSuccess ==0 ){%> 
                             <a class="gray" href="order_detail.php?oid=<%=data["data"][i]["id"]%>">查看</a>
                             <a href="groupon_join.php?aid=<%=data["data"][i]["attendId"]%>">邀请好友拼团</a>
