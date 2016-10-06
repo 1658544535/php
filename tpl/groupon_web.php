@@ -38,7 +38,7 @@
                 <section class="deta-info">
                     <div class="d-i-1">
                         <span class="sales">累积销量：<?php echo $info['proSellrNum'];?>件</span>
-                        ￥<span class="nowPrice"><?php echo $info['producrtPrice'];?></span>
+                        ￥<span class="nowPrice"><?php echo $info['productPrice'];?></span>
                         <span class="oldPrice">￥<?php echo $info['alonePrice'];?></span>
                     </div>
                     <div class="name"><?php echo $info['productName'];?></div>
@@ -100,7 +100,7 @@
 						<?php }else{ ?>
                             <!-- <a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
 							<a class="more" data-href="order_groupon.php" id="btn-groupon" data-ref="groupon">
-								 <p>￥<b><?php echo $info['producrtPrice'];?></b></p>
+								 <p>￥<b><?php echo $info['productPrice'];?></b></p>
 								 <p><?php echo $info['groupNum'];?>人团</p>
 							</a>
 						<?php } ?>
