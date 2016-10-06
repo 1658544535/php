@@ -83,7 +83,7 @@
                 </a>
                 <div class="buy">
 					<?php if($info['productStatus'] == 0){ ?>
-						<a class="one">已下架</a>
+						<a style="background-color:#999">已下架</a>
 						<a class="more" href="/">查看更多</a>
 					<?php }else{ ?>
                         <!-- <a class="one" href="order_alone.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-alone"> -->
