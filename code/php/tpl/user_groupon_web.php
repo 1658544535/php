@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>淘竹马</title>
+    <title><?php echo $site_name;?></title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=0" name="viewport">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -78,13 +78,13 @@
 							<%if(data["data"][i].activityStatus == 1){%>
 								<a class="gray" href="groupon_join.php?aid=<%=data["data"][i].activityId%>">邀请好友拼团</a>
 							<%}else{%>
-								<a class="gray" href="groupon_join.php?id=<%=data["data"][i].activityId%>">查看团详情</a>
+								<a class="gray" href="groupon_join.php?aid=<%=data["data"][i].activityId%>">查看团详情</a>
 							<%}%>
                             <a href="order_detail.php?oid=<%=data["data"][i].orderId%>">查看订单详情</a>
                         </div>
                     </li>
                 <%}%>
-            <%}else{%>
+            <%}else if(data["pageNow"] == 1){%>
                 <div class="tips-null">没有更多拼团</div>
             <%}%>
             </script>
