@@ -1134,15 +1134,21 @@ function apiData($url, $param, $method='get', $exit=false){
 	$method = strtolower($method);
 	!in_array($method, array('get', 'post')) && $method = 'get';
 
+	// 给url参数设置一个sign用于接口验证
+	include_once(LIB_ROOT . 'SetKey.php');
+	$objKey = new SetKey();
+
 	$url = API_URL.((substr(API_URL, -1)=='/') ? '' : '/').$url;
 	if($method == 'get'){
 		$arr = array();
 		foreach($param as $k => $v){
 			$arr[] = $k.'='.$v;
 		}
+		$objKey->getUrlParam(implode('&', $arr));
+		$arr[] = 'sign='.$objKey->getSign();
 		$url .= '?'.implode('&', $arr);
 	}
-if($exit){echo $url;die;}
+	if($exit){echo $url;die;}
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
