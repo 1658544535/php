@@ -83,7 +83,7 @@
                 </a>
                 <div class="buy">
 					<?php if($info['productStatus'] == 0){ ?>
-						<a class="one">下架</a>
+						<a class="one">已下架</a>
 						<a class="more" href="/">查看更多</a>
 					<?php }else{ ?>
                         <!-- <a class="one" href="order_alone.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-alone"> -->
@@ -123,6 +123,7 @@
 			 	setIframeHeight(document.getElementById('proInfo'));
 			 };
 
+			<?php if($info['productStatus'] != 0){ ?>
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
 				var jsonUrlParam = {"id":"<?php echo $grouponId;?>","pid":"<?php echo $info['productId'];?>","skuid":"","num":1};
 
@@ -286,6 +287,7 @@
 				}
 
             });
+			<?php } ?>
         </script>
 
 		<?php if(!empty($skus)){ ?>
