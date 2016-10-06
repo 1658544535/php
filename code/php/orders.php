@@ -34,7 +34,7 @@ switch( $act )
 	case 'address_add':
 //		$_SESSION['order']['addressId']	= CheckDatas('aids', '');
 		$addr = $_COOKIE['orderaddr'];
-		$addr = json_decode($addr, true);
+		$addr = json_decode(urldecode($addr), true);
 		$_SESSION['order']['addressId'] = $addr['id'];
 		$_SESSION['order']['address'] = $addr;
 		unset($_COOKIE['orderaddr']);
