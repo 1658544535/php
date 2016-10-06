@@ -28,7 +28,7 @@
                 <h1 class="title">确认订单</h1>
             </header>
           <div class="content native-scroll" style="bottom:2.75rem;">
-                <?php if($OrderDetail['result']['orderStatus'] ==21){?>
+                <?php if($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==1 && $OrderDetail['result']['source'] ==1){?>
                 <div class="oc-state"><span>拼团成功，等待卖家发货！</span><i class="o-icon o-icon-1"></i></div>
                 <?php }elseif($OrderDetail['result']['orderStatus'] ==1){?>
                 <div class="oc-state"><span>等待买家付款</span><i class="o-icon o-icon-2"></i></div>
@@ -55,22 +55,20 @@
                     </a>
                 </section>
             <section class="freeList proTips-2 oc-pro">
-                    <?php if($OrderDetail['result']['orderStatus'] ==21 && $OrderDetail['result']['source'] ==1){?>
+                    <?php if($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] ==1 && $OrderDetail['result']['isSuccess'] ==1){?>
                     <h3 class="title1">拼团商品<span class="tips">已成团，待发货</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==21){?>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] ==0){?>
                     <h3 class="title1"><span class="tips">待发货</span></h3>
                     <?php }elseif($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['source'] ==1){?>               
                     <h3 class="title1">拼团商品<span class="tips">待支付</span></h3>
-                     <?php }elseif($OrderDetail['result']['orderStatus'] ==1 ){?>
+                     <?php }elseif($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['source'] ==0){?>
                      <h3 class="title1"><span class="tips">待支付</span></h3>
                     <?php }elseif($OrderDetail['result']['orderStatus'] ==3 && $OrderDetail['result']['source'] ==1){?>
                     <h3 class="title1">拼团商品<span class="tips">待收货</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==3 && $OrderDetail['result']['source'] ==0){?>
                     <h3 class="title1"><span class="tips">待收货</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] ==1){?>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] ==1 && $OrderDetail['result']['isSuccess'] ==0){?>
                     <h3 class="title1">拼团商品<span class="tips">拼团中</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==2){?>
-                    <h3 class="title1"><span class="tips">拼团中</span></h3>
                     <?php }elseif($OrderDetail['result']['isCancel'] ==1 && $OrderDetail['result']['source'] ==1){?>
                     <h3 class="title1">拼团商品<span class="tips">交易已取消</span></h3>
                     <?php }elseif($OrderDetail['result']['isCancel'] ==1 ){?>
@@ -105,7 +103,7 @@
                 </section>
 
                 <section class="oc-info">
-                    <div>订单编号：<?php echo $OrderDetail['result']['orderNumber'];?></div>
+                    <div>订单编号：<?php echo $OrderDetail['result']['orderNo'];?></div>
                     
                     <?php if($OrderDetail['result']['paymethod'] ==1){?>
                     <div>支付方式：支付宝</div>
@@ -114,8 +112,8 @@
                     <?php }elseif($OrderDetail['result']['paymethod'] ==3){?>
                     <div>支付方式：货到付款</div>
                     <?php }?>
-                    <div>下单时间：<?php echo $OrderDetail['result']['addtime'];?></div>
-                    <?php if($OrderDetail['result']['orderStatus'] ==21){?>
+                    <div>下单时间：<?php echo $OrderDetail['result']['createTime'];?></div>
+                    <?php if($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] ==1 && $OrderDetail['result']['isSuccess'] ==1){?>
                     <div>成团时间：<?php echo $OrderDetail['result']['groupTime'];?></div>
                     <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
                      <div>成团时间：<?php echo $OrderDetail['result']['groupTime'];?></div>
@@ -124,7 +122,7 @@
                      <div>发货时间：<?php echo $OrderDetail['result']['sendTime'];?></div>
                      <div>成交时间：<?php echo $OrderDetail['result']['confirmTime'];?></div>
                      <div>快递方式：<?php echo $OrderDetail['result']['logisticsName'];?></div>
-                     <div>运动编号：<?php echo $OrderDetail['result']['logisticsNo'];?></div>
+                     <div>运单编号：<?php echo $OrderDetail['result']['logisticsNo'];?></div>
                     <?php }?>
                 </section>
           <?php if($OrderDetail['result']['orderStatus'] ==1){?>
