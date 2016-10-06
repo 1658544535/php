@@ -56,13 +56,16 @@
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li>
                         <div class="u-g-1">
-                            <span class="type">拼团商品</span>
+                             <%if(data["data"][i].source ==3 ){%> 
+                             <span class="type">猜价商品</span>
+                             <%}%>
+                             <span class="type">拼团商品</span>
                              <span class="state">
                                <%if(data["data"][i].orderStatus ==1 && data["data"][i].isCancel ==0 ){%>                                  
                                                                            待支付
-                               <%}else if(data["data"][i].orderStatus ==2 && data["data"][i].source ==1  && data["data"][i].isSuccess ==1){%>
+                               <%}else if(data["data"][i].orderStatus ==2 && data["data"][i].isSuccess ==1 && data["data"][i].source ==1 || data["data"][i].source ==2 ){%>
                                                                            已成团，待发货
-                               <%}else if(data["data"][i].orderStatus ==2 && data["data"][i].source ==0){%>
+                               <%}else if(data["data"][i].orderStatus ==2 && data["data"][i].source !=1 && data["data"][i].source !=2){%>
                                                                             待发货 
                                <%}else if(data["data"][i].orderStatus ==3 ){%>    
                                                                             待收货 
@@ -70,7 +73,7 @@
                                                                              已完成                               
                                <%}else if(data["data"][i].orderStatus ==2 && data["data"][i].source ==1  && data["data"][i].isSuccess ==0){%>
                                                                              拼团中，还差<%=data["data"][i].oweNum %>人
-                               <%}else if(data["data"][i].orderStatus ==1 && data["data"][i].source ==1  && data["data"][i].isCancel ==1){%>
+                               <%}else if(data["data"][i].orderStatus ==1   && data["data"][i].isCancel ==1){%>
                                                                              交易已取消                        
                                <%}%>
                              </span>
