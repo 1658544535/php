@@ -17,6 +17,9 @@ if(!empty($info['waitGroupList'])){
 	}
 }
 
+//是否0元开团
+$isFreeBuy = (($info['activityType'] == 2) && $info['isGroupFree']) ? true : false;
+
 //sku
 $skus = apiData('getProductSkus.do', array('pid'=>$info['productId']));
 $skus = $skus['success'] ? $skus['result'] : array();
