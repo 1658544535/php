@@ -51,7 +51,6 @@
                   <?php }?>
                    <section class="guessDeta-info">
                         <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
-                        
                         <div class="list">
                             <span class="label">距离结束：</span>
                             <div id="downTime" class="downTime" data-timer="<?php echo $seckillTimeDiff;?>"></div>
@@ -100,8 +99,9 @@
                 </div>  
 	            <?php }?>
 	             <div class="more1">
-	                      <a id="guess-join" class="btn" href="/user_binding.php?dir=<?php echo $_SERVER['REQUEST_URI']; ?>" ><span>我要参与</span></a>
+	                      <a  class="btn" href="/user_binding.php?dir=<?php echo $_SERVER['REQUEST_URI']; ?>" ><span>我要参与</span></a>
 	             </div>
+
             </div>
     </div>
 <?php }else{?>
