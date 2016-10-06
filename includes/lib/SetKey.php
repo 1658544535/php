@@ -5,7 +5,7 @@
 	 */
 	class SetKey
 	{
-		private $PublicKey = 'taozhumab2c@corp.com';
+		private $PublicKey = 'taozhumapintuan@corp.com';
 		private $data;
 		private $arrUrlParam;
 

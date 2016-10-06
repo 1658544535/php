@@ -12,9 +12,12 @@ $prevUrl = getPrevUrl();
 $productId = intval($_GET['pid']);
 empty($productId) && redirect($prevUrl);
 
+$num = intval($_GET['num']);
+$num = max(1, $num);
+
 $skuId = intval($_GET['skuid']);
 empty($skuId) && $skuId = '';
-$info = apiData('addPurchase.do', array('activityId'=>0,'num'=>1,'pid'=>$productId,'skuLinkId'=>$skuId,'source'=>4,'uid'=>$userid));
+$info = apiData('addPurchase.do', array('activityId'=>0,'num'=>$num,'pid'=>$productId,'skuLinkId'=>$skuId,'source'=>4,'uid'=>$userid));
 if($info['success']){
 	$info = $info['result'];
 }else{
