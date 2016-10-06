@@ -152,6 +152,18 @@
                             <div class="price"><?php echo $ObjGrouponInfo['result']['minPrice'] ;?>-<?php echo $ObjGrouponInfo['result']['maxPrice'] ;?></div>
                         </div>
                     </section>
+             <?php }elseif($ObjGrouponInfo['result']['isStart']  ==1 && $ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==0 ){?>
+                    <section class="guessDeta-info">
+                        <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
+                        <div class="list">
+                            <span class="label">距离结束：</span>
+                            <div id="downTime" class="downTime" data-timer="<?php echo $seckillTimeDiff;?>"></div>
+                        </div>
+                        <div class="list">
+                            <span class="label">价格区间：</span>
+                            <div class="price"><?php echo $ObjGrouponInfo['result']['minPrice'] ;?>-<?php echo $ObjGrouponInfo['result']['maxPrice'] ;?></div>
+                        </div>
+                    </section>
               <?php }elseif($ObjGrouponInfo['result']['isStart']  ==2  && $ObjGrouponInfo['result']['isJoin']  ==0){?>         
                      
                      <section class="guessDeta-info center">
