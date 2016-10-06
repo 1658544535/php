@@ -58,7 +58,7 @@
 
 				<?php if($info['isGroupFree']){ ?>
                 <section class="user-coupon-show">
-                    <div class="freeCoupon">
+                    <div class="freeCoupon" id="free-coupon">
                         <div class="info">
                             <div class="name">团长免单券 <span>(团长免费开团)</span></div>
                             <div class="tips">点击选择团免商品</div>
@@ -67,6 +67,13 @@
                         <div class="price"><div>￥<span>0</span></div></div>
                     </div>
                 </section>
+				<script type="text/javascript">
+				$(function(){
+					$("#free-coupon").on("click", function(){
+						window.location.href = "groupon_free.php";
+					});
+				});
+				</script>
 				<?php } ?>
 
                 <section class="user-list">
