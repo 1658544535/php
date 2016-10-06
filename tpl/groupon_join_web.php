@@ -19,7 +19,17 @@
                 <a class="button button-link button-nav pull-left back" href="javascript:history.back(-1);">
                     <span class="icon icon-back"></span>
                 </a>
-                <h1 class="title">组团成功</h1>
+                <h1 class="title">
+					<?php if(($info['endDateline'] > $time) && ($info['groupNum'] > $info['joinNum'])){ ?>
+						我要组团
+					<?php }elseif($info['endDateline'] < $time){ ?>
+						<?php if($info['groupNum'] > $info['joinNum']){ ?>
+							组团失败
+						<?php }else{ ?>
+							组团成功
+						<?php } ?>
+					<?php } ?>
+				</h1>
             </header>
 
             <div class="content native-scroll">
@@ -78,6 +88,17 @@
                         <span>参团小伙伴</span>
                     </div>
                     <ul class="list">
+						<?php foreach($info['groupUserList'] as $v){ ?>
+							<li>
+								<div class="img"><img src="<?php echo $v['userImage'];?>" /></div>
+								<div class="name">
+									<?php if($v['isHead']){ ?><span>团长</span><?php } ?>
+									<p><?php echo $v['userName'];?></p>
+								</div>
+								<div class="time"><?php echo $v['joinTime'];?></div>
+							</li>
+						<?php } ?>
+
 						<?php if($info['endDateline'] > $time){ ?>
 							<li class="join">
 								<div class="img"></div>
@@ -88,17 +109,6 @@
 								<li class="fail">
 									<div class="tips">组团时间到，未召集到相应人数的小伙伴！</div>
 								</li>
-							<?php }else{ ?>
-								<?php foreach($joiners as $v){ ?>
-									<li>
-										<div class="img"><img src="<?php echo $v->image;?>" /></div>
-										<div class="name">
-											<?php if($v->is_head){ ?><span>团长</span><?php } ?>
-											<p><?php echo $v->uname;?></p>
-										</div>
-										<div class="time"><?php echo $v->attend_time;?></div>
-									</li>
-								<?php } ?>
 							<?php } ?>
 						<?php } ?>
 						

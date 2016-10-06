@@ -83,7 +83,7 @@
                         </a></li>
                     <%}%>
                 <%}else{%>
-                    <div class="tips-null">暂无商品</div>
+                    <div class="tips-null">没有更多商品</div>
                 <%}%>
             </script>
 
@@ -102,7 +102,7 @@
                         </a></li>
                     <%}%>
                 <%}else{%>
-                    <div class="tips-null">暂无商品</div>
+                    <div class="tips-null">没有更多商品</div>
                 <%}%>
             </script>
 
