@@ -105,7 +105,7 @@
                        </div>
                     </li>
                 <%}%>
-            <%}else{%>
+            <%}else if(data["pageNow"] == 1){%>
                 <li class="null"></li>
             <%}%>
             </script>
