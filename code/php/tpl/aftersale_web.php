@@ -25,7 +25,7 @@
                 <a class="button button-link button-nav pull-left back" href="javascript:history.back(-1);">
                     <span class="icon icon-back"></span>
                 </a>
-                <h1 class="title">我的订单</h1>
+                <h1 class="title">售后列表</h1>
             </header>
 
             <div class="content native-scroll">

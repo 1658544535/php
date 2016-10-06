@@ -47,7 +47,7 @@
                         </a></li>
                         <li><a href="user_orders.php?type=4">
                             <span><?php echo $info['waitComNum'];?></span>
-                            <p>待评价</p>
+                            <p>已完成</p>
                         </a></li>
                         <li><a href="aftersale.php">
                             <span><?php echo $info['saleSerNum'];?></span>

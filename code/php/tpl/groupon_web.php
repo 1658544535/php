@@ -306,7 +306,7 @@
 							<?php if($_sku['skuType'] == 1){ ?>
 								颜色
 							<?php }elseif($_sku['skuType'] == 2){ ?>
-								规则
+								套餐类型
 							<?php } ?>
 						</h4>
 						<div class="list"></div>
