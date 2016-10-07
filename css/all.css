@@ -1361,7 +1361,7 @@
 }
 .guessJoinList ul li .name {
   position: absolute;
-  width: 30%;
+  width: 25%;
   left: 0;
   top: 55%;
   -webkit-transform: translateY(-50%);
@@ -1374,8 +1374,8 @@
 }
 .guessJoinList ul li .price {
   position: absolute;
-  width: 30%;
-  left: 30%;
+  width: 40%;
+  left: 25%;
   top: 55%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -1392,8 +1392,8 @@
 }
 .guessJoinList ul li .time {
   position: absolute;
-  width: 40%;
-  left: 60%;
+  width: 35%;
+  right: 0;
   top: 55%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
