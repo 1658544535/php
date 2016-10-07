@@ -399,6 +399,21 @@
                 <a id="guess-price" href="javascript:;" class="go">立即前往</a>
             </div>
         </div>
+
+        <div class="popup popup-guessCoupon">
+            <div>
+                <a href="#" class="close-popup"></a>
+                <div class="bg-top"></div>
+                <div class="main">
+                    <h3 class="title1">恭喜您获取<span class="themeColor">N元</span>抵扣券</h3>
+                    <div class="tips1">本抵扣券用于购买此商品，请点击进行购买</div>
+                    <div class="tips2">注意：本券有效期为24小时</div>
+                    <a href="#" class="go">立即前往</a>
+                </div>
+                <div class="bg-footer"></div>
+            </div>
+        </div>
+        
     </div>
    <?php }?> 
 </body>
