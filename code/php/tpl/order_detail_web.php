@@ -153,9 +153,9 @@
             	<?php if($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
                     <!-- <a class="one" id="orderCancel"> href="order_detail.php?act=cancel&oid=<?php echo $OrderDetail['result']['orderId'] ;?>">取消订单</a> -->
                     <a class="btn" id="orderCancel">取消订单</a>
-                    <a class="btn" href="#">去支付</a>
+                    <a class="btn" href="javascript:;">去支付</a>
               <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
-                    <a class="btn" href="#" >延长收货</a>
+                    <a class="btn" href="javascript:;" >延长收货</a>
                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderId'];?>" class="btn gray">查看物流</a>
                     <a id="check" class="btn" data-id="<?php echo $OrderDetail['result']['orderId'] ;?>" data-status="<?php echo $OrderDetail['result']['orderStatus']  ;?>">确认收货</a>
              <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
