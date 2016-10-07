@@ -56,9 +56,6 @@
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li>
                         <div class="u-g-1">
-                             <%if(data["data"][i].source ==3 ){%> 
-                             <span class="type">猜价商品</span>
-                             <%}%>
                              <span class="type">拼团商品</span>
                              <span class="state">
                                <%if(data["data"][i].orderStatus ==1 && data["data"][i].isCancel ==0 ){%>                                  
