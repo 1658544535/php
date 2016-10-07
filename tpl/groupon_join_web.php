@@ -20,47 +20,54 @@
                     <span class="icon icon-back"></span>
                 </a>
                 <h1 class="title">
-					<?php if(($info['endDateline'] > $time) && ($info['groupNum'] > $info['joinNum'])){ ?>
-						我要组团
-					<?php }elseif($info['endDateline'] < $time){ ?>
-						<?php if($info['groupNum'] > $info['joinNum']){ ?>
-							组团失败
-						<?php }else{ ?>
-							组团成功
-						<?php } ?>
-					<?php } ?>
+					<?php $pageHeadTitles = array(0=>'我要组团', 1=>'组团成功', 2=>'组团失败'); ?>
+					<?php echo $pageHeadTitles[$info['status']];?>
 				</h1>
             </header>
 
             <div class="content native-scroll">
-				<?php if(($info['endDateline'] > $time) && ($info['groupNum'] > $info['joinNum'])){ ?>
-					<section class="proTips-1">
-						<div class="img"><img src="" /></div>
-						<div class="info">
-							<div class="txt1">您终于来了，快参团吧！</div>
-							<div class="txt2">已有<?php echo $info['joinNum'];?>人参团，还差<?php echo $info['groupNum'] - $info['joinNum'];?>人，赶快分享召集小伙伴组团啦.</div>
-						</div>
-					</section>
-				<?php }elseif($info['endDateline'] < $time){ ?>
-					<?php if($info['groupNum'] > $info['joinNum']){ ?>
-						<section class="proTips-1">
+				<section class="proTips-1">
+					<?php switch($info['status']){
+						case 0: ?>
+							<?php if($info['userIsHead'] == 1){ ?>
+								<div class="img"><img src="" /></div>
+								<div class="info">
+									<div class="txt1">恭喜您，开团成功</div>
+									<div class="txt2">还差<?php echo $info['groupNum'] - $info['joinNum'];?>人，赶快分享召集小伙伴组团啦！</div>
+								</div>
+							<?php }elseif($info['isGroup'] == 0){ ?>
+								<div class="img"><img src="" /></div>
+								<div class="info">
+									<div class="txt1">您终于来了，快参团吧！</div>
+									<div class="txt2">已有<?php echo $info['joinNum'];?>人参团，还差<?php echo $info['groupNum'] - $info['joinNum'];?>人，赶快分享召集小伙伴组团啦！</div>
+								</div>
+							<?php } ?>
+						<?php break; ?>
+						<?php case 1: ?>
+							<?php if($info['isGroup'] == 1){ ?>
+								<div class="img"><img src="" /></div>
+								<div class="info">
+									<div class="txt1">恭喜您，参团成功</div>
+									<div class="txt2">小伙伴已集结完毕，商品会尽快向各位发货，请耐心等待</div>
+								</div>
+							<?php }else{ ?>
+								<div class="img"><img src="" /></div>
+								<div class="info">
+									<div class="txt1">您来晚了，已经成团</div>
+									<div class="txt2">赶紧点击“我要开团”，疯抢起来吧！</div>
+								</div>
+							<?php } ?>
+						<?php break; ?>
+						<?php case 2: ?>
 							<div class="img"><img src="" /></div>
 							<div class="info">
-								<div class="txt1">很遗憾，组团失败！</div>
-								<div class="txt2">拼团期内未达到成团人数，系统会在1-2个工作日内，按原路自动退款至各位成员.</div>
+								<div class="txt1">很遗憾，组团失败</div>
+								<div class="txt2">拼团期内未达到成团人数，系统会在1-2个工作日内，按原路自动退款至各位成员。</div>
 							</div>
-						</section>
-					<?php }else{ ?>
-						<section class="proTips-1">
-							<div class="img"><img src="" /></div>
-							<div class="info">
-								<div class="txt1">恭喜你，参团成功！</div>
-								<div class="txt2">小伙伴已集结完毕，商品会尽快向各位发货，请耐心等待.</div>
-							</div>
-						</section>
+						<?php break; ?>
 					<?php } ?>
-				<?php } ?>
-
+				</section>
+	
                 <section class="freeList proTips-2">
                     <h3 class="title1">拼团商品</h3>
                     <ul class="list-container">
@@ -80,10 +87,13 @@
                 
                 <section class="proTips-3">
                     <div class="title1">
-						<?php if($info['endDateline'] > $time){ ?>
-							<p class="time">本团将于<span id="downTime" data-timer="<?php echo $info['remainSec'];?>"></span>结束</p>
-						<?php }elseif($info['endDateline'] < $time){ ?>
-							<p class="time">本团已结束</p>
+						<?php switch($info['status']){
+							case 0: ?>
+								<p class="time">本团将于<span id="downTime" data-timer="<?php echo $info['remainSec'];?>"></span>结束</p>
+							<?php break; ?>
+							<?php case 2: ?>
+								<p class="time">本团已结束</p>
+							<?php break; ?>
 						<?php } ?>
                         <span>参团小伙伴</span>
                     </div>
@@ -98,20 +108,22 @@
 								<div class="time"><?php echo $v['joinTime'];?></div>
 							</li>
 						<?php } ?>
-
-						<?php if($info['endDateline'] > $time){ ?>
-							<li class="join">
-								<div class="img"></div>
-								<div class="tips">已有<?php echo $info['joinNum'];?>人参团，还差<?php echo $info['groupNum']-$info['joinNum'];?>人，快加入我们吧！</div>
-							</li>
-						<?php }else{ ?>
-							<?php if($info['joinNum'] < $info['groupNum']){ ?>
+						<?php switch($info['status']){
+							case 0: ?>
+								已有2人参团，还差1人，快加入我们吧！
+								<li class="join">
+									<div class="img"></div>
+									<div class="tips">
+										已有<?php echo $info['joinNum'];?>人参团，还差<?php echo $info['groupNum']-$info['joinNum'];?>人，快加入我们吧！
+									</div>
+								</li>
+							<?php break; ?>
+							<?php case 2: ?>
 								<li class="fail">
 									<div class="tips">组团时间到，未召集到相应人数的小伙伴！</div>
 								</li>
-							<?php } ?>
+							<?php break; ?>
 						<?php } ?>
-						
                     </ul>   
                 </section>
 
@@ -121,46 +133,53 @@
                 </section>
 
 				<section class="proTips-5">
-					<?php if($info['endDateline'] > $time){ ?>
-						<?php if($info['isGroup'] == 1){ ?>
+					<?php switch($info['status']){
+						case 0: ?>
+							<?php if($info['userIsHead'] == 1){ ?>
+								<a href="/">
+									<div class="info">
+										<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
+										￥<span class="price1"><?php echo $info['groupPrice'];?></span>
+									</div>
+									<span class="btn">更多拼团 ></span>
+								</a>
+							<?php }elseif($info['isGroup'] == 0){ ?>
+								<a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>">
+									<div class="info">
+										<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
+										￥<span class="price1"><?php echo $info['groupPrice'];?></span>
+									</div>
+									<span class="btn">我要拼团 ></span>
+								</a>
+							<?php } ?>
+						<?php break; ?>
+						<?php case 1: ?>
+							<?php if($info['isGroup'] == 1){ ?>
+								<a href="/">
+									<div class="info">
+										<?php echo $info['groupNum'];?>人召集完毕&nbsp;&nbsp;
+										￥<span class="price1"><?php echo $info['groupPrice'];?></span>
+									</div>
+									<span class="btn">更多拼团 ></span>
+								</a>
+							<?php }else{ ?>
+								<a href="/">
+									<div class="info">
+										马上开团
+									</div>
+									<span class="btn">更多拼团 ></span>
+								</a>
+							<?php } ?>
+						<?php break; ?>
+						<?php case 2: ?>
 							<a href="/">
 								<div class="info">
 									<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
-									￥<span class="price1"><?php echo $info['groupPrice'];?></span>&nbsp;
-									<span class="price2">￥<?php echo $info['alonePrice'];?></span>    
-								</div>
-								<span class="btn">更多拼团 ></span>
-							</a>
-						<?php }else{ ?>
-							<a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>">
-								<div class="info">
-									<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
-									￥<span class="price1"><?php echo $info['groupPrice'];?></span>&nbsp;
-									<span class="price2">￥<?php echo $info['alonePrice'];?></span>
-								</div>
-								<span class="btn">我要拼团 ></span>
-							</a>
-						<?php } ?>
-					<?php }else{ ?>
-						<?php if($info['joinNum'] < $info['groupNum']){ ?>
-							<a href="/">
-								<div class="info">
-									<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
-									￥<span class="price1"><?php echo $info['groupPrice'];?></span>&nbsp;
-									<span class="price2">￥<?php echo $info['alonePrice'];?></span>    
-								</div>
-								<span class="btn">更多拼团 ></span>
-							</a>
-						<?php }else{ ?>
-							<a href="/">
-								<div class="info">
-									<span class="late">来晚了</span>
-									<?php echo $groupon['num'];?>人召集完毕&nbsp;
 									￥<span class="price1"><?php echo $info['groupPrice'];?></span>
 								</div>
 								<span class="btn">更多拼团 ></span>
 							</a>
-						<?php } ?>
+						<?php break; ?>
 					<?php } ?>
 				</section>
             </div>
