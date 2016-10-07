@@ -111,7 +111,7 @@
 		           $(document).on("click", ".orderCancel", function(){
 						var _this = $(this);
 	                	$.confirm("是否取消订单？", function(){
-		                    $.post("user_orders.php",{act: "cancel", _this:$(this).attr("data-id")},function(req){
+		                    $.post("user_orders.php",{act: "cancel", oid: _this.attr("data-id")},function(req){
 		                    	req =  eval("(" + req + ")");;
 		                        $.toast(req.data.data.error_msg);
 								location.href=document.location;

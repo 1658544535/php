@@ -31,7 +31,11 @@
 						</div>
                     </div>
                     <div class="name"><?php echo $info['name']; ?></div>
-					    <?php if($info['waitPayNum'] > 0){ ?><div class="orderTips">还有<a class="themeColor" href="user_orders.php?type=1"><?php echo $info['waitPayNum'];?>个订单</a>未付款 ></div><?php } ?>
+                    <div class="orderTips">
+                    <?php if($info['waitPayNum'] > 0){ ?>
+                        还有<a class="themeColor" href="user_orders.php?type=1"><?php echo $info['waitPayNum'];?>个订单</a>未付款 >
+                    <?php } ?>
+                    </div>
                     <ul class="orderTab">
                         <li><a href="user_orders.php?type=2">
                             <span><?php echo $info['groupingNum'];?></span>
