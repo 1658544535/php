@@ -88,14 +88,14 @@
                     <div class="option">
 
                        <?php if($OrderDetail['result']['orderStatus'] ==2 ){?>
-                          <a href="groupon.php?id=<?php echo $OrderDetail['result']['activityId']; ?>" class="gray">查看团详情</a>
+                          <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
                        <?php }elseif($OrderDetail['result']['orderStatus'] ==21){?>
-                          <a href="groupon.php?id=<?php echo $OrderDetail['result']['activityId']; ?>" class="gray">查看团详情</a>
+                          <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
                       <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>                  
-                           <a href="groupon.php?id=<?php echo $OrderDetail['result']['activityId']; ?>" class="gray">查看团详情</a>
+                           <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
                            <a href="aftersale.php?act=apply&oid=<?php echo $OrderDetail['result']['orderId'];?>">申请退款</a>
                       <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
-						    <a href="groupon.php?id=<?php echo $OrderDetail['result']['activityId']; ?>" class="gray">查看团详情</a>
+						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
 				      <?php }?>
                     </div>
                 </section>
