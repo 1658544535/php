@@ -76,9 +76,9 @@
                         </a>
                         <div class="u-g-3">
 							<%if(data["data"][i].activityStatus == 1){%>
-								<a class="gray" href="groupon_join.php?aid=<%=data["data"][i].activityId%>">邀请好友拼团</a>
+								<a class="gray" href="groupon_join.php?aid=<%=data["data"][i].groupRecId%>">邀请好友拼团</a>
 							<%}else{%>
-								<a class="gray" href="groupon_join.php?aid=<%=data["data"][i].activityId%>">查看团详情</a>
+								<a class="gray" href="groupon_join.php?aid=<%=data["data"][i].groupRecId%>">查看团详情</a>
 							<%}%>
                             <a href="order_detail.php?oid=<%=data["data"][i].orderId%>">查看订单详情</a>
                         </div>
