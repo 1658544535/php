@@ -111,7 +111,7 @@
                     <div>支付方式：货到付款</div>
                     <?php }?>
                     <div>下单时间：<?php echo $OrderDetail['result']['createTime'];?></div>
-                    <?php if($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] ==1 && $OrderDetail['result']['isSuccess'] ==1){?>
+                    <?php if($OrderDetail['result']['orderStatus'] ==2  && $OrderDetail['result']['isSuccess'] ==1){?>
                     <div>成团时间：<?php echo $OrderDetail['result']['groupTime'];?></div>
                     <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
                      <div>成团时间：<?php echo $OrderDetail['result']['groupTime'];?></div>
