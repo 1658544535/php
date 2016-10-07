@@ -88,7 +88,7 @@
                         </div>
                     </li>
                 <%}%>
-            <%}else{%>
+            <%}else if(data["pageNow"] == 1){%>
                 <div class="tips-null">暂无猜价</div>
             <%}%>
             </script>
