@@ -70,7 +70,7 @@
                                 <div class="name"><?php echo $info['productName'];?></div>
                                 <div class="price">
                                     <div class="btn">商品详情</div>
-                                    拼团价：<span class="price1"><?php echo $info['groupPrice'];?></span>
+                                    拼团价：<span class="price1">￥<?php echo $info['groupPrice'];?></span>
                                     <span class="price2">￥<?php echo $info['alonePrice'];?></span>
                                 </div>
                             </div>
@@ -120,20 +120,9 @@
                     <div><img src="images/deta-tips2.png" /></div>
                 </section>
 
-				<?php if($info['endDateline'] > $time){ ?>
-					<section class="proTips-5">
-						<a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>">
-							<div class="info">
-								<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
-								￥<span class="price1"><?php echo $info['groupPrice'];?></span>&nbsp;
-								<span class="price2">￥<?php echo $info['alonePrice'];?></span>
-							</div>
-							<span class="btn">我要拼团 ></span>
-						</a>
-					</section>
-				<?php }else{ ?>
-					<?php if($info['joinNum'] < $info['groupNum']){ ?>
-						<section class="proTips-5">
+				<section class="proTips-5">
+					<?php if($info['endDateline'] > $time){ ?>
+						<?php if($info['isGroup'] == 1){ ?>
 							<a href="/">
 								<div class="info">
 									<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
@@ -142,9 +131,27 @@
 								</div>
 								<span class="btn">更多拼团 ></span>
 							</a>
-						</section>
+						<?php }else{ ?>
+							<a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>">
+								<div class="info">
+									<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
+									￥<span class="price1"><?php echo $info['groupPrice'];?></span>&nbsp;
+									<span class="price2">￥<?php echo $info['alonePrice'];?></span>
+								</div>
+								<span class="btn">我要拼团 ></span>
+							</a>
+						<?php } ?>
 					<?php }else{ ?>
-						<section class="proTips-5">
+						<?php if($info['joinNum'] < $info['groupNum']){ ?>
+							<a href="/">
+								<div class="info">
+									<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
+									￥<span class="price1"><?php echo $info['groupPrice'];?></span>&nbsp;
+									<span class="price2">￥<?php echo $info['alonePrice'];?></span>    
+								</div>
+								<span class="btn">更多拼团 ></span>
+							</a>
+						<?php }else{ ?>
 							<a href="/">
 								<div class="info">
 									<span class="late">来晚了</span>
@@ -153,9 +160,9 @@
 								</div>
 								<span class="btn">更多拼团 ></span>
 							</a>
-						</section>
+						<?php } ?>
 					<?php } ?>
-				<?php } ?>
+				</section>
             </div>
 
         </div>
