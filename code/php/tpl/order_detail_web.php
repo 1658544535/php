@@ -40,13 +40,13 @@
                 <?php }?>
             </header>
           <div class="content native-scroll" style="bottom:2.75rem;">
-                <?php if($OrderDetail['result']['orderStatus'] ==2 ){?>
+                <?php if($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==1){?>
                 <div class="oc-state"><span>拼团成功，等待卖家发货！</span><i class="o-icon o-icon-1"></i></div>
                 <?php }elseif($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
                 <div class="oc-state"><span>等待买家付款</span><i class="o-icon o-icon-2"></i></div>
                 <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
                 <div class="oc-state"><span>卖家已发货，还剩 N 小时自动确认</span><i class="o-icon o-icon-3"></i></div>
-                <?php }elseif($OrderDetail['result']['orderStatus'] ==2){?>
+                <?php }elseif($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==0){?>
                 <div class="oc-state"><span>拼团还未成功，赶快召唤小伙伴！</span><i class="o-icon o-icon-4"></i></div>
                 <?php }elseif($OrderDetail['result']['isCancel'] ==1 && $OrderDetail['result']['orderStatus'] ==1 ){?>
                  <div class="oc-state"><span>交易已取消</span><i class="o-icon o-icon-5"></i></div>
@@ -63,33 +63,17 @@
                     </a>
                 </section>
             <section class="freeList proTips-2 oc-pro">
-                    <?php if($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] ==1 && $OrderDetail['result']['isSuccess'] ==1){?>
+                    <?php if($OrderDetail['result']['orderStatus'] ==2  && $OrderDetail['result']['isSuccess'] ==1){?>
                     <h3 class="title1">拼团商品<span class="tips">已成团，待发货</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] ==0){?>
-                    <h3 class="title1">拼团商品<span class="tips">待发货</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] ==3){?>
-                    <h3 class="title1">拼团商品<span class="tips">待发货</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['source'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>               
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==1  && $OrderDetail['result']['isCancel'] ==0){?>               
                     <h3 class="title1">拼团商品<span class="tips">待支付</span></h3>
-                     <?php }elseif($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['source'] ==0){?>
-                     <h3 class="title1">拼团商品<span class="tips">待支付</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==3 && $OrderDetail['result']['source'] ==1){?>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==3 ){?>
                     <h3 class="title1">拼团商品<span class="tips">待收货</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==3 && $OrderDetail['result']['source'] ==0){?>
-                    <h3 class="title1">拼团商品<span class="tips">待收货</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==3 && $OrderDetail['result']['source'] ==3){?>
-                    <h3 class="title1">拼团商品<span class="tips">待收货</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] ==1 && $OrderDetail['result']['isSuccess'] ==0){?>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==2  && $OrderDetail['result']['isSuccess'] ==0){?>
                     <h3 class="title1">拼团商品<span class="tips">拼团中</span></h3>
-                    <?php }elseif($OrderDetail['result']['isCancel'] ==1 && $OrderDetail['result']['source'] ==1){?>
-                    <h3 class="title1">拼团商品<span class="tips">交易已取消</span></h3>
                     <?php }elseif($OrderDetail['result']['isCancel'] ==1 ){?>
                     <h3 class="title1">拼团商品<span class="tips">交易已取消</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==4 && $OrderDetail['result']['source'] ==1){?>
-                    <h3 class="title1">拼团商品<span class="tips">交易成功</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==4 && $OrderDetail['result']['source'] ==0){?>
-                    <h3 class="title1">拼团商品<span class="tips">交易成功</span></h3>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==3 && $OrderDetail['result']['source'] ==3){?>
+                    <?php }elseif($OrderDetail['result']['orderStatus'] ==4 ){?>
                     <h3 class="title1">拼团商品<span class="tips">交易成功</span></h3>
                     <?php }?>
                     <ul class="list-container">
