@@ -32,9 +32,9 @@
 
                 <section class="user-tab user-tab3" data-href="ajaxtpl/ajax_user_coupon_new.php">
                     <ul>
-                        <li data-type="1"><a href="javascript:;">未使用（<?php if($coupon['result']['notUsedNum'] !=''){ echo $coupon['result']['notUsedNum'];}else{ echo 0; } ?>）</a></li>
-                        <li data-type="2"><a href="javascript:;">已过期（<?php if($coupon['result']['overdueNum'] !=''){echo $coupon['result']['overdueNum'];}else{ echo 0; } ?>）</a></li>
-                        <li data-type="3"><a href="javascript:;">已使用（<?php if($coupon['result']['usedNum'] !=''){echo $coupon['result']['usedNum'];}else{ echo 0;} ?>）</a></li>
+                        <li data-type="1"><a href="javascript:;">未使用（<?php echo $coupon['result']['notUsedNum'] ;?>）</a></li>
+                        <li data-type="2"><a href="javascript:;">已过期（<?php echo $coupon['result']['overdueNum'];?>）</a></li>
+                        <li data-type="3"><a href="javascript:;">已使用（<?php echo $coupon['result']['usedNum']; ?>）</a></li>
                     </ul>
                 </section>
 
@@ -52,14 +52,21 @@
             <%if(data["data"].length>0){%>
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li>
+						<%if(data["data"][i]["used"]==0){%>
+                        <div class="freeCoupon invalid">
+						<%}else{%>
                         <div class="freeCoupon">
+						<%}%>
                             <div class="info">
-                                <div class="name"><%=data["data"][0]["couponList"][i]["couponName"]%><span>(团长免费开团)</span></div>
+                                <div class="name"><%=data["data"][i]["couponName"]%></div>
                                 <div class="tips">点击选择团免商品</div>
-                                <div class="time">有效期: <%=data["data"][0]["couponList"][i]["validStime"]%>-<%=data["data"][0]["couponList"][i]["validEtime"]%></div>
+                                <div class="time">有效期: <%=data["data"][i]["validStime"]%>-<%=data["data"][i]["validEtime"]%></div>
                             </div>
                             <div class="price"><div>￥<span>0</span></div></div>
-                            <div class="overdue"><!--已过期--></div>
+
+							<%if(data["data"][i]["overdue"]==1){%>
+                        	<div class="overdue"><!--已过期--></div>
+							<%}%>
                         </div>
                     </li>
                 <%}%>
