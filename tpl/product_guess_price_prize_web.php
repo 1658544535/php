@@ -33,7 +33,7 @@
 
             <div class="content native-scroll">
 
-                <div class="freeList-tips">共有<span class="themeColor"><?php echo $num['result'][0]['joinNum'];?>位</span>用户参与此活动</div>
+                <div class="freeList-tips">共有<span class="themeColor"><?php echo $num['result']['joinNum'];?>位</span>用户参与此活动</div>
 
                 <div class="guessTab" data-href="ajaxtpl/ajax_product_guess_price.php?act=prize&gid=<?php echo $gId;?>">
                     <ul>
