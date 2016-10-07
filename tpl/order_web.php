@@ -45,8 +45,18 @@
 						</a>
 					</section>
 
+					<?php
+					if($_SESSION['order']['type'] == 'guess'){
+						$tipTitle = '拼团商品';
+						$tipPrice = '拼团价';
+					}else{
+						$tipTitle = '拼团商品';
+						$tipPrice = '拼团价';
+					}
+					?>
+
 					<section class="freeList proTips-2 oc-pro">
-						<h3 class="title1">拼团商品</h3>
+						<h3 class="title1"><?php echo $tipTitle;?></h3>
 						<ul class="list-container">
 							<li><a href="groupon.php?id=<?php echo $grouponId;?>">
 								<div class="img"><img src="<?php echo $info['products']['productImage'];?>"></div>
@@ -54,7 +64,7 @@
 									<div class="name"><?php echo $info['products']['productName'];?></div>
 									<div class="price">
 										<div class="btn">商品详情</div>
-										拼团价：<span class="price1" id="price"><?php echo $info['products']['price'];?></span>
+										<?php echo $tipPrice;?>：<span class="price1" id="price"><?php echo $info['products']['price'];?></span>
 										<span class="price2">￥<?php echo $info['products']['sellingPrice'];?></span>
 									</div>
 								</div>
