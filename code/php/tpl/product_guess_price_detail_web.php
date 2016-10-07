@@ -358,10 +358,9 @@
                         $.popup('.popup-join');
                     });
                     $(".popup-join input.big").on("keyup", function(){
-                        var _v = $(this).val();
-                        console.log(_v);
-                    	var val = ((_v == "") || isNaN(_v)) ? 0 :_v;
-                    	$(this).val(parseInt(val));
+                        var val = $(this).val();
+                        val = val.replace(/[^\d]/g,'');
+                        $(this).val(val);
                     });
                     $(".popup-join input.small").on("keyup", function(){
                     	var val = $(this).val();
