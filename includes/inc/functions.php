@@ -1148,7 +1148,7 @@ function apiData($url, $param, $method='get', $exit=false){
 		$arr[] = 'sign='.$objKey->getSign();
 		$url .= '?'.implode('&', $arr);
 	}
-	if($exit){echo $url;die;}
+	
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -1161,6 +1161,10 @@ function apiData($url, $param, $method='get', $exit=false){
 	curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
 	$data = curl_exec($ch);
 	curl_close($ch);
+	if($exit){
+		echo $url;
+		PD(json_decode($data, true));
+	}
 	return json_decode($data, true);
 }
 
