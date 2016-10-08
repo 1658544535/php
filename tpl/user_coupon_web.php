@@ -52,10 +52,10 @@
             <%if(data["data"].length>0){%>
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li>
-						<%if(data["data"][i]["used"]==0){%>
-                        <div class="freeCoupon invalid">
+						<%if(data["data"][i]["used"]==0 &&　data["data"][i]["overdue"]==0){%>
+                        <div class="freeCoupon ">
 						<%}else{%>
-                        <div class="freeCoupon">
+                        <div class="freeCoupon invalid">
 						<%}%>
                             <div class="info">
                                 <div class="name"><%=data["data"][i]["couponName"]%></div>
