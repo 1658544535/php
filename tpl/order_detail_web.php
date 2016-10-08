@@ -105,7 +105,9 @@
                           <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
                       <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>                  
                            <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
+                           <?php if($OrderRefund['result'] ==''){?>
                            <a href="aftersale.php?act=apply&oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>">申请退款</a>
+                           <?php }?>
                       <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
 					  <?php }elseif($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['refundStatus'] ==2){?>
