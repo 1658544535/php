@@ -84,6 +84,12 @@
 						<div class="subTotal">合计：<font class="themeColor">￥<span class="price" id="totol-amount"><?php echo $info['sumPrice'];?></span></font>（全场包邮）</div>
 					</section>
 
+	                <section class="oc-coupon">
+	                    <div>使用优惠券：</div>
+	                    <div>券码<b id="coupon-number">123456789</b></div>
+	                    <span class="price">优惠<b id="coupon-price">1</b>元</span>
+	                </section>
+
 					<section class="oc-pay">
 						<ul class="list">
 							<li>
@@ -102,11 +108,49 @@
 					<input type="submit" value="立即支付" class="btn<?php if(!$canDispatch){ ?> gray<?php } ?>" />
 				</div>
 			</div>
+	        <div class="popup popup-oc-coupon">
+	            <div>
+	                <a href="#" class="close-popup"></a>
+	                <ul>
+	                    <li>
+	                        <div class="freeCoupon" data-number="123456789" data-price="10">
+	                            <div class="info">
+	                                <div class="name">团长免单券 <span>(团长免费开团)</span></div>
+	                                <div class="tips">点击选择团免商品</div>
+	                                <div class="time">有效期: 2016.9.15-2016.9.22</div>
+	                            </div>
+	                            <div class="price"><div>￥<span>10</span></div></div>
+	                        </div>
+	                    </li>
+	                    <li>
+	                        <div class="freeCoupon" data-number="987654321" data-price="20">
+	                            <div class="info">
+	                                <div class="name">团长免单券 <span>(团长免费开团)</span></div>
+	                                <div class="tips">点击选择团免商品</div>
+	                                <div class="time">有效期: 2016.9.15-2016.9.22</div>
+	                            </div>
+	                            <div class="price"><div>￥<span>20</span></div></div>
+	                        </div>
+	                    </li>
+	                    <li>
+	                        <div class="freeCoupon" data-number="456789123" data-price="30">
+	                            <div class="info">
+	                                <div class="name">团长免单券 <span>(团长免费开团)</span></div>
+	                                <div class="tips">点击选择团免商品</div>
+	                                <div class="time">有效期: 2016.9.15-2016.9.22</div>
+	                            </div>
+	                            <div class="price"><div>￥<span>30</span></div></div>
+	                        </div>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
 		</div>
 	</form>
 
 	<script type="text/javascript">
 	$(document).on("pageInit", "#page-orderCofirm", function(e, pageId, page) {
+		priceTotal();
     	//数量增减
     	$(".quantity .minus").on("click", function(){
     		var num = parseInt($(this).next().val());
@@ -122,11 +166,29 @@
     		$(this).prev().val(++num)
     		priceChange();
     	});
+    	$(".popup-oc-coupon .freeCoupon").on("click", function(){
+    		var number = $(this).attr("data-number"),
+    			price = $(this).attr("data-price");
+    		$("#coupon-number").html(number);
+    		$("#coupon-price").html(price);
+    		$.closeModal('.popup-oc-coupon');
+    		priceTotal();
+    	});
 
 		function priceChange(){
 			var num = parseInt($("#number").val());
 			var price = parseFloat($("#price").html());
 			$("#totol-amount,#fact-amount").html(parseFloat(num*price).toFixed(2));
+			priceTotal();
+		}
+
+		function priceTotal(){
+			var totalPrice = parseFloat($("#totol-amount").html());
+			var couponPrice = parseFloat($("#coupon-price").html());
+			totalPrice = totalPrice - couponPrice;
+			totalPrice<0 ? totalPrice=0 : '';
+
+			$("#fact-amount").html(totalPrice.toFixed(2));
 		}
     });
 	function submitPay(e){
