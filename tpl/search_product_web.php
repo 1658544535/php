@@ -52,7 +52,7 @@
             </div>
 
             <script id='tpl_pull' type="text/template">
-            <%if(data["data"].length>0){%>
+            <%if(!!data["data"]){%>
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li><a href="groupon.php?id=<%=data["data"][i]["activityId"]%>">
                         <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
@@ -65,7 +65,7 @@
                         </div>
                     </a></li>
                 <%}%>
-            <%}else{%>
+            <%}else if(data["pageNow"] == 1){%>
                 <div class="tips-null">暂无商品</div>
             <%}%>
             </script>
