@@ -57,15 +57,19 @@
             </div>
 
             <script id='tpl_click' type="text/template">
-                <%for(var i=0;i<data["data"].length; i++){%>
-                    <li><a href="#">
-                        <div class="img"><img src="<%=data["data"][i]["userImage"]%>" /></div>
-                        <div class="info">
-                            <div class="name"><%=data["data"][i]["userName"]%></div>
-                            <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><%=data["data"][i]["userPrice"]%></span></p></div>
-                            <div class="time"><%=data["data"][i]["joinTime"]%></div>
-                        </div>
-                    </a></li>
+                <%if(data["data"].length>0){%>
+                    <%for(var i=0;i<data["data"].length; i++){%>
+                        <li><a href="#">
+                            <div class="img"><img src="<%=data["data"][i]["userImage"]%>" /></div>
+                            <div class="info">
+                                <div class="name"><%=data["data"][i]["userName"]%></div>
+                                <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><%=data["data"][i]["userPrice"]%></span></p></div>
+                                <div class="time"><%=data["data"][i]["joinTime"]%></div>
+                            </div>
+                        </a></li>
+                    <%}%>
+                <%}else if(data["pageNow"] == 1){%>
+                    <div class="tips-null">暂无获奖用户</div>
                 <%}%>
             </script>
         </div>

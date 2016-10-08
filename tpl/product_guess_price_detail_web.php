@@ -233,7 +233,7 @@
 					<section class="guessJoinList guessDetaJoinList">
 					                        <div class="freeList-tips">
 					                            获一等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result']['friPrizeNum'];?>人】</b>
-					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>">点击查看更多</a>
+					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>&type=1">点击查看更多</a>
 					                        </div>
 					                        <?php foreach ($ObjPrizeList['result']['friPrizeList'] as $p1){?>
 					                        <ul class="list-container">
@@ -252,7 +252,7 @@
 					                    <section class="guessJoinList guessDetaJoinList">
 					                        <div class="freeList-tips">
 					                            获二等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result']['twoPrizeNum'];?>人】</b>
-					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>">点击查看更多</a>
+					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>&type=2">点击查看更多</a>
 					                        </div>
 					                        <?php foreach ($ObjPrizeList['result']['twoPrizeList'] as $p2){?>
 					                        <ul class="list-container">
@@ -271,7 +271,7 @@
 					                    <section class="guessJoinList guessDetaJoinList">
 					                        <div class="freeList-tips">
 					                            获三等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result']['thrPrizeNum'];?>人】</b>
-					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>">点击查看更多</a>
+					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>&type=3">点击查看更多</a>
 					                        </div>
 					                        <?php foreach ($ObjPrizeList['result']['thrPrizeList'] as $p3){?>
 					                        <ul class="list-container">
