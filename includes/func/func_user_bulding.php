@@ -194,6 +194,7 @@
 					'image' 				=> $obj_user_info->headimgurl,
 					'external_sign_code' 	=> md5( $obj_user_info->loginname . $obj_user_info->openid . time() .rand(1000,9999) ),
 					'invitation_code' 		=> createCode( 6, FALSE),
+					'source'				=> 3,
 				);
 
 				$user_id = $this->db->create( 'sys_login', $arrParam );
