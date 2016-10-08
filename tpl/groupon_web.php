@@ -16,6 +16,14 @@
     <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/app.min.js' charset='utf-8'></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="/js/wxshare.js"></script>
+	<script type="text/javascript">
+	imgUrl 	= "<?php echo $info['productImage'];?>";
+	link 	= window.location.href;
+	title 	= "<?php echo $info['productName'];?>";
+	wxshare(<?php echo WXJSDEBUG;?>, '<?php echo WXJSAPPID;?>', <?php echo WXJSTIMESTAMP;?>, '<?php echo WXJSNONCESTR;?>', '<?php echo WXJSSIGNATURE;?>', imgUrl, link, title, '<?php echo WEBDESC;?>');
+	</script>
 </head>
 
 <body>
