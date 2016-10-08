@@ -10,7 +10,7 @@ define('ORDER_IN', true);
 $prevUrl = getPrevUrl();
 
 $grouponId = intval($_GET['id']);
-empty($grouponId) && redirect($prevUrl);
+//empty($grouponId) && redirect($prevUrl);
 
 $productId = intval($_GET['pid']);
 

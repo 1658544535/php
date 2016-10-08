@@ -5,9 +5,17 @@ require_once('./global.php');
 $backUrl = getPrevUrl();
 
 $grouponId = intval($_GET['id']);
-empty($grouponId) && redirect($backUrl);
+$productId = intval($_GET['pid']);
+//empty($grouponId) && redirect('/');
 
-$info = apiData('openGroupActivityApi.do', array('activityId'=>$grouponId, 'userId'=>$userid));
+$act = trim($_GET['act']);
+$apiParam = array('userId'=>$userid);
+if($act == 'guess'){
+	$apiParam['pid'] = $productId;
+}else{
+	$apiParam['activityId'] = $grouponId;
+}
+$info = apiData('openGroupActivityApi.do', $apiParam);
 !$info['success'] && redirect($backUrl, $info['error_msg']);
 
 $info = $info['result'];
@@ -16,6 +24,7 @@ if(!empty($info['waitGroupList'])){
 		$info['waitGroupList'][$k]['remainSec'] = strtotime($v['endTime']) - strtotime($v['nowTime']);
 	}
 }
+$grouponId = $info['activityId'];
 
 //是否0元开团
 $isFreeBuy = (($info['activityType'] == 2) && $info['isGroupFree']) ? true : false;

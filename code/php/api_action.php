@@ -116,5 +116,11 @@ switch($act){
 		$result = apiData('addressDetail.do', array('addId'=>$addrId, 'uid'=>$userid));
 		$result['success'] ? ajaxJson(1, '', $result['result']) : ajaxJson(0, $result['error_msg']);
 		break;
+	case 'coupon_valid'://订单可用优惠券
+		$productId = intval($_POST['pid']);
+		$amount = trim($_POST['amount']);
+		$info = apiData('getValidUserCoupon.do', array('pid'=>$productId,'price'=>$amount,'uid'=>$userid));
+		$info['success'] ? ajaxJson(1, '', $info['result']) : ajaxJson(0, $info['error_msg']);
+		break;
 }
 ?>

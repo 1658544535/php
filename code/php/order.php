@@ -24,6 +24,8 @@ $prevUrl = getPrevUrl();
 $num = intval($_POST['num']);
 $num = max(1, $num);
 
+$cpnNo = trim($_POST['cpnno']);
+
 $mapSource = array('groupon'=>1, 'free'=>2, 'guess'=>3, 'alone'=>4);
 $source = ($orderType == 'join') ? ($_SESSION['order']['isfree'] ? 2 : 1) : $mapSource[$orderType];
 
@@ -40,6 +42,7 @@ $apiParam = array(
 	'activityId' => ($orderType == 'alone') ? 0 : $grouponId,
 	'source' => $source,
 	'channel' => 2,
+	'couponNo' => $cpnNo,
 );
 $skuId && $apiParam['skuLinkId'] = $skuId;
 

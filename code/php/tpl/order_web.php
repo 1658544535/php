@@ -84,9 +84,9 @@
 						<div class="subTotal">合计：<font class="themeColor">￥<span class="price" id="totol-amount"><?php echo $info['sumPrice'];?></span></font>（全场包邮）</div>
 					</section>
 
-	                <section class="oc-coupon">
-	                    <div>使用优惠券：</div>
-	                </section>
+					<section class="oc-coupon">
+						<div>使用优惠券</div>
+					</section>
 
 					<section class="oc-pay">
 						<ul class="list">
@@ -108,21 +108,25 @@
 			</div>
 	        <div class="popup popup-oc-coupon">
 	            <div>
-	                <a href="#" class="close-popup"></a>
+	                <a href="javascript:;" class="close-popup"></a>
 	                <ul></ul>
 	                <script id='tpl_ocCoupon' type="text/template">
+					<%if(data["data"].length>0){%>
 	                	<%for(var i=0;i<data["data"].length;i++){%>
 	                	<li>
 	                        <div class="freeCoupon" data-number="<%=data["data"][i]["couponNo"]%>" data-price="<%=data["data"][i]["m"]%>">
 	                            <div class="info">
 	                                <div class="name"><%=data["data"][i]["couponName"]%></div>
-	                                <div class="tips">点击选择团免商品</div>
+	                                <div class="tips"><%=data["data"][i]["couponNo"]%></div>
 	                                <div class="time">有效期: <%=data["data"][i]["validStime"]%>-<%=data["data"][i]["validEtime"]%></div>
 	                            </div>
 	                            <div class="price"><div>￥<span><%=data["data"][i]["m"]%></span></div></div>
 	                        </div>
 	                    </li>
 	                    <%}%>
+					<%}else{%>
+						<li><div class="tips-null">暂无优惠券</div></li>
+					<%}%>
 	                </script>
 	            </div>
 	        </div>
@@ -151,10 +155,10 @@
     	$(".oc-coupon").on("click", function(){
     		$.showIndicator();
     		$.ajax({
-    			url: url,
+    			url: "api_action.php?act=coupon_valid",
 	        	type: 'POST',
 	        	dataType: 'json',
-	        	data: {},
+	        	data: {"pid":<?php echo $info['products']['productId'];?>,"amount":$("#fact-amount").text()},
 	        	success: function(res){
 	        		var bt = baidu.template;
 	    			baidu.template.ESCAPE = false;
@@ -174,7 +178,7 @@
     		}else{
     			var html = '<div>券码<b id="coupon-number">'+ number +'</b></div>'
 		                 + '<span class="price">优惠<b id="coupon-price">'+ price +'</b>元</span>'
-		                 + '<input type="hidden" id="coupon-number-input" name="couponNo" value="'+ number +'" />';
+		                 + '<input type="hidden" id="coupon-number-input" name="cpnno" value="'+ number +'" />';
 		        $(".oc-coupon").append(html);
     		}
     		$.closeModal('.popup-oc-coupon');
@@ -190,7 +194,7 @@
 
 		function priceTotal(){
 			var totalPrice = parseFloat($("#totol-amount").html());
-			var couponPrice = parseFloat($("#coupon-price").html());
+			var couponPrice = $("#coupon-price")[0] ? parseFloat($("#coupon-price").html()) : 0;
 			if(!couponPrice){
 				couponPrice=0;
 			}
