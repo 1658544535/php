@@ -86,8 +86,6 @@
 
 	                <section class="oc-coupon">
 	                    <div>使用优惠券：</div>
-	                    <div>券码<b id="coupon-number">123456789</b></div>
-	                    <span class="price">优惠<b id="coupon-price">1</b>元</span>
 	                </section>
 
 					<section class="oc-pay">
@@ -111,38 +109,21 @@
 	        <div class="popup popup-oc-coupon">
 	            <div>
 	                <a href="#" class="close-popup"></a>
-	                <ul>
-	                    <li>
-	                        <div class="freeCoupon" data-number="123456789" data-price="10">
+	                <ul></ul>
+	                <script id='tpl_ocCoupon' type="text/template">
+	                	<%for(var i=0;i<data["data"].length;i++){%>
+	                	<li>
+	                        <div class="freeCoupon" data-number="<%=data["data"][i]["couponNo"]%>" data-price="<%=data["data"][i]["m"]%>">
 	                            <div class="info">
-	                                <div class="name">团长免单券 <span>(团长免费开团)</span></div>
+	                                <div class="name"><%=data["data"][i]["couponName"]%></div>
 	                                <div class="tips">点击选择团免商品</div>
-	                                <div class="time">有效期: 2016.9.15-2016.9.22</div>
+	                                <div class="time">有效期: <%=data["data"][i]["validStime"]%>-<%=data["data"][i]["validEtime"]%></div>
 	                            </div>
-	                            <div class="price"><div>￥<span>10</span></div></div>
+	                            <div class="price"><div>￥<span><%=data["data"][i]["m"]%></span></div></div>
 	                        </div>
 	                    </li>
-	                    <li>
-	                        <div class="freeCoupon" data-number="987654321" data-price="20">
-	                            <div class="info">
-	                                <div class="name">团长免单券 <span>(团长免费开团)</span></div>
-	                                <div class="tips">点击选择团免商品</div>
-	                                <div class="time">有效期: 2016.9.15-2016.9.22</div>
-	                            </div>
-	                            <div class="price"><div>￥<span>20</span></div></div>
-	                        </div>
-	                    </li>
-	                    <li>
-	                        <div class="freeCoupon" data-number="456789123" data-price="30">
-	                            <div class="info">
-	                                <div class="name">团长免单券 <span>(团长免费开团)</span></div>
-	                                <div class="tips">点击选择团免商品</div>
-	                                <div class="time">有效期: 2016.9.15-2016.9.22</div>
-	                            </div>
-	                            <div class="price"><div>￥<span>30</span></div></div>
-	                        </div>
-	                    </li>
-	                </ul>
+	                    <%}%>
+	                </script>
 	            </div>
 	        </div>
 		</div>
@@ -166,11 +147,36 @@
     		$(this).prev().val(++num)
     		priceChange();
     	});
-    	$(".popup-oc-coupon .freeCoupon").on("click", function(){
+    	//选择优惠券
+    	$(".oc-coupon").on("click", function(){
+    		$.showIndicator();
+    		$.ajax({
+    			url: url,
+	        	type: 'POST',
+	        	dataType: 'json',
+	        	data: {},
+	        	success: function(res){
+	        		var bt = baidu.template;
+	    			baidu.template.ESCAPE = false;
+	    			var html=bt('tpl_ocCoupon',res);
+	    			$(".popup-oc-coupon ul").html(html);
+	    			$.hideIndicator();
+		        	$.popup('.popup-oc-coupon');
+	        	}
+    		});
+    	});
+    	$(document).on("click", ".popup-oc-coupon .freeCoupon", function(){
     		var number = $(this).attr("data-number"),
     			price = $(this).attr("data-price");
-    		$("#coupon-number").html(number);
-    		$("#coupon-price").html(price);
+    		if($(".oc-coupon #coupon-number").length>0){
+    			$("#coupon-number").html(number);
+    			$("#coupon-price").html(price);
+    		}else{
+    			var html = '<div>券码<b id="coupon-number">'+ number +'</b></div>'
+		                 + '<span class="price">优惠<b id="coupon-price">'+ price +'</b>元</span>'
+		                 + '<input type="hidden" id="coupon-number-input" name="couponNo" value="'+ number +'" />';
+		        $(".oc-coupon").append(html);
+    		}
     		$.closeModal('.popup-oc-coupon');
     		priceTotal();
     	});
@@ -185,6 +191,9 @@
 		function priceTotal(){
 			var totalPrice = parseFloat($("#totol-amount").html());
 			var couponPrice = parseFloat($("#coupon-price").html());
+			if(!couponPrice){
+				couponPrice=0;
+			}
 			totalPrice = totalPrice - couponPrice;
 			totalPrice<0 ? totalPrice=0 : '';
 

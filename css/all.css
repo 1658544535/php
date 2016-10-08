@@ -740,7 +740,7 @@
 }
 .deta-footer .goIndex {
   float: left;
-  width: 2.7rem;
+  width: 2.4rem;
   height: 2.7rem;
   text-align: center;
 }
@@ -756,6 +756,52 @@
   background-size: 2.4rem auto;
 }
 .deta-footer .goIndex .tab-label {
+  display: block;
+  padding-top: 0.15rem;
+  font-size: .55rem;
+  color: #1c1c1c;
+}
+.deta-footer .goCollection {
+  float: left;
+  width: 2.4rem;
+  height: 2.7rem;
+  text-align: center;
+}
+.deta-footer .goCollection .icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.25rem;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  background: url(../images/collection-no.png) no-repeat;
+  background-size: 1.2rem auto;
+}
+.deta-footer .goCollection .tab-label {
+  display: block;
+  padding-top: 0.15rem;
+  font-size: .55rem;
+  color: #1c1c1c;
+}
+.deta-footer .goContact {
+  float: left;
+  width: 2.4rem;
+  height: 2.7rem;
+  text-align: center;
+}
+.deta-footer .goContact .icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.25rem;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  background: url(../images/contact.png) no-repeat;
+  background-size: 1.2rem auto;
+}
+.deta-footer .goContact .tab-label {
   display: block;
   padding-top: 0.15rem;
   font-size: .55rem;
@@ -787,6 +833,9 @@
 }
 .deta-footer .buy a.one {
   background: #ff6b71;
+}
+.deta-footer .buy-m3 {
+  margin-left: 7.2rem;
 }
 .deta-footer .more1 {
   height: 100%;
@@ -1303,6 +1352,24 @@
   color: #fff;
   background: #666;
 }
+.guessList .list-container a .info .time .downTime span:first-child {
+  margin-left: 0;
+}
+.guessList .list-container a .info .time .downTime span:last-child {
+  margin-right: 0;
+}
+@media screen and (max-width: 340px) {
+  .guessList .list-container a .info .time .downTime {
+    line-height: 1.4rem;
+  }
+  .guessList .list-container a .info .time .downTime span {
+    width: 1.0rem;
+    height: 1.0rem;
+    line-height: 1.0rem;
+    font-size: 0.6rem;
+    font-weight: normal;
+  }
+}
 /*猜价格-用户参与列表*/
 .guessTab ul {
   margin: 0;
@@ -1724,6 +1791,14 @@
   transform: translateY(-50%);
   padding-right: .8rem;
   color: #727171;
+}
+.oc-coupon::after {
+  content: '';
+  position: absolute;
+  right: .5rem;
+  top: 0;
+  width: 0.4rem;
+  height: 100%;
   background: url(../images/go.png) right center no-repeat;
   background-size: .4rem auto;
 }
@@ -1987,6 +2062,9 @@
   font-size: 0.6rem;
   color: #898989;
   padding: 0.1rem 0.5rem 0.5rem;
+}
+.user-header .orderTips a {
+  color: #898989;
 }
 .user-header .orderTab {
   list-style: none;
