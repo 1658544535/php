@@ -13,10 +13,14 @@ switch($act){
 		$orderId = CheckDatas('oid', 0);
 		$orderId = intval($orderId);
 		empty($orderId) && redirect($backUrl, '参数错误');
+
+		$info = apiData('refundDetails.do', array('oid'=>$orderId, 'uid'=>$userid));
+		!empty($info['result']) && redirect($backUrl, '你已申请过');
+
 		if(IS_POST()){
 			$apiParam = array();
 			for($i=0; $i<3; $i++){
-				$apiParam['image'.($i+1)] = '@'.$_FILES['img'][$i]['tmp_name'];
+				($_FILES['img']['size'][$i] > 0) && $apiParam['image'.($i+1)] = '@'.$_FILES['img']['tmp_name'][$i];
 			}
 
 			$mapType = array_flip($mapType);
@@ -28,7 +32,7 @@ switch($act){
 			$apiParam['refundType'] = $mapReason[$data['reason']];
 			$apiParam['type'] = $mapType[$data['type']];
 			$apiParam['uid'] = $userid;
-			$result = apiData('applyRefund.do', $apiParam);
+			$result = apiData('applyRefund.do', $apiParam, 'post');
 			if(empty($_SESSION['backurl_aftersale'])){
 				$prevUrl = '/';
 			}else{
@@ -72,6 +76,7 @@ switch($act){
 		$orderId = intval($_GET['oid']);
 		empty($orderId) && redirect($backUrl, '参数错误');
 		$info = apiData('refundDetails.do', array('oid'=>$orderId, 'uid'=>$userid));
+		empty($info) && redirect($backUrl, '网络异常，请稍候查看');
 		!$info['success'] && redirect($backUrl, $info['error_msg']);
 		$info = $info['result'];
 		include_once('tpl/aftersale_detail_web.php');

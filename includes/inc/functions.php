@@ -1163,6 +1163,7 @@ function apiData($url, $param, $method='get', $exit=false){
 	curl_close($ch);
 	if($exit){
 		echo $url;
+		($method == 'post') && PD($param, false);
 		PD(json_decode($data, true));
 	}
 	return json_decode($data, true);

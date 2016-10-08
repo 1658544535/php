@@ -30,7 +30,7 @@
 
             <div class="content native-scroll bgWhite">
 
-                <form action="aftersale.php?act=apply" accept-charset="utf-8" enctype="multipart/form-data" method="post">
+                <form action="aftersale.php?act=apply" accept-charset="utf-8" enctype="multipart/form-data" method="post" onclick="return doSubmit()">
 					<input type="hidden" name="oid" value="<?php echo $orderId;?>" />
                     <section class="afterSales-form">
                         <ul>
@@ -50,10 +50,10 @@
                                         <span class="themeColor">* </span>退款金额
                                     </div>
                                     <div class="main">
-                                        <input id="price" type="text" name="m[price]" class="txt price" data-max="<?php echo $order['orderPrice'];?>" placeholder="请输入退款金额" />
+                                        <input id="price" type="text" name="m[price]" class="txt price" data-max="<?php echo $order['productInfo']['orderPrice'];?>" placeholder="请输入退款金额" />
                                     </div>
                                 </div>
-                                <div class="tips">（最高可退 ￥<?php echo $order['orderPrice'];?>元）</div>
+                                <div class="tips">（最高可退 ￥<?php echo $order['productInfo']['orderPrice'];?>元）</div>
                             </li>
                             <li>
                                 <div class="item">
@@ -133,6 +133,10 @@
                         ]
                     });
                 });
+
+				function doSubmit(){
+					return true;
+				}
             </script>
         </div>
     </div>

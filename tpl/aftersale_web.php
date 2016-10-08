@@ -81,7 +81,7 @@
 							<%if(data["data"][i].refundStatus == 3){%>
 								<div class="reason">理由：理由不合理</div>
 							<%}%>
-                            <a href="aftersale.php?act=tracking&oid=<%=data["data"][i].orderId%>">填写运单号</a>
+                            <%if(data["data"][i].refundStatus == 2){%><a href="aftersale.php?act=tracking&oid=<%=data["data"][i].orderId%>">填写运单号</a><%}%>
                             <a href="aftersale.php?act=detail&oid=<%=data["data"][i].orderId%>">售后详情</a>
                         </div>
                     </li>
