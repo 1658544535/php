@@ -199,6 +199,7 @@
 
 						//绑定点击事件
 						$(".sku-item .list a").on("click", function(){
+                            clickBuy = false;
                             if($(this).hasClass("disable")) return;
                             $(".popup-sku").attr("data-skuId", "");
                             $("#buy").attr("href", "javascript:;").addClass("gray");
