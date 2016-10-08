@@ -343,14 +343,19 @@
 	                    <a class="btn" href="groupon.php?id=<?php echo $gId;?>"><span>我想购买</span></a>
 	                    <div class="txt" onClick="location.href='order_guess.php?id=<?php echo $gId;?>&pid=<?php echo $productId;?>'"><span>活动结束，恭喜您已得奖！<br/>填写收货信息</span></div>
 	            </div>
-	       <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2 && $ObjGrouponInfo['result']['prize'] !=0 && $ObjGrouponInfo['result']['prize'] !=1){?>
+	       <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2  && $ObjGrouponInfo['result']['isRecCoupon'] ==1){?>
 	        	<div class="more2">
 	                    <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
-	                    <div class="txt"><span>恭喜您获得N元抵用券<br/>该券将于**过期，点击马上购买</span></div>
+	                    <div class="txt" onClick="location.href='order_guess.php?id=<?php echo $gId;?>&pid=<?php echo $productId;?>'"><span>恭喜您获得<?php echo $ObjGrouponInfo['result']['couponPrice'];?>抵用券<br/>该券将于<?php echo $ObjGrouponInfo['result']['couponEndTime'];?>过期，点击马上购买</span></div>
+	                </div>
+        	<?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2  && $ObjGrouponInfo['result']['isRecCoupon'] ==0){?>
+        	<div class="more2">
+	                    <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
+	                    <div class="txt"><span>奖励发放中，请耐心等待...</span></div>
 	                </div>
         	<?php }?>
         	</div>
-            
+           
             <script>
                 $(document).on("pageInit", "#page-guessDeta", function(e, pageId, page) {
                     //参与
@@ -400,19 +405,26 @@
             </div>
         </div>
 
+      <?php if($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2 && $ObjGrouponInfo['result']['isWin']  ==1  && $ObjGrouponInfo['result']['isRecCoupon']  ==1){?>
         <div class="popup popup-guessCoupon">
-            <div>
-                <a href="#" class="close-popup"></a>
-                <div class="bg-top"></div>
-                <div class="main">
-                    <h3 class="title1">恭喜您获取<span class="themeColor">N元</span>抵扣券</h3>
-                    <div class="tips1">本抵扣券用于购买此商品，请点击进行购买</div>
-                    <div class="tips2">注意：本券有效期为24小时</div>
-                    <a href="#" class="go">立即前往</a>
-                </div>
-                <div class="bg-footer"></div>
-            </div>
-        </div>
+	        <div>
+	            <a href="javascript:;" class="close-popup"></a>
+	            <div class="bg-top"></div>
+	            <div class="main">
+	                <h3 class="title1">恭喜您获取<span class="themeColor"><?php echo $ObjGrouponInfo['result']['couponPrice'];?>元</span>抵扣券</h3>
+	                <div class="tips1">本抵扣券用于购买此商品，请点击进行购买</div>
+	                <div class="tips2">注意：本券有效期为24小时</div>
+	                <a href="order_guess.php?id=<?php echo $gId;?>&pid=<?php echo $productId;?>" class="go">立即前往</a>
+	            </div>
+	            <div class="bg-footer"></div>
+	        </div>
+	    </div>							
+    <?php }?>
+        
+        
+        
+        
+        
         
     </div>
    <?php }?> 

@@ -38,8 +38,8 @@
                 <div class="guessTab" data-href="ajaxtpl/ajax_product_guess_price.php?act=prize&gid=<?php echo $gId;?>">
                     <ul>
                         <li data-tip="以下用户赢得奖品" data-type="1">一等奖</li>
-                        <li data-tip="以下用户获得5元抵扣券" data-type="2">二等奖</li>
-                        <li data-tip="以下用户获得3元抵扣券" data-type="3">三等奖</li>
+                        <li data-tip="以下用户获得抵扣券" data-type="2">二等奖</li>
+                        <li data-tip="以下用户获得抵扣券" data-type="3">三等奖</li>
                     </ul>
                 </div>
 

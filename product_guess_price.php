@@ -111,8 +111,8 @@ switch($act)
     	//获取更多中奖用户信息数据
     	
     	
-    	$num            = apiData('winListApi.do', array('activityId'=>$gId,'pageNo'=>$page,'prize'=>$Prize));
-    	
+    	$num            = apiData('readyJoinApi.do', array('activityId'=>$gId,'userId'=>$userid));
+    
     	$footerNavActive = 'guess';
     	include "tpl/product_guess_price_prize_web.php";
     	break;
