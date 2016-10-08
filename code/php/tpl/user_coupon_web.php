@@ -62,7 +62,7 @@
                                 <div class="tips">点击选择团免商品</div>
                                 <div class="time">有效期: <%=data["data"][i]["validStime"]%>-<%=data["data"][i]["validEtime"]%></div>
                             </div>
-                            <div class="price"><div>￥<span>0</span></div></div>
+                            <div class="price"><div>￥<span><%=data["data"][i]["m"]%></span></div></div>
 
 							<%if(data["data"][i]["overdue"]==1){%>
                         	<div class="overdue"><!--已过期--></div>
