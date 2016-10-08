@@ -58,8 +58,12 @@
                         <div class="freeCoupon invalid">
 						<%}%>
                             <div class="info">
-                                <div class="name"><%=data["data"][i]["couponName"]%></div>
-                                <div class="tips">点击选择团免商品</div>
+                                <div class="name">折扣券</div>
+                                <%if(data["data"][i]["isProduct"] ==1){%>
+                                <div class="tips">购买指定商品<%=data["data"][i]["couponName"]%></div>
+                                <%}else{%>
+                                 <div class="tips"><%=data["data"][i]["couponName"]%></div>
+                                <%}%>
                                 <div class="time">有效期: <%=data["data"][i]["validStime"]%>-<%=data["data"][i]["validEtime"]%></div>
                             </div>
                             <div class="price"><div>￥<span><%=data["data"][i]["m"]%></span></div></div>
