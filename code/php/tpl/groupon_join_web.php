@@ -10,6 +10,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="css/sm.min.css">
     <link rel="stylesheet" href="css/all.min.css">
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="/js/wxshare.js"></script>
+	<script type="text/javascript">
+	imgUrl 	= "<?php echo $info['productImage'];?>";
+	link 	= window.location.href;
+	title 	= "<?php echo $info['productName'];?>";
+	wxshare(<?php echo WXJSDEBUG;?>, '<?php echo WXJSAPPID;?>', <?php echo WXJSTIMESTAMP;?>, '<?php echo WXJSNONCESTR;?>', '<?php echo WXJSSIGNATURE;?>', imgUrl, link, title, '<?php echo WEBDESC;?>');
+	</script>
 </head>
 
 <body>
