@@ -105,7 +105,7 @@
                           <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
                       <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>                  
                            <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
-                           <a href="aftersale.php?act=apply&oid=<?php echo $OrderDetail['result']['orderId'];?>">申请退款</a>
+                           <a href="aftersale.php?act=apply&oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>">申请退款</a>
                       <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
 					  <?php }elseif($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['refundStatus'] ==2){?>
@@ -172,10 +172,10 @@
                     <a class="btn" href="javascript:;">去支付</a>
               <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
                     <a class="btn" href="javascript:;" >延长收货</a>
-                    <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderId'];?>" class="btn gray">查看物流</a>
-                    <a id="check" class="btn" data-id="<?php echo $OrderDetail['result']['orderId'] ;?>" data-status="<?php echo $OrderDetail['result']['orderStatus']  ;?>">确认收货</a>
+                    <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn gray">查看物流</a>
+                    <a id="check" class="btn" data-id="<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>" data-status="<?php echo $OrderDetail['result']['orderStatus']  ;?>">确认收货</a>
              <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
-                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderId'];?>" class="btn gray">查看物流</a>
+                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn gray">查看物流</a>
              <?php }?>
             </div>
 
@@ -184,7 +184,7 @@
                     $("#orderCancel").on("click", function(){
                     	var _this = $(this);
 	                	$.confirm("是否取消订单？", function(){
-	                        $.post("order_detail.php",{act: "cancel", oid:"<?php echo $OrderDetail['result']['orderId'] ;?>"},function(req){
+	                        $.post("order_detail.php",{act: "cancel", oid:"<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>"},function(req){
 	                        	req =  eval("(" + req + ")");;
 	                            $.toast(req.data.data.error_msg);
 	                            history.back(-1);
