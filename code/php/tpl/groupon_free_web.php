@@ -50,7 +50,7 @@
                                 <div class="name"><%=data["data"][i].productName%></div>
                                 <div class="price">
                                 <div class="btn">免费开团</div>
-                                ￥<span class="price1"><%=data["data"][i].alonePrice%></span>/件
+                                ￥<span class="price1">0</span>/件
                                 <span class="price2">拼团价：￥<%=data["data"][i].productPrice%></span>
                             </div>
                         </div>
