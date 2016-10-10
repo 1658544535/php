@@ -65,6 +65,10 @@
 									审核通过，请退货
 								<%}else if(data["data"][i].refundStatus == 3){%>
 									退货中
+								<%}else if(data["data"][i].refundStatus == 4){%>
+									退货成功
+								<%}else if(data["data"][i].refundStatus == 5){%>
+									退货失败
 								<%}else if(data["data"][i].refundStatus == 6){%>
 									审核不通过
 								<%}else if(data["data"][i].refundStatus == 7){%>
