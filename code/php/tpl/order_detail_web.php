@@ -99,13 +99,15 @@
                     </ul>
                     <div class="option">
 
-                       <?php if($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] !=4){?>
+                       <?php if($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] !=4 && $OrderDetail['result']['source'] !=3){?>
                           <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
                        <?php }elseif($OrderDetail['result']['orderStatus'] ==21){?>
                           <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
-                      <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>                  
+                      <?php }elseif($OrderDetail['result']['orderStatus'] ==3 ){?>                  
+                           <?php if($OrderDetail['result']['source'] !=4 && $OrderDetail['result']['source'] !=3){?>
                            <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
-                           <?php if($OrderDetail['result']['refundStatus'] ==0){?>
+                           <?php }?>
+                           <?php if($OrderDetail['result']['refundStatus'] ==0 ){?>
                            <a href="aftersale.php?act=apply&oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>">申请退款</a>
                            <?php }else{?>
                            <a class="txt">售后处理中...</a>
