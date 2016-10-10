@@ -52,7 +52,7 @@
                                     <%=data["data"][i]["groupNum"]%>人团&nbsp;&nbsp;<font class="themeColor">￥<span class="price"><%=data["data"][i]["productPrice"]%></span></font>
                                     <span class="btn">去开团&nbsp;&gt;</span>
                                 </a>
-                                <a href="javascript:;" class="collecting"></a>
+                                <a href="javascript:;" class="collecting" data-actid="<%=data["data"][i]["activityId"]%>" data-pid="<%=data["data"][i]["productId"]%>"></a>
                             </div>
                         </div>
                     </li>
@@ -65,14 +65,16 @@
             <script>
                 $(document).on("pageInit", "#page-collection", function(e, pageId, page) {
                     $(document).on("click", ".collecting" ,function(){
+                        var actid = $(this).attr("data-actid"),
+                        	pid = $(this).attr("data-pid");
                         $.showIndicator();
                         $.ajax({
-                            url: '',
+                            url: 'api_action.php?act=uncollect',
                             type: 'POST',
                             dataType: 'json',
-                            data: {},
+                            data: {"id":actid,"pid":pid},
                             success: function(res){
-                                location.href=document.href;
+                                location.href=document.location;
                             }
                         });
                     });
