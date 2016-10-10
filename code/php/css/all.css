@@ -3090,6 +3090,12 @@
   background-size: 100% 100%;
   background-color: #fff;
 }
+.uploadImg .uploadImg-item .img.loadingImg {
+  background: url(../images/loading.gif) no-repeat center center;
+  background-size: 30% 30%;
+  background-color: #f9f9f9;
+  z-index: 9999;
+}
 .afterSales-submit {
   position: fixed;
   bottom: 0;
