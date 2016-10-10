@@ -76,9 +76,11 @@
                             <div class="label1">凭证图片</div>
                             <div class="uploadImg">
 								<?php for($i=1; $i<=3; $i++){ ?>
-									<div class="uploadImg-item">
-										<div class="img"><img src="<?php echo $info['refundImage'.$i];?>" /></div>
-									</div>
+									<?php if($info['refundImage'.$i] != ''){ ?>
+										<div class="uploadImg-item">
+											<div class="img"><img src="<?php echo $info['refundImage'.$i];?>" /></div>
+										</div>
+									<?php } ?>
 								<?php } ?>
                             </div>
                         </li>
