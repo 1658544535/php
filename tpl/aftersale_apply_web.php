@@ -30,7 +30,7 @@
 
             <div class="content native-scroll bgWhite">
 
-                <form action="aftersale.php?act=apply" accept-charset="utf-8" enctype="multipart/form-data" method="post" onclick="return doSubmit()">
+                <form action="aftersale.php?act=apply" accept-charset="utf-8" enctype="multipart/form-data" method="post" onsubmit="return doSubmit()">
 					<input type="hidden" name="oid" value="<?php echo $orderId;?>" />
                     <section class="afterSales-form">
                         <ul>
@@ -50,7 +50,7 @@
                                         <span class="themeColor">* </span>退款金额
                                     </div>
                                     <div class="main">
-                                        <input id="price" type="text" name="m[price]" class="txt price" data-max="<?php echo $order['productInfo']['orderPrice'];?>" placeholder="请输入退款金额" />
+                                        <input id="price" type="tel" name="m[price]" class="txt price" data-max="<?php echo $order['productInfo']['orderPrice'];?>" placeholder="请输入退款金额" />
                                     </div>
                                 </div>
                                 <div class="tips">（最高可退 ￥<?php echo $order['productInfo']['orderPrice'];?>元）</div>
@@ -81,7 +81,7 @@
                                         <span class="themeColor">* </span>联系方式
                                     </div>
                                     <div class="main">
-                                        <textarea name="m[phone]" rows="1" class="txt" placeholder="请输入联系方式" ></textarea>
+                                        <input type="text" name="m[phone]" class="txt" placeholder="请输入联系方式" />
                                     </div>
                                 </div>
                             </li>
@@ -135,6 +135,32 @@
                 });
 
 				function doSubmit(){
+                    if($.trim($("#type").val()) == ""){
+                        $.toast("请选择退款类型");
+                        return false;
+                    }
+                    if($.trim($("#price").val()) == ""){
+                        $.toast("请输入退款金额");
+                        return false;
+                    }
+                    if($.trim($("#reason").val()) == ""){
+                        $.toast("请选择退款原因");
+                        return false;
+                    }
+                    if($.trim($("#reason").val()) == ""){
+                        $.toast("请输入问题描述");
+                        return false;
+                    }
+                    if($.trim($("input[name='m[describe]']").val()) == ""){
+                        $.toast("请输入问题描述");
+                        return false;
+                    }
+                    var _tel = $("input[name='m[phone]']").val();
+                    var _re = /((^1\d{10}$)|(^(\d{3,4}-)?\d{7,8}$))/;
+                    if(!_re.test(_tel)){
+                        $.toast("请正确填写联系方式");
+                        return false;
+                    }
 					return true;
 				}
             </script>
