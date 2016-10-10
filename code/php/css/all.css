@@ -990,6 +990,9 @@
   text-align: center;
   background: #ff6b71;
 }
+.deta-footer .more2 .txt.gray {
+  background: #b5b5b6;
+}
 .deta-footer .more2 .btn {
   float: right;
   position: relative;
