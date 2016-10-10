@@ -38,40 +38,40 @@
 					<?php switch($info['status']){
 						case 0: ?>
 							<?php if($info['userIsHead'] == 1){ ?>
-								<div class="img"><img src="" /></div>
-								<div class="info">
-									<div class="txt1">恭喜您，开团成功</div>
-									<div class="txt2">还差<?php echo $info['groupNum'] - $info['joinNum'];?>人，赶快分享召集小伙伴组团啦！</div>
+								<div class="txt1">
+									<div class="img"><img src="images/tip-success.png" /></div>
+									恭喜你，开团成功！
 								</div>
+								<div class="txt2">还差<?php echo $info['poorNum'];?>人，赶紧分享召集小伙伴组团啦！</div>
 							<?php }elseif($info['isGroup'] == 0){ ?>
-								<div class="img"><img src="" /></div>
-								<div class="info">
-									<div class="txt1">您终于来了，快参团吧！</div>
-									<div class="txt2">已有<?php echo $info['joinNum'];?>人参团，还差<?php echo $info['groupNum'] - $info['joinNum'];?>人，赶快分享召集小伙伴组团啦！</div>
+								<div class="txt1">
+									<div class="img"><img src="images/tip-ing.png" /></div>
+									您终于来了，快参团吧！
 								</div>
+								<div class="txt2">已有<?php echo $info['joinNum'];?>人参团，还差<?php echo $info['poorNum'];?>人，赶快分享召集小伙伴组团啦.</div>
 							<?php } ?>
 						<?php break; ?>
 						<?php case 1: ?>
 							<?php if($info['isGroup'] == 1){ ?>
-								<div class="img"><img src="" /></div>
-								<div class="info">
-									<div class="txt1">恭喜您，参团成功</div>
-									<div class="txt2">小伙伴已集结完毕，商品会尽快向各位发货，请耐心等待</div>
+								<div class="txt1">
+									<div class="img"><img src="images/tip-success.png" /></div>
+									恭喜你，参团成功！
 								</div>
+								<div class="txt2">小伙伴已集结完毕，商品会尽快向各位发货，请耐心等待.</div>
 							<?php }else{ ?>
-								<div class="img"><img src="" /></div>
-								<div class="info">
-									<div class="txt1">您来晚了，已经成团</div>
-									<div class="txt2">赶紧点击“我要开团”，疯抢起来吧！</div>
+								<div class="txt1">
+									<div class="img"><img src="images/tip-fail.png" /></div>
+									您来晚了，已经成团！
 								</div>
+								<div class="txt2">赶紧点击“我要开团”，疯抢起来吧！</div>
 							<?php } ?>
 						<?php break; ?>
 						<?php case 2: ?>
-							<div class="img"><img src="" /></div>
-							<div class="info">
-								<div class="txt1">很遗憾，组团失败</div>
-								<div class="txt2">拼团期内未达到成团人数，系统会在1-2个工作日内，按原路自动退款至各位成员。</div>
+							<div class="txt1">
+								<div class="img"><img src="images/tip-fail.png" /></div>
+								很遗憾，组团失败！
 							</div>
+							<div class="txt2">拼团期内未达到成团人数，系统会在1-2个工作日内，按原路自动退款至各位成员.</div>
 						<?php break; ?>
 					<?php } ?>
 				</section>
@@ -118,11 +118,10 @@
 						<?php } ?>
 						<?php switch($info['status']){
 							case 0: ?>
-								已有2人参团，还差1人，快加入我们吧！
 								<li class="join">
 									<div class="img"></div>
 									<div class="tips">
-										已有<?php echo $info['joinNum'];?>人参团，还差<?php echo $info['groupNum']-$info['joinNum'];?>人，快加入我们吧！
+										已有<?php echo $info['joinNum'];?>人参团，还差<?php echo $info['poorNum'];?>人，快加入我们吧！
 									</div>
 								</li>
 							<?php break; ?>
