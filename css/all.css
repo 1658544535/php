@@ -1208,6 +1208,7 @@
 }
 .proTips-1 .txt2 {
   padding-top: 0.25rem;
+  padding: 0.25rem 2.0rem 0;
   font-size: 0.6rem;
   color: #8f8f8f;
 }
@@ -1344,6 +1345,9 @@
   font-size: 0.7rem;
   color: #ff464e;
   line-height: 0.9rem;
+}
+.proTips-3 .list li.fail {
+  padding: 0;
 }
 .proTips-3 .list li.fail .tips {
   position: absolute;
