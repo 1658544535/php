@@ -93,29 +93,29 @@
                             <div class="img"><img src="<?php echo $OrderDetail['result']['productInfo']['productImage'];?>"></div>
                             <div class="info">
                                 <div class="name"><?php echo $OrderDetail['result']['productInfo']['productName'];?></div>
-                               <div class="subTotal">共<?php echo $OrderDetail['result']['productInfo']['number'];?>件商品&nbsp;合计：<font class="themeColor">￥<span class="price"><?php echo $OrderDetail['result']['productInfo']['allPrice'];?></span></font>（免运费）</div>
+                               <div class="sub">共<?php echo $OrderDetail['result']['productInfo']['number'];?>件商品&nbsp;合计：<font class="themeColor">￥<span class="price"><?php echo $OrderDetail['result']['productInfo']['allPrice'];?></span></font>（免运费）</div>
                             </div>
                         </a></li>
                     </ul>
                     <div class="option">
 
                        <?php if($OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] !=4){?>
-                          <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
+                          <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
                        <?php }elseif($OrderDetail['result']['orderStatus'] ==21){?>
-                          <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
+                          <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
                       <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>                  
                            <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
                            <?php if($OrderDetail['result']['refundStatus'] ==0){?>
                            <a href="aftersale.php?act=apply&oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>">申请退款</a>
                            <?php }else{?>
-                           <a >售后处理中...</a>
+                           <a class="txt">售后处理中...</a>
                             <?php }?>
                       <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
-						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
+						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 					  <?php }elseif($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['refundStatus'] ==2){?>
-						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
+						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 				       <?php }elseif($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['refundStatus'] ==1){?>
-						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
+						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 				      <?php }?>
                     </div>
                 </section>
@@ -172,17 +172,17 @@
             <div class="oc-footer2">
             	<?php if($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
                     <!-- <a class="one" id="orderCancel"> href="order_detail.php?act=cancel&oid=<?php echo $OrderDetail['result']['orderId'] ;?>">取消订单</a> -->
-                    <a class="btn" id="orderCancel">取消订单</a>
+                    <a class="btn gray" id="orderCancel">取消订单</a>
                     <a class="btn" href="javascript:;">去支付</a>
               <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn gray">查看物流</a>
                    <?php if($OrderDetail['result']['refundStatus'] ==0){?>
                     <a id="check" class="btn" data-id="<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>" data-status="<?php echo $OrderDetail['result']['orderStatus']  ;?>">确认收货</a>
                    <?php }else{?>
-                    <a>售后处理中...</a>
+                    <a class="txt">售后处理中...</a>
                    <?php }?>
              <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
-                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn gray">查看物流</a>
+                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn">查看物流</a>
              <?php }?>
             </div>
 
