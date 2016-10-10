@@ -399,7 +399,7 @@
                 <a href="javascript:;" class="close-popup"></a>
                 <div class="main">
                     <span>我的估价:</span>
-                    <input type="text" class="big" /><b>.</b><input type="text" class="small" />
+                    <input type="tel" class="big" /><b>.</b><input type="tel" class="small" />
                 </div>
                 <a id="guess-price" href="javascript:;" class="go">立即前往</a>
             </div>
