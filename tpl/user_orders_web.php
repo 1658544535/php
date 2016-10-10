@@ -69,7 +69,9 @@
                                <%}else if(data["data"][i].orderStatus ==2   && data["data"][i].isSuccess ==0){%>
                                                                              拼团中，还差<%=data["data"][i].oweNum %>人
                                <%}else if(data["data"][i].orderStatus ==1   && data["data"][i].isCancel ==1){%>
-                                                                             交易已取消           
+                                                                             交易已取消       
+                               <%}else if(data["data"][i].isSuccess ==2){%>
+                                                                             未成团，退款中    
                                <%}%>
                              </span>
                         </div>
