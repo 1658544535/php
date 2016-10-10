@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/sm.min.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="js/swiper/swiper.min.css">
+    <script type='text/javascript' src='js/jquery-2.1.4.min.js' charset='utf-8'></script>
+    <script>jQuery.noConflict()</script>
     <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/baiduTemplate.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
@@ -88,8 +90,10 @@
                             <li>
                                 <div class="uploadImg">
                                     <div class="uploadImg-item">
-                                        <input type="file" capture="camera" accept="image/*" name="img[]" />
+                                        <input type="file" capture="camera" accept="image/*" />
                                         <div class="img noImg"></div>
+                                        <input type="hidden" name="img[]">
+                                        <!-- <input type="file" capture="camera" accept="image/*" name="img[]" /> -->
                                     </div>
                                 </div>
                             </li>
@@ -102,7 +106,9 @@
                 </form>
 
             </div>
-            <script type='text/javascript' src='js/lrz/lrz.bundle.js' charset='utf-8'></script>
+            <script type='text/javascript' src='js/fileupload/jquery.ui.widget.js' charset='utf-8'></script>
+            <script type='text/javascript' src='js/fileupload/jquery.iframe-transport.js' charset='utf-8'></script>
+            <script type='text/javascript' src='js/fileupload/jquery.fileupload.js' charset='utf-8'></script>
             <script>
                 $(document).on("pageInit", "#page-afterSales", function(e, pageId, page) {
                     //退款类型
