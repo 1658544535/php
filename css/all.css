@@ -2669,6 +2669,11 @@
   color: #898989;
   border-color: #898989;
 }
+.user-guess ul li .u-g-3 a.txt {
+  color: #898989;
+  border: none;
+  margin: 0;
+}
 .user-guess ul li.null {
   margin-top: 40%;
   padding-bottom: 53%;
