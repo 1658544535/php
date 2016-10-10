@@ -82,7 +82,7 @@
                     <?php }elseif($OrderDetail['result']['isCancel'] ==1 ){?>
                     <h3 class="title1">拼团商品<span class="tips">交易已取消</span></h3>
                     <?php }elseif($OrderDetail['result']['orderStatus'] ==4 ){?>
-                    <h3 class="title1">拼团商品<span class="tips">交易成功</span></h3>
+                    <h3 class="title1">拼团商品<span class="tips">已签收</span></h3>
                     <?php }elseif($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['refundStatus'] ==1){?>
 	                <h1 class="title">未成团，退款中</h1>
 	                <?php }elseif($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['refundStatus'] ==2){?>
