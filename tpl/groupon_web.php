@@ -33,6 +33,7 @@
             <div class="content native-scroll" style="top:0rem;bottom:2.75rem;">
 
 				<a href="javascript:history.back(-1);" class="back deta-back"></a>
+				<a href="javascript:;" class="deta-share"></a>
 
                 <section class="swiper-container deta-banner" data-space-between="0">
                     <div class="swiper-wrapper">
@@ -73,15 +74,85 @@
                 </section>
 				<?php } ?>
 
-				<div class="deta-iframe">
-					<iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $info['productId']?>" frameborder="0" width="100%"></iframe>
-				</div>
-
-                <section class="deta-tips">
+				<section class="deta-tips">
                     <h3>活动说明</h3>
                     <div><img src="images/deta-tips2.png" /></div>
                 </section>
 
+				<div class="deta-iframe">
+					<iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $info['productId']?>" frameborder="0" width="100%"></iframe>
+				</div>
+
+                <section class="pro-like">
+                    <h3 class="title1"><!--猜你喜欢--></h3>
+                    <ul>
+						<?php foreach($likes as $v){ ?>
+							<li>
+								<a class="img" href="#"><img src="<?php echo $v['productImage'];?>" /></a>
+								<a class="name" href="#"><?php echo $v['productName'];?></a>
+								<div class="price">
+									<a href="javascript:;" class="collect<?php if($v['isCollect']==1){?> active<?php } ?>" data-collect="<?php echo ($v['isCollect']==1)?'1':'0';?>" data-actid="<?php echo $v['activityId'];?>" data-pid="<?php echo $v['productId'];?>"><!--收藏--></a>
+									￥<span><?php echo $v['price'];?></span>
+								</div>
+							</li>
+						<?php } ?>
+
+
+<?php
+/*
+                        <li>
+                            <a class="img" href="#"><img src="images/img/deta.jpg" /></a>
+                            <a class="name" href="#">【18个月+】澳贝创意磁力积木80pc儿童...</a>
+                            <div class="price">
+                                <a href="javascript:;" class="collect active"><!--收藏--></a>
+                                ￥<span>126</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="img" href="#"><img src="images/img/deta.jpg" /></a>
+                            <a class="name" href="#">【18个月+】澳贝创意磁力积木80pc儿童...</a>
+                            <div class="price">
+                                <a href="javascript:;" class="collect"><!--收藏--></a>
+                                ￥<span>126</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="img" href="#"><img src="images/img/deta.jpg" /></a>
+                            <a class="name" href="#">【18个月+】澳贝创意磁力积木80pc儿童...</a>
+                            <div class="price">
+                                <a href="javascript:;" class="collect"><!--收藏--></a>
+                                ￥<span>126</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="img" href="#"><img src="images/img/deta.jpg" /></a>
+                            <a class="name" href="#">【18个月+】澳贝创意磁力积木80pc儿童...</a>
+                            <div class="price">
+                                <a href="javascript:;" class="collect"><!--收藏--></a>
+                                ￥<span>126</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="img" href="#"><img src="images/img/deta.jpg" /></a>
+                            <a class="name" href="#">【18个月+】澳贝创意磁力积木80pc儿童...</a>
+                            <div class="price">
+                                <a href="javascript:;" class="collect"><!--收藏--></a>
+                                ￥<span>126</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="img" href="#"><img src="images/img/deta.jpg" /></a>
+                            <a class="name" href="#">【18个月+】澳贝创意磁力积木80pc儿童...</a>
+                            <div class="price">
+                                <a href="javascript:;" class="collect"><!--收藏--></a>
+                                ￥<span>126</span>
+                            </div>
+                        </li>
+*/
+?>
+
+                    </ul>
+                </section>
             </div>
 
 			<div class="deta-footer">
@@ -89,7 +160,11 @@
                     <span class="icon i-home"></span>
                     <span class="tab-label">首页</span>
                 </a>
-                <div class="buy">
+				<a class="goCollection<?php if($collected){?> active<?php } ?>" href="javascript:;" data-collect="<?php echo $collected?'1':'0';?>">
+                    <span class="icon i-collection"></span>
+                    <span class="tab-label">收藏</span>
+                </a>
+                <div class="buy buy-m3">
 					<?php if($info['productStatus'] == 0){ ?>
 						<a style="background-color:#999">已下架</a>
 						<a class="more" href="/">查看更多</a>
@@ -118,18 +193,19 @@
         </div>
 
         <script>
-			 document.domain='taozhuma.com';
-			 function setIframeHeight(iframe) {
+			var _apiUrl = "/api_action.php?act=";
+			document.domain='taozhuma.com';
+			function setIframeHeight(iframe) {
 			 	if (iframe) {
 			 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
 			 		if (iframeWin.document.body) {
 			 			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
 			 		}
 			 	}
-			 };
-			 window.onload = function () {
+			};
+			window.onload = function () {
 			 	setIframeHeight(document.getElementById('proInfo'));
-			 };
+			};
 
 			<?php if($info['productStatus'] != 0){ ?>
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
@@ -170,6 +246,42 @@
 					if(clickBuy) $("#buy").attr("href", _genUrl());
 				});
 
+				//猜你喜欢收藏
+                $(".pro-like .collect").on("click", function(){
+                    var _this = $(this);
+					opCollect(_this, _this.attr("data-actid"), _this.attr("data-pid"));
+                });
+
+				
+                //收藏
+                $(".goCollection").on("click", function(){
+					opCollect($(this), "<?php echo $info['activityId'];?>", "<?php echo $info['productId'];?>");
+                });
+
+				function opCollect(_this,actid, pid){
+					var _collected = ((_this.attr("data-collect") != "undefined") && (_this.attr("data-collect") == "1")) ? true : false;
+					$.showIndicator();
+                    $.ajax({
+                        url: _apiUrl+(_collected ? "uncollect" : "collect"),
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {"id":actid,"pid":pid},
+                        success: function(res){
+							$.hideIndicator();
+
+							if(res.code == 1){
+								if(_collected){
+									_this.removeClass("active");
+									_this.attr("data-collect", 0);
+								}else{
+									_this.addClass("active");
+									_this.attr("data-collect", 1);
+								}
+							}
+							$.toast(res.msg);
+                        }
+                    });
+				}
 
                 //打开sku弹窗
                 function skuOpen(){
@@ -339,6 +451,10 @@
             </div>
         </div>
 		<?php } ?>
+
+		<div class="popup popup-share">
+            <a href="javascript:;" class="close-popup"></a>
+        </div>
     </div>
 </body>
 

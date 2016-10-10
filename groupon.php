@@ -33,5 +33,12 @@ $isFreeBuy = (($info['activityType'] == 2) && $info['isGroupFree']) ? true : fal
 $skus = apiData('getProductSkus.do', array('pid'=>$info['productId']));
 $skus = $skus['success'] ? $skus['result'] : array();
 
+//收藏状态
+$collected = ($info['isCollect'] == 1) ? true : false;
+
+//猜你喜欢
+$likes = apiData('guessYourLikeApi.do', array('productId'=>$info['productId'], 'userId'=>$userid));
+$likes = $likes['result'];
+
 include_once('tpl/groupon_web.php');
 ?>

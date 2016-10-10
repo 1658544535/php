@@ -122,5 +122,21 @@ switch($act){
 		$info = apiData('getValidUserCoupon.do', array('pid'=>$productId,'price'=>$amount,'uid'=>$userid));
 		$info['success'] ? ajaxJson(1, '', $info['result']) : ajaxJson(0, $info['error_msg']);
 		break;
+	case 'collect'://收藏
+		$activityId = intval($_POST['id']);
+		$productId = intval($_POST['id']);
+		$type = trim($_POST['t']);
+		($type == '') && $type = 5;//默认为拼团
+		$result = apiData('addFavorite.do', array('activityId'=>$activityId,'favSenId'=>$productId,'favType'=>$type,'uid'=>$userid));
+		$result['success'] ? ajaxJson(1, '收藏成功') : ajaxJson(0, (($result['error_msg'] == '') ? '收藏失败' : $result['error_msg']));
+		break;
+	case 'uncollect'://取消收藏
+		$activityId = intval($_POST['id']);
+		$productId = intval($_POST['id']);
+		$type = trim($_POST['t']);
+		($type == '') && $type = 5;//默认为拼团
+		$result = apiData('delSingleFavorite.do', array('activityId'=>$activityId,'favSenId'=>$productId,'favType'=>$type,'uid'=>$userid));
+		$result['success'] ? ajaxJson(1, '取消收藏') : ajaxJson(0, (($result['error_msg'] == '') ? '取消失败' : $result['error_msg']));
+		break;
 }
 ?>
