@@ -96,61 +96,6 @@
 								</div>
 							</li>
 						<?php } ?>
-
-
-<?php
-/*
-                        <li>
-                            <a class="img" href="#"><img src="images/img/deta.jpg" /></a>
-                            <a class="name" href="#">【18个月+】澳贝创意磁力积木80pc儿童...</a>
-                            <div class="price">
-                                <a href="javascript:;" class="collect active"><!--收藏--></a>
-                                ￥<span>126</span>
-                            </div>
-                        </li>
-                        <li>
-                            <a class="img" href="#"><img src="images/img/deta.jpg" /></a>
-                            <a class="name" href="#">【18个月+】澳贝创意磁力积木80pc儿童...</a>
-                            <div class="price">
-                                <a href="javascript:;" class="collect"><!--收藏--></a>
-                                ￥<span>126</span>
-                            </div>
-                        </li>
-                        <li>
-                            <a class="img" href="#"><img src="images/img/deta.jpg" /></a>
-                            <a class="name" href="#">【18个月+】澳贝创意磁力积木80pc儿童...</a>
-                            <div class="price">
-                                <a href="javascript:;" class="collect"><!--收藏--></a>
-                                ￥<span>126</span>
-                            </div>
-                        </li>
-                        <li>
-                            <a class="img" href="#"><img src="images/img/deta.jpg" /></a>
-                            <a class="name" href="#">【18个月+】澳贝创意磁力积木80pc儿童...</a>
-                            <div class="price">
-                                <a href="javascript:;" class="collect"><!--收藏--></a>
-                                ￥<span>126</span>
-                            </div>
-                        </li>
-                        <li>
-                            <a class="img" href="#"><img src="images/img/deta.jpg" /></a>
-                            <a class="name" href="#">【18个月+】澳贝创意磁力积木80pc儿童...</a>
-                            <div class="price">
-                                <a href="javascript:;" class="collect"><!--收藏--></a>
-                                ￥<span>126</span>
-                            </div>
-                        </li>
-                        <li>
-                            <a class="img" href="#"><img src="images/img/deta.jpg" /></a>
-                            <a class="name" href="#">【18个月+】澳贝创意磁力积木80pc儿童...</a>
-                            <div class="price">
-                                <a href="javascript:;" class="collect"><!--收藏--></a>
-                                ￥<span>126</span>
-                            </div>
-                        </li>
-*/
-?>
-
                     </ul>
                 </section>
             </div>
@@ -164,7 +109,7 @@
                     <span class="icon i-collection"></span>
                     <span class="tab-label">收藏</span>
                 </a>
-                <div class="buy buy-m3">
+                <div class="buy buy-m2">
 					<?php if($info['productStatus'] == 0){ ?>
 						<a style="background-color:#999">已下架</a>
 						<a class="more" href="/">查看更多</a>
