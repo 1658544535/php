@@ -485,6 +485,15 @@
   background: url(../images/popup-overdue.png) no-repeat 0 0;
   background-size: 100% 100%;
 }
+.freeCoupon .used {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4.35rem;
+  height: 3.7rem;
+  background: url(../images/popup-used.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
 .freeCoupon.invalid .name {
   color: #999;
 }
@@ -1167,6 +1176,11 @@
 .freeList .option a.gray {
   color: #898989;
   border-color: #898989;
+}
+.freeList .option a.txt {
+  margin: 0;
+  border: none;
+  color: #898989;
 }
 /*拼团提示*/
 .proTips-1 {
@@ -2076,6 +2090,13 @@
 .oc-footer2 .btn.gray {
   color: #898989;
   border-color: #898989;
+}
+.oc-footer2 .txt {
+  display: inline-block;
+  height: 1.4rem;
+  line-height: 1.3rem;
+  font-size: .7rem;
+  color: #898989;
 }
 .bar-search {
   height: 1.5rem;

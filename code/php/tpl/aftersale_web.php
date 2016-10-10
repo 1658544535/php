@@ -22,7 +22,7 @@
     <div class="page-group" id="page-afterSales">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="javascript:history.back(-1);">
+                <a class="button button-link button-nav pull-left back" href="user.php">
                     <span class="icon icon-back"></span>
                 </a>
                 <h1 class="title">售后列表</h1>
@@ -32,11 +32,11 @@
 
                 <section class="user-tab user-tab5" data-href="api_action.php?act=aftersale">
                     <ul>
-                        <li data-type="0"><a href="javascript:;">全部</a></li>
-                        <li data-type="1"><a href="javascript:;">审核中</a></li>
-                        <li data-type="2"><a href="javascript:;">审核通过</a></li>
-                        <li data-type="3"><a href="javascript:;">审核不通过</a></li>
-                        <li data-type="4"><a href="javascript:;">完成</a></li>
+                        <li data-type="0"><a href="aftersale.php?type=0">全部</a></li>
+                        <li data-type="1"><a href="aftersale.php?type=1">审核中</a></li>
+                        <li data-type="2"><a href="aftersale.php?type=2">审核通过</a></li>
+                        <li data-type="3"><a href="aftersale.php?type=3">审核不通过</a></li>
+                        <li data-type="4"><a href="aftersale.php?type=4">完成</a></li>
                     </ul>
                 </section>
 

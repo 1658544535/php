@@ -63,7 +63,7 @@
                                <%}else if(data["data"][i].orderStatus ==2 && data["data"][i].isSuccess ==1  ){%>
                                                                            已成团，待发货
                                <%}else if(data["data"][i].orderStatus ==3 ){%>    
-                                                                            待收货 
+                                                                            配送中 
                                <%}else if(data["data"][i].orderStatus ==4 ){%>
                                                                              已完成                               
                                <%}else if(data["data"][i].orderStatus ==2   && data["data"][i].isSuccess ==0){%>

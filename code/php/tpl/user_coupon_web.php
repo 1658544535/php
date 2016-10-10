@@ -70,7 +70,9 @@
 
 							<%if(data["data"][i]["overdue"]==1){%>
                         	<div class="overdue"><!--已过期--></div>
-							<%}%>
+							<%}else if(data["data"][i]["used"]==1){%>
+                            <div class="used"><!--已使用--></div>
+                            <%}%>
                         </div>
                     </li>
                 <%}%>
