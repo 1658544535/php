@@ -63,13 +63,13 @@
                                <%}else if(data["data"][i].orderStatus ==2 && data["data"][i].isSuccess ==1  ){%>
                                                                            已成团，待发货
                                <%}else if(data["data"][i].orderStatus ==3 ){%>    
-                                                                            配送中 
+                                                                            待收货 
                                <%}else if(data["data"][i].orderStatus ==4 ){%>
                                                                              已完成                               
                                <%}else if(data["data"][i].orderStatus ==2   && data["data"][i].isSuccess ==0){%>
                                                                              拼团中，还差<%=data["data"][i].oweNum %>人
                                <%}else if(data["data"][i].orderStatus ==1   && data["data"][i].isCancel ==1){%>
-                                                                             交易已取消                        
+                                                                             交易已取消           
                                <%}%>
                              </span>
                         </div>
