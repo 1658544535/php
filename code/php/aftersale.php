@@ -53,10 +53,11 @@ switch($act){
 		$orderId = intval($orderId);
 		empty($orderId) && redirect($backUrl, '参数错误');
 		if(IS_POST()){
+			$name = trim($_POST['type']);
 			$dataParam = array(
 				'oid' => $orderId,
 				'uid' => $userid,
-				'logisticsName' => trim($_POST['type']),
+				'logisticsName' => $_SESSION['aftersale_tracking'][$name]['nameEn'],
 				'logisticsNum' => trim($_POST['no']),
 			);
 			$result = apiData('submitLogistics.do', $dataParam);
@@ -68,6 +69,14 @@ switch($act){
 			}
 			$result['success'] ? redirect($prevUrl, '提交成功') : redirect($backUrl, $result['error_msg']);
 		}else{
+			$trackList = array();
+			$tmpTracks = array();
+			$tracks = apiData('logistics.do', array());
+			foreach($tracks['result'] as $v){
+				$trackList[] = $v['name'];
+				$tmpTracks[$v['name']] = $v;
+			}
+			$_SESSION['aftersale_tracking'] = $tmpTracks;
 			$_SESSION['backurl_aftersale'] = $backUrl;
 			include_once('tpl/aftersale_tracking_web.php');
 		}
@@ -80,6 +89,13 @@ switch($act){
 		!$info['success'] && redirect($backUrl, $info['error_msg']);
 		$info = $info['result'];
 		include_once('tpl/aftersale_detail_web.php');
+		break;
+	case 'logistics'://物流详情
+		$orderId = intval($_GET['oid']);
+		empty($orderId) && redirect($backUrl, '参数错误');
+		$info = apiData('refundExpress.do', array('oid'=>$orderId));
+		empty($info) && redirect($backUrl, '网络异常，请稍候查看');
+		include_once('tpl/logistics_web.php');
 		break;
 	default://列表
 		include_once('tpl/aftersale_web.php');

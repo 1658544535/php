@@ -57,18 +57,22 @@
                         <div class="u-g-1">
                             <span class="type">拼团商品</span>
                             <span class="state">
-								<%if(data["data"][i].refundStatus == 1){%>
-									审核中
+								<%if(data["data"][i].refundStatus == 0){%>
+									待审核
+								<%}else if(data["data"][i].refundStatus == 1){%>
+									审核通过，退款处理中
 								<%}else if(data["data"][i].refundStatus == 2){%>
-									审核通过
+									审核通过，请退货
 								<%}else if(data["data"][i].refundStatus == 3){%>
+									退货中
+								<%}else if(data["data"][i].refundStatus == 6){%>
 									审核不通过
-								<%}else if(data["data"][i].refundStatus == 4){%>
-									完成
+								<%}else if(data["data"][i].refundStatus == 7){%>
+									已完成
 								<%}%>
 							</span>
                         </div>
-                        <a href="" class="u-g-2">
+                        <a href="javascript:;" class="u-g-2">
                             <div class="img"><img src="<%=data["data"][i].productImage%>" /></div>
                             <div class="info">
                                 <div class="name"><%=data["data"][i].productName%></div>
@@ -79,9 +83,13 @@
                         </a>
                         <div class="u-g-3">
 							<%if(data["data"][i].refundStatus == 3){%>
-								<div class="reason">理由：理由不合理</div>
+								<div class="reason">理由：<%=data["data"][i].reason%></div>
 							<%}%>
-                            <%if(data["data"][i].refundStatus == 2){%><a href="aftersale.php?act=tracking&oid=<%=data["data"][i].orderId%>">填写运单号</a><%}%>
+                            <%if(data["data"][i].refundStatus == 2){%>
+								<a href="aftersale.php?act=tracking&oid=<%=data["data"][i].orderId%>">填写运单号</a>
+							<%}else if(data["data"][i].refundStatus == 3){%>
+								<a href="aftersale.php?act=logistics&oid=<%=data["data"][i].orderId%>">查看物流</a>
+							<%}%>
                             <a href="aftersale.php?act=detail&oid=<%=data["data"][i].orderId%>">售后详情</a>
                         </div>
                     </li>
