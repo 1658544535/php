@@ -124,7 +124,7 @@ switch($act){
 		break;
 	case 'collect'://收藏
 		$activityId = intval($_POST['id']);
-		$productId = intval($_POST['id']);
+		$productId = intval($_POST['pid']);
 		$type = trim($_POST['t']);
 		($type == '') && $type = 5;//默认为拼团
 		$result = apiData('addFavorite.do', array('activityId'=>$activityId,'favSenId'=>$productId,'favType'=>$type,'uid'=>$userid));
@@ -132,7 +132,7 @@ switch($act){
 		break;
 	case 'uncollect'://取消收藏
 		$activityId = intval($_POST['id']);
-		$productId = intval($_POST['id']);
+		$productId = intval($_POST['pid']);
 		$type = trim($_POST['t']);
 		($type == '') && $type = 5;//默认为拼团
 		$result = apiData('delSingleFavorite.do', array('activityId'=>$activityId,'favSenId'=>$productId,'favType'=>$type,'uid'=>$userid));
