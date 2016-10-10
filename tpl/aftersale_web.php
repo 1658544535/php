@@ -57,7 +57,9 @@
                         <div class="u-g-1">
                             <span class="type">拼团商品</span>
                             <span class="state">
-								<%if(data["data"][i].refundStatus == 1){%>
+								<%if(data["data"][i].refundStatus == 0){%>
+									待审核
+								<%}else if(data["data"][i].refundStatus == 1){%>
 									审核中
 								<%}else if(data["data"][i].refundStatus == 2){%>
 									审核通过，请退货
