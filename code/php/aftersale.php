@@ -32,6 +32,8 @@ switch($act){
 			$apiParam['refundType'] = $mapReason[$data['reason']];
 			$apiParam['type'] = $mapType[$data['type']];
 			$apiParam['uid'] = $userid;
+			$apiParam['phone'] = $data['phone'];
+			$apiParam['price'] = $data['price'];
 			$result = apiData('applyRefund.do', $apiParam, 'post');
 			if(empty($_SESSION['backurl_aftersale'])){
 				$prevUrl = '/';
