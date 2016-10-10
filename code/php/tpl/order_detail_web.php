@@ -37,9 +37,7 @@
                 <h1 class="title">交易已取消</h1>
                 <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
                 <h1 class="title">已签收</h1>
-                <?php }elseif($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['refundStatus'] ==1){?>
-                <h1 class="title">拼团失败</h1>
-                <?php }elseif($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['refundStatus'] ==2){?>
+                <?php }elseif($OrderDetail['result']['isSuccess'] ==2){?>
                 <h1 class="title">拼团失败</h1>
                 <?php }?>
             </header>
@@ -56,10 +54,8 @@
                  <div class="oc-state"><span>交易已取消</span><i class="o-icon o-icon-5"></i></div>
                 <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
                 <div class="oc-state"><span>交易成功！</span><i class="o-icon o-icon-6"></i></div>
-                <?php }elseif($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['refundStatus'] ==1){?>
-                <h1 class="title">未成团，退款中</h1>
-                <?php }elseif($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['refundStatus'] ==2){?>
-                <h1 class="title">未成团，退款成功</h1>
+                <?php }elseif($OrderDetail['result']['isSuccess'] ==2 ){?>
+                <div class="oc-state"><span>未成团，退款中</span><i class="o-icon o-icon-8"></i></div>
                 <?php }?>
             
 
@@ -83,10 +79,8 @@
                     <h3 class="title1">拼团商品<span class="tips">交易已取消</span></h3>
                     <?php }elseif($OrderDetail['result']['orderStatus'] ==4 ){?>
                     <h3 class="title1">拼团商品<span class="tips">已签收</span></h3>
-                    <?php }elseif($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==1){?>
-	                <h1 class="title">未成团，退款中</h1>
-	                <?php }elseif($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==2){?>
-	                <h1 class="title">未成团，退款成功</h1>
+                    <?php }elseif($OrderDetail['result']['isSuccess'] ==2 ){?>
+	                <h3 class="title1">拼团商品<span class="tips">未成团，退款中</span></h3>
                     <?php }?>
                     <ul class="list-container">
                         <li><a href="javascript:;">
@@ -114,9 +108,11 @@
                             <?php }?>
                       <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
-					  <?php }elseif($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['refundStatus'] ==2){?>
+					  <?php }elseif($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refundStatus'] ==1){?>
+						    <?php if($OrderDetail['result']['source'] !=4){?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
-				       <?php }elseif($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['refundStatus'] ==1){?>
+				       <?php }?>
+				       <?php }elseif($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refundStatus'] ==2){?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 				      <?php }?>
                     </div>
