@@ -22,7 +22,7 @@
     <div class="page-group" id="page-guess">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="javascript:history.back(-1);">
+                <a class="button button-link button-nav pull-left back" href="user.php">
                     <span class="icon icon-back"></span>
                 </a>
                 <h1 class="title">我的猜价</h1>
@@ -32,10 +32,10 @@
 
                 <section class="user-tab" data-href="ajaxtpl/ajax_user_guess.php">
                     <ul>
-                        <li data-type="0"><a href="javascript:;">全部</a></li>
-                        <li data-type="1"><a href="javascript:;">进行中</a></li>
-                        <li data-type="2"><a href="javascript:;">已结束</a></li>
-                        <li data-type="3"><a href="javascript:;">待开奖</a></li>
+                        <li data-type="0"><a href="user_info.php?act=guess&type=0">全部</a></li>
+                        <li data-type="1"><a href="user_info.php?act=guess&type=1">进行中</a></li>
+                        <li data-type="2"><a href="user_info.php?act=guess&type=2">已结束</a></li>
+                        <li data-type="3"><a href="user_info.php?act=guess&type=3">待开奖</a></li>
                     </ul>
                 </section>
 

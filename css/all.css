@@ -941,6 +941,9 @@
 .deta-footer .buy a.one {
   background: #ff6b71;
 }
+.deta-footer .buy-m2 {
+  margin-left: 4.8rem;
+}
 .deta-footer .buy-m3 {
   margin-left: 7.2rem;
 }
@@ -1029,6 +1032,19 @@
   width: 90%;
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);
+}
+.popup-share {
+  background-image: url(../images/wxshare.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: right top;
+}
+.popup-share .close-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 /*团免列表*/
 .freeList-tips {

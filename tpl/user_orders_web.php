@@ -22,7 +22,7 @@
     <div class="page-group" id="page-orderList">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="javascript:history.back(-1);">
+                <a class="button button-link button-nav pull-left back" href="user.php">
                     <span class="icon icon-back"></span>
                 </a>
                 <h1 class="title">我的订单</h1>
@@ -32,12 +32,12 @@
 
                 <section class="user-tab user-tab6" data-href="ajaxtpl/ajax_user_orders.php">
                     <ul>
-                        <li data-type="7"><a href="javascript:;">全部</a></li>
-                        <li data-type="1"><a href="javascript:;">待付款</a></li>
-                        <li data-type="2"><a href="javascript:;">拼团中</a></li>
-                        <li data-type="21"><a href="javascript:;">待发货</a></li>
-                        <li data-type="3"><a href="javascript:;">待收货</a></li>
-                        <li data-type="4"><a href="javascript:;">已完成</a></li>
+                        <li data-type="7"><a href="user_orders.php?type=7">全部</a></li>
+                        <li data-type="1"><a href="user_orders.php?type=1">待付款</a></li>
+                        <li data-type="2"><a href="user_orders.php?type=2">拼团中</a></li>
+                        <li data-type="21"><a href="user_orders.php?type=21">待发货</a></li>
+                        <li data-type="3"><a href="user_orders.php?type=3">待收货</a></li>
+                        <li data-type="4"><a href="user_orders.php?type=4">已完成</a></li>
                     </ul>
                 </section>
 
