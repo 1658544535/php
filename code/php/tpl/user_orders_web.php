@@ -66,7 +66,7 @@
                                                                             待收货 
                                <%}else if(data["data"][i].orderStatus ==4 ){%>
                                                                              已完成                               
-                               <%}else if(data["data"][i].orderStatus ==2 && data["data"][i].source ==1  && data["data"][i].isSuccess ==0){%>
+                               <%}else if(data["data"][i].orderStatus ==2   && data["data"][i].isSuccess ==0){%>
                                                                              拼团中，还差<%=data["data"][i].oweNum %>人
                                <%}else if(data["data"][i].orderStatus ==1   && data["data"][i].isCancel ==1){%>
                                                                              交易已取消                        
@@ -87,7 +87,6 @@
                             <a class="gray orderCancel" data-id="<%=data["data"][i]["id"]%>">取消</a>
                             <a href="javascript:;">去支付</a>
                            <%}else if(data["data"][i].orderStatus ==3){%>
-                            <a class="gray" href="javascript:;">延长收货</a>
                             <a class="gray" href="logistics.php?oid=<%=data["data"][i]["id"]%>">查看物流</a>
                             <a class="check" data-id="<%=data["data"][i]["id"]%>" data-status="<%=data["data"][i]["orderStatus"]%>">确认收货</a>
                            <%}else if(data["data"][i].orderStatus ==2   && data["data"][i].isSuccess ==1 ){%>
