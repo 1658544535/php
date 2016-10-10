@@ -97,7 +97,7 @@
                     <div class="title1">
 						<?php switch($info['status']){
 							case 0: ?>
-								<p class="time">本团将于<span id="downTime" data-timer="<?php echo $info['remainSec'];?>"></span>结束</p>
+								<div class="time">本团将于<div id="downTime" data-timer="<?php echo $info['remainSec'];?>"></div>结束</div>
 							<?php break; ?>
 							<?php case 2: ?>
 								<p class="time">本团已结束</p>
