@@ -62,6 +62,23 @@
             <%}%>
             </script>
 
+            <script>
+                $(document).on("pageInit", "#page-collection", function(e, pageId, page) {
+                    $(document).on("click", ".collecting" ,function(){
+                        $.showIndicator();
+                        $.ajax({
+                            url: '',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {},
+                            success: function(res){
+                                location.href=document.href;
+                            }
+                        });
+                    });
+                });
+            </script>
+
         </div>
     </div>
 </body>
