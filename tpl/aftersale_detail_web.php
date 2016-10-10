@@ -35,7 +35,7 @@
                         <li>
                             <div class="item">
                                 <div class="label">
-                                    <span class="themeColor">* </span>退款类型
+                                    退款类型
                                 </div>
                                 <div class="main"><?php echo $mapType[$info['type']];?></div>
                             </div>
@@ -43,7 +43,7 @@
                         <li>
                             <div class="item">
                                 <div class="label">
-                                    <span class="themeColor">* </span>退款金额
+                                    退款金额
                                 </div>
                                 <div class="main themeColor">￥<?php echo $info['refundPrice'];?></div>
                             </div>
@@ -51,15 +51,15 @@
                         <li>
                             <div class="item">
                                 <div class="label">
-                                    <span class="themeColor">* </span>退款原因
+                                    退款原因
                                 </div>
-                                <div class="main"><?php echo $info['refundType'];?></div>
+                                <div class="main"><?php echo $mapReason[$info['refundType']];?></div>
                             </div>
                         </li>
                         <li>
                             <div class="item">
                                 <div class="label">
-                                    <span class="themeColor">* </span>商品描述
+                                    商品描述
                                 </div>
                                 <div class="main"><?php echo $info['remarks'];?></div>
                             </div>
@@ -67,7 +67,7 @@
                         <li>
                             <div class="item">
                                 <div class="label">
-                                    <span class="themeColor">* </span>联系方式
+                                    联系方式
                                 </div>
                                 <div class="main"><?php echo $info['phone'];?></div>
                             </div>
@@ -75,7 +75,7 @@
                         <li>
                             <div class="label1">凭证图片</div>
                             <div class="uploadImg">
-								<?php for($i=1; $i<3; $i++){ ?>
+								<?php for($i=1; $i<=3; $i++){ ?>
 									<div class="uploadImg-item">
 										<div class="img"><img src="<?php echo $info['refundImage'.$i];?>" /></div>
 									</div>

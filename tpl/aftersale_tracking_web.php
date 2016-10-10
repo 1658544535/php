@@ -40,8 +40,7 @@
                                         <span class="themeColor">* </span>快递类型
                                     </div>
                                     <div class="main">
-                                        <input id="type" type="text" class="txt" placeholder="请选择快递类型" />
-                                        <input type="hidden" name="type" class="txt" />
+                                        <input id="type" name="type" type="text" class="txt" placeholder="请选择快递类型" />
                                     </div>
                                 </div>
                             </li>
@@ -75,7 +74,7 @@
                         cols: [
                         {
                           textAlign: 'center',
-                          values: ['顺丰', '韵达']
+                          values: ["<?php echo implode('","', $trackList);?>"]
                         }
                         ]
                     });
