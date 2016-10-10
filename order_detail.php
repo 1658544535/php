@@ -11,7 +11,7 @@ $OrderStatus    = CheckDatas( 'type', '' );
 $Oid            = CheckDatas( 'oid', '' );
 
 $OrderDetail = apiData('orderdetail.do', array('oid'=>$Oid));
-$OrderRefund = apiData('refundDetails.do', array('oid'=>$Oid,'uid'=>$userid));
+
 switch($act)
 {
 	case 'cancel':

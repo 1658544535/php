@@ -105,7 +105,7 @@
                           <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
                       <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>                  
                            <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
-                           <?php if($OrderRefund['result'] ==''){?>
+                           <?php if($OrderDetail['result']['refundStatus'] ==0){?>
                            <a href="aftersale.php?act=apply&oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>">申请退款</a>
                            <?php }else{?>
                            <a >售后处理中...</a>
@@ -176,7 +176,7 @@
                     <a class="btn" href="javascript:;">去支付</a>
               <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn gray">查看物流</a>
-                   <?php if($OrderRefund['result'] ==''){?>
+                   <?php if($OrderDetail['result']['refundStatus'] ==0){?>
                     <a id="check" class="btn" data-id="<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>" data-status="<?php echo $OrderDetail['result']['orderStatus']  ;?>">确认收货</a>
                    <?php }else{?>
                     <a>售后处理中...</a>
