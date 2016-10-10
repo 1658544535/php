@@ -72,18 +72,20 @@
                                 <div class="main"><?php echo $info['phone'];?></div>
                             </div>
                         </li>
-                        <li>
-                            <div class="label1">凭证图片</div>
-                            <div class="uploadImg">
-								<?php for($i=1; $i<=3; $i++){ ?>
-									<?php if($info['refundImage'.$i] != ''){ ?>
-										<div class="uploadImg-item">
-											<div class="img"><img src="<?php echo $info['refundImage'.$i];?>" /></div>
-										</div>
+						<?php if(($info['refundImage1']!='') || ($info['refundImage2']!='') || ($info['refundImage3']!='')){ ?>
+							<li>
+								<div class="label1">凭证图片</div>
+								<div class="uploadImg">
+									<?php for($i=1; $i<=3; $i++){ ?>
+										<?php if($info['refundImage'.$i] != ''){ ?>
+											<div class="uploadImg-item">
+												<div class="img"><img src="<?php echo $info['refundImage'.$i];?>" /></div>
+											</div>
+										<?php } ?>
 									<?php } ?>
-								<?php } ?>
-                            </div>
-                        </li>
+								</div>
+							</li>
+						<?php } ?>
                     </ul>
                 </section>
 
