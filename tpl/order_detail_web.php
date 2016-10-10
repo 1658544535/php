@@ -104,7 +104,7 @@
                            <?php if($OrderDetail['result']['refundStatus'] ==0 ){?>
                            <a href="aftersale.php?act=apply&oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>">申请退款</a>
                            <?php }else{?>
-                           <a class="txt">售后审核中...</a>
+                           <a class="txt">售后申请中...</a>
                             <?php }?>
                       <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
@@ -177,7 +177,7 @@
                    <?php if($OrderDetail['result']['refundStatus'] ==0){?>
                     <a id="check" class="btn" data-id="<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>" data-status="<?php echo $OrderDetail['result']['orderStatus']  ;?>">确认收货</a>
                    <?php }else{?>
-                    <a class="txt">售后审核中...</a>
+                    <a class="txt">售后审请中...</a>
                    <?php }?>
              <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
                      <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn">查看物流</a>
