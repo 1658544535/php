@@ -22,6 +22,7 @@ switch($act){
 		!empty($info['result']) && redirect($backUrl, '你已申请过');
 
 		if(IS_POST()){
+			set_time_limit(0);
 			$apiParam = array();
 			$upImgs = $_POST['img'];
 			
