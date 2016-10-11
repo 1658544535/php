@@ -52,7 +52,7 @@
                                         <span class="themeColor">* </span>退款金额
                                     </div>
                                     <div class="main">
-                                        <input id="price" type="tel" name="m[price]" class="txt price" data-max="<?php echo $order['productInfo']['orderPrice'];?>" placeholder="请输入退款金额" />
+                                        <input id="price" type="tel" name="m[price]" class="txt price" data-max="<?php echo $order['productInfo']['orderPrice'];?>" placeholder="请输入退款金额" value="<?php echo $order['productInfo']['orderPrice'];?>" />
                                     </div>
                                 </div>
                                 <div class="tips">（最高可退 ￥<?php echo $order['productInfo']['orderPrice'];?>元）</div>
@@ -83,7 +83,7 @@
                                         <span class="themeColor">* </span>联系方式
                                     </div>
                                     <div class="main">
-                                        <input type="text" name="m[phone]" class="txt" placeholder="请输入联系方式" />
+                                        <input type="text" name="m[phone]" class="txt" placeholder="请输入联系方式" value="<?php echo $order['addressInfo']['tel'];?>" />
                                     </div>
                                 </div>
                             </li>
@@ -120,8 +120,8 @@
                         cols: [
                         {
                           textAlign: 'center',
-                          values: ['仅退款', '我要退货'],
-                          displayValues: ['仅退款', '我要退货']
+                          values: ['仅退款'<?php if(!(($order['isSuccess'] == 1) && ($order['orderStatus'] == 2))){?>, '我要退货'<?php } ?>],
+                          displayValues: ['仅退款'<?php if(!(($order['isSuccess'] == 1) && ($order['orderStatus'] == 2))){?>, '我要退货'<?php } ?>]
                         }
                         ]
                     })
