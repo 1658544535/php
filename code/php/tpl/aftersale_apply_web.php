@@ -138,6 +138,53 @@
                         }
                         ]
                     });
+
+                    //上传图片
+                    $(document).on("click", '.uploadImg-item', function(){
+                        $('.uploadImg-item').removeClass("active");
+                        $(this).addClass("active");
+                        bindUploadImg();
+                    });
+
+                    function bindUploadImg(){
+                        jQuery('.uploadImg .uploadImg-item.active input[type="file"]').fileupload({
+                            autoUpload: true,//是否自动上传
+                            url: "/uFile.php",//上传地址
+                            dataType: 'json',
+                            success: function (data, status){//设置文件上传完毕事件的回调函数
+                                data = {
+                                    code: 1,
+                                    msg: '',
+                                    url: ''
+                                }
+                                if(data.code > 0){
+                                    var _this = $(".uploadImg-item.active input");
+                                    var url = data.url;
+                                    if(_this.parent().find(".img").hasClass("noImg")){
+                                        _this.parent().find(".img").removeClass("noImg");
+                                        _this.parent().find(".img").html('<img src="'+ url +'" />');
+                                        _this.parent().find("input[type='hidden']").val(url);
+                                        if(_this.parents(".uploadImg").find(".uploadImg-item").length < 3)
+                                        _this.parent().after('<div class="uploadImg-item"><input type="file" capture="camera" accept="image/*" /><input type="hidden" name="img[]"><div class="img noImg"></div></div>');
+                                    }else{
+                                        _this.parent().find(".img").find("img").attr("src", url);
+                                        _this.parent().find("input[type='hidden']").val(url);
+                                    }
+                                    $(".uploadImg-item.active .img").removeClass("loadingImg");
+                                }else{
+                                    $.toast(data.msg);
+                                    $(".uploadImg-item.active .img").removeClass("loadingImg");
+                                }
+                            },
+                            error: function(e) {
+                                $.toast("图片上传失败，请重试");
+                                $(".uploadImg-item.active .img").removeClass("loadingImg");
+                            },
+                            progressall: function (e, data) {//设置上传进度事件的回调函数
+                                $(".uploadImg-item.active .img").addClass("loadingImg");
+                            }
+                        });
+                    }
                 });
 
 				function doSubmit(){
