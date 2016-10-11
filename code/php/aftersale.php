@@ -46,6 +46,7 @@ switch($act){
 			$order = apiData('orderdetail.do', array('oid'=>$orderId));
 			!$order['success'] && redirect($backUrl, $order['error_msg']);
 			$order = $order['result'];
+
 			$_SESSION['backurl_aftersale'] = $backUrl;
 			include_once('tpl/aftersale_apply_web.php');
 		}
