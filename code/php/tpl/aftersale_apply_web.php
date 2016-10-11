@@ -32,67 +32,67 @@
 
             <div class="content native-scroll bgWhite">
 
-                <form action="aftersale.php?act=apply" accept-charset="utf-8" enctype="multipart/form-data" method="post" onsubmit="return doSubmit()">
-					<input type="hidden" name="oid" value="<?php echo $orderId;?>" />
                     <section class="afterSales-form">
                         <ul>
-                            <li>
-                                <div class="item">
-                                    <div class="label">
-                                        <span class="themeColor">* </span>退款类型
+                            <form id="submitForm" action="aftersale.php?act=apply" accept-charset="utf-8" enctype="multipart/form-data" method="post">
+                                <input type="hidden" name="oid" value="<?php echo $orderId;?>" />
+                                <li>
+                                    <div class="item">
+                                        <div class="label">
+                                            <span class="themeColor">* </span>退款类型
+                                        </div>
+                                        <div class="main">
+                                            <input id="type" type="text" name="m[type]" class="txt" placeholder="请选择退款类型" />
+                                        </div>
                                     </div>
-                                    <div class="main">
-                                        <input id="type" type="text" name="m[type]" class="txt" placeholder="请选择退款类型" />
+                                </li>
+                                <li>
+                                    <div class="item">
+                                        <div class="label">
+                                            <span class="themeColor">* </span>退款金额
+                                        </div>
+                                        <div class="main">
+                                            <input id="price" type="tel" name="m[price]" class="txt price" data-max="<?php echo $order['productInfo']['orderPrice'];?>" placeholder="请输入退款金额" value="<?php echo $order['productInfo']['orderPrice'];?>" />
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item">
-                                    <div class="label">
-                                        <span class="themeColor">* </span>退款金额
+                                    <div class="tips">（最高可退 ￥<?php echo $order['productInfo']['orderPrice'];?>元）</div>
+                                </li>
+                                <li>
+                                    <div class="item">
+                                        <div class="label">
+                                            <span class="themeColor">* </span>退款原因
+                                        </div>
+                                        <div class="main">
+                                            <input id="reason" type="text" name="m[reason]" class="txt" placeholder="请选择退款原因" />
+                                        </div>
                                     </div>
-                                    <div class="main">
-                                        <input id="price" type="tel" name="m[price]" class="txt price" data-max="<?php echo $order['productInfo']['orderPrice'];?>" placeholder="请输入退款金额" value="<?php echo $order['productInfo']['orderPrice'];?>" />
+                                </li>
+                                <li>
+                                    <div class="item">
+                                        <div class="label">
+                                            <span class="themeColor">* </span>问题描述
+                                        </div>
+                                        <div class="main">
+                                            <input type="text" name="m[describe]" class="txt" placeholder="最多可输入170个字" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="tips">（最高可退 ￥<?php echo $order['productInfo']['orderPrice'];?>元）</div>
-                            </li>
-                            <li>
-                                <div class="item">
-                                    <div class="label">
-                                        <span class="themeColor">* </span>退款原因
+                                </li>
+                                <li>
+                                    <div class="item">
+                                        <div class="label">
+                                            <span class="themeColor">* </span>联系方式
+                                        </div>
+                                        <div class="main">
+                                            <input type="text" name="m[phone]" class="txt" placeholder="请输入联系方式" value="<?php echo $order['addressInfo']['tel'];?>" />
+                                        </div>
                                     </div>
-                                    <div class="main">
-                                        <input id="reason" type="text" name="m[reason]" class="txt" placeholder="请选择退款原因" />
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item">
-                                    <div class="label">
-                                        <span class="themeColor">* </span>问题描述
-                                    </div>
-                                    <div class="main">
-                                        <input type="text" name="m[describe]" class="txt" placeholder="最多可输入170个字" />
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item">
-                                    <div class="label">
-                                        <span class="themeColor">* </span>联系方式
-                                    </div>
-                                    <div class="main">
-                                        <input type="text" name="m[phone]" class="txt" placeholder="请输入联系方式" value="<?php echo $order['addressInfo']['tel'];?>" />
-                                    </div>
-                                </div>
-                            </li>
+                                </li>
+                            </form>
                             <li>
                                 <div class="uploadImg">
                                     <div class="uploadImg-item">
                                         <input type="file" capture="camera" accept="image/*" />
                                         <div class="img noImg"></div>
-                                        <input type="hidden" name="img[]">
                                         <!-- <input type="file" capture="camera" accept="image/*" name="img[]" /> -->
                                     </div>
                                 </div>
@@ -101,9 +101,8 @@
                     </section>
 
                     <div class="afterSales-submit">
-                        <input type="submit" value="提交申请" />
+                        <input type="button" value="提交申请" />
                     </div>
-                </form>
 
             </div>
             <script type='text/javascript' src='js/fileupload/jquery.ui.widget.js' charset='utf-8'></script>
@@ -162,10 +161,10 @@
                                     var url = data.url;
                                     if(_this.parent().find(".img").hasClass("noImg")){
                                         _this.parent().find(".img").removeClass("noImg");
-                                        _this.parent().find(".img").html('<img src="'+ url +'" />');
+                                        _this.parent().find(".img").html('<img data-src="'+ url +'" src="'+ url +'" />');
                                         _this.parent().find("input[type='hidden']").val(url);
                                         if(_this.parents(".uploadImg").find(".uploadImg-item").length < 3)
-                                        _this.parent().after('<div class="uploadImg-item"><input type="file" capture="camera" accept="image/*" /><input type="hidden" name="img[]"><div class="img noImg"></div></div>');
+                                        _this.parent().after('<div class="uploadImg-item"><input type="file" capture="camera" accept="image/*" /><div class="img noImg"></div></div>');
                                     }else{
                                         _this.parent().find(".img").find("img").attr("src", url);
                                         _this.parent().find("input[type='hidden']").val(url);
@@ -185,37 +184,42 @@
                             }
                         });
                     }
-                });
 
-				function doSubmit(){
-                    if($.trim($("#type").val()) == ""){
-                        $.toast("请选择退款类型");
-                        return false;
-                    }
-                    if($.trim($("#price").val()) == ""){
-                        $.toast("请输入退款金额");
-                        return false;
-                    }
-                    if($.trim($("#reason").val()) == ""){
-                        $.toast("请选择退款原因");
-                        return false;
-                    }
-                    if($.trim($("#reason").val()) == ""){
-                        $.toast("请输入问题描述");
-                        return false;
-                    }
-                    if($.trim($("input[name='m[describe]']").val()) == ""){
-                        $.toast("请输入问题描述");
-                        return false;
-                    }
-                    var _tel = $("input[name='m[phone]']").val();
-                    var _re = /((^1\d{10}$)|(^(\d{3,4}-)?\d{7,8}$))/;
-                    if(!_re.test(_tel)){
-                        $.toast("请正确填写联系方式");
-                        return false;
-                    }
-					return true;
-				}
+                    //提交
+                    $(".afterSales-submit input").on("click", function(){
+                        if($.trim($("#type").val()) == ""){
+                            $.toast("请选择退款类型");
+                            return false;
+                        }
+                        if($.trim($("#price").val()) == ""){
+                            $.toast("请输入退款金额");
+                            return false;
+                        }
+                        if($.trim($("#reason").val()) == ""){
+                            $.toast("请选择退款原因");
+                            return false;
+                        }
+                        if($.trim($("#reason").val()) == ""){
+                            $.toast("请输入问题描述");
+                            return false;
+                        }
+                        if($.trim($("input[name='m[describe]']").val()) == ""){
+                            $.toast("请输入问题描述");
+                            return false;
+                        }
+                        var _tel = $("input[name='m[phone]']").val();
+                        var _re = /((^1\d{10}$)|(^(\d{3,4}-)?\d{7,8}$))/;
+                        if(!_re.test(_tel)){
+                            $.toast("请正确填写联系方式");
+                            return false;
+                        }
+                        $(".uploadImg img").each(function(index, el) {
+                            $("#submitForm").append('<input type="hidden" name="img[]" value="'+ $(el).attr("data-src") +'" />');
+                        });
+                        
+                        $("#submitForm").submit();
+                    });
+                });
             </script>
         </div>
     </div>
