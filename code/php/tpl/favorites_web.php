@@ -43,11 +43,11 @@
             <%if(data["data"].length>0){%>
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li>
-                        <a href="#" class="img"><img src="<%=data["data"][i]["productImage"]%>" /></a>
+                        <a href="javascript:;" class="img"><img src="<%=data["data"][i]["productImage"]%>" /></a>
                         <div class="info">
-                            <a href="#" class="name"><%=data["data"][i]["productName"]%></a>
+                            <a href="groupon.php?id=<%=data["data"][i]["activityId"]%>" class="name"><%=data["data"][i]["productName"]%></a>
                             <div class="option">
-                                <a href="#" class="group">
+                                <a href="javascript:;" class="group">
                                     <%=data["data"][i]["groupNum"]%>人团&nbsp;&nbsp;<font class="themeColor">￥<span class="price"><%=data["data"][i]["productPrice"]%></span></font>
                                     <span class="btn">去开团&nbsp;&gt;</span>
                                 </a>
