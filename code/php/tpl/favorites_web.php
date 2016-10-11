@@ -27,7 +27,6 @@
                 </a>
                 <h1 class="title">我的收藏</h1>
             </header>
-           <?php include_once('footer_nav_web.php');?>
             <div class="content native-scroll">
 
                 <section class="user-collection pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_product_collect.php">
