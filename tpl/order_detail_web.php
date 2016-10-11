@@ -177,7 +177,7 @@
                    <?php if($OrderDetail['result']['refundStatus'] ==0){?>
                     <a id="check" class="btn" data-id="<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>" data-status="<?php echo $OrderDetail['result']['orderStatus']  ;?>">确认收货</a>
                    <?php }else{?>
-                    <a class="txt">售后审请中...</a>
+                    <a class="txt">售后申请中...</a>
                    <?php }?>
              <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
                      <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn">查看物流</a>
