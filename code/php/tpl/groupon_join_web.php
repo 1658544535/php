@@ -100,7 +100,7 @@
 								<div class="time">本团将于<div id="downTime" data-timer="<?php echo $info['remainSec'];?>"></div>结束</div>
 							<?php break; ?>
 							<?php case 2: ?>
-								<p class="themeColor">本团已结束</p>
+								<p class="time themeColor">本团已结束</p>
 							<?php break; ?>
 						<?php } ?>
                         <span>参团小伙伴</span>
