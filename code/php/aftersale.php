@@ -7,6 +7,10 @@ $backUrl = getPrevUrl();
 $mapType = array(1=>'仅退款', 2=>'我要退货', 3=>'售后');
 $mapReason = array(1=>'没有收到货', 2=>'商品有质量问题', 3=>'商品与描述不一致', 4=>'商品少发漏发发错', 5=>'收到商品时有划痕或破损', 6=>'质疑假货', 7=>'其他');
 
+//上传图片保存目录
+define('IMAGE_UPLOAD_DIR', SCRIPT_ROOT.'upfiles/aftersale/');
+define('IMAGE_UPLOAD_URL', 'upfiles/aftersale/');
+
 $act = trim($_GET['act']);
 switch($act){
 	case 'apply'://申请
@@ -19,8 +23,12 @@ switch($act){
 
 		if(IS_POST()){
 			$apiParam = array();
-			for($i=0; $i<3; $i++){
-				($_FILES['img']['size'][$i] > 0) && $apiParam['image'.($i+1)] = '@'.$_FILES['img']['tmp_name'][$i];
+			$upImgs = $_POST['img'];
+			
+			$i = 1;
+			foreach($upImgs as $v){
+				$apiParam['image'.$i] = '@'.IMAGE_UPLOAD_DIR.$v;
+				$i++;
 			}
 
 			$mapType = array_flip($mapType);
@@ -41,7 +49,14 @@ switch($act){
 				$prevUrl = $_SESSION['backurl_aftersale'];
 				unset($_SESSION['backurl_aftersale']);
 			}
-			$result['success'] ? redirect($prevUrl, '申请成功') : redirect($backUrl, $result['error_msg']);
+			if($result['success']){
+				foreach($upImgs as $v){
+					file_exists(IMAGE_UPLOAD_DIR.$v) && unlink(IMAGE_UPLOAD_DIR.$v);
+				}
+				redirect($prevUrl, '申请成功');
+			}else{
+				redirect($backUrl, $result['error_msg']);
+			}
 		}else{
 			$order = apiData('orderdetail.do', array('oid'=>$orderId));
 			!$order['success'] && redirect($backUrl, $order['error_msg']);
@@ -99,6 +114,21 @@ switch($act){
 		$info = apiData('refundExpress.do', array('oid'=>$orderId));
 		empty($info) && redirect($backUrl, '网络异常，请稍候查看');
 		include_once('tpl/logistics_web.php');
+		break;
+	case 'uploadimg'://上传图片
+		$upfile = $_FILES['files'];
+		($upfile['size'][0] <= 0) && ajaxResponse(false, '请选择图片');
+		$allowTypes = array('image/jpg','image/jpeg','image/png','image/pjpeg','image/gif','image/bmp','image/x-png');
+		!in_array($upfile['type'][0], $allowTypes) && ajaxResponse(false, '只能上传图片');
+		$fileInfo = pathinfo($upfile['name'][0]);
+		$orderId = intval($_GET['oid']);
+		!file_exists(IMAGE_UPLOAD_DIR) && mkdir(IMAGE_UPLOAD_DIR, 0777, true);
+		$destFile = $orderId.'_'.time().'.'.$fileInfo['extension'];
+		if(move_uploaded_file($upfile['tmp_name'][0], IMAGE_UPLOAD_DIR.$destFile)){
+			ajaxResponse(true, $destFile, array('url'=>IMAGE_UPLOAD_URL.$destFile));
+		}else{
+			ajaxResponse(false, '上传失败');
+		}
 		break;
 	default://列表
 		include_once('tpl/aftersale_web.php');

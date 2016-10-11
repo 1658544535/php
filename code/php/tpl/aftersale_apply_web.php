@@ -148,20 +148,20 @@
                     function bindUploadImg(){
                         jQuery('.uploadImg .uploadImg-item.active input[type="file"]').fileupload({
                             autoUpload: true,//是否自动上传
-                            url: "/uFile.php",//上传地址
+                            url: "/aftersale.php?act=uploadimg&oid=<?php echo $orderId;?>",//上传地址
                             dataType: 'json',
-                            success: function (data, status){//设置文件上传完毕事件的回调函数
-                                data = {
-                                    code: 1,
-                                    msg: '',
-                                    url: ''
+                            success: function (res, status){//设置文件上传完毕事件的回调函数
+                                var data = {
+                                    code: res.state,
+                                    msg: res.msg,
+                                    url: res.url
                                 }
                                 if(data.code > 0){
                                     var _this = $(".uploadImg-item.active input");
                                     var url = data.url;
                                     if(_this.parent().find(".img").hasClass("noImg")){
                                         _this.parent().find(".img").removeClass("noImg");
-                                        _this.parent().find(".img").html('<img data-src="'+ url +'" src="'+ url +'" />');
+                                        _this.parent().find(".img").html('<img data-file="'+data.msg+'" data-src="'+ url +'" src="'+ url +'" />');
                                         _this.parent().find("input[type='hidden']").val(url);
                                         if(_this.parents(".uploadImg").find(".uploadImg-item").length < 3)
                                         _this.parent().after('<div class="uploadImg-item"><input type="file" capture="camera" accept="image/*" /><div class="img noImg"></div></div>');
@@ -214,7 +214,7 @@
                             return false;
                         }
                         $(".uploadImg img").each(function(index, el) {
-                            $("#submitForm").append('<input type="hidden" name="img[]" value="'+ $(el).attr("data-src") +'" />');
+                            $("#submitForm").append('<input type="hidden" name="img[]" value="'+ $(el).attr("data-file") +'" />');
                         });
                         
                         $("#submitForm").submit();
