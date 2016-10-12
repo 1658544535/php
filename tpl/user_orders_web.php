@@ -90,7 +90,7 @@
                             <a href="javascript:;">去支付</a>
                            <%}else if(data["data"][i].orderStatus ==3){%>
                             <a class="gray" href="logistics.php?oid=<%=data["data"][i]["id"]%>">查看物流</a>
-                            <%if(data["data"][i].refundStatus ==0){%>
+                            <%if(data["data"][i].refundStatus ==0 || data["data"][i].refundStatus ==6 || data["data"][i].refundStatus ==5){%>
                             <a class="check" data-id="<%=data["data"][i]["id"]%>" data-status="<%=data["data"][i]["orderStatus"]%>">确认收货</a>
                            <%}%>
                            <%}else if(data["data"][i].orderStatus ==2   && data["data"][i].isSuccess ==1 && data["data"][i].refundStatus ==0){%>
