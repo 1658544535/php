@@ -14,11 +14,19 @@ empty($grouponId) && redirect($prevUrl);
 
 $productId = intval($_GET['pid']);
 
+$attendId = intval($_GET['aid']);//参团id
+
+//防止下单后点击手机物理返回按钮
+if(isset($_SESSION['order_success']) && $_SESSION['order_success']){
+	unset($_SESSION['order_success']);
+	redirect('groupon_join.php?aid='.$attendId);
+}
+
 $num = intval($_GET['num']);
 $num = max(1, $num);
 
 $isGrouponFree = intval($_GET['free']);
-$attendId = intval($_GET['aid']);//参团id
+
 $info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>$num,'pid'=>$productId,'source'=>$isGrouponFree?2:1,'uid'=>$userid));
 if($info['success']){
 	$info = $info['result'];

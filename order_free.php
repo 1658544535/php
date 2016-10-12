@@ -12,6 +12,12 @@ $prevUrl = getPrevUrl();
 $grouponId = intval($_GET['id']);
 empty($grouponId) && redirect($prevUrl);
 
+//防止下单后点击手机物理返回按钮
+if(isset($_SESSION['order_success']) && $_SESSION['order_success']){
+	unset($_SESSION['order_success']);
+	redirect('groupon.php?id='.$grouponId);
+}
+
 $productId = intval($_GET['pid']);
 
 $time = time();
@@ -24,7 +30,7 @@ $info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'pi
 if($info['success']){
 	$info = $info['result'];
 }else{
-	redirect($prevUrl, $info['error_msg']);
+//	redirect($prevUrl, $info['error_msg']);
 }
 
 

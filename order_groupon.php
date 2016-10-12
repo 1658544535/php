@@ -14,6 +14,12 @@ $grouponId = intval($_GET['id']);
 
 $productId = intval($_GET['pid']);
 
+//防止下单后点击手机物理返回按钮
+if(isset($_SESSION['order_success']) && $_SESSION['order_success']){
+	unset($_SESSION['order_success']);
+	redirect('groupon.php?id='.$grouponId);
+}
+
 $time = time();
 
 $num = intval($_GET['num']);

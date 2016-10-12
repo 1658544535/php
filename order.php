@@ -48,11 +48,16 @@ $skuId && $apiParam['skuLinkId'] = $skuId;
 
 ($orderType == 'join') && $apiParam['attendId'] = $attendId;
 $result = apiData('addOrderByPurchase.do', $apiParam);
-!$result['success'] && redirect($prevUrl, $result['error_msg']);
+if(!$result['success']){
+	$_SESSION['order_failure'] = true;
+	redirect($prevUrl, $result['error_msg']);
+}
 
 unset($_SESSION['order']);
 
-redirect('user_orders.php', '下单成功');
+$_SESSION['order_success'] = true;
+
+redirect('pay_success.php');
 
 //使用接口获取JS支付所需的数据
 $payParam = $result['result']['wxpay'];

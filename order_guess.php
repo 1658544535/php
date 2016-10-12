@@ -14,6 +14,12 @@ empty($productId) && redirect($prevUrl);
 
 $grouponId = intval($_GET['id']);
 
+//防止下单后点击手机物理返回按钮
+if(isset($_SESSION['order_success']) && $_SESSION['order_success']){
+	unset($_SESSION['order_success']);
+	redirect('order_guess.php?id='.$grouponId.'&pid='.$productId);
+}
+
 $num = intval($_GET['num']);
 $num = max(1, $num);
 
