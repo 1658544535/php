@@ -380,17 +380,24 @@
                     $("#guess-price").on("click", function(){
                         var price1 = parseInt($(".popup-join input.big").val()),
                             price2 = parseInt($(".popup-join input.small").val());
-                        if(!!price1){
                             price2 = !!price2 ? price2 : 0;
-                            var price = price1 + '.' + price2;
-                            $.post("product_guess_price.php?act=detail_save", {price: price, gid: <?php echo $gId;?>}, function(req){
-                                if(req.code > 0){
-                                    $.toast('估价成功');
-                                    location.href=document.location;
-                                }
-                            }, "json");
-                        }else{
+                        var price = price1 + '.' + price2;
+                        var minPrice = <?php echo $ObjGrouponInfo['result']['minPrice'] ;?>,
+                            maxPrice = <?php echo $ObjGrouponInfo['result']['maxPrice'] ;?>;
+                        
+                        if(!price1 && price1!=0){
                             $.toast('请填写价格');
+                        }else{
+                            if(price>maxPrice || price<minPrice){
+                              $.toast('估计需在价格区间内');
+                            }else{
+                              $.post("product_guess_price.php?act=detail_save", {price: price, gid: <?php echo $gId;?>}, function(req){
+                                  if(req.code > 0){
+                                      $.toast('估价成功');
+                                      location.href=document.location;
+                                  }
+                              }, "json");
+                            }
                         }
                         
                     });
