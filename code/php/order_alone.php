@@ -12,6 +12,14 @@ $prevUrl = getPrevUrl();
 $productId = intval($_GET['pid']);
 empty($productId) && redirect($prevUrl);
 
+$grouponId = intval($_GET['id']);
+
+//防止下单后点击手机物理返回按钮
+if(isset($_SESSION['order_success']) && $_SESSION['order_success']){
+	unset($_SESSION['order_success']);
+	redirect('groupon.php?id='.$grouponId);
+}
+
 $num = intval($_GET['num']);
 $num = max(1, $num);
 
@@ -23,8 +31,6 @@ if($info['success']){
 }else{
 	redirect($prevUrl, $info['error_msg']);
 }
-
-$grouponId = intval($_GET['id']);
 
 $_SESSION['order']['type'] = 'alone';
 
