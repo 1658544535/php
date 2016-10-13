@@ -43,7 +43,7 @@ $skus = $skus['success'] ? $skus['result'] : array();
 $collected = ($info['isCollect'] == 1) ? true : false;
 
 //猜你喜欢
-$likes = apiData('guessYourLikeApi.do', array('productId'=>$info['productId'], 'userId'=>$userid));
+$likes = apiData('guessYourLikeApi.do', array('activityId'=>$info['activityId'], 'userId'=>$userid));
 $likes = $likes['result'];
 
 include_once('tpl/groupon_web.php');
