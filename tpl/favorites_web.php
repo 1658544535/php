@@ -47,7 +47,7 @@
                         <div class="info">
                             <a href="groupon.php?id=<%=data["data"][i]["activityId"]%>" class="name"><%=data["data"][i]["productName"]%></a>
                             <div class="option">
-                                <a href="javascript:;" class="group">
+                                <a href="groupon.php?id=<%=data["data"][i]["activityId"]%>" class="group">
                                     <%=data["data"][i]["groupNum"]%>人团&nbsp;&nbsp;<font class="themeColor">￥<span class="price"><%=data["data"][i]["productPrice"]%></span></font>
                                     <span class="btn">去开团&nbsp;&gt;</span>
                                 </a>
