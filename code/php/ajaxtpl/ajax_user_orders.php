@@ -6,13 +6,13 @@ $act  = CheckDatas( 'act', 'info' );
 $productId   	= CheckDatas( 'pid', '' );
 $gId   	        = CheckDatas( 'gid', '' );
 $page           = max(1, intval($_POST['page']));
-$OrderStatus    = CheckDatas( 'type', '' );
-$OrderId        = CheckDatas( 'data-id', '' );
-
+$OrderType      = CheckDatas( 'type', '' );
+$OrderId        = CheckDatas( 'oid', '' );
+$OrderStatus    = CheckDatas( 'status', '' );
 
 
 //获取个人订单列表数据
-$orders = apiData('myorder.do', array('orderStatus'=>$OrderStatus,'pageNo'=>$page,'uid'=>$userid));
+$orders = apiData('myorder.do', array('orderStatus'=>$OrderType,'pageNo'=>$page,'uid'=>$userid));
 
 
 if($orders['result'] !='')
@@ -23,6 +23,9 @@ else
 {
 	echo	ajaxJson( 0,'获取失败');
 }
+
+
+
 
 switch($act)
 {
