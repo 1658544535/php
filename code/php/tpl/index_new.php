@@ -97,7 +97,7 @@
                             </div>
                             <div class="info">
                                 ￥<span class="price"><%=data["proData"]["listData"][i]["productPrice"]%></span>
-                                <span class="sales">已团<%=data["proData"]["listData"][i]["attendNum"]%>件</span>
+                                <span class="sales">已团<%=data["proData"]["listData"][i]["proSellrNum"]%>件</span>
                             </div>
                         </a></li>
                     <%}%>
