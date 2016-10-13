@@ -76,7 +76,11 @@
                             <div class="info">
                                 <div class="name"><%=data["data"][i]["productName"]%></div>
                                 <div class="price">
-                                    <span>价格区间：<font class="themeColor">￥<%=data["data"][i]["minPrice"]%>-<%=data["data"][i]["maxPrice"]%></font></span>
+                                    <%if(data["data"][i].activityStatus ==2){%>
+                                     <span>最终价格：<font class="themeColor">￥<%=data["data"][i]["realPrice"]%></font></span>                                    
+                                    <%}else{%>
+                                     <span>价格区间：<font class="themeColor">￥<%=data["data"][i]["minPrice"]%>-<%=data["data"][i]["maxPrice"]%></font></span>
+                                    <%}%>
                                     <span class="price2">我的猜价：<font class="themeColor">￥<%=data["data"][i]["userPrice"]%></font></span>
                                 </div>
                             </div>
