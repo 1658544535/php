@@ -56,19 +56,21 @@
                         <div class="u-g-1">
                             <span class="type">猜价商品</span>
                                   <%if(data["data"][i].activityStatus ==1){%>
-                                  <span class="state">进行中</span>
-                                  <%}else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==1){%>      
-                                  <span class="state">一等奖，获得商品</span>
+                                   <span class="state">进行中</span>
+                                  <%}else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==1 &&　data["data"][i].isRecCoupon ==1){%>      
+                                   <span class="state">一等奖，已完成</span>
+                                 <%}else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==1 &&　data["data"][i].isRecCoupon ==0){%>      
+                                   <span class="state">一等奖，待完善信息</span> 
                                   <%}else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==2 &&　data["data"][i].isRecCoupon ==1){%>
-                                  <span class="state">二等奖，已发券</span>
+                                   <span class="state">二等奖，已发券</span>
 　　　　　　　　　　　　　　　　　　<%}else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==2 &&　data["data"][i].isRecCoupon ==0){%>
-                                  <span class="state">二等奖，未发券</span>
+                                   <span class="state">二等奖，奖品发放中...</span>
                                   <%}else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==3 &&　data["data"][i].isRecCoupon ==1){%>
-                                  <span class="state">三等奖，已发券</span>
+                                   <span class="state">三等奖，已发券</span>
                                   <%}else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==3 &&　data["data"][i].isRecCoupon ==0){%>
-                                  <span class="state">三等奖，未发券</span>
+                                   <span class="state">三等奖，奖品发放中...</span>
                                   <%}else if(data["data"][i].activityStatus ==3){%>
-                                  <span class="state">待开奖</span>
+                                   <span class="state">待开奖</span>
                                   <%}%>
                           </div>
                         <a href="product_guess_price.php?act=detail&gid=<%=data["data"][i]["activityId"]%>&pid=<%=data["data"][i]["productId"]%>" class="u-g-2">

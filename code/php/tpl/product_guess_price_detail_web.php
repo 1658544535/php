@@ -207,7 +207,7 @@
                             <a href="product_guess_price.php?act=user&gid=<?php echo $gId;?>">点击查看更多</a>
                         </div>
 	                        <ul class="list-container">
-	                            <?php foreach ($ObjUserList['result']['joinUserList'] as $ul){?>
+	                          <?php foreach ($ObjUserList['result']['joinUserList'] as $ul){?>
 	                            <li><a href="javascript:;">
 	                                <div class="img"><img src="<?php echo $ul['userImage'] ;?>" /></div>
 	                                <div class="info">
@@ -216,7 +216,7 @@
 	                                    <div class="time"><?php echo $ul['joinTime'];?></div>
 	                                </div>
 	                            </a></li>
-	                        <?php }?>
+	                           <?php }?>
 	                        </ul>
                       <?php }elseif( $ObjGrouponInfo['result']['isStart'] ==2 &&  $ObjGrouponInfo['result']['isJoin'] ==0 ){?>
 	                      <section class="guessJoinList guessDetaJoinList">
@@ -352,10 +352,14 @@
 	                    <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
 	                    <div class="txt" onClick="location.href='groupon.php?act=guess&pid=<?php echo $productId;?>'"><span>恭喜您获得<?php echo $ObjGrouponInfo['result']['couponPrice'];?>元抵用券，点击马上购买</span></div>
 	                </div>
-        	<?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2  && $ObjGrouponInfo['result']['isRecCoupon'] ==0){?>
+        	<?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2  && $ObjGrouponInfo['result']['isRecCoupon'] ==0 ){?>
         	<div class="more2">
 	                    <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
-	                    <div class="txt"><span>奖励发放中，请耐心等待...</span></div>
+	                    <?php if($ObjGrouponInfo['result']['prize']  ==2){?>
+	                    <div class="txt"><span>获得二等奖，奖品发放中...</span></div>
+	                <?php }elseif($ObjGrouponInfo['result']['prize']  ==3){?>
+	                    <div class="txt"><span>获得三等奖，奖品发放中...</span></div>
+	                <?php }?>
 	                </div>
         	<?php }?>
         	</div>
@@ -431,9 +435,6 @@
 	        </div>
 	    </div>							
     <?php }?>
-        
-        
-        
         
         
         
