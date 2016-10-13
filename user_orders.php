@@ -8,14 +8,16 @@ $act  = CheckDatas( 'act', 'info' );
 $productId   	= CheckDatas( 'pid', '' );
 $gId   	        = CheckDatas( 'gid', '' );
 $page           = max(1, intval($_POST['page']));
-$OrderStatus    = CheckDatas( 'type', '' );
+$OrderType      = CheckDatas( 'type', '' );
 $OrderId        = CheckDatas( 'oid', '' );
+$OrderStatus    = CheckDatas( 'status', '' );
 
 
 switch($act)
 {
 	case 'cancel':
 		//取消订单
+
 		$ObjOrderCancel    = apiData('cancelOrder.do', array('oid'=>$OrderId));
 
 		if($ObjOrderCancel !=null)
