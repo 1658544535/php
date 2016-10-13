@@ -27,7 +27,12 @@ if(!empty($info['waitGroupList'])){
 $grouponId = $info['activityId'];
 
 //是否0元开团
-(($info['activityType'] == 2) && !$info['isGroupFree']) && redirect('/', '您没有团免券');
+if(($info['activityType'] == 2) && !$info['isGroupFree']){
+	$_refer = $_SERVER['HTTP_REFERER'];
+	$_pathinfo = pathinfo($_refer);
+	$_jumpUrl = ($_pathinfo['filename'] == 'user_info') ? $_refer : '/';
+	redirect($_jumpUrl, '您没有团免券');
+}
 $isFreeBuy = (($info['activityType'] == 2) && $info['isGroupFree']) ? true : false;
 
 //sku
