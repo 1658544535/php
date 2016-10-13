@@ -19,7 +19,7 @@
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="/js/wxshare.js"></script>
 	<script type="text/javascript">
-	imgUrl 	= "<?php echo $info['productImage'];?>";
+	imgUrl 	= "<?php echo $info['banners'][0]['bannerImage'];?>";
 	link 	= window.location.href;
 	title 	= "<?php echo $info['productName'];?>";
 	wxshare(<?php echo WXJSDEBUG;?>, '<?php echo WXJSAPPID;?>', <?php echo WXJSTIMESTAMP;?>, '<?php echo WXJSNONCESTR;?>', '<?php echo WXJSSIGNATURE;?>', imgUrl, link, title, '<?php echo WEBDESC;?>');
@@ -92,8 +92,8 @@
                     <ul>
 						<?php foreach($likes as $v){ ?>
 							<li>
-								<a class="img" href="#"><img src="<?php echo $v['productImage'];?>" /></a>
-								<a class="name" href="#"><?php echo $v['productName'];?></a>
+								<a class="img" href="groupon.php?id=<?php echo $v['activityId'];?>"><img src="<?php echo $v['productImage'];?>" /></a>
+								<a class="name" href="groupon.php?id=<?php echo $v['activityId'];?>"><?php echo $v['productName'];?></a>
 								<div class="price">
 									<a href="javascript:;" class="collect<?php if($v['isCollect']==1){?> active<?php } ?>" data-collect="<?php echo ($v['isCollect']==1)?'1':'0';?>" data-actid="<?php echo $v['activityId'];?>" data-pid="<?php echo $v['productId'];?>"><!--收藏--></a>
 									￥<span><?php echo $v['price'];?></span>
