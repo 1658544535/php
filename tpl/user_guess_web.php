@@ -62,11 +62,11 @@
                                  <%}else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==1 &&　data["data"][i].isRecCoupon ==0){%>      
                                    <span class="state">一等奖，待完善信息</span> 
                                   <%}else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==2 &&　data["data"][i].isRecCoupon ==1){%>
-                                   <span class="state">二等奖，已发券</span>
+                                   <span class="state">二等奖，已送券</span>
 　　　　　　　　　　　　　　　　　　<%}else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==2 &&　data["data"][i].isRecCoupon ==0){%>
                                    <span class="state">二等奖，奖品发放中...</span>
                                   <%}else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==3 &&　data["data"][i].isRecCoupon ==1){%>
-                                   <span class="state">三等奖，已发券</span>
+                                   <span class="state">三等奖，已送券</span>
                                   <%}else if(data["data"][i].activityStatus ==2 && data["data"][i].prize ==3 &&　data["data"][i].isRecCoupon ==0){%>
                                    <span class="state">三等奖，奖品发放中...</span>
                                   <%}else if(data["data"][i].activityStatus ==3){%>
