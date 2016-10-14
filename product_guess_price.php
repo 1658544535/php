@@ -28,7 +28,9 @@ switch($act)
     	    	
     	//获取活动商品信息
     	$ObjGrouponInfo = apiData('readyJoinApi.do', array('activityId'=>$gId,'userId'=>$userid));
-    	
+        
+        
+    	var_dump($gId);
     	$ObjUser = apiData('myInfoApi.do', array('userId'=>$userid));
     	//获取轮播图
 
@@ -116,7 +118,12 @@ switch($act)
     	$footerNavActive = 'guess';
     	include "tpl/product_guess_price_prize_web.php";
     	break;
-    
+      
+    case 'popup':
+        //获奖弹窗
+        $num            = apiData('callGuessCouponAlertApi.do', array('activityId'=>$gId,'userId'=>$userid));
+        var_dump($num);
+        break;  
     
     
     

@@ -294,18 +294,18 @@
           </div>
            
                <script>
-				document.domain='taozhuma.com';
-				function setIframeHeight(iframe) {
-					if (iframe) {
-						var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-						if (iframeWin.document.body) {
-							iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-						}
-					}
-				};
-				window.onload = function () {
-					setIframeHeight(document.getElementById('proInfo'));
-				};
+				// document.domain='taozhuma.com';
+				// function setIframeHeight(iframe) {
+				// 	if (iframe) {
+				// 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+				// 		if (iframeWin.document.body) {
+				// 			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+				// 		}
+				// 	}
+				// };
+				// window.onload = function () {
+				// 	setIframeHeight(document.getElementById('proInfo'));
+				// };
 			</script>
                     
                 </div>
@@ -405,6 +405,12 @@
                         }
                         
                     });
+
+                    //弹窗
+                    if($(".popup-guessCoupon").length>0){
+                      $.post("product_guess_price.php?act=popup", {userid:<?php echo $userid;?>, gid:<?php echo $gId;?>});
+                      $.popup('.popup-guessCoupon');
+                    }
                 });
             </script>
         </div>
@@ -420,7 +426,7 @@
             </div>
         </div>
 
-      <?php if($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2 && $ObjGrouponInfo['result']['isWin']  ==1  && $ObjGrouponInfo['result']['isRecCoupon']  ==1 && $ObjGrouponInfo['result']['prize']  !=1){?>
+      <?php if($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2 && $ObjGrouponInfo['result']['isWin']  ==1  && $ObjGrouponInfo['result']['isRecCoupon']  ==1 && $ObjGrouponInfo['result']['prize']  ==2 || $ObjGrouponInfo['result']['prize'] ==3 && $ObjGrouponInfo['result']['isAlert']  ==0){?>
         <div class="popup popup-guessCoupon">
 	        <div>
 	            <a href="javascript:;" class="close-popup"></a>
