@@ -30,7 +30,7 @@ switch($act)
     	$ObjGrouponInfo = apiData('readyJoinApi.do', array('activityId'=>$gId,'userId'=>$userid));
         
         
-    	var_dump($gId);
+    	
     	$ObjUser = apiData('myInfoApi.do', array('userId'=>$userid));
     	//获取轮播图
 
