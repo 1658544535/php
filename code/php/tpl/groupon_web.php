@@ -58,7 +58,7 @@
 						<div class="tips"><img src="images/deta-tips.png" /></div>
 					</section>
 
-					<?php if(!empty($info['waitGroupList'])){ ?>
+					<?php if(!$isFreeBuy && !empty($info['waitGroupList'])){ ?>
 					<section class="deta-group">
 						<h3 class="title1">欢迎您直接参与其他小伙伴发起的拼团</h3>
 						<ul class="list">
