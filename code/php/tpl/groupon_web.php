@@ -311,6 +311,7 @@
 						}
 						
 						$.popup(".popup-sku");      //弹出弹窗
+						$("#buy-num").val(1);
 						$.hideIndicator();          //关闭加载指示器
 					}
 
