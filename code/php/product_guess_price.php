@@ -121,8 +121,8 @@ switch($act)
       
     case 'popup':
         //获奖弹窗
-        $num            = apiData('callGuessCouponAlertApi.do', array('activityId'=>$gId,'userId'=>$userid));
-        var_dump($num);
+        $popup            = apiData('callGuessCouponAlertApi.do', array('activityId'=>$gId,'userId'=>$userid));
+
         break;  
     
     
