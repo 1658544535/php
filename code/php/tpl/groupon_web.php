@@ -360,6 +360,10 @@
 									_this.addClass("active");
 									_this.attr("data-collect", 1);
 								}
+							}else{
+								if((typeof(res.data.data.r) != "undefined") && (res.data.data.r == 'login')){
+									window.location.href = "user_binding.php";
+								}
 							}
 							$.toast(res.msg);
                         }
