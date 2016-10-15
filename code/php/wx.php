@@ -13,7 +13,7 @@ $wechatObj = new wechatCallbackapiTest($db);
 
 
 
-$wechatObj->valid();
+//$wechatObj->valid();
 $wechatObj->responseMsg();
 
 $isTest = false;
