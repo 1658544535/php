@@ -55,7 +55,7 @@
 							<?php if($info['isGroup'] == 1){ ?>
 								<div class="txt1">
 									<div class="img"><img src="images/tip-success.png" /></div>
-									恭喜你，参团成功！
+									恭喜您，拼团成功！
 								</div>
 								<div class="txt2">小伙伴已集结完毕，商品会尽快向各位发货，请耐心等待.</div>
 							<?php }else{ ?>
