@@ -20,8 +20,8 @@
 
 	<body>
 		<div class="nr_warp">
-			<img src="/images/qrcode.png" width='100%;' />
-			<p>关注“淘竹马“服务号，了解更多详情！！</p>
+			<img src="/images/qrcode.jpg" width='100%;' />
+			<p>关注“拼得好”服务号，了解更多详情！！</p>
 		</div>
 	</body>
 </html>
