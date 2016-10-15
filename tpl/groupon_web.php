@@ -145,7 +145,7 @@
 
         <script>
 			var _apiUrl = "/api_action.php?act=";
-			document.domain='taozhuma.com';
+			document.domain='choupinhui.net';
 			<?php if($info['productStatus'] == 1){ ?>
 			function setIframeHeight(iframe) {
 			 	if (iframe) {
