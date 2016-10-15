@@ -123,6 +123,7 @@ switch($act){
 		$info['success'] ? ajaxJson(1, '', $info['result']) : ajaxJson(0, $info['error_msg']);
 		break;
 	case 'collect'://收藏
+		empty($userid) && ajaxJson(0, '请先登录', array('r'=>'login'));
 		$activityId = intval($_POST['id']);
 		$productId = intval($_POST['pid']);
 		$type = trim($_POST['t']);
