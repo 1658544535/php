@@ -57,7 +57,7 @@
                 <?php }elseif($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==1){?>
                 <div class="oc-state"><span>未成团，退款中</span><i class="o-icon o-icon-8"></i></div>
                 <?php }elseif($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==2){?>
-                <div class="oc-state"><span>未成团，退款成功</span><i class="o-icon o-icon-8"></i></div>
+                <div class="oc-state"><span>未成团，退款成功</span><i class="o-icon o-icon-7"></i></div>
                 <?php }?>
             
 
