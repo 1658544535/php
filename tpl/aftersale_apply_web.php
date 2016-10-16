@@ -145,6 +145,15 @@
                         bindUploadImg();
                     });
 
+                    //删除图片
+                    $(document).on("click", '.uploadImg-item .close', function(){
+                        var _item = $(this).parents(".uploadImg-item");
+                        if(_item.siblings().find(".noImg").length <= 0){
+                            $(this).parents(".uploadImg").append('<div class="uploadImg-item"><input type="file" capture="camera" accept="image/*" /><div class="img noImg"></div></div>');
+                        }
+                        _item.remove();
+                    });
+
                     function bindUploadImg(){
                         jQuery('.uploadImg .uploadImg-item.active input[type="file"]').fileupload({
                             autoUpload: true,//是否自动上传
@@ -163,11 +172,13 @@
                                         _this.parent().find(".img").removeClass("noImg");
                                         _this.parent().find(".img").html('<img data-file="'+data.msg+'" data-src="'+ url +'" src="'+ url +'" />');
                                         _this.parent().find("input[type='hidden']").val(url);
+                                        $(".uploadImg-item .close").show();
                                         if(_this.parents(".uploadImg").find(".uploadImg-item").length < 3)
-                                        _this.parent().after('<div class="uploadImg-item"><input type="file" capture="camera" accept="image/*" /><div class="img noImg"></div></div>');
+                                        _this.parent().after('<div class="uploadImg-item"><input type="file" capture="camera" accept="image/*" /><div class="img noImg"></div><span class="close" style="display:none;"></span></div>');
                                     }else{
                                         _this.parent().find(".img").find("img").attr("src", url);
                                         _this.parent().find("input[type='hidden']").val(url);
+                                        $(".uploadImg-item .close").show();
                                     }
                                     $(".uploadImg-item.active .img").removeClass("loadingImg");
                                 }else{
