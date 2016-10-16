@@ -3810,6 +3810,54 @@
 .placeholder-50 {
   height: 2.5rem;
 }
+.pdk-wallet {
+  padding: 0 1.0rem;
+}
+.pdk-wallet .icon {
+  display: block;
+  width: 5.75rem;
+  height: 5.75rem;
+  margin: 3.0rem auto 0;
+  background: url(../images/wallet.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.pdk-wallet .price {
+  text-align: center;
+  margin-top: 1.0rem;
+}
+.pdk-wallet .price p {
+  margin: 0;
+}
+.pdk-wallet .price .title1 {
+  font-size: 0.85rem;
+  color: #221815;
+}
+.pdk-wallet .price .price1 {
+  font-size: 2.0rem;
+  color: #221815;
+  line-height: 40px;
+}
+.pdk-wallet .btn {
+  padding-top: 0.5rem;
+}
+.pdk-wallet .btn a {
+  display: block;
+  height: 2.5rem;
+  margin-top: 0.7rem;
+  line-height: 2.5rem;
+  text-align: center;
+  font-size: 1.0rem;
+  border-radius: 0.4rem;
+}
+.pdk-wallet .btn .red {
+  background: #ff464e;
+  color: #fff;
+}
+.pdk-wallet .btn .gray {
+  border: 1px solid #c9c9c9;
+  background: #fff;
+  color: #231815;
+}
 /*select*/
 .area_btn,
 .tooth {
