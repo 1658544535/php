@@ -139,5 +139,14 @@ switch($act){
 		$result = apiData('delSingleFavorite.do', array('activityId'=>$activityId,'favSenId'=>$productId,'favType'=>$type,'uid'=>$userid));
 		$result['success'] ? ajaxJson(1, '取消收藏') : ajaxJson(0, (($result['error_msg'] == '') ? '取消失败' : $result['error_msg']));
 		break;
+	case 'specials'://专题列表
+		$catId = intval($_POST['id']);
+		$page = max(1, intval($_POST['page']));
+		$addrs = apiData('specialListApi.do', array('typeId'=>$catId,'pageNo'=>$page));
+		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
+		break;
+	case 'special'://专题
+		
+		break;
 }
 ?>
