@@ -2324,9 +2324,10 @@
 .user-list ul li::after {
   position: absolute;
   right: 0;
-  top: .65rem;
+  top: 50%;
   width: 1px;
   height: 2.0rem;
+  margin-top: -1rem;
   background: #e9e9e9;
   content: '';
 }
@@ -3087,9 +3088,9 @@
 .uploadImg .uploadImg-item {
   position: relative;
   display: inline-block;
-  width: 4.75rem;
-  height: 4.75rem;
-  margin: 0.1rem;
+  width: 30%;
+  padding-bottom: 30%;
+  margin: 0 3% 3% 0;
   overflow: hidden;
 }
 .uploadImg .uploadImg-item input {
@@ -3098,6 +3099,16 @@
   height: 100%;
   z-index: 3;
   opacity: 0;
+}
+.uploadImg .uploadImg-item .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1.0rem;
+  height: 1.0rem;
+  background: url(../images/tip-fail.png) no-repeat 0 0;
+  background-size: 100% 100%;
+  z-index: 4;
 }
 .uploadImg .uploadImg-item .img {
   position: absolute;
@@ -3461,6 +3472,146 @@
 }
 .user-pdk ul li a .u-p-3 {
   background-position: 0 -3.3rem;
+}
+.pdk-form ul {
+  margin: 0.5rem 0;
+  padding: 0;
+  list-style: none;
+}
+.pdk-form ul li {
+  background: #fff;
+  padding: 0 0.5rem;
+  overflow: hidden;
+}
+.pdk-form ul li .item {
+  position: relative;
+  min-height: 2.2rem;
+  line-height: 2.2rem;
+  overflow: hidden;
+  border-bottom: 1px solid #e7e7e7;
+}
+.pdk-form ul li .item .label {
+  float: left;
+  width: 4.0rem;
+  font-size: 0.75rem;
+  color: #3d3d3d;
+}
+.pdk-form ul li .item .main {
+  margin-left: 5.5rem;
+  padding-right: 0.5rem;
+  font-size: 0.65rem;
+  color: #44494c;
+  text-align: right;
+  background: url(../images/go.png) no-repeat right center;
+  background-size: 0.25rem auto;
+}
+.pdk-form ul li .item .main .txt {
+  display: inline-block;
+  vertical-align: middle;
+  border: none;
+  background: none;
+  font-size: 0.7rem;
+  color: #8f8f8f;
+  text-align: right;
+  resize: none;
+}
+.pdk-form ul li .label1 {
+  padding-bottom: 1rem;
+  font-size: 0.7rem;
+  color: #44494c;
+}
+.pdk-form ul li .label1 span {
+  font-size: 0.6rem;
+  color: #b3b3b3;
+}
+.pdk-form ul li .tips {
+  clear: both;
+  padding-top: 0.1rem;
+  font-size: 0.7rem;
+  color: #b3b3b3;
+}
+.pdk-form ul li .uploadImg {
+  margin-bottom: 1.0rem;
+}
+.pdk-form ul li .price1 {
+  position: relative;
+  margin-left: 1.5rem;
+  font-size: 1.9rem;
+  color: #3d3d3d;
+}
+.pdk-form ul li .price1 input {
+  display: block;
+  width: 100%;
+  height: 2.8rem;
+  line-height: 2.8rem;
+  border: none;
+}
+.pdk-form ul li .price1::before {
+  content: '￥';
+  position: absolute;
+  left: -1.75rem;
+  top: 0;
+  font-family: '微软雅黑';
+}
+.pdk-form ul li .price2 {
+  line-height: 2.0rem;
+  border-top: 1px solid #e7e7e7;
+  font-size: 0.7rem;
+  color: #8f8f8f;
+}
+.pdk-form ul li.last {
+  margin-bottom: 0.5rem;
+}
+.pdk-form ul li.last .item {
+  border-bottom: none;
+}
+.pdk-submit {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2.45rem;
+  line-height: 2.45rem;
+  text-align: center;
+  background: #ff464e;
+  z-index: 2;
+}
+.pdk-submit input {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-size: 0.75rem;
+  border: none;
+  text-align: center;
+  background: none;
+}
+.pdk-submit2 {
+  margin: 4.3rem 1.0rem 0;
+}
+.pdk-submit2 input {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  color: #fff;
+  font-size: 1.0rem;
+  border: none;
+  text-align: center;
+  background: #ff464e;
+  border-radius: 0.4rem;
+}
+.pdk-submit2 .link {
+  padding-top: 1.0rem;
+  text-align: right;
+}
+.pdk-submit2 .link a {
+  font-size: 0.7rem;
+  color: #ff464e;
 }
 /*select*/
 .area_btn,
