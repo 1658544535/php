@@ -2284,6 +2284,7 @@
   font-size: 0;
 }
 .user-list ul li {
+  position: relative;
   display: inline-block;
   width: 25%;
 }
@@ -2298,7 +2299,7 @@
   display: block;
   width: 1.45rem;
   height: 1.45rem;
-  margin: 0 auto;
+  margin: 0 auto 0.5rem;
   background: url(../images/user-icon.png) no-repeat;
   background-size: 1.45rem auto;
 }
@@ -2312,10 +2313,26 @@
   background-position: 0 -2.9rem;
 }
 .user-list ul li a .u-l-4 {
-  background-position: 0 -4.35rem;
+  background-position: 0 -5.8rem;
 }
 .user-list ul li a .u-l-5 {
-  background-position: 0 -5.8rem;
+  background-position: 0 -7.25rem;
+}
+.user-list ul li a .u-l-6 {
+  background-position: 0 -4.35rem;
+}
+.user-list ul li::after {
+  position: absolute;
+  right: 0;
+  top: .65rem;
+  width: 1px;
+  height: 2.0rem;
+  background: #e9e9e9;
+  content: '';
+}
+.user-list ul li:nth-child(4n)::after,
+.user-list ul li:last-child::after {
+  display: none;
 }
 .user-out {
   margin: 0.5rem 0 1.5rem;
