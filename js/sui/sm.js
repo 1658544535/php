@@ -3568,7 +3568,7 @@ Device/OS Detection
 
         rotateEffect: false,  //为了性能
 
-        value: [today.getFullYear(), formatNumber(today.getMonth()+1), formatNumber(today.getDate()), today.getHours(), formatNumber(today.getMinutes())],
+        value: [today.getFullYear(), formatNumber(today.getMonth()+1), formatNumber(today.getDate()), today.getHours()],
 
         onChange: function (picker, values, displayValues) {
             var days = getDaysByMonthAndYear(picker.cols[1].value, picker.cols[0].value);
@@ -3578,7 +3578,7 @@ Device/OS Detection
         },
 
         formatValue: function (p, values, displayValues) {
-            return displayValues[0] + '-' + values[1] + '-' + values[2] + ' ' + values[3] + ':' + values[4];
+            return displayValues[0] + '-' + values[1] + '-' + values[2] + ' ' + values[3];
         },
 
         cols: [
@@ -3605,19 +3605,6 @@ Device/OS Detection
             values: (function () {
                 var arr = [];
                 for (var i = 0; i <= 23; i++) { arr.push(i); }
-                return arr;
-            })(),
-        },
-        // Divider
-        {
-            divider: true,
-            content: ':'
-        },
-        // Minutes
-        {
-            values: (function () {
-                var arr = [];
-                for (var i = 0; i <= 59; i++) { arr.push(i < 10 ? '0' + i : i); }
                 return arr;
             })(),
         }

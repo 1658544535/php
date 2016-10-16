@@ -3095,7 +3095,6 @@
   width: 30%;
   padding-bottom: 30%;
   margin: 0 3% 3% 0;
-  overflow: hidden;
 }
 .uploadImg .uploadImg-item input {
   position: absolute;
@@ -3106,8 +3105,8 @@
 }
 .uploadImg .uploadImg-item .close {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: -0.3rem;
+  top: -0.3rem;
   width: 1.0rem;
   height: 1.0rem;
   background: url(../images/tip-fail.png) no-repeat 0 0;
@@ -3534,6 +3533,13 @@
   font-size: 0.7rem;
   color: #b3b3b3;
 }
+.pdk-form ul li .tips2 {
+  clear: both;
+  margin-top: -0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.65rem;
+  color: #9fa0a0;
+}
 .pdk-form ul li .uploadImg {
   margin-bottom: 1.0rem;
 }
@@ -3664,6 +3670,145 @@
   font-size: 0.65rem;
   text-align: justify;
   color: #333;
+}
+.pdkRecord-search {
+  padding: 0 0.5rem;
+  background: #fff;
+}
+.pdkRecord-search ul {
+  padding: 0.2rem 0;
+  margin: 0;
+  list-style: none;
+}
+.pdkRecord-search ul li {
+  clear: both;
+  padding: 0.3rem 0;
+  overflow: hidden;
+}
+.pdkRecord-search ul li .label {
+  float: left;
+  width: 4.5rem;
+  line-height: 1.6rem;
+  font-size: 0.7rem;
+  color: #3d3d3d;
+  text-align: justify;
+}
+.pdkRecord-search ul li .main {
+  margin-left: 4.5rem;
+  font-size: 0;
+}
+.pdkRecord-search ul li .main input {
+  display: inline-block;
+  width: 38%;
+  height: 1.6rem;
+  margin-right: 6.6%;
+  line-height: 1.6rem;
+  font-size: 0.65rem;
+  color: #8f8f8f;
+  text-align: center;
+  border: 1px solid #b5b5b5;
+  border-radius: 5px;
+}
+.pdkRecord-list .title1 {
+  margin: 0;
+  padding: 0 0.5rem;
+  line-height: 1.75rem;
+  font-weight: normal;
+  font-size: 0.65rem;
+  color: #3d3d3d;
+  text-align: right;
+}
+.pdkRecord-list .list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0.5rem;
+  background: #fff;
+}
+.pdkRecord-list .list li {
+  position: relative;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #e7e7e7;
+}
+.pdkRecord-list .list li p {
+  margin: 0;
+}
+.pdkRecord-list .list li .type {
+  font-size: 0.75rem;
+  color: #3d3d3d;
+}
+.pdkRecord-list .list li .time {
+  font-size: 0.65rem;
+  color: #8f8f8f;
+}
+.pdkRecord-list .list li .price {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align: right;
+  font-size: 0.75rem;
+  color: #3d3d3d;
+}
+.pdkRecord-list .list li:last-child {
+  border-bottom: none;
+}
+.pdkRecordDeta {
+  margin-top: 0.5rem;
+  background: #fff;
+}
+.pdkRecordDeta ul {
+  margin: 0 0.6rem;
+  padding: 0;
+  padding-bottom: 0.5rem;
+  list-style: none;
+}
+.pdkRecordDeta ul li {
+  clear: both;
+  overflow: hidden;
+  padding: 0.4rem 0;
+}
+.pdkRecordDeta ul li .label {
+  float: left;
+  width: 4.0rem;
+  font-size: 0.75rem;
+  color: #3d3d3d;
+  font-weight: 400;
+}
+.pdkRecordDeta ul li .main {
+  margin-left: 4.0rem;
+  text-align: right;
+  font-size: 0.7rem;
+  color: #8f8f8f;
+}
+.pdkRecordDeta ul li.header {
+  margin-bottom: 0.25rem;
+  line-height: 1.5rem;
+  padding: 1.0rem 0;
+  border-bottom: 1px solid #e7e7e7;
+}
+.pdkRecordDeta ul li.header .main {
+  color: #3d3d3d;
+  font-size: 1.35rem;
+}
+.pdk-state {
+  margin-top: 0.5rem;
+  padding: 0 0.75rem 0.2rem;
+  background: #fff;
+}
+.pdk-state .title1 {
+  margin: 0;
+  padding: 0.6rem 0 0.4rem;
+  font-size: 0.75rem;
+  color: #3d3d3d;
+}
+.pdk-state .txt {
+  padding-bottom: 0.2rem;
+  font-size: 0.7rem;
+  color: #8f8f8f;
+}
+.placeholder-50 {
+  height: 2.5rem;
 }
 /*select*/
 .area_btn,
