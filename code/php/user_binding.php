@@ -30,15 +30,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$_wxInfo->name = $result['name'];
 		$_wxInfo->image = $result['image'];
 		$_SESSION['is_login'] = true;
-		$_SESSION['userinfo'] = $user_wx_info;
+		$_SESSION['userinfo'] = $_wxInfo;
 
-		$referUrl = empty($_SESSION['loginReferUrl']) ? '/' : $_SESSION['loginReferUrl'];
+		$referUrl = empty($_SESSION['loginReferUrl']) ? '/' : urldecode($_SESSION['loginReferUrl']);
 		unset($_SESSION['loginReferUrl']);
 		redirect($referUrl);
 	}else{
 		redirect('user_binding.php', $result['error_msg']);
 	}
 }else{
+	$_SESSION['loginReferUrl'] = urlencode($_SERVER['HTTP_REFERER']);
 	$wxState = 'wxinfo';
 	$wxUser = $objWX->getUserInfo($openid);
 	if(($wxUser !== false) && !$wxUser['subscribe']){
@@ -52,8 +53,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$_SESSION['unionid'] = $_wxinfo['unionid'];
 		}
 	}
-
-	$_SESSION['loginReferUrl'] = urlencode($_SERVER['HTTP_REFERER']);
 	include "tpl/user_bind_web.php";
 }
 exit();
