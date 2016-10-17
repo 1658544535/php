@@ -47,7 +47,7 @@
 -->
 
 
-                <section class="index-pro pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="">
+                <section class="index-pro pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="api_action.php?act=special&id=<?php echo $id;?>">
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader">
@@ -59,15 +59,15 @@
 
             <script id='tpl_pull' type="text/template">
                 <%if(data["data"].length>0){%>
-                    <%for(var i=0;i<data["data"].length; i++){%>
-                        <li><a href="groupon.php?id=<%=data["data"][i].activityId%>">
-                            <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
+                    <%for(var i=0;i<data["data"]["productList"].length; i++){%>
+                        <li><a href="groupon.php?id=<%=data["data"]["productList"][i].activityId%>">
+                            <div class="img"><img src="<%=data["data"][i]["productList"]["productImage"]%>" /></div>
                             <div class="name">
-                                <span class="num"><%=data["data"][i]["groupNum"]%>人团</span><%=data["data"][i]["productName"]%>
+                                <span class="num"><%=data["data"][i]["productList"]["groupNum"]%>人团</span><%=data["data"]["productList"][i]["productName"]%>
                             </div>
                             <div class="info">
-                                ￥<span class="price"><%=data["data"][i]["productPrice"]%></span>
-                                <span class="sales">已团<%=data["data"][i]["proSellrNum"]%>件</span>
+                                ￥<span class="price"><%=data["data"]["productList"][i]["productPrice"]%></span>
+                                <span class="sales">已团<%=data["data"]["productList"][i]["proSellrNum"]%>件</span>
                             </div>
                         </a></li>
                     <%}%>
@@ -78,7 +78,7 @@
 
         </div>
         <div class="popup popup-share">
-            <a href="#" class="close-popup"></a>
+            <a href="javascript:;" class="close-popup"></a>
         </div>
     </div>
 </body>
