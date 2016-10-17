@@ -44,7 +44,7 @@ switch($act)
 			if($wxInfo === false){
 				$log->put('/user/login', 'user login! 获取用户openid失败');
 			}else{
-				$userInfo = api_action('userlogin.do', array('openid'=>$wxInfo['openid'],'source'=>3));
+				$userInfo = apiData('userlogin.do', array('openid'=>$wxInfo['openid'],'source'=>3));
 				if($userInfo['success']){
 					$userInfo = $userInfo['result'];
 					$log->put('/user/login', "user login! 微信用户自动登录，openid:{$wxInfo[openid]}，用户id:{$userInfo[uid]}，帐号:{$userInfo[phone]}，昵称:{$userInfo[name]}");
@@ -56,17 +56,16 @@ switch($act)
 					$_tmp->image = $userInfo['image'];
 					$_SESSION['userinfo'] = $_tmp;
 					$_SESSION['is_login'] = true;
-
-					$_strlen = strlen($redirect_url)-1;
-					$_urlParam = __genUrlParam();
-					$redirect_url .= (($redirect_url{$_strlen} == '/') ? '' : (($_urlParam=='')?'':'&'));
-					($_urlParam != '') && $redirect_url .= $_urlParam;
-					redirect($redirect_url);
 				}else{
 					$log->put('/user/login', "user login! 微信用户【{$wxInfo[openid]}】未注册");
 				}
 				$_SESSION['openid'] = $wxInfo['openid'];
 			}
+			$_strlen = strlen($redirect_url)-1;
+			$_urlParam = __genUrlParam();
+			$redirect_url .= (($redirect_url{$_strlen} == '/') ? '' : (($_urlParam=='')?'':'&'));
+			($_urlParam != '') && $redirect_url .= $_urlParam;
+			redirect($redirect_url);
 
 
 
