@@ -230,16 +230,15 @@
   min-height: 100%;
 }
 /*首页主页产品*/
-.index-index {
-  background: #fff;
-}
 .index-index .list-container {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 .index-index .list-container li {
-  margin-bottom: 1.35rem;
+  padding-bottom: 0.85rem;
+  margin-bottom: 0.5rem;
+  background: #fff;
 }
 .index-index .list-container li > a {
   display: block;
@@ -3301,6 +3300,7 @@
   background: #fff;
 }
 .special-item .special-item-header {
+  display: block;
   position: relative;
   padding-bottom: 46.86%;
   overflow: hidden;
