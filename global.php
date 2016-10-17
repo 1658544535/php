@@ -13,7 +13,7 @@ define('FUNC_ROOT', dirname(__FILE__) . '/includes/func/');
 define('LIB_ROOT', dirname(__FILE__) . '/includes/lib/');
 define('WXPAID_ROOT', dirname(__FILE__) . '/wxpay/');
 define('MODEL_DIR', dirname(__FILE__) . '/logic/Model/');
-
+define('AGENT_QRCODE_DIR','../upfiles/pdkcode/');
 $isTest =  in_array($_SERVER['SERVER_NAME'], array('www.maduoduo.loc', 'duo.taozhuma.com')) ? true : false;			// 是否为测试模式
 //$isTest =  ($_SERVER['SERVER_NAME'] == 'pinwx.taozhuma.com') ? true : false;			// 是否为测试模式
 $isTest = false;
