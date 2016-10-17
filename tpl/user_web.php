@@ -80,11 +80,23 @@
 				</script>
 				<?php } ?>
 
+               <?php if($info['pindeke'] ==0){?>
+                <section class="user-pdk">
+                    <h3 class="title1"><i></i>拼得客管理中心</h3>
+                    <ul>
+                        <li><a href="/pindeke.php?act=pdkInfo"><i class="u-p-1"></i>我的信息</a></li>
+                        <li><a href="/pindeke.php?act=wallet"><i class="u-p-2"></i>我的钱包</a></li>
+                        <li><a href="/pindeke.php?act=QRcode"><i class="u-p-3"></i>团免链接</a></li>
+                    </ul>
+                </section>
+               <?php }?>
+
                 <section class="user-list">
                     <ul>
                         <li><a href="/user_info.php?act=coupon"><i class="u-l-1"></i>我的优惠券</a></li>
                         <li><a href="/user_info.php?act=groupon"><i class="u-l-2"></i>我的拼团</a></li>
                         <li><a href="/user_info.php?act=guess"><i class="u-l-3"></i>我的猜价</a></li>
+                        <li><a href="#"><i class="u-l-6"></i>我的抽奖</a></li>
                         <li><a href="/user_info?act=product_collect"><i class="u-l-4"></i>我的收藏</a></li>
                         <li><a href="/address?act=manage"><i class="u-l-5"></i>收货地址</a></li>
                     </ul>
