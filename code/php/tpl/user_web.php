@@ -80,7 +80,7 @@
 				</script>
 				<?php } ?>
 
-               <?php if($info['pindeke'] ==0){?>
+               <?php if($info['pindeke'] ==1){?>
                 <section class="user-pdk">
                     <h3 class="title1"><i></i>拼得客管理中心</h3>
                     <ul>
