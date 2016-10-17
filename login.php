@@ -33,7 +33,7 @@ switch($act)
 		{
 //			redirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$app_info['appid']."&redirect_uri=".urlencode($site."login?state=123&dir=".$dir.'&'.__genUrlParam())."&response_type=code&scope=snsapi_base&state=123#wechat_redirect");
 			$_bcUrl = $site."login.php?dir=".$dir.'&'.__genUrlParam();
-			redirect($objWX->getOauthRedirect($bcUrl, '123', 'snsapi_base'));
+			redirect($objWX->getOauthRedirect($_bcUrl, '123', 'snsapi_base'));
 			return;
 		}
 		else
