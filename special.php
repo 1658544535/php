@@ -4,6 +4,7 @@ require_once('./global.php');
 
 $id = intval($_GET['id']);
 
-$info = array();
+$pic = apiData('specialImageApi.do', array('specialId'=>$id));
+$pic = $pic['result'];
 
 include_once('tpl/special_web.php');

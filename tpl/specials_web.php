@@ -59,12 +59,12 @@
                 <%if(data["data"].length>0){%>
                     <%for(var i=0;i<data["data"].length; i++){%>
                         <div class="special-item">
-                            <div class="special-item-header swipe-handler">
+                            <a href="special.php?id=<%=data["data"][i].specialId%>" class="special-item-header swipe-handler">
                                 <div class="img">
                                     <img src="<%=data["data"][i].specialImage%>" />
                                 </div>
                                 <!--<div class="time">活动剩余时间<p class="downTime" data-timer="400"></p></div>-->
-                            </div>
+                            </a>
                             <div class="pro">
                                 <ul>
 									<%for(var j=0,jlen=data["data"][i]["productList"]; j<jlen; j++){%>

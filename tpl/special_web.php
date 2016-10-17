@@ -36,13 +36,16 @@
             <div class="content native-scroll">
 
                 <section class="special-banner">
-                    <img src="images/img/banner.jpg" />
+                    <img src="<?php echo $pic['image'];?>" />
                 </section>
 
+<!--
                 <section class="special-downTime">
                     <div class="title1"><span>活动剩余时间</span></div>
                     <div id="downtime" class="downtime" data-timer="400"><span>0</span><span>0</span>:<span>0</span><span>0</span>:<span>0</span><span>0</span></div>
                 </section>
+-->
+
 
                 <section class="index-pro pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="">
                     <ul class="list-container"></ul>

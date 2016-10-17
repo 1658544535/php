@@ -146,7 +146,10 @@ switch($act){
 		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
 		break;
 	case 'special'://专题
-		
+		$id = intval($_POST['id']);
+		$page = max(1, intval($_POST['page']));
+		$addrs = apiData('specialDetailApi.do', array('specialId'=>$id,'pageNo'=>$page));
+		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
 		break;
 }
 ?>
