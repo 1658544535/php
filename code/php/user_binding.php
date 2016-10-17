@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		'source' => 3,
 		'unionid' => $_SESSION['unionid'],
 	);
-	$result = apiData('userlogin.do', $apiParam, 'get', true);
+	$result = apiData('userlogin.do', $apiParam);
 	if($result['success']){
 		$result = $result['result'];
 		$_wxInfo = new stdClass();
