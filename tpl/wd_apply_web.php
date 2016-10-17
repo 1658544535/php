@@ -32,7 +32,7 @@
 
                 <section class="pdk-form">
                     <ul>
-                        <form id="submitForm" action="" accept-charset="utf-8" enctype="multipart/form-data" method="post">
+                        <form id="submitForm" action="pindeke.php?act=withdrawals_save" accept-charset="utf-8" enctype="multipart/form-data" method="post">
                             <li>
                                 <div class="item">
                                     <div class="label">真实姓名</div>
@@ -73,7 +73,7 @@
                 <div class="pdk-submit2">
                     <input type="submit" value="提交申请" />
                     <div class="link">
-                        <a href="/pindeke.php?act=withdrawals_records">查看提现记录</a>
+                        <a href="/pindeke.php?act=withdrawals_records&type=2">查看提现记录</a>
                     </div>
                 </div>
 
