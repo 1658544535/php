@@ -3709,6 +3709,23 @@
   border: 1px solid #b5b5b5;
   border-radius: 5px;
 }
+.pdkRecord-search .btn {
+  clear: both;
+  padding-bottom: 0.5rem;
+  margin-left: 4.5rem;
+}
+.pdkRecord-search .btn input {
+  display: block;
+  width: 38%;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  text-align: center;
+  font-size: .8rem;
+  color: #fff;
+  background: #ff464e;
+  border: none;
+  border-radius: .25rem;
+}
 .pdkRecord-list .title1 {
   margin: 0;
   padding: 0 0.5rem;
