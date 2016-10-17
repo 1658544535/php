@@ -22,10 +22,10 @@
     <div class="page-group" id="page-special-list">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="">
+                <a class="button button-link button-nav pull-left back" href="specials.php">
                     <span class="icon icon-back"></span>
                 </a>
-                <a class="button button-link button-nav pull-right share" href="#">
+                <a class="button button-link button-nav pull-right share" href="javascript:;">
                     <span class="icon icon-share"></span>
                 </a>
                 <h1 class="title">专题标题</h1>
@@ -59,15 +59,15 @@
 
             <script id='tpl_pull' type="text/template">
                 <%if(data["data"].length>0){%>
-                    <%for(var i=0;i<data["data"]["productList"].length; i++){%>
-                        <li><a href="groupon.php?id=<%=data["data"]["productList"][i].activityId%>">
-                            <div class="img"><img src="<%=data["data"][i]["productList"]["productImage"]%>" /></div>
+                    <%for(var i=0;i<data["data"].length; i++){%>
+                        <li><a href="groupon.php?id=<%=data["data"][i].activityId%>">
+                            <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
                             <div class="name">
-                                <span class="num"><%=data["data"][i]["productList"]["groupNum"]%>人团</span><%=data["data"]["productList"][i]["productName"]%>
+                                <span class="num"><%=data["data"][i]["grouponNum"]%>人团</span><%=data["data"][i]["productName"]%>
                             </div>
                             <div class="info">
-                                ￥<span class="price"><%=data["data"]["productList"][i]["productPrice"]%></span>
-                                <span class="sales">已团<%=data["data"]["productList"][i]["proSellrNum"]%>件</span>
+                                ￥<span class="price"><%=data["data"][i]["price"]%></span>
+                                <span class="sales">已团<%=data["data"][i]["num"]%>件</span>
                             </div>
                         </a></li>
                     <%}%>

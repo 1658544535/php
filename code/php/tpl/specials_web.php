@@ -22,7 +22,7 @@
     <div class="page-group" id="page-special-class">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="">
+                <a class="button button-link button-nav pull-left back" href="javascript:history.back(-1);">
                     <span class="icon icon-back"></span>
                 </a>
                 <h1 class="title"></h1>
@@ -67,7 +67,7 @@
                             </a>
                             <div class="pro">
                                 <ul>
-									<%for(var j=0,jlen=data["data"][i]["productList"]; j<jlen; j++){%>
+									<%for(var j=0,jlen=data["data"][i]["productList"].length; j<jlen; j++){%>
 										<li>
 											<a href="groupon.php?id=<%=data["data"][i]["productList"][j].activityId%>">
 												<div class="proImg"><img src="<%=data["data"][i]["productList"][j].productImage%>" /></div>
@@ -77,7 +77,7 @@
 												</div>
 											</a>
 										</li>
-									<%}%>									
+									<%}%>
                                 </ul>
                             </div>
                         </div>
