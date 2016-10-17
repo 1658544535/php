@@ -19,10 +19,11 @@
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="/js/wxshare.js"></script>
 	<script type="text/javascript">
-	imgUrl 	= "<?php echo $info['banners'][0]['bannerImage'];?>";
-	link 	= window.location.href;
-	title 	= "<?php echo $info['productName'];?>";
-	wxshare(<?php echo WXJSDEBUG;?>, '<?php echo WXJSAPPID;?>', <?php echo WXJSTIMESTAMP;?>, '<?php echo WXJSNONCESTR;?>', '<?php echo WXJSSIGNATURE;?>', imgUrl, link, title, '<?php echo WEBDESC;?>');
+	var imgUrl = "<?php echo $info['banners'][0]['bannerImage'];?>";
+	var link = window.location.href;
+	var title = "<?php echo $info['productName'];?>";
+	var desc = "<?php echo empty($info['productSketch']) ? $info['productName'] : $info['productSketch'];?>";
+	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 	</script>
 </head>
 
@@ -143,9 +144,14 @@
 			<?php } ?>
         </div>
 
+		<?php
+		$_arrDomain = explode('.', $_SERVER['SERVER_NAME']);
+		array_shift($_arrDomain);
+		?>
+
         <script>
 			var _apiUrl = "/api_action.php?act=";
-			document.domain='choupinhui.net';
+			document.domain='<?php echo implode('.', $_arrDomain);?>';
 			<?php if($info['productStatus'] == 1){ ?>
 			function setIframeHeight(iframe) {
 			 	if (iframe) {

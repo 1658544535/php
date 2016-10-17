@@ -20,7 +20,11 @@ $isTest = false;
 
 //数据接口
 //define('API_URL', 'http://rap.taozhuma.com/mockjsdata/2');
-define('API_URL', 'http://pin.taozhuma.com/v3.5');
+if($_SERVER['SERVER_NAME'] == 'pdh.choupinhui.net'){
+	define('API_URL', 'http://pdh.choupinhui.net/v3.5');
+}else{
+	define('API_URL', 'http://pin.taozhuma.com/v3.5');
+}
 
 /*============================== 加载基本文件 =============================================*/
 include_once(APP_INC . 'ez_sql_core.php');
@@ -118,4 +122,30 @@ if ( $user != null )
 
 //不配送的省份id，甘肃 海南 内蒙古 宁夏 青海 西藏 新疆
 $unSendProviceIds = array(29,22,6,31,27,32);
+
+//微信相关配置信息(用于微信类)
+$wxOption = array(
+    'appid' => $app_info['appid'],
+    'appsecret' => $app_info['secret'],
+    'token' => $app_info['token'] ? $app_info['token'] : 'weixin',
+    'encodingaeskey' => $app_info['encodingaeskey'] ? $app_info['encodingaeskey'] : '',
+);
+include_once(LIB_ROOT.'/Weixin.class.php');
+include_once(LIB_ROOT.'/weixin/errCode.php');
+$objWX = new Weixin($wxOption);
+
+//微信分享脚本
+$wxJsTicket = $objWX->getJsTicket();
+$wxShareCBUrl = 'http://'.$_SERVER['HTTP_HOST'].(($_SERVER['SERVER_PORT'] == '80') ? '' : ':'.$_SERVER['SERVER_PORT']).$_SERVER['REQUEST_URI'];
+$wxJsSign = $objWX->getJsSign($wxShareCBUrl);
+$wxShareParam = array(
+	'appId' => $wxJsSign['appId'],
+	'timestamp' => $wxJsSign['timestamp'],
+	'nonceStr' => $wxJsSign['nonceStr'],
+	'signature' => $wxJsSign['signature'],
+	'title' => $site_name,
+	'desc' => $site_name,
+	'image' => 'http://pinwx.taozhuma.com/images/user_photo.png',
+	'link' => $wxShareCBUrl,
+);
 ?>

@@ -26,32 +26,32 @@ $app_info = array(
 	'secret' => 'd582b0f73e82a729391ffbd9f6c75c1c'
 );
 
-/*============================== 基本配置  =============================================*/
-$jssdk 	= new JSSDK($app_info['appid'], $app_info['secret']);			// 微信JS SDK
-$arrWxJsParam = $jssdk->getSignPackage();								// 获取微信JS SDK需注册的参数
-
-$JSSDKCONFIRE = array(
-	'WXJSDEBUG'		=> 'false',
-	'WXJSAPPID'		=> $arrWxJsParam['appId'],
-	'WXJSTIMESTAMP'	=> $arrWxJsParam['timestamp'],
-	'WXJSNONCESTR'	=> $arrWxJsParam['nonceStr'],
-	'WXJSSIGNATURE'	=> $arrWxJsParam['signature'],
-	'WEBLINK'		=> 'http://pinwx.taozhuma.com',
-	'WEBDESC'		=> '拼得好',
-	'WEBLOGO'		=> 'http://pinwx.taozhuma.com/images/user_photo.png',
-	'WEBTITLE'		=> '拼得好'
-);
-
-
-/*============================== 全局定义微信JS SDK数据参数  =============================================*/
-define('WXJSDEBUG', $JSSDKCONFIRE['WXJSDEBUG']);
-define('WXJSAPPID',$JSSDKCONFIRE['WXJSAPPID']);
-define('WXJSTIMESTAMP',$JSSDKCONFIRE['WXJSTIMESTAMP']);
-define('WXJSNONCESTR',$JSSDKCONFIRE['WXJSNONCESTR']);
-define('WXJSSIGNATURE',$JSSDKCONFIRE['WXJSSIGNATURE']);
-define('WEBLINK',$JSSDKCONFIRE['WEBLINK']);
-define('WEBDESC',$JSSDKCONFIRE['WEBDESC']);
-define('WEBLOGO',$JSSDKCONFIRE['WEBLOGO']);
-define('WEBTITLE',$JSSDKCONFIRE['WEBTITLE']);
+///*============================== 基本配置  =============================================*/
+//$jssdk 	= new JSSDK($app_info['appid'], $app_info['secret']);			// 微信JS SDK
+//$arrWxJsParam = $jssdk->getSignPackage();								// 获取微信JS SDK需注册的参数
+//
+//$JSSDKCONFIRE = array(
+//	'WXJSDEBUG'		=> 'false',
+//	'WXJSAPPID'		=> $arrWxJsParam['appId'],
+//	'WXJSTIMESTAMP'	=> $arrWxJsParam['timestamp'],
+//	'WXJSNONCESTR'	=> $arrWxJsParam['nonceStr'],
+//	'WXJSSIGNATURE'	=> $arrWxJsParam['signature'],
+//	'WEBLINK'		=> 'http://pinwx.taozhuma.com',
+//	'WEBDESC'		=> '拼得好',
+//	'WEBLOGO'		=> 'http://pinwx.taozhuma.com/images/user_photo.png',
+//	'WEBTITLE'		=> '拼得好'
+//);
+//
+//
+///*============================== 全局定义微信JS SDK数据参数  =============================================*/
+//define('WXJSDEBUG', $JSSDKCONFIRE['WXJSDEBUG']);
+//define('WXJSAPPID',$JSSDKCONFIRE['WXJSAPPID']);
+//define('WXJSTIMESTAMP',$JSSDKCONFIRE['WXJSTIMESTAMP']);
+//define('WXJSNONCESTR',$JSSDKCONFIRE['WXJSNONCESTR']);
+//define('WXJSSIGNATURE',$JSSDKCONFIRE['WXJSSIGNATURE']);
+//define('WEBLINK',$JSSDKCONFIRE['WEBLINK']);
+//define('WEBDESC',$JSSDKCONFIRE['WEBDESC']);
+//define('WEBLOGO',$JSSDKCONFIRE['WEBLOGO']);
+//define('WEBTITLE',$JSSDKCONFIRE['WEBTITLE']);
 
 ?>

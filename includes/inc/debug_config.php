@@ -40,28 +40,28 @@ $app_info = array(
 
 /*============================== 基本配置  =============================================*/
 
-$JSSDKCONFIRE = array(
-	'WXJSDEBUG'		=> 'true',
-	'WXJSAPPID'		=> 'a',
-	'WXJSTIMESTAMP'	=> '123456',
-	'WXJSNONCESTR'	=> '123456',
-	'WXJSSIGNATURE'	=> '123456',
-	'WEBLINK'		=> 'http://pinwx.taozhuma.com',
-	'WEBDESC'		=> '拼得好',
-	'WEBLOGO'		=> 'http://pinwx.taozhuma.com/images/user_photo.png',
-	'WEBTITLE'		=> '拼得好'
-);
-
-/*============================== 全局定义微信JS SDK数据参数  =============================================*/
-define('WXJSDEBUG', $JSSDKCONFIRE['WXJSDEBUG']);
-define('WXJSAPPID',$JSSDKCONFIRE['WXJSAPPID']);
-define('WXJSTIMESTAMP',$JSSDKCONFIRE['WXJSTIMESTAMP']);
-define('WXJSNONCESTR',$JSSDKCONFIRE['WXJSNONCESTR']);
-define('WXJSSIGNATURE',$JSSDKCONFIRE['WXJSSIGNATURE']);
-define('WEBLINK',$JSSDKCONFIRE['WEBLINK']);
-define('WEBDESC',$JSSDKCONFIRE['WEBDESC']);
-define('WEBLOGO',$JSSDKCONFIRE['WEBLOGO']);
-define('WEBTITLE',$JSSDKCONFIRE['WEBTITLE']);
+//$JSSDKCONFIRE = array(
+//	'WXJSDEBUG'		=> 'true',
+//	'WXJSAPPID'		=> 'a',
+//	'WXJSTIMESTAMP'	=> '123456',
+//	'WXJSNONCESTR'	=> '123456',
+//	'WXJSSIGNATURE'	=> '123456',
+//	'WEBLINK'		=> 'http://pinwx.taozhuma.com',
+//	'WEBDESC'		=> '拼得好',
+//	'WEBLOGO'		=> 'http://pinwx.taozhuma.com/images/user_photo.png',
+//	'WEBTITLE'		=> '拼得好'
+//);
+//
+///*============================== 全局定义微信JS SDK数据参数  =============================================*/
+//define('WXJSDEBUG', $JSSDKCONFIRE['WXJSDEBUG']);
+//define('WXJSAPPID',$JSSDKCONFIRE['WXJSAPPID']);
+//define('WXJSTIMESTAMP',$JSSDKCONFIRE['WXJSTIMESTAMP']);
+//define('WXJSNONCESTR',$JSSDKCONFIRE['WXJSNONCESTR']);
+//define('WXJSSIGNATURE',$JSSDKCONFIRE['WXJSSIGNATURE']);
+//define('WEBLINK',$JSSDKCONFIRE['WEBLINK']);
+//define('WEBDESC',$JSSDKCONFIRE['WEBDESC']);
+//define('WEBLOGO',$JSSDKCONFIRE['WEBLOGO']);
+//define('WEBTITLE',$JSSDKCONFIRE['WEBTITLE']);
 
 
 ?>
