@@ -53,13 +53,13 @@
                 
             </div>
             <script id='tpl_pull' type="text/template">
-                <%if(data["data"].length>0){%>
-                    <%for(var i=0;i<data["data"].length; i++){%>
+                <%if(data["data"]['tranList'].length>0){%>
+                    <%for(var i=0;i<data["data"]['tranList'].length; i++){%>
                         <li>
-                          <a href="pindeke.php?act=income&id=<%=data["data"][i]["id"]%>">
+                          <a href="pindeke.php?act=income&id=<%=data["data"]['tranList'][i]["id"]%>">
                             <p class="type">返佣</p>
-                            <p class="time"><%=data["data"][i]["date"]%></p>
-                            <p class="price">+<%=data["data"][i]["price"]%></p>
+                            <p class="time"><%=data["data"]['tranList'][i]["date"]%></p>
+                            <p class="price">+<%=data["data"]['tranList'][i]["price"]%></p>
                           </a>
                         </li>
                     <%}%>

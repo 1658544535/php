@@ -49,7 +49,7 @@
                 </section>
 
                 <section class="pdkRecord-list pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_pdk_withdrawals_records.php">
-                    <h3 class="title1">共提现<span class="themeColor">￥205.00</span>元</h3>
+                    <h3 class="title1">共提现<span class="themeColor">￥<?php echo $Objrecord['result']['wdPrice'];?></span>元</h3>
                     <ul class="list-container list"></ul>
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader">
@@ -59,12 +59,14 @@
                 
             </div>
             <script id='tpl_pull' type="text/template">
-                <%if(data["data"].length>0){%>
-                    <%for(var i=0;i<data["data"].length; i++){%>
+                <%if(data["data"]["tranList"].length>0){%>
+                    <%for(var i=0;i<data["data"]["tranList"].length; i++){%>
                         <li>
+                          <a href="pindeke.php?act=withdrawals_record&id=<%=data["data"]["tranList"][i]["id"]%>">                            
                             <p class="type">提现</p>
-                            <p class="time">2016-10-10 10：10：10</p>
-                            <p class="price">-25.00</p>
+                            <p class="time"><%=data["data"]["tranList"][i]["date"]%></p>
+                            <p class="price">-<%=data["data"]["tranList"][i]["price"]%></p>
+                          </a>
                         </li>
                     <%}%>
                 <%}else if(data["pageNow"] == 1){%>
