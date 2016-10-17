@@ -2,6 +2,7 @@
 define('HN1', true);
 require_once('./global.php');
 
+
 $info = apiData('specialTypeApi.do');
 $info = $info['result'];
 
