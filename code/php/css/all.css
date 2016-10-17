@@ -3543,6 +3543,9 @@
 .pdk-form ul li .uploadImg {
   margin-bottom: 1.0rem;
 }
+.pdk-form ul li .uploadImg .uploadImg-item .img.noImg {
+  background-image: url(../images/upload1.png);
+}
 .pdk-form ul li .price1 {
   position: relative;
   margin-left: 1.5rem;
