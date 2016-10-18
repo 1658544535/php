@@ -96,7 +96,7 @@
                         <li><a href="/user_info.php?act=coupon"><i class="u-l-1"></i>我的优惠券</a></li>
                         <li><a href="/user_info.php?act=groupon"><i class="u-l-2"></i>我的拼团</a></li>
                         <li><a href="/user_info.php?act=guess"><i class="u-l-3"></i>我的猜价</a></li>
-                        <li><a href="#"><i class="u-l-6"></i>我的抽奖</a></li>
+                        <!--<li><a href="#"><i class="u-l-6"></i>我的抽奖</a></li>-->
                         <li><a href="/user_info?act=product_collect"><i class="u-l-4"></i>我的收藏</a></li>
                         <li><a href="/address?act=manage"><i class="u-l-5"></i>收货地址</a></li>
                     </ul>
