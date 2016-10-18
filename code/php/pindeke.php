@@ -12,7 +12,7 @@ $Type 		            = CheckDatas( 'type', '' );
 $page                   = max(1, intval($_POST['page']));
 $startTime 		        = CheckDatas( 'startTime', '' );
 $endTime 		        = CheckDatas( 'endTime', '' );
-
+$status 		        = CheckDatas( 'status', '' );
 
 
 
@@ -22,27 +22,26 @@ switch($act)
 	case 'pdkInfo':
 		IS_USER_LOGIN();
 		$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
-		
-		
+		$Objinfo = $Objinfo['result'];
 		include_once('tpl/pdk_info_web.php');
 	break;
     
 	//拼得客信息修改
-	case 'pdkInfo_edit':
-		include_once('tpl/pdk_edit_web.php');
-	break;
+// 	case 'pdkInfo_edit':
+// 		include_once('tpl/pdk_edit_web.php');
+// 	break;
 		
-    case 'pdkInfo_save':
-    	$Objpdk = apiData('pdkUpdateApi.do',array('cardNo'=>$cardNo,'channel'=>$Content,'image1'=>3,'image2'=>4,'image3'=>5,'image4'=>6,'image5'=>7,'name'=>$Name,'phone'=>$Phone,'userId'=>$userid));
-    	if($Objpdk !=null)
-    	{
-    		echo	ajaxJson('1','',$Objpdk);
-    	}
-    	else
-    	{
-    		echo    ajaxJson('0','');
-    	}
-    break;
+//     case 'pdkInfo_save':
+//     	$Objpdk = apiData('pdkUpdateApi.do',array('cardNo'=>$cardNo,'channel'=>$Content,'image1'=>3,'image2'=>4,'image3'=>5,'image4'=>6,'image5'=>7,'name'=>$Name,'phone'=>$Phone,'userId'=>$userid));
+//     	if($Objpdk !=null)
+//     	{
+//     		echo	ajaxJson('1','',$Objpdk);
+//     	}
+//     	else
+//     	{
+//     		echo    ajaxJson('0','');
+//     	}
+//     break;
 
 
     //获取钱包信息
@@ -69,7 +68,7 @@ switch($act)
     //提现操作
     case 'withdrawals':
     	$Uid 		   = CheckDatas( 'uid', '' );
-    	$Oldprice 		   = CheckDatas( 'price', '' );
+    	$Oldprice 	   = CheckDatas( 'price', '' );
     	include_once('tpl/wd_apply_web.php');
     break;
    
@@ -101,10 +100,8 @@ switch($act)
     //团免二维码
     case 'QRcode':
     	IS_USER_LOGIN();
-    	$info = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
+    	
   
-  
-  if($info['result']['status'] ==1){
     	$minfo = apiData('myInfoApi.do',array('userId'=>$userid));
     	if(!empty($minfo['result']['invitationCode']))
     	{
@@ -121,10 +118,10 @@ switch($act)
     	{
     		$imgPath = '';
     	}
-  }
+}
     	include_once('tpl/pdk_QR_web.php');
     break;
 
 
-}
+
 ?>
