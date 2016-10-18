@@ -8,6 +8,16 @@ $Phone		            = CheckDatas( 'phone', '' );
 $cardNo 		        = CheckDatas( 'cardNo', '' );
 $Content 		        = CheckDatas( 'content', '' );
 
+
+
+$info = apiData('userlogin.do',array('openid'=>$openid,'source'=>3));
+if($info['result'] ==''){
+	redirect('user_binding.php', '请先登录');
+}
+
+
+
+
 $backUrl = getPrevUrl();
 
 define('IMAGE_UPLOAD_DIR', SCRIPT_ROOT.'upfiles/pindeke/');
