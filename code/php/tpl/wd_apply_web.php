@@ -25,7 +25,7 @@
                 <a class="button button-link button-nav pull-left back" href="pindeke.php?act=wallet">
                     <span class="icon icon-back"></span>
                 </a>
-                <h1 class="title">提现申请</h1>
+                <h1 class="title">余额提现</h1>
             </header>
 
             <div class="content native-scroll">
@@ -71,7 +71,7 @@
                 </section>
 
                 <div class="pdk-submit2">
-                    <input type="submit" value="提交申请" />
+                    <input type="submit" value="提现" />
                     <div class="link">
                         <a href="/pindeke.php?act=withdrawals_records&type=2">查看提现记录</a>
                     </div>
