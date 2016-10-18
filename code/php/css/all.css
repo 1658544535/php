@@ -176,6 +176,7 @@
   font-size: 0.7rem;
   margin-top: 2.2rem;
   background: #fff;
+  border-bottom: 1px solid #f4f8fb;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
 }
 .index-class.swiper-container .swiper-slide {
@@ -192,7 +193,7 @@
 /*首页主页banner*/
 .index-banner.swiper-container {
   position: relative;
-  padding-bottom: 45.33333333%;
+  padding-bottom: 54.6875%;
   margin-bottom: 0.5rem;
 }
 .index-banner.swiper-container .swiper-wrapper {
