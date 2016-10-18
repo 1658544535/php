@@ -84,9 +84,9 @@
                 <section class="user-pdk">
                     <h3 class="title1"><i></i>拼得客管理中心</h3>
                     <ul>
-                        <li><a href="/pindeke.php?act=pdkInfo"><i class="u-p-1"></i>我的信息</a></li>
-                        <li><a href="/pindeke.php?act=wallet"><i class="u-p-2"></i>我的钱包</a></li>
-                        <li><a href="/pindeke.php?act=QRcode"><i class="u-p-3"></i>团免链接</a></li>
+                        <li><a href="/pindeke.php?act=pdkInfo&uid=<?php echo $userid;?>"><i class="u-p-1"></i>我的信息</a></li>
+                        <li><a href="/pindeke.php?act=wallet&uid=<?php echo $userid;?>"><i class="u-p-2"></i>我的钱包</a></li>
+                        <li><a href="/pindeke.php?act=QRcode&uid=<?php echo $userid;?>"><i class="u-p-3"></i>团免链接</a></li>
                     </ul>
                 </section>
                <?php }?>
