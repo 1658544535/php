@@ -258,7 +258,7 @@
 								skuColor = $("#sku-color .list a.active").html();
 								skuFormat = $("#sku-format .list a.active").html();
 								if(!skuFormat && !skuColor){
-									$("#sku-choose").html("请选择颜色和套餐类型");
+									$("#sku-choose").html("请选择款式和套餐类型");
 								}else{
 									var chooseTxt = '';
 									!!skuColor ? chooseTxt+='"' + skuColor + '"' : '';
@@ -388,14 +388,14 @@
                     <div class="main">
                         <div class="name"><?php echo $info['products']['productName'];?></div>
                         <div class="price">￥<span id="sku-price">-</span></div>
-                        <div class="skuTxt" id="sku-choose">请选择颜色和套餐类型</div>
+                        <div class="skuTxt" id="sku-choose">请选择款式和套餐类型</div>
                     </div>
                 </div>
 				<?php foreach($skus['skuList'] as $_sku){ ?>
 					<div class="sku-item" id="<?php if($_sku['skuType'] == 1){ ?>sku-color<?php }elseif($_sku['skuType'] == 2){ ?>sku-format<?php } ?>">
 						<h4 class="title1">
 							<?php if($_sku['skuType'] == 1){ ?>
-								颜色
+								款式
 							<?php }elseif($_sku['skuType'] == 2){ ?>
 								套餐类型
 							<?php } ?>
