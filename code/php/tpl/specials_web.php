@@ -78,6 +78,9 @@
 											</a>
 										</li>
 									<%}%>
+									<li>
+                                        <a href="special.php?id=<%=data["data"][i].specialId%>" class="special-more"></a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
