@@ -28,7 +28,7 @@
                 <a class="button button-link button-nav pull-right share" href="#">
                     <span class="icon icon-share"></span>
                 </a>
-                <h1 class="title">7.7特卖区</h1>
+                <h1 class="title"><?php echo $info['title'];?></h1>
             </header>
 
             <?php include_once('footer_nav_3ge_web.php');?>
@@ -36,10 +36,10 @@
             <div class="content native-scroll">
 
                 <section class="special-banner">
-                    <img src="images/img/banner.jpg" />
+                    <img src="<?php echo $info['banner'];?>" />
                 </section>
 
-                <section class="index-pro pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="">
+                <section class="index-pro pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="api_action.php?act=special_77&id=<?php echo $info['id'];?>">
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader">
@@ -55,11 +55,11 @@
                         <li><a href="groupon.php?id=<%=data["data"][i].activityId%>">
                             <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
                             <div class="name">
-                                <span class="num"><%=data["data"][i]["groupNum"]%>人团</span><%=data["data"][i]["productName"]%>
+                                <span class="num"><%=data["data"][i]["num"]%>人团</span><%=data["data"][i]["productName"]%>
                             </div>
                             <div class="info">
-                                ￥<span class="price"><%=data["data"][i]["productPrice"]%></span>
-                                <span class="sales">已团<%=data["data"][i]["proSellrNum"]%>件</span>
+                                ￥<span class="price"><%=data["data"][i]["price"]%></span>
+                                <span class="sales">已团<%=data["data"][i]["grouponNum"]%>件</span>
                             </div>
                         </a></li>
                     <%}%>
