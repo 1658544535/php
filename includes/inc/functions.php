@@ -1219,7 +1219,7 @@ function getFullAvatar($avater){
 function get_qrcode($website,$path="../upfiles/phpqrcode/",$picname = '')
 {
 
-	include "/includes/lib/phpqrcode/phpqrcode.php";
+	include LIB_ROOT."phpqrcode/phpqrcode.php";
 
 	if (preg_match('/^http:\/\//', $website) || preg_match('/^https:\/\//', $website))
 	{
