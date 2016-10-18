@@ -54,12 +54,15 @@ switch($act)
 
     //获取收入列表数据
     case 'incomes':
-    	  $Objincomes = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>1,'userId'=>$userid));
+    	$page                   = max(1, intval($_POST['page']));
+    	 $Objincomes = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>1,'userId'=>$userid));
     	  include_once('tpl/pdk_incomes_web.php');
     break;
     
     //获取收入详情数据
     case 'income':
+    	$Id 		        = CheckDatas( 'id', '' );
+    	$Objincome = apiData('tranDetailApi.do',array('id'=>$Id));
     	include_once('tpl/pdk_income_web.php');
     break;
 
@@ -72,25 +75,23 @@ switch($act)
    
     case 'withdrawals_save':
     	$Price 		            = CheckDatas( 'price', '' );
-    	$Objwd = apiData('wdApplyApi.do',array('account'=>$Number,'name'=>$Name,'price'=>$Price,'taType'=>$Type,'userId'=>$userid));
+    	$Type 		            = CheckDatas( 'type', '' );
+    	$Objwd = apiData('wdApplyApi.do',array('account'=>$Number,'name'=>$Name,'price'=>$Price,'taType'=>1,'userId'=>$userid));
     	
-    	if($Objwd !=null)
-    	{
-    		echo	ajaxJson('1','',$Objwd);
-    	}
-    	else
-    	{
-    		echo    ajaxJson('0','');
-    	}
+    	
     break;
 
     //获取提现记录列表数据
     case 'withdrawals_records':
+    	$page                   = max(1, intval($_POST['page']));
+    	$Objrecord = apiData('pdkTranRecListApi.do',array('type'=>$Type,'userId'=>$userid));
     	include_once('tpl/pdk_withdrawals_records_web.php');
     break;
     
     //获取提现记录详情数据
     case 'withdrawals_record':
+    	$Id 		        = CheckDatas( 'id', '' );
+    	$Objwithdrawals = apiData('tranDetailApi.do',array('id'=>$Id));
     	include_once('tpl/pdk_withdrawals_record_web.php');
     break;
 

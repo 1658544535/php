@@ -63,7 +63,13 @@
                     <%for(var i=0;i<data["data"]["tranList"].length; i++){%>
                         <li>
                           <a href="pindeke.php?act=withdrawals_record&id=<%=data["data"]["tranList"][i]["id"]%>">                            
-                            <p class="type">提现</p>
+                            <%if(data["data"]["tranList"][i]["status"] ==0 ){%>
+                            <p class="type">提现(待审核)</p>
+                            <%}else if(data["data"]["tranList"][i]["status"] ==1 || data["data"]["tranList"][i]["status"] ==3){%>
+                            <p class="type">提现(转账完成)</p>
+                            <%}else if(data["data"]["tranList"][i]["status"] ==2){%>
+                            <p class="type">提现(审核不通过)</p>
+                            <%}%>
                             <p class="time"><%=data["data"]["tranList"][i]["date"]%></p>
                             <p class="price">-<%=data["data"]["tranList"][i]["price"]%></p>
                           </a>
