@@ -64,6 +64,8 @@
 						<%}else{%>
 							<a class="swiper-slide" href="special.php?id=<%=data["banner"][i].typeId%>">
 						<%}%>
+					<%}else if(data["banner"][i]["type"] == 5){%>
+						<a class="swiper-slide" href="specials.php">
 					<%}else{%>
 						<a class="swiper-slide">
                     <%}%>
