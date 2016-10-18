@@ -28,7 +28,7 @@
                 <a class="button button-link button-nav pull-right share" href="javascript:;">
                     <span class="icon icon-share"></span>
                 </a>
-                <h1 class="title">专题标题</h1>
+                <h1 class="title"><?php echo $pic['specialName'];?></h1>
             </header>
 
             <?php include_once('footer_nav_3ge_web.php');?>

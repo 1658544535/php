@@ -151,5 +151,11 @@ switch($act){
 		$addrs = apiData('specialDetailApi.do', array('specialId'=>$id,'pageNo'=>$page));
 		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
 		break;
+	case 'special_77'://77专区
+		$id = intval($_GET['id']);
+		$page = max(1, intval($_POST['page']));
+		$addrs = apiData('zoneProductsApi.do', array('id'=>$id,'pageNo'=>$page));
+		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
+		break;
 }
 ?>
