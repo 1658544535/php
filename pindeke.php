@@ -103,6 +103,7 @@ switch($act)
     	
   
     	$minfo = apiData('myInfoApi.do',array('userId'=>$userid));
+    	
     	if(!empty($minfo['result']['invitationCode']))
     	{
     		$imgPath = AGENT_QRCODE_DIR."{$userid}.png";
@@ -118,9 +119,10 @@ switch($act)
     	{
     		$imgPath = '';
     	}
-}
     	include_once('tpl/pdk_QR_web.php');
-    break;
+    	break;
+}
+    	
 
 
 
