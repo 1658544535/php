@@ -139,32 +139,32 @@ function get_code($db)
 
 	do
 	{
-		// 判断1分钟内是否重复操作
-		if ( isset($_SESSION['send_time']) && time() - $_SESSION['send_time'] <= 60 )
-		{
-			$code 		= -1;
-			$bSuccess 	= false;
-			$msg		= '1分钟内不要频繁发送！';
-			break;
-		}
-
-		// 判断输入的手机号的格式
-		if ( ! preg_match("#^[\d]{11}#",$phone)  )
-		{
-			$code 		= -2;
-			$bSuccess 	= false;
-			$msg		= '请输入正确的手机号码！';
-			break;
-		}
-
-		// 判断输入的手机号是否存在
-		if ( $syslogin->query_usernames($db,$phone) > 0)
-		{
-			$code 		= -3;
-			$bSuccess 	= false;
-			$msg		= '此手机号已被注册！';
-			break;
-		}
+//		// 判断1分钟内是否重复操作
+//		if ( isset($_SESSION['send_time']) && time() - $_SESSION['send_time'] <= 60 )
+//		{
+//			$code 		= -1;
+//			$bSuccess 	= false;
+//			$msg		= '1分钟内不要频繁发送！';
+//			break;
+//		}
+//
+//		// 判断输入的手机号的格式
+//		if ( ! preg_match("#^[\d]{11}#",$phone)  )
+//		{
+//			$code 		= -2;
+//			$bSuccess 	= false;
+//			$msg		= '请输入正确的手机号码！';
+//			break;
+//		}
+//
+//		// 判断输入的手机号是否存在
+//		if ( $syslogin->query_usernames($db,$phone) > 0)
+//		{
+//			$code 		= -3;
+//			$bSuccess 	= false;
+//			$msg		= '此手机号已被注册！';
+//			break;
+//		}
 
 		// 调用发送短信的接口获取验证码
 		$api_result = apireturn($phone, 4, $arrGeetestParam );		// 调用发送短信接口,并获取结果
