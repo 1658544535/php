@@ -8,15 +8,8 @@ $Phone		            = CheckDatas( 'phone', '' );
 $cardNo 		        = CheckDatas( 'cardNo', '' );
 $Content 		        = CheckDatas( 'content', '' );
 
-
-
-$info = apiData('userlogin.do',array('openid'=>$openid,'source'=>3));
-if($info['result'] ==''){
-	redirect('user_binding.php', '请先登录');
-}
-
-
-
+//判断是否登录
+IS_USER_LOGIN();
 
 $backUrl = getPrevUrl();
 
