@@ -20,7 +20,7 @@ switch($act)
 {
 	//拼得客信息
 	case 'pdkInfo':
-		
+		IS_USER_LOGIN();
 		$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
 		
 		
@@ -47,8 +47,8 @@ switch($act)
 
     //获取钱包信息
     case 'wallet':
+    	IS_USER_LOGIN();
     	$Objwallet = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
-    	
     	include_once('tpl/pdk_wallet_web.php');
     break;
 
@@ -77,8 +77,11 @@ switch($act)
     	$Price 		            = CheckDatas( 'price', '' );
     	$Type 		            = CheckDatas( 'type', '' );
     	$Objwd = apiData('wdApplyApi.do',array('account'=>$Number,'name'=>$Name,'price'=>$Price,'taType'=>1,'userId'=>$userid));
-    	
-    	
+    	if($Objwd !=''){
+    	    redirect('pindeke.php?act=wallet',申请成功！);
+    	}else{
+    		redirect('pindeke.php?act=wallet',提交失败，请重新提交);
+    	}
     break;
 
     //获取提现记录列表数据
@@ -97,7 +100,7 @@ switch($act)
 
     //团免二维码
     case 'QRcode':
-    	
+    	IS_USER_LOGIN();
     	$info = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
   
   
