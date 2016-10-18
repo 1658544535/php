@@ -25,7 +25,7 @@
                 <a class="button button-link button-nav pull-left back" href="">
                     <span class="icon icon-back"></span>
                 </a>
-                <a class="button button-link button-nav pull-right share" href="#">
+                <a class="button button-link button-nav pull-right share" href="javascript:;">
                     <span class="icon icon-share"></span>
                 </a>
                 <h1 class="title"><?php echo $info['title'];?></h1>
