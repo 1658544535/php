@@ -33,7 +33,7 @@
                     <ul>
                         <li class="header">
                             <div class="label">入账金额</div>
-                            <div class="main">￥350.00</div>
+                            <div class="main">￥<?php echo $Objwithdrawals['result']['price'];?></div>
                         </li>
                         <li>
                             <div class="label">类型</div>
@@ -41,19 +41,19 @@
                         </li>
                         <li>
                             <div class="label">时间</div>
-                            <div class="main">2016-10-10  10：12：36</div>
+                            <div class="main"><?php echo $Objwithdrawals['result']['date'];?></div>
                         </li>
                         <li>
                             <div class="label">交易单号</div>
-                            <div class="main">10038345678912031</div>
+                            <div class="main"><?php echo $Objwithdrawals['result']['orderNo'];?></div>
                         </li>
                         <li>
                             <div class="label">剩余金额</div>
-                            <div class="main">250.8</div>
+                            <div class="main"><?php echo $Objwithdrawals['result']['surpluPrice'];?></div>
                         </li>
                         <li>
                             <div class="label">备注</div>
-                            <div class="main">提现</div>
+                            <div class="main"><?php echo $Objwithdrawals['result']['remark'];?></div>
                         </li>
                     </ul>
                 </section>
