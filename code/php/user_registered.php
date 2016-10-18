@@ -167,7 +167,7 @@ function get_code($db)
 		}
 
 		// 调用发送短信的接口获取验证码
-		$api_result = apireturn($phone, 1, $arrGeetestParam );		// 调用发送短信接口,并获取结果
+		$api_result = apireturn($phone, 4, $arrGeetestParam );		// 调用发送短信接口,并获取结果
 
 		if ( $api_result == NULL   )								// 调用接口失败
 		{
@@ -237,7 +237,7 @@ function get_code2($db)
 
 		// 调用发送短信的接口获取验证码
 
-		$api_result = apireturn($phone,1); 							// 调用发送短信接口,并获取结果
+		$api_result = apireturn($phone,4); 							// 调用发送短信接口,并获取结果
 
 		if ( ! $api_result->success )								// 如果验证码发送失败
 		{
