@@ -47,7 +47,7 @@
 			<script id='tpl_pull' type="text/template">
             <%if(data["data"].length>0){%>
                 <%for(var i=0;i<data["data"].length; i++){%>
-                    <li data-id="<%=data["data"][i].addId%>" data-name="<%=data["data"][i].name%>" data-tel="<%=data["data"][i].tel%>" data-address="<%=data["data"][i].address%>">
+                    <li data-id="<%=data["data"][i].addId%>" data-name="<%=data["data"][i].name%>" data-tel="<%=data["data"][i].tel%>" data-address="<%=data["data"][i].address%>" data-province="<%=data["data"][i].province%>">
                         <div class="txt">
                             <div class="info">
                                 <span class="phone a-t-1"><%=data["data"][i].tel%></span>
@@ -122,7 +122,7 @@
 
 				$(document).on("click", "ul.list-container li", function(){
 					var _this = $(this);
-					var addr = {"id":_this.attr("data-id"),"name":_this.attr("data-name"),"tel":_this.attr("data-tel"),"address":_this.attr("data-address")};
+					var addr = {"id":_this.attr("data-id"),"name":_this.attr("data-name"),"tel":_this.attr("data-tel"),"address":_this.attr("data-address"),"province":_this.attr("data-province")};
 					document.cookie = "orderaddr="+encodeURIComponent(JSON.stringify(addr));
 					location.href = "orders.php?act=address_add&from=orders&aids="+addr.id;
 				});
