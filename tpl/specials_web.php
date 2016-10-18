@@ -28,7 +28,7 @@
                 <h1 class="title"></h1>
             </header>
 
-            <?php include_once('footer_nav_3ge_web.php');?>
+            <?php include_once('footer_nav_web.php');?>
 
             <section class="swiper-container special-class">
                 <div class="swiper-wrapper">

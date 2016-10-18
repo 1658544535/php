@@ -31,7 +31,7 @@
                 <h1 class="title"><?php echo $pic['specialName'];?></h1>
             </header>
 
-            <?php include_once('footer_nav_3ge_web.php');?>
+            <?php include_once('footer_nav_web.php');?>
 
             <div class="content native-scroll">
 
@@ -67,7 +67,7 @@
                             </div>
                             <div class="info">
                                 ￥<span class="price"><%=data["data"][i]["price"]%></span>
-                                <span class="sales">已团<%=data["data"][i]["num"]%>件</span>
+                                <span class="sales">已团<%=data["data"][i]["grouponNum"]%>件</span>
                             </div>
                         </a></li>
                     <%}%>
