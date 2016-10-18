@@ -36,7 +36,7 @@
                             <div class="item">
                                 <div class="label">真实姓名</div>
                                 <div class="main">
-                                    <div class="txt"><?php echo $Objinfo['result']['name'];?></div>
+                                    <div class="txt"><?php echo $Objinfo['name'];?></div>
                                 </div>
                             </div>
                         </li>
@@ -44,7 +44,7 @@
                             <div class="item">
                                 <div class="label">手机号码</div>
                                 <div class="main">
-                                    <div class="txt"><?php echo $Objinfo['result']['phone'];?></div>
+                                    <div class="txt"><?php echo $Objinfo['phone'];?></div>
                                 </div>
                             </div>
                         </li>
@@ -52,7 +52,7 @@
                             <div class="item">
                                 <div class="label">身份证号码</div>
                                 <div class="main">
-                                    <div class="txt"><?php echo $Objinfo['result']['cardNo'];?></div>
+                                    <div class="txt"><?php echo $Objinfo['cardNo'];?></div>
                                 </div>
                             </div>
                         </li>
@@ -60,21 +60,21 @@
                             <div class="item">
                                 <div class="label">推广渠道</div>
                                 <div class="main">
-                                    <div class="txt"><?php echo $Objinfo['result']['channel'];?></div>
+                                    <div class="txt"><?php echo $Objinfo['channel'];?></div>
                                 </div>
                             </div>
                         </li>
-                        <?php if(($Objinfo['result']['image1']!='') || ($Objinfo['result']['image2']!='') || ($Objinfo['result']['image3']!='') || ($Objinfo['result']['image4']!='') || ($Objinfo['result']['image5']!='')){ ?>
+                        <?php if(($Objinfo['image1']!='') || ($Objinfo['image2']!='') || ($Objinfo['image3']!='') || ($Objinfo['image4']!='') || ($Objinfo['image5']!='')){ ?>
                         <li class="last">
                             <div class="item">
                                 <div class="label">推广证明</div>
                             </div>
                             <div class="uploadImg">
                             <?php for($i=1; $i<=5; $i++){ ?>
-                                <?php if($Objinfo['result']['image'.$i] != ''){ ?>
-                                <div class="uploadImg-item">
-                                    <div class="img"><img data-file="res.msg" data-src="#" src="<?php echo $Objinfo['result']['image'.$i];?>"></div>
-                                </div>
+                                <?php if($Objinfo['image'.$i] != ''){ ?>
+	                                <div class="uploadImg-item">
+	                                    <div class="img"><img data-file="res.msg" data-src="#" src="<?php echo $Objinfo['image'.$i];?>"></div>
+	                                </div>
                                 <?php } ?>
 							<?php } ?>
                             </div>

@@ -21,6 +21,7 @@ switch($act)
 	//拼得客信息
 	case 'pdkInfo':
 		IS_USER_LOGIN();
+		$userid 		        = CheckDatas( 'uid', '' );
 		$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
 		$Objinfo = $Objinfo['result'];
 		include_once('tpl/pdk_info_web.php');
@@ -47,6 +48,7 @@ switch($act)
     //获取钱包信息
     case 'wallet':
     	IS_USER_LOGIN();
+    	$userid 		        = CheckDatas( 'uid', '' );
     	$Objwallet = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
     	include_once('tpl/pdk_wallet_web.php');
     break;
@@ -101,7 +103,7 @@ switch($act)
     case 'QRcode':
     	IS_USER_LOGIN();
     	
-  
+    	$userid 		        = CheckDatas( 'uid', '' );
     	$minfo = apiData('myInfoApi.do',array('userId'=>$userid));
     	
     	if(!empty($minfo['result']['invitationCode']))

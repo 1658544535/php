@@ -64,7 +64,11 @@
                                 <div class="price1">
                                     <input id="price" type="tel" name="price" class="txt" />
                                 </div>
+                                <?php if($Oldprice !=''){?>
                                 <div class="price2">可用余额 <span><?php echo $Oldprice;?></span>元</div>
+                                 <?php }else{?>
+                                 <div class="price2">可用余额 <span>0</span>元</div>
+                                 <?php }?>
                             </li>
                         </form>
                     </ul>
