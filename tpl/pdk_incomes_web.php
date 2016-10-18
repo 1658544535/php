@@ -34,8 +34,8 @@
                         <li>
                             <div class="label">按时间搜索：</div>
                             <div class="main">
-                                <input id="startTime" name="startTime" type="text" placeholder="设置开始时间" />
-                                <input id="endTime" name="endTime" type="text" placeholder="设置结束时间" />
+                                <input id="startTime" name="startTime" type="text" rel="req" placeholder="设置开始时间" />
+                                <input id="endTime" name="endTime" type="text" rel="req" placeholder="设置结束时间" />
                             </div>
                         </li>
                     </ul>
@@ -73,13 +73,6 @@
                 $(document).on("pageInit", "#page-pdk-record", function(e, pageId, page) {
                     $("#startTime").datetimePicker({});
                     $("#endTime").datetimePicker({});
-                    $("#type").picker({
-                        cols: [{
-                          textAlign: 'center',
-                          values: ['全部', '待处理', '已完成']
-                        }]
-                    });
-
                 });
             </script>
         </div>
