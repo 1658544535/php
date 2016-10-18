@@ -1036,7 +1036,8 @@ function IS_GET()
 
 	// 计算剩余的天数
  	$date_num = floor((strtotime($date) - time())/86400);
-
+ 	
+ 	
 	// 计算当天剩余的秒数
 	$date_time = strtotime($date) - ( time() + $date_num * 86400 );
 
@@ -1050,7 +1051,7 @@ function IS_GET()
 		{
 			 if ($date_num == 0)
 			 {
-			 	$date_tip = $type == '-' ? '即将结束' : '距活动开始：';
+			 	$date_tip = $type == '-' ? '即将开奖，请耐心等待' : '距活动开始：';
 			 }
 			 else
 			 {
@@ -1064,6 +1065,13 @@ function IS_GET()
  }
 
 
+ 
+
+ 
+ 
+ 
+ 
+ 
  /*=================================================================
  * 	功能：调用发送短信接口，并获取结果
  *
@@ -1139,6 +1147,7 @@ function apiData($url, $param, $method='get', $exit=false){
 	$objKey = new SetKey();
 
 	$url = API_URL.((substr(API_URL, -1)=='/') ? '' : '/').$url;
+	
 	if($method == 'get'){
 		$arr = array();
 		foreach($param as $k => $v){
@@ -1160,6 +1169,7 @@ function apiData($url, $param, $method='get', $exit=false){
 	}
 	curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
 	$data = curl_exec($ch);
+
 	curl_close($ch);
 	if($exit){
 		echo $url;
@@ -1167,6 +1177,7 @@ function apiData($url, $param, $method='get', $exit=false){
 		PD(json_decode($data, true));
 	}
 	return json_decode($data, true);
+
 }
 
 /**
@@ -1198,4 +1209,44 @@ function getFullAvatar($avater){
 	!preg_match("/^http/i", $avater) && $avater = $site_image.$avater;
 	return $avater;
 }
+
+/**
+ * 功能：生成png类型的二维码图片
+ * @param string $website 要生成二维码的数据，网址类型，例如：http://www.weixin.com/product_detail.php?id=1
+ * @param string $path 保存二维码图片路径
+ * @param string $picname 二维码png图片名称，例如：test.png
+ * */
+function get_qrcode($website,$path="../upfiles/phpqrcode/",$picname = '')
+{
+
+	include "/includes/lib/phpqrcode/phpqrcode.php";
+
+	if (preg_match('/^http:\/\//', $website) || preg_match('/^https:\/\//', $website))
+	{
+		$data= $website;
+	}
+	else
+	{
+		$data= '<a href="http://'.$website.'>http://'.$website.'</a>';
+	}
+	$errorCorrectionLevel="L";
+	$matrixPointSize="20";
+	if(empty($picname))
+	{
+		$picname = date('YmdHis',time()).'.png';
+	}
+	if(empty($path))
+	{
+		$path = "../upfiles/phpqrcode/";
+	}
+	if(!file_exists($path))
+		mkdir($path, 0777,true);
+
+		QRcode::png($data,$path.$picname,$errorCorrectionLevel,$matrixPointSize);
+
+		return $picname;
+}
+
+
+
 ?>
