@@ -58,6 +58,12 @@
 						<a class="swiper-slide" href="groupon.php?id=<%=data["banner"][i].typeId%>">
                     <%}else if(data["banner"][i]["type"] == 3){%>
 						<a class="swiper-slide" href="product_guess_price.php?act=detail&gid=<%=data["banner"][i].typeId%>">
+					<%}else if(data["banner"][i]["type"] == 4){%>
+						<%if(data["banner"][i].typeId == 0){%>
+							<a class="swiper-slide" href="specials.php">
+						<%}else{%>
+							<a class="swiper-slide" href="special.php?id=<%=data["banner"][i].typeId%>">
+						<%}%>
 					<%}else{%>
 						<a class="swiper-slide">
                     <%}%>
