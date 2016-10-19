@@ -3185,7 +3185,7 @@
   background-size: 100% 100%;
   border: none;
 }
-/*专场*/
+/*涓撳満*/
 .special-banner {
   position: relative;
   padding-bottom: 46.875%;
@@ -3418,7 +3418,7 @@
   background: url(../images/special-more.png) no-repeat 50% 50%;
   background-size: 55% auto;
 }
-/*拼得客*/
+/*鎷煎緱瀹�*/
 .user-pdk {
   background: #fff;
 }
@@ -3561,11 +3561,11 @@
   border: none;
 }
 .pdk-form ul li .price1::before {
-  content: '￥';
+  content: '锟�';
   position: absolute;
   left: -1.75rem;
   top: 0;
-  font-family: '微软雅黑';
+  font-family: '寰蒋闆呴粦';
 }
 .pdk-form ul li .price2 {
   line-height: 2.0rem;
@@ -3632,7 +3632,7 @@
 }
 .pdk-freeLink .img {
   display: block;
-  width: 26%;
+  width: 45%;
   margin: 0 auto 0.5rem;
 }
 .pdk-freeLink .txt {
