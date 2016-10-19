@@ -82,7 +82,7 @@ break;
 			if($info['result']['status'] ==1){
 				redirect('user.php');
 			}elseif(($info['result']['status'] ==0) || ($info['result']['status'] ==2)){
-				redirect('pindeke.php?act=pdkInfo');
+				redirect('pindeke.php?act=pdkInfo&uid='.$userid);
 			}
 			
 			include_once('tpl/pdk_apply_web.php');
