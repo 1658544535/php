@@ -80,7 +80,7 @@ break;
 		default:
 			$info = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
 			if($info['result']['status'] ==1){
-				redirect('index.php');
+				redirect('user.php');
 			}elseif(($info['result']['status'] ==0) || ($info['result']['status'] ==2)){
 				redirect('pindeke.php?act=pdkInfo');
 			}
