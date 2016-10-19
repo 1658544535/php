@@ -3,7 +3,7 @@ define('HN1', true);
 require_once('./global.php');
 IS_USER_LOGIN();
     $minfo  = CheckDatas( 'minfo', '' );
-	$pdkcode = apiData('activeFreeCoupon.do',array('code'=>VOLO8O,'userId'=>$userid),'get',true);
+	$pdkcode = apiData('activeFreeCoupon.do',array('code'=>VOLO8O,'userId'=>$userid));
     if($pdkcode['success']){
 	    redirect('groupon_free.php',领取成功！);
     }else{
