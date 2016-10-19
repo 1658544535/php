@@ -4,7 +4,7 @@ require_once('./global.php');
 
 $outTradeNo = trim($_GET['outno']);
 apiData('queryPayStatus.do', array('outTradeNo'=>$outTradeNo,'payMethod'=>2));
-
+unset($_SESSION['order']);
 $state = intval($_GET['state']);
 $referUrl = trim($_GET['url']);
 ($referUrl == '') && $refUrl = '/user_orders.php';

@@ -54,14 +54,14 @@ if(!$result['success']){
 }
 $payInfo = $result['result']['wxpay'];
 
-unset($_SESSION['order']);
+//unset($_SESSION['order']);
 
 $_SESSION['order_success'] = true;
 
 if($result['result']['fullpay'] == 1){
 	redirect('/user_orders.php', '下单成功');
 }else{
-	$url = '/wxpay/pay.php?appid='.$payInfo['appid'].'&timestamp='.$payInfo['timestamp'].'&noncestr='.$payInfo['noncestr'].'&prepayid='.$payInfo['prepayid'].'&outno='.$payInfo['out_trade_no'].'&sign='.$payInfo['sign'];
+	$url = '/wxpay/pay.php?appid='.$payInfo['appId'].'&timestamp='.$payInfo['timeStamp'].'&noncestr='.$payInfo['nonceStr'].'&package='.$payInfo['package'].'&outno='.$payInfo['out_trade_no'].'&signtype='.$payInfo['signType'].'&sign='.$payInfo['paySign'];
 	redirect($url);
 }
 exit();
