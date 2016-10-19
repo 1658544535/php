@@ -2,7 +2,14 @@
 define('HN1', true);
 require_once('./global.php');
 
-//echo '支付成功';
+$outTradeNo = trim($_GET['outno']);
+apiData('queryPayStatus.do', array('outTradeNo'=>$outTradeNo,'payMethod'=>2));
+
+$state = intval($_GET['state']);
+$referUrl = trim($_GET['url']);
+($referUrl == '') && $refUrl = '/user_orders.php';
+redirect($referUrl, $state?'支付成功':'支付失败');
+exit();
 ?>
 <html>
 
@@ -19,13 +26,13 @@ require_once('./global.php');
     <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
 	<script type="text/javascript">
 //		history.pushState({}, "", "user_orders.php");
-		history.replaceState(null, '', "user.php");
+//		history.replaceState(null, '', "user.php");
 	</script>
 </head>
 
 <body>
 	<div style="text-align:center; width:100%; margin-top:30%;">
-		<div style="font-size:120%; color:#00f">下单成功</div>
+		<div style="font-size:120%; color:#00f">支付成功</div>
 		<div>
 			<a href="user_orders.php" style="color:#000; text-decoration:underline; margin-top:10px; display:block;">进入订单列表</a>
 		</div>

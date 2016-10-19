@@ -78,7 +78,7 @@
 											</a>
 										</li>
 									<%}%>
-									<%if(jlen>=6){%>
+									<%if(jlen>6){%>
 									<li>
                                         <a href="special.php?id=<%=data["data"][i].specialId%>" class="special-more"></a>
                                     </li>

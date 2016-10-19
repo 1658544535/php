@@ -52,12 +52,20 @@ if(!$result['success']){
 	$_SESSION['order_failure'] = true;
 	redirect($prevUrl, $result['error_msg']);
 }
+$payInfo = $result['result']['wxpay'];
 
 unset($_SESSION['order']);
 
 $_SESSION['order_success'] = true;
 
-redirect('pay_success.php');
+if($result['result']['fullpay'] == 1){
+	redirect('/user_orders.php', '下单成功');
+}else{
+	$url = '/wxpay/pay.php?appid='.$payInfo['appid'].'&timestamp='.$payInfo['timestamp'].'&noncestr='.$payInfo['noncestr'].'&prepayid='.$payInfo['prepayid'].'&outno='.$payInfo['out_trade_no'].'&sign='.$payInfo['sign'];
+	redirect($url);
+}
+exit();
+
 
 //使用接口获取JS支付所需的数据
 $payParam = $result['result']['wxpay'];
