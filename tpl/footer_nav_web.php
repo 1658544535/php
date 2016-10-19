@@ -5,7 +5,7 @@
 	</a>
 	<a class="tab-item <?php echo ($footerNavActive=='spe77')?'active':'';?>" href="special_77.php">
 		<span class="icon i-price"></span>
-		<span class="tab-label">77专区</span>
+		<span class="tab-label">7.7专区</span>
 	</a>
 	<a class="tab-item <?php echo ($footerNavActive=='search')?'active':'';?>" href="search.php">
 		<span class="icon i-search"></span>
