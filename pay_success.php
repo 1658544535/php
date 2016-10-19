@@ -8,6 +8,7 @@ unset($_SESSION['order']);
 $state = intval($_GET['state']);
 $referUrl = trim($_GET['url']);
 ($referUrl == '') && $refUrl = '/user_orders.php';
+$refUrl = '/user_orders.php';
 redirect($referUrl, $state?'支付成功':'支付失败');
 exit();
 ?>
