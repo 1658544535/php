@@ -37,8 +37,8 @@
                         <p class="price1">￥<?php echo $Objwallet['result']['balance'];?></p>
                     </div>
                     <div class="btn">
-                        <a href="/pindeke.php?act=incomes&type=1" class="red">查看明细</a>
-                        <a href="/pindeke.php?act=withdrawals&uid=<?php echo $userid;?>&price=<?php echo $Objwallet['result']['balance'];?>" class="gray">我要提现</a>
+                        <a href="/pindeke.php?act=incomes" class="red">查看明细</a>
+                        <a href="/pindeke.php?act=withdrawals&uid=<?php echo $userid;?>" class="gray">我要提现</a>
                     </div>
                 </section>
 

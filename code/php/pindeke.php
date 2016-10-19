@@ -21,7 +21,7 @@ switch($act)
 	//拼得客信息
 	case 'pdkInfo':
 		IS_USER_LOGIN();
-		$userid 		        = CheckDatas( 'uid', '' );
+		$userid  = CheckDatas( 'uid', '' );
 		$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
 		$Objinfo = $Objinfo['result'];
 		include_once('tpl/pdk_info_web.php');
@@ -48,21 +48,21 @@ switch($act)
     //获取钱包信息
     case 'wallet':
     	IS_USER_LOGIN();
-    	$userid 		        = CheckDatas( 'uid', '' );
+    	$userid    = CheckDatas( 'uid', '' );
     	$Objwallet = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
     	include_once('tpl/pdk_wallet_web.php');
     break;
 
     //获取收入列表数据
     case 'incomes':
-    	$page                   = max(1, intval($_POST['page']));
+    	$page        = max(1, intval($_POST['page']));
     	 $Objincomes = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>1,'userId'=>$userid));
     	  include_once('tpl/pdk_incomes_web.php');
     break;
     
     //获取收入详情数据
     case 'income':
-    	$Id 		        = CheckDatas( 'id', '' );
+    	$Id 	   = CheckDatas( 'id', '' );
     	$Objincome = apiData('tranDetailApi.do',array('id'=>$Id));
     	include_once('tpl/pdk_income_web.php');
     break;
@@ -70,7 +70,8 @@ switch($act)
     //提现操作
     case 'withdrawals':
     	$Uid 		   = CheckDatas( 'uid', '' );
-    	$Oldprice 	   = CheckDatas( 'price', '' );
+    
+    	$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$Uid));
     	include_once('tpl/wd_apply_web.php');
     break;
    
@@ -87,7 +88,8 @@ switch($act)
 
     //获取提现记录列表数据
     case 'withdrawals_records':
-    	$page                   = max(1, intval($_POST['page']));
+    	$page      = max(1, intval($_POST['page']));
+    	$Oldprice 	   = CheckDatas( 'price', '' );
     	$Objrecord = apiData('pdkTranRecListApi.do',array('type'=>$Type,'userId'=>$userid));
     	include_once('tpl/pdk_withdrawals_records_web.php');
     break;
@@ -103,7 +105,7 @@ switch($act)
     case 'QRcode':
     	IS_USER_LOGIN();
     	
-    	$userid 		        = CheckDatas( 'uid', '' );
+    	$userid= CheckDatas( 'uid', '' );
     	$minfo = apiData('myInfoApi.do',array('userId'=>$userid));
     	
     	if(!empty($minfo['result']['invitationCode']))

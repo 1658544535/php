@@ -22,7 +22,7 @@
     <div class="page-group" id="page-pdeForm">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="pindeke.php?act=wallet">
+                <a class="button button-link button-nav pull-left back" href="pindeke.php?act=wallet&uid=<?php echo $userid;?>">
                     <span class="icon icon-back"></span>
                 </a>
                 <h1 class="title">余额提现</h1>
@@ -45,7 +45,8 @@
                                 <div class="item">
                                     <div class="label">转账到</div>
                                     <div class="main">
-                                        <input id="way" type="text" name="type" class="txt" placeholder="选择转账到方式" />
+                                        <input id="way" type="text" class="txt" placeholder="选择转账到方式" />
+                                        <input id="way-value" type="hidden" name="type" />
                                     </div>
                                 </div>
                             </li>
@@ -53,7 +54,7 @@
                                 <div class="item">
                                     <div class="label">转账帐号</div>
                                     <div class="main">
-                                        <input id="number" type="text" name="number" class="txt" placeholder="填写对应的转账帐号" />
+                                        <input id="number" type="text" name="number" class="txt" placeholder="填写对应的转账帐号和银行信息" />
                                     </div>
                                 </div>
                             </li>
@@ -64,8 +65,8 @@
                                 <div class="price1">
                                     <input id="price" type="tel" name="price" class="txt" />
                                 </div>
-                                <?php if($Oldprice !=''){?>
-                                <div class="price2">可用余额 <span><?php echo $Oldprice;?></span>元</div>
+                                <?php if($Objinfo['result']['balance']){?>
+                                <div class="price2">可用余额 <span><?php echo $Objinfo['result']['balance'];?></span>元</div>
                                  <?php }else{?>
                                  <div class="price2">可用余额 <span>0</span>元</div>
                                  <?php }?>
@@ -77,7 +78,7 @@
                 <div class="pdk-submit2">
                     <input type="submit" value="提现" />
                     <div class="link">
-                        <a href="/pindeke.php?act=withdrawals_records&type=2">查看提现记录</a>
+                        <a href="/pindeke.php?act=withdrawals_records">查看提现记录</a>
                     </div>
                 </div>
 
@@ -94,9 +95,14 @@
                         cols: [
                         {
                           textAlign: 'center',
-                          values: ['支付宝', '微信', '银行']
+                          displayValues: ['支付宝', '微信', '银行'],
+                          values: [1,2,3]
                         }
-                        ]
+                        ],
+                        formatValue: function(picker, values, displayValues){
+                            $("#way-value").val(values);
+                            return displayValues;
+                        }
                     });
 
                     //提现金额限制
@@ -120,7 +126,7 @@
                             return false;
                         }
                         if($.trim($("#number").val()) == ""){
-                            $.toast("请填写对应的转账帐号");
+                            $.toast("填写对应的转账帐号和银行信息");
                             return false;
                         }
                         if($.trim($("#price").val()) == ""){
