@@ -12,11 +12,12 @@ $prevUrl = getPrevUrl();
 $orderId = intval($_GET['oid']);
 if(empty($orderId)){//下单直接支付
 	$payParam = array(
-		'appid' => trim($_GET['appid']),
-		'timestamp' => trim($_GET['timestamp']),
-		'noncestr' => trim($_GET['noncestr']),
-		'prepayid' => trim($_GET['prepayid']),
-		'sign' => trim($_GET['sign']),
+		'appId' => trim($_GET['appid']),
+		'timeStamp' => trim($_GET['timestamp']),
+		'nonceStr' => trim($_GET['noncestr']),
+		'package' => trim($_GET['package']),
+		'signType' => trim($_GET['signtype']),
+		'paySign' => trim($_GET['sign']),
 		'out_trade_no' => trim($_GET['outno']),
 	);
 }else{
@@ -36,7 +37,7 @@ if(empty($orderId)){//下单直接支付
 //		$prevUrl = $_SERVER['HTTP_REFERER'];
 //	}
 //}
-!$result['success'] && redirect($prevUrl, $result['error_msg']);
+
 
 
 
@@ -44,12 +45,12 @@ if(empty($orderId)){//下单直接支付
 include_once('./lib/WxPay.Data.php');
 
 $jsapi = new WxPayJsApiPay();
-$jsapi->SetAppid($payParam['appid']);
-$jsapi->SetTimeStamp($payParam['timestamp']);
-$jsapi->SetNonceStr($payParam['noncestr']);
-$jsapi->SetPackage('prepay_id='.$payParam['prepayid']);
-$jsapi->SetSignType("MD5");
-$jsapi->SetPaySign($payParam['sign']);
+$jsapi->SetAppid($payParam['appId']);
+$jsapi->SetTimeStamp($payParam['timeStamp']);
+$jsapi->SetNonceStr($payParam['nonceStr']);
+$jsapi->SetPackage($payParam['package']);
+$jsapi->SetSignType($payParam['signType']);
+$jsapi->SetPaySign($payParam['paySign']);
 $jsApiParameters = json_encode($jsapi->GetValues());
 
 
