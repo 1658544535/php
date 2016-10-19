@@ -60,8 +60,6 @@
                 <div class="oc-state"><span>未成团，退款成功</span><i class="o-icon o-icon-7"></i></div>
                 <?php }?>
             
-
-
                 <section class="oc-adress oc-adress-disable">
                     <a >
                         <div><?php echo $OrderDetail['result']['addressInfo']['consignee'];?>&nbsp;&nbsp;&nbsp;<?php echo $OrderDetail['result']['addressInfo']['tel'];?></div>
@@ -175,7 +173,7 @@
             	<?php if($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
                     <!-- <a class="one" id="orderCancel"> href="order_detail.php?act=cancel&oid=<?php echo $OrderDetail['result']['orderId'] ;?>">取消订单</a> -->
                     <a class="btn gray" id="orderCancel">取消订单</a>
-                    <a class="btn" href="javascript:;">去支付</a>
+                    <a class="btn" href="/wxpay/pay.php?ono=<?php echo $OrderDetail['result']['orderInfo']['orderNo'] ;?>">去支付</a>
               <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn gray">查看物流</a>
                    <?php if($OrderDetail['result']['refundStatus'] ==0 || $OrderDetail['result']['refundStatus'] ==6 || $OrderDetail['result']['refundStatus'] ==5){?>
