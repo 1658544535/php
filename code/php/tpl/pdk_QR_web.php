@@ -19,7 +19,7 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="/js/wxshare.js"></script>
 	<script type="text/javascript">
-	var imgUrl = "<?php echo $site;?>images/wxlogo.jpg";
+	var imgUrl = "<?php echo $site;?>images/wxLOGO.png";
 	var link =  "<?php echo $site;?>pdk_code_action.php?minfo=<?php echo $minfo['result']['invitationCode'];?>";
 	var title = "我送您一张“免单券";
 	var desc  = "送您一张“免单券”，将有很多玩具等你拿。";
