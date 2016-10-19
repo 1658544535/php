@@ -27,7 +27,13 @@
                 <section class="user-header">
                     <div class="photo">
                         <div class="img">
-							<img src="<?php echo $info['userImage'];?>"/>
+							<?php if($bLogin){ ?>
+								<img src="<?php echo $info['userImage'];?>"/>
+							<?php }else{ ?>
+								<a href="/user_binding.php">
+									<img src="<?php echo $info['userImage'];?>"/>
+								</a>
+							<?php } ?>
 						</div>
                     </div>
                     <div class="name"><?php echo $info['name']; ?></div>
