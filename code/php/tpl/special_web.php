@@ -63,7 +63,7 @@
                         <li><a href="groupon.php?id=<%=data["data"][i].activityId%>">
                             <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
                             <div class="name">
-                                <span class="num"><%=data["data"][i]["grouponNum"]%>人团</span><%=data["data"][i]["productName"]%>
+                                <span class="num"><%=data["data"][i]["num"]%>人团</span><%=data["data"][i]["productName"]%>
                             </div>
                             <div class="info">
                                 ￥<span class="price"><%=data["data"][i]["price"]%></span>
