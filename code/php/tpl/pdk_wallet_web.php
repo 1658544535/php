@@ -33,8 +33,22 @@
                 <section class="pdk-wallet">
                     <div class="icon"></div>
                     <div class="price">
-                        <p class="title1">我的余额</p>
-                        <p class="price1">￥<?php echo $Objwallet['result']['balance'];?></p>
+                        <ul>
+                            <li>
+                                <p class="themeColor">10</p>
+                                <p>开团数</p>
+                            </li>
+                            <li>
+                                <p class="themeColor">8</p>
+                                <p>成团数</p>
+                            </li>
+                            <li>
+                                <p class="themeColor"><?php echo $Objwallet['result']['balance'];?></p>
+                                <p>我的余额</p>
+                            </li>
+                        </ul>
+                        <!-- <p class="title1">我的余额</p>
+                        <p class="price1">￥<?php echo $Objwallet['result']['balance'];?></p> -->
                     </div>
                     <div class="btn">
                         <a href="/pindeke.php?act=incomes" class="red">查看明细</a>

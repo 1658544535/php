@@ -3849,17 +3849,23 @@
 .pdk-wallet .price p {
   margin: 0;
 }
-.pdk-wallet .price .title1 {
+.pdk-wallet .price ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+}
+.pdk-wallet .price ul li {
+  display: inline-block;
+  width: 33.333333%;
   font-size: 0.85rem;
   color: #221815;
 }
-.pdk-wallet .price .price1 {
-  font-size: 2.0rem;
-  color: #221815;
-  line-height: 40px;
+.pdk-wallet .price ul li .themeColor {
+  font-size: 0.95rem;
 }
 .pdk-wallet .btn {
-  padding-top: 0.5rem;
+  padding-top: 3rem;
 }
 .pdk-wallet .btn a {
   display: block;
