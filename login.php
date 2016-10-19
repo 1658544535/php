@@ -47,6 +47,11 @@ switch($act)
 				$userInfo = apiData('userlogin.do', array('openid'=>$wxInfo['openid'],'source'=>3));
 				if($userInfo['success']){
 					$userInfo = $userInfo['result'];
+					//没有头像则获取微信头像
+					if($userInfo['image'] == ''){
+						$_wxUserInfo = $objWX->getUserInfo($wxInfo['openid']);
+						$_wxUserInfo['headimgurl'] && $userInfo['image'] = $_wxUserInfo['headimgurl'];
+					}
 					$log->put('/user/login', "user login! 微信用户自动登录，openid:{$wxInfo[openid]}，用户id:{$userInfo[uid]}，帐号:{$userInfo[phone]}，昵称:{$userInfo[name]}");
 					$_tmp = new stdClass();
 					$_tmp->openid = $wxInfo['openid'];
