@@ -27,6 +27,7 @@ if(empty($orderId)){//下单直接支付
 	$result = apiData('payOrder.do', array('orderNo'=>$orderInfo['orderInfo']['orderNo'],'payMethod'=>8,'uid'=>$userid));
 	!$result['success'] && redirect($prevUrl, $result['error_msg']);
 	$payParam = $result['result']['wxpay'];
+	$refUrl .= 'url='.urlencode($prevUrl);
 }
 
 //if(!empty($_SERVER['HTTP_REFERER'])){
