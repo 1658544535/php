@@ -84,7 +84,11 @@
                 </section>
 
                 <div class="pdk-submit">
-                    <input type="submit" value="提交申请" />
+                    <?php if($info['result']['status'] !=2){?>
+                      <input type="submit" value="提交申请" />
+                    <?php }else{?>
+                      <input type="submit" value="重新提交信息" />
+                    <?php }?>
                 </div>
 
             </div>

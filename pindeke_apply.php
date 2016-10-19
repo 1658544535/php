@@ -60,6 +60,7 @@ switch($act){
 		}
 
 		break;
+		
 
 case 'uploadimg'://上传图片
 		$upfile = $_FILES['files'];
@@ -77,9 +78,15 @@ case 'uploadimg'://上传图片
 		}
 break;
 		default:
+			$info = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
+			if($info['result']['status'] ==1){
+				redirect('index.php');
+			}elseif(($info['result']['status'] ==0) || ($info['result']['status'] ==2)){
+				redirect('pindeke.php?act=pdkInfo');
+			}
+			
 			include_once('tpl/pdk_apply_web.php');
 	   break;
-
 
 }
 
