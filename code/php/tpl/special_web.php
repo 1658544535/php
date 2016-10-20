@@ -19,11 +19,10 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="/js/wxshare.js"></script>
 	<script type="text/javascript">
-	var imgUrl = "<?php echo $fx['result']['image'];?>";
-	var link  = "<?php echo $fx['result']['url'];?>";
-	var title ="<?php echo $fx['result']['title'];?>";
-	var desc  ="<?php echo $fx['result']['content'];?>";
-	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
+	var imgUrl = "<?php echo $site;?><?php echo $addrs['productImage'];?>";
+	var link  = "<?php echo $site;?>special.php?id=<?php echo $id;?>";
+	var title ="<?php echo $addrs['productName'];?>";
+	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title);
 	</script>
 </head>
 
