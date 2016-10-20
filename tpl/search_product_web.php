@@ -71,6 +71,7 @@
             </script>
             
         </div>
+        <section id="goTop" class="goTop"></section>
     </div>
 </body>
 

@@ -38,6 +38,7 @@
 				<section class="proTips-1">
 					<?php switch($info['status']){
 						case 0: ?>
+							<input type="hidden" id="showShare" />
 							<?php if($info['userIsHead'] == 1){ ?>
 								<div class="txt1">
 									<div class="img"><img src="images/tip-success.png" /></div>
@@ -191,7 +192,15 @@
 					<?php } ?>
 				</section>
             </div>
-
+			
+        </div>
+        <div class="popup popup-share popup-share2">
+            <a href="javascript:;" class="close-popup"></a>
+            <div class="">
+            	<div class="s-1">还差 <span><?php echo $info['poorNum'];?></span> 人，邀请好友参团吧</div>
+            	<div class="s-2">点击右上角按钮，发送给朋友或群聊</div>
+            	<div class="s-3">未成团不发货  邀好友拼好货</div>
+            </div>
         </div>
     </div>
     <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
