@@ -17,8 +17,7 @@ if($bLogin && ($info['userImage'] == '')){
 	$_wxUserInfo = $objWX->getUserInfo($openid);
 	$_wxUserInfo['headimgurl'] && $info['userImage'] = $_wxUserInfo['headimgurl'];
 }
-
+$_wxUserInfo = $objWX->getUserInfo($openid);
 $footerNavActive = 'user';
-
 include "tpl/user_web.php";
 ?>
