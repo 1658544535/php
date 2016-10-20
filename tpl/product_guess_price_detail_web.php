@@ -19,10 +19,10 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="/js/wxshare.js"></script>
 	<script type="text/javascript">
-	var imgUrl = "<?php echo $fx['result']['image'];?>";
-	var link  = "<?php echo $fx['result']['url'];?>";
-	var title ="<?php echo $fx['result']['title'];?>";
-	var desc  ="<?php echo $fx['result']['content'];?>";
+	var imgUrl = "<?php echo $ProductImage['result'][0]['image'];?>";
+	var link  = "<?php echo $site;?>product_guess_price.php?act=detail&gid=<?php echo $gId;?>&pid=<?php echo $productId;?>";
+	var title ="邀请您一起参加猜价赢奖品“<?php echo $ObjGrouponInfo['result']['productName'];?>”";
+	var desc  ="<?php echo $ObjGrouponInfo['result']['productSketch'];?>";
 	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 	</script>
 

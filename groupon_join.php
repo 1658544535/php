@@ -21,7 +21,6 @@ $grouponId = $info['activityId'];
 
 $isGrouponFree = intval($_GET['free']);
 
-$fx = apiData('getShareContentApi.do',array('id'=>$grouponId,'type'=>9));
 
 
 

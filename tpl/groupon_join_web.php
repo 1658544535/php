@@ -10,14 +10,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="css/sm.min.css">
     <link rel="stylesheet" href="css/all.min.css">
-	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="/js/wxshare.js"></script>
 	<script type="text/javascript">
 	var imgUrl = "<?php echo $info['productImage'];?>";
 	var link  =  window.location.href;
 	var title = "我买了<?php echo $info['groupPrice'];?>元的<?php echo $info['productName'];?>";
-	var desc  = "<?php echo $fx['result']['content'];?>"。
-	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
+	var desc  = "<?php echo $info['productSketch'];?>"。
+	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>',imgUrl,link,title,desc);
 	</script>
 </head>
 
