@@ -52,7 +52,7 @@ switch($act){
 				foreach($upImgs as $v){
 					file_exists(IMAGE_UPLOAD_DIR.$v) && unlink(IMAGE_UPLOAD_DIR.$v);
 				}
-				redirect($prevUrl, '申请成功');
+				redirect('index.php', '申请成功');
 			}else{
 				redirect($backUrl, $result['error_msg']);
 			}
@@ -77,14 +77,15 @@ case 'uploadimg'://上传图片
 			ajaxResponse(false, '上传失败');
 		}
 break;
-		default:
-			$info = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
-			if($info['result']['status'] ==1){
-				redirect('user.php');
-			}elseif(($info['result']['status'] ==0) || ($info['result']['status'] ==2)){
-				redirect('pindeke.php?act=pdkInfo&uid='.$userid);
-			}
-			
+default:
+		$info = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
+		   if(!empty($info['result'])){
+				if($info['result']['status'] ==1){
+					redirect('user.php');
+				}elseif(($info['result']['status'] ==0) || ($info['result']['status'] ==2)){
+					redirect('pindeke.php?act=pdkInfo&uid='.$userid);
+				}
+		   } 
 			include_once('tpl/pdk_apply_web.php');
 	   break;
 
