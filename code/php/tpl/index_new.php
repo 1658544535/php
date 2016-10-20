@@ -132,6 +132,7 @@
                 </div>
             </div>
         <?php }?>
+        <section id="goTop" class="goTop"></section>
     </div>
 </body>
 
