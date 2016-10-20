@@ -28,7 +28,7 @@ switch($act)
     	    	
     	//获取活动商品信息
     	$ObjGrouponInfo = apiData('readyJoinApi.do', array('activityId'=>$gId,'userId'=>$userid));
-        
+    	$fx             = apiData('getShareContentApi.do', array('id'=>$gId,'type'=>11));
         
     	
     	$ObjUser = apiData('myInfoApi.do', array('userId'=>$userid));
@@ -146,7 +146,7 @@ switch($act)
 		
 		
 		$ObjBanner = apiData('guessBannerApi.do');
- 		
+		$fx             = apiData('getShareContentApi.do', array('id'=>$gId,'type'=>10));
 		$footerNavActive = 'guess';
 		include "tpl/product_guess_price_list_web.php";
 }
