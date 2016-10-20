@@ -46,5 +46,7 @@ $collected = ($info['isCollect'] == 1) ? true : false;
 $likes = apiData('guessYourLikeApi.do', array('activityId'=>$info['activityId'], 'userId'=>$userid));
 $likes = $likes['result'];
 
+
+$fx = apiData('getShareContentApi.do',array('id'=>$grouponId,'type'=>8));
 include_once('tpl/groupon_web.php');
 ?>
