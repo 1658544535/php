@@ -86,7 +86,7 @@
 	                <h3 class="title1">拼团商品<span class="tips">未成团，退款成功</span></h3>
                     <?php }?>
                     <ul class="list-container">
-                        <li><a href="javascript:;">
+                        <li><a href="/groupon.php?id=<?php echo $OrderDetail['result']['activityId'];?>">
                             <div class="img"><img src="<?php echo $OrderDetail['result']['productInfo']['productImage'];?>"></div>
                             <div class="info">
                                 <div class="name"><?php echo $OrderDetail['result']['productInfo']['productName'];?></div>
