@@ -16,6 +16,16 @@
     <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/app.min.js' charset='utf-8'></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="/js/wxshare.js"></script>
+	<script type="text/javascript">
+	var imgUrl = "<?php echo $fx['result']['image'];?>";
+	var link  = "<?php echo $fx['result']['url'];?>";
+	var title ="<?php echo $fx['result']['title'];?>";
+	var desc  ="<?php echo $fx['result']['content'];?>";
+	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
+	</script>
+
 </head>
 
 <body>
@@ -341,7 +351,7 @@
                 <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2 && $ObjGrouponInfo['result']['prize'] ==1){?>
 	        	<div class="more2">
 	                    <a class="btn" href="groupon.php?act=guess&pid=<?php echo $productId;?>"><span>我想购买</span></a>
-	                    <?php if($ObjGrouponInfo['result']['isRecCoupon']  == 0){?>
+	            <?php if($ObjGrouponInfo['result']['isRecCoupon']  == 0){?>
 	                    <div class="txt" onClick="location.href='order_guess.php?id=<?php echo $gId;?>&pid=<?php echo $productId;?>'"><span>活动结束，恭喜您已得奖！<br/>填写收货信息</span></div>
 	            <?php }else{?>
 	                    <div class="txt gray"><span>活动结束，恭喜您已得奖！<br/>填写收货信息</span></div>
@@ -352,15 +362,15 @@
 	                    <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
 	                    <div class="txt" onClick="location.href='groupon.php?act=guess&pid=<?php echo $productId;?>'"><span>恭喜您获得<?php echo $ObjGrouponInfo['result']['couponPrice'];?>元抵用券，点击马上购买</span></div>
 	                </div>
-        	<?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2  && $ObjGrouponInfo['result']['isRecCoupon'] ==0 ){?>
-        	<div class="more2">
-	                    <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
-	                    <?php if($ObjGrouponInfo['result']['prize']  ==2){?>
-	                    <div class="txt"><span>获得二等奖，奖品发放中...</span></div>
-	                <?php }elseif($ObjGrouponInfo['result']['prize']  ==3){?>
-	                    <div class="txt"><span>获得三等奖，奖品发放中...</span></div>
-	                <?php }?>
-	                </div>
+           <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2  && $ObjGrouponInfo['result']['isRecCoupon'] ==0 ){?>
+	        	<div class="more2">
+		            <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
+				        <?php if($ObjGrouponInfo['result']['prize']  ==2){?>
+				             <div class="txt"><span>获得二等奖，奖品发放中...</span></div>
+				        <?php }elseif($ObjGrouponInfo['result']['prize']  ==3){?>
+				             <div class="txt"><span>获得三等奖，奖品发放中...</span></div>
+				        <?php }?>
+		        </div>
         	<?php }?>
         	</div>
            

@@ -76,7 +76,7 @@
 								<%}%>
 							</span>
                         </div>
-                        <a href="/groupon.php?id=<%=data["data"][i]["productId"]%>" class="u-g-2">
+                        <a href="/groupon.php?act=guess&pid=<%=data["data"][i]["productId"]%>" class="u-g-2">
                             <div class="img"><img src="<%=data["data"][i].productImage%>" /></div>
                             <div class="info">
                                 <div class="name"><%=data["data"][i].productName%></div>
