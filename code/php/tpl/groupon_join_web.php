@@ -13,10 +13,11 @@
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="/js/wxshare.js"></script>
 	<script type="text/javascript">
-	imgUrl 	= "<?php echo $info['productImage'];?>";
-	link 	= window.location.href;
-	title 	= "<?php echo $info['productName'];?>";
-	wxshare(<?php echo WXJSDEBUG;?>, '<?php echo WXJSAPPID;?>', <?php echo WXJSTIMESTAMP;?>, '<?php echo WXJSNONCESTR;?>', '<?php echo WXJSSIGNATURE;?>', imgUrl, link, title, '<?php echo WEBDESC;?>');
+	var imgUrl = "<?php echo $info['productImage'];?>";
+	var link  =  window.location.href;
+	var title = "我买了<?php echo $info['groupPrice'];?>元的<?php echo $info['productName'];?>";
+	var desc  = "<?php echo $fx['result']['content'];?>"。
+	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 	</script>
 </head>
 
@@ -32,57 +33,6 @@
 					<?php echo $pageHeadTitles[$info['status']];?>
 				</h1>
             </header>
-
-            <section class="proTips-5">
-				<?php switch($info['status']){
-					case 0: ?>
-						<?php if($info['userIsHead'] == 1){ ?>
-							<a href="/">
-								<div class="info">
-									<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
-									￥<span class="price1"><?php echo $info['groupPrice'];?></span>
-								</div>
-								<span class="btn">更多拼团 ></span>
-							</a>
-						<?php }elseif($info['isGroup'] == 0){ ?>
-							<a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>">
-								<div class="info">
-									<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
-									￥<span class="price1"><?php echo $info['groupPrice'];?></span>
-								</div>
-								<span class="btn">我要拼团 ></span>
-							</a>
-						<?php } ?>
-					<?php break; ?>
-					<?php case 1: ?>
-						<?php if($info['isGroup'] == 1){ ?>
-							<a href="/">
-								<div class="info">
-									<?php echo $info['groupNum'];?>人召集完毕&nbsp;&nbsp;
-									￥<span class="price1"><?php echo $info['groupPrice'];?></span>
-								</div>
-								<span class="btn">更多拼团 ></span>
-							</a>
-						<?php }else{ ?>
-							<a href="/">
-								<div class="info">
-									马上开团
-								</div>
-								<span class="btn">更多拼团 ></span>
-							</a>
-						<?php } ?>
-					<?php break; ?>
-					<?php case 2: ?>
-						<a href="/">
-							<div class="info">
-								<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
-								￥<span class="price1"><?php echo $info['groupPrice'];?></span>
-							</div>
-							<span class="btn">更多拼团 ></span>
-						</a>
-					<?php break; ?>
-				<?php } ?>
-			</section>
 
             <div class="content native-scroll">
 				<section class="proTips-1">
@@ -190,6 +140,56 @@
                     <div><img src="images/deta-tips2.png" /></div>
                 </section>
 
+				<section class="proTips-5">
+					<?php switch($info['status']){
+						case 0: ?>
+							<?php if($info['userIsHead'] == 1){ ?>
+								<a href="/">
+									<div class="info">
+										<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
+										￥<span class="price1"><?php echo $info['groupPrice'];?></span>
+									</div>
+									<span class="btn">更多拼团 ></span>
+								</a>
+							<?php }elseif($info['isGroup'] == 0){ ?>
+								<a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>">
+									<div class="info">
+										<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
+										￥<span class="price1"><?php echo $info['groupPrice'];?></span>
+									</div>
+									<span class="btn">我要拼团 ></span>
+								</a>
+							<?php } ?>
+						<?php break; ?>
+						<?php case 1: ?>
+							<?php if($info['isGroup'] == 1){ ?>
+								<a href="/">
+									<div class="info">
+										<?php echo $info['groupNum'];?>人召集完毕&nbsp;&nbsp;
+										￥<span class="price1"><?php echo $info['groupPrice'];?></span>
+									</div>
+									<span class="btn">更多拼团 ></span>
+								</a>
+							<?php }else{ ?>
+								<a href="/">
+									<div class="info">
+										马上开团
+									</div>
+									<span class="btn">更多拼团 ></span>
+								</a>
+							<?php } ?>
+						<?php break; ?>
+						<?php case 2: ?>
+							<a href="/">
+								<div class="info">
+									<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
+									￥<span class="price1"><?php echo $info['groupPrice'];?></span>
+								</div>
+								<span class="btn">更多拼团 ></span>
+							</a>
+						<?php break; ?>
+					<?php } ?>
+				</section>
             </div>
 
         </div>
