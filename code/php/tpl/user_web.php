@@ -36,7 +36,8 @@
 							<?php } ?>
 						</div>
                     </div>
-                    <div class="name"><?php echo $info['name']; ?></div>
+                    <!--  <div class="name"><?php echo $info['name']; ?></div>-->
+                    <div class="name"><?php echo $_wxUserInfo['nickname']; ?></div>
                     <div class="orderTips">
                     <?php if($info['waitPayNum'] > 0){ ?>
                         <a href="user_orders.php?type=1">还有<span class="themeColor"><?php echo $info['waitPayNum'];?>个订单</span>未付款 ></a>
