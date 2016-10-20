@@ -11,7 +11,7 @@ require_once('./global.php');
 	<script type="text/javascript">
 	var imgUrl = "<?php echo $site;?>images/wxLOGO.png";
 	var link =  "<?php echo $site;?>free.php?id=<?php echo $_GET['id'];?>";
-	var title = "我在拼得好发现海量免费玩具，仅剩<?php echo $_GET['m'];?>份，点击马上领取！";
+	var title = "我在拼得好发现海量免费玩具，仅剩<?php echo $_GET['n'];?>份，点击马上领取！";
 	var desc  = "就要这么壕|好货免费，玩具任领。";
 	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 </script>
