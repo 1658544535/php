@@ -56,10 +56,9 @@
                             <div class="address a-t-4"><%=data["data"][i].address%></div>
                         </div>
                         <div class="option">
-							<%if(data["data"][i].isDefault==1){%>
-	                            <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="default active"><i></i>默认</a>
-							<%}%>
-                            <a href="javascript:;"><i></i>&nbsp;</a>
+                            <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="default<%if(data["data"][i].isDefault==1){%> active<%}%>"><i></i>设为默认</a>
+                            <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="edit"><i></i>编辑</a>
+                            <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="del"><i></i>删除</a>
                         </div>
                     </li>
                 <%}%>
@@ -72,6 +71,45 @@
 			<script type="text/javascript">
 			$(document).on("pageInit", "#page-address", function(e, pageId, page) {
 		    	var _apiUrl = "api_action.php?act=";
+
+                $(document).off("click", "ul.list-container li a.default").on("click", "ul.list-container li a.default", function(){
+                    var _id = $(this).attr("data-id");
+                    $.post(_apiUrl+"address_default", {"id":_id}, function(r){
+                        location.reload();
+                    }, "json");
+                });
+
+                $(document).off("click", "ul.list-container li a.del").on("click", "ul.list-container li a.del", function(){
+                    var _id = $(this).attr("data-id");
+                    $.confirm("确定要删除此地址吗？", function(){
+                        $.post(_apiUrl+"address_del", {"id":_id}, function(r){
+                            if(r.code == 1){
+                                $("ul.list-container li[data-id='"+_id+"']").remove();
+                            }else{
+                                $.toast(r.msg);
+                            }
+                        }, "json");
+                    });
+                });
+
+                $(document).on("click", ".user-address .edit", function(){
+                    var _id = $(this).attr("data-id");
+                    $.post(_apiUrl+"address_detail", {"id":_id}, function(r){
+                        if(r.code == 1){
+                            var _info = r.data.data;
+
+                            $(".p-a-1").val(_info.tel);
+                            $(".p-a-2").val(_info.name);
+                            $(".p-a-3").val(_info.provinceName+","+_info.cityName+","+_info.areaName);
+                            $(".p-a-4").val(_info.address);
+                            $("input[name='id']").val(_id);
+                            $("#city-picker-value").val(_info.province+","+_info.city+","+_info.area);
+                            $.popup('.popup-address');
+                        }else{
+                            $.toast(r.msg);
+                        }
+                    }, "json");
+                });
 
 				$(document).on("click", ".user-address-add a", function(){
 					$(".popup-address input").not('input[type="submit"]').val('');
@@ -120,8 +158,8 @@
 					});
 				});
 
-				$(document).on("click", "ul.list-container li", function(){
-					var _this = $(this);
+				$(document).on("click", "ul.list-container li .txt", function(){
+					var _this = $(this).parent();
 					var addr = {"id":_this.attr("data-id"),"name":_this.attr("data-name"),"tel":_this.attr("data-tel"),"address":_this.attr("data-address"),"province":_this.attr("data-province")};
 					document.cookie = "orderaddr="+encodeURIComponent(JSON.stringify(addr));
 					location.href = "orders.php?act=address_add&from=orders&aids="+addr.id;
@@ -134,6 +172,7 @@
             <div>
                 <a href="javascript:;" class="close-popup"></a>
                 <form action="" method="" accept-charset="utf-8">
+                    <input type="hidden" name="id" />
                     <ul>
                         <li>
                             <span class="label">收货人:</span>

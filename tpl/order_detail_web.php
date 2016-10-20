@@ -62,7 +62,8 @@
             
                 <section class="oc-adress oc-adress-disable">
                     <a >
-                        <div><?php echo $OrderDetail['result']['addressInfo']['consignee'];?>&nbsp;&nbsp;&nbsp;<?php echo $OrderDetail['result']['addressInfo']['tel'];?></div>
+                        <div><?php echo $OrderDetail['result']['addressInfo']['consignee'];?></div>
+                        <div><?php echo $OrderDetail['result']['addressInfo']['tel'];?></div>
                         <div><?php echo $OrderDetail['result']['addressInfo']['address'];?></div>
                     </a>
                 </section>
