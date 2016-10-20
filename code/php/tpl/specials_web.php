@@ -22,7 +22,7 @@
 	var imgUrl = "<?php echo $site;?>images/wxLOGO.png";
 	var link  = "<?php echo $site;?>specials.php";
 	var title ="<?php echo $cates['name'];?>";
-	var desc  =""
+	var desc  ="";
 	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title ,desc);
 	</script>
 </head>

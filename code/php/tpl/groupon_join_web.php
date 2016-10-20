@@ -16,7 +16,7 @@
 	var imgUrl = "<?php echo $info['productImage'];?>";
 	var link  =  window.location.href;
 	var title = "我买了<?php echo $info['groupPrice'];?>元的<?php echo $info['productName'];?>";
-	var desc  = "<?php echo $info['productSketch'];?>"。
+	var desc  = "<?php echo $info['productSketch'];?>。";
 	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 	</script>
 </head>
@@ -199,7 +199,7 @@
             <div class="">
             	<div class="s-1">还差 <span><?php echo $info['poorNum'];?></span> 人，邀请好友参团吧</div>
             	<div class="s-2">点击右上角按钮，发送给朋友或群聊</div>
-            	<div class="s-3">未成团不发货  邀好友拼好货</div>
+            	<div class="s-3">拼团人数不足退款</div>
             </div>
         </div>
     </div>
