@@ -12,6 +12,6 @@ $info = apiData('getFreeCouponApi.do', array('linkId'=>$linkId,'userId'=>$userid
 if($info['success']){
 	redirect('groupon_free.php', '团免券领取成功');
 }else{
-	redirect('/', $info['error_msg']);
+	redirect('groupon_free.php', $info['error_msg']);
 }
 ?>
