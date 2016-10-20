@@ -174,7 +174,6 @@
   padding: 0 0.5rem;
   line-height: 2.0rem;
   font-size: 0.7rem;
-  margin-top: 2.2rem;
   background: #fff;
   border-bottom: 1px solid #f4f8fb;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
@@ -812,6 +811,8 @@
   padding: 0 0.3rem;
   font-size: 0.55rem;
   color: #333;
+  line-height: 0.9rem;
+  height: 1.8rem;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -1383,9 +1384,13 @@
   padding-bottom: 0.75rem;
 }
 .proTips-5 {
-  margin-top: 0.5rem;
-  padding: 1.5rem 0.5rem 2.0rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.35rem 0.5rem;
   background: #fff;
+  border-top: 1px solid #f4f8fb;
 }
 .proTips-5 a {
   position: relative;
@@ -1429,6 +1434,9 @@
 .proTips-5 a span.price2 {
   font-size: 0.6rem;
   text-decoration: line-through;
+}
+.proTips-5 ~ .content {
+  bottom: 2.6rem;
 }
 /* 猜价格 */
 .guessList-banner {
@@ -3185,7 +3193,7 @@
   background-size: 100% 100%;
   border: none;
 }
-/*涓撳満*/
+/*专场*/
 .special-banner {
   position: relative;
   padding-bottom: 46.875%;
@@ -3418,7 +3426,7 @@
   background: url(../images/special-more.png) no-repeat 50% 50%;
   background-size: 55% auto;
 }
-/*鎷煎緱瀹�*/
+/*拼得客*/
 .user-pdk {
   background: #fff;
 }
@@ -3561,11 +3569,11 @@
   border: none;
 }
 .pdk-form ul li .price1::before {
-  content: '锟�';
+  content: '￥';
   position: absolute;
   left: -1.75rem;
   top: 0;
-  font-family: '寰蒋闆呴粦';
+  font-family: '微软雅黑';
 }
 .pdk-form ul li .price2 {
   line-height: 2.0rem;
@@ -3632,7 +3640,7 @@
 }
 .pdk-freeLink .img {
   display: block;
-  width: 45%;
+  width: 26%;
   margin: 0 auto 0.5rem;
 }
 .pdk-freeLink .txt {

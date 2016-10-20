@@ -21,9 +21,9 @@
 <body>
     <div class="page-group" id="page-index">
         <div id="page-nav-bar" class="page page-current">
-            <header class="bar bar-nav">
+            <!-- <header class="bar bar-nav">
                 <h1 class="title"><img class="title-img" src="images/logo.png" alt="<?php echo $site_name;?>" /></h1>
-            </header>
+            </header> -->
 
             <?php include_once('footer_nav_web.php');?>
 
@@ -36,7 +36,7 @@
                 </div>
             </section>
 
-            <div class="content native-scroll" style="top:4.2rem;">
+            <div class="content native-scroll" style="top:2.0rem;">
 
                 <div class="swiper-container index-page" data-href="api_action.php?act=index">
                     <div class="swiper-wrapper">
