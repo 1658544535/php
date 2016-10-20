@@ -8,6 +8,7 @@ $attendId = intval($_GET['aid']);
 empty($attendId) && redirect($backUrl, '参数错误');
 
 $info = apiData('groupDetailApi.do', array('recordId'=>$attendId, 'userId'=>$userid));
+
 !$info['success'] && redirect($backUrl, $info['error_msg']);
 
 $info = $info['result'];
@@ -19,6 +20,11 @@ $info['remainSec'] = $info['endDateline'] - $time;
 $grouponId = $info['activityId'];
 
 $isGrouponFree = intval($_GET['free']);
+
+$fx = apiData('getShareContentApi.do',array('id'=>$grouponId,'type'=>9));
+
+
+
 
 include_once('tpl/groupon_join_web.php');
 ?>
