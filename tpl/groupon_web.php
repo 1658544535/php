@@ -150,21 +150,21 @@
 		?>
 
         <script>
-			var _apiUrl = "/api_action.php?act=";
-			document.domain='<?php echo implode('.', $_arrDomain);?>';
-			<?php if($info['productStatus'] == 1){ ?>
-			function setIframeHeight(iframe) {
-			 	if (iframe) {
-			 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-			 		if (iframeWin.document.body) {
-			 			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-			 		}
-			 	}
-			};
-			window.onload = function () {
-			 	setIframeHeight(document.getElementById('proInfo'));
-			};
-			<?php } ?>
+			// var _apiUrl = "/api_action.php?act=";
+			// document.domain='<?php echo implode('.', $_arrDomain);?>';
+			// <?php if($info['productStatus'] == 1){ ?>
+			// function setIframeHeight(iframe) {
+			//  	if (iframe) {
+			//  		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+			//  		if (iframeWin.document.body) {
+			//  			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+			//  		}
+			//  	}
+			// };
+			// window.onload = function () {
+			//  	setIframeHeight(document.getElementById('proInfo'));
+			// };
+			// <?php } ?>
 
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
 				<?php if($info['productStatus'] == 1){ ?>
@@ -215,6 +215,7 @@
 							 code: 1,
 							 data:  <?php echo empty($skus) ? '{}' : json_encode($skus);?> 
 						 }
+						 $(".popup-sku .info .img img").attr("src", req["data"]["validSKu"][0]["skuImg"]);
 
 						if(req.code>0){
 							var data = req.data;
@@ -296,13 +297,18 @@
 								if(!!skuFormat && !!skuColor){
 									var url = $(".popup-sku").attr("data-href"),
 										skuId = '';
+									var skuImg = '';
 									for(var item in skuData){
 										if(skuData[item]["skuColor"] == skuColor && skuData[item]["skuFormat"] == skuFormat){
 											// $(".popup-sku").attr("data-skuId", skuData[item]["id"]);
 											skuId = skuData[item]["id"];
+											skuImg = skuData[item]["skuImg"];
 										}
 									}
 									_genUrl({"skuid":skuId});
+									if(skuImg !="" && skuImg != null){
+										$(".popup-sku .info .img img").attr("src", skuImg);
+									}
 									$("#buy").removeClass("gray");
 									clickBuy = true;
 	//                                url += "?skuid=" + skuId + "&id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&num="+$("#buy-num").val();
