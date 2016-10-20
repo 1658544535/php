@@ -66,7 +66,9 @@
 						<%}%>
 					<%}else if(data["banner"][i]["type"] == 5){%>
 						<a class="swiper-slide" href="specials.php">
-					<%}else{%>
+                    <%}else if(data["banner"][i]["type"] == 6){%>
+						<a class="swiper-slide" href="special_77.php">					
+                    <%}else{%>
 						<a class="swiper-slide">
                     <%}%>
                         <img src="<%=data["banner"][i].banner%>">
