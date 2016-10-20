@@ -17,7 +17,7 @@
 	var link  =  window.location.href;
 	var title = "我买了<?php echo $info['groupPrice'];?>元的<?php echo $info['productName'];?>";
 	var desc  = "<?php echo $info['productSketch'];?>"。
-	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>',imgUrl,link,title,desc);
+	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 	</script>
 </head>
 
