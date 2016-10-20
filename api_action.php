@@ -144,18 +144,21 @@ switch($act){
 		$page = max(1, intval($_POST['page']));
 		$addrs = apiData('specialListApi.do', array('typeId'=>$catId,'pageNo'=>$page));
 		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
+		$fx    = apiData('getShareContentApi.do',array('id'=>$catId,'type'=>12));
 		break;
 	case 'special'://专题
 		$id = intval($_GET['id']);
 		$page = max(1, intval($_POST['page']));
 		$addrs = apiData('specialDetailApi.do', array('specialId'=>$id,'pageNo'=>$page));
 		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
+		$fx    = apiData('getShareContentApi.do',array('id'=>$id,'type'=>13));
 		break;
 	case 'special_77'://77专区
 		$id = intval($_GET['id']);
 		$page = max(1, intval($_POST['page']));
 		$addrs = apiData('zoneProductsApi.do', array('id'=>$id,'pageNo'=>$page));
 		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
+		$fx    = apiData('getShareContentApi.do',array('id'=>$id,'type'=>14));
 		break;
 }
 ?>
