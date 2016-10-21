@@ -76,7 +76,7 @@ $jsApiParameters = json_encode($jsapi->GetValues());
                 function(res){
                     switch(res.err_msg){
                         case "get_brand_wcpay_request:ok":
-                            location.href = "<?php echo $refUrl;?>&state=1&outno=<?php echo $payParam['out_trade_no'];?>&aid=<?php echo $orderInfo['attendId'];?>";
+                            location.href = "<?php echo $refUrl;?>&state=1&outno=<?php echo $payParam['out_trade_no'];?>&oid=<?php echo $orderId;?>";
                             break;
                         case "get_brand_wcpay_request:cancel":
                         case "get_brand_wcpay_request:fail":
