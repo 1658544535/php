@@ -1247,6 +1247,61 @@ function get_qrcode($website,$path="../upfiles/phpqrcode/",$picname = '')
 		return $picname;
 }
 
+/**
+ * 将数据作urlencode处理
+ *
+ * @param string|array $data 数据
+ * @return string|array
+ */
+function urlEncodeFormat($data){
+	if(is_array($data)){
+		foreach($data as $k => $v){
+			$data[urlencode($k)] = urlEncodeFormat($v);
+		}
+	}else{
+		$data = urlencode($data);
+	}
+	return $data;
+}
 
+/**
+ * 将内容转为json格式
+ *
+ * @param string|array $data 内容
+ * @return string
+ */
+function encodeJson($data){
+	if(version_compare(PHP_VERSION, '5.4', '<')){
+		return urldecode(json_encode(urlEncodeFormat($data)));
+	}else{
+		return json_encode($data, JSON_UNESCAPED_UNICODE);
+	}
+}
+
+/**
+ * 发送微信模板消息
+ *
+ * @param string $type 类型
+ * @param array $param 参数
+ */
+function sendWXTplMsg($type, $param){
+    global $site;
+    $url = $site.'wx_msgtpl.php?act='.$type;
+    $arr = array();
+    !isset($param['openid']) && $param['openid'] = $_SESSION['openid'];
+    foreach($param as $k => $v){
+        $arr[] = $k.'='.$v;
+    }
+    $url .= '&'.implode('&', $arr);
+
+    $ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HEADER, false);
+	curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
+	$data = curl_exec($ch);
+	curl_close($ch);
+    return json_decode($data, true);
+}
 
 ?>

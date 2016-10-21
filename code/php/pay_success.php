@@ -11,14 +11,24 @@ $referUrl = urldecode($_GET['url']);
 //$refUrl = '/user_orders.php';
 
 $orderId = intval($_GET['oid']);
-$orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
+$orderInfo = apiData('orderdetail.do', array('oid'=>$orderId, 'userId'=>$userid));
 if($orderInfo['result']['attendId']){
     if($state && in_array($_SESSION['order']['type'], array('free', 'groupon'))){
         $referUrl = 'groupon_join.php?aid='.$orderInfo['result']['attendId'];
     }
 }
 unset($_SESSION['order']);
-redirect($referUrl, $state?'支付成功':'支付失败');
+if($state){
+    sendWXTplMsg('pay', array('oid'=>$orderId));
+    if($orderInfo['result']['isOpen']){//开团
+        sendWXTplMsg('open', array('oid'=>$orderId));
+    }elseif($orderInfo['result']['isSuccess']){//拼团
+        sendWXTplMsg('join', array('oid'=>$orderId));
+    }
+    redirect($referUrl, '支付成功');
+}else{
+    redirect($referUrl, '支付失败');
+}
 exit();
 ?>
 <html>
