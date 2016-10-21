@@ -27,7 +27,7 @@ $grouponId = $info['activityId'];
 $isGrouponFree = intval($_GET['free']);
 
 //是否弹出黑幕(已支付，且差的人数>=1)
-$showBlack = ($info['poorNum'] >= 1) ? true : false;
+$showBlack = (($info['payStatus'] == 1) && ($info['poorNum'] >= 1)) ? true : false;
 
 
 include_once('tpl/groupon_join_web.php');
