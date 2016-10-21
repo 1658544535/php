@@ -194,6 +194,8 @@
             </div>
 			
         </div>
+
+        <?php if($showBlack){ ?>
         <div class="popup popup-share popup-share2">
             <a href="javascript:;" class="close-popup"></a>
             <div class="">
@@ -202,6 +204,7 @@
             	<div class="s-3">拼团人数不足退款</div>
             </div>
         </div>
+        <?php } ?>
     </div>
     <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
