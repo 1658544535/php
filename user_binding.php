@@ -39,20 +39,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		redirect('user_binding.php', $result['error_msg']);
 	}
 }else{
-	$_SESSION['loginReferUrl'] = urlencode($_SERVER['HTTP_REFERER']);
 	$wxState = 'wxinfo';
-	$wxUser = $objWX->getUserInfo($openid);
-	if(($wxUser !== false) && !$wxUser['subscribe']){
-		$_bcUrl = $site.'user_binding.php';
-		redirect($objWX->getOauthRedirect($_bcUrl, $wxState));
-	}
-	if($_GET['state'] == $wxState){
+    if($_GET['state'] == $wxState){
 		$_accessToken = $objWX->getOauthAccessToken();
 		if($_accessToken !== false){
 			$_wxinfo = $objWX->getOauthUserinfo($_accessToken['access_token'], $openid);
 			$_SESSION['unionid'] = $_wxinfo['unionid'];
 		}
-	}
+	}else{
+        $_SESSION['loginReferUrl'] = urlencode($_SERVER['HTTP_REFERER']);
+        $wxUser = $objWX->getUserInfo($openid);
+        if(($wxUser !== false) && !$wxUser['subscribe']){
+            $_bcUrl = $site.'user_binding.php';
+            redirect($objWX->getOauthRedirect($_bcUrl, $wxState));
+        }
+    }
 	include "tpl/user_bind_web.php";
 }
 exit();
