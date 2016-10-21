@@ -14,7 +14,7 @@
 	<script type="text/javascript" src="/js/wxshare.js"></script>
 	<script type="text/javascript">
 	var imgUrl = "<?php echo $info['productImage'];?>";
-    var link = "<?php echo $site.'order_join.php?id='.$grouponId.'&pid='.$info['productId'].'&free='.$isGrouponFree.'&aid='.$attendId;?>";
+    var link = window.location.href;
 	var title = "我买了<?php echo $info['groupPrice'];?>元的<?php echo $info['productName'];?>";
 	var desc  = "<?php echo $info['productSketch'];?>。";
 	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
