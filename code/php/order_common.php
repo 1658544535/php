@@ -7,6 +7,11 @@ if(isset($_SESSION['order']['address'])){
 }else{
 	$address = apiData('defaultAddress.do', array('uid'=>$userid));
 	$address = $address['success'] ? $address['result'] : array();
+    if(empty($address)){//如果没有默认地址，则取第一个
+        $addressList = apiData('myaddress.do', array('uid'=>$userid,'pageNo'=>1));
+        $addressList = $addressList['result'];
+        $address = array_shift($addressList);
+    }
 	$addrId = $address['addId'];
 }
 
