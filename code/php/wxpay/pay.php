@@ -15,8 +15,17 @@ define('CUR_DIR_PATH', dirname(__FILE__));
 $refUrl = '/pay_success.php?';
 $prevUrl = getPrevUrl();
 
+$isBuy = intval($_GET['buy']);
 $orderId = intval($_GET['oid']);
-if(empty($orderId)){//下单直接支付
+$orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
+!$orderInfo['success'] && redirect($prevUrl, $orderInfo['error_msg']);
+$orderInfo = $orderInfo['result'];
+if(empty($isBuy)){//订单列表进来支付
+    $result = apiData('payOrder.do', array('orderNo'=>$orderInfo['orderInfo']['orderNo'],'payMethod'=>8,'uid'=>$userid));
+	!$result['success'] && redirect($prevUrl, $result['error_msg']);
+	$payParam = $result['result']['wxpay'];
+	$refUrl .= 'url='.urlencode($prevUrl);
+}else{//下单直接支付
 	$payParam = array(
 		'appId' => trim($_GET['appid']),
 		'timeStamp' => trim($_GET['timestamp']),
@@ -26,14 +35,6 @@ if(empty($orderId)){//下单直接支付
 		'paySign' => trim($_GET['sign']),
 		'out_trade_no' => trim($_GET['outno']),
 	);
-}else{
-	$orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
-	!$orderInfo['success'] && redirect($prevUrl, $orderInfo['error_msg']);
-	$orderInfo = $orderInfo['result'];
-	$result = apiData('payOrder.do', array('orderNo'=>$orderInfo['orderInfo']['orderNo'],'payMethod'=>8,'uid'=>$userid));
-	!$result['success'] && redirect($prevUrl, $result['error_msg']);
-	$payParam = $result['result']['wxpay'];
-	$refUrl .= 'url='.urlencode($prevUrl);
 }
 
 //if(!empty($_SERVER['HTTP_REFERER'])){
@@ -75,7 +76,7 @@ $jsApiParameters = json_encode($jsapi->GetValues());
                 function(res){
                     switch(res.err_msg){
                         case "get_brand_wcpay_request:ok":
-                            location.href = "<?php echo $refUrl;?>&state=1&outno=<?php echo $payParam['out_trade_no'];?>";
+                            location.href = "<?php echo $refUrl;?>&state=1&outno=<?php echo $payParam['out_trade_no'];?>&aid=<?php echo $orderInfo['attendId'];?>";
                             break;
                         case "get_brand_wcpay_request:cancel":
                         case "get_brand_wcpay_request:fail":
