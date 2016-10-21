@@ -202,7 +202,8 @@
 					});
 
 					$("#buy").on("click", function(){
-						if(clickBuy) $("#buy").attr("href", _genUrl());
+						// if(clickBuy) $("#buy").attr("href", _genUrl());
+						if(clickBuy) location.href = _genUrl();
 					});
 
 					//打开sku弹窗
