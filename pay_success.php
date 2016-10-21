@@ -4,11 +4,16 @@ require_once('./global.php');
 
 $outTradeNo = trim($_GET['outno']);
 apiData('queryPayStatus.do', array('outTradeNo'=>$outTradeNo,'payMethod'=>2));
-unset($_SESSION['order']);
+
 $state = intval($_GET['state']);
 $referUrl = urldecode($_GET['url']);
 ($referUrl == '') && $referUrl = '/user_orders.php';
 //$refUrl = '/user_orders.php';
+$attendId = intval($_GET['aid']);
+if($state && in_array($_SESSION['order']['type'], array('free', 'groupon')) && $attendId){
+    $referUrl = 'groupon_join.php?aid='.$attendId;
+}
+unset($_SESSION['order']);
 redirect($referUrl, $state?'支付成功':'支付失败');
 exit();
 ?>
