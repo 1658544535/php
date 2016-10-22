@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		file_put_contents($_headimg, file_get_contents($_wxUserInfo['headimgurl']));
 	}
 	$apiParam['image'] = '@'.$_headimg;
-	$result = apiData('userlogin.do', $apiParam, 'get', true);
+	$result = apiData('userlogin.do', $apiParam);
 	if($result['success']){
 		$result = $result['result'];
 		$_wxInfo = new stdClass();
