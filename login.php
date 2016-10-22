@@ -31,7 +31,6 @@ switch($act)
 	default:
 		if($state == '')		// 第一次进入登录，则先获取code;
 		{
-//			redirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$app_info['appid']."&redirect_uri=".urlencode($site."login?state=123&dir=".$dir.'&'.__genUrlParam())."&response_type=code&scope=snsapi_base&state=123#wechat_redirect");
 			$_bcUrl = $site."login.php?dir=".$dir.'&'.__genUrlParam();
 			redirect($objWX->getOauthRedirect($_bcUrl, '123', 'snsapi_base'));
 			return;
@@ -53,8 +52,8 @@ switch($act)
 						if($_wxUserInfo['headimgurl']){
 							$_dir = SCRIPT_ROOT.'upfiles/headimage/';
 							!file_exists($_dir) && mkdir($_dir, 0777, true);
-							$_headimg = $_dir.$openid.'.jpg';
-							file_put_contents($_headimg, $_wxUserInfo['headimgurl']);
+							$_headimg = $_dir.$wxInfo['openid'].'.jpg';
+							file_put_contents($_headimg, file_get_contents($_wxUserInfo['headimgurl']));
 							$editResult = apiData('editUserInfo.do', array('uid'=>$userInfo['uid'],'file'=>'@'.$_headimg), 'post');
 							$editResult['success'] && $userInfo['image'] = $_wxUserInfo['headimgurl'];
 						}
@@ -78,66 +77,8 @@ switch($act)
 			$redirect_url .= (($redirect_url{$_strlen} == '/') ? '' : (($_urlParam=='')?'':'&'));
 			($_urlParam != '') && $redirect_url .= $_urlParam;
 			redirect($redirect_url);
-
-
-
-
-
-
-//			$redirect_url 		= @$_REQUEST['dir'] == null ? '/' : urldecode($_REQUEST['dir']);						// 获取返回的url
-//			$CODE 				= @$_REQUEST['code'] == null ? '' : $_REQUEST['code'];						// 通过返回的code换取网页授权access_token和openid
-//			$user_bulding 		= new func_user_bulding( $app_info['appid'], $app_info['secret'] );
-//			$user_bulding->db  	= $db;																		// 赋值数据库链接
-//			$user_bulding->log 	= $log;																		// 赋值日志
-//			$arrWxinfo 			 = $user_bulding->get_wx_openid( $CODE );									// 通过code来换取openid
-//
-//			try
-//			{
-//				if ( ! $arrWxinfo )
-//				{
-//					throw new Exception('登录失败！原因：您的code id不正确！');
-//				}
-//
-//				/*----------------------------------------------------------------------------------------------------
-//					-- 获取用户的微信信息，来获取unionid和是否关注微信
-//				-----------------------------------------------------------------------------------------------------*/
-//				$user_info = $user_bulding->get_userinfo_from_openid( $arrWxinfo['openid'], $arrWxinfo['unionid'] );
-//
-//				if ( ! $user_info )
-//				{
-//					// 该微信用户不存在，则添加
-//					$msg = "user login !!  输出： 该用户未绑定，将前往绑定页面！ openid:{$arrWxinfo['openid']}";
-//					$log->put('/user/login', $msg);														// 记录日志
-//					$_SESSION['is_login'] 	= FALSE;													// 登录状态为false
-//					//$redirect_url 			= '/user_binding';										// 跳转到绑定页面
-//				}
-//				else
-//				{
-//					// 该微信用户存在，则判断sys_login.loginname是否为空
-//					$msg = "user login !!   输出： 该用户已绑定，将前往指定页面！  id:{$user_info->id}, openid:{$user_info->openid}, loginname:{$user_info->loginname}, name:{$user_info->name}";
-//					$log->put('/user/login', $msg);														// 记录日志
-//					$_SESSION['is_login'] = TRUE;														// 登录状态为true
-//					$_SESSION['userinfo'] = $user_info;
-//
-//					$user_bulding->addUserLoginLog( $user_info->id );									// 添加用户登录日志
-//				}
-//
-//				$_SESSION['openid']   = $arrWxinfo['openid'];											// 用openid来判断是否已触发登录页
-//				$_SESSION['unionid']  = $arrWxinfo['unionid'];											// unionid
-//
-//				$_strlen = strlen($redirect_url)-1;
-//				$_urlParam = __genUrlParam();
-//				$redirect_url .= (($redirect_url{$_strlen} == '/') ? '' : (($_urlParam=='')?'':'&'));
-//				($_urlParam != '') && $redirect_url .= $_urlParam;
-//				redirect($redirect_url);
-//
-//			}
-//			catch( Exception $e )
-//			{
-//				$_SESSION['is_login'] 	= FALSE;														// 登录状态为false
-//				echo $e->getMessage();
-//			}
 		}
+		break;
 }
 
 

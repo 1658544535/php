@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$_dir = SCRIPT_ROOT.'upfiles/headimage/';
 		!file_exists($_dir) && mkdir($_dir, 0777, true);
 		$_headimg = $_dir.$openid.'.jpg';
-		file_put_contents($_headimg, $_wxUserInfo['headimgurl']);
+		file_put_contents($_headimg, file_get_contents($_wxUserInfo['headimgurl']));
 	}
 	$apiParam['image'] = '@'.$_headimg;
 	$result = apiData('userlogin.do', $apiParam, 'get', true);
