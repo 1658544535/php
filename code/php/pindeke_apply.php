@@ -13,8 +13,8 @@ IS_USER_LOGIN();
 
 $backUrl = getPrevUrl();
 
-define('IMAGE_UPLOAD_DIR', SCRIPT_ROOT.'upfiles/pindeke/');
-define('IMAGE_UPLOAD_URL', 'upfiles/pindeke/');
+define('IMAGE_UPLOAD_DIR', SCRIPT_ROOT.'upfiles/userpindeke/');
+define('IMAGE_UPLOAD_URL', 'upfiles/userpindeke/');
 
 switch($act){
 	case 'apply'://申请
@@ -69,7 +69,50 @@ switch($act){
 			include_once('tpl/pdk_apply_edit_web.php');
 			break;
 		
-		
+		case 'edit_save'://修改
+        
+	     $Uid = intval($_GET['uid']);
+	     $Id  = intval($_GET['id']);
+
+	     if(IS_POST()){
+			set_time_limit(0);
+			$apiParam = array();
+			$upImgs = $_POST['img'];
+			
+			$i = 1;
+			foreach($upImgs as $v){
+				$apiParam['image'.$i] = '@'.IMAGE_UPLOAD_DIR.$v;
+				$i++;
+			}
+
+			$apiParam['cardNo']     = $cardNo;
+			$apiParam['id']         = $Id;
+			$apiParam['extChannel'] = $Content;
+			$apiParam['name']       = $Name;
+			$apiParam['userId']     = $Uid;
+			$apiParam['phone']      = $Phone;
+
+			
+			$result = apiData('pdkUpdateApi.do',$apiParam,'post');
+			
+			if(empty($_SESSION['backurl_aftersale'])){
+				$prevUrl = '/';
+			}else{
+				$prevUrl = $_SESSION['backurl_aftersale'];
+				unset($_SESSION['backurl_aftersale']);
+			}
+			if($result['success']){
+				foreach($upImgs as $v){
+					file_exists(IMAGE_UPLOAD_DIR.$v) && unlink(IMAGE_UPLOAD_DIR.$v);
+				}
+				redirect('user.php', '提交成功');
+			}else{
+				redirect($backUrl, $result['error_msg']);
+			}
+
+		}
+			break;
+			
 
 case 'uploadimg'://上传图片
 		$upfile = $_FILES['files'];
