@@ -19,7 +19,7 @@
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="/js/wxshare.js"></script>
 	<script type="text/javascript">
-	var imgUrl = "<?php echo $info['productImage'];?>";
+	var imgUrl = "<?php echo $info['banners'][0]['bannerImage'];?>";
 	var link   = window.location.href;
 	var title  = "<?php echo $info['productPrice'];?>元的<?php echo $info['productName'];?>";
 	var desc   = "<?php echo $info['productSketch'];?>";
