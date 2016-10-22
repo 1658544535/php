@@ -148,7 +148,7 @@
                  <?php if($Objinfo['status'] ==2){?>
                 <div class="placeholder-50"></div>
                 <div class="pdk-submit">
-                    <input type="button" onClick="location.href='/pindeke_apply.php?act=edit&uid=<?php echo $userid;?>'" value="重新提交信息" />
+                    <input type="button" onClick="location.href='/pindeke_apply.php?act=edit&uid=<?php echo $userid;?>&id=<?php echo $Objinfo['pdkId'];?>'" value="重新提交信息" />
                 </div>
                 <?php }?>
 <?php }?>

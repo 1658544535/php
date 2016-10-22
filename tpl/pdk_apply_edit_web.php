@@ -34,12 +34,12 @@
 
                 <section class="pdk-form">
                     <ul>
-                        <form id="submitForm" action="pindeke_apply.php?act=apply" accept-charset="utf-8" enctype="multipart/form-data" method="post">
+                        <form id="submitForm" action="pindeke_apply.php?act=edit_save&uid=<?php echo $userid ;?>&id=<?php echo $infoEdit['pdkId'];?>" accept-charset="utf-8" enctype="multipart/form-data" method="post">
                             <li>
                                 <div class="item">
                                     <div class="label">真实姓名</div>
                                     <div class="main">
-                                        <input id="name" type="text" name="" class="txt" placeholder="填写真实姓名" value="<?php echo $infoEdit['name'];?>" />
+                                        <input id="name" type="text" name="name" class="txt" placeholder="填写真实姓名" value="<?php echo $infoEdit['name'];?>" />
                                     </div>
                                 </div>
                             </li>
@@ -47,7 +47,7 @@
                                 <div class="item">
                                     <div class="label">手机号码</div>
                                     <div class="main">
-                                        <input id="phone" type="text" name="" class="txt" placeholder="填写手机号码" value="<?php echo $infoEdit['phone'];?>" />
+                                        <input id="phone" type="text" name="phone" class="txt" placeholder="填写手机号码" value="<?php echo $infoEdit['phone'];?>" />
                                     </div>
                                 </div>
                             </li>
@@ -55,7 +55,7 @@
                                 <div class="item">
                                     <div class="label">身份证号码</div>
                                     <div class="main">
-                                        <input id="number" type="text" name="" class="txt" placeholder="填写身份证号码" value="<?php echo $infoEdit['cardNo'];?>" />
+                                        <input id="number" type="text" name="cardNo" class="txt" placeholder="填写身份证号码" value="<?php echo $infoEdit['cardNo'];?>" />
                                     </div>
                                 </div>
                             </li>
@@ -63,11 +63,11 @@
                                 <div class="item">
                                     <div class="label">推广渠道</div>
                                     <div class="main">
-                                        <input id="way" type="text" name="" class="txt" placeholder="填写推广渠道" value="<?php echo $infoEdit['channel'];?>" />
+                                        <input id="way" type="text" name="content" class="txt" placeholder="填写推广渠道" value="<?php echo $infoEdit['channel'];?>" />
                                     </div>
                                 </div>
                             </li>
-                      <?php if(($infoEdit['image1']!='') || ($infoEdit['image2']!='') || ($infoEdit['image3']!='') || ($infoEdit['image4']!='') || ($infoEdit['image5']!='')){ ?>
+                        <?php if(($infoEdit['image1']!='') || ($infoEdit['image2']!='') || ($infoEdit['image3']!='') || ($infoEdit['image4']!='') || ($infoEdit['image5']!='')){ ?>
                         <li class="last">
                             <div class="item">
                                 <div class="label">推广证明</div>
@@ -76,15 +76,12 @@
                             <?php for($i=1; $i<=5; $i++){ ?>
                                 <?php if($infoEdit['image'.$i] != ''){ ?>
 	                                <div class="uploadImg-item">
-	                                    <div class="img"><img data-file="res.msg" data-src="#" src="<?php echo $infoEdit['image'.$i];?>"></div>
-	                                </div>
+                                        <input type="file" capture="camera" accept="image/*">
+                                        <div class="img"><img data-file="<?php echo $infoEdit['image'.$i];?>" src="<?php echo $infoEdit['image'.$i];?>"></div>
+                                        <span class="close" style="display: inline;"></span>
+                                    </div>
                                 <?php } ?>
 							<?php } ?>
-                                    <div class="uploadImg-item">
-                                        <input type="file" capture="camera" accept="image/*" />
-                                        <div class="img noImg"></div>
-                                        <span class="close" style="display:none;"></span>
-                                    </div>
                                 </div>
                             </li>
                         <?php }?>
@@ -122,7 +119,7 @@
                     function bindUploadImg(){
                         jQuery('.uploadImg .uploadImg-item.active input[type="file"]').fileupload({
                             autoUpload: true,//是否自动上传
-                            url: "/aftersale.php?act=uploadimg&oid=<?php echo $orderId;?>",//上传地址
+                            url: "/pindeke_apply.php?act=uploadimg&uid=<?php echo $userid;?>",//上传地址
                             dataType: 'json',
                             success: function (res, status){//设置文件上传完毕事件的回调函数
                                 var data = {
@@ -135,14 +132,14 @@
                                     var url = data.url;
                                     if(_this.parent().find(".img").hasClass("noImg")){
                                         _this.parent().find(".img").removeClass("noImg");
-                                        _this.parent().find(".img").html('<img data-file="'+data.msg+'" data-src="'+ url +'" src="'+ url +'" />');
+                                        _this.parent().find(".img").html('<img data-file="'+url+'" src="'+ url +'" />');
                                         _this.parent().find("input[type='hidden']").val(url);
                                         $(".uploadImg-item .close").show();
                                         if(_this.parents(".uploadImg").find(".uploadImg-item").length < 5)
                                         _this.parent().after('<div class="uploadImg-item"><input type="file" capture="camera" accept="image/*" /><div class="img noImg"></div><span class="close" style="display:none;"></span></div>');
                                     }else{
                                         _this.parent().find(".img").find("img").attr("src", url);
-                                        _this.parent().find("input[type='hidden']").val(url);
+                                        _this.parent().find(".img").find("img").attr("data-file", url);
                                         $(".uploadImg-item .close").show();
                                     }
                                     $(".uploadImg-item.active .img").removeClass("loadingImg");
@@ -186,9 +183,12 @@
                             return false;
                         }
                         $(".uploadImg img").each(function(index, el) {
-                            $("#submitForm").append('<input type="hidden" name="img[]" value="'+ $(el).attr("data-file") +'" />');
+                            var url = $(el).attr("data-file");
+                            url = url.split("/");
+                            url = url[url.length-1];
+                            console.log(url);
+                            $("#submitForm").append('<input type="hidden" name="img[]" value="'+ url +'" />');
                         });
-                        
                         $("#submitForm").submit();
                     });
                 });
