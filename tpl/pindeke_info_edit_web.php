@@ -39,7 +39,7 @@
                                 <div class="item">
                                     <div class="label">真实姓名</div>
                                     <div class="main">
-                                        <input id="name" type="text" name="name" class="txt" placeholder="填写真实姓名" />
+                                        <input id="name" type="text" name="" class="txt" placeholder="填写真实姓名" value="<?php echo $infoEdit['name'];?>" />
                                     </div>
                                 </div>
                             </li>
@@ -47,7 +47,7 @@
                                 <div class="item">
                                     <div class="label">手机号码</div>
                                     <div class="main">
-                                        <input id="phone" type="text" name="phone" class="txt" placeholder="填写手机号码" />
+                                        <input id="phone" type="text" name="" class="txt" placeholder="填写手机号码" value="<?php echo $infoEdit['phone'];?>" />
                                     </div>
                                 </div>
                             </li>
@@ -55,7 +55,7 @@
                                 <div class="item">
                                     <div class="label">身份证号码</div>
                                     <div class="main">
-                                        <input id="number" type="text" name="cardNo" class="txt" placeholder="填写身份证号码" />
+                                        <input id="number" type="text" name="" class="txt" placeholder="填写身份证号码" value="<?php echo $infoEdit['cardNo'];?>" />
                                     </div>
                                 </div>
                             </li>
@@ -63,15 +63,23 @@
                                 <div class="item">
                                     <div class="label">推广渠道</div>
                                     <div class="main">
-                                        <input id="way" type="text" name="content" class="txt" placeholder="填写推广渠道" />
+                                        <input id="way" type="text" name="" class="txt" placeholder="填写推广渠道" value="<?php echo $infoEdit['channel'];?>" />
                                     </div>
                                 </div>
                             </li>
-                            <li class="last">
-                                <div class="item">
-                                    <div class="label">推广证明</div>
-                                </div>
-                                <div class="uploadImg">
+                      <?php if(($infoEdit['image1']!='') || ($infoEdit['image2']!='') || ($infoEdit['image3']!='') || ($infoEdit['image4']!='') || ($infoEdit['image5']!='')){ ?>
+                        <li class="last">
+                            <div class="item">
+                                <div class="label">推广证明</div>
+                            </div>
+                            <div class="uploadImg">
+                            <?php for($i=1; $i<=5; $i++){ ?>
+                                <?php if($infoEdit['image'.$i] != ''){ ?>
+	                                <div class="uploadImg-item">
+	                                    <div class="img"><img data-file="res.msg" data-src="#" src="<?php echo $infoEdit['image'.$i];?>"></div>
+	                                </div>
+                                <?php } ?>
+							<?php } ?>
                                     <div class="uploadImg-item">
                                         <input type="file" capture="camera" accept="image/*" />
                                         <div class="img noImg"></div>
@@ -79,12 +87,14 @@
                                     </div>
                                 </div>
                             </li>
+                        <?php }?>
                         </form>
                     </ul>
                 </section>
 
+                <div class="placeholder-50"></div>
                 <div class="pdk-submit">
-                      <input type="submit" value="提交申请" />
+                    <input type="submit" value="重新提交信息" />
                 </div>
 
             </div>
@@ -112,7 +122,7 @@
                     function bindUploadImg(){
                         jQuery('.uploadImg .uploadImg-item.active input[type="file"]').fileupload({
                             autoUpload: true,//是否自动上传
-                            url: "/pindeke_apply.php?act=uploadimg&uid=<?php echo $userid;?>",//上传地址
+                            url: "/aftersale.php?act=uploadimg&oid=<?php echo $orderId;?>",//上传地址
                             dataType: 'json',
                             success: function (res, status){//设置文件上传完毕事件的回调函数
                                 var data = {
