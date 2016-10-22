@@ -13,7 +13,7 @@ $referUrl = urldecode($_GET['url']);
 $orderId = intval($_GET['oid']);
 $orderInfo = apiData('orderdetail.do', array('oid'=>$orderId, 'userId'=>$userid));
 if($orderInfo['result']['attendId']){
-    if($state && in_array($_SESSION['order']['type'], array('free', 'groupon'))){
+    if($state && in_array($_SESSION['order']['type'], array('free', 'groupon', 'join'))){
         $referUrl = 'groupon_join.php?aid='.$orderInfo['result']['attendId'];
     }
 }
