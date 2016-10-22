@@ -148,8 +148,13 @@ switch($act){
                     ),
                 ),
             );
+			$sendResult = $objWX->sendTemplateMessage($data);
 
-            $sendResult = $objWX->sendTemplateMessage($data);
+			foreach($orderInfo['result']['userList'] as $_openid){
+				$data['touser'] = $_openid;
+				$sendResult = $objWX->sendTemplateMessage($data);
+			}
+            
             if($sendResult !== false){
                 $result = json_encode($sendResult);
             }
