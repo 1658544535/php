@@ -16,6 +16,7 @@
 			.nr_warp img{ }
 			.nr_warp p{ font-size:12px; color:#000; }
 		</style>
+        <?php include_once('wxshare_web.php');?>
 	</head>
 
 	<body>
