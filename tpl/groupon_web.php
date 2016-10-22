@@ -129,7 +129,7 @@
 								<!-- <a class="more" href="order_free.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
 								<a class="more" data-href="order_free.php" id="btn-groupon" data-ref="free">
 									 <p>￥<b>0.00</b></p>
-									 <p>0元开团</p>
+									 <p><?php echo $info['groupNum'];?>人团</p>
 								</a>
 							<?php }else{ ?>
 								<!-- <a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
