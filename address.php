@@ -241,7 +241,7 @@ switch ($act)
 		-- 用户收货地址列表页面(用于在确认订单时的地址选择)
 	-----------------------------------------------------------------------------------------------------*/
 	case 'choose':
-		$jsonArea = file_get_contents('./data/area.json');
+		$jsonArea = file_get_contents(SCRIPT_ROOT.'data/area.json');
 		include "tpl/choose_address_web.php";
 	break;
 
@@ -250,7 +250,7 @@ switch ($act)
 		-- 用户收货地址列表页面
 	-----------------------------------------------------------------------------------------------------*/
 	default:
-		$jsonArea = file_get_contents('./data/area.json');
+		$jsonArea = file_get_contents(SCRIPT_ROOT.'data/area.json');
 
 		include "tpl/manage_address_web.php";
 	break;
