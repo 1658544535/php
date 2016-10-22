@@ -20,9 +20,9 @@ if($orderInfo['result']['attendId']){
 unset($_SESSION['order']);
 if($state){
     sendWXTplMsg('pay', array('oid'=>$orderId));
-    if($orderInfo['result']['isOpen']){//开团
+    if($orderInfo['result']['isOpen'] == 1){//开团
         sendWXTplMsg('open', array('oid'=>$orderId));
-    }elseif($orderInfo['result']['isSuccess']){//拼团
+    }elseif($orderInfo['result']['isSuccess'] == 1){//拼团
         sendWXTplMsg('join', array('oid'=>$orderId));
     }
     redirect($referUrl, '支付成功');
