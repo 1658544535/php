@@ -204,7 +204,8 @@
 
 					$("#buy").on("click", function(){
 						// if(clickBuy) $("#buy").attr("href", _genUrl());
-						if(clickBuy) location.href = _genUrl();
+						var url = _genUrl();
+						if(clickBuy) location.href = url;
 					});
 
 					//打开sku弹窗
@@ -427,7 +428,7 @@
                         <span class="plus">+</span>
                     </div>
                 </div>
-                <a id="buy" class="go">确定</a>
+                <a id="buy" href="javascript:;" class="go">确定</a>
             </div>
         </div>
 		<?php } ?>
