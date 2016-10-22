@@ -1283,6 +1283,7 @@ function encodeJson($data){
  *
  * @param string $type 类型
  * @param array $param 参数
+ * @return array
  */
 function sendWXTplMsg($type, $param){
     global $site;

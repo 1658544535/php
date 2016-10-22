@@ -202,6 +202,7 @@ switch($act){
                 }
             }
         }
+		echo $result;
         break;
     case 'refund'://退款
         $result = '';
@@ -254,6 +255,7 @@ switch($act){
                 $result = json_encode($sendResult);
             }
         }
+		echo $result;
         break;
 }
 ?>
