@@ -167,6 +167,7 @@
 			<?php } ?>
 
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
+
 				<?php if($info['productStatus'] == 1){ ?>
 					var jsonUrlParam = {"id":"<?php echo $grouponId;?>","pid":"<?php echo $info['productId'];?>","skuid":"","num":1};
 					var clickBuy = false;
@@ -243,17 +244,25 @@
 
 							//绑定点击事件
 							$(".sku-item .list a").on("click", function(){
+								skuItemClick($(this));
+							});
+							//sku默认选择套餐类型第一个
+							if($(".sku-item .list a.active").length<=0){
+								skuItemClick($("#sku-format .list a").eq(0));
+							}
+							function skuItemClick(obj){
+								var _this = obj;
 								clickBuy = false;
-								if($(this).hasClass("disable")) return;
+								if(_this.hasClass("disable")) return;
 								$(".popup-sku").attr("data-skuId", "");
 								$("#buy").attr("href", "javascript:;").addClass("gray");
 								var skuColor = null, skuFormat = null, chooseNum = 0;
 								//点击样式
-								if($(this).hasClass("active")){
-									$(this).removeClass("active");
+								if(_this.hasClass("active")){
+									_this.removeClass("active");
 								}else{
-									$(this).siblings('a').removeClass("active");
-									$(this).addClass("active");
+									_this.siblings('a').removeClass("active");
+									_this.addClass("active");
 								}
 
 								//选择的值
@@ -318,7 +327,7 @@
 									$("#sku-color .list a, #sku-format .list a").removeClass("disable");
 									clickBuy = false;
 								}
-							});
+							}
 						}else{
 							$.toast(req.msg);
 						}
