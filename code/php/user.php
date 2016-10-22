@@ -12,12 +12,12 @@ empty($info['waitSendNum']) && $info['waitSendNum'] = 0;
 empty($info['waitRecNum']) && $info['waitRecNum'] = 0;
 empty($info['waitComNum']) && $info['waitComNum'] = 0;
 empty($info['saleSerNum']) && $info['saleSerNum'] = 0;
-//没有头像则获取微信头像
-if($bLogin && ($info['userImage'] == '')){
-	$_wxUserInfo = $objWX->getUserInfo($openid);
-	$_wxUserInfo['headimgurl'] && $info['userImage'] = $_wxUserInfo['headimgurl'];
-}
+
 $_wxUserInfo = $objWX->getUserInfo($openid);
+
+//没有头像则获取微信头像
+(($info['userImage'] == '') && $_wxUserInfo['headimgurl']) && $info['userImage'] = $_wxUserInfo['headimgurl'];
+
 $footerNavActive = 'user';
 include "tpl/user_web.php";
 ?>
