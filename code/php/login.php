@@ -50,7 +50,14 @@ switch($act)
 					//没有头像则获取微信头像
 					if($userInfo['image'] == ''){
 						$_wxUserInfo = $objWX->getUserInfo($wxInfo['openid']);
-						$_wxUserInfo['headimgurl'] && $userInfo['image'] = $_wxUserInfo['headimgurl'];
+						if($_wxUserInfo['headimgurl']){
+							$_dir = SCRIPT_ROOT.'upfiles/headimage/';
+							!file_exists($_dir) && mkdir($_dir, 0777, true);
+							$_headimg = $_dir.$openid.'.jpg';
+							file_put_contents($_headimg, $_wxUserInfo['headimgurl']);
+							$editResult = apiData('editUserInfo.do', array('uid'=>$userInfo['uid'],'file'=>'@'.$_headimg), 'post');
+							$editResult['success'] && $userInfo['image'] = $_wxUserInfo['headimgurl'];
+						}
 					}
 					$log->put('/user/login', "user login! 微信用户自动登录，openid:{$wxInfo[openid]}，用户id:{$userInfo[uid]}，帐号:{$userInfo[phone]}，昵称:{$userInfo[name]}");
 					$_tmp = new stdClass();

@@ -20,7 +20,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		'source' => 3,
 		'unionid' => $_SESSION['unionid'],
 	);
-	$result = apiData('userlogin.do', $apiParam);
+	//头像
+	$_wxUserInfo = $objWX->getUserInfo($openid);
+	if($_wxUserInfo['headimgurl']){
+		$_dir = SCRIPT_ROOT.'upfiles/headimage/';
+		!file_exists($_dir) && mkdir($_dir, 0777, true);
+		$_headimg = $_dir.$openid.'.jpg';
+		file_put_contents($_headimg, $_wxUserInfo['headimgurl']);
+	}
+	$apiParam['image'] = '@'.$_headimg;
+	$result = apiData('userlogin.do', $apiParam, 'get', true);
 	if($result['success']){
 		$result = $result['result'];
 		$_wxInfo = new stdClass();
