@@ -44,23 +44,23 @@ switch($act){
                 'touser' => $openid,
                 'template_id' => 'HijtVshBey8vWEiheh97ih_VCMndYZv28ouP2lnyTa0',
                 'url' => $site,//.'order_detail.php?oid='.$orderId,
-                'topcolor' => '#000',
+                'topcolor' => '#000000',
                 'data' => array(
                     'first' => array(
                         'value' => '恭喜您支付成功！',
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'keyword1' => array(
                         'value' => $orderInfo['productInfo']['orderPrice'],
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'keyword2' => array(
                         'value' => $orderInfo['productInfo']['productName'],
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'remark' => array(
                         'value' => '[重磅]提前双十一，全场玩具7.7！好玩低价，预购从速>>',
-                        'color' => '#f00',
+                        'color' => '#ff0000',
                     ),
                 ),
             );
@@ -82,27 +82,27 @@ switch($act){
                 'touser' => $openid,
                 'template_id' => 'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
                 'url' => $site,//.'order_detail.php?oid='.$orderId,
-                'topcolor' => '#000',
+                'topcolor' => '#000000',
                 'data' => array(
                     'first' => array(
                         'value' => '恭喜您开团成功！',
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'keyword1' => array(
                         'value' => $orderInfo['productInfo']['orderPrice'],
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'keyword2' => array(
                         'value' => $orderInfo['productInfo']['productName'],
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'keyword3' => array(
                         'value' => $orderInfo['addressInfo']['consignee'].' '.$orderInfo['addressInfo']['tel'].' '.$orderInfo['addressInfo']['address'],
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'keyword4' => array(
                         'value' => $orderInfo['orderInfo']['orderNo'],
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'remark' => array(
                         'value' => '[重磅]提前双十一，全场玩具7.7！好玩低价，预购从速>>',
@@ -128,23 +128,23 @@ switch($act){
                 'touser' => $openid,
                 'template_id' => 'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
                 'url' => $site,//.'groupon_join.php?aid='.$orderInfo['attendId'],
-                'topcolor' => '#000',
+                'topcolor' => '#000000',
                 'data' => array(
                     'first' => array(
                         'value' => '恭喜您拼团成功！我们将尽快为你发货。',
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'keyword1' => array(
                         'value' => $orderInfo['orderInfo']['orderNo'],
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'keyword2' => array(
                         'value' => $orderInfo['productInfo']['orderPrice'],
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'remark' => array(
                         'value' => '[重磅]提前双十一，全场玩具7.7！好玩低价，预购从速>>',
-                        'color' => '#f00',
+                        'color' => '#ff0000',
                     ),
                 ),
             );
@@ -167,31 +167,31 @@ switch($act){
                     'touser' => $openid,
                     'template_id' => 'EGztXez9id31kHrJZo6i-pY6523kx15PDgvC80Qw658',
                     'url' => $site,//.'order_detail.php?oid='.$orderId,
-                    'topcolor' => '#000',
+                    'topcolor' => '#000000',
                     'data' => array(
                         'first' => array(
                             'value' => '您购买的商品已经发货啦！',
-                            'color' => '#000',
+                            'color' => '#000000',
                         ),
                         'keyword1' => array(
                             'value' => $orderInfo['orderInfo']['logisticsName'],
-                            'color' => '#000',
+                            'color' => '#000000',
                         ),
                         'keyword2' => array(
                             'value' => $orderInfo['orderInfo']['logisticsNo'],
-                            'color' => '#000',
+                            'color' => '#000000',
                         ),
                         'keyword3' => array(
                             'value' => $orderInfo['productInfo']['productName'],
-                            'color' => '#000',
+                            'color' => '#000000',
                         ),
                         'keyword4' => array(
                             'value' => $orderInfo['productInfo']['number'],
-                            'color' => '#000',
+                            'color' => '#000000',
                         ),
                         'remark' => array(
                             'value' => '[重磅]提前双十一，全场玩具7.7！好玩低价，预购从速>>',
-                            'color' => '#f00',
+                            'color' => '#ff0000',
                         ),
                     ),
                 );
@@ -217,35 +217,35 @@ switch($act){
                 'touser' => $openid,
                 'template_id' => '-ufIIBoIsqG6QOFo7N8N19n3jBx9Lguyi7VqAITE8kU',
                 'url' => $site,//.'groupon_join.php?aid='.$orderInfo['attendId'],
-                'topcolor' => '#000',
+                'topcolor' => '#000000',
                 'data' => array(
                     'first' => array(
                         'value' => '退款成功！',
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'keyword1' => array(
                         'value' => $refundInfo['refundPrice'],
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'keyword2' => array(
                         'value' => $typeMap[$refundInfo['type']],
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'keyword3' => array(
                         'value' => $refundInfo['refundType'],
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'keyword4' => array(
                         'value' => '',
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'keyword5' => array(
                         'value' => $orderInfo['result']['orderInfo']['orderNo'],
-                        'color' => '#000',
+                        'color' => '#000000',
                     ),
                     'remark' => array(
                         'value' => '[重磅]提前双十一，全场玩具7.7！好玩低价，预购从速>>',
-                        'color' => '#f00',
+                        'color' => '#ff0000',
                     ),
                 ),
             );
