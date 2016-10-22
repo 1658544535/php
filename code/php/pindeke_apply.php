@@ -61,6 +61,15 @@ switch($act){
 
 		break;
 		
+		
+		case 'edit'://修改
+			$Uid = intval($_GET['uid']);
+			$infoEdit = apiData('pdkApplyInfoApi.do',array('userId'=>$Uid));
+			$infoEdit = $infoEdit['result'];
+			include_once('tpl/pdk_apply_edit_web.php');
+			break;
+		
+		
 
 case 'uploadimg'://上传图片
 		$upfile = $_FILES['files'];

@@ -142,13 +142,13 @@
                     <div class="txt">当前状态：<span class="themeColor">信息审核中...</span></div>
                     <?php }elseif($Objinfo['status'] ==2){?>
                     <div class="txt">当前状态：<span class="themeColor">审核不通过</span></div>
-                    <div class="txt">不通过原因：<span class="themeColor">息不真实</span></div>
+                    <div class="txt">不通过原因：<span class="themeColor"><?php echo $Objinfo['returnMsg'] ;?></span></div>
                     <?php }?>
                 </section>
                  <?php if($Objinfo['status'] ==2){?>
                 <div class="placeholder-50"></div>
                 <div class="pdk-submit">
-                    <input type="button" onClick="location.href='/pindeke_apply.php'" value="重新提交信息" />
+                    <input type="button" onClick="location.href='/pindeke_apply.php?act=edit&uid=<?php echo $userid;?>'" value="重新提交信息" />
                 </div>
                 <?php }?>
 <?php }?>
