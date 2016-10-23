@@ -45,7 +45,7 @@
             <div class="content native-scroll">
 
                 <section class="pdk-freeLink">
-                    <img class="img" src="<?php echo $imgPath;?>" />
+                    <img class="img" style="width:45%"  src="<?php echo $imgPath;?>" />
                     <p class="txt">分享此页面，用户通过二维码领取团免券，即可免费开团</p>
                 </section>
 

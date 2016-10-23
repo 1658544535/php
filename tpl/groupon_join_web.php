@@ -136,7 +136,7 @@
                     </ul>   
                 </section>
 
-                <section class="deta-tips proTips-4">
+                <section class="deta-tips proTips-4" style="line-height:0.1">
                     <h3>活动说明</h3>
                     <div><img src="images/deta-tips2.png" /></div>
                 </section>
