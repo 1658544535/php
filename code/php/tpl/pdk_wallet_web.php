@@ -36,11 +36,11 @@
                     <div class="price">
                         <ul>
                             <li>
-                                <p class="themeColor">10</p>
+                                <p class="themeColor"><?php echo $Objwallet['result']['openNum'];?></p>
                                 <p>开团数</p>
                             </li>
                             <li>
-                                <p class="themeColor">8</p>
+                                <p class="themeColor"><?php echo $Objwallet['result']['SuccNum'];?></p>
                                 <p>成团数</p>
                             </li>
                             <li>
