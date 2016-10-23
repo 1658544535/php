@@ -52,7 +52,7 @@ switch($act){
 				foreach($upImgs as $v){
 					file_exists(IMAGE_UPLOAD_DIR.$v) && unlink(IMAGE_UPLOAD_DIR.$v);
 				}
-				redirect('index.php', '申请成功');
+				redirect('index.php', '提交成功');
 			}else{
 				redirect($backUrl, $result['error_msg']);
 			}

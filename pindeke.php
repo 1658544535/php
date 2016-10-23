@@ -90,7 +90,7 @@ switch($act)
     case 'withdrawals_records':
     	$page      = max(1, intval($_POST['page']));
     	$Oldprice 	   = CheckDatas( 'price', '' );
-    	$Objrecord = apiData('pdkTranRecListApi.do',array('type'=>$Type,'userId'=>$userid));
+    	$Objrecord = apiData('pdkTranRecListApi.do',array('type'=>2,'userId'=>$userid));
     	include_once('tpl/pdk_withdrawals_records_web.php');
     break;
     
