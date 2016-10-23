@@ -17,6 +17,9 @@
     <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/app.min.js' charset='utf-8'></script>
     <?php include_once('wxshare_web.php');?>
+    <style type="text/css">
+    .cut-groupon-num{margin-right: .25rem; padding: 0 .15rem; text-align: justify; font-size: .5rem; color: #f85981; border: 1px solid #f85981; border-radius: 3px;}
+    </style>
 </head>
 
 <body>
@@ -48,7 +51,7 @@
                     <li><a href="groupon.php?id=<%=data["data"][i].activityId%>">
                         <div class="img"><img src="<%=data["data"][i].productImage%>" /></div>
                             <div class="info">
-                                <div class="name"><%=data["data"][i].productName%></div>
+                                <div class="name"><span class="cut-groupon-num"><%=data["data"][i].groupNum%>人团</span><%=data["data"][i].productName%></div>
                                 <div class="price">
                                 <div class="btn">免费开团</div>
                                 ￥<span class="price1">0</span>/件
