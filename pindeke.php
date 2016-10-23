@@ -49,7 +49,7 @@ switch($act)
     case 'wallet':
     	IS_USER_LOGIN();
     	$userid    = CheckDatas( 'uid', '' );
-    	$Objwallet = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
+    	$Objwallet = apiData('pindekeUserInfo.do',array('userId'=>$userid));
     	include_once('tpl/pdk_wallet_web.php');
     break;
 
