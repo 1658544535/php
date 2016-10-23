@@ -242,7 +242,8 @@ switch ($act)
 	-----------------------------------------------------------------------------------------------------*/
 	case 'choose':
 		$jsonArea = file_get_contents(SCRIPT_ROOT.'data/area.json');
-		include "tpl/choose_address_web.php";
+//		include "tpl/choose_address_web.php";
+        include "tpl/choose_address_web_simple.php";
 	break;
 
 
@@ -252,7 +253,8 @@ switch ($act)
 	default:
 		$jsonArea = file_get_contents(SCRIPT_ROOT.'data/area.json');
 
-		include "tpl/manage_address_web.php";
+//		include "tpl/manage_address_web.php";
+        include "tpl/manage_address_web_simple.php";
 	break;
 }
 ?>
