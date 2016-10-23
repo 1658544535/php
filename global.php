@@ -121,7 +121,7 @@ if ( $user != null )
 }
 
 //不配送的省份id，甘肃 内蒙古 宁夏 青海 西藏 新疆
-$unSendProviceIds = array(29,6,31,27,32);
+$unSendProviceIds = array(29,6,31,30,27,32);
 
 //微信相关配置信息(用于微信类)
 $wxOption = array(
