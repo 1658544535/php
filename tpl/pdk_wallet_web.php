@@ -45,7 +45,7 @@
                             </li>
                             <li>
                                 <?php if(!empty($Objwallet['result']['SuccNum'])){?>
-                                <p class="themeColor"><?php echo $Objwallet['result']['SuccNum'];?></p>
+                                <p class="themeColor"><?php echo $Objwallet['result']['succNum'];?></p>
                                 <?php }else{?>
                                  <p class="themeColor">0</p>
                                 <?php }?>
