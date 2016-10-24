@@ -4012,6 +4012,7 @@
   font-size: 1.6em;
   height: 10em;
   float: left;
+  width: 33.33333333%;
   position: relative;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -4050,6 +4051,12 @@
   line-height: 1em;
   padding: 0.8em 1em;
 }
+.area_btn.larea_cancel {
+  float: left;
+}
+.area_btn.larea_finish {
+  float: right;
+}
 .area_btn_box:after,
 .area_btn_box:before {
   content: '';
@@ -4074,6 +4081,7 @@
   align-items: stretch;
   background-color: #f1f2f4;
   position: relative;
+  overflow: hidden;
 }
 .area_btn_box:before {
   left: 0;
