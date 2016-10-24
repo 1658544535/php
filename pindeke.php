@@ -78,10 +78,10 @@ switch($act)
     	$Price 		            = CheckDatas( 'price', '' );
     	$Type 		            = CheckDatas( 'type', '' );
     	$Objwd = apiData('wdApplyApi.do',array('account'=>$Number,'name'=>$Name,'price'=>$Price,'taType'=>1,'userId'=>$userid));
-    	if($Objwd !=''){
-    	    redirect('pindeke.php?act=wallet',申请成功！);
+    	if(!empty($Objwd)){
+    	    redirect('pindeke.php?act=wallet&uid='.$userid,申请成功！);
     	}else{
-    		redirect('pindeke.php?act=wallet',提交失败，请重新提交);
+    		redirect('pindeke.php?act=wallet&uid='.$userid,提交失败，请重新提交);
     	}
     break;
 
