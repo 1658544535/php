@@ -65,7 +65,7 @@
                                 <div class="price1">
                                     <input id="price" type="tel" name="price" class="txt" />
                                 </div>
-                                <?php if($Objinfo['result']['balance']){?>
+                                <?php if(!empty($Objinfo['result']['balance'])){?>
                                 <div class="price2">可用余额 <span><?php echo $Objinfo['result']['balance'];?></span>元</div>
                                  <?php }else{?>
                                  <div class="price2">可用余额 <span>0</span>元</div>

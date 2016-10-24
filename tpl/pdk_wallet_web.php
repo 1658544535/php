@@ -36,7 +36,7 @@
                     <div class="price">
                         <ul>
                             <li>
-                                <?php if(!empty($Objwallet['result'])){?>
+                                <?php if(!empty($Objwallet['result']['openNum'])){?>
                                 <p class="themeColor"><?php echo $Objwallet['result']['openNum'];?></p>
                                 <?php }else{?>
                                 <p class="themeColor">0</p>
@@ -44,7 +44,7 @@
                                 <p>开团数</p>
                             </li>
                             <li>
-                                <?php if(!empty($Objwallet['result'])){?>
+                                <?php if(!empty($Objwallet['result']['SuccNum'])){?>
                                 <p class="themeColor"><?php echo $Objwallet['result']['SuccNum'];?></p>
                                 <?php }else{?>
                                  <p class="themeColor">0</p>
@@ -52,7 +52,7 @@
                                 <p>成团数</p>
                             </li>
                             <li>
-                                <?php if(!empty($Objwallet['result'])){?>
+                                <?php if(!empty($Objwallet['result']['balance'])){?>
                                 <p class="themeColor"><?php echo $Objwallet['result']['balance'];?></p>
                                 <?php }else{?>
                                 <p class="themeColor">0.0</p>
