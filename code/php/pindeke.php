@@ -70,7 +70,7 @@ switch($act)
     //提现操作
     case 'withdrawals':
     	$Uid 		   = CheckDatas( 'uid', '' );
-    	$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$Uid));
+    	$Objinfo = apiData('pindekeUserInfo.do',array('userId'=>$Uid));
     	include_once('tpl/wd_apply_web.php');
     break;
    
