@@ -34,6 +34,57 @@
 				</h1>
             </header>
 
+			<section class="proTips-5">
+				<?php switch($info['status']){
+					case 0: ?>
+						<?php if($info['userIsHead'] == 1){ ?>
+							<a href="/">
+								<div class="info">
+									<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
+									￥<span class="price1"><?php echo $info['groupPrice'];?></span>
+								</div>
+								<span class="btn">更多拼团 ></span>
+							</a>
+						<?php }elseif($info['isGroup'] == 0){ ?>
+							<a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>">
+								<div class="info">
+									<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
+									￥<span class="price1"><?php echo $info['groupPrice'];?></span>
+								</div>
+								<span class="btn">我要拼团 ></span>
+							</a>
+						<?php } ?>
+					<?php break; ?>
+					<?php case 1: ?>
+						<?php if($info['isGroup'] == 1){ ?>
+							<a href="/">
+								<div class="info">
+									<?php echo $info['groupNum'];?>人召集完毕&nbsp;&nbsp;
+									￥<span class="price1"><?php echo $info['groupPrice'];?></span>
+								</div>
+								<span class="btn">更多拼团 ></span>
+							</a>
+						<?php }else{ ?>
+							<a href="/">
+								<div class="info">
+									马上开团
+								</div>
+								<span class="btn">更多拼团 ></span>
+							</a>
+						<?php } ?>
+					<?php break; ?>
+					<?php case 2: ?>
+						<a href="/">
+							<div class="info">
+								<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
+								￥<span class="price1"><?php echo $info['groupPrice'];?></span>
+							</div>
+							<span class="btn">更多拼团 ></span>
+						</a>
+					<?php break; ?>
+				<?php } ?>
+			</section>
+
             <div class="content native-scroll">
 				<section class="proTips-1">
 					<?php switch($info['status']){
@@ -136,61 +187,10 @@
                     </ul>   
                 </section>
 
-                <section class="deta-tips proTips-4" style="line-height:0.1">
+                <section class="deta-tips proTips-4">
                     <h3>活动说明</h3>
                     <div><img src="images/deta-tips2.png" /></div>
                 </section>
-
-				<section class="proTips-5">
-					<?php switch($info['status']){
-						case 0: ?>
-							<?php if($info['userIsHead'] == 1){ ?>
-								<a href="/">
-									<div class="info">
-										<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
-										￥<span class="price1"><?php echo $info['groupPrice'];?></span>
-									</div>
-									<span class="btn">更多拼团 ></span>
-								</a>
-							<?php }elseif($info['isGroup'] == 0){ ?>
-								<a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>">
-									<div class="info">
-										<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
-										￥<span class="price1"><?php echo $info['groupPrice'];?></span>
-									</div>
-									<span class="btn">我要拼团 ></span>
-								</a>
-							<?php } ?>
-						<?php break; ?>
-						<?php case 1: ?>
-							<?php if($info['isGroup'] == 1){ ?>
-								<a href="/">
-									<div class="info">
-										<?php echo $info['groupNum'];?>人召集完毕&nbsp;&nbsp;
-										￥<span class="price1"><?php echo $info['groupPrice'];?></span>
-									</div>
-									<span class="btn">更多拼团 ></span>
-								</a>
-							<?php }else{ ?>
-								<a href="/">
-									<div class="info">
-										马上开团
-									</div>
-									<span class="btn">更多拼团 ></span>
-								</a>
-							<?php } ?>
-						<?php break; ?>
-						<?php case 2: ?>
-							<a href="/">
-								<div class="info">
-									<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
-									￥<span class="price1"><?php echo $info['groupPrice'];?></span>
-								</div>
-								<span class="btn">更多拼团 ></span>
-							</a>
-						<?php break; ?>
-					<?php } ?>
-				</section>
             </div>
 			
         </div>
