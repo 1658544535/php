@@ -22,7 +22,7 @@ switch($act)
 	case 'pdkInfo':
 		IS_USER_LOGIN();
 		$userid  = CheckDatas( 'uid', '' );
-		$Objinfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
+		$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
 		$Objinfo = $Objinfo['result'];
 		include_once('tpl/pdk_info_web.php');
 	break;
@@ -70,7 +70,7 @@ switch($act)
     //提现操作
     case 'withdrawals':
     	$Uid 		   = CheckDatas( 'uid', '' );
-    	$Objinfo = apiData('pindekeUserInfo.do',array('userId'=>$Uid));
+    	$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$Uid));
     	include_once('tpl/wd_apply_web.php');
     break;
    
