@@ -44,7 +44,7 @@
                                 <p>开团数</p>
                             </li>
                             <li>
-                                <?php if(!empty($Objwallet['result']['SuccNum'])){?>
+                                <?php if(!empty($Objwallet['result']['succNum'])){?>
                                 <p class="themeColor"><?php echo $Objwallet['result']['succNum'];?></p>
                                 <?php }else{?>
                                  <p class="themeColor">0</p>
