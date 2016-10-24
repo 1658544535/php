@@ -63,7 +63,7 @@
                                     <div class="label">提现金额</div>
                                 </div>
                                 <div class="price1">
-                                    <input id="price" type="tel" name="price" class="txt" />
+                                    <input id="price" type="number" name="price" class="txt" />
                                 </div>
                                 <?php if(!empty($Objinfo['result']['balance'])){?>
                                 <div class="price2">可用余额 <span><?php echo $Objinfo['result']['balance'];?></span>元</div>
@@ -107,6 +107,9 @@
 
                     //提现金额限制
                     $("#price").on("keyup", function(){
+                        var val = $(this).val();
+                        val = val.replace(/[^(\d\.)]/g,'');
+                        $(this).val(val);
                         var now = parseFloat($(this).val());
                         var max = parseFloat($(".price2 span").text());
                         if(now > max){
