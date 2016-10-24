@@ -22,7 +22,7 @@ switch($act)
 	case 'pdkInfo':
 		IS_USER_LOGIN();
 		$userid  = CheckDatas( 'uid', '' );
-		$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
+		$Objinfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
 		$Objinfo = $Objinfo['result'];
 		include_once('tpl/pdk_info_web.php');
 	break;
@@ -56,10 +56,8 @@ switch($act)
     //获取收入列表数据
     case 'incomes':
     	$page        = max(1, intval($_POST['page']));
-    	$startTime 		        = CheckDatas( 'startTime', '' );
-    	$endTime 		        = CheckDatas( 'endTime', '' );
-    	$Objincomes = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>1,'userId'=>$userid));
-    	include_once('tpl/pdk_incomes_web.php');
+    	 $Objincomes = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>1,'userId'=>$userid));
+    	  include_once('tpl/pdk_incomes_web.php');
     break;
     
     //获取收入详情数据
@@ -72,7 +70,6 @@ switch($act)
     //提现操作
     case 'withdrawals':
     	$Uid 		   = CheckDatas( 'uid', '' );
-    
     	$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$Uid));
     	include_once('tpl/wd_apply_web.php');
     break;
@@ -92,9 +89,7 @@ switch($act)
     case 'withdrawals_records':
     	$page      = max(1, intval($_POST['page']));
     	$Oldprice 	   = CheckDatas( 'price', '' );
-    	$startTime 		        = CheckDatas( 'startTime', '' );
-    	$endTime 		        = CheckDatas( 'endTime', '' );
-    	$Objincomes = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>1,'userId'=>$userid));
+    	$Objrecord = apiData('pdkTranRecListApi.do',array('type'=>2,'userId'=>$userid));
     	include_once('tpl/pdk_withdrawals_records_web.php');
     break;
     
