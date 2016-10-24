@@ -55,7 +55,7 @@
                                 <?php if(!empty($Objwallet['result']['balance'])){?>
                                 <p class="themeColor"><?php echo $Objwallet['result']['balance'];?></p>
                                 <?php }else{?>
-                                <p class="themeColor">0.0</p>
+                                <p class="themeColor">0</p>
                                 <?php }?>
                                 <p>我的余额</p>
                             </li>
