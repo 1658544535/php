@@ -77,11 +77,11 @@ switch($act)
     case 'withdrawals_save':
     	$Price 		            = CheckDatas( 'price', '' );
     	$Type 		            = CheckDatas( 'type', '' );
-    	$Objwd = apiData('wdApplyApi.do',array('account'=>$Number,'name'=>$Name,'price'=>$Price,'taType'=>1,'userId'=>$userid));
-    	if(!empty($Objwd)){
+    	$Objwd = apiData('wdApplyApi.do',array('account'=>$Number,'name'=>$Name,'price'=>$Price,'taType'=>1,'userId'=>$userid),'post');
+    	if(!empty($Objwd['success'])){
     	    redirect('pindeke.php?act=wallet&uid='.$userid,申请成功！);
     	}else{
-    		redirect('pindeke.php?act=wallet&uid='.$userid,提交失败，请重新提交);
+    		redirect('pindeke.php?act=wallet&uid='.$userid,您已有一笔提现记录正在审核中，请耐心等待管理员审核);
     	}
     break;
 
