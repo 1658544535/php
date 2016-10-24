@@ -12,7 +12,7 @@ $status 		        = CheckDatas( 'status', '' );
 
 
 
-		$Objrecord = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>2,'status'=>$status,'userId'=>$userid));
+		$Objrecord = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>2,'status'=>$status,'userId'=>$userid),'post');
 
 		if($Objrecord['result'] !='')
 		{
