@@ -181,6 +181,7 @@
     		if($(".oc-coupon #coupon-number").length>0){
     			$("#coupon-number").html(number);
     			$("#coupon-price").html(price);
+    			$("#coupon-number-input").val(number);
     		}else{
     			var html = '<div>券码<b id="coupon-number">'+ number +'</b></div>'
 		                 + '<span class="price">优惠<b id="coupon-price">'+ price +'</b>元</span>'
