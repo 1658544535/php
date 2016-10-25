@@ -7,7 +7,7 @@ IS_USER_LOGIN();
 	$coupon = apiData('getCouponApi.do',array('linkId'=>$linkid,'userId'=>$userid));
    if($Aid !=''){
     if($coupon['success']){
-	    redirect('groupon.php&id='.$Aid,领取成功！);
+	    redirect('groupon.php?id='.$Aid,领取成功！);
     }else{
     	redirect('index.php',$coupon['error_msg']);
     }
