@@ -87,6 +87,11 @@
 
 					<section class="oc-coupon">
 						<div>使用优惠券</div>
+						<?php if(!empty($cpn)){ ?>
+							<div>券码<b id="coupon-number"><?php echo $cpn['couponNo'];?></b></div>
+							<span class="price">优惠<b id="coupon-price"><?php echo $cpn['m'];?></b>元</span>
+							<input type="hidden" id="coupon-number-input" name="cpnno" value="<?php echo $cpn['couponNo'];?>" />
+						<?php } ?>
 					</section>
 
 					<section class="oc-pay">

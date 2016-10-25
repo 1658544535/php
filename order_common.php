@@ -23,7 +23,12 @@ $_SESSION['order']['addressId'] = $addrId;
 
 //优惠券
 $cpns = apiData('getValidUserCoupon.do', array('pid'=>$productId,'price'=>$info['sumPrice'],'uid'=>$userid));
-$cpns = $cpns['success'] ? $cpns['result'] : array();
+if(empty($cpns['result'])){
+	$cpn = array();
+}else{
+	$cpn = array_shift($cpns['result']);
+}
+//$cpns = $cpns['success'] ? $cpns['result'] : array();
 
 include_once('tpl/order_web.php');
 ?>
