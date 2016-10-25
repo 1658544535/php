@@ -107,7 +107,7 @@ function create_randomstr( $length = 7 )
 }
 
 function __genUrlParam(){
-	$params = array('pid','aid','type');
+	$params = array('pid','aid','type','gid');
 	$arr = array();
 	foreach($params as $v){
 		isset($_GET[$v]) && $arr[] = $v.'='.$_GET[$v];
