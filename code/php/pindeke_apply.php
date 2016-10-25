@@ -134,7 +134,7 @@ default:
 		   if(!empty($info['result'])){
 				if($info['result']['status'] ==1){
 					redirect('user.php');
-				}elseif(($info['result']['status'] ==0) || ($info['result']['status'] ==2)){
+				}elseif(($info['result']['status'] ==0) || ($info['result']['status'] ==2) || ($info['result']['status'] ==3)){
 					redirect('pindeke.php?act=pdkInfo&uid='.$userid);
 				}
 		   } 

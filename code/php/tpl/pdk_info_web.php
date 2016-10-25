@@ -30,7 +30,7 @@
             </header>
 
             <div class="content native-scroll">
-<?php if($Objinfo['status'] ==1){?>
+<?php if(($Objinfo['status'] ==1) || ($Objinfo['status'] ==3)){?>
                 <section class="pdk-form">
                     <ul>
                         <li>
