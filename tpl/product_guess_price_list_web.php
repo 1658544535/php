@@ -41,7 +41,7 @@
 
             <div class="content native-scroll">
 
-                <div class="guessList-banner"><img src="<?php echo $ObjBanner['result']['banner'] ;?>" /></div>
+                <div class="guessList-banner"><img src="<?php echo $ObjBanner['result']['banner'] ;?>" style="width:100%;" /></div>
 
                 <div class="freeList-tips">正在进行中</div>
 
