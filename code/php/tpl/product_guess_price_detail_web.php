@@ -79,7 +79,7 @@
         </div>
            
                <script>
-				document.domain='taozhuma.com';
+				document.domain='choupinhui.net';
 				function setIframeHeight(iframe) {
 					if (iframe) {
 						var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
