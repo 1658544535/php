@@ -24,7 +24,7 @@ $info['remainSec'] = $info['endDateline'] - $time;
 
 $grouponId = $info['activityId'];
 
-$isGrouponFree = intval($_GET['free']);
+$isGrouponFree = ($info['activityType'] == 2) ? 1 : 0;// intval($_GET['free']);
 
 //是否弹出黑幕(已支付，且差的人数>=1)
 $showBlack = (($info['payStatus'] == 1) && ($info['poorNum'] >= 1)) ? true : false;
