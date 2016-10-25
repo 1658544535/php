@@ -61,13 +61,21 @@
                             <div class="info">
                                 <div class="name">折扣券</div>
                                 <%if(data["data"][i]["isProduct"] ==1 && data["data"][i]["couponType"] ==2){%>
+                                <a href="groupon.php?id=<%=data["data"][i]["activityId"]%>">                                
                                 <div class="tips">购买指定商品直减<%=data["data"][i]["m"]%>元</div>
+                                </a>
                                 <%}else if(data["data"][i]["isProduct"] ==1 && data["data"][i]["couponType"] ==1){%>
+                                <a href="groupon.php?id=<%=data["data"][i]["activityId"]%>">
                                 <div class="tips">购买指定商品满<%=data["data"][i]["om"]%>减<%=data["data"][i]["m"]%>元</div>
+                                </a>
                                 <%}else if(data["data"][i]["isProduct"] ==0 && data["data"][i]["couponType"] ==2){%>
-                                 <div class="tips">全场商品直减<%=data["data"][i]["m"]%>元</div>
+                                <a href="index.php">                                
+                                <div class="tips">全场商品直减<%=data["data"][i]["m"]%>元</div>
+                                </a>
                                 <%}else if(data["data"][i]["isProduct"] ==0 && data["data"][i]["couponType"] ==1){%>
+                                <a href="index.php">                                
                                 <div class="tips">全场商品满<%=data["data"][i]["om"]%>减<%=data["data"][i]["m"]%>元</div>
+                                </a>                                
                                 <%}%>
                                 <div class="time">有效期: <%=data["data"][i]["validStime"]%>-<%=data["data"][i]["validEtime"]%></div>
                             </div>
@@ -75,7 +83,7 @@
 
 							<%if(data["data"][i]["overdue"]==1　&& data["data"][i]["used"]==0){%>
                         	<div class="overdue"><!--已过期--></div>
-                            <%}else if(data["data"][i]["overdue"]==1　&& data["data"][i]["used"]==1){%>
+                            <%}else if(data["data"][i]["overdue"]==1 && data["data"][i]["used"]==1){%>
                         	<div class="overdue"><!--已过期--></div>
 							<%}else if(data["data"][i]["used"]==1 && data["data"][i]["overdue"]==1){%>
                             <div class="used"><!--已使用--></div>
