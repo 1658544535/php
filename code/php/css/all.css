@@ -4145,6 +4145,7 @@
 }
 .index-seckill .seckill-title {
   margin: 0;
+  margin-bottom: -0.5rem;
   padding-left: 2.0rem;
   line-height: 1.8rem;
   font-weight: normal;
@@ -4161,11 +4162,12 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  background: #fff;
+  margin-top: 0.5rem;
 }
 .index-seckill .list-container li a {
   display: block;
   overflow: hidden;
+  background: #fff;
 }
 .index-seckill .list-container li a .img {
   float: left;
@@ -4271,4 +4273,10 @@
 }
 .index-seckill .list-container li:last-child a .info {
   border-bottom: none;
+}
+.seckill-null {
+  margin-top: 40%;
+  padding-bottom: 45.411%;
+  background: url(../images/seckill-null.png) no-repeat center center;
+  background-size: 100% auto;
 }
