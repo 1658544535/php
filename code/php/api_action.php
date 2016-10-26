@@ -142,20 +142,25 @@ switch($act){
 	case 'specials'://专题列表
 		$catId = intval($_POST['id']);
 		$page = max(1, intval($_POST['page']));
-		$addrs = apiData('specialListApi.do', array('typeId'=>$catId,'pageNo'=>$page));
-		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
+		$list = apiData('specialListApi.do', array('typeId'=>$catId,'pageNo'=>$page));
+		$list['success'] ? ajaxJson(1, '', $list['result'], $page) : ajaxJson(0, $list['error_msg']);
 		break;
 	case 'special'://专题
 		$id = intval($_GET['id']);
 		$page = max(1, intval($_POST['page']));
-		$addrs = apiData('specialDetailApi.do', array('specialId'=>$id,'pageNo'=>$page));
-		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
+		$list = apiData('specialDetailApi.do', array('specialId'=>$id,'pageNo'=>$page));
+		$list['success'] ? ajaxJson(1, '', $list['result'], $page) : ajaxJson(0, $list['error_msg']);
 		break;
 	case 'special_77'://77专区
 		$id = intval($_GET['id']);
 		$page = max(1, intval($_POST['page']));
-		$addrs = apiData('zoneProductsApi.do', array('id'=>$id,'pageNo'=>$page));
-		$addrs['success'] ? ajaxJson(1, '', $addrs['result'], $page) : ajaxJson(0, $addrs['error_msg']);
+		$list = apiData('zoneProductsApi.do', array('id'=>$id,'pageNo'=>$page));
+		$list['success'] ? ajaxJson(1, '', $list['result'], $page) : ajaxJson(0, $list['error_msg']);
+		break;
+	case 'sellout'://售罄
+		$page = max(1, intval($_POST['page']));
+		$list = apiData('sellOutListApi.do', array('pageNo'=>$page));
+		$list['success'] ? ajaxJson(1, '', $list['result'], $page) : ajaxJson(0, $list['error_msg']);
 		break;
 }
 ?>
