@@ -24,11 +24,20 @@ $info['remainSec'] = $info['endDateline'] - $time;
 
 $grouponId = $info['activityId'];
 
-$isGrouponFree = ($info['activityType'] == 2) ? 1 : 0;// intval($_GET['free']);
+//$isGrouponFree = ($info['activityType'] == 2) ? 1 : 0;// intval($_GET['free']);
 
 //是否弹出黑幕(已支付，且差的人数>=1)
 $showBlack = (($info['payStatus'] == 1) && ($info['poorNum'] >= 1)) ? true : false;
 
+//是否可点击商品跳转到开团页面
+if($info['activityType'] == 2){//团免，需用户有免团券
+	$isGrouponFree = 1;
+	$freeCpn = apiData('checkGroupFreeApi.do', array('userId'=>$userid));
+	$jumpProduct = $freeCpn['success'] ? true : false;
+}else{//非团免
+	$isGrouponFree = 0;
+	$jumpProduct = true;
+}
 
 include_once('tpl/groupon_join_web.php');
 ?>

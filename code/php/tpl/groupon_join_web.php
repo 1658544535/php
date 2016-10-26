@@ -132,12 +132,12 @@
                 <section class="freeList proTips-2">
                     <h3 class="title1">拼团商品</h3>
                     <ul class="list-container">
-                        <li><a href="groupon.php?id=<?php echo $grouponId;?>">
+                        <li><a href="<?php if($jumpProduct){ ?>groupon.php?id=<?php echo $grouponId;?><?php }else{ ?>javascript:;<?php } ?>">
                             <div class="img"><img src="<?php echo $info['productImage'];?>"></div>
                             <div class="info">
                                 <div class="name"><?php echo $info['productName'];?></div>
                                 <div class="price">
-                                    <div class="btn">商品详情</div>
+                                    <?php if($jumpProduct){ ?><div class="btn">商品详情</div><?php } ?>
                                     拼团价：<span class="price1">￥<?php echo $info['groupPrice'];?></span>
                                     <span class="price2">￥<?php echo $info['alonePrice'];?></span>
                                 </div>
