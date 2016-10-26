@@ -8,6 +8,8 @@ IS_USER_LOGIN();
    if($Aid !=''){
     if($coupon['success']){
 	    redirect('groupon.php?id='.$Aid,领取成功！);
+    }elseif($coupon['result'] ==0){
+    	redirect('groupon.php?id='.$Aid,$coupon['error_msg']);
     }else{
     	redirect('index.php',$coupon['error_msg']);
     }
