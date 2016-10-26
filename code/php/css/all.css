@@ -84,6 +84,15 @@
 .bar-tab .tab-item .i-user {
   background-position: 0 -3.6rem;
 }
+.bar-tab .tab-item .i-seckill-today {
+  background-position: 0 -4.8rem;
+}
+.bar-tab .tab-item .i-seckill-tomorrow {
+  background-position: 0 -6rem;
+}
+.bar-tab .tab-item .i-seckill-afterTomorrow {
+  background-position: 0 -7.2rem;
+}
 .bar-tab .tab-item.active .i-home {
   background-position: -1.2rem 0;
 }
@@ -95,6 +104,18 @@
 }
 .bar-tab .tab-item.active .i-user {
   background-position: -1.2rem -3.6rem;
+}
+.bar-tab .tab-item2 {
+  color: #1a1a64;
+}
+.bar-tab .tab-item.active .i-seckill-today {
+  background-position: -1.2rem -4.8rem;
+}
+.bar-tab .tab-item.active .i-seckill-tomorrow {
+  background-position: -1.2rem -6rem;
+}
+.bar-tab .tab-item.active .i-seckill-afterTomorrow {
+  background-position: -1.2rem -7.2rem;
 }
 .edit-list-icon {
   margin-top: 0.5rem;
@@ -4109,4 +4130,145 @@
   -ms-flex-direction: column;
   flex-direction: column;
   overflow: hidden;
+}
+.index-seckill {
+  position: relative;
+  padding-bottom: 1.0rem;
+}
+.index-seckill .seckill-out {
+  position: absolute;
+  top: 0;
+  right: 0.5rem;
+  font-size: 0.6rem;
+  color: #979797;
+  line-height: 1.8rem;
+}
+.index-seckill .seckill-title {
+  margin: 0;
+  padding-left: 2.0rem;
+  line-height: 1.8rem;
+  font-weight: normal;
+  font-size: 0.65rem;
+  color: #333;
+  background: url(../images/seckill-notNow.png) no-repeat 0.5rem center;
+  background-size: 1.0rem 1.0rem;
+}
+.index-seckill .seckill-title.active {
+  color: #ff464e;
+  background-image: url(../images/seckill-now.png);
+}
+.index-seckill .list-container {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+.index-seckill .list-container li a {
+  display: block;
+  overflow: hidden;
+}
+.index-seckill .list-container li a .img {
+  float: left;
+  width: 6.75rem;
+  height: 6.75rem;
+  margin: 0.3rem;
+  overflow: hidden;
+}
+.index-seckill .list-container li a .img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.index-seckill .list-container li a .info {
+  position: relative;
+  margin-left: 7.65rem;
+  margin-top: 0.85rem;
+  padding-right: 0.5rem;
+  height: 6.5rem;
+  border-bottom: 1px solid #e7e7e7;
+}
+.index-seckill .list-container li a .info .name {
+  font-size: 0.7rem;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.index-seckill .list-container li a .info .price {
+  position: absolute;
+  bottom: 0.9rem;
+  left: 0;
+}
+.index-seckill .list-container li a .info .price .price1 {
+  font-size: 0.9rem;
+  color: #ff464e;
+}
+.index-seckill .list-container li a .info .price .price2 {
+  font-size: 0.6rem;
+  color: #8c8c8c;
+  text-decoration: line-through;
+}
+.index-seckill .list-container li a .info .price .range {
+  position: relative;
+  width: 4.4rem;
+  height: 0.6rem;
+  border: 1px solid #ff464e;
+  border-radius: 0.6rem;
+  background: #ffb4ad;
+  overflow: hidden;
+}
+.index-seckill .list-container li a .info .price .range .range-main {
+  height: 100%;
+  border-radius: 0.6rem;
+  background: #ff6b71;
+}
+.index-seckill .list-container li a .info .price .range .num {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 0.6rem;
+  text-align: center;
+  font-size: 0.4rem;
+  color: #fff;
+}
+.index-seckill .list-container li a .info .btn {
+  position: absolute;
+  bottom: 0.9rem;
+  right: 0.5rem;
+}
+.index-seckill .list-container li a .info .btn span {
+  display: block;
+  width: 3.0rem;
+  height: 1.35rem;
+  line-height: 1.35rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.65rem;
+  border-radius: 0.25rem;
+}
+.index-seckill .list-container li a .info .btn p.txt {
+  margin: 0;
+  padding-top: 2px;
+  text-align: right;
+  font-size: 0.6rem;
+  line-height: 0.8rem;
+}
+.index-seckill .list-container li a .info .btn span.red {
+  background: #ff464e;
+}
+.index-seckill .list-container li a .info .btn span.gray {
+  background: #cecece;
+}
+.index-seckill .list-container li a .info .btn span.orange {
+  background: #fdd23e;
+}
+.index-seckill .list-container li a .info .btn p.txt.orange {
+  color: #fabe00;
+}
+.index-seckill .list-container li:last-child a .info {
+  border-bottom: none;
 }
