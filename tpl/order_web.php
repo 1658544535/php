@@ -164,7 +164,7 @@
     			url: "api_action.php?act=coupon_valid",
 	        	type: 'POST',
 	        	dataType: 'json',
-	        	data: {"pid":<?php echo $info['products']['productId'];?>,"amount":$("#fact-amount").text()},
+	        	data: {"pid":<?php echo $info['products']['productId'];?>,"amount":$("#totol-amount").text()},
 	        	success: function(res){
 	        		var bt = baidu.template;
 	    			baidu.template.ESCAPE = false;
