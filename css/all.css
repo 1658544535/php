@@ -603,6 +603,7 @@
 }
 /*详情页基本信息*/
 .deta-info {
+  position: relative;
   padding: 0 0.5rem 0.5rem;
   background: #fff;
 }
@@ -640,6 +641,18 @@
   border-bottom: 1px solid #e7e7e7;
 }
 .deta-info .tips img {
+  display: block;
+  width: 100%;
+}
+.deta-info .icon {
+  position: absolute;
+  bottom: 0;
+  right: 1.0rem;
+  margin-bottom: 11%;
+  width: 3.5rem;
+  z-index: 3;
+}
+.deta-info .icon img {
   display: block;
   width: 100%;
 }
@@ -1012,6 +1025,9 @@
   color: #fff;
   text-align: center;
   line-height: 2.75rem;
+}
+.deta-footer .more1 a.gray {
+  background: #b5b5b6;
 }
 .deta-footer .more1-m2 {
   margin-left: 4.8rem;
