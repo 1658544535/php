@@ -23,7 +23,7 @@
     <div class="page-group" id="page-seckill">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="">
+                <a class="button button-link button-nav pull-left back" href="/">
                     <span class="icon icon-back"></span>
                 </a>
                 <a class="button button-link button-nav pull-right share" href="javascript:;">
@@ -51,7 +51,7 @@
                 <section class="index-seckill">
                     <a href="sellout.php" class="seckill-out">查看今天已售罄商品</a>
 					<?php foreach($info as $_info){ ?>
-						<h3 class="seckill-title active"><?php echo $_info['time'];?><?php if($_info['isStart']==1){ ?> 正在进行中<?php } ?></h3>
+						<h3 class="seckill-title<?php if($_info['isStart']==1){ ?> active<?php } ?>"><?php echo $_info['time'];?><?php if($_info['isStart']==1){ ?> 正在进行中<?php } ?></h3>
 						<ul class="list-container">
 							<?php foreach($_info['secKillList'] as $v){ ?>
 								<li>
@@ -63,8 +63,8 @@
 												<span class="price1">￥<?php echo $v['productPrice'];?></span>
 												<span class="price2">￥<?php echo $v['alonePrice'];?></span>
 												<div class="range">
-													<div class="range-main" style="width:<?php echo $v['salePerce'];?>%"></div>
-													<div class="num"><?php echo $v['salePerce'];?>%</div>
+													<div class="range-main" style="width:<?php echo $v['salePerce'];?>"></div>
+													<div class="num"><?php echo $v['salePerce'];?></div>
 												</div>
 											</div>
 											<div class="btn">
