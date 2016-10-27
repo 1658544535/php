@@ -5,14 +5,20 @@
 	define("GEETEST_PRIVATE_KEY", "385b1d51aaf1bc3c3d44fd30f9cb5495");
 
 	/*============================== 全局定义数据表  =============================================*/
-	if($_SERVER['SERVER_NAME'] == 'wxpdh.choupinhui.net'){
-		define('SITE_IMG',"http://pdh.choupinhui.net/upfiles/");					// 获取图片地址
-		define('APIURL' ,"http://pdh.choupinhui.net/v3.5/"); 							//api接口的地址
-	}else{
-		define('SITE_IMG',"http://pin.taozhuma.com/upfiles/");					// 获取图片地址
-		define('APIURL' ,"http://pin.taozhuma.com/v3.5/"); 							//api接口的地址
+	switch($_SERVER['SERVER_NAME']){
+		case 'weixin.pindegood.com':
+			define('SITE_IMG',"http://app.pindegood.com/upfiles/");					// 获取图片地址
+			define('APIURL' ,"http://app.pindegood.com/v3.5/"); 							//api接口的地址
+			break;
+		case 'wxpdh.choupinhui.net':
+			define('SITE_IMG',"http://pdh.choupinhui.net/upfiles/");					// 获取图片地址
+			define('APIURL' ,"http://pdh.choupinhui.net/v3.5/"); 							//api接口的地址
+			break;
+		default:
+			define('SITE_IMG',"http://pin.taozhuma.com/upfiles/");					// 获取图片地址
+			define('APIURL' ,"http://pin.taozhuma.com/v3.5/"); 							//api接口的地址
+			break;
 	}
-
 	define('AD_TABLE',"ad");
 	define('FEEDBACK_TABLE',"feedback");
 	define('HELP_TABLE',"help");
