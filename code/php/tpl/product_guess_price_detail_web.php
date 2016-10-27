@@ -305,9 +305,12 @@
                     <div class="deta-iframe">
 	<iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $ObjGrouponInfo['result']['productId'];?>" frameborder="0" width="100%"></iframe>
           </div>
-           
+           <?php
+				$_arrDomain = explode('.', $_SERVER['SERVER_NAME']);
+				array_shift($_arrDomain);
+			?>
                <script>
-				document.domain='choupinhui.net';
+                document.domain='<?php echo implode('.', $_arrDomain);?>';
 				function setIframeHeight(iframe) {
 					if (iframe) {
 						var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
