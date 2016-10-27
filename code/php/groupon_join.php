@@ -39,5 +39,12 @@ if($info['activityType'] == 2){//团免，需用户有免团券
 	$jumpProduct = true;
 }
 
+//sku
+$skus = array();
+if(($info['status'] == 0) && ($info['userIsHead'] != 1) && ($info['isGroup'] == 0)){
+	$skus = apiData('getProductSkus.do', array('pid'=>$info['productId']));
+	$skus['success'] && $skus = $skus['result'];
+}
+
 include_once('tpl/groupon_join_web.php');
 ?>
