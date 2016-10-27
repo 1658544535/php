@@ -127,8 +127,9 @@ switch($act){
             $data = array(
                 'touser' => $openid,
                 'template_id' => 'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
-                'url' => $site,//.'groupon_join.php?aid='.$orderInfo['attendId'],
-                'topcolor' => '#000000',
+//                 'url' => $site,//.'groupon_join.php?aid='.$orderInfo['attendId'],
+            	'url' => 'http://wxpdh.choupinhui.net/free.php?id=16',
+            	'topcolor' => '#000000',
                 'data' => array(
                     'first' => array(
                         'value' => '恭喜您拼团成功！我们将尽快为你发货。',
