@@ -10,6 +10,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="css/sm.min.css">
     <link rel="stylesheet" href="css/all.min.css">
+    <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/baiduTemplate.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/app.min.js' charset='utf-8'></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="/js/wxshare.js"></script>
 	<script type="text/javascript">
@@ -46,7 +51,8 @@
 								<span class="btn">更多拼团 ></span>
 							</a>
 						<?php }elseif($info['isGroup'] == 0){ ?>
-							<a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>">
+							<a id="openSku" data-href="order_join.php" data-ref="groupon">
+							<!-- <a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>"> -->
 								<div class="info">
 									<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
 									￥<span class="price1"><?php echo $info['groupPrice'];?></span>
@@ -195,6 +201,234 @@
 			
         </div>
 
+        <script>
+            $(document).on("pageInit", "#page-proTips", function(e, pageId, page) {
+				<?php if($info['productStatus'] == 1){ ?>
+					var jsonUrlParam = {"id":"<?php echo $grouponId;?>","pid":"<?php echo $info['productId'];?>","skuid":"","num":1,"free":"<?php echo $isGrouponFree;?>","aid":"<?php echo $attendId;?>"};
+					var clickBuy = false;
+
+					$("#openSku").on("click", function(){
+						$(".popup-sku").attr("data-href", $(this).attr("data-href"));
+						$("#sku-price").html($(this).find(".price1").html());
+						// if($(this).attr("data-ref") == "free"){
+						// 	$(".popup-sku .sku-number").hide();
+						// 	$("#buy-num").val("1");
+						// }else{
+							$(".popup-sku .sku-number").show();
+						// }
+						skuOpen();
+					});
+
+					//数量
+					$(".quantity .minus").on("click", function(){
+						var num = parseInt($(this).next().val());
+						if(num>1){
+							--num;
+							_genUrl({"num":num});
+							$(this).next().val(num);
+						}else{
+							return false;
+						}
+					});
+					$(".quantity .plus").on("click", function(){
+						var num = parseInt($(this).prev().val());
+						++num;
+						_genUrl({"num":num});
+						$(this).prev().val(num);
+					});
+
+					$("#buy").on("click", function(){
+						// if(clickBuy) $("#buy").attr("href", _genUrl());
+						if(clickBuy) {
+							var url = _genUrl();
+							location.href = url;
+							// console.log(url);
+						}
+					});
+
+					//打开sku弹窗
+					function skuOpen(){
+						$.showIndicator();          //打开加载指示器
+						$("#buy").attr("href", "javascript:;").addClass("gray");
+						
+						 var req = {
+							 msg: "",
+							 code: 1,
+							 data:  <?php echo empty($skus) ? '{}' : json_encode($skus);?> 
+						 }
+						 $(".popup-sku .info .img img").attr("src", req["data"]["validSKu"][0]["skuImg"]);
+
+						if(req.code>0){
+							var data = req.data;
+							//载入全部sku信息
+							for(var item in data["skuList"]){
+								var itemType = parseInt(data["skuList"][item]["skuType"]),
+									itemList = data["skuList"][item]["skuValue"],
+									itemHtml = '';
+								for(var list in itemList){
+									itemHtml += '<a>' + itemList[list]["optionValue"] + '</a>';
+								}
+								switch (itemType){
+									case 1:
+										$("#sku-color .list").html(itemHtml);
+										break;
+									case 2:
+										$("#sku-format .list").html(itemHtml);
+										break;
+								}
+							}
+
+							//将可选的sku存入一个全局变量
+							skuData = data["validSKu"];
+
+							//绑定点击事件
+							$(".sku-item .list a").on("click", function(){
+								skuItemClick($(this));
+							});
+							//sku默认选择套餐类型第一个
+							if($(".sku-item .list a.active").length<=0){
+								skuItemClick($("#sku-format .list a").eq(0));
+							}
+							function skuItemClick(obj){
+								var _this = obj;
+								clickBuy = false;
+								if(_this.hasClass("disable")) return;
+								$(".popup-sku").attr("data-skuId", "");
+								$("#buy").attr("href", "javascript:;").addClass("gray");
+								var skuColor = null, skuFormat = null, chooseNum = 0;
+								//点击样式
+								if(_this.hasClass("active")){
+									_this.removeClass("active");
+								}else{
+									_this.siblings('a').removeClass("active");
+									_this.addClass("active");
+								}
+
+								//选择的值
+								skuColor = $("#sku-color .list a.active").html();
+								skuFormat = $("#sku-format .list a.active").html();
+								if(!skuFormat && !skuColor){
+									$("#sku-choose").html("请选择规格和套餐类型");
+								}else{
+									var chooseTxt = '';
+									!!skuColor ? chooseTxt+='"' + skuColor + '"' : '';
+									!!skuFormat ? chooseTxt+='、"' + skuFormat + '"' : '';
+									$("#sku-choose").html('已选择' + chooseTxt);
+								}
+
+								if(!!skuFormat){
+									$("#sku-format .list a.active").siblings('a').addClass("disable");
+									$("#sku-color .list a").not(".active").addClass("disable");
+									for(var item in skuData){
+										if(skuData[item]["skuFormat"] == skuFormat){
+											$("#sku-color .list a").each(function(index, el) {
+												if($(el).html() == skuData[item]["skuColor"]){
+													$(el).removeClass("disable");
+												}
+											});
+										}
+									}
+								}
+								if(!!skuColor){
+									$("#sku-color .list a.active").siblings('a').addClass("disable");
+									$("#sku-format .list a").not(".active").addClass("disable");
+									for(var item in skuData){
+										if(skuData[item]["skuColor"] == skuColor){
+											$("#sku-format .list a").each(function(index, el) {
+												if($(el).html() == skuData[item]["skuFormat"]){
+													$(el).removeClass("disable");
+												}
+											});
+										}
+									}
+								}
+
+								if(!!skuFormat && !!skuColor){
+									var url = $(".popup-sku").attr("data-href"),
+										skuId = '';
+									var skuImg = '';
+									for(var item in skuData){
+										if(skuData[item]["skuColor"] == skuColor && skuData[item]["skuFormat"] == skuFormat){
+											// $(".popup-sku").attr("data-skuId", skuData[item]["id"]);
+											skuId = skuData[item]["id"];
+											skuImg = skuData[item]["skuImg"];
+										}
+									}
+									_genUrl({"skuid":skuId});
+									if(skuImg !="" && skuImg != null){
+										$(".popup-sku .info .img img").attr("src", skuImg);
+									}
+									$("#buy").removeClass("gray");
+									clickBuy = true;
+								}else if(!skuFormat && !skuColor){
+									$("#sku-color .list a, #sku-format .list a").removeClass("disable");
+									clickBuy = false;
+								}
+							}
+						}else{
+							$.toast(req.msg);
+						}
+						
+						$.popup(".popup-sku");      //弹出弹窗
+						$("#buy-num").val(1);
+						$.hideIndicator();          //关闭加载指示器
+					}
+
+					function _genUrl(_json){
+						if(typeof(_json) != "undefined"){
+							for(var o in _json){
+								jsonUrlParam[o] = _json[o];
+							}
+						}
+						var _arr = [];
+						for(var o in jsonUrlParam){
+							_arr.push(o+"="+jsonUrlParam[o]);
+						}
+						return $(".popup-sku").attr("data-href")+"?"+_arr.join("&");
+					}
+				
+				<?php } ?>
+
+            });
+        </script>
+
+		<?php if(!empty($skus)){ ?>
+        <div class="popup popup-sku" style="display:none">
+            <div>
+                <a href="javascript:;" class="close-popup"></a>
+                <div class="info">
+                    <div class="img"><img src="<?php echo $info['banners'][0]['bannerImage'];?>" /></div>
+                    <div class="main">
+                        <div class="name"><?php echo $info['products']['productName'];?></div>
+                        <div class="price">￥<span id="sku-price">-</span></div>
+                        <div class="skuTxt" id="sku-choose">请选择规格和套餐类型</div>
+                    </div>
+                </div>
+				<?php foreach($skus['skuList'] as $_sku){ ?>
+					<div class="sku-item" id="<?php if($_sku['skuType'] == 1){ ?>sku-color<?php }elseif($_sku['skuType'] == 2){ ?>sku-format<?php } ?>">
+						<h4 class="title1">
+							<?php if($_sku['skuType'] == 1){ ?>
+								规格
+							<?php }elseif($_sku['skuType'] == 2){ ?>
+								套餐类型
+							<?php } ?>
+						</h4>
+						<div class="list"></div>
+					</div>
+				<?php } ?>
+                <div class="sku-number">
+                    <span class="label">购买数量</span>
+                    <div class="quantity">
+                        <span class="minus">-</span>
+                        <input type="text" value="1" id="buy-num" class="num" />
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+                <a id="buy" href="javascript:;" class="go">确定</a>
+            </div>
+        </div>
+		<?php } ?>
+
         <?php if($showBlack){ ?>
         <div class="popup popup-share popup-share2">
             <a href="javascript:;" class="close-popup"></a>
@@ -206,9 +440,6 @@
         </div>
         <?php } ?>
     </div>
-    <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/app.min.js' charset='utf-8'></script>
 </body>
 
 </html>
