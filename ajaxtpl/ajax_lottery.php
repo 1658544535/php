@@ -1,0 +1,20 @@
+<?php
+define('HN1', true);
+require_once('../global.php');
+$Type = CheckDatas( 'type', '' );
+$page = max(1, intval($_POST['page']));
+
+//获取活动列表数据
+$LotteryList = apiData('lotteryListApi.do', array('type'=>$Type));
+
+if(!empty($LotteryList['result']))
+{
+	echo	ajaxJson( 1,'获取成功',$LotteryList['result'],$page);
+}
+else
+{
+	echo	ajaxJson( 0,'获取失败');
+}
+
+
+?>
