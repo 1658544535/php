@@ -664,7 +664,15 @@
   padding: 0.5rem 0;
   color: #979797;
   font-size: 0.65rem;
-  border-bottom: 1px solid #e7e7e7;
+}
+.deta-info .txt2 {
+  margin-top: -0.3rem;
+  padding: 0 0 0.5rem;
+  color: #979797;
+  font-size: 0.65rem;
+}
+.deta-info .tips {
+  border-top: 1px solid #e7e7e7;
 }
 .deta-info .tips img {
   display: block;
