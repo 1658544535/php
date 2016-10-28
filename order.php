@@ -44,7 +44,8 @@ $apiParam = array(
 	'channel' => 2,
 	'couponNo' => $cpnNo,
 );
-$skuId && $apiParam['skuLinkId'] = $skuId;
+//$skuId && $apiParam['skuLinkId'] = $skuId;
+$apiParam['skuLinkId'] = $skuId;
 
 ($orderType == 'join') && $apiParam['attendId'] = $attendId;
 $result = apiData('addOrderByPurchase.do', $apiParam);
