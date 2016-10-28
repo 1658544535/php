@@ -142,14 +142,14 @@ switch($act){
 	case 'specials'://专题列表
 		$catId = intval($_POST['id']);
 		$page = max(1, intval($_POST['page']));
-		$list = apiData('specialListApi.do', array('typeId'=>$catId,'pageNo'=>$page));
-		$list['success'] ? ajaxJson(1, '', $list['result'], $page) : ajaxJson(0, $list['error_msg']);
-		break;
-	case 'specials_fx':
-		//获取分享内容
-		$catId = intval($_POST['id']);
-		$fx = apiData('getShareContentApi.do', array('id'=>$catId,'type'=>12));
-		$fx['success'] ? ajaxJson(1, '', $fx['result'], $page) : ajaxJson(0, $fx['error_msg']);
+ 		$list = apiData('specialListApi.do', array('typeId'=>$catId,'pageNo'=>$page));	
+// 		$list['success'] ? ajaxJson(1, '', $list['result'], $page) : ajaxJson(0, $list['error_msg']);
+		$fx   = apiData('getShareContentApi.do', array('id'=>$catId,'type'=>12));
+		$arr  =array(
+				'list'=>$list['result'],
+				'fx'  =>$fx['result']
+		);
+		ajaxJson(1, '', $arr, $page);
 		break;
 	case 'special'://专题
 		$id = intval($_GET['id']);
