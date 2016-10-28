@@ -16,7 +16,10 @@ empty($info['saleSerNum']) && $info['saleSerNum'] = 0;
 $_wxUserInfo = $objWX->getUserInfo($openid);
 
 //没有头像则获取微信头像
-(($info['userImage'] == '') && $_wxUserInfo['headimgurl']) && $info['userImage'] = $_wxUserInfo['headimgurl'];
+if($info['userImage'] == ''){
+	$info['userImage'] = $_wxUserInfo['headimgurl'] ? $_wxUserInfo['headimgurl'] : '/images/def_user.png';
+}
+//(($info['userImage'] == '') && $_wxUserInfo['headimgurl']) && $info['userImage'] = $_wxUserInfo['headimgurl'];
 
 $footerNavActive = 'user';
 include "tpl/user_web.php";
