@@ -2772,6 +2772,9 @@
 .user-tab5 ul li {
   width: 20%;
 }
+.user-tabBar {
+  margin: 0;
+}
 .user-guess {
   margin-top: 0.5rem;
 }
@@ -3760,6 +3763,31 @@
   font-size: 0.7rem;
   color: #8f8f8f;
 }
+.pdk-form ul li.evaluate-txt {
+  padding: 0;
+  background: #f6f6f6;
+}
+.pdk-form ul li.evaluate-txt div.evaluate-txt-main {
+  margin: 0.5rem 0.5rem 0;
+}
+.pdk-form ul li.evaluate-txt textarea {
+  display: block;
+  width: 100%;
+  height: 3.5rem;
+  resize: none;
+  outline: none;
+  background: none;
+  border: none;
+  font-size: 0.65rem;
+  color: #333;
+}
+.pdk-form ul li.evaluate-txt div.evaluate-txt-num {
+  padding-right: 0.5rem;
+  text-align: right;
+  font-size: 0.55rem;
+  color: #b6b6b6;
+  line-height: 1.4rem;
+}
 .pdk-form ul li.last {
   margin-bottom: 0.5rem;
 }
@@ -4463,4 +4491,113 @@
   font-size: 0.65rem;
   background: #ff464e;
   border-radius: 0.25rem;
+}
+.evaluate-pro {
+  background: #fff;
+  padding: 0.9rem 0.7rem;
+  overflow: hidden;
+}
+.evaluate-pro .img {
+  float: left;
+  width: 4.2rem;
+  height: 4.2rem;
+  border: 1px solid #c9c9c9;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.evaluate-pro .img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.evaluate-pro .name {
+  margin-left: 4.7rem;
+  font-size: 0.75rem;
+  color: #1c1c1c;
+}
+.evaluate-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.evaluate-list ul li {
+  margin-top: 0.5rem;
+  background: #fff;
+  padding: 0 0.5rem;
+}
+.evaluate-list ul li .header {
+  padding: 0.25rem 0.1rem;
+  border-bottom: 1px solid #e7e7e7;
+}
+.evaluate-list ul li .header .img {
+  float: left;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.evaluate-list ul li .header .img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.evaluate-list ul li .header .info {
+  margin-left: 2.25rem;
+  font-size: 0;
+}
+.evaluate-list ul li .header .info .name,
+.evaluate-list ul li .header .info .time {
+  display: inline-block;
+  width: 50%;
+  font-size: 0.7rem;
+  color: #333;
+  line-height: 1.65rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.evaluate-list ul li .header .info .time {
+  text-align: right;
+  font-size: 0.6rem;
+  color: #8f8f8f;
+}
+.evaluate-list ul li .txt {
+  padding: 0.75rem 0;
+  font-size: 0.75rem;
+  color: #3d3d3d;
+}
+.evaluate-list ul li .imgs {
+  font-size: 0;
+  padding-bottom: 0.5rem;
+}
+.evaluate-list ul li .imgs > div {
+  position: relative;
+  display: inline-block;
+  width: 25%;
+  padding-bottom: 25%;
+  margin-right: 3%;
+  margin-bottom: 3%;
+  border: 1px solid #c9c9c9;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+.evaluate-list ul li .imgs > div img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.25rem;
+}
+.photo-browser-popup .photo-browser-swiper-container {
+  background: none!important;
+}
+.photo-browser-popup .bar-nav,
+.photo-browser-popup .bar-tab {
+  display: none;
+}
+.evaluate-null {
+  padding-bottom: 31.401%;
+  background: url(../images/evaluate.png) no-repeat 0 0;
+  background-size: 100% 100%;
 }
