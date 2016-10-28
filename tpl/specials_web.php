@@ -71,31 +71,31 @@
             </div>
 
             <script id='tpl_indexClass' type="text/template">
-                <%if(data["data"].length>0){%>
-                    <%for(var i=0;i<data["data"].length; i++){%>
+                <%if(data["data"]["list"].length>0){%>
+                    <%for(var i=0;i<data["data"]["list"].length; i++){%>
                         <div class="special-item">
-                            <a href="special.php?id=<%=data["data"][i].specialId%>" class="special-item-header swipe-handler">
+                            <a href="special.php?id=<%=data["data"]["list"][i].specialId%>" class="special-item-header swipe-handler">
                                 <div class="img">
-                                    <img src="<%=data["data"][i].specialImage%>" />
+                                    <img src="<%=data["data"]["list"][i].specialImage%>" />
                                 </div>
                                 <!--<div class="time">活动剩余时间<p class="downTime" data-timer="400"></p></div>-->
                             </a>
                             <div class="pro">
                                 <ul>
-									<%for(var j=0,jlen=data["data"][i]["productList"].length; j<jlen; j++){%>
+									<%for(var j=0,jlen=data["data"]["list"][i]["productList"].length; j<jlen; j++){%>
 										<li>
-											<a href="groupon.php?id=<%=data["data"][i]["productList"][j].activityId%>">
-												<div class="proImg"><img src="<%=data["data"][i]["productList"][j].productImage%>" /></div>
+											<a href="groupon.php?id=<%=data["data"]["list"][i]["productList"][j].activityId%>">
+												<div class="proImg"><img src="<%=data["data"]["list"][i]["productList"][j].productImage%>" /></div>
 												<div class="info">
-													<div class="title1"><%=data["data"][i]["productList"][j].productName%></div>
-													<div class="price"><span class="now">￥<%=data["data"][i]["productList"][j].price%></span><span class="old">￥<%=data["data"][i]["productList"][j].alonePrice%></span></div>
+													<div class="title1"><%=data["data"]["list"][i]["productList"][j].productName%></div>
+													<div class="price"><span class="now">￥<%=data["data"]["list"][i]["productList"][j].price%></span><span class="old">￥<%=data["data"]["list"][i]["productList"][j].alonePrice%></span></div>
 												</div>
 											</a>
 										</li>
 									<%}%>
 									<%if(jlen>6){%>
 									<li>
-                                        <a href="special.php?id=<%=data["data"][i].specialId%>" class="special-more"></a>
+                                        <a href="special.php?id=<%=data["data"]["list"][i].specialId%>" class="special-more"></a>
                                     </li>
 									<%}%>
                                 </ul>
