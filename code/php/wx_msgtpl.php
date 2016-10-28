@@ -152,8 +152,10 @@ switch($act){
 			$sendResult = $objWX->sendTemplateMessage($data);
 
 			foreach($orderInfo['userList'] as $_openid){
-				$data['touser'] = $_openid['openid'];
-				$sendResult = $objWX->sendTemplateMessage($data);
+				if($_openid['openid'] != $openid){
+					$data['touser'] = $_openid['openid'];
+					$sendResult = $objWX->sendTemplateMessage($data);
+				}
 			}
             
             if($sendResult !== false){
