@@ -23,7 +23,13 @@
 	var link  = "<?php echo $site;?>specials.php";
 	var title ="<?php echo $cates['name'];?>";
 	var desc  ="拼得精彩";
-	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title ,desc);
+
+    var wxappId = '<?php echo $wxShareParam['appId'];?>',
+        wxtimestamp = <?php echo $wxShareParam['timestamp'];?>,
+        wxnonceStr = '<?php echo $wxShareParam['nonceStr'];?>',
+        wxsignature = '<?php echo $wxShareParam['signature'];?>';
+    wxshare(false, wxappId, wxtimestamp, wxnonceStr, wxsignature, imgUrl, link, title ,desc);
+	
 	</script>
 </head>
 
