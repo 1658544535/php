@@ -19,9 +19,9 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="/js/wxshare.js"></script>
 	<script type="text/javascript">
-	var imgUrl = "<?php echo $ObjBanner['result']['banner'];?>";
-	var link  = "<?php echo $site;?>product_guess_price.php";
-	var title ="猜价免费赢奖品";
+	var imgUrl = "<?php echo $fx['image'];?>";
+	var link   = "<?php echo $fx['url'];?>";
+	var title  = "<?php echo $fx['title'];?>";
 	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title);
 	</script>
 </head>

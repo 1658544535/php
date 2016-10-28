@@ -19,6 +19,7 @@ $info = apiData('openGroupActivityApi.do', $apiParam);
 !$info['success'] && redirect($backUrl, $info['error_msg']);
 
 $info = $info['result'];
+
 if(!empty($info['waitGroupList'])){
 	foreach($info['waitGroupList'] as $k => $v){
 		$info['waitGroupList'][$k]['remainSec'] = strtotime($v['endTime']) - strtotime($v['nowTime']);
@@ -46,7 +47,9 @@ $collected = ($info['isCollect'] == 1) ? true : false;
 $likes = apiData('guessYourLikeApi.do', array('activityId'=>$info['activityId'], 'userId'=>$userid));
 $likes = $likes['result'];
 
-
+//获取分享内容
+$fx = apiData('getShareContentApi.do', array('id'=>$info['activityId'], 'type'=>8));
+$fx = $fx['result'];
 
 include_once('tpl/groupon_web.php');
 ?>

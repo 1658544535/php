@@ -27,11 +27,16 @@ switch($act)
     case 'detail':
     	    	
     	//获取活动商品信息
-    	$ObjGrouponInfo = apiData('readyJoinApi.do', array('activityId'=>$gId,'userId'=>$userid));
-    
-        
     	
+    	$ObjGrouponInfo = apiData('readyJoinApi.do', array('activityId'=>$gId,'userId'=>$userid));
     	$ObjUser = apiData('myInfoApi.do', array('userId'=>$userid));
+    	
+    	
+    	//获取分享内容
+    	$fx = apiData('getShareContentApi.do', array('id'=>$gId, 'type'=>11));
+    	$fx = $fx['result'];
+    	
+    	
     	//获取轮播图
 
     	$ProductImage = apiData('productFocusImagsApi.do', array('productId'=>$ObjGrouponInfo['result']['productId']));
@@ -143,10 +148,12 @@ switch($act)
 	default:
       
         //获取活动banner图
-		
-		
 		$ObjBanner = apiData('guessBannerApi.do');
 		$ObjGrouponList = apiData('guessActivityApi.do', array('pageNo'=>1));
+		
+		//获取分享内容
+		$fx = apiData('getShareContentApi.do', array('id'=>10, 'type'=>10));
+		$fx = $fx['result'];
 		$footerNavActive = 'guess';
 		include "tpl/product_guess_price_list_web.php";
 }

@@ -46,5 +46,11 @@ if(($info['status'] == 0) && ($info['userIsHead'] != 1) && ($info['isGroup'] == 
 	$skus['success'] && $skus = $skus['result'];
 }
 
+
+//获取分享内容
+$fx = apiData('getShareContentApi.do', array('id'=>$attendId, 'type'=>9));
+$fx = $fx['result'];
+
+
 include_once('tpl/groupon_join_web.php');
 ?>

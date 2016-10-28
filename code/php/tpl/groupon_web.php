@@ -19,10 +19,10 @@
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="/js/wxshare.js"></script>
 	<script type="text/javascript">
-	var imgUrl = "<?php echo $info['banners'][0]['bannerImage'];?>";
-	var link   = window.location.href;
-	var title  = "<?php echo $info['productPrice'];?>元的<?php echo $info['productName'];?>";
-	var desc   = "<?php echo $info['productSketch'];?>";
+	var imgUrl = "<?php echo $fx['image'];?>";
+	var link   = "<?php echo $fx['url'];?>";
+	var title  = "<?php echo $fx['title'];?>";
+	var desc   = "<?php echo $fx['content'];?>";
 	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 	</script>
 </head>
