@@ -1318,12 +1318,16 @@
   float: right;
   width: 3.65rem;
   height: 1.25rem;
+  margin-left: 0.5rem;
   line-height: 1.25rem;
   border-radius: 0.15rem;
   font-size: 0.7rem;
   color: #fff;
   text-align: center;
   background: #ff464e;
+}
+.freeList .list-container li a .info .price .btn.gray {
+  background: #cecece;
 }
 .freeList .list-container li a .info .sub {
   position: absolute;
@@ -1602,7 +1606,38 @@
   font-size: 0.6rem;
   text-decoration: line-through;
 }
-.proTips-5 ~ .content {
+.proTips-6 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: .35rem 0;
+  background: #fff;
+  border-top: 1px solid #f4f8fb;
+}
+.proTips-6 div {
+  margin: 0 0.5rem;
+  height: 1.85rem;
+  border-radius: 1.5rem;
+  table-layout: fixed;
+  overflow: hidden;
+}
+.proTips-6 a {
+  width: 1%;
+  display: table-cell;
+  vertical-align: middle;
+  height: 1.85rem;
+  line-height: 1.85rem;
+  font-size: 0.75rem;
+  color: #fff;
+  text-align: center;
+  background: #ff464e;
+}
+.proTips-6 a.light {
+  background: #ff6b71;
+}
+.proTips-5 ~ .content,
+.proTips-6 ~ .content {
   bottom: 2.6rem;
 }
 /* 猜价格 */
