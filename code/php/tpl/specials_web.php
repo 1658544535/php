@@ -19,10 +19,10 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="/js/wxshare.js"></script>
 	<script type="text/javascript">
-	var imgUrl = "<?php echo $site;?>images/wxLOGO.png";
-	var link  = "<?php echo $site;?>specials.php";
-	var title ="<?php echo $cates['name'];?>";
-	var desc  ="拼得精彩";
+	var imgUrl = "<?php echo $fx['image'];?>";
+	var link  = "<?php echo $fx['url'];?>";
+	var title ="<?php echo $fx['title'];;?>";
+	var desc  ="<?php echo $fx['content'];;?>";
 
     var wxappId = '<?php echo $wxShareParam['appId'];?>',
         wxtimestamp = <?php echo $wxShareParam['timestamp'];?>,
