@@ -22,7 +22,7 @@ if($state){
     sendWXTplMsg('pay', array('oid'=>$orderId));
     if($orderInfo['result']['isOpen'] == 1){//开团
         sendWXTplMsg('open', array('oid'=>$orderId));
-    }elseif($orderInfo['result']['isSuccess'] == 1){//拼团
+    }elseif(!in_array($orderInfo['result']['source'], array(3,4)) && ($orderInfo['result']['isSuccess'] == 1)){//是拼团且成功
         sendWXTplMsg('join', array('oid'=>$orderId));
     }
     redirect($referUrl, '支付成功');
