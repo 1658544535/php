@@ -151,6 +151,11 @@
                 <div class="pdk-submit">
                     <input type="button" onClick="location.href='/pindeke_apply.php?act=edit&uid=<?php echo $userid;?>&id=<?php echo $Objinfo['pdkId'];?>'" value="重新提交信息" />
                 </div>
+                <?php }elseif($Objinfo['status'] ==0){?>
+                <div class="placeholder-50"></div>
+                <div class="pdk-submit">
+                    <input type="button" onClick="location.href='/index.php'" value="返回首页" />
+                </div>
                 <?php }?>
 <?php }?>
                 <div class="placeholder-50"></div>
