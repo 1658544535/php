@@ -22,7 +22,7 @@
     <div class="page-group" id="page-lottery">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back">
+                <a href="index.php" class="button button-link button-nav pull-left">
                     <span class="icon icon-back"></span>
                 </a>
                 <a class="button button-link button-nav pull-right share">
@@ -31,22 +31,22 @@
                 <h1 class="title">0.1抽奖</h1>
             </header>
 
-            <ul class="bar bar-tab user-tab user-tabBar" data-href="ajaxtpl/ajax_lottery.php">
-                <li class="tab-item tab-item2 active" data-type="1">
+            <nav class="bar bar-tab">
+                <a href="lottery_new.php?type=1" class="tab-item tab-item2 <?php if($Type ==1){?>active<?php }?>">
                     <span class="icon i-lotterying"></span>
                     <span class="tab-label">正在进行</span>
-                </li>
-                <li class="tab-item tab-item2" data-type="2">
+                </a>
+                <a href="lottery_new.php?type=2" class="tab-item tab-item2 <?php if($Type ==2){?>active<?php }?>">
                     <span class="icon i-lotteryed"></span>
                     <span class="tab-label">查看往期</span>
-                </li>
-            </ul>
+                </a>
+            </nav>
 
             <div class="content native-scroll">
                 <?php if($Type ==1){?>
                 <section class="lottery-rule"><img src="<?php echo $Banner['banner'];?>" /></section>
                 <?php }?>
-                <section class="index-seckill clickbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="">
+                <section class="index-seckill pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_lottery.php?type=<?php echo $Type;?>">
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader">
@@ -54,8 +54,8 @@
                     </div>
                 </section>
             </div>
-<?php if($Type ==1){?>        
-            <script id='tpl_pull_tab' type="text/template">
+        
+            <script id='tpl_pull' type="text/template">
                 <%if(data["data"].length>0){%>
                     <%for(var i=0;i<data["data"].length; i++){%>
                         <li><a href="groupon.php?id=<%=data["data"][i]["activityId"]%>">
@@ -66,28 +66,11 @@
                                     <span class="price1">￥<%=data["data"][i]["productPrice"]%></span>
                                 </div>
                                 <div class="btn">
+                                <?php if($Type ==1){?>
                                     <span class="red">立即开团</span>
-                                </div>
-                            </div>
-                        </a></li>
-                    <%}%>
-                <%}else if(data["pageNow"] == 1){%>
-                    <div class="tips-null">暂无抽奖</div>
-                <%}%>
-            </script>
-<?php }else{?>
-			<script id='tpl_pull_tab' type="text/template">
-                <%if(data["data"].length>0){%>
-                    <%for(var i=0;i<data["data"].length; i++){%>
-                        <li><a href="lottery_new.php?act=comment_list&aid=<%=data["data"][i]["activityId"]%>&pid=<%=data["data"][i]["productId"]%>">
-                            <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
-                            <div class="info">
-                                <div class="name"><span class="num"><%=data["data"][i]["groupNum"]%>人团</span><%=data["data"][i]["productName"]%></div>
-                                <div class="price">
-                                    <span class="price1">￥<%=data["data"][i]["productPrice"]%></span>
-                                </div>
-                                <div class="btn">
+                                <?php }else{?>
                                     <span class="red">查看评论</span>
+                                <?php }?>
                                 </div>
                             </div>
                         </a></li>
@@ -96,7 +79,7 @@
                     <div class="tips-null">暂无抽奖</div>
                 <%}%>
             </script>
-     <?php }?>   
+        
         </div>
 
         <div class="popup popup-share">
