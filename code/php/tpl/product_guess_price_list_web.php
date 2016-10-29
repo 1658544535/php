@@ -22,7 +22,8 @@
 	var imgUrl = "<?php echo $fx['image'];?>";
 	var link   = "<?php echo $fx['url'];?>";
 	var title  = "<?php echo $fx['title'];?>";
-	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title);
+	var desc   = "<?php echo $fx['content'];?>";
+	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title,desc);
 	</script>
 </head>
 
