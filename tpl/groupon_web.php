@@ -56,10 +56,17 @@
 						</div>
 						<div class="name"><?php echo $info['productName'];?></div>
 						<div class="txt"><?php echo $info['productSketch'];?></div>
+						<?php if($info['activityType'] == 6){ ?>
+							<div class="txt2">【活动说明：活动 <?php echo $info['startTime'];?> 开始，限量 <?php echo $info['limitNum'];?> 份，售完即止！商品售完时未能成团者即视为活动失败】</div>
+						<?php } ?>
 						<div class="tips"><img src="images/deta-tips.png" /></div>
+						<?php if($info['activityType'] == 6){ ?>
+							<?php $seckillStateIcons = array('notstart'=>'soon', 'end'=>'over', 'sellout'=>'out', 'selling'=>'ing'); ?>
+							<div class="icon"><img src="images/seckill-<?php echo $seckillStateIcons[$seckillState];?>.png" /></div>
+						<?php } ?>
 					</section>
 
-					<?php if(!$isFreeBuy && !empty($info['waitGroupList'])){ ?>
+					<?php if($showWaitGroupList && !empty($info['waitGroupList'])){ ?>
 					<section class="deta-group">
 						<h3 class="title1">欢迎您直接参与其他小伙伴发起的拼团</h3>
 						<ul class="list">
@@ -67,7 +74,7 @@
 							<li>
 								<a class="btn" href="groupon_join.php?aid=<?php echo $_active['groupRecId'];?>&pid=<?php echo $info['productId'];?>&free=<?php echo ($info['activityType']==2)?1:0;?>">参团&nbsp;&gt;</a>
 								<div class="info">
-									<div class="img"><img src="<?php echo $_active['userImage'];?>" /></div>
+									<div class="img"><img src="<?php echo $_active['userImage']?$_active['userImage']:'/images/def_user.png';?>" /></div>
 									<div class="name"><?php echo $_active['userName'];?></div>
 									<div class="num">还差 <?php echo $_active['oweNum'];?> 人成团</div>
 									<div class="timer" data-timer="<?php echo $_active['remainSec'];?>"><i class="icon-timer"></i><span></span> 后结束</div>
@@ -115,31 +122,54 @@
 						<span class="icon i-collection"></span>
 						<span class="tab-label">收藏</span>
 					</a>
-					<div class="buy buy-m2">
-						<?php if($info['productStatus'] == 0){ ?>
-							<a style="background-color:#999">已下架</a>
-							<a class="more" href="/">查看更多</a>
-						<?php }else{ ?>
-							<!-- <a class="one" href="order_alone.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-alone"> -->
-							<a class="one" data-href="order_alone.php" id="btn-alone" data-ref="alone">
-								 <p>￥<b><?php echo $info['alonePrice'];?></b></p>
-								 <p>单独购买</p>
-							</a>
-							<?php if($isFreeBuy){ ?>
-								<!-- <a class="more" href="order_free.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
-								<a class="more" data-href="order_free.php" id="btn-groupon" data-ref="free">
-									 <p>￥<b>0.00</b></p>
-									 <p><?php echo $info['groupNum'];?>人团</p>
-								</a>
-							<?php }else{ ?>
-								<!-- <a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
-								<a class="more" data-href="order_groupon.php" id="btn-groupon" data-ref="groupon">
-									 <p>￥<b><?php echo $info['productPrice'];?></b></p>
-									 <p><?php echo $info['groupNum'];?>人团</p>
-								</a>
+					<?php switch($info['activityType']){
+						case 6://限时秒杀
+							switch($seckillState){
+								case 'end': ?>
+								<?php case 'sellout': ?>
+									<div class="more1 more1-m2"><a href="seckill.php">更多拼团</a></div>
+								<?php break; ?>
+								<?php case 'notstart': ?>
+									<div class="more1 more1-m2"><a href="seckill.php">即将开始</a></div>
+								<?php break; ?>
+								<?php case 'selling': ?>
+									<div class="buy more1 more1-m2">
+										<a id="openSku" data-href="order_seckill.php">
+											 <p>￥<b><?php echo $info['productPrice'];?></b></p>
+											 <p><?php echo $info['groupNum'];?>人成团</p>
+										</a>
+									</div>
+								<?php break; ?>
 							<?php } ?>
-						<?php } ?>
-					</div>
+						<?php break; ?>
+						<?php default: ?>
+							<div class="buy buy-m2">
+								<?php if($info['productStatus'] == 0){ ?>
+									<a style="background-color:#999">已下架</a>
+									<a class="more" href="/">查看更多</a>
+								<?php }else{ ?>
+									<!-- <a class="one" href="order_alone.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-alone"> -->
+									<a class="one" data-href="order_alone.php" id="btn-alone" data-ref="alone">
+										 <p>￥<b><?php echo $info['alonePrice'];?></b></p>
+										 <p>单独购买</p>
+									</a>
+									<?php if($isFreeBuy){ ?>
+										<!-- <a class="more" href="order_free.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
+										<a class="more" data-href="order_free.php" id="btn-groupon" data-ref="free">
+											 <p>￥<b>0.00</b></p>
+											 <p><?php echo $info['groupNum'];?>人团</p>
+										</a>
+									<?php }else{ ?>
+										<!-- <a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
+										<a class="more" data-href="order_groupon.php" id="btn-groupon" data-ref="groupon">
+											 <p>￥<b><?php echo $info['productPrice'];?></b></p>
+											 <p><?php echo $info['groupNum'];?>人团</p>
+										</a>
+									<?php } ?>
+								<?php } ?>
+							</div>
+						<?php break; ?>
+					<?php } ?>
 				</div>
 			<?php } ?>
         </div>
@@ -172,17 +202,29 @@
 					var jsonUrlParam = {"id":"<?php echo $grouponId;?>","pid":"<?php echo $info['productId'];?>","skuid":"","num":1};
 					var clickBuy = false;
 
-					$(".deta-footer .one, .deta-footer .more").on("click", function(){
-						$(".popup-sku").attr("data-href", $(this).attr("data-href"));
-						$("#sku-price").html($(this).find("b").html());
-						if($(this).attr("data-ref") == "free"){
-							$(".popup-sku .sku-number").hide();
-							$("#buy-num").val("1");
-						}else{
-							$(".popup-sku .sku-number").show();
-						}
-						skuOpen();
-					});
+					<?php switch($info['activityType']){
+						case 6://限时秒杀
+					?>
+							$("#openSku").on("click", function(){
+								$(".popup-sku").attr("data-href", $(this).attr("data-href"));
+								$("#sku-price").html($(this).find("b").html());
+								skuOpen();
+							});
+						<?php break;?>
+						<?php default: ?>
+							$(".deta-footer .one, .deta-footer .more").on("click", function(){
+								$(".popup-sku").attr("data-href", $(this).attr("data-href"));
+								$("#sku-price").html($(this).find("b").html());
+								if($(this).attr("data-ref") == "free"){
+									$(".popup-sku .sku-number").hide();
+									$("#buy-num").val("1");
+								}else{
+									$(".popup-sku .sku-number").show();
+								}
+								skuOpen();
+							});
+						<?php break;?>
+					<?php } ?>
 
 					//数量
 					$(".quantity .minus").on("click", function(){

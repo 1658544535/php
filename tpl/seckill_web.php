@@ -50,113 +50,43 @@
             <div class="content native-scroll">
                 <section class="index-seckill">
                     <a href="sellout.php" class="seckill-out">查看今天已售罄商品</a>
-					<?php foreach($info as $_info){ ?>
-						<h3 class="seckill-title<?php if($_info['isStart']==1){ ?> active<?php } ?>"><?php echo $_info['time'];?><?php if($_info['isStart']==1){ ?> 正在进行中<?php } ?></h3>
-						<ul class="list-container">
-							<?php foreach($_info['secKillList'] as $v){ ?>
-								<li>
-									<a href="groupon.php?id=<?php echo $v['activityId'];?>&pid=<?php echo $v['productId'];?>">
-										<div class="img"><img src="<?php echo $v['productImage'];?>" /></div>
-										<div class="info">
-											<div class="name"><?php echo $v['productName'];?></div>
-											<div class="price">
-												<span class="price1">￥<?php echo $v['productPrice'];?></span>
-												<span class="price2">￥<?php echo $v['alonePrice'];?></span>
-												<div class="range">
-													<div class="range-main" style="width:<?php echo $v['salePerce'];?>"></div>
-													<div class="num"><?php echo $v['salePerce'];?></div>
+					<?php if(empty($info)){ ?>
+						<div class="tips-null">暂无活动</div>
+					<?php }else{ ?>
+						<?php foreach($info as $_info){ ?>
+							<h3 class="seckill-title<?php if($_info['isStart']==1){ ?> active<?php } ?>"><?php echo $_info['time'];?><?php if($_info['isStart']==1){ ?> 正在进行中<?php } ?></h3>
+							<ul class="list-container">
+								<?php foreach($_info['secKillList'] as $v){ ?>
+									<li>
+										<a href="groupon.php?id=<?php echo $v['activityId'];?>&pid=<?php echo $v['productId'];?>">
+											<div class="img"><img src="<?php echo $v['productImage'];?>" /></div>
+											<div class="info">
+												<div class="name"><?php echo $v['productName'];?></div>
+												<div class="price">
+													<span class="price1">￥<?php echo $v['productPrice'];?></span>
+													<span class="price2">￥<?php echo $v['alonePrice'];?></span>
+													<div class="range">
+														<div class="range-main" style="width:<?php echo $v['salePerce'];?>"></div>
+														<div class="num"><?php echo $v['salePerce'];?></div>
+													</div>
+												</div>
+												<div class="btn">
+													<?php if($v['isSellOut'] == 1){ ?>
+														<span class="gray">已售罄</span>
+													<?php }elseif($_info['isStart'] == 1){ ?>
+														<span class="red">去抢购</span>
+													<?php }else{ ?>
+														<span class="orange">即将开抢</span>
+														<p class="txt orange">限量<?php echo $v['limitNum'];?>件</p>
+													<?php } ?>
 												</div>
 											</div>
-											<div class="btn">
-												<?php if($v['isSellOut'] == 1){ ?>
-													<span class="gray">已售罄</span>
-												<?php }elseif($_info['isStart'] == 1){ ?>
-													<span class="red">去抢购</span>
-												<?php }else{ ?>
-													<span class="orange">即将开抢</span>
-													<p class="txt orange">限量<?php echo $v['limitNum'];?>件</p>
-												<?php } ?>
-											</div>
-										</div>
-									</a>
-								</li>
-							<?php } ?>
-						</ul>
+										</a>
+									</li>
+								<?php } ?>
+							</ul>
+						<?php } ?>
 					<?php } ?>
-
-
-					<?php
-					/*
-                    <h3 class="seckill-title active">10:00 正在进行中</h3>
-                    <ul class="list-container">
-                        <li><a href="#">
-                            <div class="img"><img src="images/img/deta.jpg" /></div>
-                            <div class="info">
-                                <div class="name">【18个月】auby 澳贝生活体验馆1-3岁幼儿童玩具 早教 婴儿玩具</div>
-                                <div class="price">
-                                    <span class="price1">￥39</span>
-                                    <span class="price2">￥98</span>
-                                    <div class="range">
-                                        <div class="range-main" style="width:39%"></div>
-                                        <div class="num">39%</div>
-                                    </div>
-                                </div>
-                                <div class="btn">
-                                    <span class="red">去抢购</span>
-                                </div>
-                            </div>
-                        </a></li>
-                        <li><a href="#">
-                            <div class="img"><img src="images/img/deta.jpg" /></div>
-                            <div class="info">
-                                <div class="name">【18个月】auby 澳贝生活体验馆1-3岁幼儿童玩具 早教 婴儿玩具</div>
-                                <div class="price">
-                                    <span class="price1">￥39</span>
-                                    <span class="price2">￥98</span>
-                                    <div class="range">
-                                        <div class="range-main" style="width:100%"></div>
-                                        <div class="num">100%</div>
-                                    </div>
-                                </div>
-                                <div class="btn">
-                                    <span class="gray">已售罄</span>
-                                </div>
-                            </div>
-                        </a></li>
-                    </ul>
-                    <h3 class="seckill-title">10:00 正在进行中</h3>
-                    <ul class="list-container">
-                        <li><a href="#">
-                            <div class="img"><img src="images/img/deta.jpg" /></div>
-                            <div class="info">
-                                <div class="name">【18个月】auby 澳贝生活体验馆1-3岁幼儿童玩具 早教 婴儿玩具</div>
-                                <div class="price">
-                                    <span class="price1">￥39</span>
-                                    <span class="price2">￥98</span>
-                                </div>
-                                <div class="btn">
-                                    <span class="orange">即将开抢</span>
-                                    <p class="txt orange">限量500件</p>
-                                </div>
-                            </div>
-                        </a></li>
-                        <li><a href="#">
-                            <div class="img"><img src="images/img/deta.jpg" /></div>
-                            <div class="info">
-                                <div class="name">【18个月】auby 澳贝生活体验馆1-3岁幼儿童玩具 早教 婴儿玩具</div>
-                                <div class="price">
-                                    <span class="price1">￥39</span>
-                                    <span class="price2">￥98</span>
-                                </div>
-                                <div class="btn">
-                                    <span class="orange">即将开抢</span>
-                                    <p class="txt orange">限量500件</p>
-                                </div>
-                            </div>
-                        </a></li>
-                    </ul>
-					*/
-					?>
                 </section>
             </div>
 
