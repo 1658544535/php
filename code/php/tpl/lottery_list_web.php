@@ -58,8 +58,13 @@
             <script id='tpl_pull' type="text/template">
                 <%if(data["data"].length>0){%>
                     <%for(var i=0;i<data["data"].length; i++){%>
-                        <li><a href="groupon.php?id=<%=data["data"][i]["activityId"]%>">
-                            <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
+                       <li>
+                       <?php if($Type ==1){?>                        
+                         <a href="groupon.php?id=<%=data["data"][i]["activityId"]%>">
+                       <?php }else{?>     
+                         <a href="lottery_new.php?act=icomment_list&aid=<%=data["data"][i]["activityId"]%>">
+                       <?php }?>
+                           <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
                             <div class="info">
                                 <div class="name"><span class="num"><%=data["data"][i]["groupNum"]%>人团</span><%=data["data"][i]["productName"]%></div>
                                 <div class="price">
