@@ -22,7 +22,7 @@
     <div class="page-group" id="page-myLottery">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="">
+                <a class="button button-link button-nav pull-left back" href="user.php">
                     <span class="icon icon-back"></span>
                 </a>
                 <h1 class="title">我的抽奖</h1>

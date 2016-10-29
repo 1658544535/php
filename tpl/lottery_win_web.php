@@ -39,7 +39,7 @@
                     </div>
                 </section>
 
-                <section class="deta-group pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="">
+                <section class="deta-group pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_lottery_win.php">
                     <h3 class="title1">获奖用户列表</h3>
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->

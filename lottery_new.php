@@ -34,7 +34,7 @@ switch($act)
     	include_once('tpl/lottery_comment_list_web.php');
     	break;
     
-   case 'comment':
+    case 'comment':
      	//提交评论页面
    	    $proImage   	    = CheckDatas( 'proimage', '' );
    	    $proName   	        = CheckDatas( 'proname', '' );
@@ -69,7 +69,7 @@ switch($act)
 				foreach($upImgs as $v){
 					file_exists(IMAGE_UPLOAD_DIR.$v) && unlink(IMAGE_UPLOAD_DIR.$v);
 				}
-				redirect('lottery_new.php?act=complete', '提交成功');
+				redirect('lottery_new.php?act=complete&aid='.$aId.'&uid='.$userid, '提交成功');
 			}else{
 				redirect($backUrl, $result['error_msg']);
 			}
@@ -99,34 +99,31 @@ switch($act)
 	
 	case 'complete':
 		//提交成功后页面
-		$LikeList = apiData('guessYourLikeApi.do', array('activityId'=>$aId,'userId'=>$userid));
+		
+		$LikeList = apiData('guessYourLikeApi.do', array('activityId'=>$aId,'userId'=>$uId));
 		$LikeList = $LikeList['result'];
 		include_once('tpl/lottery_complete_web.php');
 		break;
 		
-	case 'complete':
-		//提交成功后页面
-		$LikeList = apiData('guessYourLikeApi.do', array('activityId'=>$aId,'userId'=>$userid));
-		$LikeList = $LikeList['result'];
-		include_once('tpl/lottery_complete_web.php');
-		break;
 		
     case 'winning':
     	//获取中奖数据
-    	$winInfo = apiData('prizeDetail.do', array('attendId'=>$attId));
+    	$winInfo = apiData('prizeDetail.do', array('activityId'=>$aId));
     	$winInfo = $winInfo['result'];
     	include_once('tpl/lottery_win_web.php');
     	break;
+
     
     	default:
-    	
+    		//获取顶部图片数据
+    		
+    		$Banner = apiData('prizeBannerApi.do');
+    		$Banner = $Banner['result'];
+    		// $LotteryList = apiData('lotteryListApi.do', array('type'=>$Type));
+    		include_once('tpl/lottery_list_web.php');
    
 }
 
-//获取顶部图片数据
-$Banner = apiData('prizeBannerApi.do');
-$Banner = $Banner['result'];
-// $LotteryList = apiData('lotteryListApi.do', array('type'=>$Type));
-include_once('tpl/lottery_list_web.php');
+
 
 ?>
