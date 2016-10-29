@@ -84,6 +84,9 @@
 .bar-tab .tab-item .i-user {
   background-position: 0 -3.6rem;
 }
+.bar-tab .tab-item .i-new {
+  background-position: 0 -10.8rem;
+}
 .bar-tab .tab-item .i-seckill-today {
   background-position: 0 -4.8rem;
 }
@@ -110,6 +113,9 @@
 }
 .bar-tab .tab-item.active .i-user {
   background-position: -1.2rem -3.6rem;
+}
+.bar-tab .tab-item.active .i-new {
+  background-position: -1.2rem -10.8rem;
 }
 .bar-tab .tab-item.active .i-seckill-today {
   background-position: -1.2rem -4.8rem;
@@ -237,7 +243,6 @@
 .index-banner.swiper-container {
   position: relative;
   padding-bottom: 54.6875%;
-  margin-bottom: 0.5rem;
 }
 .index-banner.swiper-container .swiper-wrapper {
   position: absolute;
@@ -273,11 +278,57 @@
 .index-page.swiper-container {
   min-height: 100%;
 }
+/*首页菜单*/
+.index-menu {
+  table-layout: fixed;
+  margin-bottom: 0.5rem;
+  background: #fff;
+}
+.index-menu a {
+  display: table-cell;
+  width: 1%;
+  height: 4.9rem;
+  padding: 0.7rem 0;
+  font-size: .7rem;
+  color: #1c1c1c;
+  text-align: center;
+}
+.index-menu a span.index-menuIcon {
+  display: block;
+  width: 45px;
+  height: 45px;
+  margin: 0 auto;
+  background: url(../images/index-menu.png) no-repeat 0 0;
+  background-size: 100% auto;
+}
+.index-menu a span.index-menu-i1 {
+  background-position: 0 0;
+}
+.index-menu a span.index-menu-i2 {
+  background-position: 0 -45px;
+}
+.index-menu a span.index-menu-i3 {
+  background-position: 0 -90px;
+}
+.index-menu a span.index-menu-i4 {
+  background-position: 0 -135px;
+}
+.index-menu a span.txt {
+  display: block;
+  padding-top: 0.6rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 /*首页主页产品*/
+.index-index {
+  background-color: #fff;
+}
 .index-index .list-container {
   list-style: none;
   margin: 0;
   padding: 0;
+  background: #f4f8fb;
 }
 .index-index .list-container li {
   padding-bottom: 0.85rem;
