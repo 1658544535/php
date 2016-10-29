@@ -51,5 +51,24 @@ $likes = $likes['result'];
 $fx = apiData('getShareContentApi.do', array('id'=>$info['activityId'], 'type'=>8));
 $fx = $fx['result'];
 
+//是否显示参团列表
+//秒杀各状态
+if($info['activityType'] == 6){
+	switch($info['activityStatus']){
+		case 0://未开始
+			$seckillState = 'notstart';
+			break;
+		case 2://已结束
+			$seckillState = 'end';
+			break;
+		default://活动中
+			$seckillState = ($info['isSellOut'] == 1) ? 'sellout' : 'selling';
+			break;
+	}
+	$showWaitGroupList = ($seckillState == 'selling') ? true : false;
+}else{
+	$showWaitGroupList = $isFreeBuy ? false : true;
+}
+
 include_once('tpl/groupon_web.php');
 ?>
