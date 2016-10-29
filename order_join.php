@@ -28,7 +28,7 @@ $num = max(1, $num);
 $isGrouponFree = intval($_GET['free']);
 
 $skuId = intval($_GET['skuid']);
-empty($skuId) && $skuId = '';
+empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
 $info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>$isGrouponFree?2:1,'uid'=>$userid));
 if($info['success']){
 	$info = $info['result'];
