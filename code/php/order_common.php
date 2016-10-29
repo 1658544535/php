@@ -20,6 +20,7 @@ $canDispatch = (!empty($address) && in_array($address['province'], $unSendProvic
 
 $_SESSION['order']['productId'] = $productId;
 $_SESSION['order']['addressId'] = $addrId;
+$_SESSION['order']['sku'] = $skuId;
 
 //优惠券
 $cpns = apiData('getValidUserCoupon.do', array('pid'=>$productId,'price'=>$info['sumPrice'],'uid'=>$userid));

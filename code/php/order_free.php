@@ -25,7 +25,7 @@ $time = time();
 $num = 1;
 
 $skuId = intval($_GET['skuid']);
-empty($skuId) && $skuId = '';
+empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
 $info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'pid'=>$productId,'skuLinkId'=>$skuId,'source'=>2,'uid'=>$userid));
 if($info['success']){
 	$info = $info['result'];
