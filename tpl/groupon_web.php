@@ -53,10 +53,18 @@
 							<span class="sales">累积销量：<?php echo $info['proSellrNum'];?>件</span>
 							￥<span class="nowPrice"><?php echo $info['productPrice'];?></span>
 							<span class="oldPrice">￥<?php echo $info['sellingPrice'];?></span>
+							<?php if($info['activityType'] == 5){ ?><span class="stips">团长必中 团员抽奖</span><?php } ?>
 						</div>
 						<div class="name"><?php echo $info['productName'];?></div>
 						<div class="txt"><?php echo $info['productSketch'];?></div>
-						<?php if($info['activityType'] == 6){ ?>
+						<?php if($info['activityType'] == 5){ ?>
+							<div class="txt2">
+								<div>抽奖规则：</div>
+								<div>活动时间：<?php echo $info['activitySTime'];?> 到 <?php echo $info['activityETime'];?></div>
+								<div>1、拼团成功，立即开奖。团长会获得该奖品，并从成团的订单中再抽取一个幸运订单号，获得奖品。</div>
+								<div>2、每人只有一次开团和参团的机会</div>
+							</div>
+						<?php }elseif($info['activityType'] == 6){ ?>
 							<div class="txt2">【活动说明：活动 <?php echo $info['startTime'];?> 开始，限量 <?php echo $info['limitNum'];?> 份，售完即止！商品售完时未能成团者即视为活动失败】</div>
 						<?php } ?>
 						<div class="tips"><img src="images/deta-tips.png" /></div>
@@ -123,7 +131,22 @@
 						<span class="tab-label">收藏</span>
 					</a>
 					<?php switch($info['activityType']){
-						case 6://限时秒杀
+						case 5://0.1抽奖
+						?>
+							<?php if($info['activityStatus'] == 2){ ?>
+								<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>">查看中奖名单</a></div>
+							<?php }elseif($info['isGroup'] == 1){ ?>
+								<div class="more1 more1-m2"><a href="">您已参与过该活动</a></div>
+							<?php }else{ ?>
+								<div class="buy more1 more1-m2">
+									<a id="openSku" data-href="order_raffle01.php">
+										 <p>￥<b><?php echo $info['productPrice'];?></b></p>
+										 <p><?php echo $info['groupNum'];?>人成团</p>
+									</a>
+								</div>
+							<?php } ?>
+						<?php break; ?>
+						<?php case 6://限时秒杀
 							switch($seckillState){
 								case 'end': ?>
 								<?php case 'sellout': ?>
@@ -203,6 +226,7 @@
 					var clickBuy = false;
 
 					<?php switch($info['activityType']){
+						case 5://0.1抽奖
 						case 6://限时秒杀
 					?>
 							$("#openSku").on("click", function(){

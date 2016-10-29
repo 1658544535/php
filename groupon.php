@@ -20,6 +20,9 @@ $info = apiData('openGroupActivityApi.do', $apiParam);
 
 $info = $info['result'];
 
+//0.1抽奖
+(($info['activityType'] == 5) && ($info['activityStatus'] == 0)) && redirect($backUrl, '活动尚未开始');
+
 if(!empty($info['waitGroupList'])){
 	foreach($info['waitGroupList'] as $k => $v){
 		$info['waitGroupList'][$k]['remainSec'] = strtotime($v['endTime']) - strtotime($v['nowTime']);
@@ -51,23 +54,22 @@ $likes = $likes['result'];
 $fx = apiData('getShareContentApi.do', array('id'=>$info['activityId'], 'type'=>8));
 $fx = $fx['result'];
 
-//是否显示参团列表
-//秒杀各状态
-if($info['activityType'] == 6){
-	switch($info['activityStatus']){
-		case 0://未开始
-			$seckillState = 'notstart';
-			break;
-		case 2://已结束
-			$seckillState = 'end';
-			break;
-		default://活动中
-			$seckillState = ($info['isSellOut'] == 1) ? 'sellout' : 'selling';
-			break;
-	}
-	$showWaitGroupList = ($seckillState == 'selling') ? true : false;
-}else{
-	$showWaitGroupList = $isFreeBuy ? false : true;
+switch($info['activityType']){
+	case 5://0.1抽奖
+		$showWaitGroupList = false;
+		break;
+	case 6://限时秒杀
+		if($info['isSellOut'] == 1){
+			$seckillState = 'sellout';
+		}else{
+			$_secStatusMap = array(0=>'notstart', 1=>'selling', 2=>'end');
+			$seckillState = $_secStatusMap[$info['activityStatus']];
+		}
+		$showWaitGroupList = ($seckillState == 'selling') ? true : false;
+		break;
+	default:
+		$showWaitGroupList = $isFreeBuy ? false : true;
+		break;
 }
 
 include_once('tpl/groupon_web.php');
