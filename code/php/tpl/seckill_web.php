@@ -66,8 +66,8 @@
 													<span class="price1">￥<?php echo $v['productPrice'];?></span>
 													<span class="price2">￥<?php echo $v['alonePrice'];?></span>
 													<div class="range">
-														<div class="range-main" style="width:<?php echo $v['salePerce'];?>"></div>
-														<div class="num"><?php echo $v['salePerce'];?></div>
+														<div class="range-main" style="width:<?php echo $v['salePerce'];?>%"></div>
+														<div class="num"><?php echo $v['salePerce'];?>%</div>
 													</div>
 												</div>
 												<div class="btn">
