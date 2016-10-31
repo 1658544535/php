@@ -31,11 +31,9 @@ switch($act)
     	$ObjGrouponInfo = apiData('readyJoinApi.do', array('activityId'=>$gId,'userId'=>$userid));
     	$ObjUser = apiData('myInfoApi.do', array('userId'=>$userid));
     	
-    	
     	//获取分享内容
     	$fx = apiData('getShareContentApi.do', array('id'=>$gId, 'type'=>11));
     	$fx = $fx['result'];
-    	
     	
     	//获取轮播图
 
@@ -47,40 +45,30 @@ switch($act)
 //     	$dateTip  			= $date['date_tip'];
 //     	$seckillTimeDiff 	= $date['date_time'];
 
-    	
     	$seckillTimeDiff        = strtotime($ObjGrouponInfo['result']['endTime']) - strtotime($ObjGrouponInfo['result']['nowTime']);
-    	           
-    	
-    	
+    	               	
     	//获取产品详情
     	$content = apiData('getProductInfoView.do', array('id'=>$productId));
     
-    
-    	
     	//获取产品详情图
     	$ProductImagesModel = M('product_images');
     	$imageList 	= $ProductImagesModel->getAll( array('product_id'=>$productId, 'status'=>1), 'images', '`Sorting` ASC');
 
-    	
-    	
-    
-  
-
         //获取参与人信息(进行中)
-    	
 	    $ObjUserList    = apiData('userJoinInfoApi.do', array('activityId'=>$gId,'pageNo'=>$page,'pageSize'=>5));
-	 
-        
-	    
+	 	    
 		//统计得奖人数
 		
 	    $ObjPrizeList = apiData('guessWinListApi.do', array('activityId'=>$gId));
-	  
-	   
+
+		//sku
+		$skus = array();
+		if(($ObjGrouponInfo['result']['isJoin'] == 1) && ($ObjGrouponInfo['result']['isPublic'] == 1) && ($ObjGrouponInfo['result']['isWin'] == 1) && ($ObjGrouponInfo['result']['isStart'] == 2) && ($ObjGrouponInfo['result']['prize'] == 1) && ($ObjGrouponInfo['result']['isRecCoupon'] == 0)){
+			$skus = apiData('getProductSkus.do', array('pid'=>$ObjGrouponInfo['result']['productId']));
+			$skus = $skus['success'] ? $skus['result'] : array();
+		}
 	
-	
-	
-    include "tpl/product_guess_price_detail_web.php";
+		include "tpl/product_guess_price_detail_web.php";
 	break;
 	
 	case 'detail_save':
