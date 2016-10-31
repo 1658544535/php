@@ -71,8 +71,20 @@
                                                                              拼团中，还差<%=data["data"][i].oweNum %>人
                                <%}else if(data["data"][i].orderStatus ==1   && data["data"][i].isCancel ==1){%>
                                                                              交易已取消       
-                               <%}else if(data["data"][i].isSuccess ==2){%>
-                                                                             未成团，退款中    
+                               <%}else if(data["data"][i].isSuccess ==2 && (data["data"][i].isRefund ==0) || (data["data"][i].isRefund ==1) ){%>
+                                                                             未成团，退款中  
+                               <%}else if(data["data"][i].isSuccess ==2 && data["data"][i].isRefund ==2){%>
+                                                                             未成团，已退款 
+                               <%}else if(data["data"][i].source ==5 &&  data["data"][i].isPrize ==0 && data["data"][i].isRefund ==2){%>
+                                                                             未中奖，已返款
+                               <%}else if(data["data"][i].source ==5 && data["data"][i].isPrize ==0 && (data["data"][i].isRefund ==0) || (data["data"][i].isRefund ==1)){%>
+                                                                             未中奖，待返款
+                               <%}else if(data["data"][i].source ==5 && data["data"][i].isPrize ==1 && data["data"][i].orderStatus ==4){%>
+                                                                             已中奖，已完成 
+                               <%}else if(data["data"][i].source ==5 && data["data"][i].isPrize ==1 && data["data"][i].orderStatus ==2){%>
+                                                                             已中奖，待发货
+                               <%}else if(data["data"][i].source ==5 && data["data"][i].isPrize ==1 && data["data"][i].orderStatus ==3){%>
+                                                                             已中奖，待收货 
                                <%}%>
                              </span>
                         </div>
@@ -101,7 +113,12 @@
                            <%}else if(data["data"][i].orderStatus ==2   && data["data"][i].isSuccess ==0 ){%> 
                             <a class="gray" href="order_detail.php?oid=<%=data["data"][i]["id"]%>">查看</a>
                             <a href="groupon_join.php?aid=<%=data["data"][i]["attendId"]%>">邀请好友拼团</a>
-                           <%}%>                        
+                           <%}else if(data["data"][i].isSuccess ==2){%> 
+                            <a class="gray" href="order_detail.php?oid=<%=data["data"][i]["id"]%>">查看</a>
+                             <%if(data["data"][i].source ==5 && data["data"][i].isPrize ==1 && data["data"][i].orderStatus ==4){%>
+                              <a class="gray" href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>">中奖信息</a>
+                             <%}%>
+                           <%}%>                         
                        </div>
                     </li>
                 <%}%>

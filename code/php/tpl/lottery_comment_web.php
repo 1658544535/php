@@ -24,7 +24,7 @@
     <div class="page-group" id="page-evaluate-submit">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="">
+                <a class="button button-link button-nav pull-left back" href="user_lottery.php">
                     <span class="icon icon-back"></span>
                 </a>
                 <h1 class="title">我要晒图</h1>
@@ -147,7 +147,7 @@
                             return false;
                         }
                         if($(".uploadImg img").length<=0){
-                            $.toast("请上传推广证明");
+                            $.toast("请上传图片");
                             return false;
                         }
                         $(".uploadImg img").each(function(index, el) {
