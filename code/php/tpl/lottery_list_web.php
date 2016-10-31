@@ -62,7 +62,7 @@
                        <?php if($Type ==1){?>                        
                          <a href="groupon.php?id=<%=data["data"][i]["activityId"]%>">
                        <?php }else{?>     
-                         <a href="lottery_new.php?act=icomment_list&aid=<%=data["data"][i]["activityId"]%>">
+                         <a href="lottery_new.php?act=comment_list&aid=<%=data["data"][i]["activityId"]%>">
                        <?php }?>
                            <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
                             <div class="info">

@@ -22,7 +22,7 @@
     <div class="page-group" id="page-lotteryresult">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="">
+                <a class="button button-link button-nav pull-left back" href="javascript:history.back(-1);">
                     <span class="icon icon-back"></span>
                 </a>
                 <h1 class="title">中奖结果</h1>
@@ -34,7 +34,7 @@
                     <div class="img"><img src="<?php echo $winInfo['productImage'];?>" /></div>
                     <div class="info">
                         <div class="name"><?php echo $winInfo['productName'];?></div>
-                        <div class="price">￥<span>0.1</span></div>
+                        <div class="price">￥<span><?php echo $winInfo['productPrice'];?></span></div>
                         <div class="btn">已开奖</div>
                     </div>
                 </section>
