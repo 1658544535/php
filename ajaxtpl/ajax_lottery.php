@@ -5,7 +5,7 @@ $Type = CheckDatas( 'type', '' );
 $page = max(1, intval($_POST['page']));
 
 //获取活动列表数据
-$LotteryList = apiData('lotteryListApi.do', array('type'=>$Type));
+$LotteryList = apiData('getDrawListApi.do', array('type'=>$Type,'pageNo'=>$page));
 
 if(!empty($LotteryList['result']))
 {

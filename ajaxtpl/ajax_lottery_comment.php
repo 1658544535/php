@@ -7,9 +7,8 @@ $pId          	= CheckDatas( 'pid', '' );
 $aId   	        = CheckDatas( 'aid', '' );
 $uId   	        = CheckDatas( 'uid', '' );
 
-
 //获取用户评论列表数据
-$LotteryCommentList = apiData('getDrawCommentDetailsApi.do', array('activityId'=>$aId,'productId'=>$pId,'pageNo'=>$page));
+$LotteryCommentList = apiData('getDrawCommentDetailsApi.do', array('activityId'=>$aId,'pageNo'=>$page));
 
 if(!empty($LotteryCommentList['result']))
 {
