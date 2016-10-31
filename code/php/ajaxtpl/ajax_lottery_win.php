@@ -11,7 +11,7 @@ $page           = max(1, intval($_POST['page']));
 $winList = apiData('prizeDetail.do', array('attendId'=>$attId,'pageNo'=>$page));
 if(!empty($winList['result']))
 {
-	echo	ajaxJson( 1,'获取成功',$winList['result']['prizelist'],$page);
+	echo	ajaxJson( 1,'获取成功',$winList['result']['prizelist']['groupList'],$page);
 }
 else
 {
