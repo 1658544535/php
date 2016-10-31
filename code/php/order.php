@@ -27,7 +27,8 @@ $num = max(1, $num);
 $cpnNo = trim($_POST['cpnno']);
 
 $mapSource = array('groupon'=>1, 'free'=>2, 'guess'=>3, 'alone'=>4, 'raffle01'=>5, 'seckill'=>6);
-$source = ($orderType == 'join') ? ($_SESSION['order']['isfree'] ? 2 : 1) : $mapSource[$orderType];
+//$source = ($orderType == 'join') ? ($_SESSION['order']['isfree'] ? 2 : 1) : $mapSource[$orderType];
+$source = ($orderType == 'join') ? $_SESSION['order']['source'] : $mapSource[$orderType];
 
 $skuId = intval($_POST['skuid']);
 $apiParam = array(
