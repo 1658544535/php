@@ -884,8 +884,6 @@ var Zepto = (function() {
 window.Zepto = Zepto
 window.$ === undefined && (window.$ = Zepto)
 
-$.config = {router: false};
-
 ;(function($){
   var _zid = 1, undefined,
       slice = Array.prototype.slice,
@@ -1587,4 +1585,6 @@ $.config = {router: false};
     }
   }
 })(Zepto)
+
+$.config = {router: false};
 
