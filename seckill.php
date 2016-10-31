@@ -11,5 +11,7 @@ $type = intval($_GET['t']);
 $info = apiData('secKillListApi.do', array('type'=>$type));
 $info = $info['result'];
 
+$_wxShareDef['link'] = true;
+
 include "tpl/seckill_web.php";
 ?>
