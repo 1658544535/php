@@ -18,6 +18,7 @@ if($orderInfo['result']['attendId']){
     }
 }
 unset($_SESSION['order']);
+unset($_SESSION['order_success']);
 if($state){
     sendWXTplMsg('pay', array('oid'=>$orderId));
     if($orderInfo['result']['isOpen'] == 1){//开团
