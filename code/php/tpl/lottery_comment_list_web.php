@@ -59,10 +59,13 @@
                             <div class="txt"><%=data["data"][i]["commentText"]%></div>
                            <%if(data["data"][i]["commentImage"] !=''){%>
                             <div class="imgs">
-                                <div><img src="images/img/banner.jpg" /></div>
+                                <%for(var j=0;j<data["data"][i]["commentImage"]["images"].length; j++){%>
+                                <div><img src="<%=data["data"][i]["commentImage"]["images"][j]%>" /></div>
+                                <!-- <div><img src="images/img/banner.jpg" /></div>
                                 <div><img src="images/img/banner2.jpg" /></div>
                                 <div><img src="images/img/deta.jpg" /></div>
-                                <div><img src="images/img/index-class.jpg" /></div>
+                                <div><img src="images/img/index-class.jpg" /></div> -->
+                                <%}%>
                             </div>
                            <%}%> 
                        </li>
