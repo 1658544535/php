@@ -27,9 +27,16 @@ $num = max(1, $num);
 
 $isGrouponFree = intval($_GET['free']);
 
+if(isset($_GET['as'])){
+	$activeSource = intval($_GET['as']);
+	$_SESSION['order']['source'] = $activeSource;
+}else{
+	$activeSource = $_SESSION['order']['source'] ? $_SESSION['order']['source'] : '';
+}
+
 $skuId = intval($_GET['skuid']);
 empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
-$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>$isGrouponFree?2:1,'uid'=>$userid));
+$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>$activeSource,'uid'=>$userid));
 if($info['success']){
 	$info = $info['result'];
 }else{
@@ -39,7 +46,7 @@ if($info['success']){
 $_SESSION['order']['type'] = 'join';
 $_SESSION['order']['grouponId'] = $grouponId;
 $_SESSION['order']['attendId'] = $attendId;
-$_SESSION['order']['isfree'] = $isGrouponFree ? 1 : 0;//参加的团的类型
+//$_SESSION['order']['isfree'] = $isGrouponFree ? 1 : 0;//参加的团的类型
 
 include_once('order_common.php');
 ?>

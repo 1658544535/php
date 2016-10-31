@@ -204,7 +204,7 @@
         <script>
             $(document).on("pageInit", "#page-proTips", function(e, pageId, page) {
 				<?php if($info['productStatus'] == 1){ ?>
-					var jsonUrlParam = {"id":"<?php echo $grouponId;?>","pid":"<?php echo $info['productId'];?>","skuid":"","num":1,"free":"<?php echo $isGrouponFree;?>","aid":"<?php echo $attendId;?>"};
+					var jsonUrlParam = {"id":"<?php echo $grouponId;?>","pid":"<?php echo $info['productId'];?>","skuid":"","num":1,"free":"<?php echo $isGrouponFree;?>","aid":"<?php echo $attendId;?>","as":"<?php echo $info['activityType'];?>"};
 					var clickBuy = false;
 
 					$("#openSku").on("click", function(){
