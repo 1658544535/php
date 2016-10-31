@@ -31,6 +31,8 @@ switch($act)
     
     case 'comment_list':
     	//获取用户评论列表数据
+    	$LotteryCommentList = apiData('getDrawCommentDetailsApi.do', array('activityId'=>$aId,'pageNo'=>$page));
+    	$LotteryCommentList = $LotteryCommentList['result'];
     	include_once('tpl/lottery_comment_list_web.php');
     	break;
     

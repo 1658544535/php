@@ -24,7 +24,7 @@
     <div class="page-group" id="page-evaluate">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="">
+                <a class="button button-link button-nav pull-left back" href="lottery_new.php?type=2">
                     <span class="icon icon-back"></span>
                 </a>
                 <h1 class="title">评价列表</h1>
@@ -36,7 +36,7 @@
                     <div class="name"><?php echo $LotteryCommentList['productName'];?></div>
                 </section>
 
-                <section class="evaluate-list pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_lottery_comment.php">
+                <section class="evaluate-list pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_lottery_comment.php?aid=<?php echo $aId;?>">
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader">
@@ -57,21 +57,17 @@
                                 </div>
                             </div>
                             <div class="txt"><%=data["data"][i]["commentText"]%></div>
-                           <%if(data["data"][i]["commentImage"] !=''){%>
+                           <%if(data["data"][i]["commentImage"]["image"] !=''){%>
                             <div class="imgs">
-                                <%for(var j=0;j<data["data"][i]["commentImage"]["images"].length; j++){%>
-                                <div><img src="<%=data["data"][i]["commentImage"]["images"][j]%>" /></div>
-                                <!-- <div><img src="images/img/banner.jpg" /></div>
-                                <div><img src="images/img/banner2.jpg" /></div>
-                                <div><img src="images/img/deta.jpg" /></div>
-                                <div><img src="images/img/index-class.jpg" /></div> -->
+                                <%for(var j=0;j<data["data"][i]["commentImage"]["image"].length; j++){%>
+                                <div><img src="<%=data["data"][i]["commentImage"]["image"][j]%>" /></div>
                                 <%}%>
                             </div>
                            <%}%> 
                        </li>
                     <%}%>
                 <%}else if(data["pageNow"] == 1){%>
-                    <div class="tips-null">暂无抽奖</div>
+                    <div class="tips-null">暂无评价</div>
                 <%}%>
             </script>
 
