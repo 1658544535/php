@@ -52,9 +52,11 @@
                                         <div class="label">
                                             <span class="themeColor">* </span>退款金额
                                         </div>
-                                        <div class="main">
+                                        <!-- <div class="main">
                                             <input id="price" type="tel" name="m[price]" class="txt price" data-max="<?php echo $order['productInfo']['orderPrice'];?>" placeholder="请输入退款金额" value="<?php echo $order['productInfo']['orderPrice'];?>" />
-                                        </div>
+                                        </div> -->
+                                        <div class="main themeColor">￥<?php echo $order['productInfo']['orderPrice'];?></div>
+                                        <input id="price" type="hidden" name="m[price]" class="txt price" value="<?php echo $order['productInfo']['orderPrice'];?>" />
                                     </div>
                                     <div class="tips">（最高可退 ￥<?php echo $order['productInfo']['orderPrice'];?>元）</div>
                                 </li>
@@ -203,10 +205,10 @@
                             $.toast("请选择退款类型");
                             return false;
                         }
-                        if($.trim($("#price").val()) == ""){
-                            $.toast("请输入退款金额");
-                            return false;
-                        }
+                        // if($.trim($("#price").val()) == ""){
+                        //     $.toast("请输入退款金额");
+                        //     return false;
+                        // }
                         if($.trim($("#reason").val()) == ""){
                             $.toast("请选择退款原因");
                             return false;
