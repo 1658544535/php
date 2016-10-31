@@ -57,6 +57,7 @@ $fx = $fx['result'];
 switch($info['activityType']){
 	case 5://0.1抽奖
 		$showWaitGroupList = true;
+		$notQuantity = true;
 		break;
 	case 6://限时秒杀
 		if($info['isSellOut'] == 1){

@@ -486,6 +486,7 @@
 						<div class="list"></div>
 					</div>
 				<?php } ?>
+				<?php if(!$notQuantity){ ?>
                 <div class="sku-number">
                     <span class="label">购买数量</span>
                     <div class="quantity">
@@ -494,6 +495,7 @@
                         <span class="plus">+</span>
                     </div>
                 </div>
+				<?php } ?>
                 <a id="buy" href="javascript:;" class="go">确定</a>
             </div>
         </div>
