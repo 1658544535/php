@@ -53,7 +53,7 @@ $likes = $likes['result'];
 //获取分享内容
 //根据状态获取type值
 //$status_arr = array(0,1,2); //(0-未开始 1-活动中 2-活动结束)
-$type_arr = array(16,17); //(16-掌上秒杀（开枪中）;17-掌上秒杀（即将开始）)
+$type_arr = array(17,16); //(16-掌上秒杀（开枪中）;17-掌上秒杀（即将开始）)
 if ($info["activityType"] == 5){
     $type = 19;
 } else {
