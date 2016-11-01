@@ -57,8 +57,10 @@
 
             <div class="content native-scroll">
                 <section class="index-seckill">
+                    <?php if($type == 1){?>
                     <a href="sellout.php" class="seckill-out">查看今天已售罄商品</a>
-					<?php if(empty($info)){ ?>
+					<?php }?>
+                    <?php if(empty($info)){ ?>
 						<div class="tips-null">暂无活动</div>
 					<?php }else{ ?>
 						<?php foreach($info as $_info){ ?>

@@ -1,14 +1,14 @@
 <?php
 define('HN1', true);
 require_once('../global.php');
-
+$attId 	        = CheckDatas( 'attId', '' );
 $aId 	        = CheckDatas( 'aid', '' );
 $page           = max(1, intval($_POST['page']));
 
 
 
 //获取中奖用户列表数据
-$winList = apiData('prizeDetail.do', array('activityId'=>$aId,'pageNo'=>$page));
+$winList = apiData('prizeDetail.do', array('attendId'=>$attId,'activityId'=>$aId,'pageNo'=>$page));
 if(!empty($winList['result']['prizelist']))
 {
 	echo	ajaxJson( 1,'获取成功',$winList['result']['prizelist'],$page);

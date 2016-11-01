@@ -55,7 +55,7 @@
                  <div class="oc-state"><span>交易已取消</span><i class="o-icon o-icon-5"></i></div>
                 <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
                 <div class="oc-state"><span>交易成功！</span><i class="o-icon o-icon-6"></i></div>
-                <?php }elseif($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==1){?>
+                <?php }elseif($OrderDetail['result']['isSuccess'] ==2 && ($OrderDetail['result']['refPriStatus'] ==1) || ($OrderDetail['result']['refPriStatus'] ==0)){?>
                 <div class="oc-state"><span>未成团，退款中</span><i class="o-icon o-icon-8"></i></div>
                 <?php }elseif($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==2){?>
                 <div class="oc-state"><span>未成团，退款成功</span><i class="o-icon o-icon-7"></i></div>
@@ -102,7 +102,7 @@
                           <?php if($OrderDetail['result']['source'] ==5){?>
                            <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId'];?>">查看中奖记录</a> 
                           <?php }?>
-                      <?php }elseif($OrderDetail['result']['orderStatus'] ==3 ){?>                  
+                      <?php }else if($OrderDetail['result']['orderStatus'] ==3 ){?>                  
                            <?php if($OrderDetail['result']['source'] ==5){?>
                            <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId'];?>">查看中奖记录</a> 
                            <?php }?>
@@ -114,22 +114,22 @@
                            <?php }else if($OrderDetail['result']['refundStatus'] ==1){?>
                            <a class="txt">售后申请中...</a>
                             <?php }?>
-                      <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
+                      <?php }else if($OrderDetail['result']['orderStatus'] ==4){?>
                             <?php if($OrderDetail['result']['source'] ==5){?>
                             <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId'];?>">查看中奖记录</a> 
                             <?php }?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
-					  <?php }elseif($OrderDetail['result']['isSuccess'] ==2 && ($OrderDetail['result']['refPriStatus'] ==1) || ($OrderDetail['result']['refPriStatus'] ==0)){?>
+					  <?php }else if($OrderDetail['result']['isSuccess'] ==2 && ($OrderDetail['result']['refPriStatus'] ==1) || ($OrderDetail['result']['refPriStatus'] ==0)){?>
 						   <?php if($OrderDetail['result']['source'] ==5){?>
                            <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId'];?>">查看中奖记录</a> 
                            <?php }?>    
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
-				       <?php }elseif($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==2){?>
+				       <?php }else if($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==2){?>
 						    <?php if($OrderDetail['result']['source'] ==5){?>
                            <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId'];?>">查看中奖记录</a> 
                            <?php }?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
-					   <?php }elseif($OrderDetail['result']['isCancel'] ==1 && $OrderDetail['result']['source'] ==5){?>
+					   <?php }else if($OrderDetail['result']['isCancel'] ==1 && $OrderDetail['result']['source'] ==5){?>
 						    <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId'];?>">查看中奖记录</a>
 				      <?php }?>
                     </div>
@@ -140,10 +140,10 @@
                     
                     <?php if($OrderDetail['result']['orderInfo']['paymethod'] ==1){?>
                     <div>支付方式：支付宝</div>
-                    <?php }elseif($OrderDetail['result']['orderInfo']['paymethod'] ==2){?>
+                    <?php }else if($OrderDetail['result']['orderInfo']['paymethod'] ==2){?>
                     <div>支付方式：微信支付</div>
-                    <?php }elseif($OrderDetail['result']['orderInfo']['paymethod'] ==3){?>
-                    <div>支付方式：货到付款</div>
+                    <?php }else if($OrderDetail['result']['orderInfo']['paymethod'] ==8){?>
+                    <div>支付方式：微信支付</div>
                     <?php }?>
                     <div>下单时间：<?php echo $OrderDetail['result']['orderInfo']['createTime'];?></div>
                     <?php if($OrderDetail['result']['orderStatus'] ==2  && $OrderDetail['result']['isSuccess'] ==1){?>
@@ -189,14 +189,14 @@
                     <!-- <a class="one" id="orderCancel"> href="order_detail.php?act=cancel&oid=<?php echo $OrderDetail['result']['orderId'] ;?>">取消订单</a> -->
                     <a class="btn gray" id="orderCancel">取消订单</a>
                     <a class="btn" href="/wxpay/pay.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>">去支付</a>
-              <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
+              <?php }else if($OrderDetail['result']['orderStatus'] ==3){?>
                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn gray">查看物流</a>
                    <?php if($OrderDetail['result']['refundStatus'] ==0 || $OrderDetail['result']['refundStatus'] ==6 || $OrderDetail['result']['refundStatus'] ==5){?>
                     <a id="check" class="btn" data-id="<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>" data-status="<?php echo $OrderDetail['result']['orderStatus']  ;?>">确认收货</a>
                    <?php }else if($OrderDetail['result']['refundStatus'] ==1){?>
                     <a class="txt">售后申请中...</a>
                    <?php }?>
-             <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
+             <?php }else if($OrderDetail['result']['orderStatus'] ==4){?>
                      <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn">查看物流</a>
              <?php }?>
             </div>

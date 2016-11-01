@@ -39,7 +39,7 @@
                     </div>
                 </section>
 
-                <section class="deta-group pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_lottery_win.php?aid=<?php echo $aId;?>">
+                <section class="deta-group pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_lottery_win.php?attId=<?php echo $attId;?>">
                     <h3 class="title1">获奖用户列表</h3>
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->
@@ -62,8 +62,7 @@
 						<%}%>
                             <div class="info">
                                 <div class="name"><%=data["data"][i]["groupList"][j]["name"]%></div>
-                                <div class="no"><%=data["data"][i]["groupList"][j]["orderNo"]%></div>
-                                <div class="tel"><%=data["data"][i]["groupList"][j]["loginname"]%></div>
+                                <div class="no"><%=data["data"][i]["groupList"][j]["attendTime"]%></div>
                             </div>
                         </li>
                     <%}%>
@@ -72,7 +71,7 @@
                     <div class="tips-null">暂无抽奖</div>
                 <%}%>
                 <div class="bin-btn clickbtn">
-                    <a href="#">点击查看全部中奖信息</a>
+                    <a href="lottery_new.php?act=winning&aId=<%=data["data"][i]["activityId"]%>">点击查看全部中奖信息</a>
                 </div>
             </script>
 
