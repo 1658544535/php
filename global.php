@@ -16,7 +16,7 @@ define('MODEL_DIR', dirname(__FILE__) . '/logic/Model/');
 define('AGENT_QRCODE_DIR','../upfiles/pdkcode/');
 $isTest =  in_array($_SERVER['SERVER_NAME'], array('www.maduoduo.loc', 'duo.taozhuma.com')) ? true : false;			// 是否为测试模式
 //$isTest =  ($_SERVER['SERVER_NAME'] == 'pinwx.taozhuma.com') ? true : false;			// 是否为测试模式
-$isTest = false;
+$isTest = true; // 是否为测试模式
 
 //数据接口
 //define('API_URL', 'http://rap.taozhuma.com/mockjsdata/2');
@@ -48,7 +48,7 @@ $log    = new Log();
 /*============================== 线上线下信息配置 =============================================*/
 if ( ! $isTest )																		// 线上配置
 {
-	//error_reporting(0);																	// 禁止报错
+	//error_reporting(0);																// 禁止报错
 	$allow_not_weixin = array( 'page','wxpay','hongbao' );								// 允许非微信浏览器返回的功能
 
 	if ( ! in_array( get_now_func(), $allow_not_weixin ))								// 如果该功能不是允许非微信浏览器范围
