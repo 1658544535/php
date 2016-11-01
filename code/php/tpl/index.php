@@ -24,9 +24,8 @@
             <header class="bar bar-nav">
                 <h1 class="title"><img class="title-img" src="images/logo.png" alt="淘竹马" /></h1>
             </header>
-
+            <!-- 引入轮播部分 -->
             <?php include_once('footer_nav_web.php');?>
-
             <section class="swiper-container index-class">
                 <div class="swiper-wrapper">
                    <a class="swiper-slide active" data-type="index" data-href="ajaxtpl/ajax_index.php">首页</a>
@@ -50,6 +49,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
