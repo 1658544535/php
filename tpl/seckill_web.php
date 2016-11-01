@@ -25,6 +25,15 @@
         var desc   = "<?php echo $fx['content'];?>";
         wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
     </script>
+	<?php if($userid==171){ ?>
+	<script language="javascript">
+	$(function(){
+		$("a.zswtest").on("click", function(){
+			console.log($(this).attr("href"));
+		});
+	});
+	</script>
+	<?php } ?>
 </head>
 
 <body>
@@ -41,7 +50,7 @@
             </header>
 
             <nav class="bar bar-tab">
-                <a class="tab-item tab-item2<?php if($type == 1){ ?> active<?php } ?>" href="seckill.php">
+                <a class="tab-item tab-item2<?php if($type == 1){ ?> active<?php } ?> zswtest" href="seckill.php">
                     <span class="icon i-seckill-today"></span>
                     <span class="tab-label">今日秒杀</span>
                 </a>
@@ -57,9 +66,7 @@
 
             <div class="content native-scroll">
                 <section class="index-seckill">
-                    <?php if($type == 1){?>
-                    <a href="sellout.php" class="seckill-out">查看今天已售罄商品</a>
-					<?php }?>
+                    <?php if($type == 1){ ?><a href="sellout.php" class="seckill-out">查看今天已售罄商品</a><?php } ?>
                     <?php if(empty($info)){ ?>
 						<div class="tips-null">暂无活动</div>
 					<?php }else{ ?>

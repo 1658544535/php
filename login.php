@@ -46,9 +46,9 @@ switch($act)
 				$userInfo = apiData('userlogin.do', array('openid'=>$wxInfo['openid'],'source'=>3));
 				if($userInfo['success']){
 					$userInfo = $userInfo['result'];
+					$_wxUserInfo = $objWX->getUserInfo($wxInfo['openid']);
 					//没有头像则获取微信头像
 					if($userInfo['image'] == ''){
-						$_wxUserInfo = $objWX->getUserInfo($wxInfo['openid']);
 						if($_wxUserInfo['headimgurl']){
 							$_dir = SCRIPT_ROOT.'upfiles/headimage/';
 							!file_exists($_dir) && mkdir($_dir, 0777, true);
@@ -58,7 +58,7 @@ switch($act)
 							$editResult['success'] && $userInfo['image'] = $_wxUserInfo['headimgurl'];
 						}
 					}
-					$log->put('/user/login', "user login! 微信用户自动登录，openid:{$wxInfo[openid]}，用户id:{$userInfo[uid]}，帐号:{$userInfo[phone]}，昵称:{$userInfo[name]}");
+					$log->put('/user/login', "user login! 微信用户自动登录，openid:{$wxInfo[openid]}，用户id:{$userInfo[uid]}，帐号:{$userInfo[phone]}，昵称:{$userInfo[name]}，关注公众号：".(($_wxUserInfo === false)?'':($_wxUserInfo['subscribe']?'已关注':'尚未关注')));
 					$_tmp = new stdClass();
 					$_tmp->openid = $wxInfo['openid'];
 					$_tmp->id = $userInfo['uid'];

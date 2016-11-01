@@ -157,6 +157,9 @@ switch($act){
 			if($sendResult !== false){
 				$_logInfo = "【".date('Y-m-d H:i:s', $time)."  订单号:{$orderInfo['orderInfo']['orderNo']}】当前下单者openid:{$openid}\r\n";
 				file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+			}else{
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)."  订单号:{$orderInfo['orderInfo']['orderNo']}】当前下单者openid:{$openid}，发送失败：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+				file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 			}
 
 			foreach($orderInfo['userList'] as $_openid){
@@ -166,6 +169,9 @@ switch($act){
 					if($sendResult !== false){
 						$_logInfo = "【".date('Y-m-d H:i:s', $time)."  订单号:{$orderInfo['orderInfo']['orderNo']}】参团接收通知者openid:{$_openid['openid']}\r\n";
 						file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+					}else{
+						$_logInfo = "【".date('Y-m-d H:i:s', $time)."  订单号:{$orderInfo['orderInfo']['orderNo']}】参团接收通知者openid:{$_openid['openid']}，发送失败：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+						file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 					}
 				}
 			}
@@ -173,7 +179,14 @@ switch($act){
             if($sendResult !== false){
                 $result = json_encode($sendResult);
             }
-        }
+        }else{
+			$time = time();
+			$_logDir = LOG_INC.'msgtpl/join/';
+			!file_exists($_logDir) && mkdir($_logDir, 0777, true);
+			$_logFile = $_logDir.date('Y-m-d', $time).'.txt';
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】当前下单者openid:{$openid}，接口 orderdetail.do 获取数据失败:{$orderInfo[error_msg]}\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
         echo $result;
         break;
     case 'delivery'://发货
