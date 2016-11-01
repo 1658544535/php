@@ -58,7 +58,7 @@
                         <div class="option">
                             <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="default<%if(data["data"][i].isDefault==1){%> active<%}%>"><i></i>设为默认</a>
                             <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="edit"><i></i>编辑</a>
-                            <a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="del"><i></i>删除</a>
+                            <!--<a href="javascript:;" data-id="<%=data["data"][i].addId%>" class="del"><i></i>删除</a>-->
                         </div>
                     </li>
                 <%}%>
