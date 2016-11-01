@@ -113,7 +113,8 @@ switch($act)
     case 'winning':
     	//获取中奖数据
     	$aId 	        = CheckDatas( 'aid', '' );
-    	$winInfo = apiData('prizeDetail.do', array('activityId'=>$aId));
+    	$attId  	    = CheckDatas( 'attId', '' );
+    	$winInfo = apiData('prizeDetail.do', array('activityId'=>$aId,'attendId'=>$attId));
     	$winInfo = $winInfo['result'];
     	include_once('tpl/lottery_win_web.php');
     	break;

@@ -81,11 +81,11 @@
                                 </div>
                             </a>
                             <div class="u-g-3">
-                                <%if(data["data"][i]["isShow"] ==1){%>
+                                <%if(data["data"][i]["isShow"] ==1 && data["data"][i]["orderStatus"] ==9){%>
                                  <a class="gray" href="lottery_new.php?act=comment&proimage=<%=data["data"][i]["productImage"]%>&proname=<%=data["data"][i]["productName"]%>&attid=<%=data["data"][i]["attendId"]%>">我要晒图</a>
                                 <%}%>
-                                <%if(data["data"][i]["isPrize"] ==1){%>
-                                 <a href="lottery_new.php?act=winning&aid=<%=data["data"][i]["activityId"]%>">中奖信息</a>
+                                <%if(data["data"][i]["isPrize"] ==1 && (data["data"][i]["orderStatus"] ==3) || (data["data"][i]["orderStatus"] ==4) || (data["data"][i]["orderStatus"] ==6)||　(data["data"][i]["orderStatus"] ==7) || (data["data"][i]["orderStatus"] ==9) || (data["data"][i]["orderStatus"] ==10) || (data["data"][i]["orderStatus"] ==11)){%>
+                                 <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>">中奖信息</a>
                                 <%}%>
                             </div>
                         </li>
