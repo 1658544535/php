@@ -86,9 +86,11 @@
                 <%for(var i=0;i<data["banner"].length; i++){%>
                     <%if(data["banner"][i]["type"] == 2){%>
 						<a class="swiper-slide" href="groupon.php?id=<%=data["banner"][i].typeId%>">
-                    <%}else if(data["banner"][i]["type"] == 3){%>
+                    <%}else if(data["banner"][i]["type"] == 3 && data["banner"][i].typeId !=0 ){%>
 						<a class="swiper-slide" href="product_guess_price.php?act=detail&gid=<%=data["banner"][i].typeId%>">
-					<%}else if(data["banner"][i]["type"] == 4){%>
+					<%}else if(data["banner"][i]["type"] == 3 && data["banner"][i].typeId == 0){%>
+                        <a class="swiper-slide" href="product_guess_price.php">
+                    <%}else if(data["banner"][i]["type"] == 4){%>
 						<%if(data["banner"][i].typeId == 0){%>
 							<a class="swiper-slide" href="specials.php">
 						<%}else{%>
