@@ -16,5 +16,5 @@ if(!empty($freeCpn)){
 
 $footerNavActive = 'index';
 
-include "tpl/index_new.php";
+include "tpl/index_new.php"; 
 ?>
