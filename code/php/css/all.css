@@ -2180,6 +2180,9 @@
 .oc-pro .num .quantity {
   float: right;
 }
+.oc-pro .num .txt {
+  float: right;
+}
 .oc-pro .subTotal {
   margin: 0 0.5rem;
   padding: 0.45rem 0;

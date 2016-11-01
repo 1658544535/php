@@ -75,11 +75,12 @@
 						<?php if(!in_array($_SESSION['order']['type'], array('free', 'guess', 'raffle01'))){ ?>
 						<div class="num">
 							<span class="label">数量</span>
-							<div class="quantity">
+							<!-- <div class="quantity">
 								<span class="minus">-</span>
 								<input type="text" id="number" name="num" value="<?php echo $info['allCount'];?>" />
 								<span class="plus">+</span>
-							</div>
+							</div> -->
+							<span class="txt">共<?php echo $info['allCount'];?>件</span>
 						</div>
 						<?php } ?>
 						<div class="subTotal">合计：<font class="themeColor">￥<span class="price" id="totol-amount"><?php echo $info['sumPrice'];?></span></font>（全场包邮）</div>
