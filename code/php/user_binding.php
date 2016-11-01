@@ -59,6 +59,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $_SESSION['loginReferUrl'] = urlencode($_SERVER['HTTP_REFERER']);
         $wxUser = $objWX->getUserInfo($openid);
         if(($wxUser !== false) && !$wxUser['subscribe']){
+			//记录用户未关注公众号
+			$time = time();
+			$_logDir = LOG_INC.'user/';
+			!file_exists($_logDir) && mkdir($_logDir, 0777, true);
+			$_logFile = $_logDir.'subscribe_'.date('Y-m-d', $time).'.txt';
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】当前用户openid:{$openid} 尚未关注公众号\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+
             $_bcUrl = $site.'user_binding.php';
             redirect($objWX->getOauthRedirect($_bcUrl, $wxState));
         }
