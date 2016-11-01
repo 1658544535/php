@@ -30,7 +30,7 @@
 
             <div class="content native-scroll">
 
-                <section class="user-guess pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_user_lottery.php">
+                <section class="user-guess pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_user_lottery.php?uid=<?php echo $userid;?>">
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader">
@@ -48,29 +48,29 @@
                                 <span class="type">拼团商品</span>
                                <%if(data["data"][i]["orderStatus"] ==1){%>
                                 <span class="state">待支付</span>
-                               <%}elseif(data["data"][i]["orderStatus"] ==2){%>                            
+                               <%}else if(data["data"][i]["orderStatus"] ==2){%>                            
                                 <span class="state">拼团中，差<%=data["data"][i]["poorNum"]%>人</span>                           	   
-                               <%}elseif(data["data"][i]["orderStatus"] ==3){%>
+                               <%}else if(data["data"][i]["orderStatus"] ==3){%>
                                 <span class="state">未成团，退款中</span> 							   
-                               <%}elseif(data["data"][i]["orderStatus"] ==4){%>
+                               <%}else if(data["data"][i]["orderStatus"] ==4){%>
                                 <span class="state">未成团，已退款</span>                               
-                               <%}elseif(data["data"][i]["orderStatus"] ==5){%>
+                               <%}else if(data["data"][i]["orderStatus"] ==5){%>
                                 <span class="state">交易已取消</span>                               
-                               <%}elseif(data["data"][i]["orderStatus"] ==6){%>
+                               <%}else if(data["data"][i]["orderStatus"] ==6){%>
                                 <span class="state">未中奖，待返款</span>                               
-                               <%}elseif(data["data"][i]["orderStatus"] ==7){%>
+                               <%}else if(data["data"][i]["orderStatus"] ==7){%>
                                 <span class="state">未中奖，已返款</span>                               
-                               <%}elseif(data["data"][i]["orderStatus"] ==8){%>
+                               <%}else if(data["data"][i]["orderStatus"] ==8){%>
                                 <span class="state">已成团，待开奖</span>                               
-                               <%}elseif(data["data"][i]["orderStatus"] ==9){%>
+                               <%}else if(data["data"][i]["orderStatus"] ==9){%>
                                 <span class="state">已中奖，已完成</span>                               
-                               <%}elseif(data["data"][i]["orderStatus"] ==10){%>
+                               <%}else if(data["data"][i]["orderStatus"] ==10){%>
                                 <span class="state">已中奖，待发货</span>                               
-                               <%}elseif(data["data"][i]["orderStatus"] ==11){%>
+                               <%}else if(data["data"][i]["orderStatus"] ==11){%>
                                 <span class="state">已中奖，待收货</span>                               
                                <%}%>                            
                             </div>
-                            <a href="" class="u-g-2">
+                            <a href="order_detail.php?oid=<%=data["data"][i]["orderId"]%>" class="u-g-2">
                                 <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
                                 <div class="info">
                                     <div class="name"><%=data["data"][i]["productName"]%></div>
@@ -85,7 +85,7 @@
                                  <a class="gray" href="lottery_new.php?act=comment&proimage=<%=data["data"][i]["productImage"]%>&proname=<%=data["data"][i]["productName"]%>&attid=<%=data["data"][i]["attendId"]%>">我要晒图</a>
                                 <%}%>
                                 <%if(data["data"][i]["isPrize"] ==1){%>
-                                 <a href="lottery_new.php?act=winning&attid=<%=data["data"][i]["attendId"]%>">中奖信息</a>
+                                 <a href="lottery_new.php?act=winning&aid=<%=data["data"][i]["activityId"]%>">中奖信息</a>
                                 <%}%>
                             </div>
                         </li>
