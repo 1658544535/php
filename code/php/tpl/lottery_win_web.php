@@ -71,6 +71,9 @@
                 <%}else if(data["pageNow"] == 1){%>
                     <div class="tips-null">暂无抽奖</div>
                 <%}%>
+                <div class="bin-btn clickbtn">
+                    <a href="#">点击查看全部中奖信息</a>
+                </div>
             </script>
 
         </div>
