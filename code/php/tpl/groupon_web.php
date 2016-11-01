@@ -486,7 +486,10 @@
 						<div class="list"></div>
 					</div>
 				<?php } ?>
-				<?php if(!$notQuantity){ ?>
+				<?php //if(!$notQuantity){ ?>
+				<!-- 0.1抽奖/限时秒杀不显示数量 -->
+				<?php if($info['activityType'] != 5 && $info['activityType'] != 6){?>
+
                 <div class="sku-number">
                     <span class="label">购买数量</span>
                     <div class="quantity">
