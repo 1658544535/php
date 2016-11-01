@@ -39,7 +39,7 @@
                     </div>
                 </section>
 
-                <section class="deta-group pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_lottery_win.php">
+                <section class="deta-group pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_lottery_win.php?aid=<?php echo $aId;?>">
                     <h3 class="title1">获奖用户列表</h3>
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->
@@ -52,27 +52,29 @@
             <script id='tpl_pull' type="text/template">
                 <%if(data["data"].length>0){%>
                     <%for(var i=0;i<data["data"].length; i++){%>
+                      <%for(var j=0;j<data["data"][i]["groupList"].length; j++){%>
                         <li class="head">
-                          <%if(data["data"][i]["isHead"] ==1){%>  
-                          <div class="img"><img src="<%=data["data"][i]["userlogo"]%>" /><span class="head">团长</span></div>
+                          <%if(data["data"][i]["groupList"][j]["isHead"] ==1){%>  
+                          <div class="img"><img src="<%=data["data"][i]["groupList"][j]["userlogo"]%>" /><span class="head"></span></div>
                            <%}%> 
                             <div class="info">
-                                <div class="name"><%=data["data"][i]["name"]%></div>
-                                <div class="no"><%=data["data"][i]["orderNo"]%></div>
-                                <div class="tel"><%=data["data"][i]["loginname"]%></div>
+                                <div class="name"><%=data["data"][i]["groupList"][j]["name"]%></div>
+                                <div class="no"><%=data["data"][i]["groupList"][j]["orderNo"]%></div>
+                                <div class="tel"><%=data["data"][i]["groupList"][j]["loginname"]%></div>
                             </div>
                         </li>
                         <li>
-                          <%if(data["data"][i]["isHead"] ==0){%> 
-                           <div class="img"><img src="<img src="<%=data["data"][i]["userlogo"]%>" /><span class="head">团员</span></div>
+                          <%if(data["data"][i]["groupList"][j]["isHead"] ==0){%> 
+                           <div class="img"><img src="<img src="<%=data["data"][i]["groupList"][j]["userlogo"]%>" /><span class="head"></span></div>
                           <%}%>
                             <div class="info">
-                                <div class="name"><%=data["data"][i]["name"]%></div>
-                                <div class="no"><%=data["data"][i]["orderNo"]%></div>
-                                <div class="tel"><%=data["data"][i]["loginname"]%></div>
+                                <div class="name"><%=data["data"][i]["groupList"][j]["name"]%></div>
+                                <div class="no"><%=data["data"][i]["groupList"][j]["orderNo"]%></div>
+                                <div class="tel"><%=data["data"][i]["groupList"][j]["loginname"]%></div>
                             </div>
                         </li>
                     <%}%>
+                 <%}%>
                 <%}else if(data["pageNow"] == 1){%>
                     <div class="tips-null">暂无抽奖</div>
                 <%}%>
