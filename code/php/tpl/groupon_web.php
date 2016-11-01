@@ -136,13 +136,10 @@
 							<?php if($info['isGroup'] == 1){
 								if ($info['activityStatus'] == 2){ ?>
 									<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>">查看中奖名单</a></div>
-
-								<?php }
-							}
-							?>
-							<?php }elseif($info['isGroup'] == 1){ ?>
-								<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="">您已参与过该活动</a></div>
-							<?php }else{ ?>
+								<?php } else { ?>
+									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="">您已参与过该活动</a></div>
+							<?php } ?>
+							<?php } else { ?>
 								<div class="buy more1 more1-m2">
 									<a id="openSku" data-href="order_raffle01.php">
 										 <p>￥<b><?php echo $info['productPrice'];?></b></p>
