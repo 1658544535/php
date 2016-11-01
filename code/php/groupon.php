@@ -60,7 +60,7 @@ if ($info["activityType"] == 5){
     $type = $type_arr[$info['activityStatus']];
 }
 if (!$type){
-    $type = 1;
+    $type = 8;
 }
 $fx = apiData('getShareContentApi.do', array('id'=>$info['activityId'], 'type'=>$type));
 $fx = $fx['result'];
