@@ -3,6 +3,7 @@ define('HN1', true);
 require_once('../global.php');
 $attId 	        = CheckDatas( 'attId', '' );
 $aId 	        = CheckDatas( 'aid', '' );
+
 $page           = max(1, intval($_POST['page']));
 
 

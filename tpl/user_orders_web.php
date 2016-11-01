@@ -79,11 +79,11 @@
                                                                              未中奖，已返款
                                <%}else if(data["data"][i].source ==5 && data["data"][i].orderStatus ==6){%>
                                                                              未中奖，待返款
-                               <%}else if(data["data"][i].source ==5 && data["data"][i].isPrize ==1 && data["data"][i].orderStatus ==4){%>
+                               <%}else if(data["data"][i].source ==5 && data["data"][i].isPrize ==1 && data["data"][i].orderStatus ==9){%>
                                                                              已中奖，已完成 
-                               <%}else if(data["data"][i].source ==5 && data["data"][i].isPrize ==1 && data["data"][i].orderStatus ==2){%>
+                               <%}else if(data["data"][i].source ==5 && data["data"][i].isPrize ==1 && data["data"][i].orderStatus ==10){%>
                                                                              已中奖，待发货
-                               <%}else if(data["data"][i].source ==5 && data["data"][i].isPrize ==1 && data["data"][i].orderStatus ==3){%>
+                               <%}else if(data["data"][i].source ==5 && data["data"][i].isPrize ==1 && data["data"][i].orderStatus ==11){%>
                                                                              已中奖，待收货 
                                <%}else if(data["data"][i].source ==5 && data["data"][i].orderStatus ==1 && data["data"][i].isCancel ==0 ){%>                                  
                                                                              待支付
