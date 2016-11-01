@@ -53,20 +53,13 @@
                 <%if(data["data"].length>0){%>
                     <%for(var i=0;i<data["data"].length; i++){%>
                       <%for(var j=0;j<data["data"][i]["groupList"].length; j++){%>
-                        <li class="head">
-                          <%if(data["data"][i]["groupList"][j]["isHead"] ==1){%>  
-                          <div class="img"><img src="<%=data["data"][i]["groupList"][j]["userlogo"]%>" /><span class="head"></span></div>
-                           <%}%> 
-                            <div class="info">
-                                <div class="name"><%=data["data"][i]["groupList"][j]["name"]%></div>
-                                <div class="no"><%=data["data"][i]["groupList"][j]["orderNo"]%></div>
-                                <div class="tel"><%=data["data"][i]["groupList"][j]["loginname"]%></div>
-                            </div>
-                        </li>
-                        <li>
-                          <%if(data["data"][i]["groupList"][j]["isHead"] ==0){%> 
-                           <div class="img"><img src="<img src="<%=data["data"][i]["groupList"][j]["userlogo"]%>" /><span class="head"></span></div>
-                          <%}%>
+						<%if(data["data"][i]["groupList"][j]["isHead"] ==1){%>
+							<li class="head">
+								<div class="img"><img src="<%=data["data"][i]["groupList"][j]["userlogo"]%>" /><span class="head"></span></div>
+						<%}else{%>
+							<li>
+								<div class="img"><img src="<%=data["data"][i]["groupList"][j]["userlogo"]%>" /></div>
+						<%}%>
                             <div class="info">
                                 <div class="name"><%=data["data"][i]["groupList"][j]["name"]%></div>
                                 <div class="no"><%=data["data"][i]["groupList"][j]["orderNo"]%></div>
