@@ -898,6 +898,17 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.deta-group .list-container li .info .name,
+.deta-group .list-container li .info .time {
+  display: inline-block;
+  width: 50%;
+  line-height: 1.75rem;
+  font-size: 0.6rem;
+  color: #999;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 .deta-group .list-container li .info .name {
   padding-right: 0.25rem;
   font-size: 0.65rem;
@@ -906,7 +917,8 @@
 .deta-group .list-container li .info .no {
   text-align: center;
 }
-.deta-group .list-container li .info .tel {
+.deta-group .list-container li .info .tel,
+.deta-group .list-container li .info .time {
   padding-left: 0.25rem;
   text-align: right;
 }

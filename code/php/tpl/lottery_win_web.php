@@ -62,7 +62,7 @@
 						<%}%>
                             <div class="info">
                                 <div class="name"><%=data["data"][i]["groupList"][j]["name"]%></div>
-                                <div class="no"><%=data["data"][i]["groupList"][j]["attendTime"]%></div>
+                                <div class="time"><%=data["data"][i]["groupList"][j]["attendTime"]%></div>
                             </div>
                         </li>
                     <%}%>
