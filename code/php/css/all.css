@@ -4559,6 +4559,12 @@
   background: url(../images/seckill-null.png) no-repeat center center;
   background-size: 100% auto;
 }
+.seckill-null1 {
+  margin-top: 40%;
+  padding-bottom: 45.411%;
+  background: url(../images/seckill-null1.png) no-repeat center center;
+  background-size: 100% auto;
+}
 .lottery-rule img {
   display: block;
   width: 100%;
