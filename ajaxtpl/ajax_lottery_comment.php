@@ -12,7 +12,7 @@ $LotteryCommentList = apiData('getDrawCommentDetailsApi.do', array('activityId'=
 
 if(!empty($LotteryCommentList['result']))
 {
-	echo	ajaxJson( 1,'获取成功',$LotteryCommentList['result'],$page);
+	echo	ajaxJson( 1,'获取成功',$LotteryCommentList['result']['userInfo'],$page);
 }
 else
 {
