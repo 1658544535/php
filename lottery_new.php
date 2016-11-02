@@ -49,7 +49,7 @@ switch($act)
     	//提交评论操作
     	$attId  	    = CheckDatas( 'attId', '' );
     	$aId   	        = CheckDatas( 'aid', '' );
-    	var_dump($aId);
+    	
     	if(IS_POST()){
 			set_time_limit(0);
 			$apiParam = array();
