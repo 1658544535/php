@@ -200,13 +200,13 @@
                     <div>支付方式：微信支付</div>
                     <?php }?>
                     <div>下单时间：<?php echo $OrderDetail['result']['orderInfo']['createTime'];?></div>
-                    <?php if($OrderDetail['result']['orderStatus'] ==2  && $OrderDetail['result']['isSuccess'] ==1){?>
+                    <?php if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['orderStatus'] ==2  && $OrderDetail['result']['isSuccess'] ==1){?>
                     <div>成团时间：<?php echo $OrderDetail['result']['orderInfo']['groupTime'];?></div>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
+                    <?php }elseif($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['orderStatus'] ==3){?>
                      <div>成团时间：<?php echo $OrderDetail['result']['orderInfo']['groupTime'];?></div>
-                    <?php }elseif($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] ==10){?>
+                    <?php }elseif($OrderDetail['result']['source'] ==5 && ($OrderDetail['result']['orderStatus'] ==6) || ($OrderDetail['result']['orderStatus'] ==7) || ($OrderDetail['result']['orderStatus'] ==9) || ($OrderDetail['result']['orderStatus'] ==10) || ($OrderDetail['result']['orderStatus'] ==11)){?>
                     <div>成团时间：<?php echo $OrderDetail['result']['orderInfo']['groupTime'];?></div>
-                    <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
+                    <?php }elseif($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['orderStatus'] ==4){?>
                      <div>成团时间：<?php echo $OrderDetail['result']['orderInfo']['groupTime'];?></div>
                      <div>发货时间：<?php echo $OrderDetail['result']['orderInfo']['sendTime'];?></div>
                      <div>成交时间：<?php echo $OrderDetail['result']['orderInfo']['confirmTime'];?></div>
