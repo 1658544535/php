@@ -61,8 +61,8 @@
                 <section class="index-menu">
                     <a href="product_guess_price.php"><span class="index-menuIcon index-menu-i1"></span><span class="txt">猜价格</span></a>
                     <a href="special_77.php"><span class="index-menuIcon index-menu-i2"></span><span class="txt">7.7特区</span></a>
-                    <a href="seckill.php"><span class="index-menuIcon index-menu-i3"></span><span class="txt">限时秒杀</span></a>
-                    <a href="lottery_new.php"><span class="index-menuIcon index-menu-i4"></span><span class="txt">0.1秒杀</span></a>
+                    <a href="seckill.php"><span class="index-menuIcon index-menu-i3"></span><span class="txt">掌上秒杀</span></a>
+                    <a href="lottery_new.php"><span class="index-menuIcon index-menu-i4"></span><span class="txt">0.1抽奖</span></a>
                 </section>
                 <section class="index-index infinite-scroll infinite-scroll-bottom" data-distance="30">
                     <h2 class="index-pro-title"></h2>
