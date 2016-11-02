@@ -90,7 +90,19 @@
 					<?php break; ?>
 				<?php } ?>
 			</section>
-
+			<?php if($info['status'] ==2 && $info['activityType'] ==5){?>
+			<section class="proTips-6">
+                <div>
+                    <a href="lottery_new.php" class="light">查看更多</a>
+                </div>
+            </section>
+           <?php }elseif($info['status'] ==1 && $info['activityType'] ==5){?>
+           <section class="proTips-6">
+                <div>
+                    <a href="lottery_new.php" class="light">查看更多</a>
+                </div>
+            </section>
+            <?php }?>
             <div class="content native-scroll">
 				<section class="proTips-1">
 					<?php switch($info['status']){
@@ -102,7 +114,7 @@
 									恭喜你，开团成功！
 								</div>
 								<div class="txt2">还差<?php echo $info['poorNum'];?>人，赶紧分享召集小伙伴组团啦！</div>
-							<?php }elseif($info['isGroup'] == 0){ ?>
+							<?php }elseif($info['isGroup'] == 0 ){ ?>
 								<div class="txt1">
 									<div class="img"><img src="images/tip-ing.png" /></div>
 									您终于来了，快参团吧！
@@ -126,15 +138,23 @@
 							<?php } ?>
 						<?php break; ?>
 						<?php case 2: ?>
+						<?php if($info['activityType'] != 5){?>
 							<div class="txt1">
 								<div class="img"><img src="images/tip-fail.png" /></div>
 								很遗憾，组团失败！
 							</div>
 							<div class="txt2">拼团期内未达到成团人数，系统会在1-2个工作日内，按原路自动退款至各位成员.</div>
+						 <?php }else{?>
+							   <div class="txt1">
+								<div class="img"><img src="images/tip-fail.png" /></div>
+								很遗憾，该团已过期
+							</div>
+							<div class="txt2">组团时间到，未召集到相应人数的小伙伴！</div>
+							    <?php }?>
 						<?php break; ?>
 					<?php } ?>
 				</section>
-	
+	    <?php if($info['activityType'] != 5 ){?>
                 <section class="freeList proTips-2">
                     <h3 class="title1">拼团商品</h3>
                     <ul class="list-container">
@@ -151,6 +171,28 @@
                         </a></li>
                     </ul>
                 </section>
+          <?php }else{?>
+                <section class="freeList proTips-2">
+                    <h3 class="title1">拼团商品</h3>
+                    <ul class="list-container">
+                        <li><a href="javascript:;">
+                            <div class="img"><img src="<?php echo $info['productImage'];?>"></div>
+                            <div class="info">
+                                <div class="name"><?php echo $info['productName'];?></div>
+                                <div class="price">
+                                    <div class="btn" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'">商品详情</div>
+                                    <?php if($info['status'] !=0){?>
+                                    <div class="btn gray" onclick="location.href='lottery_new.php?act=winning&attId=<?php echo $info['recordId'];?>'">中奖详情</div>
+                                     <?php }?>                  
+                                    <span class="price1">￥<?php echo $info['groupPrice'];?></span>
+                                </div>
+                            </div>
+                        </a></li>
+                    </ul>
+                </section>
+           <?php }?>
+                
+                
                 
                 <section class="proTips-3">
                     <div class="title1">
