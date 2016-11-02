@@ -17,8 +17,8 @@ define('API_URL', 'http://pdh.choupinhui.net/v3.5');
 include_once(APP_INC.'config.php');
 include_once(APP_INC.'functions.php');
 
-//不配送的省份id，甘肃 海南 内蒙古 宁夏 青海 西藏 新疆
-$unSendProviceIds = array(29,22,6,31,27,32);
+//不配送的省份id，甘肃 内蒙古 宁夏 青海 西藏 新疆
+$unSendProviceIds = array(29,6,31,30,27,32);
 
 //微信相关配置信息(用于微信类)
 $wxOption = array(
@@ -31,168 +31,184 @@ include_once(LIB_ROOT.'/Weixin.class.php');
 include_once(LIB_ROOT.'/weixin/errCode.php');
 $objWX = new Weixin($wxOption);
 
-$openid = trim($_GET['openid']);
-$act = $_GET['act'];
+$time = time();
+
+$act = trim($_REQUEST['act']);
+
+$_logDir = LOG_INC.'msgtpl/'.$act.'/';
+!file_exists($_logDir) && mkdir($_logDir, 0777, true);
+$_logFile = $_logDir.$act.'_'.date('Y-m-d', $time).'.txt';
+
 switch($act){
     case 'pay'://支付
-        $orderId = intval($_GET['oid']);
-        $orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
-        $result = '';
-        if($orderInfo['success']){
-            $orderInfo = $orderInfo['result'];
-            $data = array(
-                'touser' => $openid,
-                'template_id' => 'HijtVshBey8vWEiheh97ih_VCMndYZv28ouP2lnyTa0',
-                'url' => $site,//.'order_detail.php?oid='.$orderId,
-                'topcolor' => '#000000',
-                'data' => array(
-                    'first' => array(
-                        'value' => '恭喜您支付成功！',
-                        'color' => '#000000',
-                    ),
-                    'keyword1' => array(
-                        'value' => $orderInfo['productInfo']['orderPrice'],
-                        'color' => '#000000',
-                    ),
-                    'keyword2' => array(
-                        'value' => $orderInfo['productInfo']['productName'],
-                        'color' => '#000000',
-                    ),
-                    'remark' => array(
-                        'value' => '[重磅]提前双十一，全场玩具7.7！好玩低价，预购从速>>',
-                        'color' => '#ff0000',
-                    ),
-                ),
-            );
-
-            $sendResult = $objWX->sendTemplateMessage($data);
-            if($sendResult !== false){
-                $result = json_encode($sendResult);
-            }
-        }
-        echo $result;
-        break;
-    case 'open'://开团
-        $orderId = intval($_GET['oid']);
-        $orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
-        $result = '';
-        if($orderInfo['success']){
-            $orderInfo = $orderInfo['result'];
-            $data = array(
-                'touser' => $openid,
-                'template_id' => 'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
-                'url' => $site,//.'order_detail.php?oid='.$orderId,
-                'topcolor' => '#000000',
-                'data' => array(
-                    'first' => array(
-                        'value' => '恭喜您开团成功！',
-                        'color' => '#000000',
-                    ),
-                    'keyword1' => array(
-                        'value' => $orderInfo['productInfo']['orderPrice'],
-                        'color' => '#000000',
-                    ),
-                    'keyword2' => array(
-                        'value' => $orderInfo['productInfo']['productName'],
-                        'color' => '#000000',
-                    ),
-                    'keyword3' => array(
-                        'value' => $orderInfo['addressInfo']['consignee'].' '.$orderInfo['addressInfo']['tel'].' '.$orderInfo['addressInfo']['address'],
-                        'color' => '#000000',
-                    ),
-                    'keyword4' => array(
-                        'value' => $orderInfo['orderInfo']['orderNo'],
-                        'color' => '#000000',
-                    ),
-                    'remark' => array(
-                        'value' => '[重磅]提前双十一，全场玩具7.7！好玩低价，预购从速>>',
-                        'color' => '#ff0000',
-                    ),
-                ),
-            );
-
-            $sendResult = $objWX->sendTemplateMessage($data);
-            if($sendResult !== false){
-                $result = json_encode($sendResult);
-            }
-        }
-        echo $result;
-        break;
-    case 'join'://拼团
-        $orderId = intval($_GET['oid']);
-        $orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
-		$time = time();
-		$_logDir = LOG_INC.'msgtpl/join/';
-		!file_exists($_logDir) && mkdir($_logDir, 0777, true);
-		$_logFile = $_logDir.date('Y-m-d', $time).'.txt';
-		$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】发送拼团成功通知".(empty($orderInfo)?'，调用 orderdetail.do 接口返回为空':'')."\r\n";
+		$tplParam = array(
+			'openid' => trim($_REQUEST['openid']),
+			'factPrice' => trim($_REQUEST['factPrice']),
+			'productName' => trim($_REQUEST['productName']),
+		);
+		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送支付通知开始，openid：{$tplParam['openid']}，实付金额：{$tplParam['factPrice']}，商品：{$tplParam['productName']}\r\n";
 		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-        $result = '';
-        if($orderInfo['success']){
-            $orderInfo = $orderInfo['result'];
-            $data = array(
-                'touser' => $openid,
-                'template_id' => 'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
-//                 'url' => $site,//.'groupon_join.php?aid='.$orderInfo['attendId'],
-            	'url' => 'http://wxpdh.choupinhui.net/free.php?id=16',
-            	'topcolor' => '#000000',
-                'data' => array(
-                    'first' => array(
-                        'value' => '恭喜您拼团成功！我们将尽快为你发货。',
-                        'color' => '#000000',
-                    ),
-                    'keyword1' => array(
-                        'value' => $orderInfo['orderInfo']['orderNo'],
-                        'color' => '#000000',
-                    ),
-                    'keyword2' => array(
-                        'value' => $orderInfo['productInfo']['orderPrice'],
-                        'color' => '#000000',
-                    ),
-                    'remark' => array(
-                        'value' => '优质玩具，0元开团，预购从速，点击领券>>>',
-                        'color' => '#ff0000',
-                    ),
-                ),
-            );
-			$sendResult = $objWX->sendTemplateMessage($data);
-			if($sendResult !== false){
-				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$orderInfo['orderInfo']['orderNo']}】当前下单者openid:{$openid}\r\n";
-				file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-			}else{
-				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$orderInfo['orderInfo']['orderNo']}】当前下单者openid:{$openid}，发送失败：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
-				file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-			}
-
-			foreach($orderInfo['userList'] as $_openid){
-				if($_openid['openid'] != $openid){
-					$data['touser'] = $_openid['openid'];
-					$data['data']['keyword1']['value'] = $_openid['orderNo'];
-					$data['data']['keyword2']['value'] = $_openid['factPrice'];
-					$sendResult = $objWX->sendTemplateMessage($data);
-					if($sendResult !== false){
-						$_logInfo = "【".date('Y-m-d H:i:s', $time)." 结团订单号:{$orderInfo['orderInfo']['orderNo']}，接收者订单号:{$_openid['orderNo']}】参团接收通知者openid:{$_openid['openid']}，金额：{$_openid['factPrice']}\r\n";
-						file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-					}else{
-						$_logInfo = "【".date('Y-m-d H:i:s', $time)." 结团订单号:{$orderInfo['orderInfo']['orderNo']}，接收者订单号:{$_openid['orderNo']}】参团接收通知者openid:{$_openid['openid']}，金额：{$_openid['factPrice']}，发送失败：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
-						file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-					}
-				}
-			}
-            file_put_contents($_logFile, "\r\n", FILE_APPEND);
-            if($sendResult !== false){
-                $result = json_encode($sendResult);
-            }
-        }else{
-			$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】当前下单者openid:{$openid}，接口 orderdetail.do 获取数据失败:{$orderInfo[error_msg]}\r\n";
+		$data = array(
+			'touser' => $tplParam['openid'],
+			'template_id' => 'HijtVshBey8vWEiheh97ih_VCMndYZv28ouP2lnyTa0',
+			'url' => $site,//.'order_detail.php?oid='.$orderId,
+			'topcolor' => '#000000',
+			'data' => array(
+				'first' => array(
+					'value' => '恭喜您支付成功！',
+					'color' => '#000000',
+				),
+				'keyword1' => array(
+					'value' => $tplParam['factPrice'],
+					'color' => '#000000',
+				),
+				'keyword2' => array(
+					'value' => $tplParam['productName'],
+					'color' => '#000000',
+				),
+				'remark' => array(
+					'value' => '[重磅]提前双十一，全场玩具7.7！好玩低价，预购从速>>',
+					'color' => '#ff0000',
+				),
+			),
+		);
+		$sendResult = $objWX->sendTemplateMessage($data);
+		if($sendResult === false){
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】支付通知发送失败，openid：{$tplParam['openid']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}else{
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】支付通知发送成功，openid：{$tplParam['openid']}\r\n";
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		}
-        echo $result;
+		file_put_contents($_logFile, "\r\n", FILE_APPEND);
+        break;
+    case 'open'://开团
+		$tplParam = array(
+			'openid' => trim($_REQUEST['openid']),
+			'factPrice' => trim($_REQUEST['factPrice']),
+			'productName' => trim($_REQUEST['productName']),
+			'consignee' => trim($_REQUEST['consignee']),
+			'consigneePhone' => trim($_REQUEST['consigneePhone']),
+			'consigneeAddress' => trim($_REQUEST['consigneeAddress']),
+			'orderNo' => trim($_REQUEST['orderNo']),
+		);
+		$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号：{$tplParam['orderNo']}】发送开团通知开始，openid：{$tplParam['openid']}，实付金额：{$tplParam['factPrice']}，商品：{$tplParam['productName']}，收货人：{$tplParam['consignee']}，联系号码：{$tplParam['consigneePhone']}，地址：{$tplParam['consigneeAddress']}\r\n";
+		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		$data = array(
+			'touser' => $openid,
+			'template_id' => 'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
+			'url' => $site,//.'order_detail.php?oid='.$orderId,
+			'topcolor' => '#000000',
+			'data' => array(
+				'first' => array(
+					'value' => '恭喜您开团成功！',
+					'color' => '#000000',
+				),
+				'keyword1' => array(
+					'value' => $tplParam['factPrice'],
+					'color' => '#000000',
+				),
+				'keyword2' => array(
+					'value' => $tplParam['productName'],
+					'color' => '#000000',
+				),
+				'keyword3' => array(
+					'value' => $tplParam['consignee'].' '.$tplParam['consigneePhone'].' '.$tplParam['consigneeAddress'],
+					'color' => '#000000',
+				),
+				'keyword4' => array(
+					'value' => $tplParam['orderNo'],
+					'color' => '#000000',
+				),
+				'remark' => array(
+					'value' => '[重磅]提前双十一，全场玩具7.7！好玩低价，预购从速>>',
+					'color' => '#ff0000',
+				),
+			),
+		);
+		$sendResult = $objWX->sendTemplateMessage($data);
+		if($sendResult === false){
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号：{$tplParam['orderNo']}】开团通知发送失败，openid：{$tplParam['openid']}，实付金额：{$tplParam['factPrice']}，商品：{$tplParam['productName']}，收货人：{$tplParam['consignee']}，联系号码：{$tplParam['consigneePhone']}，地址：{$tplParam['consigneeAddress']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}else{
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号：{$tplParam['orderNo']}】开团通知发送成功，openid：{$tplParam['openid']}，实付金额：{$tplParam['factPrice']}，商品：{$tplParam['productName']}，收货人：{$tplParam['consignee']}，联系号码：{$tplParam['consigneePhone']}，地址：{$tplParam['consigneeAddress']}\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
+		file_put_contents($_logFile, "\r\n", FILE_APPEND);		
+        break;
+    case 'join'://拼团
+		$paramData = trim($_REQUEST['data']);
+		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送拼团通知开始\r\n";
+		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		
+		if(empty($paramData)){
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送拼团通知，参数为空\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
+
+		$tplParam = json_decode($paramData, true);
+		if($tplParam !== true){
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送拼团通知，参数转为json失败，传递参数data值为{$paramData}\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
+
+		$data = array(
+			'template_id' => 'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
+			'url' => 'http://wxpdh.choupinhui.net/free.php?id=16',
+			'topcolor' => '#000000',
+			'data' => array(
+				'first' => array(
+					'value' => '恭喜您拼团成功！我们将尽快为你发货。',
+					'color' => '#000000',
+				),
+				'keyword1' => array(
+//					'value' => $orderInfo['orderInfo']['orderNo'],
+					'color' => '#000000',
+				),
+				'keyword2' => array(
+//					'value' => $orderInfo['productInfo']['orderPrice'],
+					'color' => '#000000',
+				),
+				'remark' => array(
+					'value' => '优质玩具，0元开团，预购从速，点击领券>>>',
+					'color' => '#ff0000',
+				),
+			),
+		);
+
+		foreach($tplParam as $v){
+			$data['touser'] = $v['openid'];
+			$data['data']['keyword1']['value'] = $v['orderNo'];
+			$data['data']['keyword2']['value'] = $v['factPrice'];
+			$sendResult = $objWX->sendTemplateMessage($data);
+			if($sendResult === false){
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】拼团通知发送失败，openid:{$v['openid']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+				file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+			}else{
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】拼团通知发送成功，openid:{$v['openid']}，实付金额：{$v['factPrice']}\r\n";
+				file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+			}
+		}
+		file_put_contents($_logFile, "\r\n", FILE_APPEND);
         break;
     case 'delivery'://发货
-        $result = '';
+		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送发货通知开始\r\n";
+		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+
         $orderId = intval($_GET['oid']);
+
+		if(empty($orderId)){
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送发货通知，订单id为空\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
+
         $orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
+
+		if(empty($orderInfo)){
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】发送发货通知，接口 orderdetail.do 返回为空\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
+
         if($orderInfo['success']){
             $orderInfo = $orderInfo['result'];
             if($orderInfo['orderStatus'] == 3){
@@ -230,65 +246,72 @@ switch($act){
                 );
 
                 $sendResult = $objWX->sendTemplateMessage($data);
-                if($sendResult !== false){
-                    $result = json_encode($sendResult);
-                }
+                if($sendResult === false){
+					$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】发货通知发送失败，openid:{$v['openid']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+					file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+                }else{
+					$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】发货通知发送成功，openid:{$v['openid']}，商品：{$orderInfo['productInfo']['productName']}【{$orderInfo['productInfo']['number']}】，物流：{$orderInfo['orderInfo']['logisticsName']}【{$orderInfo['orderInfo']['logisticsNo']}】\r\n";
+					file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+				}
             }
-        }
-		echo $result;
+        }else{
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】发送发货通知，接口 orderdetail.do 获取数据失败：{$orderInfo[error_msg]}\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
+		file_put_contents($_logFile, "\r\n", FILE_APPEND);
         break;
-    case 'refund'://退款
-        $result = '';
-        $orderId = intval($_GET['oid']);
-        $uid = intval($_GET['uid']);
-        $refundInfo = apiData('refundDetails.do', array('oid'=>$orderId, 'uid'=>$uid));
-        if($refundInfo['success']){
-            $refundInfo = $refundInfo['result'];
-            $orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
-            $typeMap = array(1=>'仅退款', 2=>'退货退款');
-            $data = array(
-                'touser' => $openid,
-                'template_id' => '-ufIIBoIsqG6QOFo7N8N19n3jBx9Lguyi7VqAITE8kU',
-                'url' => $site,//.'groupon_join.php?aid='.$orderInfo['attendId'],
-                'topcolor' => '#000000',
-                'data' => array(
-                    'first' => array(
-                        'value' => '退款成功！',
-                        'color' => '#000000',
-                    ),
-                    'keyword1' => array(
-                        'value' => $refundInfo['refundPrice'],
-                        'color' => '#000000',
-                    ),
-                    'keyword2' => array(
-                        'value' => $typeMap[$refundInfo['type']],
-                        'color' => '#000000',
-                    ),
-                    'keyword3' => array(
-                        'value' => $refundInfo['refundType'],
-                        'color' => '#000000',
-                    ),
-                    'keyword4' => array(
-                        'value' => '',
-                        'color' => '#000000',
-                    ),
-                    'keyword5' => array(
-                        'value' => $orderInfo['result']['orderInfo']['orderNo'],
-                        'color' => '#000000',
-                    ),
-                    'remark' => array(
-                        'value' => '[重磅]提前双十一，全场玩具7.7！好玩低价，预购从速>>',
-                        'color' => '#ff0000',
-                    ),
-                ),
-            );
-
-            $sendResult = $objWX->sendTemplateMessage($data);
-            if($sendResult !== false){
-                $result = json_encode($sendResult);
-            }
-        }
-		echo $result;
-        break;
+//    case 'refund'://退款
+//        $result = '';
+//        $orderId = intval($_GET['oid']);
+//        $uid = intval($_GET['uid']);
+//        $refundInfo = apiData('refundDetails.do', array('oid'=>$orderId, 'uid'=>$uid));
+//        if($refundInfo['success']){
+//            $refundInfo = $refundInfo['result'];
+//            $orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
+//            $typeMap = array(1=>'仅退款', 2=>'退货退款');
+//            $data = array(
+//                'touser' => $openid,
+//                'template_id' => '-ufIIBoIsqG6QOFo7N8N19n3jBx9Lguyi7VqAITE8kU',
+//                'url' => $site,//.'groupon_join.php?aid='.$orderInfo['attendId'],
+//                'topcolor' => '#000000',
+//                'data' => array(
+//                    'first' => array(
+//                        'value' => '退款成功！',
+//                        'color' => '#000000',
+//                    ),
+//                    'keyword1' => array(
+//                        'value' => $refundInfo['refundPrice'],
+//                        'color' => '#000000',
+//                    ),
+//                    'keyword2' => array(
+//                        'value' => $typeMap[$refundInfo['type']],
+//                        'color' => '#000000',
+//                    ),
+//                    'keyword3' => array(
+//                        'value' => $refundInfo['refundType'],
+//                        'color' => '#000000',
+//                    ),
+//                    'keyword4' => array(
+//                        'value' => '',
+//                        'color' => '#000000',
+//                    ),
+//                    'keyword5' => array(
+//                        'value' => $orderInfo['result']['orderInfo']['orderNo'],
+//                        'color' => '#000000',
+//                    ),
+//                    'remark' => array(
+//                        'value' => '[重磅]提前双十一，全场玩具7.7！好玩低价，预购从速>>',
+//                        'color' => '#ff0000',
+//                    ),
+//                ),
+//            );
+//
+//            $sendResult = $objWX->sendTemplateMessage($data);
+//            if($sendResult !== false){
+//                $result = json_encode($sendResult);
+//            }
+//        }
+//		echo $result;
+//        break;
 }
 ?>

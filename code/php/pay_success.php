@@ -20,19 +20,19 @@ if($orderInfo['result']['attendId']){
 unset($_SESSION['order']);
 unset($_SESSION['order_success']);
 if($state){
-    sendWXTplMsg('pay', array('oid'=>$orderId));
-    if($orderInfo['result']['isOpen'] == 1){//开团
-        sendWXTplMsg('open', array('oid'=>$orderId));
-    }elseif(!in_array($orderInfo['result']['source'], array(3,4)) && ($orderInfo['result']['isSuccess'] == 1)){//是拼团且成功
-		$time = time();
-		$_logDir = LOG_INC.'msgtpl/join/';
-		!file_exists($_logDir) && mkdir($_logDir, 0777, true);
-		$_logFile = $_logDir.date('Y-m-d', $time).'.txt';
-		$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】拼团成功，开始进入发送微信通知\r\n";
-		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-
-        sendWXTplMsg('join', array('oid'=>$orderId));
-    }
+//    sendWXTplMsg('pay', array('oid'=>$orderId));
+//    if($orderInfo['result']['isOpen'] == 1){//开团
+//        sendWXTplMsg('open', array('oid'=>$orderId));
+//    }elseif(!in_array($orderInfo['result']['source'], array(3,4)) && ($orderInfo['result']['isSuccess'] == 1)){//是拼团且成功
+//		$time = time();
+//		$_logDir = LOG_INC.'msgtpl/join/';
+//		!file_exists($_logDir) && mkdir($_logDir, 0777, true);
+//		$_logFile = $_logDir.date('Y-m-d', $time).'.txt';
+//		$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】拼团成功，开始进入发送微信通知\r\n";
+//		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+//
+//        sendWXTplMsg('join', array('oid'=>$orderId));
+//    }
     redirect($referUrl, '支付成功');
 }else{
     redirect($referUrl, '支付失败');
