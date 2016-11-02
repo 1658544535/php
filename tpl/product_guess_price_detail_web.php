@@ -207,7 +207,7 @@
 	                        <ul class="list-container">
 	                                                  您的出价信息如下：
 	                            <li><a href="javascript:;">
-	                                <div class="img"><img src="<?php echo $ObjUser['result']['userImage'];?>" /></div>
+	                                <div class="img"><img src="<?php echo $ObjGrouponInfo['result']['userInfo']['userImage'];?>" /></div>
 	                                <div class="info">
 	                                    <div class="name"><?php echo $ObjGrouponInfo['result']['userInfo']['userName'];?></div>
 	                                    <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $ObjGrouponInfo['result']['userInfo']['userPrice'];?></span></p></div>
