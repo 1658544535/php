@@ -147,7 +147,7 @@ switch($act){
 		}
 
 		$tplParam = json_decode($paramData, true);
-		if($tplParam !== true){
+		if($tplParam === false){
 			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送拼团通知，参数转为json失败，传递参数data值为{$paramData}\r\n";
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		}
