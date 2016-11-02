@@ -195,7 +195,7 @@ switch($act){
 		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送发货通知开始\r\n";
 		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 
-        $orderId = intval($_GET['oid']);
+        $orderId = intval($_REQUEST['oid']);
 
 		if(empty($orderId)){
 			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送发货通知，订单id为空\r\n";
