@@ -150,14 +150,14 @@
                         </a></li>
                     </ul>
                     <div class="option">
-
+                     <?php if($OrderDetail['result']['orderStatus'] !=1){?>
                        <?php if($OrderDetail['result']['orderStatus'] ==2){?>
                           <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
-                          <?php if($OrderDetail['result']['source'] ==5){?>
+                          <?php if($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] !=1){?>
                            <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId'];?>">查看中奖记录</a> 
                           <?php }?>
                       <?php }else if($OrderDetail['result']['orderStatus'] ==3 ){?>                  
-                           <?php if($OrderDetail['result']['source'] ==5){?>
+                           <?php if($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] !=1){?>
                            <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId'];?>">查看中奖记录</a> 
                            <?php }?>
                            <?php if($OrderDetail['result']['source'] !=4 && $OrderDetail['result']['source'] !=3){?>
@@ -169,23 +169,24 @@
                            <a class="txt">售后申请中...</a>
                             <?php }?>
                       <?php }else if($OrderDetail['result']['orderStatus'] ==4){?>
-                            <?php if($OrderDetail['result']['source'] ==5){?>
+                            <?php if($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] !=1){?>
                             <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId'];?>">查看中奖记录</a> 
                             <?php }?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 					  <?php }else if($OrderDetail['result']['isSuccess'] ==2 && ($OrderDetail['result']['refPriStatus'] ==1) || ($OrderDetail['result']['refPriStatus'] ==0)){?>
-						   <?php if($OrderDetail['result']['source'] ==5){?>
+						   <?php if($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] !=1){?>
                            <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId'];?>">查看中奖记录</a> 
                            <?php }?>    
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 				       <?php }else if($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==2){?>
-						    <?php if($OrderDetail['result']['source'] ==5){?>
+						    <?php if($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] !=1){?>
                            <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId'];?>">查看中奖记录</a> 
                            <?php }?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
-					   <?php }else if($OrderDetail['result']['isCancel'] ==1 && $OrderDetail['result']['source'] ==5){?>
+					   <?php }else if($OrderDetail['result']['isCancel'] ==1 && $OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] !=1){?>
 						    <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId'];?>">查看中奖记录</a>
 				      <?php }?>
+                    <?php }?>
                     </div>
                 </section>
 
