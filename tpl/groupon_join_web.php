@@ -167,7 +167,7 @@
                     <ul class="list">
 						<?php foreach($info['groupUserList'] as $v){ ?>
 							<li>
-								<div class="img"><img src="<?php echo $v['userImage'];?>" /></div>
+								<div class="img"><img src="<?php echo $v['userImage']?$v['userImage']:'/images/def_user.png';?>" /></div>
 								<div class="name">
 									<?php if($v['isHead']){ ?><span>团长</span><?php } ?>
 									<p><?php echo $v['userName'];?></p>
