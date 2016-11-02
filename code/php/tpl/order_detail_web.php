@@ -50,6 +50,10 @@
                 <h1 class="title">拼团中</h1>
                 <?php }elseif($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] ==5){?>
                 <h1 class="title">交易已取消</h1>
+                <?php }elseif($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] ==6){?>
+                <h1 class="title">未中奖</h1>
+                <?php }elseif($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] ==7){?>
+                <h1 class="title">未中奖</h1>
                 <?php }elseif($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] ==9){?>
                 <h1 class="title">已签收</h1>
                 <?php }elseif($OrderDetail['result']['source'] ==5 ){?>
