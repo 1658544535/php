@@ -89,7 +89,7 @@
                                                                              待支付
                                <%}else if(data["data"][i].source ==5 && data["data"][i].orderStatus ==2   && data["data"][i].isSuccess ==0){%>
                                                                              拼团中，还差<%=data["data"][i].oweNum %>人
-                               <%}else if(data["data"][i].source ==5 && data["data"][i].orderStatus ==1   && data["data"][i].isCancel ==1){%>
+                               <%}else if(data["data"][i].source ==5 && data["data"][i].orderStatus ==5   && data["data"][i].isCancel ==1){%>
                                                                              交易已取消       
                                <%}else if(data["data"][i].source ==5 && data["data"][i].orderStatus ==3 && data["data"][i].isSuccess ==2 && (data["data"][i].isRefund ==0) || (data["data"][i].isRefund ==1) ){%>
                                                                              未成团，退款中  

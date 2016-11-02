@@ -38,7 +38,7 @@
 
                 <section class="pdk-form">
                     <ul>
-                        <form id="submitForm" action="lottery_new.php?act=comment_save" accept-charset="utf-8" enctype="multipart/form-data" method="post">
+                        <form id="submitForm" action="lottery_new.php?act=comment_save&attId=<?php echo $attId ;?>&aid=<?php echo $aId;?>" accept-charset="utf-8" enctype="multipart/form-data" method="post">
                             <li class="evaluate-txt">
                                 <div class="evaluate-txt-main"><textarea name="content" id="evaluate-txt" placeholder="写下您的购物体验和使用感受来帮助其他小伙伴！"></textarea></div>
                                 <div class="evaluate-txt-num">500</div>
@@ -117,7 +117,7 @@
                                         _this.parent().find(".img").html('<img data-file="'+data.msg+'" data-src="'+ url +'" src="'+ url +'" />');
                                         _this.parent().find("input[type='hidden']").val(url);
                                         $(".uploadImg-item .close").show();
-                                        if(_this.parents(".uploadImg").find(".uploadImg-item").length < 5)
+                                        if(_this.parents(".uploadImg").find(".uploadImg-item").length < 9)
                                         _this.parent().after('<div class="uploadImg-item"><input type="file" capture="camera" accept="image/*" /><div class="img noImg"></div><span class="close" style="display:none;"></span></div>');
                                     }else{
                                         _this.parent().find(".img").find("img").attr("src", url);

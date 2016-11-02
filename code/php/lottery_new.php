@@ -13,8 +13,8 @@ $Content 		= CheckDatas( 'content', '' );
 
 $backUrl = getPrevUrl();
 
-define('IMAGE_UPLOAD_DIR', SCRIPT_ROOT.'upfiles/activityProductComment');
-define('IMAGE_UPLOAD_URL', 'upfiles/activityProductComment');
+define('IMAGE_UPLOAD_DIR', SCRIPT_ROOT.'upfiles/activityProductComment/');
+define('IMAGE_UPLOAD_URL', 'upfiles/activityProductComment/');
 
 //获取分享信息
 $fx = apiData('getShareContentApi.do', array('id'=>18, 'type'=>18));
@@ -42,10 +42,14 @@ switch($act)
      	//提交评论页面
    	    $proImage   	    = CheckDatas( 'proimage', '' );
    	    $proName   	        = CheckDatas( 'proname', '' );
-    	include_once('tpl/lottery_comment_web.php');
+   	    
+   	    include_once('tpl/lottery_comment_web.php');
     	break;
     case 'comment_save':
     	//提交评论操作
+    	$attId  	    = CheckDatas( 'attId', '' );
+    	$aId   	        = CheckDatas( 'aid', '' );
+    	var_dump($aId);
     	if(IS_POST()){
 			set_time_limit(0);
 			$apiParam = array();
@@ -53,7 +57,7 @@ switch($act)
 			
 			$i = 1;
 			foreach($upImgs as $v){
-				$apiParam['image'.$i] = '@'.IMAGE_UPLOAD_DIR.$v;
+				$apiParam['img'.$i] = '@'.IMAGE_UPLOAD_DIR.$v;
 				$i++;
 			}
 
@@ -103,7 +107,7 @@ switch($act)
 	
 	case 'complete':
 		//提交成功后页面
-		
+		$aId   	        = CheckDatas( 'aid', '' );
 		$LikeList = apiData('guessYourLikeApi.do', array('activityId'=>$aId,'userId'=>$uId));
 		$LikeList = $LikeList['result'];
 		include_once('tpl/lottery_complete_web.php');
