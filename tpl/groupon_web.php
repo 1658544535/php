@@ -133,19 +133,19 @@
 					<?php switch($info['activityType']){
 						case 5://0.1抽奖
 						?>
-							<?php if($info['isOpen'] == 1){ ?>
-								<?php if($info['isPrize'] == 1){ ?>
-									<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>">查看中奖名单</a></div>
-								<?php }else{ ?>
+							<?php if($info['activityStatus'] == 2){ ?>
+								<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>">查看中奖名单</a></div>
+							<?php }elseif($info['activityStatus'] == 1){ ?>
+								<?php if($info['isOpen'] == 1){ ?>
 									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">您已参与过该活动</a></div>
+								<?php }else{ ?>
+									<div class="buy more1 more1-m2">
+										<a id="openSku" data-href="order_raffle01.php">
+											 <p>￥<b><?php echo $info['productPrice'];?></b></p>
+											 <p><?php echo $info['groupNum'];?>人成团</p>
+										</a>
+									</div>
 								<?php } ?>
-							<?php }else{ ?>
-								<div class="buy more1 more1-m2">
-									<a id="openSku" data-href="order_raffle01.php">
-										 <p>￥<b><?php echo $info['productPrice'];?></b></p>
-										 <p><?php echo $info['groupNum'];?>人成团</p>
-									</a>
-								</div>
 							<?php } ?>
 						<?php break; ?>
 						<?php case 6://限时秒杀
