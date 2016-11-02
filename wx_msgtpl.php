@@ -121,12 +121,14 @@ switch($act){
     case 'join'://拼团
         $orderId = intval($_GET['oid']);
         $orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
+		$time = time();
+		$_logDir = LOG_INC.'msgtpl/join/';
+		!file_exists($_logDir) && mkdir($_logDir, 0777, true);
+		$_logFile = $_logDir.date('Y-m-d', $time).'.txt';
+		$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】发送拼团成功通知".(empty($orderInfo)?'，调用 orderdetail.do 接口返回为空':'')."\r\n";
+		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
         $result = '';
         if($orderInfo['success']){
-			$time = time();
-			$_logDir = LOG_INC.'msgtpl/join/';
-			!file_exists($_logDir) && mkdir($_logDir, 0777, true);
-			$_logFile = $_logDir.date('Y-m-d', $time).'.txt';
             $orderInfo = $orderInfo['result'];
             $data = array(
                 'touser' => $openid,
@@ -182,10 +184,6 @@ switch($act){
                 $result = json_encode($sendResult);
             }
         }else{
-			$time = time();
-			$_logDir = LOG_INC.'msgtpl/join/';
-			!file_exists($_logDir) && mkdir($_logDir, 0777, true);
-			$_logFile = $_logDir.date('Y-m-d', $time).'.txt';
 			$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】当前下单者openid:{$openid}，接口 orderdetail.do 获取数据失败:{$orderInfo[error_msg]}\r\n";
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		}
