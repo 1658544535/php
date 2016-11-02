@@ -17,7 +17,7 @@ define('IMAGE_UPLOAD_DIR', SCRIPT_ROOT.'upfiles/activityProductComment');
 define('IMAGE_UPLOAD_URL', 'upfiles/activityProductComment');
 
 //获取分享信息
-$fx = apiData('getShareContentApi.do', array('id'=>1, 'type'=>18));
+$fx = apiData('getShareContentApi.do', array('id'=>18, 'type'=>18));
 $fx = $fx["result"];
 
 switch($act)
