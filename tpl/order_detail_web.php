@@ -204,6 +204,8 @@
                     <div>成团时间：<?php echo $OrderDetail['result']['orderInfo']['groupTime'];?></div>
                     <?php }elseif($OrderDetail['result']['orderStatus'] ==3){?>
                      <div>成团时间：<?php echo $OrderDetail['result']['orderInfo']['groupTime'];?></div>
+                    <?php }elseif($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] ==10){?>
+                    <div>成团时间：<?php echo $OrderDetail['result']['orderInfo']['groupTime'];?></div>
                     <?php }elseif($OrderDetail['result']['orderStatus'] ==4){?>
                      <div>成团时间：<?php echo $OrderDetail['result']['orderInfo']['groupTime'];?></div>
                      <div>发货时间：<?php echo $OrderDetail['result']['orderInfo']['sendTime'];?></div>

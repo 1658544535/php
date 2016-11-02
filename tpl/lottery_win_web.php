@@ -70,7 +70,7 @@
                 <%}else if(data["pageNow"] == 1){%>
                     <div class="tips-null">暂无抽奖</div>
                 <%}%>
-                <?php if($attId !=''){?>
+                <?php if($attId  !=''){?>
                 <div class="bin-btn clickbtn">
                     <a href="lottery_new.php?act=winning&aid=<?php echo $winInfo['activityId'] ;?>">点击查看全部中奖信息</a>
                 </div>
