@@ -207,57 +207,58 @@ switch($act){
 		if(empty($orderInfo)){
 			$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】发送发货通知，接口 orderdetail.do 返回为空\r\n";
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-		}
+		}else{
+			if($orderInfo['success']){
+				$orderInfo = $orderInfo['result'];
+				if($orderInfo['orderStatus'] == 3){
+					$data = array(
+						'touser' => $openid,
+						'template_id' => 'EGztXez9id31kHrJZo6i-pY6523kx15PDgvC80Qw658',
+						'url' => $site,//.'order_detail.php?oid='.$orderId,
+						'topcolor' => '#000000',
+						'data' => array(
+							'first' => array(
+								'value' => '您购买的商品已经发货啦！',
+								'color' => '#000000',
+							),
+							'keyword1' => array(
+								'value' => $orderInfo['orderInfo']['logisticsName'],
+								'color' => '#000000',
+							),
+							'keyword2' => array(
+								'value' => $orderInfo['orderInfo']['logisticsNo'],
+								'color' => '#000000',
+							),
+							'keyword3' => array(
+								'value' => $orderInfo['productInfo']['productName'],
+								'color' => '#000000',
+							),
+							'keyword4' => array(
+								'value' => $orderInfo['productInfo']['number'],
+								'color' => '#000000',
+							),
+							'remark' => array(
+								'value' => '[重磅]提前双十一，全场玩具7.7！好玩低价，预购从速>>',
+								'color' => '#ff0000',
+							),
+						),
+					);
 
-        if($orderInfo['success']){
-            $orderInfo = $orderInfo['result'];
-            if($orderInfo['orderStatus'] == 3){
-                $data = array(
-                    'touser' => $openid,
-                    'template_id' => 'EGztXez9id31kHrJZo6i-pY6523kx15PDgvC80Qw658',
-                    'url' => $site,//.'order_detail.php?oid='.$orderId,
-                    'topcolor' => '#000000',
-                    'data' => array(
-                        'first' => array(
-                            'value' => '您购买的商品已经发货啦！',
-                            'color' => '#000000',
-                        ),
-                        'keyword1' => array(
-                            'value' => $orderInfo['orderInfo']['logisticsName'],
-                            'color' => '#000000',
-                        ),
-                        'keyword2' => array(
-                            'value' => $orderInfo['orderInfo']['logisticsNo'],
-                            'color' => '#000000',
-                        ),
-                        'keyword3' => array(
-                            'value' => $orderInfo['productInfo']['productName'],
-                            'color' => '#000000',
-                        ),
-                        'keyword4' => array(
-                            'value' => $orderInfo['productInfo']['number'],
-                            'color' => '#000000',
-                        ),
-                        'remark' => array(
-                            'value' => '[重磅]提前双十一，全场玩具7.7！好玩低价，预购从速>>',
-                            'color' => '#ff0000',
-                        ),
-                    ),
-                );
-
-                $sendResult = $objWX->sendTemplateMessage($data);
-                if($sendResult === false){
-					$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】发货通知发送失败，openid:{$v['openid']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
-					file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-                }else{
-					$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】发货通知发送成功，openid:{$v['openid']}，商品：{$orderInfo['productInfo']['productName']}【{$orderInfo['productInfo']['number']}】，物流：{$orderInfo['orderInfo']['logisticsName']}【{$orderInfo['orderInfo']['logisticsNo']}】\r\n";
-					file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+					$sendResult = $objWX->sendTemplateMessage($data);
+					if($sendResult === false){
+						$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】发货通知发送失败，openid:{$v['openid']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+						file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+					}else{
+						$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】发货通知发送成功，openid:{$v['openid']}，商品：{$orderInfo['productInfo']['productName']}【{$orderInfo['productInfo']['number']}】，物流：{$orderInfo['orderInfo']['logisticsName']}【{$orderInfo['orderInfo']['logisticsNo']}】\r\n";
+						file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+					}
 				}
-            }
-        }else{
-			$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】发送发货通知，接口 orderdetail.do 获取数据失败：{$orderInfo[error_msg]}\r\n";
-			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+			}else{
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单ID:{$orderId}】发送发货通知，接口 orderdetail.do 获取数据失败：{$orderInfo[error_msg]}\r\n";
+				file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+			}
 		}
+        
 		file_put_contents($_logFile, "\r\n", FILE_APPEND);
         break;
 //    case 'refund'://退款
