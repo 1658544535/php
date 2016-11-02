@@ -155,22 +155,24 @@ switch($act){
             );
 			$sendResult = $objWX->sendTemplateMessage($data);
 			if($sendResult !== false){
-				$_logInfo = "【".date('Y-m-d H:i:s', $time)."  订单号:{$orderInfo['orderInfo']['orderNo']}】当前下单者openid:{$openid}\r\n";
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$orderInfo['orderInfo']['orderNo']}】当前下单者openid:{$openid}\r\n";
 				file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 			}else{
-				$_logInfo = "【".date('Y-m-d H:i:s', $time)."  订单号:{$orderInfo['orderInfo']['orderNo']}】当前下单者openid:{$openid}，发送失败：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$orderInfo['orderInfo']['orderNo']}】当前下单者openid:{$openid}，发送失败：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
 				file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 			}
 
 			foreach($orderInfo['userList'] as $_openid){
 				if($_openid['openid'] != $openid){
 					$data['touser'] = $_openid['openid'];
+					$data['data']['keyword1']['value'] = $_openid['orderNo'];
+					$data['data']['keyword2']['value'] = $_openid['factPrice'];
 					$sendResult = $objWX->sendTemplateMessage($data);
 					if($sendResult !== false){
-						$_logInfo = "【".date('Y-m-d H:i:s', $time)."  订单号:{$orderInfo['orderInfo']['orderNo']}】参团接收通知者openid:{$_openid['openid']}\r\n";
+						$_logInfo = "【".date('Y-m-d H:i:s', $time)." 结团订单号:{$orderInfo['orderInfo']['orderNo']}，接收者订单号:{$_openid['orderNo']}】参团接收通知者openid:{$_openid['openid']}，金额：{$_openid['factPrice']}\r\n";
 						file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 					}else{
-						$_logInfo = "【".date('Y-m-d H:i:s', $time)."  订单号:{$orderInfo['orderInfo']['orderNo']}】参团接收通知者openid:{$_openid['openid']}，发送失败：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+						$_logInfo = "【".date('Y-m-d H:i:s', $time)." 结团订单号:{$orderInfo['orderInfo']['orderNo']}，接收者订单号:{$_openid['orderNo']}】参团接收通知者openid:{$_openid['openid']}，金额：{$_openid['factPrice']}，发送失败：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
 						file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 					}
 				}
