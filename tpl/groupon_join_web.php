@@ -138,19 +138,26 @@
 							<?php } ?>
 						<?php break; ?>
 						<?php case 2: ?>
-						<?php if($info['activityType'] != 5){?>
-							<div class="txt1">
-								<div class="img"><img src="images/tip-fail.png" /></div>
-								很遗憾，组团失败！
-							</div>
-							<div class="txt2">拼团期内未达到成团人数，系统会在1-2个工作日内，按原路自动退款至各位成员.</div>
-						 <?php }else{?>
-							   <div class="txt1">
-								<div class="img"><img src="images/tip-fail.png" /></div>
-								很遗憾，该团已过期
-							</div>
-							<div class="txt2">组团时间到，未召集到相应人数的小伙伴！</div>
-							    <?php }?>
+							<?php if($info['isSellOut'] ==1){?>
+								<div class="txt1">
+										<div class="img"><img src="images/tip-fail.png" /></div>
+										组团失败，商品已售罄
+								</div>
+								<?php }?> 
+								<?php if($info['activityType'] != 5){?>
+									<div class="txt1">
+										<div class="img"><img src="images/tip-fail.png" /></div>
+										很遗憾，组团失败！
+									</div>
+									<div class="txt2">拼团期内未达到成团人数，系统会在1-2个工作日内，按原路自动退款至各位成员.</div>
+								 <?php }else{?>
+									   <div class="txt1">
+										<div class="img"><img src="images/tip-fail.png" /></div>
+										很遗憾，该团已过期
+									</div>
+									<div class="txt2">组团时间到，未召集到相应人数的小伙伴！</div>
+							     <?php }?>
+						    
 						<?php break; ?>
 					<?php } ?>
 				</section>
@@ -201,7 +208,11 @@
 								<div class="time">本团将于<div id="downTime" data-timer="<?php echo $info['remainSec'];?>"></div>结束</div>
 							<?php break; ?>
 							<?php case 2: ?>
-								<p class="time themeColor">本团已结束</p>
+								<?php if($info['isSellOut'] ==1){?>
+								  <p class="time themeColor">组团失败，商品已售罄</p>
+							    <?php }else{?>
+							      <p class="time themeColor">本团已结束</p>
+							    <?php }?>
 							<?php break; ?>
 						<?php } ?>
                         <span>参团小伙伴</span>
