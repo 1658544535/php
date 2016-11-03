@@ -36,7 +36,16 @@
                 </a>
                 <h1 class="title">猜价赢好礼</h1>
             </header>
-            <?php include_once('footer_nav_web.php');?>
+            <nav class="bar bar-tab">
+                <a href="product_guess_price.php" class="tab-item tab-item2 active">
+                    <span class="icon i-lotterying"></span>
+                    <span class="tab-label">进行中</span>
+                </a>
+                <a href="product_guess_before_price.php" class="tab-item">
+                    <span class="icon i-lotteryed"></span>
+                    <span class="tab-label">查看往期</span>
+                </a>
+            </nav>
 
             
 
@@ -44,7 +53,7 @@
 
                 <div class="guessList-banner"><img src="<?php echo $ObjBanner['result']['banner'] ;?>" style="width:100%;" /></div>
 
-                <div class="freeList-tips">正在进行中</div>
+                <div class="freeList-tips">正在进行中<span id="rule" class="f-right">活动规则</span></div>
 
                 <section class="guessList pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_product_guess_price.php">
                     <ul class="list-container"></ul>
@@ -76,16 +85,12 @@
             <%}%>
             </script>
         </div>
+
+        <div class="popup popup-rule">
+            <img src="images/guess-rule.png" />
+            <a href="#" class="close-popup"></a>
+        </div>
         <section id="goTop" class="goTop"></section>
-      
-      
-      
-      
-      
-      
-      
-      
-      
     </div>
    
 </body>
