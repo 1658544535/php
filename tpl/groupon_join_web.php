@@ -400,7 +400,7 @@
 
 								if(!!skuFormat){
 									$("#sku-format .list a.active").siblings('a').addClass("disable");
-									$("#sku-color .list a").no(".active").addClass("disable");
+									$("#sku-color .list a").not(".active").addClass("disable");
 									for(var item in skuData){
 										if(skuData[item]["skuFormat"] == skuFormat){
 											$("#sku-color .list a").each(function(index, el) {
