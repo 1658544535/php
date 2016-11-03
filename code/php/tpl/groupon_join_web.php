@@ -33,10 +33,14 @@
                 <a class="button button-link button-nav pull-left back" href="index.php">
                     <span class="icon icon-back"></span>
                 </a>
+                <?php if($info['isSellOut'] ==1){?>
+                <h1 class="title">组团失败</h1>
+                <?php }else{?>
                 <h1 class="title">
 					<?php $pageHeadTitles = array(0=>'我要组团', 1=>'组团成功', 2=>'组团失败'); ?>
 					<?php echo $pageHeadTitles[$info['status']];?>
 				</h1>
+            <?php }?>
             </header>
 
 			<section class="proTips-5">
@@ -143,7 +147,7 @@
 										<div class="img"><img src="images/tip-fail.png" /></div>
 										组团失败，商品已售罄
 								</div>
-								<?php }?> 
+								<?php }else{?> 
 								<?php if($info['activityType'] != 5){?>
 									<div class="txt1">
 										<div class="img"><img src="images/tip-fail.png" /></div>
@@ -157,7 +161,7 @@
 									</div>
 									<div class="txt2">组团时间到，未召集到相应人数的小伙伴！</div>
 							     <?php }?>
-						    
+						    <?php }?>
 						<?php break; ?>
 					<?php } ?>
 				</section>
