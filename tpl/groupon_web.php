@@ -59,10 +59,15 @@
 						<div class="txt"><?php echo $info['productSketch'];?></div>
 						<?php if($info['activityType'] == 5){ ?>
 							<div class="txt2">
-								<div>抽奖规则：</div>
 								<div>活动时间：<?php echo $info['activitySTime'];?> 到 <?php echo $info['activityETime'];?></div>
-								<div>1、拼团成功，立即开奖。团长会获得该奖品，并从成团的订单中再抽取一个幸运订单号，获得奖品。</div>
-								<div>2、每人只有一次开团和参团的机会</div>
+                                <div>活动规则：</div>								
+								<div>1、0.1元支付开团，规定时间内邀请好友支付0.1元参团，成团即开奖。</div>
+								<div>2.团长必中，并从每个成团中抽取一个幸运团成员，获得奖品。</div>
+								<div>3.不成团或无中奖用户均全额退款。</div>
+								<div>4.每人均有一次开团与一次参团机会。</div>
+								<div>5.活动奖品预计开奖后72小时内发放。</div>
+							    <div>温馨提醒：</div>
+							    <div>每个团组团有效期为24个小时，如团结束时间大于活动结束时间时，则按活动结束的时间。 </div>
 							</div>
 						<?php }elseif($info['activityType'] == 6){ ?>
 							<div class="txt2">【活动说明：活动 <?php echo $info['startTime'];?> 开始，限量 <?php echo $info['limitNum'];?> 份，售完即止！商品售完时未能成团者即视为活动失败】</div>

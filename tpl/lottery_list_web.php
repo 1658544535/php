@@ -75,9 +75,9 @@
                        <?php }?>
                            <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
                             <div class="info">
-                                <div class="name"><span class="num"><%=data["data"][i]["groupNum"]%>人团</span><%=data["data"][i]["productName"]%></div>
+                                <div class="name"><%=data["data"][i]["productName"]%></div>
                                 <div class="price">
-                                    <span class="price1">￥<%=data["data"][i]["productPrice"]%></span>
+                                    <span class="price1">￥<%=data["data"][i]["productPrice"]%></span><span class="price2">￥<%=data["data"][i]["alonePrice"]%></span>
                                 </div>
                                 <div class="btn">
                                 <?php if($Type ==1){?>
