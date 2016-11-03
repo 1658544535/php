@@ -70,7 +70,7 @@
 							    <div>每个团组团有效期为24个小时，如团结束时间大于活动结束时间时，则按活动结束的时间。 </div>
 							</div>
 						<?php }elseif($info['activityType'] == 6){ ?>
-							<div class="txt2">【活动说明：活动 <?php echo $info['startTime'];?> 开始，限量 <?php echo $info['limitNum'];?> 份，售完即止！商品售完时未能成团者即视为活动失败】</div>
+							<div class="txt2">【活动说明：活动 <b class="themeColor"><?php echo $info['startTime'];?></b> 开始，限量 <?php echo $info['limitNum'];?> 份，售完即止！商品售完时未能成团者即视为活动失败】</div>
 						<?php } ?>
 						<div class="tips"><img src="images/deta-tips.png" /></div>
 						<?php if($info['activityType'] == 6){ ?>
