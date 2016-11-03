@@ -176,8 +176,8 @@
 									</div>
 									<div class="txt2">组团时间到，未召集到相应人数的小伙伴！</div>
 							     <?php }?>
-						    <?php }?>
 						<?php break; ?>
+					<?php }?>
 				</section>
 		    <?php } ?>
 	    <?php if($info['activityType'] != 5 ){?>
@@ -400,7 +400,7 @@
 
 								if(!!skuFormat){
 									$("#sku-format .list a.active").siblings('a').addClass("disable");
-									$("#sku-color .list a").not(".active").addClass("disable");
+									$("#sku-color .list a").no(".active").addClass("disable");
 									for(var item in skuData){
 										if(skuData[item]["skuFormat"] == skuFormat){
 											$("#sku-color .list a").each(function(index, el) {
