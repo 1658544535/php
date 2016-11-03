@@ -247,10 +247,10 @@ switch($act){
 		file_put_contents($_logFile, "\r\n", FILE_APPEND);
         break;
 	case 'raffle01'://0.1抽奖
+		$templateId = '';
 		$typeMap = array(
 			//开团
 			'open' => array(
-				'tplid' => '',
 				'name' => '开团',
 				'first' => '恭喜您，开团成功啦！邀请好友参与，成团即拿奖品哦！',
 				'remark' => '告诉您小妙招，分享至好友加速成团哦！点击马上分享>>>',
@@ -258,7 +258,6 @@ switch($act){
 			),
 			//参团
 			'join' => array(
-				'tplid' => '',
 				'name' => '参团',
 				'first' => '恭喜您，参团成功啦！邀请好友参与，成团即有机会获得奖品哦！',
 				'remark' => '告诉您小妙招，分享至好友加入成团哦！点击马上分享>>>',
@@ -266,7 +265,6 @@ switch($act){
 			),
 			//成团
 			'group' => array(
-				'tplid' => '',
 				'name' => '成团',
 				'first' => '恭喜您，拼团成功啦！稍后留意开奖信息哦！',
 				'remark' => '[劲爆]优质玩具，0元开团，预购从速，点击领券>>>',
@@ -274,7 +272,6 @@ switch($act){
 			),
 			//中奖
 			'win' => array(
-				'tplid' => '',
 				'name' => '中奖',
 				'first' => '恭喜您，终于成团啦！奖品正在打包送到您手上，敬请期待！',
 				'remark' => '点击了解更多0.1元抽奖活动>>>',
@@ -282,7 +279,6 @@ switch($act){
 			),
 			//未中奖
 			'unwin' => array(
-				'tplid' => '',
 				'name' => '未中奖',
 				'first' => '很遗憾，您没有中奖！您的款项正在退款中！',
 				'remark' => '不要灰心，马上开团获得更多0.1元抽奖机会>>>',
@@ -290,7 +286,6 @@ switch($act){
 			),
 			//参团失败
 			'failure' => array(
-				'tplid' => '',
 				'name' => '参团失败',
 				'first' => '很遗憾，您参与的团人数不足未成团，正在退款中！',
 				'remark' => '[劲爆]优质玩具，0元开团，预购从速，点击领券>>>',
@@ -315,7 +310,7 @@ switch($act){
 		}
 		
 		$data = array(
-			'template_id' => $typeMap[$type]['tplid'],
+			'template_id' => $templateId,
 			'topcolor' => '#000000',
 			'data' => array(
 				'first' => array(
@@ -362,21 +357,19 @@ switch($act){
 		file_put_contents($_logFile, "\r\n", FILE_APPEND);
 		break;
 	case 'guess'://猜价中奖
+		$templateId = '';
 		$prizeLevelMap = array(
 			1 => array(
-				'tplid' => '',
 				'name' => '一等奖',
 				'first' => '您参与的猜价格活动开奖啦！！',
 				'remark' => '赶快点击领取商品 >>>',
 			),
 			2 => array(
-				'tplid' => '',
 				'name' => '二等奖',
 				'first' => '您参与的猜价格活动开奖啦！！',
 				'remark' => '赶快点击领取优惠券 >>>',
 			),
 			3 => array(
-				'tplid' => '',
 				'name' => '三等奖',
 				'first' => '您参与的猜价格活动开奖啦！！',
 				'remark' => '赶快点击领取优惠券 >>>',
@@ -399,6 +392,7 @@ switch($act){
 		}
 
 		$data = array(
+			'template_id' => $templateId,
 			'topcolor' => '#000000',
 			'data' => array(
 				'first' => array(
@@ -424,7 +418,6 @@ switch($act){
 
 		foreach($tplParam as $v){
 			$data['touser'] = $v['openid'];
-			$data['template_id'] = $prizeLevelMap[$v['type']]['tplid'];
 			$data['url'] = $site.'product_guess_price.php?act=detail&gid='.$v['activityId'].'&pid='.$v['productId'];
 			$data['data']['first']['value'] = $prizeLevelMap[$v['type']]['first'];
 			$data['data']['remark']['value'] = $prizeLevelMap[$v['type']]['remark'];
