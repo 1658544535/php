@@ -11,4 +11,6 @@ $pic = $pic['result'];
 $fx = apiData('getShareContentApi.do', array('id'=>$id,'type'=>13));
 $fx = $fx['result'];
 
+($id == 6) && $footerNavActive = 'new';
+
 include_once('tpl/special_web.php');
