@@ -108,6 +108,15 @@
             </section>
             <?php }?>
             <div class="content native-scroll">
+				<?php if($info['isSellOut'] ==1){?>
+					<section class="proTips-1">	
+						<input type="hidden" id="showShare" />
+							<div class="txt1">
+								<div class="img"><img src="images/tip-fail.png" /></div>
+									组团失败，商品已售罄
+								</div>
+				   </section>
+			   <?php }else{?> 
 				<section class="proTips-1">
 					<?php switch($info['status']){
 						case 0: ?>
@@ -142,12 +151,6 @@
 							<?php } ?>
 						<?php break; ?>
 						<?php case 2: ?>
-							<?php if($info['isSellOut'] ==1){?>
-								<div class="txt1">
-										<div class="img"><img src="images/tip-fail.png" /></div>
-										组团失败，商品已售罄
-								</div>
-								<?php }else{?> 
 								<?php if($info['activityType'] != 5){?>
 									<div class="txt1">
 										<div class="img"><img src="images/tip-fail.png" /></div>
@@ -163,8 +166,8 @@
 							     <?php }?>
 						    <?php }?>
 						<?php break; ?>
-					<?php } ?>
 				</section>
+		    <?php } ?>
 	    <?php if($info['activityType'] != 5 ){?>
                 <section class="freeList proTips-2">
                     <h3 class="title1">拼团商品</h3>
@@ -204,23 +207,26 @@
            <?php }?>
                 
                 
-                
-                <section class="proTips-3">
+               
+               <section class="proTips-3">
+                 <?php if($info['isSellOut'] ==1){?>
+                         <div class="title1"> 
+						     <p class="time themeColor">组团失败，商品已售罄</p>
+						<span>参团小伙伴</span>
+						</div>	    
+				<?php }else{?>
                     <div class="title1">
 						<?php switch($info['status']){
 							case 0: ?>
 								<div class="time">本团将于<div id="downTime" data-timer="<?php echo $info['remainSec'];?>"></div>结束</div>
 							<?php break; ?>
 							<?php case 2: ?>
-								<?php if($info['isSellOut'] ==1){?>
-								  <p class="time themeColor">组团失败，商品已售罄</p>
-							    <?php }else{?>
 							      <p class="time themeColor">本团已结束</p>
-							    <?php }?>
 							<?php break; ?>
 						<?php } ?>
                         <span>参团小伙伴</span>
                     </div>
+                 <?php }?>
                     <ul class="list">
 						<?php foreach($info['groupUserList'] as $v){ ?>
 							<li>
@@ -248,6 +254,7 @@
 							<?php break; ?>
 						<?php } ?>
                     </ul>   
+                 
                 </section>
 
                 <section class="deta-tips proTips-4">
