@@ -59,7 +59,7 @@
 
             </div>
 
-           <script id='tpl_pull' type="text/template">
+            <script id='tpl_pull' type="text/template">
             <%if(data["data"].length>0){%>
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li><a href="product_guess_price.php?act=detail&gid=<%=data["data"][i]["activityId"]%>&pid=<%=data["data"][i]["productId"]%>">

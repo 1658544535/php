@@ -25,13 +25,14 @@ $Price   	    = CheckDatas( 'price', '' );
 switch($act)
 {
     case 'detail':
-    	    	
     	//获取活动商品信息
-    	
     	$ObjGrouponInfo = apiData('readyJoinApi.do', array('activityId'=>$gId,'userId'=>$userid));
     	$ObjUser = apiData('myInfoApi.do', array('userId'=>$userid));
-    	
-    	//获取分享内容
+
+
+        $isPrize = ($ObjGrouponInfo["result"][isPublic] == 1) ? true : false; //猜价格是否开奖
+
+        //获取分享内容
     	$fx = apiData('getShareContentApi.do', array('id'=>$gId, 'type'=>11));
     	$fx = $fx['result'];
     	
@@ -58,7 +59,6 @@ switch($act)
 	    $ObjUserList    = apiData('userJoinInfoApi.do', array('activityId'=>$gId,'pageNo'=>$page,'pageSize'=>5));
 	 	    
 		//统计得奖人数
-		
 	    $ObjPrizeList = apiData('guessWinListApi.do', array('activityId'=>$gId));
 
 		//sku
@@ -107,7 +107,7 @@ switch($act)
     	
     	
     	$num            = apiData('readyJoinApi.do', array('activityId'=>$gId,'userId'=>$userid));
-    
+
     	$footerNavActive = 'guess';
     	include "tpl/product_guess_price_prize_web.php";
     	break;
