@@ -108,7 +108,7 @@
 	            <div class="more3">
                     <a class="btn" href="groupon.php?id=<?php echo $gId;?>"><span>购买商品</span></a>
                     <a class="btn light" href="product_guess_price.php"><span>查看更多</span></a>
-                    <div class="txt"><span>来晚了! 活动已结束</span></div>
+                    <div class="txt"><span>活动已结束</span></div>
                 </div>  
 	            <?php }?>
 	             <div class="more1">
@@ -134,8 +134,8 @@
                     </section>
                     
                     <section class="guessJoinList guessDetaJoinList">
-                       <div class="freeList-tips">
-                                                       已有<span class="themeColor"><?php echo $ObjGrouponInfo['result']['joinNum'];?>个</span>小伙伴参与
+                       <div class="freeList-tips">已有<span class="themeColor">
+                               <?php echo $ObjGrouponInfo['result']['joinNum'];?>个</span>小伙伴参与
                             <a href="product_guess_price.php?act=user&gid=<?php echo $gId;?>">点击查看更多</a>
                         </div>
 	                        <ul class="list-container">
@@ -150,7 +150,7 @@
 	                            </a></li>
 	                        <?php }?>
 	                       </ul>
-            </section>
+                    </section>
             
             
             <?php }elseif($ObjGrouponInfo['result']['isStart']  ==1 && $ObjGrouponInfo['result']['isJoin']  ==0 && $ObjGrouponInfo['result']['isPublic']  ==0 ){?>
@@ -204,37 +204,57 @@
 	         <?php }?>
                        <section class="guessJoinList guessDetaJoinList">
                         <?php if( $ObjGrouponInfo['result']['isJoin'] ==1 && $ObjGrouponInfo['result']['isStart'] ==1){?>
-	                        <ul class="list-container">
-	                                                  您的出价信息如下：
-	                            <li><a href="javascript:;">
-	                                <div class="img"><img src="<?php echo $ObjGrouponInfo['result']['userInfo']['userImage'];?>" /></div>
-	                                <div class="info">
-	                                    <div class="name"><?php echo $ObjGrouponInfo['result']['userInfo']['userName'];?></div>
-	                                    <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $ObjGrouponInfo['result']['userInfo']['userPrice'];?></span></p></div>
-	                                    <div class="time"><?php echo $ObjGrouponInfo['result']['userInfo']['joinTime'];?></div>
-	                                </div>
-	                            </a></li>
-	                          </ul>
-                        <div class="freeList-tips">
-                                                       已有<span class="themeColor"><?php echo $ObjGrouponInfo['result']['joinNum'];?>个</span>小伙伴参与
+	                        <ul class="list-container">您的出价信息如下：
+	                            <li>
+                                    <a href="javascript:;">
+	                                    <div class="img"><img src="<?php echo $ObjGrouponInfo['result']['userInfo']['userImage'];?>" /></div>
+	                                    <div class="info">
+	                                        <div class="name"><?php echo $ObjGrouponInfo['result']['userInfo']['userName'];?></div>
+	                                        <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $ObjGrouponInfo['result']['userInfo']['userPrice'];?></span></p></div>
+	                                        <div class="time"><?php echo $ObjGrouponInfo['result']['userInfo']['joinTime'];?></div>
+	                                    </div>
+	                                </a>
+                                </li>
+                            </ul>
+                        <div class="freeList-tips">已有<span class="themeColor"><?php echo $ObjGrouponInfo['result']['joinNum'];?>个</span>小伙伴参与
                             <a href="product_guess_price.php?act=user&gid=<?php echo $gId;?>">点击查看更多</a>
                         </div>
 	                        <ul class="list-container">
-	                          <?php foreach ($ObjUserList['result']['joinUserList'] as $ul){?>
-	                            <li><a href="javascript:;">
-	                                <div class="img"><img src="<?php echo $ul['userImage'] ;?>" /></div>
-	                                <div class="info">
-	                                    <div class="name"><?php echo $ul['userName'];?></div>
-	                                    <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $ul['userPrice'];?></span></p></div>
-	                                    <div class="time"><?php echo $ul['joinTime'];?></div>
-	                                </div>
-	                            </a></li>
-	                           <?php }?>
+	                            <?php foreach ($ObjUserList['result']['joinUserList'] as $ul){?>
+	                                <li>
+                                        <a href="javascript:;">
+	                                        <div class="img"><img src="<?php echo $ul['userImage'] ;?>" /></div>
+	                                        <div class="info">
+	                                            <div class="name"><?php echo $ul['userName'];?></div>
+	                                            <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $ul['userPrice'];?></span></p></div>
+	                                            <div class="time"><?php echo $ul['joinTime'];?></div>
+	                                        </div>
+	                                    </a>
+                                    </li>
+                                <?php }?>
 	                        </ul>
-                      <?php }elseif( $ObjGrouponInfo['result']['isStart'] ==2 &&  $ObjGrouponInfo['result']['isJoin'] ==0 ){?>
-	                      <section class="guessJoinList guessDetaJoinList">
-	                        <div class="freeList-tips">需参与者才可以看到其他参与者信息</div>
-	                      </section>
+                      <?php }elseif( $ObjGrouponInfo['result']['isStart'] == 2 && $ObjGrouponInfo['result']['isJoin'] == 0 && !$isPrize){ //价格竞猜已经结束但未开奖 ?>
+                            <section class="guessJoinList guessDetaJoinList">
+                                <div class="freeList-tips">已有<span class="themeColor">
+                                <?php echo $ObjGrouponInfo['result']['joinNum'];?>个</span>小伙伴参与
+                                    <a href="product_guess_price.php?act=user&gid=<?php echo $gId;?>">点击查看更多</a>
+                                </div>
+                                <ul class="list-container">
+                                    <?php foreach ($ObjUserList['result']['joinUserList'] as $ul){?>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <div class="img"><img src="<?php echo $ul['userImage'] ;?>" /></div>
+                                                <div class="info">
+                                                    <div class="name"><?php echo $ul['userName'];?></div>
+                                                    <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $ul['userPrice'];?></span></p></div>
+                                                    <div class="time"><?php echo $ul['joinTime'];?></div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    <?php }?>
+                                </ul>
+                            </section>
+
                    <?php }elseif($ObjGrouponInfo['result']['isStart'] ==1 && $ObjGrouponInfo['result']['isJoin'] ==0 ){?>
                           <section class="guessJoinList guessDetaJoinList">
                             <div class="freeList-tips">已有<span class="themeColor"><?php echo $ObjGrouponInfo['result']['joinNum'];?>个</span>小伙伴参与，您需要提交价格才可以看到其它记录</div>
@@ -242,64 +262,70 @@
                     <?php }?>
                     </section>
 
-           <?php if( $ObjGrouponInfo['result']['isJoin'] ==1 && $ObjGrouponInfo['result']['isPublic'] ==1 && $ObjGrouponInfo['result']['isWin'] ==1   && $ObjGrouponInfo['result']['isStart'] ==2){?>
-					<section class="guessJoinList guessDetaJoinList">
-					                        <div class="freeList-tips">
-					                            获一等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result']['friPrizeNum'];?>人】</b>
-					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>&type=1">点击查看更多</a>
-					                        </div>
-					                        <?php foreach ($ObjPrizeList['result']['friPrizeList'] as $p1){?>
-					                        <ul class="list-container">
-					                            <li><a href="javascript:;">
-					                                <div class="img"><img src="<?php echo $p1['userImage'];?>" /></div>
-					                                <div class="info">
-					                                    <div class="name"><?php echo $p1['userName']?></div>
-					                                    <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $p1['userPrice'];?></span></p></div>
-					                                    <div class="time"><?php echo $p1['joinTime'];?></div>
-					                                </div>
-					                            </a></li>
-					                        </ul>
-					                    <?php }?>
-					                    </section>
-					
-					                    <section class="guessJoinList guessDetaJoinList">
-					                        <div class="freeList-tips">
-					                            获二等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result']['twoPrizeNum'];?>人】</b>
-					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>&type=2">点击查看更多</a>
-					                        </div>
-					                        <?php foreach ($ObjPrizeList['result']['twoPrizeList'] as $p2){?>
-					                        <ul class="list-container">
-					                            <li><a href="javascript:;">
-					                                <div class="img"><img src="<?php echo $p2['userImage'];?>" /></div>
-					                                <div class="info">
-					                                    <div class="name"><?php echo $p2['userName'];?></div>
-					                                    <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $p2['userPrice'];?></span></p></div>
-					                                    <div class="time"><?php echo $p2['joinTime'];?></div>
-					                                </div>
-					                            </a></li>
-					                        </ul>
-		                                  <?php }?>
-					                    </section>
-					
-					                    <section class="guessJoinList guessDetaJoinList">
-					                        <div class="freeList-tips">
-					                            获三等奖的小伙伴<b class="themeColor">【<?php echo $ObjPrizeList['result']['thrPrizeNum'];?>人】</b>
-					                            <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>&type=3">点击查看更多</a>
-					                        </div>
-					                        <?php foreach ($ObjPrizeList['result']['thrPrizeList'] as $p3){?>
-					                        <ul class="list-container">
-					                            <li><a href="javascript:;">
-					                                <div class="img"><img src="<?php echo $p3['userImage'];?>" /></div>
-					                                <div class="info">
-					                                    <div class="name"><?php echo $p3['userName'];?></div>
-					                                    <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $p3['userPrice'];?></span></p></div>
-					                                    <div class="time"><?php echo $p3['joinTime'];?></div>
-					                                </div>
-					                            </a></li>
-					                        </ul>
-					                        <?php }?>
-					                    </section>
-               <?php }?>
+           <?php if($ObjGrouponInfo['result']['isStart'] ==2 && $isPrize ){ //猜价结束且已开奖 ?>
+               <section class="guessJoinList guessDetaJoinList">
+                   <div class="freeList-tips">获一等奖的小伙伴
+                       <b class="themeColor">【<?php echo $ObjPrizeList['result']['friPrizeNum'];?>人】</b>
+                       <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>&type=1">点击查看更多</a>
+                   </div>
+                   <?php foreach ($ObjPrizeList['result']['friPrizeList'] as $p1){?>
+                       <ul class="list-container">
+                           <li>
+                               <a href="javascript:;">
+                                   <div class="img"><img src="<?php echo $p1['userImage'];?>" /></div>
+                                   <div class="info">
+                                       <div class="name"><?php echo $p1['userName']?></div>
+                                       <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $p1['userPrice'];?></span></p></div>
+                                       <div class="time"><?php echo $p1['joinTime'];?></div>
+                                   </div>
+                               </a>
+                           </li>
+                       </ul>
+                   <?php }?>
+               </section>
+
+               <section class="guessJoinList guessDetaJoinList">
+                   <div class="freeList-tips">获二等奖的小伙伴
+                       <b class="themeColor">【<?php echo $ObjPrizeList['result']['twoPrizeNum'];?>人】</b>
+                       <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>&type=2">点击查看更多</a>
+                   </div>
+                   <?php foreach ($ObjPrizeList['result']['twoPrizeList'] as $p2){?>
+                       <ul class="list-container">
+                           <li>
+                               <a href="javascript:;">
+                                   <div class="img"><img src="<?php echo $p2['userImage'];?>" /></div>
+                                   <div class="info">
+                                       <div class="name"><?php echo $p2['userName'];?></div>
+                                       <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $p2['userPrice'];?></span></p></div>
+                                       <div class="time"><?php echo $p2['joinTime'];?></div>
+                                   </div>
+                               </a>
+                           </li>
+                       </ul>
+                   <?php }?>
+               </section>
+
+               <section class="guessJoinList guessDetaJoinList">
+                   <div class="freeList-tips">获三等奖的小伙伴
+                       <b class="themeColor">【<?php echo $ObjPrizeList['result']['thrPrizeNum'];?>人】</b>
+                       <a href="product_guess_price.php?act=prize&gid=<?php echo $gId; ?>&type=3">点击查看更多</a>
+                   </div>
+                   <?php foreach ($ObjPrizeList['result']['thrPrizeList'] as $p3){?>
+                       <ul class="list-container">
+                           <li>
+                               <a href="javascript:;">
+                                   <div class="img"><img src="<?php echo $p3['userImage'];?>" /></div>
+                                   <div class="info">
+                                       <div class="name"><?php echo $p3['userName'];?></div>
+                                       <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $p3['userPrice'];?></span></p></div>
+                                       <div class="time"><?php echo $p3['joinTime'];?></div>
+                                   </div>
+                               </a>
+                           </li>
+                       </ul>
+                   <?php }?>
+               </section>
+           <?php }?>
                     
                    
                     <div class="deta-iframe">
@@ -335,16 +361,16 @@
                 </a>
                
                <?php if($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==0 && $ObjGrouponInfo['result']['isStart']  ==2){?>
-               <div class="more2">
-	                <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
-		            <div class="txt"><span>耐心等待开奖结果</span></div>
-               </div>
+                   <div class="more2">
+                        <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
+                        <div class="txt"><span>耐心等待开奖结果</span></div>
+                   </div>
                <?php  }elseif($ObjGrouponInfo['result']['isJoin']  ==0 && $ObjGrouponInfo['result']['isStart']  ==1 ){?>
-                <div class="more1">
-                      <a id="guess-join" class="btn" href="javascript:;"><span>我要参与</span></a>
-                </div>
+                    <div class="more1">
+                          <a id="guess-join" class="btn" href="javascript:;"><span>我要参与</span></a>
+                    </div>
                <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==1 ){?>
-	            <div class="more2">
+	                <div class="more2">
 	                    <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
 	                    <div class="txt"><span>您的报价为：￥<?php echo $ObjGrouponInfo['result']['userInfo']['userPrice'];?>  丨 等待揭晓！</span></div>
 	                </div>
@@ -352,7 +378,7 @@
                 <div class="more3">
                     <a class="btn" href="groupon.php?act=guess&pid=<?php echo $productId;?>"><span>购买商品</span></a>
                     <a class="btn light" href="product_guess_price.php"><span>查看更多</span></a>
-                    <div class="txt"><span>来晚了! 活动已结束</span></div>
+                    <div class="txt"><span>活动已结束</span></div>
                 </div>
                 <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2 && $ObjGrouponInfo['result']['prize'] ==1){?>
 	        	<div class="more2">
