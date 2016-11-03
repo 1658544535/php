@@ -309,7 +309,9 @@
 							 code: 1,
 							 data:  <?php echo empty($skus) ? '{}' : json_encode($skus);?> 
 						 }
-						 $(".popup-sku .info .img img").attr("src", req["data"]["validSKu"][0]["skuImg"]);
+						 if(req["data"]["validSKu"].length > 0){
+						 	$(".popup-sku .info .img img").attr("src", req["data"]["validSKu"][0]["skuImg"]);
+						 }
 
 						if(req.code>0){
 							var data = req.data;
@@ -334,13 +336,17 @@
 							//将可选的sku存入一个全局变量
 							skuData = data["validSKu"];
 
-							//绑定点击事件
-							$(".sku-item .list a").on("click", function(){
-								skuItemClick($(this));
-							});
-							//sku默认选择套餐类型第一个
-							if($(".sku-item .list a.active").length<=0){
-								skuItemClick($("#sku-format .list a").eq(0));
+							if(req["data"]["validSKu"].length > 0){
+								//绑定点击事件
+								$(".sku-item .list a").on("click", function(){
+									skuItemClick($(this));
+								});
+								//sku默认选择套餐类型第一个
+								if($(".sku-item .list a.active").length<=0){
+									skuItemClick($("#sku-format .list a").eq(0));
+								}
+							}else{
+								$("#sku-color .list a, #sku-format .list a").addClass("disable");
 							}
 							function skuItemClick(obj){
 								var _this = obj;
