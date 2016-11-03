@@ -475,6 +475,7 @@
 						<div class="list"></div>
 					</div>
 				<?php } ?>
+				<?php if($info['activityType'] != 5 && $info['activityType'] != 6){?>
                 <div class="sku-number">
                     <span class="label">购买数量</span>
                     <div class="quantity">
@@ -483,6 +484,7 @@
                         <span class="plus">+</span>
                     </div>
                 </div>
+                <?php } ?>
                 <a id="buy" href="javascript:;" class="go">确定</a>
             </div>
         </div>

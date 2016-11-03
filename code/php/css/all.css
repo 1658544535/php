@@ -25,6 +25,9 @@
   color: #ff464e;
   padding: 0 0.2rem;
 }
+.f-right {
+  float: right;
+}
 .goTop {
   display: none;
   position: fixed;
@@ -1788,6 +1791,7 @@
 }
 .guessList .list-container a .info .time {
   padding: 0.75rem 0 0.6rem;
+  overflow: hidden;
 }
 .guessList .list-container a .info .time .btn {
   float: right;
