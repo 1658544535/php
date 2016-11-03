@@ -59,7 +59,7 @@
 						<div class="txt"><?php echo $info['productSketch'];?></div>
 						<?php if($info['activityType'] == 5){ ?>
 							<div class="txt2">
-								<div>活动时间：<?php echo $info['activitySTime'];?> 到 <?php echo $info['activityETime'];?></div>
+								<div>活动时间：<b class="themeColor"><?php echo $info['activitySTime'];?></b> 到 <b class="themeColor"><?php echo $info['activityETime'];?></b></div>
                                 <div>活动规则：</div>								
 								<div>1、0.1元支付开团，规定时间内邀请好友支付0.1元参团，成团即开奖。</div>
 								<div>2、团长必中，并从每个成团中抽取一个幸运团成员，获得奖品。</div>
