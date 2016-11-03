@@ -43,6 +43,17 @@
             <?php }?>
             </header>
 
+		<?php if($info['isSellOut'] ==1){?>
+		 <section class="proTips-5">
+		   <a href="/">
+	         <div class="info">
+				<?php echo $info['groupNum'];?>人成团&nbsp;&nbsp;当前团<?php echo $info['joinNum'];?>人 &nbsp;
+                               ￥<span class="price1"><?php echo $info['groupPrice'];?></span>
+			 </div>
+			   <span class="btn">更多拼团 ></span>
+			</a>
+		 </section>
+		 <?php }else{?>
 			<section class="proTips-5">
 				<?php switch($info['status']){
 					case 0: ?>
@@ -94,6 +105,7 @@
 					<?php break; ?>
 				<?php } ?>
 			</section>
+		<?php }?>
 			<?php if($info['status'] ==2 && $info['activityType'] ==5){?>
 			<section class="proTips-6">
                 <div>
