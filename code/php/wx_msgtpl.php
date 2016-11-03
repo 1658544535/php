@@ -95,7 +95,7 @@ switch($act){
 		$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号：{$tplParam['orderNo']}】发送开团通知开始，openid：{$tplParam['openid']}，实付金额：{$tplParam['factPrice']}，商品：{$tplParam['productName']}，收货人：{$tplParam['consignee']}，联系号码：{$tplParam['consigneePhone']}，地址：{$tplParam['consigneeAddress']}\r\n";
 		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		$data = array(
-			'touser' => $openid,
+			'touser' => $tplParam['openid'],
 			'template_id' => 'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
 			'url' => $site,//.'order_detail.php?oid='.$orderId,
 			'topcolor' => '#000000',
