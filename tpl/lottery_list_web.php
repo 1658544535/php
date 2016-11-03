@@ -37,7 +37,7 @@
                 <a class="button button-link button-nav pull-right share">
                     <span class="icon icon-share"></span>
                 </a>
-                <h1 class="title">0.1抽奖</h1>
+                <h1 class="title">0.1夺宝</h1>
             </header>
 
             <nav class="bar bar-tab">
