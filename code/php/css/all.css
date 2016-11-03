@@ -1321,6 +1321,19 @@
   left: 0;
   width: 100%;
 }
+.popup-rule {
+  background-image: url(../images/guess-rule.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: right top;
+}
+.popup-rule .close-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 /*团免列表*/
 .freeList-tips {
   font-size: 0.65rem;
