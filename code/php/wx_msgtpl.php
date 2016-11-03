@@ -74,10 +74,10 @@ switch($act){
 		);
 		$sendResult = $objWX->sendTemplateMessage($data);
 		if($sendResult === false){
-			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】支付通知发送失败，openid：{$tplParam['openid']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】支付通知发送失败，openid：{$tplParam['openid']}，实付金额：{$tplParam['factPrice']}，商品：{$tplParam['productName']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		}else{
-			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】支付通知发送成功，openid：{$tplParam['openid']}\r\n";
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】支付通知发送成功，openid：{$tplParam['openid']}，实付金额：{$tplParam['factPrice']}，商品：{$tplParam['productName']}\r\n";
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		}
 		file_put_contents($_logFile, "\r\n", FILE_APPEND);
@@ -182,7 +182,7 @@ switch($act){
 			$data['data']['keyword2']['value'] = $v['factPrice'];
 			$sendResult = $objWX->sendTemplateMessage($data);
 			if($sendResult === false){
-				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】拼团通知发送失败，openid:{$v['openid']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】拼团通知发送失败，openid:{$v['openid']}，实付金额：{$v['factPrice']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
 				file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 			}else{
 				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】拼团通知发送成功，openid:{$v['openid']}，实付金额：{$v['factPrice']}\r\n";
@@ -238,7 +238,7 @@ switch($act){
 
 		$sendResult = $objWX->sendTemplateMessage($data);
 		if($sendResult === false){
-			$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$tplParam['orderNo']}】发货通知发送失败，openid:{$tplParam['openid']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$tplParam['orderNo']}】发货通知发送失败，openid:{$tplParam['openid']}，商品：{$tplParam['productName']}【购买数量：{$tplParam['buyNum']}】，物流：{$tplParam['logisticsName']}【运单号：{$tplParam['logisticsNo']}】，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		}else{
 			$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$tplParam['orderNo']}】发货通知发送成功，openid:{$tplParam['openid']}，商品：{$tplParam['productName']}【购买数量：{$tplParam['buyNum']}】，物流：{$tplParam['logisticsName']}【运单号：{$tplParam['logisticsNo']}】\r\n";
