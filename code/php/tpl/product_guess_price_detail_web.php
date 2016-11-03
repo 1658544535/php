@@ -328,31 +328,29 @@
            <?php }?>
                     
                    
-                    <div class="deta-iframe">
-	<iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $ObjGrouponInfo['result']['productId'];?>" frameborder="0" width="100%"></iframe>
-          </div>
+           <div class="deta-iframe">
+	            <iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $ObjGrouponInfo['result']['productId'];?>" frameborder="0" width="100%"></iframe>
+           </div>
            <?php
 				$_arrDomain = explode('.', $_SERVER['SERVER_NAME']);
 				array_shift($_arrDomain);
-			?>
+           ?>
                <script>
-                document.domain='<?php echo implode('.', $_arrDomain);?>';
-				function setIframeHeight(iframe) {
-					if (iframe) {
-						var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-						if (iframeWin.document.body) {
-							iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-						}
-					}
-				};
-				window.onload = function () {
-					setIframeHeight(document.getElementById('proInfo'));
-				};
-			</script>
-                    
+                   document.domain='<?php echo implode('.', $_arrDomain);?>';
+                   function setIframeHeight(iframe) {
+                       if (iframe) {
+                           var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+                           if (iframeWin.document.body) {
+                               iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+                           }
+                       }
+                   };
+                   window.onload = function () {
+                       setIframeHeight(document.getElementById('proInfo'));
+                   };
+               </script>
                 </div>
-
-            </div>
+           </div>
 
             <div class="deta-footer">
                 <a class="goIndex" href="index.php">
@@ -374,12 +372,19 @@
 	                    <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
 	                    <div class="txt"><span>您的报价为：￥<?php echo $ObjGrouponInfo['result']['userInfo']['userPrice'];?>  丨 等待揭晓！</span></div>
 	                </div>
-               <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==0 && $ObjGrouponInfo['result']['isStart']  ==2 ){?>
-                <div class="more3">
-                    <a class="btn" href="groupon.php?act=guess&pid=<?php echo $productId;?>"><span>购买商品</span></a>
-                    <a class="btn light" href="product_guess_price.php"><span>查看更多</span></a>
-                    <div class="txt"><span>活动已结束</span></div>
-                </div>
+               <?php }elseif($ObjGrouponInfo['result']['isStart']  ==2 ){?>
+                   <?php if ($ObjGrouponInfo['result']['isPublic']  == 1){ ?>
+                        <div class="more3">
+                            <a class="btn" href="groupon.php?act=guess&pid=<?php echo $productId;?>"><span>购买商品</span></a>
+                            <a class="btn light" href="product_guess_price.php"><span>查看更多</span></a>
+                            <div class="txt"><span>活动已结束</span></div>
+                        </div>
+                   <?php }else{ ?>
+                       <div class="more2">
+                           <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
+                           <div class="txt"><span>耐心等待开奖结果</span></div>
+                       </div>
+                   <?php } ?>
                 <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2 && $ObjGrouponInfo['result']['prize'] ==1){?>
 	        	<div class="more2">
 	                    <a class="btn" href="groupon.php?act=guess&pid=<?php echo $productId;?>"><span>我想购买</span></a>
@@ -393,7 +398,9 @@
 	       <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2  && $ObjGrouponInfo['result']['isRecCoupon'] ==1){?>
 	        	<div class="more2">
 	                    <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
-	                    <div class="txt" onClick="location.href='groupon.php?act=guess&pid=<?php echo $productId;?>'"><span>恭喜您获得<?php echo $ObjGrouponInfo['result']['couponPrice'];?>元抵用券，点击马上购买</span></div>
+	                    <div class="txt" onClick="location.href='groupon.php?act=guess&pid=<?php echo $productId;?>'">
+                            <span>恭喜您获得<?php echo $ObjGrouponInfo['result']['couponPrice'];?>元抵用券，点击马上购买</span>
+                        </div>
 	                </div>
            <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2  && $ObjGrouponInfo['result']['isRecCoupon'] ==0 ){?>
 	        	<div class="more2">
