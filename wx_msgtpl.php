@@ -317,7 +317,7 @@ switch($act){
 		}
 
 		$paramData = trim($_REQUEST['data']);
-		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送0.1抽奖【{$typeMap[$type]['name']} {$type}】通知开始\r\n";
+		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送0.1抽奖【{$typeMap[$type]['name']} {$type}】通知开始，接收的参数data内容为{$paramData}\r\n";
 		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		
 		if(empty($paramData)){
@@ -327,7 +327,7 @@ switch($act){
 
 		$tplParam = json_decode($paramData, true);
 		if($tplParam === false){
-			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送0.1抽奖【{$typeMap[$type]['name']} {$type}】通知，参数转为json失败，传递参数data值为{$paramData}\r\n";
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送0.1抽奖【{$typeMap[$type]['name']} {$type}】通知，参数转为json失败，接收参数data值为{$paramData}\r\n";
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		}
 		
