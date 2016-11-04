@@ -31,7 +31,7 @@ switch($act)
         else
         {
         	echo ajaxJson( 0,'获取失败');
-        
+
         }
     	break;
 
@@ -48,7 +48,7 @@ switch($act)
         	echo ajaxJson( 0,'获取失败');
         }
     	break;
-    
+
     default:
 	    //往期活动列表
 	    $ObjGrouponList = apiData('guessBeforeActivityApi.do', array('pageNo'=>$page));
@@ -61,7 +61,7 @@ switch($act)
         } else {
             echo get_json_data_public( 0,'获取失败' );
         }
-		 	
+
 }
 
 
