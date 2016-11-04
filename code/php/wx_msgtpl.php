@@ -309,6 +309,13 @@ switch($act){
 
 		$_type = trim($_REQUEST['type']);
 		$type = $typeValueMap[$_type];
+
+		//参团和参团失败目前不发送，后期需要时，将此代码去除
+		if(in_array($type, array('join', 'failure'))){
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】0.1抽奖【{$typeMap[$type]['name']} {$type}】此类型操作不需要发送通知\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
+
 		$paramData = trim($_REQUEST['data']);
 		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送0.1抽奖【{$typeMap[$type]['name']} {$type}】通知开始\r\n";
 		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
