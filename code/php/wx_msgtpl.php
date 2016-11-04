@@ -314,6 +314,7 @@ switch($act){
 		if(in_array($type, array('join', 'failure'))){
 			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】0.1抽奖【{$typeMap[$type]['name']} {$type}】此类型操作不需要发送通知\r\n";
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+			exit();
 		}
 
 		$paramData = trim($_REQUEST['data']);
