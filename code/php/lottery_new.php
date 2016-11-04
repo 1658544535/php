@@ -131,7 +131,7 @@ switch($act)
     		$Banner = $Banner['result'];
     		// $LotteryList = apiData('lotteryListApi.do', array('type'=>$Type));
 
-			$tpl = ((time() >= strtotime('2016-11-07 10:0:0')) || ($_GET['nbtest'] == 'qy321') || ($_SERVER['SERVER_NAME'] == 'pinwx.taozhuma.com')) ? 'lottery_list_web.php' : 'lottery_list_wait_web.php';
+			$tpl = (($_GET['nbtest'] == 'qy321') || ($_SERVER['SERVER_NAME'] == 'pinwx.taozhuma.com')) ? 'lottery_list_web.php' : 'lottery_list_wait_web.php';
     		include_once('tpl/'.$tpl);
    
 }
