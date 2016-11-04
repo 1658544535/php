@@ -60,26 +60,26 @@
             </div>
 
             <script id='tpl_pull' type="text/template">
-            <%if(data["data"].length>0){%>
-                <%for(var i=0;i<data["data"].length; i++){%>
-                    <li><a href="product_guess_price.php?act=detail&gid=<%=data["data"][i]["activityId"]%>&pid=<%=data["data"][i]["productId"]%>">
-                        <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
-                        <div class="info">
-                            <div class="name"><%=data["data"][i]["productName"]%></div>
-                            <div class="time">
-                                <span class="btn">
-                                    <%if(data["data"][i]["isPrize"] == 2){%>已开奖<%}%>
-                                    <%if(data["data"][i]["isPrize"] == 1){%>待开奖<%}%>
-                                </span>
-                                <!--<span class="btn">待开奖</span>-->
+                <%if(data["data"].length>0){%>
+                    <%for(var i=0;i<data["data"].length; i++){%>
+                        <li><a href="product_guess_price.php?act=detail&gid=<%=data["data"][i]["activityId"]%>&pid=<%=data["data"][i]["productId"]%>">
+                            <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
+                            <div class="info">
+                                <div class="name"><%=data["data"][i]["productName"]%></div>
+                                <div class="time">
+                                    <span class="btn">
+                                        <%if(data["data"][i]["isPrize"] == 2){%>已开奖<%}%>
+                                        <%if(data["data"][i]["isPrize"] == 1){%>待开奖<%}%>
+                                    </span>
+                                    <!--<span class="btn">待开奖</span>-->
+                                </div>
+                                <div class="tips">提示区间：<%=data["data"][i]["minPrice"]%>-<%=data["data"][i]["maxPrice"]%> 丨 已有<span><%=data["data"][i]["joinNum"]%></span>人参与</div>
                             </div>
-                            <div class="tips">提示区间：<%=data["data"][i]["minPrice"]%>-<%=data["data"][i]["maxPrice"]%> 丨 已有<span><%=data["data"][i]["joinNum"]%></span>人参与</div>
-                        </div>
-                    </a></li>
+                        </a></li>
+                    <%}%>
+                <%}else{%>
+                    <div class="tips-null">暂无商品</div>
                 <%}%>
-            <%}else{%>
-                <div class="tips-null">暂无商品</div>
-            <%}%>
             </script>
         </div>
 

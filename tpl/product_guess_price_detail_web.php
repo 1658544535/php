@@ -45,16 +45,16 @@
                         <div class="swiper-wrapper">
                             <?php foreach($ProductImage['result'] as $pimage){?>
                               <div class="swiper-slide"><img src="<?php echo $pimage['image'];?>" /></div>
-                            <?php }?>  
+                            <?php }?>
                         </div>
                         <div class="swiper-pagination"></div>
                     </section>
-                  <?php if($ObjGrouponInfo['result']['isStart']  ==2 ){?>   
+                  <?php if($ObjGrouponInfo['result']['isStart']  ==2 ){?>
                      <section class="guessDeta-info center">
                         <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
                         <div class="tips">来晚啦！该活动已经结束</div>
                         <div class="finalPrice">最终价格：<span class="price"><?php echo $ObjGrouponInfo['result']['realPrice'];?></span></div>
-                     </section> 
+                     </section>
                    <section class="guessJoinList guessDetaJoinList">
 	                        <div class="freeList-tips">需参与者才可以看到其他参与者信息</div>
 	               </section>
@@ -73,7 +73,7 @@
                     <section class="guessJoinList guessDetaJoinList">
                             <div class="freeList-tips">已有<span class="themeColor"><?php echo $ObjGrouponInfo['result']['joinNum'];?>个</span>小伙伴参与，您需要提交价格才可以看到其它记录</div>
                     </section>
-                  
+
         <div class="deta-iframe">
 	       <iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $productId?>" frameborder="0" width="100%"></iframe>
         </div>
@@ -103,13 +103,13 @@
                     <span class="icon i-home"></span>
                     <span class="tab-label">首页</span>
                 </a>
-	            
+
 	            <?php if($ObjGrouponInfo['result']['isStart']  ==2){?>
 	            <div class="more3">
                     <a class="btn" href="groupon.php?id=<?php echo $gId;?>"><span>购买商品</span></a>
                     <a class="btn light" href="product_guess_price.php"><span>查看更多</span></a>
                     <div class="txt"><span>活动已结束</span></div>
-                </div>  
+                </div>
 	            <?php }?>
 	             <div class="more1">
 	                      <a  class="btn" href="/user_binding.php?dir=<?php echo $_SERVER['REQUEST_URI']; ?>" ><span>我要参与</span></a>
@@ -123,7 +123,7 @@
                         <div class="swiper-wrapper">
                             <?php foreach($ProductImage['result'] as $pimage){?>
                               <div class="swiper-slide"><img src="<?php echo $pimage['image'];?>" /></div>
-                            <?php }?>  
+                            <?php }?>
                         </div>
                         <div class="swiper-pagination"></div>
                     </section>
@@ -132,7 +132,7 @@
                         <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
                         <div class="tips" style="color:red;">即将开奖，请耐心等待</div>
                  </section>
-                    
+
                  <section class="guessJoinList guessDetaJoinList">
                      <div class="freeList-tips">已有<span class="themeColor">
                              <?php echo $ObjGrouponInfo['result']['joinNum'];?>个</span>小伙伴参与
@@ -158,8 +158,8 @@
                          <?php }?>
                      </ul>
                  </section>
-            
-            
+
+
             <?php }elseif($ObjGrouponInfo['result']['isStart']  ==1 && $ObjGrouponInfo['result']['isJoin']  ==0 && $ObjGrouponInfo['result']['isPublic']  ==0 ){?>
                     <section class="guessDeta-info">
                         <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
@@ -338,8 +338,8 @@
                    <?php }?>
                </section>
            <?php }?>
-                    
-                   
+
+
            <div class="deta-iframe">
 	            <iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $ObjGrouponInfo['result']['productId'];?>" frameborder="0" width="100%"></iframe>
            </div>
@@ -369,65 +369,84 @@
                     <span class="icon i-home"></span>
                     <span class="tab-label">首页</span>
                 </a>
-               
-                <?php if($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==0 && $ObjGrouponInfo['result']['isStart']  ==2){?>
+
+                <?php if($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  == 0 && $ObjGrouponInfo['result']['isStart']  == 2){
+                    //有参与 未开奖 已经结束?>
                     <div class="more2">
                         <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
                         <div class="txt"><span>耐心等待开奖结果</span></div>
                     </div>
-                <?php  }elseif($ObjGrouponInfo['result']['isJoin']  ==0 && $ObjGrouponInfo['result']['isStart']  ==1 ){?>
+                <?php  }elseif($ObjGrouponInfo['result']['isJoin']  ==0 && $ObjGrouponInfo['result']['isStart']  ==1 ){
+                    //未参与 未结束?>
                     <div class="more1">
                           <a id="guess-join" class="btn" href="javascript:;"><span>我要参与</span></a>
                     </div>
-                <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==1 ){?>
+                <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==1 ){
+                    //有参与 未结束?>
 	                <div class="more2">
 	                    <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
 	                    <div class="txt"><span>您的报价为：￥<?php echo $ObjGrouponInfo['result']['userInfo']['userPrice'];?>  丨 等待揭晓！</span></div>
 	                </div>
-                <?php }elseif($ObjGrouponInfo['result']['isStart']  ==2 ){?>
-                    <?php if ($ObjGrouponInfo['result']['isPublic']  == 1){ ?>
-                        <div class="more3">
-                            <a class="btn" href="groupon.php?act=guess&pid=<?php echo $productId;?>"><span>购买商品</span></a>
-                            <a class="btn light" href="product_guess_price.php"><span>查看更多</span></a>
-                            <div class="txt"><span>活动已结束</span></div>
-                        </div>
-                    <?php }else{ ?>
+                <?php }elseif($ObjGrouponInfo['result']['isStart']  == 2){
+                    //已经结束?>
+                    <?php if ($ObjGrouponInfo['result']['isPublic']){
+                        //已经结束 已开奖?>
+                        <?php if ($ObjGrouponInfo['result']['isJoin'] && $ObjGrouponInfo['result']['isWin']){
+                            //已经结束 有参与 已开奖且中奖?>
+                            <?php if ($ObjGrouponInfo['result']['prize'] == 1){
+                                //一等奖}?>
+                                <div class="more2">
+                                    <a class="btn" href="groupon.php?act=guess&pid=<?php echo $productId;?>"><span>我想购买</span></a>
+                                    <?php if($ObjGrouponInfo['result']['isRecCoupon']  == 0){
+                                        //是否分发优惠券 0-否 1-是 ?>
+                                        <div class="txt" id="openSku" data-href="order_guess.php">
+                                            <span>活动结束，恭喜您已得奖！<br/>填写收货信息</span>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="txt gray">
+                                            <span>活动结束，恭喜您已得奖！<br/>填写收货信息</span>
+                                        </div>
+                                    <?php }?>
+                                </div>
+                            <?php } elseif ($ObjGrouponInfo['result']['isRecCoupon'] == 1) {
+                                //获取优惠券 ?>
+                                <div class="more2">
+                                    <a class="btn" href="product_guess_price.php">
+                                        <span>查看更多</span>
+                                    </a>
+                                    <div class="txt" onClick="location.href='groupon.php?act=guess&pid=<?php echo $productId;?>'">
+                                        <span>恭喜您获得<?php echo $ObjGrouponInfo['result']['couponPrice'];?>元抵用券，点击马上购买</span>
+                                    </div>
+                                </div>
+                            <?php } elseif(in_array($ObjGrouponInfo['result']['prize'],array(2,3))) {
+                                //获得二三等奖?>
+                                <div class="more2">
+                                    <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
+                                    <?php if($ObjGrouponInfo['result']['prize']  == 2){?>
+                                        <div class="txt"><span>获得二等奖，奖品发放中...</span></div>
+                                    <?php }elseif($ObjGrouponInfo['result']['prize']  == 3){?>
+                                        <div class="txt"><span>获得三等奖，奖品发放中...</span></div>
+                                    <?php }?>
+                                </div>
+                            <?php }?>
+                        <?php } else {
+                            // 已经结束 已开奖 未中奖?>
+                            <div class="more3">
+                                <a class="btn" href="groupon.php?act=guess&pid=<?php echo $productId;?>"><span>购买商品</span></a>
+                                <a class="btn light" href="product_guess_price.php"><span>查看更多</span></a>
+                                <div class="txt"><span>活动已结束</span></div>
+                            </div>
+                        <?php } ?>
+                    <?php }else{
+                        // 已经结束 未开奖?>
                        <div class="more2">
                            <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
                            <div class="txt"><span>耐心等待开奖结果</span></div>
                        </div>
                     <?php } ?>
-                <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2 && $ObjGrouponInfo['result']['prize'] ==1){?>
-	        	<div class="more2">
-                    <a class="btn" href="groupon.php?act=guess&pid=<?php echo $productId;?>"><span>我想购买</span></a>
-	            <?php if($ObjGrouponInfo['result']['isRecCoupon']  == 0){?>
-                    <!-- <div class="txt" onClick="location.href='order_guess.php?id=<?php echo $gId;?>&pid=<?php echo $productId;?>'"><span>活动结束，恭喜您已得奖！<br/>填写收货信息</span></div> -->
-                    <div class="txt" id="openSku" data-href="order_guess.php"><span>活动结束，恭喜您已得奖！<br/>填写收货信息</span></div>
-	            <?php }else{?>
-                    <div class="txt gray"><span>活动结束，恭喜您已得奖！<br/>填写收货信息</span></div>
-	            <?php }?>
-	            </div>
-	       <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2  && $ObjGrouponInfo['result']['isRecCoupon'] ==1){?>
-	        	<div class="more2">
-	                <a class="btn" href="product_guess_price.php">
-                        <span>查看更多</span>
-                    </a>
-                    <div class="txt" onClick="location.href='groupon.php?act=guess&pid=<?php echo $productId;?>'">
-                        <span>恭喜您获得<?php echo $ObjGrouponInfo['result']['couponPrice'];?>元抵用券，点击马上购买</span>
-                    </div>
-                </div>
-           <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2  && $ObjGrouponInfo['result']['isRecCoupon'] ==0 ){?>
-	        	<div class="more2">
-		            <a class="btn" href="product_guess_price.php"><span>查看更多</span></a>
-				        <?php if($ObjGrouponInfo['result']['prize']  ==2){?>
-				            <div class="txt"><span>获得二等奖，奖品发放中...</span></div>
-				        <?php }elseif($ObjGrouponInfo['result']['prize']  ==3){?>
-				            <div class="txt"><span>获得三等奖，奖品发放中...</span></div>
-				        <?php }?>
-		        </div>
-        	<?php }?>
+                <?php } ?>
         	</div>
-           
+
             <script>
                 $(document).on("pageInit", "#page-guessDeta", function(e, pageId, page) {
                     //参与
@@ -452,7 +471,7 @@
                         var price = price1 + '.' + price2;
                         var minPrice = <?php echo $ObjGrouponInfo['result']['minPrice'] ;?>,
                             maxPrice = <?php echo $ObjGrouponInfo['result']['maxPrice'] ;?>;
-                        
+
                         if(!price1 && price1!=0){
                             $.toast('请填写价格');
                         }else{
@@ -467,7 +486,7 @@
                               }, "json");
                             }
                         }
-                        
+
                     });
 
                     //sku
@@ -511,7 +530,7 @@
                     function skuOpen(){
                       $.showIndicator();          //打开加载指示器
                       $("#buy").attr("href", "javascript:;").addClass("gray");
-                      
+
                        var req = {
                          msg: "",
                          code: 1,
@@ -635,7 +654,7 @@
                       }else{
                         $.toast(req.msg);
                       }
-                      
+
                       $.popup(".popup-sku");      //弹出弹窗
                       $("#buy-num").val(1);
                       $.hideIndicator();          //关闭加载指示器
@@ -654,7 +673,7 @@
                       return $(".popup-sku").attr("data-href")+"?"+_arr.join("&");
                     }
                 <?php } ?>
-                      
+
 
                     //弹窗
                     if($(".popup-guessCoupon").length>0){
@@ -717,13 +736,13 @@
 	            </div>
 	            <div class="bg-footer"></div>
 	        </div>
-	    </div>							
+	    </div>
     <?php }?>
-        
-        
-        
+
+
+
     </div>
-   <?php }?> 
+   <?php }?>
 </body>
 
 </html>
