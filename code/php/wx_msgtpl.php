@@ -245,6 +245,14 @@ switch($act){
 		file_put_contents($_logFile, "\r\n", FILE_APPEND);
         break;
 	case 'raffle01'://0.1抽奖
+		$typeValueMap = array(
+			1 => 'open',
+			2 => 'join',
+			3 => 'group',
+			4 => 'win',
+			5 => 'unwin',
+			6 => 'failure',
+		);
 		$typeMap = array(
 			//开团
 			'open' => array(
@@ -296,7 +304,8 @@ switch($act){
 //			),
 		);
 
-		$type = trim($_REQUEST['type']);
+		$_type = trim($_REQUEST['type']);
+		$type = $typeValueMap[$_type];
 		$paramData = trim($_REQUEST['data']);
 		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送0.1抽奖【{$typeMap[$type]['name']} {$type}】通知开始\r\n";
 		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
@@ -344,6 +353,7 @@ switch($act){
 			$_msg = '';
 			switch($type){
 				case 'open'://开团
+					$_data['url'] = $typeMap[$type]['link'].$v['attendId'];
 					$_data['data']['keyword1']['value'] = $v['factPrice'];
 					$_data['data']['keyword2']['value'] = $v['productName'];
 					$_data['data']['keyword3']['value'] = $v['consignee'].' '.$v['consigneePhone'].' '.$v['consigneeAddress'];
@@ -351,12 +361,14 @@ switch($act){
 					$_msg = "，商品：{$v['productName']}";
 					break;
 				case 'group'://成团
+					$_data['url'] = $typeMap[$type]['link'];
 					$_data['data']['keyword1']['value'] = $v['orderNo'];
 					$_data['data']['keyword2']['value'] = $v['factPrice'];
 					unset($_data['data']['keyword3'], $_data['data']['keyword4']);
 					break;
 				case 'win'://中奖
 				case 'unwin'://未中奖
+					$_data['url'] = $typeMap[$type]['link'];
 					$_data['data']['keyword1']['value'] = $v['productName'];
 					$_data['data']['keyword2']['value'] = $v['factPrice'];
 					$_data['data']['keyword3']['value'] = $v['groupDate'];
