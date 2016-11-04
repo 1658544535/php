@@ -423,8 +423,9 @@ switch($act){
 		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送猜价开奖通知开始\r\n";
 		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 
+		$type = trim($_REQUEST['type']);
 		$paramData = trim($_REQUEST['data']);
-		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送猜价开奖通知开始，接收的参数data内容为{$paramData}\r\n";
+		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送猜价开奖通知开始，接收的参数type内容为{$type}，data内容为{$paramData}\r\n";
 		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 
 		if(empty($paramData)){
@@ -466,18 +467,18 @@ switch($act){
 		foreach($tplParam as $v){
 			$data['touser'] = $v['openid'];
 			$data['url'] = $site.'product_guess_price.php?act=detail&gid='.$v['activityId'].'&pid='.$v['productId'];
-			$data['data']['first']['value'] = $prizeLevelMap[$v['type']]['first'];
-			$data['data']['remark']['value'] = $prizeLevelMap[$v['type']]['remark'];
+			$data['data']['first']['value'] = $prizeLevelMap[$type]['first'];
+			$data['data']['remark']['value'] = $prizeLevelMap[$type]['remark'];
 			$data['data']['keyword1']['value'] = $v['productName'];
 			$data['data']['keyword2']['value'] = $v['price'];
 			$data['data']['keyword3']['value'] = $v['prizeTime'];
-			$data['data']['keyword4']['value'] = $prizeLevelMap[$v['type']]['prize'];
+			$data['data']['keyword4']['value'] = $prizeLevelMap[$type]['prize'];
 			
 			$sendResult = $objWX->sendTemplateMessage($data);
 			if($sendResult === false){
-				$_logInfo = "【".date('Y-m-d H:i:s', $time)."】猜价开奖通知发送失败，openid:{$v['openid']}，【抽奖时间:{$v['prizeTime']}】{$prizeLevelMap[$v['type']]['name']}：{$v['prize']}，商品【ID:{$v['productId']}】：{$v['productName']}，活动ID：{$v['activityId']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)."】猜价开奖通知发送失败，openid:{$v['openid']}，【抽奖时间:{$v['prizeTime']}】{$prizeLevelMap[$type]['name']}：{$prizeLevelMap[$type]['prize']}，商品【ID:{$v['productId']}】：{$v['productName']}，活动ID：{$v['activityId']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
 			}else{
-				$_logInfo = "【".date('Y-m-d H:i:s', $time)."】猜价开奖通知发送成功，openid:{$v['openid']}，【抽奖时间:{$v['prizeTime']}】{$prizeLevelMap[$v['type']]['name']}：{$v['prize']}，商品【ID:{$v['productId']}】：{$v['productName']}，活动ID：{$v['activityId']}\r\n";
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)."】猜价开奖通知发送成功，openid:{$v['openid']}，【抽奖时间:{$v['prizeTime']}】{$prizeLevelMap[$type]['name']}：{$prizeLevelMap[$type]['prize']}，商品【ID:{$v['productId']}】：{$v['productName']}，活动ID：{$v['activityId']}\r\n";
 			}
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		}
