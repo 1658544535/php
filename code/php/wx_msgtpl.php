@@ -162,11 +162,9 @@ switch($act){
 					'color' => '#000000',
 				),
 				'keyword1' => array(
-//					'value' => $orderInfo['orderInfo']['orderNo'],
 					'color' => '#000000',
 				),
 				'keyword2' => array(
-//					'value' => $orderInfo['productInfo']['orderPrice'],
 					'color' => '#000000',
 				),
 				'remark' => array(
@@ -247,24 +245,26 @@ switch($act){
 		file_put_contents($_logFile, "\r\n", FILE_APPEND);
         break;
 	case 'raffle01'://0.1抽奖
-		$templateId = '';
 		$typeMap = array(
 			//开团
 			'open' => array(
+				'tplid' => 'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
 				'name' => '开团',
 				'first' => '恭喜您，开团成功啦！邀请好友参与，成团即拿奖品哦！',
 				'remark' => '告诉您小妙招，分享至好友加速成团哦！点击马上分享>>>',
 				'link' => $site.'groupon_join.php?aid=',
 			),
-			//参团
-			'join' => array(
-				'name' => '参团',
-				'first' => '恭喜您，参团成功啦！邀请好友参与，成团即有机会获得奖品哦！',
-				'remark' => '告诉您小妙招，分享至好友加入成团哦！点击马上分享>>>',
-				'link' => $site.'groupon_join.php?aid=',
-			),
+//			//参团
+//			'join' => array(
+//				'tplid' => '',
+//				'name' => '参团',
+//				'first' => '恭喜您，参团成功啦！邀请好友参与，成团即有机会获得奖品哦！',
+//				'remark' => '告诉您小妙招，分享至好友加入成团哦！点击马上分享>>>',
+//				'link' => $site.'groupon_join.php?aid=',
+//			),
 			//成团
 			'group' => array(
+				'tplid' => 'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
 				'name' => '成团',
 				'first' => '恭喜您，拼团成功啦！稍后留意开奖信息哦！',
 				'remark' => '[劲爆]优质玩具，0元开团，预购从速，点击领券>>>',
@@ -272,6 +272,7 @@ switch($act){
 			),
 			//中奖
 			'win' => array(
+				'tplid' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',
 				'name' => '中奖',
 				'first' => '恭喜您，终于成团啦！奖品正在打包送到您手上，敬请期待！',
 				'remark' => '点击了解更多0.1元抽奖活动>>>',
@@ -279,18 +280,20 @@ switch($act){
 			),
 			//未中奖
 			'unwin' => array(
+				'tplid' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',
 				'name' => '未中奖',
-				'first' => '很遗憾，您没有中奖！您的款项正在退款中！',
+				'first' => '您没有中奖！您的款项正在退款中！',
 				'remark' => '不要灰心，马上开团获得更多0.1元抽奖机会>>>',
 				'link' => $site.'lottery_new.php',
 			),
-			//参团失败
-			'failure' => array(
-				'name' => '参团失败',
-				'first' => '很遗憾，您参与的团人数不足未成团，正在退款中！',
-				'remark' => '[劲爆]优质玩具，0元开团，预购从速，点击领券>>>',
-				'link' => $site.'free.php?id=16',
-			),
+//			//参团失败
+//			'failure' => array(
+//				'tplid' => '',
+//				'name' => '参团失败',
+//				'first' => '很遗憾，您参与的团人数不足未成团，正在退款中！',
+//				'remark' => '[劲爆]优质玩具，0元开团，预购从速，点击领券>>>',
+//				'link' => $site.'free.php?id=16',
+//			),
 		);
 
 		$type = trim($_REQUEST['type']);
@@ -310,7 +313,7 @@ switch($act){
 		}
 		
 		$data = array(
-			'template_id' => $templateId,
+			'template_id' => $typeMap[$type]['tplid'],
 			'topcolor' => '#000000',
 			'data' => array(
 				'first' => array(
@@ -326,6 +329,9 @@ switch($act){
 				'keyword3' => array(
 					'color' => '#000000',
 				),
+				'keyword4' => array(
+					'color' => '#000000',
+				),
 				'remark' => array(
 					'value' => $typeMap[$type]['remark'],
 					'color' => '#ff0000',
@@ -333,46 +339,61 @@ switch($act){
 			),
 		);
 		foreach($tplParam as $v){
-			$data['touser'] = $v['openid'];
-			$data['data']['keyword1']['value'] = $v['factPrice'];
-			$data['data']['keyword2']['value'] = $v['productName'];
-			$data['data']['keyword3']['value'] = $v['orderNo'];
+			$_data = $data;
+			$_data['touser'] = $v['openid'];
+			$_msg = '';
 			switch($type){
-				'open':
-				'join':
-					$data['url'] = $typeMap[$type]['link'].$v['attendId'];
+				case 'open'://开团
+					$_data['data']['keyword1']['value'] = $v['factPrice'];
+					$_data['data']['keyword2']['value'] = $v['productName'];
+					$_data['data']['keyword3']['value'] = $v['consignee'].' '.$v['consigneePhone'].' '.$v['consigneeAddress'];
+					$_data['data']['keyword4']['value'] = $v['orderNo'];
+					$_msg = "，商品：{$v['productName']}";
 					break;
-				default:
-					$data['url'] = $typeMap[$type]['link'];
+				case 'group'://成团
+					$_data['data']['keyword1']['value'] = $v['orderNo'];
+					$_data['data']['keyword2']['value'] = $v['factPrice'];
+					unset($_data['data']['keyword3'], $_data['data']['keyword4']);
+					break;
+				case 'win'://中奖
+				case 'unwin'://未中奖
+					$_data['data']['keyword1']['value'] = $v['productName'];
+					$_data['data']['keyword2']['value'] = $v['factPrice'];
+					$_data['data']['keyword3']['value'] = $v['groupDate'];
+					$_data['data']['keyword4']['value'] = $v['orderNo'];
+					$_msg = "，商品：{$v['productName']}，成团时间：{$v['groupDate']}";
 					break;
 			}
-			$sendResult = $objWX->sendTemplateMessage($data);
+			$sendResult = $objWX->sendTemplateMessage($_data);
 			if($sendResult === false){
-				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】0.1抽奖【{$typeMap[$type]['name']} {$type}】通知发送失败，openid:{$v['openid']}，实付金额：{$v['factPrice']}，商品：{$v['productName']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】0.1抽奖【{$typeMap[$type]['name']} {$type}】通知发送失败，openid:{$v['openid']}，实付金额：{$v['factPrice']}{$_msg}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
 			}else{
-				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】0.1抽奖【{$typeMap[$type]['name']} {$type}】通知发送成功，openid:{$v['openid']}，实付金额：{$v['factPrice']}，商品：{$v['productName']}\r\n";
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】0.1抽奖【{$typeMap[$type]['name']} {$type}】通知发送成功，openid:{$v['openid']}，实付金额：{$v['factPrice']}{$_msg}\r\n";
 			}
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		}
 		file_put_contents($_logFile, "\r\n", FILE_APPEND);
 		break;
 	case 'guess'://猜价中奖
-		$templateId = '';
+		$templateId = 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig';
 		$prizeLevelMap = array(
 			1 => array(
 				'name' => '一等奖',
-				'first' => '您参与的猜价格活动开奖啦！！',
+				'first' => '【恭喜您！中奖啦】您参与的猜价格活动开奖啦！！',
 				'remark' => '赶快点击领取商品 >>>',
+				'prize' => '一等奖，获得该商品',
 			),
 			2 => array(
 				'name' => '二等奖',
-				'first' => '您参与的猜价格活动开奖啦！！',
-				'remark' => '赶快点击领取优惠券 >>>',
+				'first' => '【恭喜您！中奖啦】您参与的猜价格活动开奖啦！！',
+				'remark' => '赶快点击领取优惠券，购买商品 >>>',
+				'prize' => '二等奖，获得5元抵扣券',
 			),
 			3 => array(
 				'name' => '三等奖',
-				'first' => '您参与的猜价格活动开奖啦！！',
-				'remark' => '赶快点击领取优惠券 >>>',
+				'first' => '【恭喜您！中奖啦】您参与的猜价格活动开奖啦！！',
+				'remark' => '赶快点击领取优惠券，购买商品 >>>',
+				'prize' => '三等奖，获得3元抵扣券',
 			),
 		);
 
@@ -423,14 +444,14 @@ switch($act){
 			$data['data']['remark']['value'] = $prizeLevelMap[$v['type']]['remark'];
 			$data['data']['keyword1']['value'] = $v['productName'];
 			$data['data']['keyword2']['value'] = $v['price'];
-			$data['data']['keyword3']['value'] = $prizeLevelMap[$v['type']]['name'];
-			$data['data']['keyword4']['value'] = $v['prize'];
+			$data['data']['keyword3']['value'] = '【'.$v['groupDate'].'】';
+			$data['data']['keyword4']['value'] = $prizeLevelMap[$v['type']]['prize'];
 			
 			$sendResult = $objWX->sendTemplateMessage($data);
 			if($sendResult === false){
-				$_logInfo = "【".date('Y-m-d H:i:s', $time)."】猜价开奖通知发送失败，openid:{$v['openid']}，{$prizeLevelMap[$v['type']]['name']}：{$v['prize']}，商品【{$v['productId']}】：{$v['productName']}，活动ID：{$v['activityId']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)."】猜价开奖通知发送失败，openid:{$v['openid']}，【{$v['groupDate']}】{$prizeLevelMap[$v['type']]['name']}：{$v['prize']}，商品【{$v['productId']}】：{$v['productName']}，活动ID：{$v['activityId']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
 			}else{
-				$_logInfo = "【".date('Y-m-d H:i:s', $time)."】猜价开奖通知发送成功，openid:{$v['openid']}，{$prizeLevelMap[$v['type']]['name']}：{$v['prize']}，商品【{$v['productId']}】：{$v['productName']}，活动ID：{$v['activityId']}\r\n";
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)."】猜价开奖通知发送成功，openid:{$v['openid']}，【{$v['groupDate']}】{$prizeLevelMap[$v['type']]['name']}：{$v['prize']}，商品【{$v['productId']}】：{$v['productName']}，活动ID：{$v['activityId']}\r\n";
 			}
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		}
