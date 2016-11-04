@@ -423,6 +423,9 @@ switch($act){
 		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 
 		$paramData = trim($_REQUEST['data']);
+		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送猜价开奖通知开始，接收的参数data内容为{$paramData}\r\n";
+		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+
 		if(empty($paramData)){
 			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送猜价开奖通知，参数为空\r\n";
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
