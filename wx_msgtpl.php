@@ -245,6 +245,9 @@ switch($act){
 		file_put_contents($_logFile, "\r\n", FILE_APPEND);
         break;
 	case 'raffle01'://0.1抽奖
+		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】开始发送0.1抽奖通知\r\n";
+		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+
 		$typeValueMap = array(
 			1 => 'open',
 			2 => 'join',
