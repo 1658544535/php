@@ -185,35 +185,46 @@
                         </div>
                     </section>
             <?php }elseif($ObjGrouponInfo['result']['isStart']  == 2){?>
-                <?php if($ObjGrouponInfo['result']['isPublic']){ ?>
-                    <section class="guessDeta-info center">
-                        <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
-                        <div class="tips">来晚啦！该活动已经结束</div>
-                        <div class="finalPrice">最终价格：<span class="price"><?php echo $ObjGrouponInfo['result']['realPrice'];?></span></div>
-                    </section>
+                <?php if($ObjGrouponInfo['result']['isPublic']){
+                    //已开奖?>
+                    <?php if ($ObjGrouponInfo['result']['isWin']) {
+                        //有中奖?>
+                        <?php if($ObjGrouponInfo['result']['prize'] == 1) {
+                            //获得一等奖?>
+                            <section class="guessDeta-info center">
+                                <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
+                                <div class="tips">恭喜您！得到了该商品</div>
+                                <div class="finalPrice">最终价格：<span class="price"><?php echo $ObjGrouponInfo['result']['realPrice'];?></span></div>
+                            </section>
+                        <?php } elseif (in_array($ObjGrouponInfo['result']['prize'],array(2,3))) {
+                            //获得二三等奖 ?>
+                            <section class="guessDeta-info center">
+                                <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
+                                <?php if($ObjGrouponInfo['result']['prize'] ==2){?>
+                                    <div class="tips">恭喜您，获得二等奖</div>
+                                <?php }elseif($ObjGrouponInfo['result']['prize'] ==3){?>
+                                    <div class="tips">恭喜您，获得三等奖</div>
+                                <?php }?>
+                                <div class="finalPrice">最终价格：<span class="price"><?php echo $ObjGrouponInfo['result']['realPrice'];?></span></div>
+                            </section>
+                        <?php } ?>
+
+                    <?php } else {
+                        //没有中奖?>
+                        <section class="guessDeta-info center">
+                            <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
+                            <div class="tips">来晚啦！该活动已经结束</div>
+                            <div class="finalPrice">最终价格：<span class="price"><?php echo $ObjGrouponInfo['result']['realPrice'];?></span></div>
+                        </section>
+                    <?php } ?>
                 <?php } else { ?>
                     <section class="guessDeta-info center">
                         <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
                         <div class="tips" style="color:red;">即将开奖，请耐心等待</div>
                     </section>
                 <?php } ?>
-            <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1 && $ObjGrouponInfo['result']['prize'] ==1){?>
-                <section class="guessDeta-info center">
-                    <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
-                    <div class="tips">恭喜您！得到了该商品</div>
-                    <div class="finalPrice">最终价格：<span class="price"><?php echo $ObjGrouponInfo['result']['realPrice'];?></span></div>
-                </section>
-            <?php }elseif($ObjGrouponInfo['result']['isStart']  ==2 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isWin']  ==1){?>
-                <section class="guessDeta-info center">
-                    <div class="name"><?php echo $ObjGrouponInfo['result']['productName'];?></div>
-                    <?php if($ObjGrouponInfo['result']['prize'] ==2){?>
-                        <div class="tips">恭喜您，获得二等奖</div>
-                    <?php }elseif($ObjGrouponInfo['result']['prize'] ==3){?>
-                        <div class="tips">恭喜您，获得三等奖</div>
-                    <?php }?>
-                    <div class="finalPrice">最终价格：<span class="price"><?php echo $ObjGrouponInfo['result']['realPrice'];?></span></div>
-                </section>
-            <?php }?>
+            <?php } ?>
+
                     <section class="guessJoinList guessDetaJoinList">
                         <?php if( $ObjGrouponInfo['result']['isJoin'] ==1 && $ObjGrouponInfo['result']['isStart'] ==1){?>
 	                        <ul class="list-container">您的出价信息如下：
