@@ -733,7 +733,7 @@
                     <a id="buy" href="javascript:;" class="go">确定</a>
                 </div>
             </div>
-
+     <?php }?>
       <?php if($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isPublic']  ==1 && $ObjGrouponInfo['result']['isStart']  ==2 && $ObjGrouponInfo['result']['isWin']  ==1  && $ObjGrouponInfo['result']['isRecCoupon']  ==1 && $ObjGrouponInfo['result']['isAlert']  ==0 && $ObjGrouponInfo['result']['prize']  !=1 ){?>
         <div class="popup popup-guessCoupon">
 	        <div>
@@ -750,10 +750,8 @@
 	    </div>
     <?php }?>
 
-
-
-    </div>
-   <?php }?>
+  </div>
+  
 </body>
 
 </html>
