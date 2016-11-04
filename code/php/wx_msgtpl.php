@@ -469,14 +469,14 @@ switch($act){
 			$data['data']['remark']['value'] = $prizeLevelMap[$v['type']]['remark'];
 			$data['data']['keyword1']['value'] = $v['productName'];
 			$data['data']['keyword2']['value'] = $v['price'];
-			$data['data']['keyword3']['value'] = '【'.$v['groupDate'].'】';
+			$data['data']['keyword3']['value'] = $v['prizeTime'];
 			$data['data']['keyword4']['value'] = $prizeLevelMap[$v['type']]['prize'];
 			
 			$sendResult = $objWX->sendTemplateMessage($data);
 			if($sendResult === false){
-				$_logInfo = "【".date('Y-m-d H:i:s', $time)."】猜价开奖通知发送失败，openid:{$v['openid']}，【{$v['groupDate']}】{$prizeLevelMap[$v['type']]['name']}：{$v['prize']}，商品【{$v['productId']}】：{$v['productName']}，活动ID：{$v['activityId']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)."】猜价开奖通知发送失败，openid:{$v['openid']}，【抽奖时间:{$v['prizeTime']}】{$prizeLevelMap[$v['type']]['name']}：{$v['prize']}，商品【ID:{$v['productId']}】：{$v['productName']}，活动ID：{$v['activityId']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
 			}else{
-				$_logInfo = "【".date('Y-m-d H:i:s', $time)."】猜价开奖通知发送成功，openid:{$v['openid']}，【{$v['groupDate']}】{$prizeLevelMap[$v['type']]['name']}：{$v['prize']}，商品【{$v['productId']}】：{$v['productName']}，活动ID：{$v['activityId']}\r\n";
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)."】猜价开奖通知发送成功，openid:{$v['openid']}，【抽奖时间:{$v['prizeTime']}】{$prizeLevelMap[$v['type']]['name']}：{$v['prize']}，商品【ID:{$v['productId']}】：{$v['productName']}，活动ID：{$v['activityId']}\r\n";
 			}
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		}
