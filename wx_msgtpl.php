@@ -284,7 +284,7 @@ switch($act){
 			//中奖
 			'win' => array(
 				'tplid' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',
-				'name' => '中奖',
+				'name' => '已中奖',
 				'first' => '恭喜您，终于成团啦！奖品正在打包送到您手上，敬请期待！',
 				'remark' => '点击了解更多0.1元抽奖活动>>>',
 				'link' => $site.'lottery_new.php',
@@ -383,7 +383,7 @@ switch($act){
 					$_data['data']['keyword1']['value'] = $v['productName'];
 					$_data['data']['keyword2']['value'] = $v['factPrice'];
 					$_data['data']['keyword3']['value'] = $v['groupDate'];
-					$_data['data']['keyword4']['value'] = ($type == 'win') ? '已中奖' : '未中奖';
+					$_data['data']['keyword4']['value'] = $typeMap[$type]['name'];
 					$_msg = "，商品：{$v['productName']}，成团时间：{$v['groupDate']}";
 					break;
 			}
