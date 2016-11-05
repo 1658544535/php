@@ -470,7 +470,7 @@ switch($act){
 			$data['data']['first']['value'] = $prizeLevelMap[$type]['first'];
 			$data['data']['remark']['value'] = $prizeLevelMap[$type]['remark'];
 			$data['data']['keyword1']['value'] = $v['productName'];
-			$data['data']['keyword2']['value'] = 0.0;
+			$data['data']['keyword2']['value'] = '0.0';
 			$data['data']['keyword3']['value'] = $v['prizeTime'];
 			$data['data']['keyword4']['value'] = $prizeLevelMap[$type]['prize'];
 			
