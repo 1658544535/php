@@ -383,7 +383,7 @@ switch($act){
 					$_data['data']['keyword1']['value'] = $v['productName'];
 					$_data['data']['keyword2']['value'] = $v['factPrice'];
 					$_data['data']['keyword3']['value'] = $v['groupDate'];
-					$_data['data']['keyword4']['value'] = $v['orderNo'];
+					$_data['data']['keyword4']['value'] = ($type == 'win') ? '已中奖' : '未中奖';
 					$_msg = "，商品：{$v['productName']}，成团时间：{$v['groupDate']}";
 					break;
 			}
@@ -470,7 +470,7 @@ switch($act){
 			$data['data']['first']['value'] = $prizeLevelMap[$type]['first'];
 			$data['data']['remark']['value'] = $prizeLevelMap[$type]['remark'];
 			$data['data']['keyword1']['value'] = $v['productName'];
-			$data['data']['keyword2']['value'] = $v['price'];
+			$data['data']['keyword2']['value'] = 0.0;
 			$data['data']['keyword3']['value'] = $v['prizeTime'];
 			$data['data']['keyword4']['value'] = $prizeLevelMap[$type]['prize'];
 			
