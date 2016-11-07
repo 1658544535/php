@@ -37,6 +37,7 @@ if(isset($_GET['as'])){
 $skuId = intval($_GET['skuid']);
 empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
 $info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>$activeSource,'uid'=>$userid));
+empty($info) && redirect($prevUrl, '网络异常，请稍候访问');
 if($info['success']){
 	$info = $info['result'];
 }else{
