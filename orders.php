@@ -57,7 +57,7 @@ switch( $act )
 			case 'seckill':
 				$_url = 'order_seckill.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
 				break;
-			case 'seckill':
+			case 'raffle01':
 				$_url = 'order_raffle01.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
 				break;
 		}
