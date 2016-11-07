@@ -58,8 +58,8 @@
 		 <?php }elseif($info['isGroup'] ==1 && $info['status'] ==0){?>
 		  <section class="proTips-6">
                 <div>
-                    <a href="lottery_new.php">查看更多</a>
-                    <a class="light">您已参与过该活动</a>
+                    <a href="lottery_new.php" class="light">查看更多</a>
+                    <a>您已参与过该活动</a>
                 </div>
             </section>
 		 <?php }else{?>
