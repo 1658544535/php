@@ -35,6 +35,8 @@
                 </a>
                 <?php if($info['isSellOut'] ==1){?>
                 <h1 class="title">组团失败</h1>
+                <?php }elseif($info['isGroup'] ==1){?>
+                <h1 class="title">组团成功</h1>
                 <?php }else{?>
                 <h1 class="title">
 					<?php $pageHeadTitles = array(0=>'我要组团', 1=>'组团成功', 2=>'组团失败'); ?>
@@ -53,6 +55,13 @@
 			   <span class="btn">更多拼团 ></span>
 			</a>
 		 </section>
+		 <?php }elseif($info['isGroup'] ==1 && $info['status'] ==0){?>
+		  <section class="proTips-6">
+                <div>
+                    <a href="lottery_new.php" class="light">查看更多</a>
+                    <a href="/" class="light">您已参与过该活动</a>
+                </div>
+            </section>
 		 <?php }else{?>
 			<section class="proTips-5">
 				<?php switch($info['status']){
@@ -145,7 +154,14 @@
 									您终于来了，快参团吧！
 								</div>
 								<div class="txt2">已有<?php echo $info['joinNum'];?>人参团，还差<?php echo $info['poorNum'];?>人，赶快分享召集小伙伴组团啦.</div>
+							<?php }elseif($info['isGroup'] == 1 ){ ?>
+								<div class="txt1">
+									<div class="img"><img src="images/tip-ing.png" /></div>
+									恭喜您，参团成功！
+								</div>
+								<div class="txt2">已有<?php echo $info['joinNum'];?>人参团，还差<?php echo $info['poorNum'];?>人，赶快分享召集小伙伴组团啦.</div>
 							<?php } ?>
+							
 						<?php break; ?>
 						<?php case 1: ?>
 							<?php if($info['isGroup'] == 1){ ?>
