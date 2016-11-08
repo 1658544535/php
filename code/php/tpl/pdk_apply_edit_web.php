@@ -77,7 +77,7 @@
                             <?php for($i=1; $i<=5; $i++){ ?>
                                 <?php if($infoEdit['image'.$i] != ''){ ?>
 	                                <div class="uploadImg-item">
-                                        <input type="file" capture="camera" accept="image/*">
+                                        <input type="file" data-type="0" capture="camera" accept="image/*">
                                         <div class="img"><img data-file="<?php echo $infoEdit['image'.$i];?>" src="<?php echo $infoEdit['image'.$i];?>"></div>
                                         <span class="close" style="display: inline;"></span>
                                     </div>
@@ -135,15 +135,16 @@
                                         _this.parent().find(".img").removeClass("noImg");
                                         _this.parent().find(".img").html('<img data-file="'+url+'" src="'+ url +'" />');
                                         _this.parent().find("input[type='hidden']").val(url);
-                                        $(".uploadImg-item .close").show();
+                                        $(".uploadImg-item .img").not(".noImg").next().show();
                                         if(_this.parents(".uploadImg").find(".uploadImg-item").length < 5)
                                         _this.parent().after('<div class="uploadImg-item"><input type="file" capture="camera" accept="image/*" /><div class="img noImg"></div><span class="close" style="display:none;"></span></div>');
                                     }else{
                                         _this.parent().find(".img").find("img").attr("src", url);
                                         _this.parent().find(".img").find("img").attr("data-file", url);
-                                        $(".uploadImg-item .close").show();
+                                        $(".uploadImg-item .img").not(".noImg").next().show();
                                     }
                                     $(".uploadImg-item.active .img").removeClass("loadingImg");
+                                    _this.attr("data-type", 1);
                                 }else{
                                     $.toast(data.msg);
                                     $(".uploadImg-item.active .img").removeClass("loadingImg");
@@ -185,10 +186,16 @@
                         }
                         $(".uploadImg img").each(function(index, el) {
                             var url = $(el).attr("data-file");
-                            url = url.split("/");
-                            url = url[url.length-1];
-                            console.log(url);
-                            $("#submitForm").append('<input type="hidden" name="img[]" value="'+ url +'" />');
+                            // url = url.split("/");
+                            // url = url[url.length-1];
+                            // console.log(url);
+                            var nameTxt = '';
+                            if($(el).parent().prev().attr("data-type") == 1){
+                                nameTxt = 'img';
+                            }else{
+                                nameTxt = 'img_before';
+                            }
+                            $("#submitForm").append('<input type="hidden" name="' + nameTxt + (index+1) +'" value="'+ url +'" />');
                         });
                         $("#submitForm").submit();
                     });
