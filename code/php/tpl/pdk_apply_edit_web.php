@@ -81,7 +81,13 @@
                                         <div class="img"><img data-file="<?php echo $infoEdit['image'.$i];?>" src="<?php echo $infoEdit['image'.$i];?>"></div>
                                         <span class="close" style="display: inline;"></span>
                                     </div>
-                                <?php } ?>
+                                <?php }else{ ?>
+                                    <div class="uploadImg-item">
+                                        <input type="file" capture="camera" accept="image/*" />
+                                        <div class="img noImg"></div>
+                                        <span class="close" style="display:none;"></span>
+                                    </div>
+                                <?php break;} ?>
 							<?php } ?>
                                 </div>
                             </li>
@@ -120,13 +126,13 @@
                     function bindUploadImg(){
                         jQuery('.uploadImg .uploadImg-item.active input[type="file"]').fileupload({
                             autoUpload: true,//是否自动上传
-                            url: "/pindeke_apply.php?act=uploadimg&uid=<?php echo $userid;?>",//上传地址
+                            url: "/pindeke_apply.php?act=uploadimg_edit&uid=<?php echo $userid;?>",//上传地址
                             dataType: 'json',
                             success: function (res, status){//设置文件上传完毕事件的回调函数
                                 var data = {
                                     code: res.state,
-                                    msg: res.msg,
-                                    url: res.url
+                                    // msg: res.msg,
+                                    url: res.msg.fileName
                                 }
                                 if(data.code > 0){
                                     var _this = $(".uploadImg-item.active input");
@@ -144,7 +150,6 @@
                                         $(".uploadImg-item .img").not(".noImg").next().show();
                                     }
                                     $(".uploadImg-item.active .img").removeClass("loadingImg");
-                                    _this.attr("data-type", 1);
                                 }else{
                                     $.toast(data.msg);
                                     $(".uploadImg-item.active .img").removeClass("loadingImg");
@@ -186,16 +191,17 @@
                         }
                         $(".uploadImg img").each(function(index, el) {
                             var url = $(el).attr("data-file");
-                            // url = url.split("/");
-                            // url = url[url.length-1];
-                            // console.log(url);
-                            var nameTxt = '';
-                            if($(el).parent().prev().attr("data-type") == 1){
-                                nameTxt = 'img';
-                            }else{
-                                nameTxt = 'img_before';
-                            }
-                            $("#submitForm").append('<input type="hidden" name="' + nameTxt + (index+1) +'" value="'+ url +'" />');
+                            url = url.split("/");
+                            url = url[url.length-1];
+                            console.log(url);
+                            $("#submitForm").append('<input type="hidden" name="img[]" value="'+ url +'" />');
+                            // var nameTxt = '';
+                            // if($(el).parent().prev().attr("data-type") == 1){
+                            //     nameTxt = 'img';
+                            // }else{
+                            //     nameTxt = 'img_before';
+                            // }
+                            // $("#submitForm").append('<input type="hidden" name="' + nameTxt + (index+1) +'" value="'+ url +'" />');
                         });
                         $("#submitForm").submit();
                     });
