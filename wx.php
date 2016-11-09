@@ -36,21 +36,27 @@ $wxReqType = $objWX->getRev()->getRevType();
 
 switch($wxReqType){
 	case Wechat::MSGTYPE_TEXT://文本
+		$objWX->transfer_customer_service()->reply();
 		break;
 	case Wechat::MSGTYPE_EVENT://事件
 		$eventType = $objWX->getRevEvent();
 		switch($eventType['event']){
     		case Wechat::EVENT_SUBSCRIBE://关注订阅号
-				if($eventType['key']){//扫描二维码关注
-					$subscribeMsg = '<a href="'.$siteUrl.'free.php?id=17">0元开团，点击领券</a>';
-				}else{//正常关注
-					$subscribeMsg = '终于等到您~欢迎来到火遍朋友圈、汇聚全球玩具的拼得好，我们为您准备了7.7专区、品牌特卖等好玩实惠的玩具拼团，<a href="'.$siteUrl.'">☞点击进入商城</a>';
+				//扫描二维码场景
+				$qrcodeScene = substr($eventType['key'], 8);
+				switch($qrcodeScene){
+					case '1'://赠免券
+						$subscribeMsg = '<a href="'.$siteUrl.'free.php?id=17">0元开团，点击领券</a>';
+						break;
+					default:
+						$subscribeMsg = '终于等到您~欢迎来到火遍朋友圈、汇聚全球玩具的拼得好，我们为您准备了7.7专区、品牌特卖等好玩实惠的玩具拼团，<a href="'.$siteUrl.'">☞点击进入商城</a>';
+						break;
 				}
-				$weObj->text($subscribeMsg)->reply();
+				$objWX->text($subscribeMsg)->reply();
     			break;
 			case Wechat::EVENT_SCAN://扫描带参数二维码
 				$text = '<a href="'.$siteUrl.'">优质玩具，预购从速，点击进入</a>';
-				$weObj->text($subscribeMsg)->reply();
+				$objWX->text($text)->reply();
 				break;
     	}
 		break;
