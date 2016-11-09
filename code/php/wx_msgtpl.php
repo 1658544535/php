@@ -13,7 +13,7 @@ define('APP_INC', dirname(__FILE__) . '/includes/inc/');
 define('LIB_ROOT', dirname(__FILE__) . '/includes/lib/');
 define('LOG_INC', dirname(__FILE__) . '/logs/');
 
-define('API_URL', 'http://pdh.choupinhui.net/v3.5');
+define('API_URL', 'http://app.pindegood.com/v3.5');
 include_once(APP_INC.'config.php');
 include_once(APP_INC.'functions.php');
 
