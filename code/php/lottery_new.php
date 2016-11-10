@@ -131,7 +131,7 @@ switch($act)
     		$Banner = $Banner['result'];
     		// $LotteryList = apiData('lotteryListApi.do', array('type'=>$Type));
 
-			$tpl = 'lottery_list_web.php';
+			$tpl = 'lottery_list_wait_web.php';
     		include_once('tpl/'.$tpl);
    
 }
