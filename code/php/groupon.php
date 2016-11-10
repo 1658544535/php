@@ -21,7 +21,7 @@ $info = apiData('openGroupActivityApi.do', $apiParam);
 $info = $info['result'];
 
 //0.1抽奖
-(($info['activityType'] == 5) && ($info['activityStatus'] == 0)) && redirect($backUrl, '活动尚未开始');
+(($info['activityType'] == 5) && ($info['activityStatus'] == 0)) && redirect('/lottery_new.php', '活动尚未开始');
 
 if(!empty($info['waitGroupList'])){
 	foreach($info['waitGroupList'] as $k => $v){
