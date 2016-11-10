@@ -1,6 +1,6 @@
 <?php
 define('HN1', true);
-
+error_reporting(0);
 header("content-type: text/html; charset=utf-8");
 session_start();
 date_default_timezone_set('Asia/Shanghai'); 							// 设置默认时区
@@ -36,7 +36,9 @@ $wxReqType = $objWX->getRev()->getRevType();
 
 switch($wxReqType){
 	case Wechat::MSGTYPE_TEXT://文本
-		$objWX->transfer_customer_service()->reply();
+		$content = $objWX->getRevContent();
+		$replyInfo = __getReplyByKeyword($objWX->getRevContent());
+		$replyInfo['kw'] ? $objWX->text($replyInfo['msg'])->reply() : $objWX->transfer_customer_service()->reply();
 		break;
 	case Wechat::MSGTYPE_EVENT://事件
 		$eventType = $objWX->getRevEvent();
@@ -60,5 +62,16 @@ switch($wxReqType){
 				break;
     	}
 		break;
+	default:
+		$objWX->transfer_customer_service()->reply();
+		break;
+}
+
+//通过关键字获取回复消息
+function __getReplyByKeyword($keyword){
+	//关键字=>回复内容
+	$keywordMap = array();
+	$result = isset($keywordMap[$keyword]) ? array('kw'=>true, 'msg'=>$keywordMap[$keyword]) : array('kw'=>false);
+	return $result;
 }
 ?>
