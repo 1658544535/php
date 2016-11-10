@@ -71,7 +71,7 @@
 						<?php if($info['userIsHead'] == 1){ ?>
 							<div>
 			                    <a href="index.php" class="white">更多拼团</a>
-			                    <a href="javascript:;">还差<?php echo $info['poorNum'];?>人拼团成功</a>
+			                    <a id="share" href="javascript:;">还差<?php echo $info['poorNum'];?>人拼团成功</a>
 			                </div>
 						<?php }elseif($info['isGroup'] == 0){ ?>
 							<div>
@@ -176,14 +176,13 @@
                     <?php }elseif($info['isStart'] ==1  && $info['isGroup'] ==0 && $info['isSellOut'] ==0){?>
                     <h3 class="title1">您来晚了，已成团~</h3>
                    <?php }?>
-                    <ul class="group">
+                    <ul class="group" data-num="<?php echo $info['groupNum']?>">
                         <?php foreach ($info['groupUserList'] as $u){?>
                         <?php if($u['isHead'] ==1){?>
                         <li class="head"><img src="<?php echo $u['userImage'];?>"><span></span></li>
                         <?php }else{?>
                         <li><img src="<?php echo $u['userImage'];?>"></li>
                         <?php }}?>
-                        <li class="more"><img src="images/more.png"></li>
                     </ul>
                
                 </section>
@@ -228,11 +227,9 @@
 						<?php } ?>
                     </ul> 
                 </section>
-                <?php if($wxUser['subscribe'] !=0){?>
                 <section class="proTipsNew-4">
                     <img src="images/code-follow.jpg" />
                 </section>
-                <?php }?>
                 <section class="pro-like">
                     <h3 class="title1"><!--猜你喜欢--></h3>
                     <ul>
@@ -249,10 +246,8 @@
                     </ul>
                 </section>
                 
-                
+                <section id="rule" class="groupJoin-rule"></section>
     
-
-               
             </div>
 			
         </div>
@@ -456,23 +451,34 @@
             
             $(document).on("pageInit", "#page-proTips", function(e, pageId, page) {
                 //用户头像
-                if($(".proTipsNew-2 .group li").length>10){
-                    $(".proTipsNew-2 .group li").css("display","none");
-                    for(var i=0; i<9; i++){
-                        $(".proTipsNew-2 .group li").eq(i).css("display","inline-block");
-                    }
-                    $(".proTipsNew-2 .group li.more").css("display","inline-block");
-                }else{
-                    $(".proTipsNew-2 .group li").css("display","inline-block");
-                    $(".proTipsNew-2 .group li.more").css("display","none");
-                }
-                $(".proTipsNew-2 .group li.more").on("click", function(){
-                    $(".proTipsNew-2 .group li").css("display","inline-block");
-                    $(".proTipsNew-2 .group li.more").css("display","none");
-                });
+                (function(){
+                	var len = $(".proTipsNew-2 .group li").length;
+                	var num = $(".proTipsNew-2 .group").attr("data-num");
+
+                	if(len<num){
+                		for(var i=0; i<(num-len); i++){
+                			$(".proTipsNew-2 .group").append('<li><img src="images/question2.png"></li>');
+                		}
+                	}
+
+            		if(num>10){
+            			$(".proTipsNew-2 .group").append('<li class="more"><img src="images/more.png"></li>');
+            		}
+
+                	if($(".proTipsNew-2 .group li").length>10){
+	                    $(".proTipsNew-2 .group li").css("display","none");
+	                    for(var i=0; i<9; i++){
+	                        $(".proTipsNew-2 .group li").eq(i).css("display","inline-block");
+	                    }
+	                    $(".proTipsNew-2 .group li.more").css("display","inline-block");
+	                }else{
+	                    $(".proTipsNew-2 .group li").css("display","inline-block");
+	                    $(".proTipsNew-2 .group li.more").css("display","none");
+	                }
+                })();
 
                 //查看全部参团详情
-                $(".proTipsNew-3 .btn").on("click", function(){
+                $(".proTipsNew-3 .btn, .proTipsNew-2 .group li.more").on("click", function(){
                     if($(".proTipsNew-3").hasClass('active')){
                         $(".proTipsNew-3").removeClass('active');
                     }else{
@@ -584,6 +590,11 @@
             </div>
         </div>
         <?php } ?>
+
+        <div class="popup popup-joinrule">
+            <img class="close-popup" src="images/rule-txt.jpg" />
+        </div>
+        
     </div>
 </body>
 
