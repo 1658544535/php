@@ -1763,6 +1763,16 @@
   position: relative;
   padding: 0.8rem 0.65rem;
 }
+.proTipsNew-1 .list-container li a .info .name .num {
+  margin-right: .25rem;
+  padding: 0 .15rem;
+  text-align: justify;
+  font-size: .6rem;
+  font-size: .5rem;
+  color: #f85981;
+  border: 1px solid #f85981;
+  border-radius: 3px;
+}
 .proTipsNew-1 .list-container li .btn {
   position: relative;
   z-index: 3;
@@ -1784,7 +1794,7 @@
 }
 .proTipsNew-2 .title1 {
   margin: 0;
-  padding: 1.1rem 2.5rem 0;
+  padding: 0.85rem 2.5rem 0;
   font-size: 0.75rem;
   color: #191919;
   text-align: center;
@@ -1792,7 +1802,7 @@
 }
 .proTipsNew-2 .group {
   margin: 0 0.7rem 0;
-  padding: 1.0rem 0 0;
+  padding: 0.5rem 0 0;
   font-size: 0;
 }
 .proTipsNew-2 .group li {
@@ -1830,7 +1840,7 @@
 }
 .proTipsNew-3 {
   margin-top: 0;
-  padding: 1.0rem 0 0.6rem;
+  padding: 0.6rem 0 0.6rem;
 }
 .proTipsNew-3 .btn {
   font-size: 0.65rem;
@@ -1894,8 +1904,9 @@
 .proTipsNew-6 {
   position: relative;
   margin-bottom: -0.5rem;
-  padding-top: 1.0rem;
+  padding-top: 0.8rem;
   line-height: 1.0rem;
+  height: 2.3rem;
   text-align: center;
   font-size: 0.65rem;
   color: #666;
@@ -1918,6 +1929,7 @@
 .proTipsNew-6 > div {
   display: inline-block;
   padding: 0 0.7rem;
+  line-height: 1.0rem;
   position: relative;
   z-index: 3;
   background: #fff;
@@ -1925,7 +1937,7 @@
 .proTipsNew-6::after {
   content: '';
   position: absolute;
-  top: 1.5rem;
+  top: 1.3rem;
   left: 0.5rem;
   right: 0.5rem;
   height: 1px;
