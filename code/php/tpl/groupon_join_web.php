@@ -33,19 +33,19 @@
                 <a class="button button-link button-nav pull-left back" href="index.php">
                     <span class="icon icon-back"></span>
                 </a>
-                <?php if($info['activityStatus'] ==2){?>
+                <?php if($info['status'] ==2){?>
                 <h1 class="title">拼团失败</h1>
-                <?php }elseif($info['activityStatus'] ==1  && $info['isGroup'] ==1){?>
+                <?php }elseif($info['status'] ==1  && $info['isGroup'] ==1){?>
                 <h1 class="title">拼团成功</h1>
-                <?php }elseif($info['activityStatus'] ==0 && $info['isGroup'] ==0){?>
+                <?php }elseif($info['status'] ==0 && $info['isGroup'] ==0){?>
                 <h1 class="title">拼团中</h1>
                 <?php }elseif($info['isSellOut'] ==1){?>
                 <h1 class="title">商品已售罄</h1>
                 <?php }elseif($info['userIsHead'] ==0 && $info['isGroup'] ==1 ){?>
                 <h1 class="title">参团成功</h1>
-                <?php }elseif($info['userIsHead'] ==1 && $info['activityStatus'] ==0 && $info['isStart'] ==1){?>
+                <?php }elseif($info['userIsHead'] ==1 && $info['status'] ==0 && $info['isStart'] ==1){?>
                 <h1 class="title">开团成功</h1>
-                <?php }elseif($info['activityStatus'] ==1 && $info['isStart'] ==1 && $info['isGroup'] ==0){?>
+                <?php }elseif($info['status'] ==1 && $info['isStart'] ==1 && $info['isGroup'] ==0){?>
                 <h1 class="title">已成团</h1>
                 <?php }?>
             </header>
@@ -57,14 +57,14 @@
                     <a href="index.php" class="white">更多拼团</a>
                     <a>商品已售罄</a>
                 </div>
-      <?php }elseif((($info['activityType'] ==5) || ($info['activityType'] ==2)) && $info['activityStatus'] ==2){?>
+      <?php }elseif((($info['activityType'] ==5) || ($info['activityType'] ==2)) && $info['status'] ==2){?>
               <input type="hidden" id="showShare" />
                  <div>
                     <a href="index.php" class="white">更多拼团</a>
                     <a>您已参与过该活动</a>
                 </div>
       <?php }else{?>
-             <?php switch($info['activityStatus']){
+             <?php switch($info['status']){
 					case 0: ?>
 					  <input type="hidden" id="showShare" />
 						<?php if($info['isGroup'] == 0){ ?>
@@ -124,11 +124,11 @@
                                 
                                 <?php if($info['isSellOut'] ==1 ){?>
 						            <div class="icon"><img src="images/groupJoin-2.png" /></div>
-                                <?php }elseif($info['isGroup'] ==1 && $info['activityStatus'] ==1 ){?>
+                                <?php }elseif($info['isGroup'] ==1 && $info['status'] ==1 ){?>
                                     <div class="icon"><img src="images/groupJoin-3.png" /></div>
-						        <?php }elseif( $info['isGroup'] ==0 && $info['activityStatus'] ==1){?>
+						        <?php }elseif( $info['isGroup'] ==0 && $info['status'] ==1){?>
 						            <div class="icon"><img src="images/groupJoin-1.png" /></div>
-                                <?php }elseif( $info['activityStatus'] ==2){?>
+                                <?php }elseif( $info['status'] ==2){?>
 						            <div class="icon"><img src="images/groupJoin-4.png" /></div>
                                 <?php }?>
                                 </div>
@@ -147,17 +147,17 @@
                                 <div class="name" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
                                 <div class="price">
                                     <!-- <div class="btn" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'">商品详情</div> -->
-                                    <?php if($info['activityStatus'] !=0){?>
+                                    <?php if($info['status'] !=0){?>
                                     <div class="btn gray" onclick="location.href='lottery_new.php?act=winning&attId=<?php echo $info['recordId'];?>'">中奖详情</div>
                                      <?php }?>                  
                                     <span class="price1">￥<?php echo $info['groupPrice'];?></span>
                                      <?php if($info['isSellOut'] ==1 ){?>
 						            <div class="icon"><img src="images/groupJoin-2.png" /></div>
-	                                <?php }elseif($info['isGroup'] ==1 && $info['activityStatus'] ==1 ){?>
+	                                <?php }elseif($info['isGroup'] ==1 && $info['status'] ==1 ){?>
 	                                <div class="icon"><img src="images/groupJoin-3.png" /></div>
-							        <?php }elseif( $info['isGroup'] ==0 && $info['activityStatus'] ==1){?>
+							        <?php }elseif( $info['isGroup'] ==0 && $info['status'] ==1){?>
 							        <div class="icon"><img src="images/groupJoin-1.png" /></div>
-	                                <?php }elseif( $info['activityStatus'] ==2){?>
+	                                <?php }elseif( $info['status'] ==2){?>
 							        <div class="icon"><img src="images/groupJoin-4.png" /></div>
 	                                <?php }?>
                                 </div>
@@ -170,11 +170,11 @@
                  <section class="proTipsNew-2">
                     <?php if($info['isSellOut'] ==1 ){?>
                     <h3 class="title1">组团失败，商品已售罄~</h3>
-                    <?php }elseif($info['activityStatus'] ==2 && $info['isSellOut'] !=1){?>
+                    <?php }elseif($info['status'] ==2 && $info['isSellOut'] !=1){?>
                     <h3 class="title1">拼团期内未达到成团人数，系统会在1~3个工作日内，按原路自动退款至各位成员~</h3>
-                    <?php }elseif($info['activityStatus'] ==0 && $info['isGroup'] ==1 ){?>
+                    <?php }elseif($info['status'] ==0 && $info['isGroup'] ==1 ){?>
                     <h3 class="title1">还差<span class="themeColor"><?php echo $info['poorNum'];?></span>人，赶紧分享召集小伙伴组团啦~</h3>
-                    <?php }elseif($info['activityStatus'] ==0 && $info['isGroup'] ==0 && $info['isSellOut'] !=1){?>
+                    <?php }elseif($info['status'] ==0 && $info['isGroup'] ==0 && $info['isSellOut'] !=1){?>
                     <h3 class="title1">您终于来了！还差<span class="themeColor"><?php echo $info['poorNum'];?></span>人，来参团吧！</h3>
                     <?php }elseif($info['isStart'] ==1  && $info['isGroup'] ==0 && $info['isSellOut'] ==0){?>
                     <h3 class="title1">您来晚了，已成团~</h3>
@@ -190,7 +190,7 @@
                
                 </section>
                 
-                <?php if($info['activityStatus'] ==0 && $info['isSellOut'] ==0){?>
+                <?php if($info['status'] ==0 && $info['isSellOut'] ==0){?>
                  <section class="proTipsNew-6">
                     <div>
                                        剩余<div id="downTime" data-timer="<?php echo $info['remainSec'];?>"></div>结束
@@ -213,7 +213,7 @@
 								<div class="time"><?php echo $v['joinTime'];?></div>
 							</li>
 						<?php } ?>
-						<?php switch($info['activityStatus']){
+						<?php switch($info['status']){
 							case 0: ?>
 								<li class="join">
 									<div class="img"></div>
@@ -555,7 +555,7 @@
                     <div class="img"><img src="<?php echo $info['banners'][0]['bannerImage'];?>" /></div>
                     <div class="main">
                         <div class="name"><?php echo $info['products']['productName'];?></div>
-                        <div class="price">￥<span id="sku-price">-</span></div>
+                        <div class="price"><span id="sku-price">-</span></div>
                         <div class="skuTxt" id="sku-choose">请选择规格和套餐类型</div>
                     </div>
                 </div>
