@@ -88,19 +88,19 @@
 						<?php if($info['isGroup'] == 1){ ?>
 							<div>
 			                    <a href="index.php" class="white">更多拼团</a>
-			                    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+			                    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要成团</a>
 			                </div>
 						<?php }else{ ?>
 							<div>
 								<a href="index.php" class="white">更多拼团</a>
-		                        <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+		                        <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要成团</a>
 						   </div>
 						<?php } ?>
 					<?php break; ?>
 					<?php case 2: ?>
 						<div>
 							<a href="index.php" class="white">更多拼团</a>
-	                        <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+	                        <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要成团</a>
 					   </div>
 					<?php break; ?>
 				<?php } ?>
@@ -122,7 +122,7 @@
                                <div class="name"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
                                 <div class="price">
                                     <?php if($jumpProduct){ ?><div class="btn">商品详情</div><?php } ?>
-                                    拼团价：<span class="price1">￥<?php echo $info['groupPrice'];?></span>
+                                    <span class="price1">￥<?php echo $info['groupPrice'];?></span>
                                     <?php if($info['status'] ==1 && $info['isGroup'] ==1 && $info['isSellOut'] ==0){?>
                                     <div class="icon"><img src="images/groupJoin-3.png" /></div>
                                 <?php }elseif($info['isSellOut'] ==1 && $info['status'] !=1){?>
@@ -172,7 +172,7 @@
                     <?php if($info['isSellOut'] ==1 ){?>
                     <h3 class="title1">组团失败，商品已售罄~</h3>
                     <?php }elseif($info['status'] ==2 && $info['isSellOut'] !=1){?>
-                    <h3 class="title1">拼团期内未达到成团人数，系统会在1~2个工作日内，按原路自动退款至各位成员~</h3>
+                    <h3 class="title1">拼团期内未达到成团人数，系统会在1~3个工作日内，按原路自动退款至各位成员~</h3>
                     <?php }elseif($info['status'] ==0 && $info['isGroup'] ==1 ){?>
                     <h3 class="title1">还差<span class="themeColor"><?php echo $info['poorNum'];?></span>人，赶紧分享召集小伙伴组团啦~</h3>
                     <?php }elseif($info['status'] ==0 && $info['isGroup'] ==0 && $info['isSellOut'] !=1){?>
@@ -231,7 +231,7 @@
 						<?php } ?>
                     </ul> 
                 </section>
-                <?php if($wxUser['subscribe'] ==0){?>
+                <?php if($wxUser['subscribe'] !=0){?>
                 <section class="proTipsNew-4">
                     <img src="images/code-follow.jpg" />
                 </section>
