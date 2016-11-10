@@ -115,7 +115,7 @@
                         <li><a href="<?php if($jumpProduct){ ?>groupon.php?id=<?php echo $grouponId;?><?php }else{ ?>javascript:;<?php } ?>">
                             <div class="img"><img src="<?php echo $info['productImage'];?>"></div>
                             <div class="info">
-                               <div class="name"><?php echo $info['productName'];?></div>
+                               <div class="name"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
                                 <div class="price">
                                     <?php if($jumpProduct){ ?><div class="btn">商品详情</div><?php } ?>
                                     拼团价：<span class="price1">￥<?php echo $info['groupPrice'];?></span>
@@ -594,7 +594,7 @@
         <div class="popup popup-joinrule">
             <img class="close-popup" src="images/rule-txt.jpg" />
         </div>
-        
+
     </div>
 </body>
 
