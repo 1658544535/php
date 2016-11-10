@@ -230,7 +230,7 @@
 						<?php } ?>
                     </ul> 
                 </section>
-                <?php if($wxUser['subscribe'] !=0){?>
+                <?php if(($wxUser !== false) && !$wxUser['subscribe']){?> 
                 <section class="proTipsNew-4">
                     <img src="images/code-follow.jpg" />
                 </section>
