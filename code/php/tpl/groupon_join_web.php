@@ -68,6 +68,7 @@
       <?php }else{?>
              <?php switch($info['status']){
 					case 0: ?>
+						<input type="hidden" id="showShare" />
 						<?php if($info['userIsHead'] == 1){ ?>
 							<div>
 			                    <a href="index.php" class="white">更多拼团</a>
@@ -76,7 +77,10 @@
 						<?php }elseif($info['isGroup'] == 0){ ?>
 							<div>
 								<a href="index.php" class="white">更多拼团</a>
-	                            <a href="order_join.php">我要参团</a>
+	                            <a id="openSku" data-href="order_join.php" data-ref="groupon">
+							<!-- <a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>"> -->
+								<span class="btn">我要参团</span>
+							   </a>
 							</div>
 						<?php } ?>
 					<?php break; ?>
@@ -125,7 +129,7 @@
 						            <div class="icon"><img src="images/groupJoin-2.png" /></div>
                                 <?php }elseif($info['isSellOut'] ==0 && $info['status'] ==2){?>
 						            <div class="icon"><img src="images/groupJoin-4.png" /></div>
-						        <?php }elseif($info['isSellOut'] ==0 && $info['isStart'] ==1 && $info['isGroup'] ==0){?>
+						        <?php }elseif($info['isSellOut'] ==0 && $info['isStart'] ==0 && $info['isGroup'] ==0){?>
 						            <div class="icon"><img src="images/groupJoin-1.png" /></div>
                                 <?php }?>
                                 </div>
@@ -227,7 +231,7 @@
 						<?php } ?>
                     </ul> 
                 </section>
-                <?php if($wxUser['subscribe'] !=0){?>
+                <?php if($wxUser['subscribe'] ==0){?>
                 <section class="proTipsNew-4">
                     <img src="images/code-follow.jpg" />
                 </section>
@@ -237,8 +241,8 @@
                     <ul>
                         <?php foreach ($pList as $p){?>
                         <li>
-                            <a class="img" href="groupon.php?id=<?php echo $info['activityId'];?>"><img src="<?php echo $p['productImage'];?>" /></a>
-                            <a class="name" href="groupon.php?id=<?php echo $info['activityId'];?>"><?php echo $p['productName'];?></a>
+                            <a class="img" href="groupon.php?id=<?php echo $p['activityId'];?>"><img src="<?php echo $p['productImage'];?>" /></a>
+                            <a class="name" href="groupon.php?id=<?php echo $p['activityId'];?>"><?php echo $p['productName'];?></a>
                             <div class="price">
                                  <a href="javascript:;" class="collect<?php if($p['isCollect']==1){?> active<?php } ?>" data-collect="<?php echo ($p['isCollect']==1)?'1':'0';?>" data-actid="<?php echo $p['activityId'];?>" data-pid="<?php echo $p['productId'];?>"><!--收藏--></a>
                                 ￥<span><?php echo $p['price'];?></span>
