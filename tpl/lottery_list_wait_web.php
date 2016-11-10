@@ -57,8 +57,7 @@
                 <?php }?>
                 <section class="index-seckill pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="">
 					<center style="margin-top:25%;">
-						<div>1毛夺好礼 分享新玩法</div>
-						<div>11.07 重磅上线</div>
+						<div>很多免费玩具今晚来袭～</div>
 					</center>
                 </section>
             </div>
