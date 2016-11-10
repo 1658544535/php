@@ -52,5 +52,11 @@ $fx = apiData('getShareContentApi.do', array('id'=>$attendId, 'type'=>9));
 $fx = $fx['result'];
 
 
+//猜你喜欢
+
+$pList = apiData('guessYourLikeApi.do', array('activityId'=>$grouponId, 'userId'=>$userid));
+$pList = $pList['result'];
+
+$wxUser = $objWX->getUserInfo($openid);
 include_once('tpl/groupon_join_web.php');
 ?>
