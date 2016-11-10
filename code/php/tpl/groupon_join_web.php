@@ -143,11 +143,11 @@
                  <section class="freeList proTipsNew-1">
                     <ul class="list-container">
                         <li><a href="javascript:;">
-                            <div class="img"><img src="<?php echo $info['productImage'];?>"></div>
+                            <div class="img" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><img src="<?php echo $info['productImage'];?>"></div>
                             <div class="info">
-                                <div class="name"><?php echo $info['productName'];?></div>
+                                <div class="name" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
                                 <div class="price">
-                                    <div class="btn" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'">商品详情</div>
+                                    <!-- <div class="btn" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'">商品详情</div> -->
                                     <?php if($info['status'] !=0){?>
                                     <div class="btn gray" onclick="location.href='lottery_new.php?act=winning&attId=<?php echo $info['recordId'];?>'">中奖详情</div>
                                      <?php }?>                  
@@ -460,6 +460,7 @@
                 (function(){
                 	var len = $(".proTipsNew-2 .group li").length;
                 	var num = $(".proTipsNew-2 .group").attr("data-num");
+                	var max = 10;
 
                 	if(len<num){
                 		for(var i=0; i<(num-len); i++){
@@ -467,13 +468,13 @@
                 		}
                 	}
 
-            		if(num>10){
+            		if(num>max){
             			$(".proTipsNew-2 .group").append('<li class="more"><img src="images/more.png"></li>');
             		}
 
-                	if($(".proTipsNew-2 .group li").length>10){
+                	if($(".proTipsNew-2 .group li").length>max){
 	                    $(".proTipsNew-2 .group li").css("display","none");
-	                    for(var i=0; i<9; i++){
+	                    for(var i=0; i<(max-1); i++){
 	                        $(".proTipsNew-2 .group li").eq(i).css("display","inline-block");
 	                    }
 	                    $(".proTipsNew-2 .group li.more").css("display","inline-block");
