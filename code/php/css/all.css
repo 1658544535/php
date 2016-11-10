@@ -1344,6 +1344,7 @@
   top: 2.2rem;
   height: auto;
   bottom: 0;
+  background: #fff;
 }
 .popup-joinrule img {
   display: block;
@@ -1790,8 +1791,8 @@
   font-weight: normal;
 }
 .proTipsNew-2 .group {
-  margin: 1.0rem 0.7rem 0;
-  padding: 0;
+  margin: 0 0.7rem 0;
+  padding: 1.0rem 0 0;
   font-size: 0;
 }
 .proTipsNew-2 .group li {
