@@ -227,9 +227,11 @@
 						<?php } ?>
                     </ul> 
                 </section>
+                <?php if($wxUser['subscribe'] !=0){?>
                 <section class="proTipsNew-4">
                     <img src="images/code-follow.jpg" />
                 </section>
+                <?php }?>
                 <section class="pro-like">
                     <h3 class="title1"><!--猜你喜欢--></h3>
                     <ul>
