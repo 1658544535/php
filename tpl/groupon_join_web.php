@@ -35,7 +35,7 @@
                 </a>
                 <?php if($info['status'] ==2){?>
                 <h1 class="title">拼团失败</h1>
-                <?php }elseif($info['status'] ==1 && $info['isStart'] ==1 && $info['isGroup'] ==1){?>
+                <?php }elseif($info['status'] ==1  && $info['isGroup'] ==1){?>
                 <h1 class="title">拼团成功</h1>
                 <?php }elseif($info['status'] ==0 && $info['isGroup'] ==0){?>
                 <h1 class="title">拼团中</h1>
@@ -51,30 +51,23 @@
             </header>
 
  <section class="proTipsNew-5">
+       
        <?php if($info['isSellOut'] ==1){?>
                 <div>
                     <a href="index.php" class="white">更多拼团</a>
                     <a>商品已售罄</a>
                 </div>
       <?php }elseif(($info['activityType'] ==5) || ($info['activityType'] ==2) && $info['status'] ==2){?>
+              <input type="hidden" id="showShare" />
                  <div>
-                    <?php if($info['activityType'] ==5){?>
-                    <a href="lottery_new.php" class="white">更多拼团</a>
-                    <?php }else{?>
                     <a href="index.php" class="white">更多拼团</a>
-                    <?php }?>
                     <a>您已参与过该活动</a>
                 </div>
       <?php }else{?>
              <?php switch($info['status']){
 					case 0: ?>
-						<input type="hidden" id="showShare" />
-						<?php if($info['userIsHead'] == 1){ ?>
-							<div>
-			                    <a href="index.php" class="white">更多拼团</a>
-			                    <a id="share" href="javascript:;">还差<?php echo $info['poorNum'];?>人拼团成功</a>
-			                </div>
-						<?php }elseif($info['isGroup'] == 0){ ?>
+					  <input type="hidden" id="showShare" />
+						<?php if($info['isGroup'] == 0){ ?>
 							<div>
 								<a href="index.php" class="white">更多拼团</a>
 	                            <a id="openSku" data-href="order_join.php" data-ref="groupon">
@@ -82,25 +75,30 @@
 								<span class="btn">我要参团</span>
 							   </a>
 							</div>
-						<?php } ?>
+						<?php }else{ ?>
+						<div>
+			                    <a href="index.php" class="white">更多拼团</a>
+			                    <a id="share" href="javascript:;">还差<?php echo $info['poorNum'];?>人拼团成功</a>
+			                </div>
+			                <?php }?>
 					<?php break; ?>
 					<?php case 1: ?>
 						<?php if($info['isGroup'] == 1){ ?>
 							<div>
 			                    <a href="index.php" class="white">更多拼团</a>
-			                    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要成团</a>
+			                    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
 			                </div>
 						<?php }else{ ?>
 							<div>
 								<a href="index.php" class="white">更多拼团</a>
-		                        <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要成团</a>
+		                        <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
 						   </div>
 						<?php } ?>
 					<?php break; ?>
 					<?php case 2: ?>
 						<div>
 							<a href="index.php" class="white">更多拼团</a>
-	                        <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要成团</a>
+	                        <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
 					   </div>
 					<?php break; ?>
 				<?php } ?>
@@ -116,21 +114,22 @@
 	    <?php if($info['activityType'] != 5 ){?>
                  <section class="freeList proTipsNew-1">
                     <ul class="list-container">
-                        <li><a href="<?php if($jumpProduct){ ?>groupon.php?id=<?php echo $grouponId;?><?php }else{ ?>javascript:;<?php } ?>">
-                            <div class="img"><img src="<?php echo $info['productImage'];?>"></div>
+                        <li><a href="javascript:;">
+                            <div class="img" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><img src="<?php echo $info['productImage'];?>"></div>
                             <div class="info">
-                               <div class="name"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
+                               <div class="name" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
                                 <div class="price">
-                                    <?php if($jumpProduct){ ?><div class="btn">商品详情</div><?php } ?>
+             
                                     <span class="price1">￥<?php echo $info['groupPrice'];?></span>
-                                    <?php if($info['status'] ==1 && $info['isGroup'] ==1 && $info['isSellOut'] ==0){?>
-                                    <div class="icon"><img src="images/groupJoin-3.png" /></div>
-                                <?php }elseif($info['isSellOut'] ==1 && $info['status'] !=1){?>
+                                
+                                <?php if($info['isSellOut'] ==1 ){?>
 						            <div class="icon"><img src="images/groupJoin-2.png" /></div>
-                                <?php }elseif($info['isSellOut'] ==0 && $info['status'] ==2){?>
-						            <div class="icon"><img src="images/groupJoin-4.png" /></div>
-						        <?php }elseif($info['isSellOut'] ==0 && $info['isStart'] ==0 && $info['isGroup'] ==0){?>
+                                <?php }elseif($info['isGroup'] ==1 && $info['status'] ==1 ){?>
+                                    <div class="icon"><img src="images/groupJoin-3.png" /></div>
+						        <?php }elseif( $info['isGroup'] ==0 && $info['status'] ==1){?>
 						            <div class="icon"><img src="images/groupJoin-1.png" /></div>
+                                <?php }elseif( $info['status'] ==2){?>
+						            <div class="icon"><img src="images/groupJoin-4.png" /></div>
                                 <?php }?>
                                 </div>
                             </div>
@@ -152,15 +151,15 @@
                                     <div class="btn gray" onclick="location.href='lottery_new.php?act=winning&attId=<?php echo $info['recordId'];?>'">中奖详情</div>
                                      <?php }?>                  
                                     <span class="price1">￥<?php echo $info['groupPrice'];?></span>
-                                    <?php if($info['status'] ==1 && $info['isGroup'] ==1 && $info['isSellOut'] ==0){?>
-                                    <div class="icon"><img src="images/groupJoin-3.png" /></div>
-                                <?php }elseif($info['isSellOut'] ==1 && $info['status'] !=1){?>
+                                     <?php if($info['isSellOut'] ==1 ){?>
 						            <div class="icon"><img src="images/groupJoin-2.png" /></div>
-                                <?php }elseif($info['isSellOut'] ==0 && $info['status'] ==2){?>
-						            <div class="icon"><img src="images/groupJoin-4.png" /></div>
-						        <?php }elseif($info['isSellOut'] ==0 && $info['isStart'] ==0 && $info['isGroup'] ==0){?>
-						            <div class="icon"><img src="images/groupJoin-1.png" /></div>
-                                <?php }?>
+	                                <?php }elseif($info['isGroup'] ==1 && $info['status'] ==1 ){?>
+	                                <div class="icon"><img src="images/groupJoin-3.png" /></div>
+							        <?php }elseif( $info['isGroup'] ==0 && $info['status'] ==1){?>
+							        <div class="icon"><img src="images/groupJoin-1.png" /></div>
+	                                <?php }elseif( $info['status'] ==2){?>
+							        <div class="icon"><img src="images/groupJoin-4.png" /></div>
+	                                <?php }?>
                                 </div>
                             </div>
                         </a></li>
