@@ -53,7 +53,7 @@
  <section class="proTipsNew-5">
        <?php if($info['isSellOut'] ==1){?>
                 <div>
-                    <a href="groupon.php" class="white">更多拼团</a>
+                    <a href="index.php" class="white">更多拼团</a>
                     <a>商品已售罄</a>
                 </div>
       <?php }elseif(($info['activityType'] ==5) || ($info['activityType'] ==2) && $info['status'] ==2){?>
