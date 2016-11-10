@@ -39,6 +39,13 @@
   background-size: 100% auto;
   z-index: 2001;
 }
+@media screen and (min-width: 640px) {
+  .page-group {
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+}
 /*顶部*/
 .bar-nav .icon {
   width: 2.2rem;
@@ -1333,6 +1340,15 @@
   width: 16%;
   height: 8%;
 }
+.popup-joinrule {
+  top: 2.2rem;
+  height: auto;
+  bottom: 0;
+}
+.popup-joinrule img {
+  display: block;
+  width: 100%;
+}
 /*团免列表*/
 .freeList-tips {
   font-size: 0.65rem;
@@ -1652,7 +1668,7 @@
   padding-bottom: 0.75rem;
 }
 .proTips-5 {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -1703,8 +1719,9 @@
   font-size: 0.6rem;
   text-decoration: line-through;
 }
-.proTips-6 {
-  position: fixed;
+.proTips-6,
+.proTipsNew-5 {
+  position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -1712,14 +1729,16 @@
   background: #fff;
   border-top: 1px solid #f4f8fb;
 }
-.proTips-6 div {
+.proTips-6 div,
+.proTipsNew-5 div {
   margin: 0 0.5rem;
   height: 1.85rem;
   border-radius: 1.5rem;
   table-layout: fixed;
   overflow: hidden;
 }
-.proTips-6 a {
+.proTips-6 a,
+.proTipsNew-5 a {
   width: 1%;
   display: table-cell;
   vertical-align: middle;
@@ -1730,12 +1749,195 @@
   text-align: center;
   background: #ff464e;
 }
-.proTips-6 a.light {
+.proTips-6 a.light,
+.proTipsNew-5 a.light {
   background: #ff6b71;
 }
 .proTips-5 ~ .content,
-.proTips-6 ~ .content {
+.proTips-6 ~ .content,
+.proTipsNew-5 ~ .content {
   bottom: 2.6rem;
+}
+.proTipsNew-1 .list-container li {
+  position: relative;
+  padding: 0.8rem 0.65rem;
+}
+.proTipsNew-1 .list-container li .btn {
+  position: relative;
+  z-index: 3;
+}
+.proTipsNew-1 .list-container li .icon {
+  position: absolute;
+  right: 4.6rem;
+  bottom: 0.75rem;
+  width: 3.45rem;
+  height: 3.45rem;
+}
+.proTipsNew-1 .list-container li .icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.proTipsNew-2 {
+  background: #fff;
+}
+.proTipsNew-2 .title1 {
+  margin: 0;
+  padding: 1.1rem 2.5rem 0;
+  font-size: 0.75rem;
+  color: #191919;
+  text-align: center;
+  font-weight: normal;
+}
+.proTipsNew-2 .group {
+  margin: 1.0rem 0.7rem 0;
+  padding: 0;
+  font-size: 0;
+}
+.proTipsNew-2 .group li {
+  display: none;
+  position: relative;
+  width: 7.8%;
+  padding-bottom: 7.3%;
+  margin: 1.04% 1.04%;
+}
+.proTipsNew-2 .group li img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #cecece;
+}
+.proTipsNew-2 .group li span {
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 1.3rem;
+  height: .55rem;
+  background: url(../images/head.png) no-repeat;
+  background-size: 100% 100%;
+}
+.proTipsNew-2 .group li.head img {
+  border-color: #36a9fb;
+}
+.proTipsNew-2 .group li.head span {
+  display: block;
+}
+.proTipsNew-3 {
+  margin-top: 0;
+  padding: 1.0rem 0 0.6rem;
+}
+.proTipsNew-3 .btn {
+  font-size: 0.65rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 0.6rem;
+}
+.proTipsNew-3 .btn::after {
+  content: '';
+  margin-left: 0.25rem;
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+  border-left: 0.25rem solid transparent;
+  border-right: 0.25rem solid transparent;
+  border-top: 0.25rem solid #666;
+  border-bototm: none;
+}
+.proTipsNew-3 .list {
+  display: none;
+}
+.proTipsNew-3.active .btn::after {
+  border-top: none;
+  border-bottom: 0.25rem solid #666;
+}
+.proTipsNew-3.active .list {
+  display: block;
+  padding-top: 0;
+  padding-bottom: 0.25rem;
+}
+.proTipsNew-4 {
+  margin-top: 0.5rem;
+  background: #fff;
+}
+.proTipsNew-4 img {
+  display: block;
+  width: 100%;
+}
+.proTipsNew-5 {
+  padding: 0;
+  border-top: 1px solid #d2d4d7;
+}
+.proTipsNew-5 div {
+  margin: 0;
+  height: 2.6rem;
+  border-radius: 0;
+}
+.proTipsNew-5 a {
+  height: 2.6rem;
+  line-height: 2.6rem;
+}
+.proTipsNew-5 a.white {
+  background: #fff;
+  color: #ff464e;
+}
+.proTipsNew-5 a.gray {
+  color: #595757;
+  background: #e8e8e8;
+}
+.proTipsNew-6 {
+  position: relative;
+  margin-bottom: -0.5rem;
+  padding-top: 1.0rem;
+  line-height: 1.0rem;
+  text-align: center;
+  font-size: 0.65rem;
+  color: #666;
+  background: #fff;
+}
+.proTipsNew-6 #downTime {
+  display: inline-block;
+  margin: 0 0.25rem;
+}
+.proTipsNew-6 #downTime span {
+  display: inline-block;
+  width: 1.0rem;
+  height: 1.0rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.55rem;
+  border-radius: 5px;
+  background: #666;
+}
+.proTipsNew-6 > div {
+  display: inline-block;
+  padding: 0 0.7rem;
+  position: relative;
+  z-index: 3;
+  background: #fff;
+}
+.proTipsNew-6::after {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  height: 1px;
+  background: #e6e6e6;
+}
+.groupJoin-rule {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background: url(../images/rule-btn.png) no-repeat 0 0;
+  background-size: 100% 100%;
 }
 /* 猜价格 */
 .guessList-banner {
