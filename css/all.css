@@ -1351,6 +1351,34 @@
   width: 16%;
   height: 8%;
 }
+.popup-rule01 .main {
+  position: absolute;
+  width: 90%;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  left: 5%;
+}
+.popup-rule01 img {
+  display: block;
+  width: 100%;
+}
+.popup-rule01 .close-popup {
+  position: absolute;
+  top: 2%;
+  right: 1.5%;
+  width: 16.5%;
+  height: 13%;
+}
+.popup-rule01 .goDeta {
+  position: absolute;
+  top: 85%;
+  left: 18.75%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  width: 62.5%;
+  padding-bottom: 11.92%;
+}
 .popup-joinrule {
   top: 0;
   height: auto;
@@ -1956,6 +1984,17 @@
   right: 0.5rem;
   height: 1px;
   background: #e6e6e6;
+}
+.proTipsNew-7 {
+  padding: 0 0.5rem;
+  font-size: 0.6rem;
+  color: #fff;
+  line-height: 1.7rem;
+  background: #fec64b;
+  overflow: hidden;
+}
+.proTipsNew-7 .f-right {
+  color: #ff464e;
 }
 .groupJoin-rule {
   position: fixed;

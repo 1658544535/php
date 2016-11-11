@@ -50,39 +50,39 @@
                 <?php }?>
             </header>
 
- <section class="proTipsNew-5">
+ 			<section class="proTipsNew-5">
        
-       <?php if($info['isSellOut'] ==1){?>
-                <div>
-                    <a href="index.php" class="white">更多拼团</a>
-                    <a>商品已售罄</a>
-                </div>
-      <?php }elseif((($info['activityType'] ==5) || ($info['activityType'] ==2)) && $info['status'] ==2){?>
-              <input type="hidden" id="showShare" />
-                 <div>
-                    <a href="index.php" class="white">更多拼团</a>
-                    <a>您已参与过该活动</a>
-                </div>
-      <?php }else{?>
-             <?php switch($info['status']){
-					case 0: ?>
-					  <input type="hidden" id="showShare" />
-						<?php if($info['isGroup'] == 0){ ?>
-							<div>
-								<a href="index.php" class="white">更多拼团</a>
-	                            <a id="openSku" data-href="order_join.php" data-ref="groupon">
-							<!-- <a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>"> -->
-								<span class="btn">我要参团</span>
-							   </a>
-							</div>
-						<?php }else{ ?>
-						<div>
-			                    <a href="index.php" class="white">更多拼团</a>
-			                    <a id="share" href="javascript:;">还差<?php echo $info['poorNum'];?>人拼团成功</a>
-			                </div>
+       			<?php if($info['isSellOut'] ==1){?>
+	                <div>
+	                    <a href="index.php" class="white">更多拼团</a>
+	                    <a>商品已售罄</a>
+	                </div>
+      			<?php }elseif((($info['activityType'] ==5) || ($info['activityType'] ==2)) && $info['status'] ==2){?>
+	              	<input type="hidden" id="showShare" />
+	                <div>
+	                	<a href="index.php" class="white">更多拼团</a>
+	                    <a>您已参与过该活动</a>
+	                </div>
+      			<?php }else{?>
+             		<?php switch($info['status']){
+						case 0: ?>
+							<input type="hidden" id="showShare" />
+							<?php if($info['isGroup'] == 0){ ?>
+								<div>
+									<a href="index.php" class="white">更多拼团</a>
+		                            <a id="openSku" data-href="order_join.php" data-ref="groupon">
+								<!-- <a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>"> -->
+									<span class="btn">我要参团</span>
+								   </a>
+								</div>
+							<?php }else{ ?>
+								<div>
+				                    <a href="index.php" class="white">更多拼团</a>
+				                    <a id="share" href="javascript:;">还差<?php echo $info['poorNum'];?>人拼团成功</a>
+				                </div>
 			                <?php }?>
-					<?php break; ?>
-					<?php case 1: ?>
+						<?php break; ?>
+						<?php case 1: ?>
 						<?php if($info['isGroup'] == 1){ ?>
 							<div>
 			                    <a href="index.php" class="white">更多拼团</a>
@@ -102,15 +102,16 @@
 					   </div>
 					<?php break; ?>
 				<?php } ?>
- <?php }?>
- </section>
+ 			<?php }?>
+ 			</section>
 
-
-
-	
-		
 	  
 	  <div class="content native-scroll">
+		<section id="rule01" class="proTipsNew-7">
+			<span>一毛钱还能干嘛？？</span>
+			<span class="f-right">点我偷偷告诉你>></span>
+		</section>
+
 	    <?php if($info['activityType'] != 5 ){?>
                  <section class="freeList proTipsNew-1">
                     <ul class="list-container">
@@ -497,6 +498,12 @@
                     $.popup(".popup-joinrule");
                     $(".popup-overlay").hide();
                 });
+
+                //0.1规则
+                $("#rule01").on("click", function(){
+                    $.popup(".popup-rule01");
+                    $(".popup-overlay").show();
+                });
             });
 
 
@@ -538,13 +545,6 @@
                     });
 				}
 
-
-
-
-
-
-
-            
        </script>
 
 		<?php if(!empty($skus)){ ?>
@@ -599,6 +599,14 @@
 
         <div class="popup popup-joinrule">
             <img class="close-popup" src="images/rule-txt.jpg" />
+        </div>
+
+        <div class="popup popup-rule01">
+            <div class="main">
+                <img src="images/0.1-rule.png">
+                <a class="close-popup"></a>
+                <a href="" class="goDeta"></a>
+            </div>
         </div>
 
     </div>
