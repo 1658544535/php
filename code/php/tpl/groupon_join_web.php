@@ -107,7 +107,7 @@
 
 	  
 	  <div class="content native-scroll">
-	     <?php if($info['activityType'] ==5){?>
+	     <?php if(($info['activityType'] ==5) && ($info['isGroup'] == 1)){?>
 			<section id="rule01" class="proTipsNew-7">
 				<span>一毛钱还能干嘛？？</span>
 				<span class="f-right">点我偷偷告诉你>></span>
