@@ -1987,14 +1987,12 @@
 }
 .proTipsNew-7 {
   padding: 0 0.5rem;
-  font-size: 0.6rem;
-  color: #fff;
+  font-size: 0.65rem;
+  color: #333;
   line-height: 1.7rem;
   background: #fec64b;
   overflow: hidden;
-}
-.proTipsNew-7 .f-right {
-  color: #ff464e;
+  text-align: center;
 }
 .groupJoin-rule {
   position: fixed;
