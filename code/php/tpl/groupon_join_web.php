@@ -107,11 +107,12 @@
 
 	  
 	  <div class="content native-scroll">
-		<section id="rule01" class="proTipsNew-7">
-			<span>一毛钱还能干嘛？？</span>
-			<span class="f-right">点我偷偷告诉你>></span>
-		</section>
-
+	     <?php if($info['activityType'] ==5){?>
+			<section id="rule01" class="proTipsNew-7">
+				<span>一毛钱还能干嘛？？</span>
+				<span class="f-right">点我偷偷告诉你>></span>
+			</section>
+	     <?php }?>
 	    <?php if($info['activityType'] != 5 ){?>
                  <section class="freeList proTipsNew-1">
                     <ul class="list-container">
@@ -605,7 +606,7 @@
             <div class="main">
                 <img src="images/0.1-rule.png">
                 <a class="close-popup"></a>
-                <a href="" class="goDeta"></a>
+                <a href="groupon.php?id=<?php echo $info['activityId']; ?>" class="goDeta"></a>
             </div>
         </div>
 
