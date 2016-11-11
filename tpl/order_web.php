@@ -20,7 +20,7 @@
 </head>
 
 <body>
-	<form action="order.php" method="post" onsubmit="return submitPay()">
+	<form action="order.php" method="post" onsubmit="return submitPay()" style="display:block;width:100%;height:100%;">
 		<div class="page-group" id="page-orderCofirm">
 			<div id="page-nav-bar" class="page page-current">
 				<header class="bar bar-nav">
