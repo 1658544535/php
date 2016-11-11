@@ -107,7 +107,7 @@
 
 	  
 	  <div class="content native-scroll">
-	     <?php if(($info['activityType'] ==5) && ($info['isGroup'] == 1) && ($info['userIsHead']==0)){?>
+	     <?php if($info['activityType'] ==5){?>
 			<section id="rule01" class="proTipsNew-7">
 				一毛钱还能干嘛?? 点我偷偷告诉你 >>
 			</section>
@@ -183,9 +183,9 @@
                     <ul class="group" data-num="<?php echo $info['groupNum']?>">
                         <?php foreach ($info['groupUserList'] as $u){?>
                         <?php if($u['isHead'] ==1){?>
-                        <li class="head"><img src="<?php echo $u['userImage'];?>"><span></span></li>
+                        <li class="head"><img src="<?php echo $u['userImage']?$u['userImage']:'/images/def_user.png';?>" /><span></span></li>
                         <?php }else{?>
-                        <li><img src="<?php echo $u['userImage'];?>"></li>
+                        <li><img src="<?php echo $u['userImage']?$u['userImage']:'/images/def_user.png';?>" /></li>
                         <?php }}?>
                     </ul>
                
