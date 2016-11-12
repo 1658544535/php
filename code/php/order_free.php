@@ -14,6 +14,7 @@ if($referer){
 	$_referInfo = pathinfo($referer);
 	if($_referInfo['filename'] == 'order'){
 		$prevUrl = $_SESSION['referUrl'] ? $_SESSION['referUrl'] : '/';
+		$_orderFailure = true;
 	}else{
 		$_SESSION['referUrl'] = $prevUrl;
 	}
