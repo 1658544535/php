@@ -70,7 +70,10 @@ switch($wxReqType){
 //通过关键字获取回复消息
 function __getReplyByKeyword($keyword){
 	//关键字=>回复内容
-	$keywordMap = array();
+	$keywordMap = array(
+		'0.1' => '<a href="http://weixin.pindegood.com/lottery_new.php">戳 >> 0.1夺宝，开团必中，一毛即得好礼！</a>',
+	);
+	$keywordMap['1毛'] = $keywordMap['0.1夺宝'] = $keywordMap['夺宝'] = $keywordMap['0.1'];
 	$result = isset($keywordMap[$keyword]) ? array('kw'=>true, 'msg'=>$keywordMap[$keyword]) : array('kw'=>false);
 	return $result;
 }
