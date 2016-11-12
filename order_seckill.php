@@ -9,6 +9,16 @@ define('ORDER_IN', true);
 
 $prevUrl = getPrevUrl();
 
+$referer = $_SERVER['HTTP_REFERER'];
+if($referer){
+	$_referInfo = pathinfo($referer);
+	if($_referInfo['filename'] == 'order'){
+		$prevUrl = $_SESSION['referUrl'] ? $_SESSION['referUrl'] : '/';
+	}else{
+		$_SESSION['referUrl'] = $prevUrl;
+	}
+}
+
 $grouponId = intval($_GET['id']);
 $productId = intval($_GET['pid']);
 
