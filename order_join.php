@@ -14,6 +14,7 @@ if($referer){
 	$_referInfo = pathinfo($referer);
 	if($_referInfo['filename'] == 'order'){
 		$prevUrl = $_SESSION['referUrl'] ? $_SESSION['referUrl'] : '/';
+		$_orderFailure = true;
 	}else{
 		$_SESSION['referUrl'] = $prevUrl;
 	}
@@ -51,7 +52,8 @@ empty($info) && redirect($prevUrl, '网络异常，请稍候访问');
 if($info['success']){
 	$info = $info['result'];
 }else{
-	redirect($prevUrl, $info['error_msg']);
+	$_errMsg = $_orderFailure ? '' : $info['error_msg'];
+	redirect($prevUrl, $_errMsg);
 }
 
 $_SESSION['order']['type'] = 'join';
