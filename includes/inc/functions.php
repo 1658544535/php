@@ -1097,17 +1097,20 @@ function apireturn($phone, $source, $arrGeetestParam )
 	$SetKey->getUrlParam( 'phone=' . $phone . '&source=' . $source . '&geetest_challenge=' . $arrGeetestParam['geetest_challenge'] . '&geetest_validate=' . $arrGeetestParam['geetest_validate'] . '&geetest_seccode=' . $arrGeetestParam['geetest_seccode'] );
 	$sign 	= $SetKey->getSign();
 
+    $validateCodeFile = SCRIPT_ROOT.'data/validcode/validcode_cookie_'.GetIP().'_'.$_COOKIE['validate_code_flag'].'.txt';
+
 	$url 	= APIURL . '/captcha.do?phone=' . $phone . '&source=' . $source . '&sign=' . $sign . '&geetest_challenge=' . $arrGeetestParam['geetest_challenge'] . '&geetest_validate=' . $arrGeetestParam['geetest_validate'] . '&geetest_seccode=' . $arrGeetestParam['geetest_seccode'];
 	$ch 	= curl_init($url) ;
 	curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']) ; 					// 获取数据返回
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true) ; 									// 获取数据返回
 	curl_setopt($ch, CURLOPT_BINARYTRANSFER, true) ; 									// 在启用 CURLOPT_RETURNTRANSFER 时候将获取数据返回
+    curl_setopt($ch, CURLOPT_COOKIEFILE, $validateCodeFile);
 	$output = curl_exec($ch) ;
 	curl_close($ch);
 
 	$log->put('/user/binding', '调用接口！');												// 记录日志
 	$log->put('/user/binding',  $output );												// 记录日志
-
+    @unlink($validateCodeFile);
 	return json_decode($output);
 }
 
