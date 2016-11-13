@@ -44,6 +44,7 @@ $apiParam = array(
 	'source' => $source,
 	'channel' => 2,
 	'couponNo' => $cpnNo,
+    'ip' => GetIP(),
 );
 //$skuId && $apiParam['skuLinkId'] = $skuId;
 $apiParam['skuLinkId'] = $skuId;
