@@ -148,30 +148,30 @@
 				$.toast("请正确输入手机号");
 				return false;
 			}
-			get_code();
-// 	     	if(!!xhr){
-// 	     		$("#captcha").html("");
-// 				xhr.abort();		//取消未请求完成的ajax
-// 			}
-// 	     	xhr = $.ajax({
-// 		        // 获取id，challenge，success（是否启用failback）
-// 		        url: "/validate.php?act=init_geetest",
-// 		        type: "get",
-// 		        dataType: "json", // 使用jsonp格式
-// 		        success: function (data) {
-// 		            // 使用initGeetest接口
-// 		            // 参数1：配置参数，与创建Geetest实例时接受的参数一致
-// 		            // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
-// 		            $("#captcha").html("");
-// 		            initGeetest({
-// 		                gt: data.gt,
-// 		                challenge: data.challenge,
-// 		                product: "embed", // 产品形式embed
-// 		                offline: !data.success,
-// 		                width: "100%"
-// 		            }, handler);
-// 		        }
-// 		    });
+//			get_code();
+ 	     	if(!!xhr){
+ 	     		$("#captcha").html("");
+ 				xhr.abort();		//取消未请求完成的ajax
+ 			}
+ 	     	xhr = $.ajax({
+ 		        // 获取id，challenge，success（是否启用failback）
+ 		        url: "/validate.php?act=init_geetest",
+ 		        type: "get",
+ 		        dataType: "json", // 使用jsonp格式
+ 		        success: function (data) {
+ 		            // 使用initGeetest接口
+ 		            // 参数1：配置参数，与创建Geetest实例时接受的参数一致
+ 		            // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
+ 		            $("#captcha").html("");
+ 		            initGeetest({
+ 		                gt: data.gt,
+ 		                challenge: data.challenge,
+ 		                product: "embed", // 产品形式embed
+ 		                offline: !data.success,
+ 		                width: "100%"
+ 		            }, handler);
+ 		        }
+ 		    });
 	    }
 
 		function _checkMobile(_mobile){
