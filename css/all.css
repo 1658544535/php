@@ -151,18 +151,40 @@
 .bar-tab .tab-item2 {
   color: #1a1a64;
 }
+.bar-nav-login {
+  background: #ff464e;
+}
+.bar-nav-login .icon-back {
+  background-image: url(../images/close-white.png);
+  background-size: 60% auto;
+}
+.login-header {
+  text-align: center;
+  padding: 1.0rem 0;
+}
+.login-header h1 {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #ff464e;
+}
+.login-header p {
+  margin: 0;
+  padding: 1rem 0 0;
+  font-size: 0.7rem;
+  color: #8d8d8d;
+}
 .edit-list-icon {
   margin-top: 0.5rem;
   background: #fff;
 }
 .edit-list-icon .list {
-  margin: 0 0.5rem;
+  margin: 0 1.0rem;
   list-style: none;
   padding: 0;
 }
 .edit-list-icon .list li {
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.75rem 0;
   border-bottom: 1px solid #e7e7e7;
 }
 .edit-list-icon .list li .icon {
@@ -180,14 +202,11 @@
 .edit-list-icon .list li .icon-code {
   background-position: 0 -0.8rem;
 }
-.edit-list-icon .list li .input-controll {
-  margin-left: 1.7rem;
-}
 .edit-list-icon .list li input.txt {
   display: block;
   width: 100%;
   border: none;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   color: #666;
 }
 .edit-list-icon .list li .btn {
@@ -196,38 +215,62 @@
   top: 0.4rem;
   padding: 0.1rem 0.2rem;
   font-size: 0.75rem;
-  color: #ff464e;
-  border: 1px solid #ff464e;
-  border-radius: 0.2rem;
+  color: #979797;
   background: #fff;
 }
 .edit-list-icon .list li .btn-gray {
   display: none;
-  border-color: #979797;
   color: #979797;
-}
-.edit-list-icon .list li:last-child {
-  border-bottom: none;
 }
 .bin-btn {
   margin: 1.1rem 0.9rem;
-  height: 1.75rem;
-  line-height: 1.75rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
   color: #fff;
-  background: #ff464e;
-  border-radius: 0.25rem;
+  background: #ccc;
   overflow: hidden;
+}
+.bin-btn.active {
+  background: #ff464e;
 }
 .bin-btn * {
   display: block;
   width: 100%;
   height: 100%;
-  line-height: 1.75rem;
+  line-height: 2.5rem;
   text-align: center;
   color: #fff;
   border: none;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   background: none;
+}
+.message-push {
+  position: fixed;
+  top: 2.5rem;
+  left: 0.5rem;
+  max-width: 90%;
+  padding-right: 0.3rem;
+  padding-left: 1.8rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.65rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 1.5rem;
+  z-index: 2001;
+  vertical-align: middle;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.message-push .img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: none;
 }
 /*首页logo*/
 .title-img {
@@ -2471,6 +2514,28 @@
 }
 .oc-pro .num .txt {
   float: right;
+}
+.oc-pro .message {
+  margin: 0 0.5rem;
+  line-height: 1.4rem;
+  padding: 0.45rem 0;
+  border-top: 1px solid #e7e7e7;
+  font-size: 0.7rem;
+  color: #1c1c1c;
+}
+.oc-pro .message .label {
+  float: left;
+  width: 4.0rem;
+  color: #ff464e;
+}
+.oc-pro .message .txt {
+  margin-left: 4.0rem;
+}
+.oc-pro .message .txt input {
+  border: none;
+  width: 100%;
+  padding: 0;
+  color: #666;
 }
 .oc-pro .subTotal {
   margin: 0 0.5rem;

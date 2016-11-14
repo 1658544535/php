@@ -19,4 +19,16 @@
     <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/app.min.js?v=<?php echo SOURCE_VERSOIN;?>' charset='utf-8'></script>
+    <script>
+        $(function(){
+            var pushTxt = '<a href="1" class="message-push"><img src="http://pin.taozhuma.com/upfiles/focusbanner/20161004093329310841.jpg" class="img" />最新订单来自 【地址】 的 【用户昵称】，1秒前</a>';
+            if($(".message-push".length>0)){
+                $(".message-push").remove();
+            }
+            $(".page-group").append(pushTxt);
+            setTimeout(function(){
+                $(".message-push").remove();
+            }, 5000);
+        });
+    </script>
 </head>
