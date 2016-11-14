@@ -4,25 +4,30 @@
 
 <body>
     <div class="page-group" id="page-login">
-        <div id="page-nav-bar" class="page page-current">
-            <header class="bar bar-nav">
+        <div id="page-nav-bar" class="page page-current bgWhite">
+            <header class="bar bar-nav bar-nav-login">
                 <a class="button button-link button-nav pull-left back" href="javascript:history.back(-1);">
                     <span class="icon icon-back"></span>
                 </a>
-                <h1 class="title">手机登录</h1>
+                <!-- <h1 class="title">手机登录</h1> -->
             </header>
 
             <div class="content">
+				<section class="login-header">
+					<h1>登录</h1>
+					<p>请确保你的手机畅通，用于接收验证码短信</p>
+				</section>
+
                 <form action="user_binding" method="post" onsubmit="return tgSubmit()">
 					<input type="hidden" name="openid" value="<?php echo $openid;?>" />
                     <section class="edit-list-icon">
                         <ul class="list">
                             <li>
-                                <i class="icon icon-tel"></i>
-                                <div class="input-controll"><input type="text" name="mobile" id="mobile" class="txt" placeholder="手机号码" /></div>
+                                <!-- <i class="icon icon-tel"></i> -->
+                                <div class="input-controll"><input type="tel" name="mobile" id="mobile" class="txt" placeholder="手机号码" /></div>
                             </li>
                             <li>
-                                <i class="icon icon-code"></i>
+                                <!-- <i class="icon icon-code"></i> -->
                                 <div class="input-controll"><input type="text" name="code" id="code" class="txt" placeholder="验证码" /></div>
                                 <a href="javascript:;" class="btn" id="JS-vcodebtn" onclick="show_captcha()">发送验证码</a>
 								<span id='tip' class="btn btn-gray">&nbsp;&nbsp;<span id="time">0</span>&nbsp;秒后重发</span>
@@ -41,6 +46,22 @@
         </div>
     </div>
 	<script type="text/javascript">
+
+		$("#mobile, #code").on("keyup", function(){
+			var checkOk = true;
+			var mobile = $("#mobile").val();
+			if(!_checkMobile(mobile)){
+				checkOk = false;
+			}
+			if($.trim($("#code").val()) == ""){
+				checkOk = false;
+			}
+			if(checkOk){
+				$(".bin-btn").addClass("active");
+			}else{
+				$(".bin-btn").removeClass("active");
+			}
+		});
 
 		function get_code( v_geetest_challenge, v_geetest_validate, v_geetest_seccode,captchaObj  )
 		{
@@ -89,9 +110,9 @@
 
 		function tgSubmit()
 		{
-			if($.trim($("#mobile").val()) == "")
+			if(!_checkMobile($("#mobile").val()))
 			{
-				$.toast("请输入帐号");
+				$.toast("请输入正确的帐号");
 				return false;
 			}
 
