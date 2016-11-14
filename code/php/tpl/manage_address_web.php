@@ -1,23 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?php echo $site_name;?></title>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=0" name="viewport">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet" href="css/sm.min.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="js/swiper/swiper.min.css">
-    <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/baiduTemplate.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/app.min.js' charset='utf-8'></script>
-    <?php include_once('wxshare_web.php');?>
-</head>
+<?php include_once('header_web.php');?>
+<?php include_once('wxshare_web.php');?>
 
 <body>
     <div class="page-group" id="page-address">
@@ -70,6 +52,7 @@
 
 
 			<script type="text/javascript">
+        	var isSupportTouch = "ontouchend" in document ? true : false;
 			$(document).on("pageInit", "#page-address", function(e, pageId, page) {
 		    	var _apiUrl = "api_action.php?act=";
 
@@ -101,10 +84,14 @@
 
 							$(".p-a-1").val(_info.tel);
 							$(".p-a-2").val(_info.name);
-							$(".p-a-3").val(_info.provinceName+","+_info.cityName+","+_info.areaName);
 							$(".p-a-4").val(_info.address);
 							$("input[name='id']").val(_id);
-							$("#city-picker-value").val(_info.province+","+_info.city+","+_info.area);
+							if(isSupportTouch){
+								$(".p-a-3").val(_info.provinceName+","+_info.cityName+","+_info.areaName);
+								$("#city-picker-value").val(_info.province+","+_info.city+","+_info.area);
+							}else{
+	                            areaSelector(_info.province, _info.city, _info.area);
+	                        }
 							$.popup('.popup-address');
 						}else{
 							$.toast(r.msg);
@@ -136,10 +123,15 @@
 						$.toast("请正确填写联系方式");
 						return;
 					}
-					if($.trim(_this.find("#city-picker-value").val()) == ""){
-						$.toast("请选择省市区");
-						return;
-					}
+					if(isSupportTouch){
+						if($.trim(_this.find("#city-picker-value").val()) == ""){
+							$.toast("请选择省市区");
+							return;
+						}
+					}else{
+                        _this.find("#city-picker-value").val(_this.find("#sel_province").val()+","+_this.find("#sel_city").val()+","+_this.find("#sel_area").val());
+                    }
+
 					if($.trim(_this.find(".p-a-4").val()) == ""){
 						$.toast("请填写详细地址");
 						return;
@@ -179,6 +171,9 @@
                         <li>
                             <span class="label">收货地址:</span>
                             <div class="main">
+                            	<select id="sel_province" class="cut-sel"></select>
+                                <select id="sel_city" class="cut-sel"></select>
+                                <select id="sel_area" class="cut-sel"></select>
                                 <input id="city-picker" type="text" class="txt p-a-3" placeholder="请选择省市区" value="" readonly />
                                 <input id="city-picker-value" type="hidden" name="area" />
                                 <textarea rows="2" name="addr" class="txt p-a-4" placeholder="请输入详细地址"></textarea>
@@ -191,16 +186,29 @@
         </div>
 
         <script type="text/javascript" src="js/lArea/LArea.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/mul_select.js" charset="utf-8"></script>
         <script>
-			var areaData = <?php echo $jsonArea;?>;
-            var area = new LArea();
-            area.init({
-                'trigger': '#city-picker',//触发选择控件的文本框，同时选择完毕后name属性输出到该位置
-                'valueTo':'#city-picker-value',//选择完毕后id属性输出到该位置
-                'keys':{id:'id',name:'name'},//绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
-                'type':1,//数据源类型
-                'data':areaData.data//数据源
-            });
+			if(isSupportTouch){
+				$(".cut-sel").remove();
+
+				var areaData = <?php echo $jsonArea;?>;
+	            var area = new LArea();
+	            area.init({
+	                'trigger': '#city-picker',//触发选择控件的文本框，同时选择完毕后name属性输出到该位置
+	                'valueTo':'#city-picker-value',//选择完毕后id属性输出到该位置
+	                'keys':{id:'id',name:'name'},//绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
+	                'type':1,//数据源类型
+	                'data':areaData.data//数据源
+	            });
+            }else{
+            	$("#city-picker").remove();
+
+            	var areaData = <?php echo $jsonArea;?>;
+	            areaSelector();
+	            function areaSelector(defPro, defCity, defArea){
+	                addressInit(areaData.data, "sel_province", "sel_city", "sel_area", defPro, defCity, defArea);
+	            }
+            }
         </script>
     </div>
 </body>
