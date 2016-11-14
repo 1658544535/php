@@ -25,7 +25,7 @@ $num = intval($_POST['num']);
 $num = max(1, $num);
 
 $cpnNo = trim($_POST['cpnno']);
-
+$buyer_message   = CheckDatas( 'buyer_message', '' );
 $mapSource = array('groupon'=>1, 'free'=>2, 'guess'=>3, 'alone'=>4, 'raffle01'=>5, 'seckill'=>6);
 //$source = ($orderType == 'join') ? ($_SESSION['order']['isfree'] ? 2 : 1) : $mapSource[$orderType];
 $source = ($orderType == 'join') ? $_SESSION['order']['source'] : $mapSource[$orderType];
@@ -38,7 +38,7 @@ $apiParam = array(
 	'consigneeType' => 1,
 	'payMethod' => 8,
 	'addressId' => $addressId,
-	'buyer_message' => '',
+	'buyer_message' => $buyer_message,
 	'couponNo' => '',
 	'activityId' => ($orderType == 'alone') ? 0 : $grouponId,
 	'source' => $source,
@@ -53,7 +53,8 @@ $apiParam['skuLinkId'] = $skuId;
 $result = apiData('addOrderByPurchase.do', $apiParam);
 if(!$result['success']){
 	$_SESSION['order_failure'] = true;
-	redirect($prevUrl, $result['error_msg']);
+// 	redirect($prevUrl, $result['error_msg']);
+	redirect('index.php', $result['error_msg']);
 }
 $payInfo = $result['result']['wxpay'];
 
