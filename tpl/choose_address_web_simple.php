@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?php echo $site_name;?></title>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=0" name="viewport">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet" href="css/sm.min.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="js/swiper/swiper.min.css">
-    <script type='text/javascript' src='js/zepto.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/baiduTemplate.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/app.min.js' charset='utf-8'></script>
-    <?php include_once('wxshare_web.php');?>
-    <style type="text/css">
-    .cut-sel{display:block; width: 100%; padding:0.2rem; font-size: .6rem; color: #666; line-height: 1.3rem; border: 1px solid #c9c9c9; border-radius:0.2rem; margin-bottom:0.2rem;}
-    </style>
-</head>
+<?php include_once('header_web.php');?>
+<?php include_once('wxshare_web.php');?>
+<style type="text/css">
+.cut-sel{display:block; width: 100%; padding:0.2rem; font-size: .6rem; color: #666; line-height: 1.3rem; border: 1px solid #c9c9c9; border-radius:0.2rem; margin-bottom:0.2rem;}
+</style>
 
 <body>
     <div class="page-group" id="page-address">

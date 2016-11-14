@@ -50,13 +50,6 @@
   background-size: 100% auto;
   z-index: 2001;
 }
-@media screen and (min-width: 640px) {
-  .page-group {
-    position: relative;
-    max-width: 640px;
-    margin: 0 auto;
-  }
-}
 /*顶部*/
 .bar-nav .icon {
   width: 2.2rem;
@@ -90,68 +83,70 @@
 }
 /*底部菜单图标*/
 .bar-tab .tab-item .icon {
+  width: 24px;
+  height: 24px;
   background: url(../images/bar-tab.png) no-repeat;
-  background-size: 2.4rem auto;
+  background-size: 48px auto;
 }
 .bar-tab .tab-item .i-home {
   background-position: 0 0;
 }
 .bar-tab .tab-item .i-price {
-  background-position: 0 -1.2rem;
+  background-position: 0 -24px;
 }
 .bar-tab .tab-item .i-search {
-  background-position: 0 -2.4rem;
+  background-position: 0 -48px;
 }
 .bar-tab .tab-item .i-user {
-  background-position: 0 -3.6rem;
+  background-position: 0 -72px;
 }
 .bar-tab .tab-item .i-new {
-  background-position: 0 -10.8rem;
+  background-position: 0 -216px;
 }
 .bar-tab .tab-item .i-seckill-today {
-  background-position: 0 -4.8rem;
+  background-position: 0 -96px;
 }
 .bar-tab .tab-item .i-seckill-tomorrow {
-  background-position: 0 -6rem;
+  background-position: 0 -120px;
 }
 .bar-tab .tab-item .i-seckill-afterTomorrow {
-  background-position: 0 -7.2rem;
+  background-position: 0 -144px;
 }
 .bar-tab .tab-item .i-lotterying {
-  background-position: 0 -8.4rem;
+  background-position: 0 -168px;
 }
 .bar-tab .tab-item .i-lotteryed {
-  background-position: 0 -9.6rem;
+  background-position: 0 -192px;
 }
 .bar-tab .tab-item.active .i-home {
-  background-position: -1.2rem 0;
+  background-position: -24px 0;
 }
 .bar-tab .tab-item.active .i-price {
-  background-position: -1.2rem -1.2rem;
+  background-position: -24px -24px;
 }
 .bar-tab .tab-item.active .i-search {
-  background-position: -1.2rem -2.4rem;
+  background-position: -24px -48px;
 }
 .bar-tab .tab-item.active .i-user {
-  background-position: -1.2rem -3.6rem;
+  background-position: -24px -72px;
 }
 .bar-tab .tab-item.active .i-new {
-  background-position: -1.2rem -10.8rem;
+  background-position: -24px -216px;
 }
 .bar-tab .tab-item.active .i-seckill-today {
-  background-position: -1.2rem -4.8rem;
+  background-position: -24px -96px;
 }
 .bar-tab .tab-item.active .i-seckill-tomorrow {
-  background-position: -1.2rem -6rem;
+  background-position: -24px -120px;
 }
 .bar-tab .tab-item.active .i-seckill-afterTomorrow {
-  background-position: -1.2rem -7.2rem;
+  background-position: -24px -144px;
 }
 .bar-tab .tab-item.active .i-lotterying {
-  background-position: -1.2rem -8.4rem;
+  background-position: -24px -168px;
 }
 .bar-tab .tab-item.active .i-lotteryed {
-  background-position: -1.2rem -9.6rem;
+  background-position: -24px -192px;
 }
 .bar-tab .tab-item2 {
   color: #1a1a64;
@@ -2878,29 +2873,29 @@
 }
 .user-list ul li a i {
   display: block;
-  width: 1.45rem;
-  height: 1.45rem;
+  width: 29px;
+  height: 29px;
   margin: 0 auto 0.5rem;
   background: url(../images/user-icon.png) no-repeat;
-  background-size: 1.45rem auto;
+  background-size: 29px auto;
 }
 .user-list ul li a .u-l-1 {
   background-position: 0 0;
 }
 .user-list ul li a .u-l-2 {
-  background-position: 0 -1.45rem;
+  background-position: 0 -29px;
 }
 .user-list ul li a .u-l-3 {
-  background-position: 0 -2.9rem;
+  background-position: 0 -58px;
 }
 .user-list ul li a .u-l-4 {
-  background-position: 0 -5.8rem;
+  background-position: 0 -116px;
 }
 .user-list ul li a .u-l-5 {
-  background-position: 0 -7.25rem;
+  background-position: 0 -145px;
 }
 .user-list ul li a .u-l-6 {
-  background-position: 0 -4.35rem;
+  background-position: 0 -87px;
 }
 .user-list ul li::after {
   position: absolute;
@@ -4027,8 +4022,8 @@
 }
 .user-pdk .title1 i {
   display: inline-block;
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 22px;
+  height: 22px;
   margin-right: 0.5rem;
   vertical-align: sub;
   background: url(../images/user-pdk-icon.png) 0 0 no-repeat;
@@ -4053,21 +4048,21 @@
 }
 .user-pdk ul li a i {
   display: block;
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 22px;
+  height: 22px;
   margin: 0 auto;
   margin-bottom: 0.4rem;
   background: url(../images/user-pdk-icon.png) no-repeat;
   background-size: 100% auto;
 }
 .user-pdk ul li a .u-p-1 {
-  background-position: 0 -1.1rem;
+  background-position: 0 -22px;
 }
 .user-pdk ul li a .u-p-2 {
-  background-position: 0 -2.2rem;
+  background-position: 0 -44px;
 }
 .user-pdk ul li a .u-p-3 {
-  background-position: 0 -3.3rem;
+  background-position: 0 -66px;
 }
 .pdk-form ul {
   margin: 0.5rem 0;
@@ -5008,4 +5003,15 @@
   padding-bottom: 31.401%;
   background: url(../images/evaluate.png) no-repeat 0 0;
   background-size: 100% 100%;
+}
+.cut-sel {
+  display: block;
+  width: 100%;
+  padding: 0.2rem;
+  font-size: .6rem;
+  color: #666;
+  line-height: 1.3rem;
+  border: 1px solid #c9c9c9;
+  border-radius: 0.2rem;
+  margin-bottom: 0.2rem;
 }
