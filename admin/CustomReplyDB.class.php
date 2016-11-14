@@ -7,6 +7,8 @@
  */
 define('DATA_DIR', '../data/wx/'); //数据保存的位置
 
+include_once('functions.php');
+
 class CustomReplyDB extends SQLite3
 {
     private $CustomReply_db = DATA_DIR . 'CustomReply.db'; // text 类型的自定义回复数据文件
@@ -22,20 +24,69 @@ class CustomReplyDB extends SQLite3
         //判断数据文件是否存在，不存在则进行创建
         if (!file_exists($this->CustomReply_db)){ //初始化新建
             $this->open($this->CustomReply_db);
-            $sql = <<<EOF
-                CREATE TABLE CustomTextReply (
-                    id          INTEGER   PRIMARY KEY AUTOINCREMENT
-                                          NOT NULL,
-                    keyword     CHAR (80) NOT NULL,
-                    content     TEXT      NOT NULL,
-                    create_time INT       NOT NULL
-                );
-                COMMIT TRANSACTION;
-                PRAGMA foreign_keys = on;
-EOF;
-            $this->exec($sql);
+            $this->createTextReplyDB();
+            $this->createEventReplyDB();
+        } else {
+            $this->open($this->CustomReply_db);
         }
-        $this->open($this->CustomReply_db);
+    }
+
+    /*
+     * 初始化创建数据表
+     * 目前只有text event
+     */
+    private function createTextReplyDB()
+    {
+        $sql = <<<EOF
+--
+-- 由SQLiteStudio v3.1.1 产生的文件 周一 十一月 14 17:06:09 2016
+--
+-- 文本编码：System
+--
+PRAGMA foreign_keys = off;
+BEGIN TRANSACTION;
+
+-- 表：CustomTextReply
+CREATE TABLE CustomTextReply (
+    id          INTEGER   PRIMARY KEY AUTOINCREMENT
+                          NOT NULL,
+    keyword     CHAR (80) NOT NULL,
+    content     TEXT,
+    create_time INT       NOT NULL
+);
+
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = on;
+
+EOF;
+        $this->exec($sql);
+    }
+    private function createEventReplyDB()
+    {
+        $sql = <<<EOF
+--
+-- 由SQLiteStudio v3.1.1 产生的文件 周一 十一月 14 17:05:49 2016
+--
+-- 文本编码：System
+--
+PRAGMA foreign_keys = off;
+BEGIN TRANSACTION;
+
+-- 表：CustomEventReply
+CREATE TABLE CustomEventReply (
+    id          INTEGER      PRIMARY KEY AUTOINCREMENT
+                             NOT NULL,
+    event       VARCHAR (60) NOT NULL,
+    content     TEXT,
+    create_time INT          NOT NULL
+);
+
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = on;
+EOF;
+        $this->exec($sql);
     }
 
     /*
@@ -154,30 +205,3 @@ EOF;
 
 }
 
-//实例化该对象
-$db = new CustomReplyDB();
-if(!$db) echo $db->lastErrorMsg();
-
-/*
- * 获取传过来的数组的最后的键值
- */
-function getLastArr($array){
-    $val = end($array);
-    $key = key($array);
-    return array('key' => $key, 'val'=>$val);
-}
-
-/*
- * 创建创建查询条件部分sql语句  待完成
- * $array = array('要搜索的字段名' => '要搜索的字段的值');
- *
- */
-function createConditionSql($array){
-    if (!is_array($array)) {
-        return false;
-    }
-    foreach ($array as $k => $v) {
-        $sql_condition = ' WHERE ' . $k . '=' . '"' .  $v . '"';
-    }
-    return $sql_condition;
-}
