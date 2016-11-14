@@ -12,15 +12,14 @@ class CustomReplyDB extends SQLite3
     private $CustomReply_db = DATA_DIR . 'CustomReply.db'; // text 类型的自定义回复数据文件
     private $DB_TableName_arr = array
     (
-        'text' => 'CustomTextReply',
+        'text'  => 'CustomTextReply',
         'image' => 'CustomImgReply',
+        'event' => 'CustomEventReply',
     );
-
-    public $keyword = '';
-    public $content = '';
 
     function __construct()
     {
+        //判断数据文件是否存在，不存在则进行创建
         if (!file_exists($this->CustomReply_db)){ //初始化新建
             $this->open($this->CustomReply_db);
             $sql = <<<EOF
@@ -44,15 +43,17 @@ EOF;
      * $type 是接收到的关键字类型
      * 若有存在则返回
      */
-    public function checkExistKeyword($keyword, $type)
-    {
-        $table_name = $this->DB_TableName_arr[$type];
-        $sql = 'SELECT * FROM ' . $table_name . ' WHERE keyword = "' . $keyword .'"' ;
-        $result = $this->exec($sql);
-        if ($result) {
-            return array('status'=>1,'info'=>'已存在相同关键字');
-        }
-    }
+//    public function checkExistKeyword($condition_arr, $type)
+//    {
+//        $sql_condition = createConditionSql($condition_arr); //查询条件部分sql
+//        $table_name = $this->DB_TableName_arr[$type];
+//        $sql = 'SELECT * FROM ' . $table_name . $sql_condition;
+//        $result = $this->query($sql);
+//        var_dump($result);
+//        if ($result) {
+//            return array('status'=>1,'info'=>'已存在相同关键字');
+//        }
+//    }
 
     public function insert($array, $type)
     {
@@ -83,10 +84,10 @@ EOF;
         }
     }
 
-    public function update($id, $array, $type)
+    public function update($array, $type, $condition_arr = '')
     {
+        $sql_condition = createConditionSql($condition_arr); //查询条件部分sql
         $table_name = $this->DB_TableName_arr[$type];
-
         $lastArr = getLastArr($array);
         array_pop($array); //最后的值出栈
 
@@ -96,7 +97,7 @@ EOF;
         }
         $sql_part = $sql_part . $lastArr["key"] . '=' . '"' . $lastArr["val"] . '"';
 
-        $sql = 'UPDATE '. $table_name . ' SET ' . $sql_part . " WHERE ID=" . $id;
+        $sql = 'UPDATE '. $table_name . ' SET ' . $sql_part . $sql_condition;
         $result = $this->exec($sql);
 
         if ($result) {
@@ -138,17 +139,24 @@ EOF;
         }
     }
 
-    public function find($id, $type)
+    /*
+     * 搜索方法 传入数组
+     * $array = array('要搜索的字段名' => '要搜索的字段的值');
+     */
+    public function find($condition_arr, $type)
     {
+        $sql_condition = createConditionSql($condition_arr); //查询条件部分sql
         $table_name = $this->DB_TableName_arr[$type];
-        $sql = 'SELECT * FROM ' . $table_name . ' WHERE id=' .$id;
-        echo $sql;
+        $sql = 'SELECT * FROM ' . $table_name . $sql_condition;
         $result = $this->query($sql)->fetchArray(SQLITE3_ASSOC);
         return $result;
     }
 
 }
 
+//实例化该对象
+$db = new CustomReplyDB();
+if(!$db) echo $db->lastErrorMsg();
 
 /*
  * 获取传过来的数组的最后的键值
@@ -157,4 +165,19 @@ function getLastArr($array){
     $val = end($array);
     $key = key($array);
     return array('key' => $key, 'val'=>$val);
+}
+
+/*
+ * 创建创建查询条件部分sql语句  待完成
+ * $array = array('要搜索的字段名' => '要搜索的字段的值');
+ *
+ */
+function createConditionSql($array){
+    if (!is_array($array)) {
+        return false;
+    }
+    foreach ($array as $k => $v) {
+        $sql_condition = ' WHERE ' . $k . '=' . '"' .  $v . '"';
+    }
+    return $sql_condition;
 }

@@ -16,7 +16,7 @@ define('MODEL_DIR', dirname(__FILE__) . '/logic/Model/');
 define('AGENT_QRCODE_DIR','../upfiles/pdkcode/');
 $isTest =  in_array($_SERVER['SERVER_NAME'], array('www.maduoduo.loc', 'duo.taozhuma.com')) ? true : false;			// 是否为测试模式
 //$isTest =  ($_SERVER['SERVER_NAME'] == 'pinwx.taozhuma.com') ? true : false;			// 是否为测试模式
-$isTest = false;
+$isTest = true;
 
 //数据接口
 //define('API_URL', 'http://rap.taozhuma.com/mockjsdata/2');
@@ -148,4 +148,6 @@ $wxShareParam = array(
 	'image' => 'http://pinwx.taozhuma.com/images/user_photo.png',
 	'link' => $wxShareCBUrl,
 );
+
+
 ?>

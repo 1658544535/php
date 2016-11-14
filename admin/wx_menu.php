@@ -19,24 +19,29 @@ function getWechatMenuData($OptionWX, $type = '') {
 }
 
 //判断是否存在本地配置缓存文件
-if (!file_exists(DATA_DIR . $localMenu_file)) {
+if (!file_exists($localMenu_file)) {
     $WechatMenuJSON = getWechatMenuData($OptionWX, true);
-    file_put_contents(DATA_DIR . $localMenu_file, $WechatMenuJSON); //创建缓存文件并写入
+    file_put_contents($localMenu_file, $WechatMenuJSON); //创建缓存文件并写入
 } else {
     //$objWechat = new Wechat($OptionWX);
-    $local_Menu_JSON = file_get_contents(DATA_DIR . $localMenu_file); //获取本地的菜单数组
+    $local_Menu_JSON = file_get_contents($localMenu_file); //获取本地的菜单数组
 }
 
 $local_Menu_Arr  = json_decode($local_Menu_JSON, true); //转换为php数组
 
 if (!$local_Menu_Arr) { //判断当前本地的数组是否为空
     $WechatMenuJSON = getWechatMenuData($OptionWX, true);
-    file_put_contents(DATA_DIR . $localMenu_file, $WechatMenuJSON);//保存至本地文件
+    file_put_contents($localMenu_file, $WechatMenuJSON);//保存至本地文件
 } else {
     $WechatMenuArr = $local_Menu_Arr;
 }
 
-$buttons_arr = $WechatMenuArr;
+foreach ($WechatMenuArr as $menus) {
+    $buttons_arr = $menus;
+}
+
+//$buttons_arr = $WechatMenuArr;
+
 //$a = json_decode(file_get_contents(DATA_DIR . $createMenu_file), true);
 //foreach ($a as $v){
 //    print_r($v);
@@ -359,7 +364,8 @@ if (isset($_POST) && !empty($_POST)){
 
 if (isset($_POST) && !empty($_POST)) {
     if (!$hasError) { ?>
-        <?php if (file_put_contents(DATA_DIR . $createMenu_file, $CreateNewMenu_JSON) && file_put_contents(DATA_DIR . $localMenu_file, $local_menu_JSON)) {?>
+        <?php //if (file_put_contents($createMenu_file, $CreateNewMenu_JSON) && file_put_contents($localMenu_file, $local_menu_JSON)) {?>
+        <?php if (file_put_contents($localMenu_file, $CreateNewMenu_JSON)) {?>
             <h1>保存成功，是否需要提交同步至微信？</h1>
             <form action="">
                 <button type="button" onclick="pushToWechat();">确定</button>
@@ -369,7 +375,12 @@ if (isset($_POST) && !empty($_POST)) {
                 function pushToWechat() {
                     var url = 'push_to_wechat.php?token=' + token ;
                     $.getJSON(url,function (data) {
-                        alert(data.info);
+                        if (data.status) {
+                            alert(data.info);
+                        } else {
+                            alert('提交失败');
+                            console.log(data);
+                        }
                     });
                 }
             </script>
