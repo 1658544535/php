@@ -67,7 +67,7 @@
 						<div class="message">
 							<span class="label">买家留言</span>
 							<div class="txt">
-								<input type="text" name="" placeholder="对本次交易的说明" />
+								<input type="text" name="buyer_message" placeholder="对本次交易的说明" />
 							</div>
 						</div>
 						<div class="subTotal">合计：<font class="themeColor">￥<span class="price" id="totol-amount"><?php echo $info['sumPrice'];?></span></font>（全场包邮）</div>
