@@ -110,11 +110,12 @@
     function newFirst(_this) {
         var num = $(_this).parent().siblings().length;
         var i = num + 1;
-        if (num >= 3) {
-            alert("最多只能存在3个一级菜单");
-            return false;
+        if (num >= 2) {
+            // alert("最多只能存在3个一级菜单");
+            $(".js-newFirst").hide();
+            // return false;
         }
-        var html = '<li data-id="'+ i +'"><hr><a href="javascript:" class="js-delete" onclick="deleteHAHA(this)">删除</a><div> 名称：<input type="text" name="Pbutton_name_'+ i +'"> <div> 类型：<select name="Pbutton_type_'+ i +'" class="js-button-type" onchange="ButtonType(this);"> <option value="">请选择按钮类型</option> <option value="sub">菜单</option><?php foreach ($button_type_arr as $k => $v) { ?><option value="<?php echo $k; ?>"><?php echo $v; ?></option><?php } ?></select> </div> <div class="js-button-type-box"> <div> 链接：<input type="text" name="Pbutton_url_'+ i +'"> </div> <div> key ：<input type="text" name="Pbutton_key_'+ i +'"> </div> </div><!--二级菜单--> <div style="display: none;"> <ul> <a href="#" onclick="newChild(this);">点击添加</a> </ul> </div> </div></li>';
+        var html = '<li data-id="'+ i +'"><hr><a href="javascript:" class="js-delete" onclick="deleteHAHA(this)">删除</a><div> 名称：<input type="text" name="Pbutton_name_'+ i +'"> <div> 类型：<select name="Pbutton_type_'+ i +'" class="js-button-type" onchange="ButtonType(this);"> <option value="">请选择按钮类型</option> <option value="sub">菜单</option><?php foreach ($button_type_arr as $k => $v) { ?><option value="<?php echo $k; ?>"><?php echo $v; ?></option><?php } ?></select> </div> <div class="js-button-type-box"> <div> 链接：<input type="text" name="Pbutton_url_'+ i +'"> </div> <div> key ：<input type="text" name="Pbutton_key_'+ i +'"> </div> </div><!--二级菜单--> <div style="display: none;"> <ul> <a href="#" class="js-newChild" onclick="newChild(this);">点击添加</a> </ul> </div> </div></li>';
         $(_this).parent().before(html);
     }
 
@@ -122,10 +123,11 @@
     function newChild(_this) {
         var num = $(_this).siblings().length;
         var i = $(_this).parent().parent().parent().parent().data("id"); /*一级菜单的个数*/
-        var html = '<li><a href="javascript:" class="js-delete" onclick="deleteHAHA(this)">删除</a><div> 名称：<input type="text" name="Cbutton_names_'+ i +'[]" value=""> </div> <div> 类型：<select name="Cbutton_types_'+ i +'[]" > <option value="">请选择按钮类型</option><?php foreach ($button_type_arr as $k => $v) { ?><option value="<?php echo $k; ?>"><?php echo $v; ?></option><?php } ?></select> </div> <div> 链接：<input type="text" name="Cbutton_urls_'+ i +'[]"> </div> <div> key ：<input type="text" name="Cbutton_keys_'+ i +'[]"> </div> </li>';
-        if (num >= 5) {
-            alert("最多只能存在5个二级菜单");
-            return false;
+        var html = '<li><a href="javascript:" class="js-delete" onclick="deleteHAHA2(this)">删除</a><div> 名称：<input type="text" name="Cbutton_names_'+ i +'[]" value=""> </div> <div> 类型：<select name="Cbutton_types_'+ i +'[]" > <option value="">请选择按钮类型</option><?php foreach ($button_type_arr as $k => $v) { ?><option value="<?php echo $k; ?>"><?php echo $v; ?></option><?php } ?></select> </div> <div> 链接：<input type="text" name="Cbutton_urls_'+ i +'[]"> </div> <div> key ：<input type="text" name="Cbutton_keys_'+ i +'[]"> </div> </li>';
+        if (num >= 4) {
+            $(".js-newChild").hide();
+            // alert("最多只能存在5个二级菜单");
+            // return false;
         }
         $(_this).before(html);
     }
@@ -133,6 +135,16 @@
     /* 删除菜单 */
     function deleteHAHA(_this) {
         var p = $(_this).parent();
+        if(p.siblings('li').length<=3){
+            $(".js-newFirst").show();
+        }
+        p.remove();
+    }
+    function deleteHAHA2(_this) {
+        var p = $(_this).parent();
+        if(p.siblings('li').length<=5){
+            $(".js-newChild").show();
+        }
         p.remove();
     }
 </script>
