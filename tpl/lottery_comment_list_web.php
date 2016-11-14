@@ -50,7 +50,13 @@
                     <%for(var i=0;i<data["data"].length; i++){%>
                         <li>
                             <div class="header">
-                                <div class="img"><img src="<%=data["data"][i]["userImage"]%>" /></div>
+                                <div class="img">
+                                  <%if(data["data"][i]["userImage"] !=''){%> 
+                                    <img src="<%=data["data"][i]["userImage"]%>" />
+                                  <%}else{%>
+                                    <img src="/images/def_user.png" />
+                                  <%}%>
+                                </div>
                                 <div class="info">
                                     <div class="name"><%=data["data"][i]["userName"]%></div>
                                     <div class="time"><%=data["data"][i]["commentTime"]%></div>

@@ -52,8 +52,14 @@
 
             <script id='tpl_click' type="text/template">
                 <%for(var i=0;i<data["data"].length; i++){%>
-                    <li><a href="#">
-                        <div class="img"><img src="<%=data["data"][i]["userImage"]%>" /></div>
+                    <li><a href="javascript:;">
+                        <div class="img">
+                          <%if(data["data"][i]["userImage"] !=''){%>
+                             <img src="<%=data["data"][i]["userImage"]%>" />
+                          <%}else{%>  
+                             <img src="/images/def_user.png" />
+                          <%}%>                      
+                        </div>
                         <div class="info">
                             <div class="name"><%=data["data"][i]["userName"]%></div>
                             <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><%=data["data"][i]["userPrice"]%></span></p></div>
