@@ -38,6 +38,11 @@ $app_info = array(
 	'secret' => 'd582b0f73e82a729391ffbd9f6c75c1c'
 );
 
+//$app_info = array(
+//    'appid' => 'wx3eea553d8ab21caa',
+//    'secret' => '8a8eaaeda77febffb186e26e42572df6'
+//);
+
 /*============================== 基本配置  =============================================*/
 
 //$JSSDKCONFIRE = array(
