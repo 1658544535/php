@@ -12,13 +12,13 @@
 <body>
 <div>
 
-    <form action="" method="post" id="wechatMenuForm">
+    <form action="wx_menu.php?act=update" method="post" id="wechatMenuForm">
         <ul>
 
             <?php foreach ($buttons_arr as $k => $v) { ?>
 
                 <li data-id="<?php echo $k+1 ?>">
-                    <a href="javascript:" class="js-delete" onclick="deleteHAHA(this)">删除</a>
+                    <a href="javascript:" class="js-delete" onclick="deleteFirst(this)">删除</a>
                     <div>
                         名称：<input type="text" name="Pbutton_name_<?php echo $k+1 ?>" value="<?php echo $v["name"];?>">
                         <div>
@@ -86,13 +86,20 @@
 
         <hr>
         <input type="hidden" value="1" name="isCreatJSON">
-        <button type="button" onclick="submit();">保存并提交</button>
+        <button type="submit">保存并提交</button>
     </form>
 
 </div>
+
+<div class="js-alert" style="display: none;">
+    <h1>保存成功，是否需要提交同步至微信？</h1>
+    <form action="">
+        <button type="button" onclick="pushToWechat();">确定</button>
+    </form>
+</div>
+
 </body>
 <script>
-
     /* 判断BUTTON的种类是否为二级*/
     function ButtonType(_this) {
         var type = $(_this).val();
@@ -115,7 +122,7 @@
             $(".js-newFirst").hide();
             // return false;
         }
-        var html = '<li data-id="'+ i +'"><hr><a href="javascript:" class="js-delete" onclick="deleteHAHA(this)">删除</a><div> 名称：<input type="text" name="Pbutton_name_'+ i +'"> <div> 类型：<select name="Pbutton_type_'+ i +'" class="js-button-type" onchange="ButtonType(this);"> <option value="">请选择按钮类型</option> <option value="sub">菜单</option><?php foreach ($button_type_arr as $k => $v) { ?><option value="<?php echo $k; ?>"><?php echo $v; ?></option><?php } ?></select> </div> <div class="js-button-type-box"> <div> 链接：<input type="text" name="Pbutton_url_'+ i +'"> </div> <div> key ：<input type="text" name="Pbutton_key_'+ i +'"> </div> </div><!--二级菜单--> <div style="display: none;"> <ul> <a href="#" class="js-newChild" onclick="newChild(this);">点击添加</a> </ul> </div> </div></li>';
+        var html = '<li data-id="'+ i +'"><hr><a href="javascript:" class="js-delete" onclick="deleteFirst(this)">删除</a><div> 名称：<input type="text" name="Pbutton_name_'+ i +'"> <div> 类型：<select name="Pbutton_type_'+ i +'" class="js-button-type" onchange="ButtonType(this);"> <option value="">请选择按钮类型</option> <option value="sub">菜单</option><?php foreach ($button_type_arr as $k => $v) { ?><option value="<?php echo $k; ?>"><?php echo $v; ?></option><?php } ?></select> </div> <div class="js-button-type-box"> <div> 链接：<input type="text" name="Pbutton_url_'+ i +'"> </div> <div> key ：<input type="text" name="Pbutton_key_'+ i +'"> </div> </div><!--二级菜单--> <div style="display: none;"> <ul> <a href="#" class="js-newChild" onclick="newChild(this);">点击添加</a> </ul> </div> </div></li>';
         $(_this).parent().before(html);
     }
 
@@ -123,7 +130,7 @@
     function newChild(_this) {
         var num = $(_this).siblings().length;
         var i = $(_this).parent().parent().parent().parent().data("id"); /*一级菜单的个数*/
-        var html = '<li><a href="javascript:" class="js-delete" onclick="deleteHAHA2(this)">删除</a><div> 名称：<input type="text" name="Cbutton_names_'+ i +'[]" value=""> </div> <div> 类型：<select name="Cbutton_types_'+ i +'[]" > <option value="">请选择按钮类型</option><?php foreach ($button_type_arr as $k => $v) { ?><option value="<?php echo $k; ?>"><?php echo $v; ?></option><?php } ?></select> </div> <div> 链接：<input type="text" name="Cbutton_urls_'+ i +'[]"> </div> <div> key ：<input type="text" name="Cbutton_keys_'+ i +'[]"> </div> </li>';
+        var html = '<li><a href="javascript:" class="js-delete" onclick="deleteChild(this)">删除</a><div> 名称：<input type="text" name="Cbutton_names_'+ i +'[]" value=""> </div> <div> 类型：<select name="Cbutton_types_'+ i +'[]" > <option value="">请选择按钮类型</option><?php foreach ($button_type_arr as $k => $v) { ?><option value="<?php echo $k; ?>"><?php echo $v; ?></option><?php } ?></select> </div> <div> 链接：<input type="text" name="Cbutton_urls_'+ i +'[]"> </div> <div> key ：<input type="text" name="Cbutton_keys_'+ i +'[]"> </div> </li>';
         if (num >= 4) {
             $(".js-newChild").hide();
             // alert("最多只能存在5个二级菜单");
@@ -133,19 +140,45 @@
     }
 
     /* 删除菜单 */
-    function deleteHAHA(_this) {
+    function deleteFirst(_this) {
         var p = $(_this).parent();
         if(p.siblings('li').length<=3){
             $(".js-newFirst").show();
         }
         p.remove();
     }
-    function deleteHAHA2(_this) {
+    function deleteChild(_this) {
         var p = $(_this).parent();
         if(p.siblings('li').length<=5){
             $(".js-newChild").show();
         }
         p.remove();
     }
+
+    /* ajax提交更新写入操作 */
+    $('#wechatMenuForm').ajaxForm({
+        success: function (data) {
+            data = eval("(" + data + ")");
+            if (data.status) {
+                $('.js-alert').css("display", "block");
+            } else {
+                alert(data.info);
+            }
+        }
+    });
+    /* ajax提交同步至微信端 */
+    var token = 'HAHAHA';
+    function pushToWechat() {
+        var url = 'wx_menu.php?act=pushToWechat&token=' + token ;
+        $.getJSON(url,function (data) {
+            if (data.status) {
+                alert(data.info);
+            } else {
+                alert('提交失败');
+                console.log(data);
+            }
+        });
+    }
+
 </script>
 </html>

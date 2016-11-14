@@ -6,34 +6,13 @@
  * Time: 9:38
  */
 include_once('CustomReplyDB.class.php');
-/**
- * 检测提交变量，并返回相应的值
- *
- * @param string $val_name 变量名
- * @param string $default_val 默认值
- * @param string $submit_type 提交方式 （POST|GET|REQUEST）
- */
-function CheckDatas( $val_name, $default_val='', $submit_type= 'REQUEST' )
-{
-    if ( strtoupper($submit_type) == 'POST' )
-    {
-        $data = isset( $_POST[$val_name] ) ? $_POST[$val_name] : $default_val;
-    }
-    else if( strtoupper($submit_type) == 'GET' )
-    {
-        $data = isset( $_GET[$val_name] ) ? $_GET[$val_name] : $default_val;
-    }
-    else
-    {
-        $data = isset( $_REQUEST[$val_name] ) ? $_REQUEST[$val_name] : $default_val;
-    }
+include_once('functions.php');
 
-    return $data;
-}
-
-$act = CheckDatas('act','');
+$db = new CustomReplyDB();
+if(!$db) echo $db->lastErrorMsg();
 
 //根据操作名称进行相应操作
+$act = CheckDatas('act','');
 switch ($act)
 {
     default:
@@ -65,7 +44,7 @@ switch ($act)
 
         $condition_arr = array('keyword' => $_POST['keyword']);
         if (!$db->find($condition_arr, 'text')) {
-//            $db = new CustomReplyDB();
+            //$db = new CustomReplyDB();
             $result = $db->insert($data,'text');
         } else {
             echo json_encode(array('status' => 0, 'info'=>'存在相同关键字'));
