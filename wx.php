@@ -36,7 +36,6 @@ $wxReqType = $objWX->getRev()->getRevType();
 
 switch($wxReqType){
 	case Wechat::MSGTYPE_TEXT://文本
-		$content = $objWX->getRevContent();
 		$replyInfo = __getReplyByKeyword($objWX->getRevContent());
 		$replyInfo['kw'] ? $objWX->text($replyInfo['msg'])->reply() : $objWX->transfer_customer_service()->reply();
 		break;
@@ -69,12 +68,20 @@ switch($wxReqType){
 
 //通过关键字获取回复消息
 function __getReplyByKeyword($keyword){
+	$_dir = LOG_INC.'keyword_reply/';
+	!file_exists($_dir) && mkdir($_dir, 0777, true);
+
 	//关键字=>回复内容
 	$keywordMap = array(
 		'0.1' => '<a href="http://weixin.pindegood.com/lottery_new.php">戳 >> 0.1夺宝，开团必中，一毛即得好礼！</a>',
+		'水画布' => '<a href="http://weixin.pindegood.com/coupon_action.php?linkid=37&aid=148">水画布低至9.9元新用户秒杀开抢中，您还在犹豫点不点的时候，已经有1689人领取了！☞链接！</a>',
 	);
 	$keywordMap['1毛'] = $keywordMap['0.1夺宝'] = $keywordMap['夺宝'] = $keywordMap['0.1'];
+	$keywordMap['优惠券'] = $keywordMap['水画布活动'] = $keywordMap['优惠券活动'] = $keywordMap['水画布'];
 	$result = isset($keywordMap[$keyword]) ? array('kw'=>true, 'msg'=>$keywordMap[$keyword]) : array('kw'=>false);
+	$time = time();
+	$content = $keywordMap[$keyword] ? "{$keywordMap[$keyword]}\r\n\r\n" : "\r\n";
+	file_put_contents($_dir.date('Y-m-d', $time).'.txt', "【".date('Y-m-d H:i:s', $time)."】关键字：{$keyword}\r\n{$content}", FILE_APPEND);
 	return $result;
 }
 ?>
