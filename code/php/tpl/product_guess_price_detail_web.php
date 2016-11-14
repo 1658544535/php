@@ -143,7 +143,11 @@
                              <li>
                                  <a href="javascript:;">
                                      <div class="img">
+                                       <?php if($ul['userImage'] !=''){?>
                                          <img src="<?php echo $ul['userImage'] ;?>" />
+                                       <?php }else{?>
+                                         <img src="../images/def_user.png" />
+                                       <?php }?>
                                      </div>
                                      <div class="info">
                                          <div class="name"><?php echo $ul['userName'];?></div>
@@ -230,7 +234,13 @@
 	                        <ul class="list-container">您的出价信息如下：
 	                            <li>
                                     <a href="javascript:;">
-	                                    <div class="img"><img src="<?php echo $ObjGrouponInfo['result']['userInfo']['userImage'];?>" /></div>
+	                                    <div class="img">
+				                           <?php if($ObjGrouponInfo['result']['userInfo']['userImage'] !=''){?>
+				                                <img src="<?php echo $ObjGrouponInfo['result']['userInfo']['userImage'];?>" />
+				                           <?php }else{?>
+				                                <img src="/images/def_user.png" />
+				                           <?php }?>
+	                                    </div>
 	                                    <div class="info">
 	                                        <div class="name"><?php echo $ObjGrouponInfo['result']['userInfo']['userName'];?></div>
 	                                        <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $ObjGrouponInfo['result']['userInfo']['userPrice'];?></span></p></div>
@@ -246,7 +256,13 @@
 	                            <?php foreach ($ObjUserList['result']['joinUserList'] as $ul){?>
 	                                <li>
                                         <a href="javascript:;">
-	                                        <div class="img"><img src="<?php echo $ul['userImage'] ;?>" /></div>
+	                                       <div class="img">
+				                               <?php if($ul['userImage'] !=''){?>
+				                                    <img src="<?php echo $ul['userImage'];?>" />
+				                               <?php }else{?>
+				                                    <img src="/images/def_user.png" />
+				                               <?php }?>
+			                                </div>
 	                                        <div class="info">
 	                                            <div class="name"><?php echo $ul['userName'];?></div>
 	                                            <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $ul['userPrice'];?></span></p></div>
@@ -266,7 +282,13 @@
                                     <?php foreach ($ObjUserList['result']['joinUserList'] as $ul){?>
                                         <li>
                                             <a href="javascript:;">
-                                                <div class="img"><img src="<?php echo $ul['userImage'] ;?>" /></div>
+                                               <div class="img">
+				                                   <?php if($ul['userImage'] !=''){?>
+				                                         <img src="<?php echo $ul['userImage'];?>" />
+				                                   <?php }else{?>
+				                                         <img src="/images/def_user.png" />
+				                                   <?php }?>
+			                                    </div>
                                                 <div class="info">
                                                     <div class="name"><?php echo $ul['userName'];?></div>
                                                     <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $ul['userPrice'];?></span></p></div>
@@ -295,7 +317,13 @@
                        <ul class="list-container">
                            <li>
                                <a href="javascript:;">
-                                   <div class="img"><img src="<?php echo $p1['userImage'];?>" /></div>
+                                   <div class="img">
+                                       <?php if($p1['userImage'] !=''){?>
+                                         <img src="<?php echo $p1['userImage'];?>" />
+                                       <?php }else{?>
+                                         <img src="/images/def_user.png" />
+                                       <?php }?>
+                                   </div>  
                                    <div class="info">
                                        <div class="name"><?php echo $p1['userName']?></div>
                                        <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $p1['userPrice'];?></span></p></div>
@@ -316,7 +344,13 @@
                        <ul class="list-container">
                            <li>
                                <a href="javascript:;">
-                                   <div class="img"><img src="<?php echo $p2['userImage'];?>" /></div>
+                                   <div class="img">
+	                                   <?php if($p2['userImage'] !=''){?>
+	                                         <img src="<?php echo $p2['userImage'];?>" />
+	                                   <?php }else{?>
+	                                         <img src="/images/def_user.png" />
+	                                   <?php }?>
+                                   </div>
                                    <div class="info">
                                        <div class="name"><?php echo $p2['userName'];?></div>
                                        <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $p2['userPrice'];?></span></p></div>
@@ -337,7 +371,13 @@
                        <ul class="list-container">
                            <li>
                                <a href="javascript:;">
-                                   <div class="img"><img src="<?php echo $p3['userImage'];?>" /></div>
+                                   <div class="img">
+	                                   <?php if($p3['userImage'] !=''){?>
+	                                         <img src="<?php echo $p3['userImage'];?>" />
+	                                   <?php }else{?>
+	                                         <img src="/images/def_user.png" />
+	                                   <?php }?>
+                                   </div>
                                    <div class="info">
                                        <div class="name"><?php echo $p3['userName'];?></div>
                                        <div class="price"><p>出价</p><p class="themeColor">￥<span class="real"><?php echo $p3['userPrice'];?></span></p></div>
