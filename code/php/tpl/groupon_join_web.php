@@ -16,14 +16,14 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 <a class="button button-link button-nav pull-left back" href="index.php">
                     <span class="icon icon-back"></span>
                 </a>
-                <?php if($info['status'] ==2){?>
+                <?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
+                <h1 class="title">商品已售罄</h1>
+                <?php }elseif($info['status'] ==2){?>
                 <h1 class="title">拼团失败</h1>
                 <?php }elseif($info['status'] ==1  && $info['isGroup'] ==1){?>
                 <h1 class="title">拼团成功</h1>
                 <?php }elseif($info['status'] ==0 && $info['isGroup'] ==0){?>
                 <h1 class="title">拼团中</h1>
-                <?php }elseif($info['isSellOut'] ==1){?>
-                <h1 class="title">商品已售罄</h1>
                 <?php }elseif($info['userIsHead'] ==0 && $info['isGroup'] ==1 ){?>
                 <h1 class="title">参团成功</h1>
                 <?php }elseif($info['userIsHead'] ==1 && $info['status'] ==0 && $info['isStart'] ==1){?>
@@ -32,7 +32,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 <h1 class="title">已成团</h1>
                 <?php }?>
             </header>
-
+                
  			<section class="proTipsNew-5">
        
        			<?php if($info['isSellOut'] ==1){?>
@@ -106,7 +106,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
              
                                     <span class="price1">￥<?php echo $info['groupPrice'];?></span>
                                 
-                                <?php if($info['isSellOut'] ==1 ){?>
+                                <?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
 						            <div class="icon"><img src="images/groupJoin-2.png" /></div>
                                 <?php }elseif($info['isGroup'] ==1 && $info['status'] ==1 ){?>
                                     <div class="icon"><img src="images/groupJoin-3.png" /></div>
@@ -135,9 +135,9 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                                     <div class="btn gray" onclick="location.href='lottery_new.php?act=winning&attId=<?php echo $info['recordId'];?>'">中奖详情</div>
                                      <?php }?>                  
                                     <span class="price1">￥<?php echo $info['groupPrice'];?></span>
-                                     <?php if($info['isSellOut'] ==1 ){?>
+                                     <?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
 						            <div class="icon"><img src="images/groupJoin-2.png" /></div>
-	                                <?php }elseif($info['isGroup'] ==1 && $info['status'] ==1 ){?>
+	                                <?php }elseif($info['isGroup'] ==1 && $info['status'] ==1){?>
 	                                <div class="icon"><img src="images/groupJoin-3.png" /></div>
 							        <?php }elseif( $info['isGroup'] ==0 && $info['status'] ==1){?>
 							        <div class="icon"><img src="images/groupJoin-1.png" /></div>
@@ -152,7 +152,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
            <?php }?>
                 
                  <section class="proTipsNew-2">
-                    <?php if($info['isSellOut'] ==1 ){?>
+                    <?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
                     <h3 class="title1">组团失败，商品已售罄~</h3>
                     <?php }elseif($info['status'] ==2 && $info['isSellOut'] !=1){?>
                     <h3 class="title1">拼团期内未达到成团人数，系统会在1~3个工作日内，按原路自动退款至各位成员~</h3>
