@@ -14,37 +14,56 @@ include_once(LIB_ROOT.'Weixin.class.php');
 include_once(LIB_ROOT.'weixin/errCode.php');
 
 $localMenu_file  = DATA_DIR . 'LocalMenu.json'; //本地尚未同步至微信的json数组
-
-$OptionWX = array(
-    'token'=>'weixin', //填写你设定的key
-    'encodingaeskey'=> '', //填写加密用的EncodingAESKey
-    'appid'=>'wx3eea553d8ab21caa', //填写高级调用功能的app id
-    'appsecret'=>'8a8eaaeda77febffb186e26e42572df6' //填写高级调用功能的密钥
-);
-
-//判断是否存在本地配置缓存文件
-if (!file_exists($localMenu_file)) {
-    $WechatMenuJSON = getWechatMenuData($OptionWX, true);
-    file_put_contents($localMenu_file, $WechatMenuJSON); //创建缓存文件并写入
-} else {
-    //$objWechat = new Wechat($OptionWX);
-    $WechatMenuJSON = file_get_contents($localMenu_file); //获取本地的菜单数组
-}
-
-$local_Menu_Arr  = json_decode($WechatMenuJSON, true); //转换为php数组
-
-if (!$local_Menu_Arr) { //判断当前本地的数组是否为空
-    $WechatMenuJSON = getWechatMenuData($OptionWX, true);
-    file_put_contents($localMenu_file, $WechatMenuJSON);//保存至本地文件
-} else {
-    $WechatMenuArr = $local_Menu_Arr;
-}
+$wxOption_file   = DATA_DIR . 'wxOption.json';  //微信配置
 
 //根据操作名称进行相应操作
 $act = CheckDatas('act','');
+
+if (!file_exists($wxOption_file)){
+    if ($act == 'saveOption') {
+        if (isset($_POST) && !empty($_POST)) {
+            $wxOption = array(
+                'appid' => $_POST['appid'],
+                'appsecret' => $_POST['appsecret'],
+                'token' => $_POST['token'] ? $_POST['token'] : 'weixin',
+                'encodingaeskey' => $_POST['encodingaeskey'] ? $_POST['encodingaeskey'] : '',
+            );
+            $OptionWX_JSON = json_encode_custom($wxOption);
+            if (file_put_contents($wxOption_file, $OptionWX_JSON)) {
+                $url = 'wx_menu.php';
+                Header("Location:$url");
+            }
+        }
+    } elseif ($act !== 'login') {
+        $url = 'wx_menu.php?act=login';
+        Header("Location:$url");
+    }
+}
+
 switch ($act)
 {
-    default:
+    case '':
+        $OptionWX_JSON = file_get_contents($wxOption_file); //获取微信公众号配置
+        $OptionWX = json_decode($OptionWX_JSON, true); //转为php数组
+
+        //判断是否存在本地配置缓存文件
+        if (!file_exists($localMenu_file)) {
+            $WechatMenuJSON = getWechatMenuData($OptionWX, true);
+            file_put_contents($localMenu_file, $WechatMenuJSON); //创建缓存文件并写入
+        } else {
+            //$objWechat = new Wechat($OptionWX);
+            $WechatMenuJSON = file_get_contents($localMenu_file); //获取本地的菜单数组
+        }
+
+        $local_Menu_Arr  = json_decode($WechatMenuJSON, true); //转换为php数组
+
+        if (!$local_Menu_Arr) { //判断当前本地的数组是否为空
+            $WechatMenuJSON = getWechatMenuData($OptionWX, true);
+            file_put_contents($localMenu_file, $WechatMenuJSON);//保存至本地文件
+        } else {
+            $WechatMenuArr = $local_Menu_Arr;
+        }
+
         foreach ($WechatMenuArr as $menus) {
             $buttons_arr = $menus;
         }
@@ -64,13 +83,16 @@ switch ($act)
         include_once('tpl/menu_web.php');
         break;
 
+    case 'login':
+        include_once 'tpl/menu_login.php';
+        break;
+
     case 'update':
 
         if (isset($_POST) && !empty($_POST)){
             $hasError = '';
             //循环判断接收的数据
             for ($i=1;$i<3;$i++) {
-
                 $Pbutton_name = isset($_POST['Pbutton_name_'. $i]) ? $_POST['Pbutton_name_'. $i] : '';
                 $Pbutton_type = isset($_POST['Pbutton_type_'. $i]) ? $_POST['Pbutton_type_'. $i] : '';
                 $Pbutton_key  = isset($_POST['Pbutton_key_'. $i])  ? $_POST['Pbutton_key_'. $i]  : '';
@@ -84,14 +106,12 @@ switch ($act)
                         ajaxReturn(0,'第'.$i.'个父级按钮种类为空');
                     }
                 }
-
                 if ($Pbutton_type == 'click' && empty($Pbutton_key)) {
                     ajaxReturn(0,'第'.$i.'个父级按钮键值为空');
                 }
                 if ($Pbutton_type == 'view' && empty($Pbutton_url)) {
                     ajaxReturn(0,'第'.$i.'个父级按钮链接为空');
                 }
-
                 if ($Pbutton_type == 'sub') {
                     foreach ($_POST['Cbutton_names_' . $i] as  $key => $Cbutton_name) {
                         if (!$Cbutton_name) {
@@ -115,81 +135,36 @@ switch ($act)
             }
 
             $button_arr = array();
-            if (isset($_POST['Pbutton_name_1']) && !empty($_POST['Pbutton_name_1'])) {
-                if ($_POST['Pbutton_type_1'] == 'sub') {
-                    $sub_button_1 = array();
-                    foreach ($_POST['Cbutton_names_'.'1'] as $k1 => $Cbutton_name_1) {
-                        $sub_button_1[] = array(
-                            'name' => $Cbutton_name_1,
-                            'type'  => $_POST['Cbutton_types_'.'1'][$k1],
-                            'url'   => $_POST['Cbutton_urls_'.'1'][$k1],
-                            'key'   => $_POST['Cbutton_keys_'.'1'][$k1],
-                        );
+            for ($i=0; $i<3; $i++) {
+                $j = $i+1;
+                if (isset($_POST['Pbutton_name_' . $j]) && !empty($_POST['Pbutton_name_' . $j])) {
+                    if ($_POST['Pbutton_type_' . $j] == 'sub') {
+                        $sub_button = array();
+                        foreach ($_POST['Cbutton_names_'. $j] as $k => $Cbutton_name) {
+                            $sub_button[] = array(
+                                'name'  => $Cbutton_name,
+                                'type'  => $_POST['Cbutton_types_'. $j][$k],
+                                'url'   => $_POST['Cbutton_urls_' . $j][$k],
+                                'key'   => $_POST['Cbutton_keys_' . $j][$k],
+                            );
+                        }
+                        $button_arr[$i]['name']       = $_POST['Pbutton_name_'. $j];
+                        $button_arr[$i]['sub_button'] = $sub_button;
+                    } else {
+                        $button_arr[$i]['name'] = $_POST['Pbutton_name_'. $j];
+                        $button_arr[$i]['type'] = $_POST['Pbutton_type_'. $j];
+                        $button_arr[$i]['url']  = $_POST['Pbutton_url_' . $j];
+                        $button_arr[$i]['key']  = $_POST['Pbutton_key_' . $j];
                     }
-                    $button_arr[0]['name']       = $_POST['Pbutton_name_1'];
-                    $button_arr[0]['sub_button'] = $sub_button_1;
-                } else {
-                    $button_arr[0]['name']       = $_POST['Pbutton_name_1'];
-                    $button_arr[0]['type']       = $_POST['Pbutton_type_1'];
-                    $button_arr[0]['url']       = $_POST['Pbutton_url_1'];
-                    $button_arr[0]['key']       = $_POST['Pbutton_key_1'];
                 }
             }
-
-            if (isset($_POST['Pbutton_name_2']) && !empty($_POST['Pbutton_name_2'])) {
-                if ($_POST['Pbutton_type_2'] == 'sub') {
-                    $sub_button_2 = array();
-                    foreach ($_POST['Cbutton_names_'.'2'] as $k2 => $Cbutton_name_2) {
-                        $sub_button_2[] = array(
-                            'name' => $Cbutton_name_2,
-                            'type'  => $_POST['Cbutton_types_'.'2'][$k2],
-                            'url'   => $_POST['Cbutton_urls_'.'2'][$k2],
-                            'key'   => $_POST['Cbutton_keys_'.'2'][$k2],
-                        );
-                    }
-                    $button_arr[1]['name']       = $_POST['Pbutton_name_2'];
-                    $button_arr[1]['sub_button'] = $sub_button_2;
-                } else {
-                    $button_arr[1]['name']       = $_POST['Pbutton_name_2'];
-                    $button_arr[1]['type']       = $_POST['Pbutton_type_2'];
-                    $button_arr[1]['url']       = $_POST['Pbutton_url_2'];
-                    $button_arr[1]['key']       = $_POST['Pbutton_key_2'];
-                }
-            }
-
-            if (isset($_POST['Pbutton_name_3'])  && !empty($_POST['Pbutton_name_3'])) {
-                if ($_POST['Pbutton_type_3'] == 'sub') {
-                    $sub_button_3 = array();
-                    foreach ($_POST['Cbutton_names_'.'3'] as $k3 => $Cbutton_name_3) {
-                        $sub_button_3[] = array(
-                            'name ' => $Cbutton_name_3,
-                            'type'  => $_POST['Cbutton_types_'.'3'][$k3],
-                            'url'   => $_POST['Cbutton_urls_'.'3'][$k3],
-                            'key'   => $_POST['Cbutton_keys_'.'3'][$k3],
-                        );
-                    }
-                    $button_arr[2]['name']       = $_POST['Pbutton_name_3'];
-                    $button_arr[2]['sub_button'] = $sub_button_3;
-                } else {
-                    $button_arr[2]['name']       = $_POST['Pbutton_name_3'];
-                    $button_arr[2]['type']       = $_POST['Pbutton_type_3'];
-                    $button_arr[2]['url']       = $_POST['Pbutton_url_3'];
-                    $button_arr[2]['key']       = $_POST['Pbutton_key_3'];
-                }
-            }
-
             $CreateNewMenu = array('button' => $button_arr);
 
-            if ($hasError) {
-                $buttons_arr = $button_arr;
-            } else {
-                $local_menu_JSON    = json_encode($button_arr, JSON_UNESCAPED_UNICODE);
-                $CreateNewMenu_JSON = json_encode($CreateNewMenu, JSON_UNESCAPED_UNICODE); //将生成php数组转为json数组
-                if (file_put_contents($localMenu_file, $CreateNewMenu_JSON)){
-                    ajaxReturn(1,'写入成功');
-                }
+            $local_menu_JSON    = json_encode_custom($button_arr);
+            $CreateNewMenu_JSON = json_encode_custom($CreateNewMenu); //将生成php数组转为json数组
+            if (file_put_contents($localMenu_file, $CreateNewMenu_JSON)){
+                ajaxReturn(1,'写入成功');
             }
-
         }
 
         break;
@@ -198,8 +173,7 @@ switch ($act)
         $token = (isset($_GET['token'])) ? $_GET['token'] : '';
         //验证
         if ($token !== USER_TOKEN) {
-            echo json_encode(array('status'=>0,'info'=>'验证失败'));
-            exit;
+            ajaxReturn(0,验证失败);
         } else {
             $CreateNewMenu_JSON = file_get_contents($localMenu_file);
             $CreateNewMenu      = json_decode($CreateNewMenu_JSON, true);
