@@ -73,7 +73,7 @@ function __getReplyByKeyword($keyword){
 
 	//关键字=>回复内容
 	$keywordMap = array(
-		'0.1' => '<a href="http://weixin.pindegood.com/free.php?id=18">戳 >> 0.1夺宝，开团必中，一毛即得好礼！</a>',
+		'0.1' => '<a href="http://weixin.pindegood.com/free.php?id=18">戳 >> 0元夺宝，成团必中，开团即得好礼！</a>',
 		'水画布' => '<a href="http://weixin.pindegood.com/coupon_action.php?linkid=37&aid=148">水画布低至9.9元新用户秒杀开抢中，您还在犹豫点不点的时候，已经有1689人领取了！☞链接！</a>',
 		'领玩具' => '<a href="http://weixin.pindegood.com/free.php?id=18">双十一返场，狂欢不打烊！1000份 免费玩具再狂送，点击马上领取☞☞☞+领</a>',
 	);
