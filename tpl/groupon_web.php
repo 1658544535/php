@@ -125,7 +125,9 @@
 							<?php }elseif($info['activityStatus'] == 1){ ?>
 								<?php if($info['isOpen'] == 1){ ?>
 									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">您已参与过该活动</a></div>
-								<?php }else{ ?>
+								<?php }elseif(empty($skus['validSKu'])){ ?>
+									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">商品已售罄</a></div>
+							    <?php }else{?>
 									<div class="buy more1 more1-m2">
 										<a id="openSku" data-href="order_raffle01.php">
 											 <p>￥<b><?php echo $info['productPrice'];?></b></p>
@@ -139,7 +141,11 @@
 							switch($seckillState){
 								case 'end': ?>
 								<?php case 'sellout': ?>
+								  <?php if(empty($skus['validSKu'])){ ?>
+									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">商品已售罄</a></div>
+							    <?php }else{?>
 									<div class="more1 more1-m2"><a href="seckill.php">更多拼团</a></div>
+								<?php }?>
 								<?php break; ?>
 								<?php case 'notstart': ?>
 									<div class="more1 more1-m2"><a href="seckill.php">即将开始</a></div>
@@ -147,8 +153,8 @@
 								<?php case 'selling': ?>
 									<div class="buy more1 more1-m2">
 										<a id="openSku" data-href="order_seckill.php">
-											 <p>￥<b><?php echo $info['productPrice'];?></b></p>
-											 <p><?php echo $info['groupNum'];?>人成团</p>
+											<p>￥<b><?php echo $info['productPrice'];?></b></p>
+											<p><?php echo $info['groupNum'];?>人成团</p>
 										</a>
 									</div>
 								<?php break; ?>
@@ -159,7 +165,9 @@
 								<?php if($info['productStatus'] == 0){ ?>
 									<a style="background-color:#999">已下架</a>
 									<a class="more" href="/">查看更多</a>
-								<?php }else{ ?>
+								<?php }elseif(empty($skus['validSKu'])){ ?>
+									<a style="background-color:#999; width:100%">商品已售罄</a>
+								<?php }else{?>
 									<!-- <a class="one" href="order_alone.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-alone"> -->
 									<a class="one" data-href="order_alone.php" id="btn-alone" data-ref="alone">
 										 <p>￥<b><?php echo $info['alonePrice'];?></b></p>
@@ -172,8 +180,8 @@
 											 <p><?php echo $info['groupNum'];?>人团</p>
 										</a>
 									<?php }else{ ?>
-										<!-- <a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
-										<a class="more" data-href="order_groupon.php" id="btn-groupon" data-ref="groupon">
+										<!-- <a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon">-->
+										<a class="more" data-href="order_groupon.php" id="btn-groupon" data-ref="groupon"> 
 											 <p>￥<b><?php echo $info['productPrice'];?></b></p>
 											 <p><?php echo $info['groupNum'];?>人团</p>
 										</a>
