@@ -604,6 +604,10 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                           if($(".sku-item .list a.active").length<=0){
                             skuItemClick($("#sku-format .list a").eq(0));
                           }
+                        //如果只有一个sku,默认选中
+                        if(skuData.length == 1){
+                            skuItemClick($("#sku-color .list a").eq(0));
+                        }
                         }else{
                           $("#sku-color .list a, #sku-format .list a").addClass("disable");
                         }
