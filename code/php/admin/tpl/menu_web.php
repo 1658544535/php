@@ -26,11 +26,12 @@
                                 <option value="">请选择按钮类型</option>
                                 <option value="sub" <?php if (isset($v["sub_button"]) && !empty($v["sub_button"])) echo "selected";?>>菜单</option>
                                 <?php foreach ($button_type_arr as $key => $value) {  ?>
-                                    <option value="<?php echo $key; ?>"  <?php if (!isset($v["sub_button"])) { if ($v["type"] == $key) echo "selected"; } ?>><?php echo $value; ?></option>
+                                    <option value="<?php echo $key; ?>"  <?php if (!isset($v["sub_button"]) || empty($v["sub_button"])) { if ($v["type"] == $key) echo "selected"; } ?>><?php echo $value; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="js-button-type-box" style="<?php if (isset($v["sub_button"])) echo "display: none;"; ?>">
+                        <!--一级-->
+                        <div class="js-button-type-box" style="<?php if (isset($v["sub_button"]) && !empty($v["sub_button"])) echo "display: none;"; ?>">
                             <div>
                                 链接：<input type="text" class="js-url" name="Pbutton_url_<?php echo $k+1 ?>" value="<?php echo isset($v["url"]) ? $v["url"] : ''; ?>">
                             </div>
@@ -39,7 +40,7 @@
                             </div>
                         </div>
                         <!--二级菜单-->
-                        <div style="<?php if (!isset($v["sub_button"])) echo "display: none;"; ?>">
+                        <div style="<?php if (!isset($v["sub_button"]) && empty($v["sub_button"])) echo "display: none;"; ?>">
                             <ul>
 
                                 <?php foreach ($v as $sub_key => $sub_buttons) {
