@@ -5,13 +5,9 @@
  * Date: 2016/11/12 0012
  * Time: 11:42
  */
-define('DATA_DIR', '../data/wx/'); //数据保存的位置
-
-include_once('functions.php');
-
 class CustomReplyDB extends SQLite3
 {
-    private $CustomReply_db = DATA_DIR . 'CustomReply.db'; // text 类型的自定义回复数据文件
+    private $CustomReply_db = DATA_DIR . 'CustomReply.db'; // sqlite数据库文件
     private $DB_TableName_arr = array
     (
         'text'  => 'CustomTextReply',
@@ -62,6 +58,7 @@ PRAGMA foreign_keys = on;
 EOF;
         $this->exec($sql);
     }
+
     private function createEventReplyDB()
     {
         $sql = <<<EOF
@@ -159,10 +156,14 @@ EOF;
 
     }
 
-    public function getAll($type)
+    public function getAll($type, $isOne = 'false')
     {
         $table_name = $this->DB_TableName_arr[$type];
-        $sql = 'SELECT * FROM ' . $table_name;
+        if (!$isOne){
+            $sql = 'SELECT * FROM ' . $table_name;
+        } else {
+            $sql = 'SELECT keyword,content FROM ' . $table_name;
+        }
 
         $result = $this->query($sql);
         $array = '';

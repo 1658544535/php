@@ -5,8 +5,12 @@
  * Date: 2016/11/12 0012
  * Time: 9:38
  */
-include_once('CustomReplyDB.class.php');
-include_once('functions.php');
+define('LIB_ROOT', dirname(__FILE__) . '/../includes/lib/');
+define('APP_INC',  dirname(__FILE__) . '/../includes/inc/');
+define('DATA_DIR', dirname(__FILE__) . '/../data/wx/'); //数据保存的位置
+
+include_once(LIB_ROOT . 'CustomReplyDB.class.php');
+include_once(APP_INC  . 'functions.php');
 
 $db = new CustomReplyDB();
 if(!$db) echo $db->lastErrorMsg();
@@ -135,12 +139,32 @@ switch ($act)
 
     case 'test':
         echo '测试页<hr>';
-        print_r($db->find(array('id'=>1), 'event'));
+//        print_r($db->find(array('id'=>1), 'event'));
         break;
 }
 
-$db->close();
 
+
+//function createSelectSql($array){
+//    if (!is_array($array)) {
+//        return false;
+//    }
+//
+//    $count = count($array);
+//    $column_val_sql = '';
+//    $column_key_sql = '';
+//
+//    if ($count > 1) {
+//        $lastArr = getLastArr($array); //获得最后的键和值
+//        array_pop($array); //最后的值出栈
+//    }
+//
+//    foreach ($array as $v) {
+//        $sql_Select = ' SELECT ' . $v . '"';
+//    }
+//}
+
+$db->close();
 //$key = 'test';
 //$Insert_sql = 'INSERT INTO CustomTextReply (keyword,content,create_time) values ("'. $key .'","InsertTest",'. time() .')';
 //$db->insert(array('keyword'=>'测试','content'=>'faild','create_time'=>time()),'text');
