@@ -22,18 +22,10 @@ include_once(LIB_ROOT. 'weixin/errCode.php');
 
 //根据操作名称进行相应操作
 $act = CheckDatas('act','');
-$account = array('username' => 'haha', 'passwd' => 'haha');
-
 //登陆判断
-$isLogin = !empty($_SESSION['admin_login']) ? true : false;
-
-if (!$isLogin) {
-    if ($act !== 'login'){
+if (empty($_SESSION['admin_login'])) {
+    if (!strpos($_SERVER['PHP_SELF'],"auth.php")) {
         $url = 'auth.php?act=login';
         Header("Location:$url");
-    }
-} else {
-    if ($act == 'login') {
-        echo '<script>window.location.href="auth.php"</script>';
     }
 }
