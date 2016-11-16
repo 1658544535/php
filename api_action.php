@@ -37,9 +37,9 @@ switch($act){
 		);
 		if($addrId){
 			$data['addId'] = $addrId;
-			$result = apiData('eidtAddress.do', $data);
+			$result = apiData('eidtAddress.do', $data,'post');
 		}else{
-			$result = apiData('addAddress.do', $data);
+			$result = apiData('addAddress.do', $data,'post');
 		}
 		$result['success'] ? ajaxJson(1, '操作成功') : ajaxJson(0, $result['error_msg']);
 		break;
