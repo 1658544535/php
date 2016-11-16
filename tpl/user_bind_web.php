@@ -28,7 +28,7 @@
                             </li>
                             <li>
                                 <!-- <i class="icon icon-code"></i> -->
-                                <div class="input-controll"><input type="text" name="code" id="code" class="txt" placeholder="验证码" /></div>
+                                <div class="input-controll"><input type="tel" name="code" id="code" class="txt" placeholder="验证码" /></div>
                                 <a href="javascript:;" class="btn" id="JS-vcodebtn" onclick="show_captcha()">发送验证码</a>
 								<span id='tip' class="btn btn-gray">&nbsp;&nbsp;<span id="time">0</span>&nbsp;秒后重发</span>
                             </li>
