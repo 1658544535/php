@@ -48,22 +48,24 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             </div>
 
            <script id='tpl_pull' type="text/template">
-            <%if(data["data"].length>0){%>
-                <%for(var i=0;i<data["data"].length; i++){%>
-                    <li><a href="product_guess_price.php?act=detail&gid=<%=data["data"][i]["activityId"]%>&pid=<%=data["data"][i]["productId"]%>">
-                        <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
+            <%if(data["data"]["data"].length>0){%>
+                <%for(var i=0;i<data["data"]["data"].length; i++){%>
+                    <li><a href="product_guess_price.php?act=detail&gid=<%=data["data"]["data"][i]["activityId"]%>&pid=<%=data["data"]["data"][i]["productId"]%>">
+                        <div class="img"><img src="<%=data["data"]["data"][i]["productImage"]%>" /></div>
                         <div class="info">
-                            <div class="name"><%=data["data"][i]["productName"]%></div>
+                            <div class="name"><%=data["data"]["data"][i]["productName"]%></div>
                             <div class="time">
                                 <span class="btn">立即猜价</span>
-                                <div class="downTime" data-timer="<%=data["TimeDiff"][i]%>"></div>
+                                <div class="downTime" data-timer="<%=data["data"]["TimeDiff"][i]%>"></div>
                             </div>
-                            <div class="tips">提示区间：<%=data["data"][i]["minPrice"]%>-<%=data["data"][i]["maxPrice"]%> 丨 已有<span><%=data["data"][i]["joinNum"]%></span>人参与</div>
+                            <div class="tips">提示区间：<%=data["data"]["data"][i]["minPrice"]%>-<%=data["data"]["data"][i]["maxPrice"]%> 丨 已有<span><%=data["data"]["data"][i]["joinNum"]%></span>人参与</div>
                         </div>
                     </a></li>
                 <%}%>
+            <%}else if(data["data"]["pageNow"] == 1){%>
+                <div class="tips-null">品类齐聚  新品来袭<br/>猜价好礼  静候良机</div>
             <%}else{%>
-                <div class="tips-null">暂无商品</div>
+                <div class="tips-null">暂无猜价</div>
             <%}%>
             </script>
         </div>
