@@ -105,9 +105,9 @@ switch($act)
 		 		);
 
 		 	if($ObjGrouponList !=''){	
-		 		echo	get_json_data_public( 1,'获取成功',$Data ,$page);
+		 		echo	ajaxJson( 1,'获取成功',$Data ,$page);
 		 	}else{
-		 		echo	get_json_data_public( 0,'获取失败' );
+		 		echo	ajaxJson( 0,'获取失败' );
 		 	}
 		 	
 }
