@@ -73,7 +73,7 @@ function __getReplyByKeyword($keyword){
     $db = new CustomReplyDB();
 
     $arrays = $db->getAll('text', true); //获取数据
-    $arr = toOneArray($arrays); //装换成一维数组
+    $array = toOneArray($arrays); //装换成一维数组
 
 	$_dir = LOG_INC.'keyword_reply/';
 	!file_exists($_dir) && mkdir($_dir, 0777, true);

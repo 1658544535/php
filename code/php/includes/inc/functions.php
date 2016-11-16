@@ -1390,7 +1390,7 @@ function toOneArray($array)
     foreach ($array as $val){
         foreach ($val as $k=>$v) {
             if ($k == 'keyword'){
-                $arr[$v] = $val['content'];
+                $arr[$v] = html_entity_decode($val['content']);
             }
         }
     }

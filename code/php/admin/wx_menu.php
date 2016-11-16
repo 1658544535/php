@@ -11,9 +11,9 @@ define('DATA_DIR', dirname(__FILE__) . '/../data/wx/'); //数据保存的位置
 
 define('USER_TOKEN', 'HAHAHA'); //自定义认证token
 
-include_once('functions.php');
-include_once(LIB_ROOT.'Weixin.class.php');
-include_once(LIB_ROOT.'weixin/errCode.php');
+include_once(APP_INC . 'functions.php');
+include_once(LIB_ROOT. 'Weixin.class.php');
+include_once(LIB_ROOT. 'weixin/errCode.php');
 
 $localMenu_file  = DATA_DIR . 'LocalMenu.json'; //本地尚未同步至微信的json数组
 $wxOption_file   = DATA_DIR . 'wxOption.json';  //微信配置
@@ -192,5 +192,4 @@ switch ($act)
         }
         break;
 }
-
 

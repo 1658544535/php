@@ -42,7 +42,7 @@ switch ($act)
 
         $data = array(
             'keyword'     => $_POST['keyword'],
-            'content'     => $_POST['content'],
+            'content'     => htmlentities($_POST['content']),
             'create_time' => time(),
         );
 
