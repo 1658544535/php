@@ -5,8 +5,10 @@
  * Date: 2016/11/9 0009
  * Time: 11:13
  */
-define('LIB_ROOT', '../includes/lib/');
-define('DATA_DIR', '../data/wx/'); //数据保存的位置
+define('LIB_ROOT', dirname(__FILE__) . '/../includes/lib/');
+define('APP_INC' , dirname(__FILE__) . '/../includes/inc/');
+define('DATA_DIR', dirname(__FILE__) . '/../data/wx/'); //数据保存的位置
+
 define('USER_TOKEN', 'HAHAHA'); //自定义认证token
 
 include_once('functions.php');

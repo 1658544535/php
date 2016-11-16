@@ -27,8 +27,11 @@ $wxOption = array(
     'token' => $app_info['token'] ? $app_info['token'] : 'weixin',
     'encodingaeskey' => $app_info['encodingaeskey'] ? $app_info['encodingaeskey'] : '',
 );
+
 include_once(LIB_ROOT.'/Weixin.class.php');
 include_once(LIB_ROOT.'/weixin/errCode.php');
+include_once(LIB_ROOT . 'CustomReplyDB.class.php');
+
 $objWX = new Weixin($wxOption);
 
 $objWX->valid();
@@ -65,9 +68,13 @@ switch($wxReqType){
 		$objWX->transfer_customer_service()->reply();
 		break;
 }
-
 //通过关键字获取回复消息
 function __getReplyByKeyword($keyword){
+    $db = new CustomReplyDB();
+
+    $arrays = $db->getAll('text', true); //获取数据
+    $arr = toOneArray($arrays); //装换成一维数组
+
 	$_dir = LOG_INC.'keyword_reply/';
 	!file_exists($_dir) && mkdir($_dir, 0777, true);
 
