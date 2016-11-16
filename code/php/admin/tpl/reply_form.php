@@ -20,7 +20,7 @@
             <tr>
                 <th>关键字:</th>
                 <th>
-                    <input type="text" name="keyword" placeholder="请输入关键字" value="<?php if (isset($isEdit)) echo $data['keyword'] ;?>" <?php if (isset($isEdit)) echo 'readonly' ;?>>
+                    <input type="text" name="keyword" placeholder="多个关键字，请用空格隔开" value="<?php if (isset($isEdit)) echo $data['keyword'] ;?>" <?php if (isset($isEdit)) echo 'readonly' ;?>>
                 </th>
             </tr>
             <tr>

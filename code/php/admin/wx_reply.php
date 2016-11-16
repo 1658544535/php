@@ -19,12 +19,6 @@ if(!$db) echo $db->lastErrorMsg();
 $act = CheckDatas('act','');
 switch ($act)
 {
-    default:
-        $lists  = $db->getAll('text');
-        $subscribe_data = $db->find(array('event'=>'subscribe'), 'event');
-        include_once('tpl/reply_list.php');
-        break;
-
     case 'create':
         include_once('tpl/reply_form.php');
         break;
@@ -93,7 +87,7 @@ switch ($act)
                 }
                 $data = array(
                     'keyword'     => $_POST['keyword'],
-                    'content'     => $_POST['content'],
+                    'content'     => htmlentities($_POST['content']),
                 );
 
                 $result = $db->update($data, 'text', array('id'=>$id));
@@ -139,41 +133,17 @@ switch ($act)
 
     case 'test':
         echo '测试页<hr>';
+        $arrays = $db->getAll('text', true);
+        toOneArray($arrays);
 //        print_r($db->find(array('id'=>1), 'event'));
         break;
+
+    default:
+        $lists  = $db->getAll('text');
+        $subscribe_data = $db->find(array('event'=>'subscribe'), 'event');
+        include_once('tpl/reply_list.php');
+        break;
+
 }
 
-
-
-//function createSelectSql($array){
-//    if (!is_array($array)) {
-//        return false;
-//    }
-//
-//    $count = count($array);
-//    $column_val_sql = '';
-//    $column_key_sql = '';
-//
-//    if ($count > 1) {
-//        $lastArr = getLastArr($array); //获得最后的键和值
-//        array_pop($array); //最后的值出栈
-//    }
-//
-//    foreach ($array as $v) {
-//        $sql_Select = ' SELECT ' . $v . '"';
-//    }
-//}
-
-$db->close();
-//$key = 'test';
-//$Insert_sql = 'INSERT INTO CustomTextReply (keyword,content,create_time) values ("'. $key .'","InsertTest",'. time() .')';
-//$db->insert(array('keyword'=>'测试','content'=>'faild','create_time'=>time()),'text');
-
-//if (!$db->checkExistKeyword($key,$type='text')){
-//
-//    $result = $db->exec($Insert_sql);
-//    if (!$result) echo $db->lastErrorMsg();
-//
-//} else {
-//    echo '插入失败，存在相同关键字';
-//}
+$db->close(); //断开数据库链接
