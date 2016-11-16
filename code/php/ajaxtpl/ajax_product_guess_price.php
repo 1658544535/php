@@ -104,12 +104,15 @@ switch($act)
 	 				'TimeDiff'=>$seckillTimeDiff,
 		 		);
 
-		 	if($ObjGrouponList !=''){	
-		 		echo	ajaxJson( 1,'获取成功',$Data ,$page);
-		 	}else{
-		 		echo	ajaxJson( 0,'获取失败' );
-		 	}
-		 	
+			if($ObjGrouponList['success']){
+				if(empty($ObjGrouponList['result'])){
+					ajaxJson(1,'获取失败', array('data'=>array()), 1);
+				}else{
+					ajaxJson(1,'获取成功', empty($Data['data']) ? array() : $Data, $page);
+				}
+			}else{
+				ajaxJson(1,'获取失败', array('data'=>array()), 1);
+			}		 	
 }
 
 
