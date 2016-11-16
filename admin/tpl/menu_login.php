@@ -5,11 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>输入公众号相关信息</title>
+    <title>登陆</title>
 </head>
 <body>
     <div>
-        <form action="wx_menu.php?act=login" method="post">
+        <form action="auth.php?act=login" method="post">
             <table>
                 <tr>
                     <td> username: </td>

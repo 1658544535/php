@@ -5,12 +5,9 @@
  * Date: 2016/11/12 0012
  * Time: 9:38
  */
-define('LIB_ROOT', dirname(__FILE__) . '/../includes/lib/');
-define('APP_INC',  dirname(__FILE__) . '/../includes/inc/');
-define('DATA_DIR', dirname(__FILE__) . '/../data/wx/'); //数据保存的位置
+include_once('global.php');
 
 include_once(LIB_ROOT . 'CustomReplyDB.class.php');
-include_once(APP_INC  . 'functions.php');
 
 $db = new CustomReplyDB();
 if(!$db) echo $db->lastErrorMsg();
