@@ -8,6 +8,7 @@ $grouponId = intval($_GET['id']);
 $productId = intval($_GET['pid']);
 //empty($grouponId) && redirect('/');
 
+
 $act = trim($_GET['act']);
 $apiParam = array('userId'=>$userid);
 if($act == 'guess'){
@@ -54,9 +55,15 @@ $likes = $likes['result'];
 //根据状态获取type值
 $type_arr = array(17,16); //(0-未开始 1-活动中 2-活动结束) (16-掌上秒杀（开枪中）;17-掌上秒杀（即将开始）)
 $type = ($info["activityType"] == 5) ? 19 : $type_arr[$info['activityStatus']];
-if (!$type){
-    $type = 8;
+
+// if (!$type){
+//     $type = 8;
+// }
+
+if ($info["activityType"] == 1){
+	$type = 8;
 }
+
 $fx = apiData('getShareContentApi.do', array('id'=>$info['activityId'], 'type'=>$type));
 $fx = $fx['result'];
 
