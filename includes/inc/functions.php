@@ -1390,10 +1390,18 @@ function toOneArray($array)
     foreach ($array as $val){
         foreach ($val as $k=>$v) {
             if ($k == 'keyword'){
-                $arr[$v] = html_entity_decode($val['content']);
+                if (strpos($v, " ")) {
+                    $keyword_arr = explode(" ", $v);
+                    foreach ($keyword_arr as $value) {
+                        $arr[$value] = html_entity_decode($val['content']);
+                    }
+                } else {
+                    $arr[$v] = html_entity_decode($val['content']);
+                }
             }
         }
     }
+    print_r($arr);
     return $arr;
 }
 ?>
