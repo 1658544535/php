@@ -53,7 +53,7 @@
                                                                              拼团中，还差<%=data["data"][i].oweNum %>人
                                <%}else if(data["data"][i].source !=5 && data["data"][i].orderStatus ==1   && data["data"][i].isCancel ==1){%>
                                                                              交易已取消       
-                               <%}else if(data["data"][i].source !=5 && data["data"][i].isSuccess ==2 && (data["data"][i].isRefund ==0) || (data["data"][i].isRefund ==1) ){%>
+                               <%}else if(data["data"][i].source !=5 && data["data"][i].isSuccess ==2 && ((data["data"][i].isRefund ==0) || (data["data"][i].isRefund ==1)) ){%>
                                                                              未成团，退款中  
                                <%}else if(data["data"][i].source !=5 && data["data"][i].isSuccess ==2 && data["data"][i].isRefund ==2){%>
                                                                              未成团，已退款 
@@ -73,7 +73,7 @@
                                                                              拼团中，还差<%=data["data"][i].oweNum %>人
                                <%}else if(data["data"][i].source ==5 && data["data"][i].orderStatus ==5   && data["data"][i].isCancel ==1){%>
                                                                              交易已取消       
-                               <%}else if(data["data"][i].source ==5 && data["data"][i].orderStatus ==3 && data["data"][i].isSuccess ==2 && (data["data"][i].isRefund ==0) || (data["data"][i].isRefund ==1) ){%>
+                               <%}else if(data["data"][i].source ==5 && data["data"][i].orderStatus ==3 && data["data"][i].isSuccess ==2 && ((data["data"][i].isRefund ==0) || (data["data"][i].isRefund ==1)) ){%>
                                                                              未成团，退款中  
                                <%}else if(data["data"][i].source ==5 && data["data"][i].orderStatus ==4 && data["data"][i].isSuccess ==2 && data["data"][i].isRefund ==2){%>
                                                                              未成团，已退款 
@@ -95,13 +95,13 @@
                             <a href="/wxpay/pay.php?oid=<%=data["data"][i]["id"]%>">去支付</a>
                            <%}else if(data["data"][i].orderStatus ==3){%>
                             <a class="gray" href="logistics.php?oid=<%=data["data"][i]["id"]%>">查看物流</a>
-                            <%if(data["data"][i].refundStatus ==0 || data["data"][i].refundStatus ==6 || data["data"][i].refundStatus ==5){%>
-                            <a class="check" data-id="<%=data["data"][i]["id"]%>" data-status="<%=data["data"][i]["orderStatus"]%>">确认收货</a>
-                           <%}%>
-                           <%}else if(data["data"][i].orderStatus ==3   && data["data"][i].isSuccess ==1 && data["data"][i].refundStatus ==0){%>
-                            <a href="aftersale.php?act=apply&oid=<%=data["data"][i]["id"]%>">申请退款</a>
-                           <%}else if(data["data"][i].orderStatus ==2   && data["data"][i].isSuccess ==1 && data["data"][i].refundStatus ==1){%>
-                            <a class="txt">售后申请中...</a>
+                             <%if(data["data"][i].refundStatus ==0 || data["data"][i].refundStatus ==6 || data["data"][i].refundStatus ==5){%>
+                               <a class="check" data-id="<%=data["data"][i]["id"]%>" data-status="<%=data["data"][i]["orderStatus"]%>">确认收货</a>
+                             <%}else if(data["data"][i].orderStatus ==3   && data["data"][i].isSuccess ==1 && data["data"][i].refundStatus ==0){%>
+                               <a href="aftersale.php?act=apply&oid=<%=data["data"][i]["id"]%>">申请退款</a>
+                             <%}else if(data["data"][i].orderStatus ==3   && data["data"][i].isSuccess ==1 && ((data["data"][i].refundStatus ==1) || (data["data"][i].refundStatus ==2) || (data["data"][i].refundStatus ==3))){%>
+                               <a class="txt">售后申请中...</a>
+                            <%}%>
                            <%}else if(data["data"][i].orderStatus ==2   && data["data"][i].isSuccess ==0 ){%> 
                             <a class="gray" href="order_detail.php?oid=<%=data["data"][i]["id"]%>">查看</a>
                             <a href="groupon_join.php?aid=<%=data["data"][i]["attendId"]%>">邀请好友拼团</a>
