@@ -53,17 +53,16 @@ $likes = $likes['result'];
 
 //获取分享内容
 //根据状态获取type值
-$type_arr = array(17,16); //(0-未开始 1-活动中 2-活动结束) (16-掌上秒杀（开枪中）;17-掌上秒杀（即将开始）)
-$type = ($info["activityType"] == 5) ? 19 : $type_arr[$info['activityStatus']];
-
-// if (!$type){
-//     $type = 8;
-// }
-
-if ($info["activityType"] == 1){
-	$type = 8;
+switch($info["activityType"]){
+	case 5://0.1
+		$type = 19;
+		break;
+	case 6://秒杀
+		$type_arr = array(17,16); //(0-未开始 1-活动中 2-活动结束) (16-掌上秒杀（开枪中）;17-掌上秒杀（即将开始）)
+		$type = $type_arr[$info['activityStatus']];
+		break;
 }
-
+!$type && $type = 8;
 $fx = apiData('getShareContentApi.do', array('id'=>$info['activityId'], 'type'=>$type));
 $fx = $fx['result'];
 
