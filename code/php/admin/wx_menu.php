@@ -5,21 +5,7 @@
  * Date: 2016/11/9 0009
  * Time: 11:13
  */
-session_start();
-define('HN1', true);
-define('LIB_ROOT', dirname(__FILE__) . '/../includes/lib/');
-define('APP_INC' , dirname(__FILE__) . '/../includes/inc/');
-define('DATA_DIR', dirname(__FILE__) . '/../data/wx/'); //数据保存的位置
-define('USER_TOKEN', 'HAHAHA'); //自定义认证token
-
-include_once(APP_INC . 'config.php');
-include_once(APP_INC . 'functions.php');
-include_once(LIB_ROOT. 'Weixin.class.php');
-include_once(LIB_ROOT. 'weixin/errCode.php');
-
-$account = array('username' => 'haha', 'passwd'=> 'haha');
-$localMenu_file  = DATA_DIR . 'LocalMenu.json'; //本地尚未同步至微信的json数组
-//$wxOption_file   = DATA_DIR . 'wxOption.json';  //微信配置
+include_once('global.php');
 
 $OptionWX = array(
     'appid' => $app_info['appid'],
@@ -28,47 +14,8 @@ $OptionWX = array(
     'encodingaeskey' => isset($app_info['encodingaeskey']) ? $app_info['encodingaeskey'] : '',
 );
 
-//根据操作名称进行相应操作
-$act = CheckDatas('act','');
-$isLogin = !empty($_SESSION['admin_login']) ? true : false;
-if (!$isLogin) {
-    if ($act !== 'login'){
-        $url = 'wx_menu.php?act=login';
-        Header("Location:$url");
-    } else {
-        if (isset($_POST) && !empty($_POST)) {
-            if ($_POST['username'] == $account['username'] && $_POST['passwd'] == $account['passwd']) {
-                $_SESSION['admin_login'] = true;
-                echo '<script>window.location.href="wx_menu.php"</script>';
-            }
-        }
-    }
-} else {
-    if ($act == 'login') {
-        echo '<script>window.location.href="wx_menu.php"</script>';
-    }
-}
-
-//if (!file_exists($wxOption_file)){
-//    if ($act == 'saveOption') {
-//        if (isset($_POST) && !empty($_POST)) {
-//            $wxOption = array(
-//                'appid' => $_POST['appid'],
-//                'appsecret' => $_POST['appsecret'],
-//                'token' => $_POST['token'] ? $_POST['token'] : 'weixin',
-//                'encodingaeskey' => $_POST['encodingaeskey'] ? $_POST['encodingaeskey'] : '',
-//            );
-//            $OptionWX_JSON = json_encode_custom($wxOption);
-//            if (file_put_contents($wxOption_file, $OptionWX_JSON)) {
-//                $url = 'wx_menu.php';
-//                Header("Location:$url");
-//            }
-//        }
-//    } elseif ($act !== 'login') {
-//        $url = 'wx_menu.php?act=login';
-//        Header("Location:$url");
-//    }
-//}
+$localMenu_file  = DATA_DIR . 'LocalMenu.json'; //本地尚未同步至微信的json数组
+//$wxOption_file   = DATA_DIR . 'wxOption.json';  //微信配置
 
 switch ($act)
 {
@@ -215,11 +162,6 @@ switch ($act)
                 ));
             }
         }
-        break;
-
-    case 'logout':
-        $_SESSION['admin_login'] = false;
-        echo '<script>window.location.href="wx_menu.php?act=login"</script>';
         break;
 }
 
