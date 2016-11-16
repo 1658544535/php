@@ -114,7 +114,7 @@ EOF;
 
         //循环创建sql部分语句
         foreach ($array as $k => $v) {
-            $column_key_sql = $column_key_sql . $k . ",";
+            $column_key_sql = $column_key_sql . $k . ',';
         }
         foreach ($array as $k => $v) {
             $column_val_sql = $column_val_sql . '"' . $v . '"' . ",";
@@ -156,7 +156,7 @@ EOF;
 
     }
 
-    public function getAll($type, $isOne = 'false')
+    public function getAll($type, $isOne = false)
     {
         $table_name = $this->DB_TableName_arr[$type];
         if (!$isOne){

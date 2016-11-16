@@ -24,7 +24,7 @@
                         <div>
                             类型：<select name="Pbutton_type_<?php echo $k+1 ?>" class="js-button-type" onchange="ButtonType(this);">
                                 <option value="">请选择按钮类型</option>
-                                <option value="sub" <?php if (isset($v["sub_button"])) echo "selected";?>>菜单</option>
+                                <option value="sub" <?php if (isset($v["sub_button"]) && !empty($v["sub_button"])) echo "selected";?>>菜单</option>
                                 <?php foreach ($button_type_arr as $key => $value) {  ?>
                                     <option value="<?php echo $key; ?>"  <?php if (!isset($v["sub_button"])) { if ($v["type"] == $key) echo "selected"; } ?>><?php echo $value; ?></option>
                                 <?php } ?>
