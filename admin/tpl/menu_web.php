@@ -11,7 +11,7 @@
 </head>
 <body>
 <div>
-
+    <a href="wx_menu?act=logout">登出</a>
     <form action="wx_menu.php?act=update" method="post" id="wechatMenuForm">
         <ul>
 

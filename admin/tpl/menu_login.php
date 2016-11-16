@@ -9,30 +9,18 @@
 </head>
 <body>
     <div>
-        <form action="wx_menu.php?act=saveOption" method="post">
+        <form action="wx_menu.php?act=login" method="post">
             <table>
                 <tr>
-                    <td> token: </td>
+                    <td> username: </td>
                     <td>
-                        <input type="text" name="token">
+                        <input type="text" name="username">
                     </td>
                 </tr>
                 <tr>
-                    <td> appid: </td>
+                    <td> passwd: </td>
                     <td>
-                        <input type="text" name="appid">
-                    </td>
-                </tr>
-                <tr>
-                    <td> appsecret: </td>
-                    <td>
-                        <input type="text" name="appsecret">
-                    </td>
-                </tr>
-                <tr>
-                    <td> encodingaeskey: </td>
-                    <td>
-                        <input type="text" name="encodingaeskey">
+                        <input type="password" name="passwd">
                     </td>
                 </tr>
             </table>
