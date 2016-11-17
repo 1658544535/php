@@ -109,10 +109,14 @@ EOF;
 
     }
 
-    public function getAll()
+    public function getAll($type='')
     {
-
-        $sql = 'SELECT * FROM ' . $this->table_name;
+        if ($type) {
+            $sql_condition = ' WHERE "event"=' . '"' . $type . '"';
+            $sql = 'SELECT * FROM ' . $this->table_name . $sql_condition;
+        } else {
+            $sql = 'SELECT * FROM ' . $this->table_name;
+        }
 
         $result = $this->query($sql);
         $array = '';
@@ -150,6 +154,14 @@ EOF;
         $sql = 'SELECT * FROM ' . $this->table_name . $sql_condition;
         $result = $this->query($sql)->fetchArray(SQLITE3_ASSOC);
         return $result;
+    }
+
+    /*
+     * 获取指定种类的自定义回复内容
+     */
+    public function getSpecifyData($type)
+    {
+
     }
 
 }

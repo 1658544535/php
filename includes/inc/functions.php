@@ -1404,4 +1404,39 @@ function toOneArray($array)
     print_r($arr);
     return $arr;
 }
+
+//将取出来的数据进行重新整合
+function dataToKeyMap($datas)
+{
+    $arr = array();
+    foreach ($datas as $data) {
+        foreach ($data as $k => $v) {
+            if ($k == 'event') {
+                switch ($v) {
+                    case 'subscribre': //关注事件
+                        $arr['subscribre'][$data['key']] = html_entity_decode($data['content']);
+                        break;
+                    case 'text': //文本事件
+                        //判断是否存在空格分割
+                        if (strpos($data['key'], " ")) {
+                            $key_arr = explode(" ", $data['key']);
+                            foreach ($key_arr as $value) {
+                                $arr['text'][$value] = html_entity_decode($data['content']);
+                            }
+                        } else {
+                            $arr['text'][$data['key']] = html_entity_decode($data['content']);
+                        }
+                        break;
+                    case 'scan': //扫码事件
+                        $arr['scan'][$data['key']] = html_entity_decode($data['content']);
+                        break;
+                    case 'click': //点击事件
+                        $arr['click'][$data['key']] = html_entity_decode($data['content']);
+                        break;
+                }
+            }
+        }
+    }
+    return $arr;
+}
 ?>

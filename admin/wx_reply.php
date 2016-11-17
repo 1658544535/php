@@ -17,8 +17,8 @@ $act = CheckDatas('act','');
 
 $options_arr = array(
     'text'  => '文本',
-    'SCAN'  => '扫码',
-    'CLICK' => '点击',
+    'scan'  => '扫码',
+    'click' => '点击',
 );
 switch ($act)
 {
@@ -121,15 +121,14 @@ switch ($act)
 
     case 'test':
         echo '测试页<hr>';
-        $arrays = $db->getAll('text', true);
-        toOneArray($arrays);
-//        print_r($db->find(array('id'=>1), 'event'));
+        $arrays = $db->getAll();
+        dataToKeyMap($arrays);
         break;
 
     default:
-        $lists  = $db->getAll('text');
+        $lists  = $db->getAll();
         $subscribe_data = current($lists); //默认关注的回复数据
-        array_shift($lists); //默认关注的数据出栈
+        array_shift($lists); //默认关注回复的数据出栈
 
         include_once('tpl/reply_list.php');
         break;
