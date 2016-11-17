@@ -16,10 +16,12 @@ if(!$db) echo $db->lastErrorMsg();
 $act = CheckDatas('act','');
 
 $options_arr = array(
-    'text'  => '文本',
-    'scan'  => '扫码',
-    'click' => '点击',
+    'subscribe' => '关注',
+    'text'       => '文本',
+    'scan'       => '扫码',
+    'click'      => '点击',
 );
+
 switch ($act)
 {
     case 'create':
@@ -136,7 +138,3 @@ switch ($act)
 }
 
 $db->close(); //断开数据库链接
-
-function contentToJSON(){
-
-}
