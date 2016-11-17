@@ -9,8 +9,9 @@
 </head>
 <body>
 
-<a href="auth.php?act=logout">登出</a>
+<a href="index.php">主页</a>
 <a href="wx_menu.php">自定义菜单</a>
+<a href="auth.php?act=logout">登出</a>
 
 <div class="text-reply">
     <table border="1">

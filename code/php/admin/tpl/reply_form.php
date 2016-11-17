@@ -37,6 +37,7 @@
 <?php } else { ?>
     <button type="submit">新建并保存</button>
 <?php }?>
+    <button type="button" onclick="history.go(-1)">返回</button>
 
 </form>
 
@@ -48,7 +49,11 @@
     $('#myForm').ajaxForm({
         success: function (data) {
             data = eval("(" + data + ")");
-            alert(data.info);
+            if (data.status) {
+                history.go(-1);
+            } else {
+                alert(data.info)
+            }
         }
     });
 </script>

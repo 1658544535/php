@@ -51,6 +51,7 @@ switch ($act)
         } else {
             echo json_encode(array('status' => 0, 'info'=>$db->lastErrorMsg()));
         }
+
         break;
 
     case 'edit':
@@ -88,6 +89,8 @@ switch ($act)
                 );
 
                 $result = $db->update($data, 'text', array('id'=>$id));
+
+                if ($result) ajaxReturn(1,'修改成功');
 
                 break;
 
