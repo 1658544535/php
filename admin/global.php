@@ -25,7 +25,6 @@ $act = CheckDatas('act','');
 //登陆判断
 if (empty($_SESSION['admin_login'])) {
     if (!strpos($_SERVER['PHP_SELF'],"auth.php")) {
-        $url = 'auth.php?act=login';
-        Header("Location:$url");
+        Header("Location:auth.php?act=login");
     }
 }

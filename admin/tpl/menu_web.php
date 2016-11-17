@@ -12,8 +12,10 @@
 <body>
 <div>
 
-    <a href="auth.php?act=logout">登出</a>
+    <a href="index.php">主页</a>
     <a href="wx_reply.php">自定义回复</a>
+    <a href="auth.php?act=logout">登出</a>
+
     <form action="wx_menu.php?act=update" method="post" id="wechatMenuForm">
         <ul>
 

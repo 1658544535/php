@@ -14,7 +14,7 @@ switch ($act) {
         if (isset($_POST) && !empty($_POST)) {
             if ($_POST['username'] == $account['username'] && $_POST['passwd'] == $account['passwd']) {
                 $_SESSION['admin_login'] = true;
-                echo '<script>window.history.go(-1)</script>';
+                Header("Location:index.php");
             } else {
                 echo '<script>alert("账号密码错误");</script>';
             }
@@ -23,14 +23,17 @@ switch ($act) {
         break;
     case 'logout':
         $_SESSION['admin_login'] = false;
-        echo '<script>window.location.href="auth.php?act=login"</script>';
+        Header("Location:auth.php?act=login");
+//        echo '<script>window.location.href="auth.php?act=login"</script>';
         break;
     default:
-            include_once ('tpl/menu_login.php');
+        Header("Location:auth.php?act=login");
+//        echo '<script>window.location.href="auth.php?act=login"</script>';
         break;
 }
 
 if (!empty($_SESSION['admin_login'])){
-    echo '<script>window.location.href="wx_menu.php"</script>';
+//    echo '<script>window.location.href="index.php"</script>';
+    Header("Location:index.php");
     exit;
 }
