@@ -16,22 +16,31 @@
 <div class="text-reply">
     <table border="1">
         <tr>
-            <th>关键字</th>
+            <th>类型</th>
+            <th>key值</th>
             <th>回复内容</th>
             <th>操作</th>
+        </tr>
+
+        <tr>
+            <td>subscribe</td>
+            <td>自定义关注回复</td>
+            <td><?php echo $subscribe_data['content']; ?></td>
+            <td><button class="js-edit"   data-id="1" type="button">修改</button></td>
         </tr>
 
         <?php if ($lists) {?>
             <?php foreach ($lists as $reply) { ?>
 
-                <tr>
-                    <td><?php echo $reply['keyword'] ?></td>
-                    <td><?php echo $reply['content'] ?></td>
-                    <td>
-                        <button class="js-edit"   data-id="<?php echo $reply['id']; ?>" type="button">修改</button>
-                        <button class="js-delete" data-id="<?php echo $reply['id']; ?>" type="button">删除</button>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?php echo $reply['event'] ?></td>
+                        <td><?php echo $reply['key'] ?></td>
+                        <td><?php echo $reply['content'] ?></td>
+                        <td>
+                            <button class="js-edit"   data-id="<?php echo $reply['id']; ?>" type="button">修改</button>
+                            <button class="js-delete" data-id="<?php echo $reply['id']; ?>" type="button">删除</button>
+                        </td>
+                    </tr>
 
             <?php } ?>
         <?php } else { ?>
@@ -43,15 +52,7 @@
 </div>
 <a href="wx_reply.php?act=create">新建</a>
 
-<hr>
 
-<div class="event-reply">
-    <form action="wx_reply.php?act=update&type=event" id="subReplyForm" method="post">
-        <p>关注自定义回复：<button type="submit">保存</button></p>
-        <input type="hidden" value="subscribe" name="event_name" readonly>
-        <textarea name="reply_content" id="" cols="30" rows="10"><?php echo $subscribe_data['content']; ?></textarea>
-     </form>
-</div>
 
 </body>
 <script src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
@@ -69,21 +70,15 @@
     $(".js-delete").on('click',function () {
         var id  = $(this).data('id');
         var url = 'wx_reply.php?act=delete&id=' + id;
+        var p = $(this).parent().parent();
         $.getJSON(url,function (data) {
-            alert(data.info);
-        });
-    });
-
-    /* ajax form */
-    $('#subReplyForm').ajaxForm({
-        success: function (data) {
-            data = eval("(" + data + ")");
             if (data.status) {
-                alert(data.info);
+                p.remove();
             } else {
+                alert(data.info);
                 console.log(data);
             }
-        }
+        });
     });
 
 </script>
