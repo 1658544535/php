@@ -1437,7 +1437,6 @@ function dataToKeyMap($datas)
             }
         }
     }
-    print_r($arr);
     return $arr;
 }
 ?>
