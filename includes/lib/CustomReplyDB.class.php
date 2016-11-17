@@ -7,7 +7,7 @@
  */
 class CustomReplyDB extends SQLite3
 {
-    protected $CustomReply_db = DATA_DIR . 'CustomReply.db'; // sqlite数据库文件
+    protected $CustomReply_db; // sqlite数据库文件
     protected $DB_TableName_arr = array
     (
         'text'  => 'CustomTextReply',
@@ -18,6 +18,7 @@ class CustomReplyDB extends SQLite3
 
     function __construct()
     {
+        $this->CustomReply_db = DATA_DIR . 'CustomReply.db';
         //判断数据文件是否存在，不存在则初始化并新建数据库
         if (!file_exists($this->CustomReply_db)){
             $this->open($this->CustomReply_db);
@@ -134,7 +135,6 @@ EOF;
 
     public function delete($id)
     {
-
         $sql = 'DELETE from ' . $this->table_name . ' WHERE id=' .$id;
         $result = $this->exec($sql);
         if ($result) {

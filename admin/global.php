@@ -6,7 +6,7 @@
  * Time: 16:59
  */
 session_start();
-
+header("content-type: text/html; charset=utf-8");
 define('HN1', true);
 define('LIB_ROOT', dirname(__FILE__) . '/../includes/lib/');
 define('APP_INC' , dirname(__FILE__) . '/../includes/inc/');

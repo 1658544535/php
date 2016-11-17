@@ -1413,8 +1413,8 @@ function dataToKeyMap($datas)
         foreach ($data as $k => $v) {
             if ($k == 'event') {
                 switch ($v) {
-                    case 'subscribre': //关注事件
-                        $arr['subscribre'][$data['key']] = html_entity_decode($data['content']);
+                    case 'subscribe': //关注事件
+                        $arr['subscribe'][$data['key']] = html_entity_decode($data['content']);
                         break;
                     case 'text': //文本事件
                         //判断是否存在空格分割
@@ -1437,6 +1437,7 @@ function dataToKeyMap($datas)
             }
         }
     }
+    print_r($arr);
     return $arr;
 }
 ?>
