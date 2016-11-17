@@ -18,16 +18,29 @@
     <div>
         <table>
             <tr>
-                <th>关键字:</th>
+                <th>key值:</th>
                 <th>
-                    <input type="text" name="keyword" placeholder="多个关键字，请用空格隔开" value="<?php if (isset($isEdit)) echo $data['keyword'] ;?>" <?php if (isset($isEdit)) echo 'readonly' ;?>>
+                    <input type="text" name="key" placeholder="多个关键字，请用空格隔开" value="<?php if (isset($isEdit)) echo $data['key'] ;?>" <?php if (isset($isEdit)) echo 'readonly' ;?>>
                 </th>
             </tr>
             <tr>
-                <td>回复内容：</td>
-                <td>
+                <th>事件类型:</th>
+                <th>
+                    <select name="event" placeholder="">
+                        <option value="">请选择自定义回复类型</option>
+                        <?php foreach ($options_arr as $key => $val) { ?>
+                            <option value="<?php echo $key;?>"<?php if (isset($isEdit)) { if ($data['event'] == $key) echo "selected"; } ?>>
+                                <?php echo $val;?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </th>
+            </tr>
+            <tr>
+                <th>回复内容：</th>
+                <th>
                     <textarea name="content" cols="30" rows="10" placeholder="请输入自定义回复的内容"><?php if (isset($isEdit)) echo $data['content'] ;?></textarea>
-                </td>
+                </th>
             </tr>
         </table>
     </div>

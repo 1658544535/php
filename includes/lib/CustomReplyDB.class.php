@@ -7,21 +7,21 @@
  */
 class CustomReplyDB extends SQLite3
 {
-    private $CustomReply_db = DATA_DIR . 'CustomReply.db'; // sqlite数据库文件
-    private $DB_TableName_arr = array
+    protected $CustomReply_db = DATA_DIR . 'CustomReply.db'; // sqlite数据库文件
+    protected $DB_TableName_arr = array
     (
         'text'  => 'CustomTextReply',
         'image' => 'CustomImgReply',
         'event' => 'CustomEventReply',
     );
+    protected $table_name = 'CustomReply';
 
     function __construct()
     {
-        //判断数据文件是否存在，不存在则进行创建
-        if (!file_exists($this->CustomReply_db)){ //初始化新建
+        //判断数据文件是否存在，不存在则初始化并新建数据库
+        if (!file_exists($this->CustomReply_db)){
             $this->open($this->CustomReply_db);
-            $this->createTextReplyDB();
-            $this->createEventReplyDB();
+            $this->initializeDB();
         } else {
             $this->open($this->CustomReply_db);
         }
@@ -29,88 +29,42 @@ class CustomReplyDB extends SQLite3
 
     /*
      * 初始化创建数据表
-     * 目前只有text event
      */
-    private function createTextReplyDB()
+    private function initializeDB()
     {
         $sql = <<<EOF
---
--- 由SQLiteStudio v3.1.1 产生的文件 周一 十一月 14 17:06:09 2016
+        --
+-- 由SQLiteStudio v3.1.1 产生的文件 周四 十一月 17 14:43:40 2016
 --
 -- 文本编码：System
 --
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
-
--- 表：CustomTextReply
-CREATE TABLE CustomTextReply (
-    id          INTEGER   PRIMARY KEY AUTOINCREMENT
-                          NOT NULL,
-    keyword     CHAR (80) NOT NULL,
-    content     TEXT,
-    create_time INT       NOT NULL
-);
-
-
-COMMIT TRANSACTION;
-PRAGMA foreign_keys = on;
-
-EOF;
-        $this->exec($sql);
-    }
-
-    private function createEventReplyDB()
-    {
-        $sql = <<<EOF
---
--- 由SQLiteStudio v3.1.1 产生的文件 周一 十一月 14 17:05:49 2016
---
--- 文本编码：System
---
-PRAGMA foreign_keys = off;
-BEGIN TRANSACTION;
-
--- 表：CustomEventReply
-CREATE TABLE CustomEventReply (
-    id          INTEGER      PRIMARY KEY AUTOINCREMENT
-                             NOT NULL,
+-- 表：CustomReply
+CREATE TABLE CustomReply (
+    id          INTEGER      PRIMARY KEY AUTOINCREMENT,
     event       VARCHAR (60) NOT NULL,
-    content     TEXT,
+    [key]       VARCHAR (60) NOT NULL,
+    content     TEXT         NOT NULL,
     create_time INT          NOT NULL
 );
-
-
+-- 插入默认的订阅回复
+INSERT INTO CustomReply (id,event,[key],content,create_time) VALUES (1,'subscribr','sub','欢迎关注我的公众号',1479282098); 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;
+
 EOF;
         $this->exec($sql);
     }
 
-    /*
-     * 判断自动回复表中是否存在相同关键字
-     * $type 是接收到的关键字类型
-     * 若有存在则返回
-     */
-//    public function checkExistKeyword($condition_arr, $type)
-//    {
-//        $sql_condition = createConditionSql($condition_arr); //查询条件部分sql
-//        $table_name = $this->DB_TableName_arr[$type];
-//        $sql = 'SELECT * FROM ' . $table_name . $sql_condition;
-//        $result = $this->query($sql);
-//        var_dump($result);
-//        if ($result) {
-//            return array('status'=>1,'info'=>'已存在相同关键字');
-//        }
-//    }
 
-    public function insert($array, $type)
+    public function insert($array)
     {
         $lastArr = getLastArr($array); //获得最后的键和值
         array_pop($array); //最后的值出栈
 
         $column_val_sql = '';
         $column_key_sql = '';
-        $table_name = $this->DB_TableName_arr[$type];
 
         //循环创建sql部分语句
         foreach ($array as $k => $v) {
@@ -123,7 +77,7 @@ EOF;
         //sql 语句组装
         $column_key_sql = $column_key_sql . $lastArr['key'];
         $column_val_sql = $column_val_sql . '"' . $lastArr['val']. '"';
-        $sql = 'INSERT INTO ' . $table_name . ' ('. $column_key_sql .') values ('. $column_val_sql .')';
+        $sql = 'INSERT INTO ' . $this->table_name . ' ('. $column_key_sql .') values ('. $column_val_sql .')';
 
         if ($this->exec($sql)) {
             return array('status'=>1,'info'=>'insert success!');
@@ -132,10 +86,9 @@ EOF;
         }
     }
 
-    public function update($array, $type, $condition_arr = '')
+    public function update($array, $condition_arr = '')
     {
         $sql_condition = createConditionSql($condition_arr); //查询条件部分sql
-        $table_name = $this->DB_TableName_arr[$type];
         $lastArr = getLastArr($array);
         array_pop($array); //最后的值出栈
 
@@ -145,7 +98,7 @@ EOF;
         }
         $sql_part = $sql_part . $lastArr["key"] . '=' . '"' . $lastArr["val"] . '"';
 
-        $sql = 'UPDATE '. $table_name . ' SET ' . $sql_part . $sql_condition;
+        $sql = 'UPDATE '. $this->table_name . ' SET ' . $sql_part . $sql_condition;
         $result = $this->exec($sql);
 
         if ($result) {
@@ -156,14 +109,10 @@ EOF;
 
     }
 
-    public function getAll($type, $isOne = false)
+    public function getAll()
     {
-        $table_name = $this->DB_TableName_arr[$type];
-        if (!$isOne){
-            $sql = 'SELECT * FROM ' . $table_name;
-        } else {
-            $sql = 'SELECT keyword,content FROM ' . $table_name;
-        }
+
+        $sql = 'SELECT * FROM ' . $this->table_name;
 
         $result = $this->query($sql);
         $array = '';
@@ -179,10 +128,10 @@ EOF;
         return $array;
     }
 
-    public function delete($id, $type)
+    public function delete($id)
     {
-        $table_name = $this->DB_TableName_arr[$type];
-        $sql = 'DELETE from ' . $table_name . ' WHERE id=' .$id;
+
+        $sql = 'DELETE from ' . $this->table_name . ' WHERE id=' .$id;
         $result = $this->exec($sql);
         if ($result) {
             return array('status'=>1,'info'=>'操作成功');
@@ -195,11 +144,10 @@ EOF;
      * 搜索方法 传入数组
      * $array = array('要搜索的字段名' => '要搜索的字段的值');
      */
-    public function find($condition_arr, $type)
+    public function find($condition_arr)
     {
         $sql_condition = createConditionSql($condition_arr); //查询条件部分sql
-        $table_name = $this->DB_TableName_arr[$type];
-        $sql = 'SELECT * FROM ' . $table_name . $sql_condition;
+        $sql = 'SELECT * FROM ' . $this->table_name . $sql_condition;
         $result = $this->query($sql)->fetchArray(SQLITE3_ASSOC);
         return $result;
     }
