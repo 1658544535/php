@@ -147,6 +147,17 @@ EOF;
         return $result;
     }
 
+    public function like($array, $type='')
+    {
+        foreach ($array as $key=>$val){
+            $sql = 'SELECT * FROM ' . $this->table_name . ' WHERE ' . $key . ' like ' . '"% ' . $val . ' %"' ;
+        }
+        if ($type) $sql.= ' AND event=' . '"' . $type . '"';
+
+        $result = $this->query($sql)->fetchArray(SQLITE3_ASSOC);
+
+        return $result;
+    }
     /*
      * 获取指定种类的自定义回复内容
      */
