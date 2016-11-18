@@ -20,7 +20,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             
             <section class="index-download">
                 <span class="close"></span>
-                <a class="link" href="下载页面地址"></a>
+                <a class="link" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.ruiyu.taozhuma"></a>
             </section>
 
             <section class="swiper-container index-class">
