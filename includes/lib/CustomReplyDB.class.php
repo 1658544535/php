@@ -112,12 +112,8 @@ EOF;
 
     public function getAll($type='')
     {
-        if ($type) {
-            $sql_condition = ' WHERE "event"=' . '"' . $type . '"';
-            $sql = 'SELECT * FROM ' . $this->table_name . $sql_condition;
-        } else {
-            $sql = 'SELECT * FROM ' . $this->table_name;
-        }
+        $sql = 'SELECT * FROM ' . $this->table_name;
+        if ($type) $sql = $sql . ' WHERE "event"=' . '"' . $type . '"';;
 
         $result = $this->query($sql);
         $array = array();
