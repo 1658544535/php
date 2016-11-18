@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>微信自定义回复</title>
+    <style>
+        table{
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
 <?php if (isset($isEdit)) {?>
@@ -49,7 +54,7 @@
             <tr>
                 <th>回复内容：</th>
                 <th>
-                    <textarea name="content" cols="30" rows="10" placeholder="请输入自定义回复的内容"><?php if (isset($isEdit)) echo $data['content'] ;?></textarea>
+                    <textarea name="content" cols="80" rows="5" placeholder="请输入自定义回复的内容"><?php if (isset($isEdit)) echo $data['content'] ;?></textarea>
                 </th>
             </tr>
         </table>
