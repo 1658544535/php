@@ -25,7 +25,7 @@
 	var desc   = "<?php echo $fx['content'];?>";
 	wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 </script>
-
+</head>
 <body>
     <div class="page-group" id="page-deta">
         <div id="page-nav-bar" class="page page-current">
