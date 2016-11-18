@@ -87,7 +87,7 @@ EOF;
         }
     }
 
-    public function update($array, $condition_arr = '')
+    public function update($array, $condition_arr = array())
     {
         $sql_condition = createConditionSql($condition_arr); //查询条件部分sql
         $lastArr = getLastArr($array);
@@ -147,12 +147,13 @@ EOF;
         return $result;
     }
 
-    public function like($array, $type='')
+    public function like($array, $type='', $id='')
     {
         foreach ($array as $key=>$val){
             $sql = 'SELECT * FROM ' . $this->table_name . ' WHERE ' . $key . ' like ' . '"% ' . $val . ' %"' ;
         }
         if ($type) $sql.= ' AND event=' . '"' . $type . '"';
+        if ($id)   $sql.= ' AND id!=' . '"' . $id . '"';
 
         $result = $this->query($sql)->fetchArray(SQLITE3_ASSOC);
 
