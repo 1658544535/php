@@ -28,6 +28,20 @@
 		            var data = data["data"]["data"],
 		                degree = 1,
 		                pushTxt = '';
+
+                    //打乱数组数据
+                    var arrLen = data.length,
+                        keyArr = [];
+                    for(var i=0; i<arrLen; i++){
+                        keyArr.push(i);
+                    };
+                    keyArr.sort(function(){ return 0.5 - Math.random()});
+                    var newDataArr = [];
+                    for(var j=0; j<keyArr.length; j++){
+                        newDataArr.push(data[keyArr[j]]);
+                    };
+                    data = newDataArr;
+                    
 		            fn_timer();
 		            var timer = setInterval(fn_timer, 10000);
 		            function fn_timer(){
