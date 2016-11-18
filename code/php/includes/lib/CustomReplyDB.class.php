@@ -120,15 +120,10 @@ EOF;
         }
 
         $result = $this->query($sql);
-        $array = '';
+        $array = array();
         //处理sqlite数据
-        while ($result->fetchArray(SQLITE3_ASSOC)){
-            $arrays[] = $result;
-        }
-        if (!empty($arrays)){
-            foreach ($arrays as $k => $v) {
-                $array[] = $v->fetchArray(SQLITE3_ASSOC);
-            }
+        while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+            $array[] = $row;
         }
         return $array;
     }
