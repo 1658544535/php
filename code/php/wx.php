@@ -30,8 +30,6 @@ $wxOption = array(
 
 include_once(LIB_ROOT.'/Weixin.class.php');
 include_once(LIB_ROOT.'/weixin/errCode.php');
-include_once(LIB_ROOT . 'CustomReplyDB.class.php');
-
 $objWX = new Weixin($wxOption);
 
 $objWX->valid();
@@ -70,11 +68,6 @@ switch($wxReqType){
 }
 //通过关键字获取回复消息
 function __getReplyByKeyword($keyword){
-    $db = new CustomReplyDB();
-
-    $data = $db->getAll(); //获取数据
-    $array = dataToKeyMap($data); //装换成一维数组
-
 	$_dir = LOG_INC.'keyword_reply/';
 	!file_exists($_dir) && mkdir($_dir, 0777, true);
 
