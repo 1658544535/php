@@ -17,6 +17,11 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             </header> -->
 
             <?php include_once('footer_nav_web.php');?>
+            
+            <section class="index-download">
+                <span class="close"></span>
+                <a class="link" href="下载页面地址"></a>
+            </section>
 
             <section class="swiper-container index-class">
                 <div class="swiper-wrapper">
@@ -27,7 +32,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 </div>
             </section>
 
-            <div class="content native-scroll" style="top:2.0rem;">
+            <div class="content native-scroll" style="top:4.5em;">
 
                 <div class="swiper-container index-page" data-href="api_action.php?act=index">
                     <div class="swiper-wrapper">

@@ -246,7 +246,7 @@
 }
 .message-push {
   position: fixed;
-  top: 2.5rem;
+  top: 2.7rem;
   left: 0.5rem;
   max-width: 90%;
   padding-right: 0.3rem;
@@ -277,6 +277,26 @@
   display: inline-block;
   height: 1.2rem;
   vertical-align: middle;
+}
+.index-download {
+  position: relative;
+  padding-bottom: 13.366%;
+  background: url(../images/download.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.index-download .close {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 11%;
+  height: 100%;
+}
+.index-download .link {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 89%;
+  height: 100%;
 }
 /*首页分类导航*/
 .index-class.swiper-container {
@@ -3595,8 +3615,6 @@
   font-size: 0.95rem;
   color: #1c1c1c;
   overflow-y: auto;
-  -webkit-transform: translate(0, 0);
-  transform: translate(0, 0);
 }
 .popup-sku > div .info {
   padding: 0.5rem 0;
@@ -3721,7 +3739,7 @@
   background: #979797;
 }
 .popup-sku > div .close-popup {
-  position: fixed;
+  position: absolute;
   top: 0.3rem;
   right: 0.5rem;
   width: 1.2rem;
