@@ -95,6 +95,8 @@ switch ($act)
             'content' => htmlentities($_POST['content'],ENT_NOQUOTES,"utf-8"),
         );
 
+        checkExistKey(array('key'=>trim($_POST['key']), 'event'=>$_POST['event']), $id);
+
         if ($db->update($data, array('id'=>$id))) ajaxReturn(1,'修改成功');
 
         break;
@@ -113,13 +115,7 @@ switch ($act)
 
     case 'test':
         echo '测试页<hr>';
-        checkExistKey(array('key'=>1,'event'=>'text'));
 
-
-        die;
-        $data = $db->find(array('key'=>1,'event'=>'text','id'=>21));
-        var_dump($data);die;
-        dataToKeyMap($arrays);
         break;
 
     default:
