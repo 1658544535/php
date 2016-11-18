@@ -48,7 +48,7 @@ switch ($act)
 
         $data = array(
             'event'       => $_POST['event'], //事件类型
-            'key'         => $_POST['key'], //事件Key值
+            'key'         => ' ' . $_POST['key'] . ' ', //事件Key值
             'content'     => htmlentities($_POST['content'],ENT_NOQUOTES,"utf-8"),
             'create_time' => time(),
         );
@@ -91,7 +91,7 @@ switch ($act)
 
         $data = array(
             'key'     => $_POST['key'],
-            'event'   => $_POST['event'],
+            'event'   => ' ' . $_POST['event'] . ' ',
             'content' => htmlentities($_POST['content'],ENT_NOQUOTES,"utf-8"),
         );
 
@@ -115,7 +115,10 @@ switch ($act)
 
     case 'test':
         echo '测试页<hr>';
+//        $lists  = $db->getAll();
+//        dataToKeyMap($lists);
 
+        $db->like(array('key'=>123));
         break;
 
     default:
