@@ -16,9 +16,9 @@ if(!$db) echo $db->lastErrorMsg();
 $act = CheckDatas('act','');
 
 $options_arr = array(
-    'subscribe' => '关注',
     'text'       => '文本',
     'scan'       => '扫码',
+    'subscribe'  => '扫码关注',
     'click'      => '点击',
 );
 
@@ -49,17 +49,17 @@ switch ($act)
             if (strpos($_POST['key'], " ")) {
                 $key_arr = explode($_POST['key'], " ");
                 foreach ($key_arr as $key) {
-                    if ($db->find(array('key'=>$key))) ajaxReturn(0,'存在相同关键字'. $key . '请查正后重试');
+                    if ($db->find(array('key'=>$key))) ajaxReturn(0,'存在相同关键字 '. $key . ' ,请查正后重试');
                 }
             } else {
-                if ($db->find(array('key'=>$_POST['key']))) ajaxReturn(0,'存在相同关键字'. $_POST['key'] . '请查正后重试');
+                if ($db->find(array('key'=>$_POST['key']))) ajaxReturn(0,'存在相同关键字 '. $_POST['key'] . ' ,请查正后重试');
             }
         }
 
         $data = array(
             'event'       => $_POST['event'], //事件类型
             'key'         => $_POST['key'], //事件Key值
-            'content'     => htmlentities($_POST['content']),
+            'content'     => htmlentities($_POST['content'],ENT_NOQUOTES,"utf-8"),
             'create_time' => time(),
         );
 
@@ -102,7 +102,7 @@ switch ($act)
         $data = array(
             'key'     => $_POST['key'],
             'event'   => $_POST['event'],
-            'content' => htmlentities($_POST['content']),
+            'content' => htmlentities($_POST['content'],ENT_NOQUOTES,"utf-8"),
         );
 
         if ($db->update($data, array('id'=>$id))) ajaxReturn(1,'修改成功');
