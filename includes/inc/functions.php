@@ -1467,26 +1467,26 @@ function dataToKeyMap($datas)
 }
 
 /* 检查是否有重复键值 */
-function checkExistKey($array){
-    $db   = new CustomReplyDB();
+function checkExistKey($array, $id = ''){
+    $db    = new CustomReplyDB();
     $datas = $db->getAll($array['event']);
+
     foreach ($datas as $data) {
-        $existKeyArr = explode(" ", $data['key']);
-        if (strpos($array['key'], " ")) {
-            $keyArr = explode(" ", $array['key']); //保存的字符串数组
-            foreach ($keyArr as $item) {
-                 if (in_array($item, $existKeyArr)) {
-                     ajaxReturn(0,'存在相同关键字 '. $item . ' ,请查正后重试');
-                 }
-            }
+        if ($id == $data['id']) {
+            unset($data);
         } else {
-            if (in_array($array['key'], $existKeyArr)) {
-                ajaxReturn(0,'存在相同关键字 '. $array['key'] . ' ,请查正后重试');
-                echo '1';
-                return true;
+            $existKeyArr = explode(" ", $data['key']); //数据已经存在的键值字符串数组
+            if (strpos($array['key'], " ")) {
+                $keyArr = explode(" ", $array['key']); //保存的字符串数组
+                foreach ($keyArr as $item) {
+                    if (in_array($item, $existKeyArr)) ajaxReturn(0,'存在相同关键字 '. $item . ' ,请查正后重试');
+                }
+            } else {
+                if (in_array($array['key'], $existKeyArr)) ajaxReturn(0,'存在相同关键字 '. $array['key'] . ' ,请查正后重试');
             }
         }
     }
+
     return false;
 }
 ?>
