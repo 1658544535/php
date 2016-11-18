@@ -44,17 +44,7 @@ switch ($act)
         }
 //        $content_JSON = contentToJSON();
 
-        //如果类型为文本且key值为多个关键字，判断是否存在相同关键字
-        if ($_POST['event'] == 'text') {
-            if (strpos($_POST['key'], " ")) {
-                $key_arr = explode($_POST['key'], " ");
-                foreach ($key_arr as $key) {
-                    if ($db->find(array('key'=>$key))) ajaxReturn(0,'存在相同关键字 '. $key . ' ,请查正后重试');
-                }
-            } else {
-                if ($db->find(array('key'=>$_POST['key']))) ajaxReturn(0,'存在相同关键字 '. $_POST['key'] . ' ,请查正后重试');
-            }
-        }
+        checkExistKey(array('key'=>trim($_POST['key']), 'event'=>$_POST['event']));//判断是否存在相同关键字
 
         $data = array(
             'event'       => $_POST['event'], //事件类型
@@ -123,7 +113,12 @@ switch ($act)
 
     case 'test':
         echo '测试页<hr>';
-        $arrays = $db->getAll();
+        checkExistKey(array('key'=>1,'event'=>'text'));
+
+
+        die;
+        $data = $db->find(array('key'=>1,'event'=>'text','id'=>21));
+        var_dump($data);die;
         dataToKeyMap($arrays);
         break;
 
