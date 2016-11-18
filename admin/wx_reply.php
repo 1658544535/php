@@ -47,8 +47,8 @@ switch ($act)
         checkExistKey(array('key'=>trim($_POST['key']), 'event'=>$_POST['event']));//判断是否存在相同关键字
 
         $data = array(
+            'key'         => ' ' . trim($_POST['key']) . ' ', //事件Key值
             'event'       => $_POST['event'], //事件类型
-            'key'         => ' ' . $_POST['key'] . ' ', //事件Key值
             'content'     => htmlentities($_POST['content'],ENT_NOQUOTES,"utf-8"),
             'create_time' => time(),
         );
@@ -90,8 +90,8 @@ switch ($act)
         if (!$_POST['key'])   ajaxReturn(0,'key值不能为空');
 
         $data = array(
-            'key'     => $_POST['key'],
-            'event'   => ' ' . $_POST['event'] . ' ',
+            'key'     => ' ' . trim($_POST['key']) . ' ',
+            'event'   => $_POST['event'],
             'content' => htmlentities($_POST['content'],ENT_NOQUOTES,"utf-8"),
         );
 
@@ -118,7 +118,7 @@ switch ($act)
 //        $lists  = $db->getAll();
 //        dataToKeyMap($lists);
 
-        $db->like(array('key'=>123));
+        $db->like(array('key'=>123),'text',1);
         break;
 
     default:
