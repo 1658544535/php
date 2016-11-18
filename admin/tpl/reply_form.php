@@ -69,8 +69,7 @@
         <ul>
             <li>文本 <br>
                 key值填入关键字（唯一，不可重复。可存在多个关键字，关键字之间用空格隔开。） <br>
-                当微信端收到的事件类型为文本时的自动回复。 <br>
-                匹配相对应的关键字，回复相对应的文本内容。</li>
+            </li>
             <li>扫码 <br>
                 key值填入 qrcodesenceID（唯一，不可重复。） <br>
                 当用户已经关注公众号，扫描相关二维码的时候 <br>
@@ -83,6 +82,14 @@
                 当用户点击相对应的按钮时回复相对键值的回复内容。</li>
         </ul>
     </div>
+
+    <hr>
+
+    <h2>链接说明：</h2>
+    <p>添加链接： &lt;a href=&quot;链接地址&quot;&gt;显示的文字&lt;/a&gt;</p>
+    <p>首页: http://weixin.pindegood.com </p>
+    <p>团免券激活领取: http://weixin.pindegood.com/free.php?id=团免券链接id</p>
+    <p>优惠券领取: http://weixin.pindegood.com/coupon_action.php?linkid=链接id&aid=活动id</p>
 
 </body>
 
