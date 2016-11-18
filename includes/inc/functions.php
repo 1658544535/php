@@ -1323,6 +1323,14 @@ function getWechatMenuData($OptionWX, $type = '') {
     }
     return $result;
 }
+/*
+ * 获取传过来的数组的开始的键值
+ */
+function getStartArr($array){
+    $key = current(array_keys($array));
+    $val = current(array_values($array));
+    return array('key' => $key, 'val'=>$val);
+}
 
 /*
  * 获取传过来的数组的最后的键值
@@ -1342,8 +1350,26 @@ function createConditionSql($array){
     if (!is_array($array)) {
         return false;
     }
-    foreach ($array as $k => $v) {
-        $sql_condition = ' WHERE ' . $k . '=' . '"' .  $v . '"';
+
+    if (count($array)>1) {
+
+        $start = getStartArr($array);
+        $last  = getLastArr($array);
+        array_shift($array);
+        array_pop($array);
+
+        $sql_condition = ' WHERE ' . $start['key'] . '=' . '"' . $start['val'] . '" AND ' ;
+        foreach ($array as $k => $v) {
+            $sql_condition = $sql_condition . $k . '=' . '"' .  $v . '" AND ';
+        }
+        $sql_condition = $sql_condition . $last['key'] . '=' . '"' .  $last['val'] . '"' ;
+
+    } else {
+
+        foreach ($array as $k => $v) {
+            $sql_condition = ' WHERE ' . $k . '=' . '"' .  $v . '"';
+        }
+
     }
     return $sql_condition;
 }
@@ -1438,5 +1464,29 @@ function dataToKeyMap($datas)
         }
     }
     return $arr;
+}
+
+/* 检查是否有重复键值 */
+function checkExistKey($array){
+    $db   = new CustomReplyDB();
+    $datas = $db->getAll($array['event']);
+    foreach ($datas as $data) {
+        $existKeyArr = explode(" ", $data['key']);
+        if (strpos($array['key'], " ")) {
+            $keyArr = explode(" ", $array['key']); //保存的字符串数组
+            foreach ($keyArr as $item) {
+                 if (in_array($item, $existKeyArr)) {
+                     ajaxReturn(0,'存在相同关键字 '. $item . ' ,请查正后重试');
+                 }
+            }
+        } else {
+            if (in_array($array['key'], $existKeyArr)) {
+                ajaxReturn(0,'存在相同关键字 '. $array['key'] . ' ,请查正后重试');
+                echo '1';
+                return true;
+            }
+        }
+    }
+    return false;
 }
 ?>
