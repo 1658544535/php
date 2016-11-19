@@ -37,12 +37,21 @@
                     </th>
                 </tr>
             <?php } ?>
-
+            <tr>
+                <th>回复类型：</th>
+                <th>
+                    <select name="replyType" onchange="changeReplyType(this)">
+                        <option value="">请选择自定义回复类型</option>
+                        <option value="text">文本回复</option>
+                        <option value="news">图文回复</option>
+                    </select>
+                </th>
+            </tr>
             <tr style="<?php if (isset($edit_id) && $edit_id == 1) echo 'display:none;'; ?>">
                 <th>事件类型:</th>
                 <th>
                     <select name="event" placeholder="">
-                        <option value="">请选择自定义回复类型</option>
+                        <option value="">请选择触发事件类型</option>
                         <?php foreach ($options_arr as $key => $val) { ?>
                             <option value="<?php echo $key;?>"<?php if (isset($isEdit)) { if ($data['event'] == $key) echo "selected"; } ?>>
                                 <?php echo $val;?>
@@ -51,13 +60,41 @@
                     </select>
                 </th>
             </tr>
-            <tr>
+
+        </table>
+
+        <table class="js-text" style="display: none;">
+            <tr class="js-text">
                 <th>回复内容：</th>
                 <th>
-                    <textarea name="content" cols="80" rows="5" placeholder="请输入自定义回复的内容"><?php if (isset($isEdit)) echo $data['content'] ;?></textarea>
+                    <textarea class="js-text-input" name="content" cols="80" rows="5" placeholder="请输入自定义回复的内容"><?php if (isset($isEdit)) echo $data['content'] ;?></textarea>
                 </th>
             </tr>
         </table>
+
+        <table class="js-news" style="display: none;">
+            <tr class="js-news">
+                <th>标题：</th>
+                <th><input class="js-news-input" type="text" name="title[]"></th>
+            </tr>
+
+            <tr>
+                <th>描述：</th>
+                <th><input class="js-news-input" type="text" name="desc[]"></th>
+            </tr>
+
+            <tr>
+                <th>链接：</th>
+                <th><input class="js-news-input" type="text" name="url[]"></th>
+            </tr>
+
+            <tr>
+                <th>图片链接：</th>
+                <th><input class="js-news-input" type="text" name="picurl[]"></th>
+            </tr>
+        </table>
+
+        <a href="javascript:" class="js-news js-news-input" style="display: none;" onclick="addNewsInput(this)">添加</a>
     </div>
 
     <?php if (isset($isEdit)) {?>
@@ -111,6 +148,27 @@
             }
         }
     });
+    
+    function changeReplyType(_this) {
+        var type = $(_this).val();
+        if (type == 'text') {
+            $('.js-news').hide();
+            $('.js-news-input').attr('disabled', true);
+            $('.js-text').show();
+            $('.js-text-input').attr('disabled', false);
+        }
+        if (type == 'news'){
+            $('.js-text').hide();
+            $('.js-text-input').attr('disabled', true);
+            $('.js-news').show();
+            $('.js-news-input').attr('disabled', false);
+        }
+    }
+
+    function addNewsInput(_this) {
+        var html = '<hr><table class="js-news" style="display: none;"><tr class="js-news"><th>标题：</th><th><input class="js-news-input" type="text" name="title[]"></th> </tr> <tr> <th>描述：</th> <th><input class="js-news-input" type="text" name="desc[]"></th> </tr> <tr> <th>链接：</th> <th><input class="js-news-input" type="text" name="url[]"></th></tr><tr><th>图片链接：</th> <th><input class="js-news-input" type="text" name="picurl[]"></th></tr></table>';
+        $(_this).before(html);
+    }
 </script>
 </html>
 
