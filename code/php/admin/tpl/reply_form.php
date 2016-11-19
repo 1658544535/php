@@ -94,7 +94,7 @@
             </tr>
         </table>
 
-        <a href="javascript:" class="js-news js-news-input" style="display: none;" onclick="addNewsInput(this)">添加</a>
+        <a href="javascript:" class="js-news js-news-input js-news-add" style="display: none;" onclick="addNewsInput(this)">添加</a>
     </div>
 
     <?php if (isset($isEdit)) {?>
@@ -161,12 +161,18 @@
             $('.js-text').hide();
             $('.js-text-input').attr('disabled', true);
             $('.js-news').show();
+            if($("table.js-news").length>7) {
+                $(".js-news-add").hide();
+            }
             $('.js-news-input').attr('disabled', false);
         }
     }
 
     function addNewsInput(_this) {
-        var html = '<hr><table class="js-news" style="display: none;"><tr class="js-news"><th>标题：</th><th><input class="js-news-input" type="text" name="title[]"></th> </tr> <tr> <th>描述：</th> <th><input class="js-news-input" type="text" name="desc[]"></th> </tr> <tr> <th>链接：</th> <th><input class="js-news-input" type="text" name="url[]"></th></tr><tr><th>图片链接：</th> <th><input class="js-news-input" type="text" name="picurl[]"></th></tr></table>';
+        if($("table.js-news").length>=7) {
+            $(".js-news-add").hide();
+        }
+        var html = '<hr class="js-news"><table class="js-news"><tr class="js-news"><th>标题：</th><th><input class="js-news-input" type="text" name="title[]"></th> </tr> <tr> <th>描述：</th> <th><input class="js-news-input" type="text" name="desc[]"></th> </tr> <tr> <th>链接：</th> <th><input class="js-news-input" type="text" name="url[]"></th></tr><tr><th>图片链接：</th> <th><input class="js-news-input" type="text" name="picurl[]"></th></tr></table>';
         $(_this).before(html);
     }
 </script>
