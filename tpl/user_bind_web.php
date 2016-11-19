@@ -15,10 +15,8 @@
     <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/app.min.js?v=<?php echo SOURCE_VERSOIN;?>' charset='utf-8'></script>
-
-<script src="http://static.geetest.com/static/tools/gt.js"></script>
-<?php include_once('wxshare_web.php');?>
-
+    <script src="http://static.geetest.com/static/tools/gt.js"></script>
+    <?php include_once('wxshare_web.php');?>
 </head>
 <body>
     <div class="page-group" id="page-login">
