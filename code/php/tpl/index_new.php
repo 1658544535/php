@@ -17,22 +17,23 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             </header> -->
 
             <?php include_once('footer_nav_web.php');?>
+
+            <div class="content native-scroll">
             
-            <section class="index-download">
-                <span class="close"></span>
-                <a class="link" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.ruiyu.taozhuma"></a>
-            </section>
+                <section class="index-download">
+                    <span class="close"></span>
+                    <a class="link" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.ruiyu.taozhuma"></a>
+                </section>
 
-            <section class="swiper-container index-class">
-                <div class="swiper-wrapper">
-                    <a class="swiper-slide active" data-id="0">首页</a>
-                    <?php foreach($cates as $_cate){?>
-	                    <a class="swiper-slide" data-id="<?php echo $_cate['id'];?>"><?php echo $_cate['name'];?></a>
-                    <?php }?>           
-                </div>
-            </section>
-
-            <div class="content native-scroll" style="top:4.5em;">
+                <section class="swiper-container index-class">
+                    <div class="swiper-wrapper">
+                        <a class="swiper-slide active" data-id="0">首页</a>
+                        <?php foreach($cates as $_cate){?>
+                            <a class="swiper-slide" data-id="<?php echo $_cate['id'];?>"><?php echo $_cate['name'];?></a>
+                        <?php }?>           
+                    </div>
+                </section>
+                <div class="index-class-placeholder"></div>
 
                 <div class="swiper-container index-page" data-href="api_action.php?act=index">
                     <div class="swiper-wrapper">
