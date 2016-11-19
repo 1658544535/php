@@ -7,10 +7,12 @@
  */
 session_start();
 header("content-type: text/html; charset=utf-8");
+date_default_timezone_set('Asia/Shanghai');
 define('HN1', true);
-define('LIB_ROOT', dirname(__FILE__) . '/../includes/lib/');
-define('APP_INC' , dirname(__FILE__) . '/../includes/inc/');
-define('DATA_DIR', dirname(__FILE__) . '/../data/wx/'); //数据保存的位置
+define('LIB_ROOT'  , dirname(__FILE__) . '/../includes/lib/');
+define('APP_INC'   , dirname(__FILE__) . '/../includes/inc/');
+define('WX_UPLOAD' , dirname(__FILE__) . '/../upfiles/wx/'); //微信上传位置
+define('DATA_DIR'  , dirname(__FILE__) . '/../data/wx/'); //微信数据保存的位置
 define('USER_TOKEN', 'HAHAHA'); //自定义认证token
 
 $isTest = isset($isTest) ? $isTest : '';
