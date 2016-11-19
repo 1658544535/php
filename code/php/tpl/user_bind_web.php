@@ -4,17 +4,10 @@
 <body>
     <div class="page-group" id="page-login">
         <div id="page-nav-bar" class="page page-current bgWhite">
-            <header class="bar bar-nav bar-nav-login">
-                <a class="button button-link button-nav pull-left back" href="javascript:history.back(-1);">
-                    <span class="icon icon-back"></span>
-                </a>
-                <!-- <h1 class="title">手机登录</h1> -->
-            </header>
 
             <div class="content">
 				<section class="login-header">
-					<h1>登录</h1>
-					<p>请确保你的手机畅通，用于接收验证码短信</p>
+					<a href="javascript:history.back(-1);" class="close"></a>
 				</section>
 
                 <form action="user_binding" method="post" onsubmit="return tgSubmit()">
@@ -28,7 +21,7 @@
                             <li>
                                 <!-- <i class="icon icon-code"></i> -->
                                 <div class="input-controll"><input type="tel" name="code" id="code" class="txt" placeholder="验证码" /></div>
-                                <a href="javascript:;" class="btn" id="JS-vcodebtn" onclick="show_captcha()">发送验证码</a>
+                                <a href="javascript:;" class="btn" id="JS-vcodebtn" onclick="show_captcha()">获取验证码</a>
 								<span id='tip' class="btn btn-gray">&nbsp;&nbsp;<span id="time">0</span>&nbsp;秒后重发</span>
                             </li>
                         </ul>
