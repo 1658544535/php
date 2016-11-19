@@ -1,4 +1,4 @@
-<?php include_once('header_new_web.php');?>
+<?php include_once('header_web.php');?>
 <body>
     <div class="page-group" id="page-myLottery">
         <div id="page-nav-bar" class="page page-current">

@@ -1,4 +1,4 @@
-<?php include_once('header_web.php');?>
+<?php include_once('header_notice_web.php');?>
 <?php include_once('wxshare_web.php');?>
 <style type="text/css">
 .cut-sel{display:block; width: 100%; padding:0.2rem; font-size: .6rem; color: #666; line-height: 1.3rem; border: 1px solid #c9c9c9; border-radius:0.2rem; margin-bottom:0.2rem;}

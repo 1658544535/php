@@ -1,4 +1,4 @@
-<?php include_once('header_web.php');?>
+<?php include_once('header_notice_web.php');?>
 <?php include_once('wxshare_web.php');?>
 <style type="text/css">
 .cut-groupon-num{margin-right: .25rem; padding: 0 .15rem; text-align: justify; font-size: .5rem; color: #f85981; border: 1px solid #f85981; border-radius: 3px;}

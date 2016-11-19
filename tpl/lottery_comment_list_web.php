@@ -1,4 +1,4 @@
-<?php include_once('header_web.php');?>
+<?php include_once('header_notice_web.php');?>
 <link rel="stylesheet" href="css/sm-extend.min.css">
 <script type='text/javascript' src='js/sui/sm-extend.min.js' charset='utf-8'></script>
 
