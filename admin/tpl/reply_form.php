@@ -98,7 +98,7 @@
         <?php } ?>
 
 
-        <a href="javascript:" class="js-news js-news-input js-news-add" style="display: none;" onclick="addNewsInput(this)">添加</a>
+        <a href="javascript:" class="js-news js-news-input js-news-add" style="<?php if (isset($isEdit)) { echo ($replyType == 'text') ? 'display: none;':''; } ?>" onclick="addNewsInput(this)">添加</a>
     </div>
 
     <button type="submit"><?php echo (isset($isEdit)) ? '保存修改' : '新建并保存';?></button>
