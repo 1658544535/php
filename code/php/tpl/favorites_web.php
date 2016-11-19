@@ -1,4 +1,4 @@
-<?php include_once('header_new_web.php');?>
+<?php include_once('header_notice_web.php');?>
 <?php include_once('wxshare_web.php');?>
 
 <body>

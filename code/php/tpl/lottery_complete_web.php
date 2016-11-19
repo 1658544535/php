@@ -1,4 +1,4 @@
-<?php include_once('header_web.php');?>
+<?php include_once('header_notice_web.php');?>
 
 <body>
     <div class="page-group" id="page-evaluate-success">
