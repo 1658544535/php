@@ -253,7 +253,7 @@
   padding-left: 1.8rem;
   height: 1.5rem;
   line-height: 1.5rem;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   color: #fff;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 1.5rem;
@@ -318,6 +318,17 @@
 .index-class.swiper-container .swiper-slide.active {
   color: #ff464e;
   border-bottom: 2px solid #ff464e;
+}
+.index-class.top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+}
+.index-class-placeholder {
+  display: none;
+  height: 2.0rem;
 }
 /*首页主页banner*/
 .index-banner.swiper-container {
