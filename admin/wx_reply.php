@@ -98,7 +98,13 @@ switch ($act)
         } else {
             $data = $db->find(array('id'=>$edit_id));
         }
-        $replyEvent = isset($data['event']) ? $data['event'] : '';
+
+        $data['content'] = json_decode(html_entity_decode($data['content']), true); //json转为php数组
+        foreach ($data['content'] as $key => $value) {
+            $replyType    = $key; //回复类型
+            $replyContent = $value; //回复内容
+        }
+
         include_once('tpl/reply_form.php');
         break;
 
@@ -113,10 +119,36 @@ switch ($act)
         if (!$_POST['event']) ajaxReturn(0,'事件类型不能为空');
         if (!$_POST['key'])   ajaxReturn(0,'key值不能为空');
 
+        switch($_POST['replyType'])
+        {
+            case 'text':
+                $content = json_encode_custom(array(
+                    $_POST['replyType'] => array(
+                        'msg' => $_POST['content'],
+                    ),
+                ));
+                break;
+            case 'news':
+                $arr = array();
+                for ($i=0;$i<count($_POST['title']);$i++) {
+                    $arr[] =  array(
+                        'Title'       => $_POST['title'][$i],
+                        'Description' => $_POST['desc'][$i],
+                        'Url'         => $_POST['url'][$i],
+                        'PicUrl'      => $_POST['picurl'][$i],
+                    );
+                }
+                $content = json_encode_custom(array(
+                    $_POST['replyType'] => $arr
+                ));
+                break;
+        }
+
         $data = array(
-            'key'     => ' ' . trim($_POST['key']) . ' ',
-            'event'   => $_POST['event'],
-            'content' => htmlentities($_POST['content'],ENT_NOQUOTES,"utf-8"),
+            'key'         => ' ' . trim($_POST['key']) . ' ', //事件Key值
+            'event'       => $_POST['event'], //事件类型
+            'content'     => htmlentities($content),
+            'create_time' => time(),
         );
 
         checkExistKey(array('key'=>trim($_POST['key']), 'event'=>$_POST['event']), $id);
@@ -140,26 +172,7 @@ switch ($act)
     case 'test':
         echo '测试页<hr>';
 //        $lists  = $db->getAll();
-//        dataToKeyMap($lists);
-        $json = "{\"news\":{\"Title\":\"牛逼啦\",\"Description\":\"牛逼啦\",\"Url\":\"https:\/\/www.baidu.com\",\"PicUrl\":\"https:\/\/www.baidu.com\/img\/baidu_jgylogo3.gif\"}}";
-//        print_r(html_entity_decode($json));
-//        $arr = array(
-//            'news' => array(
-//                '0' => array(
-//                    'msg' => '测试1'
-//                ),
-//                '1' => array(
-//                    'msg' => '测试1',
-//                ),
-//                '2' => array(
-//                    'msg' => '测试1',
-//                ),
-//            ),
-//        );
-//        $json = json_encode_custom($arr);
-//        print_r($json);die;
-        $info = jsonDataHandle($json);
-//        $db->like(array('key'=>123),'text',1);
+//        $info = jsonDataHandle($json);
         break;
 
     default:
