@@ -42,7 +42,7 @@
                     <dt class="key">
                         <div class="key-main">
                             <input class="form-control" type="text" placeholder="请输入名称..." name="Pbutton_name_<?php echo $k+1 ?>" value="<?php echo $v["name"];?>" />
-                            <select class="form-control" name="Pbutton_type_<?php echo $k+1 ?>" onchange="typeChange(this)">
+                            <select placeholder="请选择按钮类型..." class="form-control" name="Pbutton_type_<?php echo $k+1 ?>" onchange="typeChange(this)">
                                 <option value="">请选择按钮类型...</option>
                                 <option value="sub" <?php if (isset($v["sub_button"]) && !empty($v["sub_button"])) echo "selected";?>>菜单</option>
                                 <?php foreach ($button_type_arr as $key => $value) {  ?>
@@ -123,7 +123,7 @@
             <dt class="key">
                 <div class="key-main">
                     <input class="form-control" type="text" placeholder="请输入名称..." name="Pbutton_name_<%= num%>" />
-                    <select class="form-control" name="Pbutton_type_<%= num%>" onchange="typeChange(this)">
+                    <select placeholder="请选择按钮类型..." class="form-control" name="Pbutton_type_<%= num%>" onchange="typeChange(this)">
                         <option value="">请选择按钮类型...</option>
                         <option value="sub">菜单</option>
                         <?php foreach ($button_type_arr as $key => $value) {  ?>
@@ -184,23 +184,33 @@
         });
 
         // ajax提交更新写入操作
-        $('#wechatMenuForm').ajaxForm({
-            beforeSubmit: function(){
-                $(".form-submit .btn").hide();
-                $(".form-submit .loading").show();
-            },
-            success: function (data) {
-                data = eval("(" + data + ")");
-                if (data.status) {
-                    $(".form-submit").hide();
-                    $('.wx-syn').show().removeClass("zoomOut").addClass("zoomIn");
-                } else {
-                    alert(data.info);
-                    $(".form-submit .btn").show();
-                    $(".form-submit .loading").hide();
-                }
+        $(document).on("change", ".form-control", function(){
+            if($(this).val() != '') {
+                $(this).removeClass("error");
             }
         });
+        $('#wechatMenuForm').on("submit", function(){
+            var _this = $(this);
+            if(doValidate()){
+                $(".form-submit .btn").hide();
+                $(".form-submit .loading").show();
+                _this.ajaxSubmit({
+                    success: function (data) {
+                        data = eval("(" + data + ")");
+                        if (data.status) {
+                            $(".form-submit").hide();
+                            $('.wx-syn').show().removeClass("zoomOut").addClass("zoomIn");
+                        } else {
+                            alert(data.info);
+                            $(".form-submit .btn").show();
+                            $(".form-submit .loading").hide();
+                        }
+                    }
+                });
+            }
+            return false;
+        });
+        
 
         // ajax提交同步至微信端
         var token = 'HAHAHA';
@@ -295,6 +305,7 @@
         var id = oSubMenu.parents(".wx-menu").data("id");
         var html = bt('t:sub_menu',{num: id});
         $(_this).parent().before(html);
+        $(_this).removeClass("error");
 
         var oSelect = $(_this).parent().prev().find(".sub-key select.form-control");
         typeChange(oSelect);
@@ -336,6 +347,31 @@
                 $(el1).attr("name", name);
             });
         });
+    }
+
+    /* 表单验证 */
+    function doValidate() {
+        var success = true;
+
+        //表单不能为空
+        $(".form-control:visible").each(function(index, el) {
+            var _this = $(el);
+            if(_this.val() == '') {
+                success = false;
+                _this.addClass("error");
+            }
+        });
+
+        //按钮类型为菜单对应的子菜单至少一个
+        $(".v-menu:visible").each(function(index, el) {
+            var _this = $(el);
+            if(_this.find(".wx-sub-menu>li").length<=1) {
+                success = false;
+                _this.find(".wx-sub-menu>li").last().find("a").addClass("error");
+            }
+        });
+
+        return success;
     }
 
 </script>

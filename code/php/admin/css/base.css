@@ -71,6 +71,10 @@ input.form-control:focus, select.form-control:focus {
 	border: 1px solid #3a87ad;
 	box-shadow: 0 0 1px 0px #3a87ad;
 }
+input.form-control.error, select.form-control.error {
+    border: 1px solid #f65047;
+    box-shadow: 0 0 1px 0px #f65047;
+}
 .btn {
     display: block;
     padding: 6px 10px;
@@ -85,6 +89,9 @@ input.form-control:focus, select.form-control:focus {
 }
 button.btn, input.btn {
     height: 36px;
+}
+.btn.error {
+    border: 1px solid #f65047;
 }
 .btn-del {
     background: #f65047;
