@@ -1486,8 +1486,6 @@ function checkExistKey($array, $id = ''){
 function jsonDataHandle($json){
     $json = html_entity_decode($json);
     $arr  = json_decode($json, true);
-//    print_r($arr);
-//    echo '<hr>';
     foreach ($arr as $k => $v) {
         switch ($k) {
             case 'text': //文本消息回复

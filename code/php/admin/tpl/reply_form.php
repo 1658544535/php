@@ -14,11 +14,8 @@
     </style>
 </head>
 <body>
-<?php if (isset($isEdit)) {?>
-<form action="wx_reply.php?act=update&id=<?php echo $edit_id; ?>" method="post" id="myForm">
-<?php } else { ?>
-<form action="wx_reply.php?act=insert" method="post" id="myForm">
-<?php }?>
+
+<form action="<?php echo (isset($isEdit)) ? 'wx_reply.php?act=update&id='. $edit_id : 'wx_reply.php?act=insert' ?>" method="post" id="myForm">
 
     <div>
         <table>
@@ -42,11 +39,12 @@
                 <th>
                     <select name="replyType" onchange="changeReplyType(this)">
                         <option value="">请选择自定义回复类型</option>
-                        <option value="text">文本回复</option>
-                        <option value="news">图文回复</option>
+                        <option value="text" <?php echo (isset($isEdit) && $replyType == 'text') ? 'selected' : '' ?>>文本回复</option>
+                        <option value="news" <?php echo (isset($isEdit) && $replyType == 'news') ? 'selected' : '' ?>>图文回复</option>
                     </select>
                 </th>
             </tr>
+
             <tr style="<?php if (isset($edit_id) && $edit_id == 1) echo 'display:none;'; ?>">
                 <th>事件类型:</th>
                 <th>
@@ -60,48 +58,50 @@
                     </select>
                 </th>
             </tr>
-
         </table>
 
-        <table class="js-text" style="display: none;">
+        <table class="js-text" style="<?php if (isset($isEdit)) { echo ($replyType == 'news') ? 'display: none;':''; } ?>">
             <tr class="js-text">
                 <th>回复内容：</th>
                 <th>
-                    <textarea class="js-text-input" name="content" cols="80" rows="5" placeholder="请输入自定义回复的内容"><?php if (isset($isEdit)) echo $data['content'] ;?></textarea>
+                    <textarea class="js-text-input" name="content" cols="80" rows="5" placeholder="请输入自定义回复的内容"><?php if (isset($isEdit)) { echo ($replyType == 'text') ?  $replyContent['msg'] : '' ; }?></textarea>
                 </th>
             </tr>
         </table>
 
-        <table class="js-news" style="display: none;">
-            <tr class="js-news">
-                <th>标题：</th>
-                <th><input class="js-news-input" type="text" name="title[]"></th>
-            </tr>
+        <?php if (isset($isEdit) && $replyType == 'news') { ?>
+            <?php foreach ($replyContent as $item) { ?>
+                <hr>
+                <table class="js-news" style="<?php if (isset($isEdit)) { echo ($replyType == 'text') ? 'display: none;':''; } ?>">
+                    <tr class="js-news">
+                        <th>标题：</th>
+                        <th><input class="js-news-input" type="text" name="title[]" value="<?php echo $item['Title']; ?>"></th>
+                    </tr>
 
-            <tr>
-                <th>描述：</th>
-                <th><input class="js-news-input" type="text" name="desc[]"></th>
-            </tr>
+                    <tr>
+                        <th>描述：</th>
+                        <th><input class="js-news-input" type="text" name="desc[]" value="<?php echo $item['Description']; ?>"></th>
+                    </tr>
 
-            <tr>
-                <th>链接：</th>
-                <th><input class="js-news-input" type="text" name="url[]"></th>
-            </tr>
+                    <tr>
+                        <th>链接：</th>
+                        <th><input class="js-news-input" type="text" name="url[]" value="<?php echo $item['Url']; ?>"></th>
+                    </tr>
 
-            <tr>
-                <th>图片链接：</th>
-                <th><input class="js-news-input" type="text" name="picurl[]"></th>
-            </tr>
-        </table>
+                    <tr>
+                        <th>图片链接：</th>
+                        <th><input class="js-news-input" type="text" name="picurl[]" value="<?php echo $item['PicUrl']; ?>"></th>
+                    </tr>
+                </table>
+
+            <?php } ?>
+        <?php } ?>
+
 
         <a href="javascript:" class="js-news js-news-input js-news-add" style="display: none;" onclick="addNewsInput(this)">添加</a>
     </div>
 
-    <?php if (isset($isEdit)) {?>
-        <button type="submit">保存修改</button>
-    <?php } else { ?>
-        <button type="submit">新建并保存</button>
-    <?php }?>
+    <button type="submit"><?php echo (isset($isEdit)) ? '保存修改' : '新建并保存';?></button>
     <button type="button" onclick="history.go(-1)">返回</button>
 
 </form>
