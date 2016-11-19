@@ -157,6 +157,12 @@ switch($act){
 		$list = apiData('specialDetailApi.do', array('specialId'=>$id,'pageNo'=>$page));
 		$list['success'] ? ajaxJson(1, '', $list['result'], $page) : ajaxJson(0, $list['error_msg']);
 		break;
+	case 'newspecial'://新品专区
+		$id = intval($_GET['id']);
+		$page = max(1, intval($_POST['page']));
+		$list = apiData('newSpecialApi.do', array('pageNo'=>$page));
+		$list['success'] ? ajaxJson(1, '', $list['result'], $page) : ajaxJson(0, $list['error_msg']);
+		break;
 	case 'special_77'://77专区
 		$id = intval($_GET['id']);
 		$page = max(1, intval($_POST['page']));

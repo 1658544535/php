@@ -11,7 +11,7 @@
 		<span class="icon i-price"></span>
 		<span class="tab-label">猜价格</span>
 	</a> -->
-	<a class="tab-item <?php echo ($footerNavActive=='new')?'active':'';?>" href="special.php?id=6">
+	<a class="tab-item <?php echo ($footerNavActive=='new')?'active':'';?>" href="newspecial.php">
 		<span class="icon i-new"></span>
 		<span class="tab-label">新品</span>
 	</a>

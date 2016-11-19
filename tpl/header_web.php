@@ -1,7 +1,6 @@
 <?php define("SOURCE_VERSOIN", '2016111210');?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +19,7 @@
     <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/app.min.js?v=<?php echo SOURCE_VERSOIN;?>' charset='utf-8'></script>
     <script>
-		    $.ajax({  
+	    $.ajax({  
 		        url: "msg.php",
 		        data: {"act":"plan2"},  
 		        dataType: "json",  
@@ -68,11 +67,11 @@
 //                     data: {"act":"plan1","timed": new Date().getTime()},  
 //                     dataType: "json",  
 //                     timeout: 5000,//5秒超时，可自定义设置  
-// //                     error: function (XMLHttpRequest, textStatus, errorThrown) {  
-// //                    	 if (textStatus == "timeout") { // 请求超时  
-// // 	                             longPolling(); // 递归调用  
-// // 	                         }
-// //                          },  
+//                     error: function (XMLHttpRequest, textStatus, errorThrown) {  
+//                    	 if (textStatus == "timeout") { // 请求超时  
+// 	                             longPolling(); // 递归调用  
+// 	                         }
+//                          },  
 //                     success: function (data, textStatus) {  
 //                             var pushTxt = '<a href="1" class="message-push"><img src="http://pin.taozhuma.com/upfiles/focusbanner/20161004093329310841.jpg" class="img" />最新订单来自 【地址】 的 【用户昵称】，1秒前</a>';
 //                             if($(".message-push".length>0)){
