@@ -1,0 +1,403 @@
+/*
+* 通用样式
+*/
+
+html, body {
+	font-family: 'Microsoft YaHei';
+	font-size: 14px;
+	color: #fff;
+}
+body {
+	background: url(../images/bg.jpg);
+	background-size: cover;
+	background-color: #54364a;
+	letter-spacing: 1px;
+}
+html, body, ul, li, h1, h2, h3, h4, h5, p, dl, dt, dd, form {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+ul, li {
+	list-style: none;
+}
+form {
+	display: block;
+}
+a:link, a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	color: #eee;
+}
+.loading {
+    display: inline;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: url(../images/loading.png) no-repeat 50% 50%;
+    background-size: 30px 30px;
+    zoom: 1;
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+    -webkit-animation-name: rotate;
+    animation-name: rotate;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+}
+input.form-control, select.form-control {
+	display: block;
+	width: 100%;
+	padding: 6px 10px;
+	font-size: 14px;
+	color: #fff;
+	height:36px;
+	line-height:36px;
+	box-sizing: border-box;
+	background: #666;
+	background: rgba(0, 0, 0, 0.25);
+	border: 1px solid #333;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+	outline: none;
+}
+input.form-control:focus, select.form-control:focus {
+	border: 1px solid #3a87ad;
+	box-shadow: 0 0 1px 0px #3a87ad;
+}
+.btn {
+    display: block;
+    padding: 6px 10px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    border:none;
+    cursor: pointer;
+}
+button.btn, input.btn {
+    height: 36px;
+}
+.btn-del {
+    background: #f65047;
+}
+.btn-del:hover {
+    background: #e6433b;
+}
+.btn-add {
+    background: #46af50;
+}
+.btn-add:hover {
+    background: #3aa344;
+}
+.btn-save {
+    background: #ff9d11;
+}
+.btn-save:hover {
+    background: #ef920d;
+}
+.btn-cancel {
+    background: #ccc;
+}
+.btn-cancel:hover {
+    background: #c2c1c1;
+}
+.clearfix {
+  overflow: hidden;
+}
+.clearfix:after {
+    clear: both;
+    content: " ";
+    display: table;
+}
+.header {
+	height: 50px;
+	background: #666;
+	background: rgba(0, 0, 0, 0.25);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	overflow: hidden;
+}
+.header .logo {
+	float: left;
+	margin: 0 20px;
+	font-size: 24px;
+	line-height: 50px;
+	letter-spacing: 3px;
+}
+.header .menu {
+	float: right;
+	height: 100%;
+	margin: 0 10px;
+}
+.header .menu li {
+	display: inline;
+	display: inline-block;
+	height: 100%;
+	text-align: center;
+	zoom: 1;
+}
+.header .menu li a {
+	display: block;
+	padding: 0 10px;
+	transition: background 0.2s;
+}
+.header .menu li a:hover, .header .menu li a.active {
+	background: #333;
+	background: rgba(0, 0, 0, 0.25);
+}
+.header .menu li img {
+	display: inline;
+	display: inline-block;
+	width: 30px;
+	margin: 10px auto;
+	zoom: 1;
+	vertical-align: middle;
+}
+.header .menu li p {
+	display: inline;
+	display: inline-block;
+	line-height: 30px;
+	font-size: 14px;
+	zoom: 1;
+	vertical-align: middle;
+}
+.content {
+	margin: 20px;
+}
+.hide {
+    display: none;
+}
+
+
+
+/* 动画 */
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes bounceInUp {
+  from, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 3000px, 0);
+    transform: translate3d(0, 3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bounceInUp {
+  from, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 3000px, 0);
+    transform: translate3d(0, 3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+.bounceInUp {
+  -webkit-animation-duration: 0.8s;
+  animation-duration: 0.8s;
+  -webkit-animation-name: bounceInUp;
+  animation-name: bounceInUp;
+}
+.bounceInUp-1 {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+.bounceInUp-2 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+.bounceInUp-3 {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+@-webkit-keyframes bounce {
+  from, 20%, 53%, 80%, to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    -webkit-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    -webkit-transform: translate3d(0, -15px, 0);
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0,-4px,0);
+    transform: translate3d(0,-4px,0);
+  }
+}
+
+@keyframes bounce {
+  from, 20%, 53%, 80%, to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    -webkit-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    -webkit-transform: translate3d(0, -15px, 0);
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0,-4px,0);
+    transform: translate3d(0,-4px,0);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+}
+-webkit-keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.zoomOut {
+  -webkit-animation-name: zoomOut;
+  animation-name: zoomOut;
+}
