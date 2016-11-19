@@ -16,7 +16,7 @@ if(!$db) echo $db->lastErrorMsg();
 $act = CheckDatas('act','');
 
 $options_arr = array(
-    'text'       => '文本',
+    'text'       => '文字',
     'scan'       => '扫码',
     'subscribe'  => '扫码关注',
     'click'      => '点击',
@@ -38,18 +38,42 @@ switch ($act)
             echo json_encode(array('status'=>0,'info'=>'保存失败，自定义回复种类不能为空'));
             exit;
         }
-        if (!$_POST['content'])  {
-            echo json_encode(array('status'=>0,'info'=>'保存失败，内容不能为空'));
-            exit;
-        }
-//        $content_JSON = contentToJSON();
+//        if (!$_POST['content'])  {
+//            echo json_encode(array('status'=>0,'info'=>'保存失败，内容不能为空'));
+//            exit;
+//        }
 
         checkExistKey(array('key'=>trim($_POST['key']), 'event'=>$_POST['event']));//判断是否存在相同关键字
+
+        switch($_POST['replyType'])
+        {
+            case 'text':
+                $content = json_encode_custom(array(
+                    $_POST['replyType'] => array(
+                        'msg' => $_POST['content'],
+                    ),
+                ));
+                break;
+            case 'news':
+                $arr = array();
+                for ($i=0;$i<count($_POST['title']);$i++) {
+                    $arr[] =  array(
+                        'Title'       => $_POST['title'][$i],
+                        'Description' => $_POST['desc'][$i],
+                        'Url'         => $_POST['url'][$i],
+                        'PicUrl'      => $_POST['picurl'][$i],
+                    );
+                }
+                $content = json_encode_custom(array(
+                    $_POST['replyType'] => $arr
+                ));
+                break;
+        }
 
         $data = array(
             'key'         => ' ' . trim($_POST['key']) . ' ', //事件Key值
             'event'       => $_POST['event'], //事件类型
-            'content'     => htmlentities($_POST['content'],ENT_NOQUOTES,"utf-8"),
+            'content'     => htmlentities($content),
             'create_time' => time(),
         );
 
@@ -117,8 +141,25 @@ switch ($act)
         echo '测试页<hr>';
 //        $lists  = $db->getAll();
 //        dataToKeyMap($lists);
-
-        $db->like(array('key'=>123),'text',1);
+        $json = "{\"news\":{\"Title\":\"牛逼啦\",\"Description\":\"牛逼啦\",\"Url\":\"https:\/\/www.baidu.com\",\"PicUrl\":\"https:\/\/www.baidu.com\/img\/baidu_jgylogo3.gif\"}}";
+//        print_r(html_entity_decode($json));
+//        $arr = array(
+//            'news' => array(
+//                '0' => array(
+//                    'msg' => '测试1'
+//                ),
+//                '1' => array(
+//                    'msg' => '测试1',
+//                ),
+//                '2' => array(
+//                    'msg' => '测试1',
+//                ),
+//            ),
+//        );
+//        $json = json_encode_custom($arr);
+//        print_r($json);die;
+        $info = jsonDataHandle($json);
+//        $db->like(array('key'=>123),'text',1);
         break;
 
     default:

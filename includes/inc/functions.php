@@ -1481,4 +1481,24 @@ function checkExistKey($array, $id = ''){
 
     return false;
 }
+
+//将JSON数据进行处理
+function jsonDataHandle($json){
+    $json = html_entity_decode($json);
+    $arr  = json_decode($json, true);
+//    print_r($arr);
+//    echo '<hr>';
+    foreach ($arr as $k => $v) {
+        switch ($k) {
+            case 'text': //文本消息回复
+                return array('type' => $k , 'content' => $v['msg']);
+                break;
+            case 'news': //图文回复处理
+                return array('type' => $k , 'content' => $v);
+                break;
+            default:
+                return false;
+        }
+    }
+}
 ?>

@@ -50,7 +50,7 @@ CREATE TABLE CustomReply (
     create_time INT          NOT NULL
 );
 -- 插入默认的订阅回复
-INSERT INTO CustomReply (id,event,[key],content,create_time) VALUES (1,'subscribe','sub','欢迎关注我的公众号',1479282098); 
+INSERT INTO CustomReply (id,event,[key],content,create_time) VALUES (1,'subscribe','sub','{&quot;text&quot;:{&quot;msg&quot;:&quot;欢迎关注我的公众号哟哟哟&quot;}}',1479282098); 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;
 
