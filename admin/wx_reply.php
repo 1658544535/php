@@ -38,6 +38,8 @@ switch ($act)
             echo json_encode(array('status'=>0,'info'=>'保存失败，自定义回复种类不能为空'));
             exit;
         }
+
+
 //        if (!$_POST['content'])  {
 //            echo json_encode(array('status'=>0,'info'=>'保存失败，内容不能为空'));
 //            exit;
@@ -55,15 +57,27 @@ switch ($act)
                 ));
                 break;
             case 'news':
-                $arr = array();
+                $arr       = array();
+                $picUrlArr = array();
                 for ($i=0;$i<count($_POST['title']);$i++) {
+                    if (!$_FILES['pic']) {
+                        ajaxReturn(0,'请上传图片');
+                    } else {
+                        $array    = explode('.',$_FILES['pic']['name']);
+                        $suffix   = end($array);
+                        $filename = date('YmdHi',time()) . rand(1,100) . '.' . $suffix; //文件名
+                        move_uploaded_file($_FILES["pic"]["tmp_name"], WX_UPLOAD . $filename);
+                        $picUrlArr[] = 'http://' . $_SERVER['HTTP_HOST'] . '/upfiles/wx/' . $filename;
+                    }
                     $arr[] =  array(
                         'Title'       => $_POST['title'][$i],
                         'Description' => $_POST['desc'][$i],
                         'Url'         => $_POST['url'][$i],
-                        'PicUrl'      => $_POST['picurl'][$i],
+                        'PicUrl'      => $picUrlArr[$i],
                     );
                 }
+
+                print_r($arr);die;
                 $content = json_encode_custom(array(
                     $_POST['replyType'] => $arr
                 ));
@@ -73,7 +87,7 @@ switch ($act)
         $data = array(
             'key'         => ' ' . trim($_POST['key']) . ' ', //事件Key值
             'event'       => $_POST['event'], //事件类型
-            'content'     => htmlentities($content),
+            'content'     => htmlentities($content,ENT_NOQUOTES,"utf-8"),
             'create_time' => time(),
         );
 
@@ -147,7 +161,7 @@ switch ($act)
         $data = array(
             'key'         => ' ' . trim($_POST['key']) . ' ', //事件Key值
             'event'       => $_POST['event'], //事件类型
-            'content'     => htmlentities($content),
+            'content'     => htmlentities($content,ENT_NOQUOTES,"utf-8"),
             'create_time' => time(),
         );
 

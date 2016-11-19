@@ -90,7 +90,8 @@
 
                     <tr>
                         <th>图片链接：</th>
-                        <th><input class="js-news-input" type="text" name="picurl[]" value="<?php echo $item['PicUrl']; ?>"></th>
+                        <th><input type="file">上传缩略图</th>
+<!--                        <th><input class="js-news-input" type="text" name="picurl[]" value="--><?php //echo $item['PicUrl']; ?><!--"></th>-->
                     </tr>
                 </table>
 
@@ -172,7 +173,7 @@
         if($("table.js-news").length>=7) {
             $(".js-news-add").hide();
         }
-        var html = '<hr class="js-news"><table class="js-news"><tr class="js-news"><th>标题：</th><th><input class="js-news-input" type="text" name="title[]"></th> </tr> <tr> <th>描述：</th> <th><input class="js-news-input" type="text" name="desc[]"></th> </tr> <tr> <th>链接：</th> <th><input class="js-news-input" type="text" name="url[]"></th></tr><tr><th>图片链接：</th> <th><input class="js-news-input" type="text" name="picurl[]"></th></tr></table>';
+        var html = '<hr class="js-news"><table class="js-news"><tr class="js-news"><th>标题：</th><th><input class="js-news-input" type="text" name="title[]"></th> </tr> <tr> <th>描述：</th> <th><input class="js-news-input" type="text" name="desc[]"></th> </tr> <tr> <th>链接：</th> <th><input class="js-news-input" type="text" name="url[]"></th></tr><tr><th>图片链接：</th> <th><input type="file" name="pic[]"></th></tr></table>';
         $(_this).before(html);
     }
 </script>
