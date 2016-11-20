@@ -49,7 +49,7 @@
 								<div>4、每人均有一次开团与一次参团机会。</div>
 								<div>5、活动奖品预计开奖后72小时内发放。</div>
 							    <div>温馨提醒：</div>
-							    <div>每个团组团有效期为24个小时，如团结束时间大于活动结束时间时，则按活动结束的时间。 </div>
+							    <div>每个团组团有效期为6个小时，如团结束时间大于活动结束时间时，则按活动结束的时间。 </div>
 							</div>
 						<?php }elseif($info['activityType'] == 6){ ?>
 							<div class="txt2">【活动说明：活动 <b class="themeColor"><?php echo $info['startTime'];?></b> 开始，限量 <b class="themeColor"><?php echo $info['limitNum'];?> </b>份，售完即止！商品售完时未能成团者即视为活动失败】</div>
