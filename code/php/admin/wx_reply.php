@@ -12,9 +12,6 @@ include_once(LIB_ROOT . 'CustomReplyDB.class.php');
 $db = new CustomReplyDB();
 if(!$db) echo $db->lastErrorMsg();
 
-//根据操作名称进行相应操作
-$act = CheckDatas('act','');
-
 $options_arr = array(
     'text'       => '文字',
     'scan'       => '扫码',
@@ -56,20 +53,21 @@ switch ($act)
                 $arr       = array();
                 $picUrlArr = array();
                 for ($i=0;$i<count($_POST['title']);$i++) {
+                    $k = $i+1;
                     if (!$_FILES['pic']['name'][$i]) {
-                        ajaxReturn(0,'第'.$i.'链接图片为空，请上传');
+                        ajaxReturn(0,'第'.$k.'链接图片为空，请上传');
                     } else {
                         //图片上传并生成链接
-                        for ($j=0;$j<count($_POST['title']);$j++) {
-                            $array    = explode('.',$_FILES['pic']['name'][$j]);
-                            $suffix   = end($array); //后缀
-                            $filename = date('YmdHi',time()) . rand(1,100) . '.' . $suffix; //文件名
-                            move_uploaded_file($_FILES["pic"]["tmp_name"][$j], WX_UPLOAD . $filename);
-                            $host        = 'jasper.tunnel.phpor.me/pindehao'; //$_SERVER['HTTP_HOST']
-                            $picUrlArr[] = 'http://' . $host . '/upfiles/wx/' . $filename;
+                        $array    = explode('.',$_FILES['pic']['name'][$i]);
+                        $suffix   = end($array); //后缀
+                        $filename = date('YmdHi',time()) . rand(1,100) . '.' . $suffix; //文件名
+                        $result   = move_uploaded_file($_FILES["pic"]["tmp_name"][$i], WX_UPLOAD . $filename);
+                        if ($result) {
+                            $picUrlArr[] = 'http://' . $site . 'upfiles/wx/' . $filename;
+                        } else {
+                            ajaxReturn(0,'图片上传失败');
                         }
                     }
-                    $k = $i+1;
                     if (!$_POST['title'][$i]) ajaxReturn(0,'保存失败，第'. $k .'个链接内容为空');
                     if (!$_POST['desc'][$i])  ajaxReturn(0,'保存失败，第'. $k .'个链接描述为空');
                     if (!$_POST['url'][$i])   ajaxReturn(0,'保存失败，第'. $k .'个链接链接为空');
@@ -165,7 +163,7 @@ switch ($act)
         $data = array(
             'key'         => ' ' . trim($_POST['key']) . ' ', //事件Key值
             'event'       => $_POST['event'], //事件类型
-            'content'     => htmlentities($content,ENT_NOQUOTES,"utf-8"),
+            'content'     => htmlentities($content,ENT_QUOTES,"utf-8"),
             'create_time' => time(),
         );
 
