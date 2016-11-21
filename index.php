@@ -3,8 +3,8 @@ define('HN1', true);
 require_once('./global.php');
 
 //分类
-$cates = apiData('productTypeNav.do');
-$cates = $cates['result'];
+// $cates = apiData('productTypeNav.do');
+// $cates = $cates['result'];
 
 //首页一级分类
 $classification = apiData('productCategoryApi.do');
