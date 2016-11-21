@@ -2,86 +2,192 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/content.css" />
     <title>自定义回复列表</title>
 </head>
 <body>
 
-<a href="index.php">主页</a>
-<a href="wx_menu.php">自定义菜单</a>
-<a href="auth.php?act=logout">登出</a>
+    <div class="wrap">
 
-<div class="text-reply">
-    <table border="1">
-        <tr>
-            <th>类型</th>
-            <th>key值</th>
-            <th>回复内容</th>
-            <th>操作</th>
-        </tr>
+        <section class="header bounceInUp bounceInUp-1 animated">
+            <div class="logo"><a href="index.php">拼得好</a></div>
+            <ul class="menu">
+                <li><a href="wx_menu.php">
+                    <img src="images/index-menu-menu.png" />
+                    <p>自定义菜单</p>
+                </a></li>
+                <li><a class="active" href="wx_reply.php">
+                    <img src="images/index-menu-reply.png" />
+                    <p>自定义回复</p>
+                </a></li>
+                <li><a href="auth.php?act=logout">
+                    <img src="images/index-menu-logout.png" />
+                    <p>登 出</p>
+                </a></li>
+            </ul>
+        </section>
 
-        <tr>
-            <td>subscribe</td>
-            <td>自定义关注回复</td>
-            <td><?php echo $subscribe_data['content']; ?></td>
-            <td><button class="js-edit"   data-id="1" type="button">修改</button></td>
-        </tr>
+        <section class="content bounceInUp bounceInUp-2 animated">
 
-        <?php if ($lists) {?>
-            <?php foreach ($lists as $reply) { ?>
-
+            <div class="reply-list">
+                <table class="table">
                     <tr>
-                        <td><?php echo $reply['event'] ?></td>
-                        <td><?php echo $reply['key'] ?></td>
-                        <td><?php echo $reply['content'] ?></td>
-                        <td>
-                            <button class="js-edit"   data-id="<?php echo $reply['id']; ?>" type="button">修改</button>
-                            <button class="js-delete" data-id="<?php echo $reply['id']; ?>" type="button">删除</button>
-                        </td>
+                        <th align="left" width="120">类型</th>
+                        <th align="left" width="120">key值</th>
+                        <th align="left">回复内容</th>
+                        <th align="center" width="120">操作</th>
                     </tr>
+                    <tr>
+                        <td>subscribe</td>
+                        <td>自定义关注回复</td>
+                        <td><?php echo $subscribe_data['content']; ?></td>
+                        <td align="center"><a class="btn btn-save js-edit" data-id="1" href="javascript:;">修改</a></td>
+                    </tr>
+                    <?php if ($lists) {?>
+                        <?php foreach ($lists as $reply) { ?>
+                            <tr>
+                                <td><?php echo $reply['event'] ?></td>
+                                <td><?php echo $reply['key'] ?></td>
+                                <td><?php echo $reply['content'] ?></td>
+                                <td align="center">
+                                    <a class="btn btn-save js-edit" data-id="<?php echo $reply['id']; ?>" href="javascript:;">修改</a>
+                                    <a class="btn btn-del js-delete" data-id="<?php echo $reply['id']; ?>" href="javascript:;">删除</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <tr>
+                            <td colspan="4" align="center" style="padding: 40px 8px;">暂时没有自定义回复</td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </div>
 
-            <?php } ?>
-        <?php } else { ?>
-            暂时没有自定义回复
-        <?php } ?>
+            <div class="form-submit">
+                <a class="btn btn-add" href="wx_reply.php?act=create">新建</a>
+            </div>
 
-    </table>
+        </section>
 
-</div>
-<a href="wx_reply.php?act=create">新建</a>
+    </div>
 
+    <script id="t:reply_content" type="text/html">
+        <%if(type == "text"){%>
+        <h3 class="reply_content_title">文本回复</h3>
+        <%}else if(type == "news"){%>
+        <h3 class="reply_content_title">图文回复</h3>
+        <%}%>
 
+        <table class="table table-reply">
+            <tr>
+                <%for(var j=0; j<title.length; j++){%>
+                    <%if(title[j] == "Title"){%>
+                    <td align="center">标题</td>
+                    <%}else if(title[j] == "Description"){%>
+                    <td align="center">描述</td>
+                    <%}else if(title[j] == "Url"){%>
+                    <td align="center">链接</td>
+                    <%}else if(title[j] == "PicUrl"){%>
+                    <td align="center">图片链接</td>
+                    <%}else if(title[j] == "msg"){%>
+                    <td align="center">回复内容</td>
+                <%}}%>
+            </tr>
+            <%for(var i=0; i<content.length; i++){%>
+            <tr>
+                <%for(var j=0; j<title.length; j++){%>
+                <td align="center"><%= content[i][j]%></td>
+                <%}%>
+            </tr>
+            <%}%>
+        </table>
+    </script>
+
+    <script src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+    <script src="js/baiduTemplate.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script>
+        $(function(){
+
+            /* 跳转到修改页 */
+            $(".js-edit").on('click',function () {
+                var id  = $(this).data('id');
+                var url = 'wx_reply.php?act=edit&id=' + id;
+                window.location.href = url;
+            });
+
+            /* 删除操作 */
+            $(".js-delete").on('click',function () {
+                $(this).html('<div class="loading"></div>');
+                var id  = $(this).data('id');
+                var url = 'wx_reply.php?act=delete&id=' + id;
+                var p = $(this).parent().parent();
+                $.getJSON(url,function (data) {
+                    if (data.status) {
+                        p.remove();
+                    } else {
+                        alert(data.info);
+                        $(this).html('删除');
+                    }
+                });
+            });
+
+            // 处理回复内容的数据
+            (function() {
+                var bt = baidu.template;
+                var otr = $(".reply-list .table tr");
+                if(otr.length > 1){
+                    $(".reply-list .table tr:gt(0)").each(function(index, el) {
+                        var content = $(el).find("td:eq(2)");
+                        try {
+                            // 如果回复内容为json格式的字符串,将字符串转化为指定格式的json
+                            var json = eval("("+content.html()+")");
+                            var data = {},
+                                contentArr = [];
+                            for(var item in json) {
+                                data["type"] = item;
+                                if (json[item] instanceof Array) {
+                                    for(var item2 in json[item]) {
+                                        var titleArr = [],
+                                            contentItem = [];
+                                        for(var itme3 in json[item][item2]) {
+                                            titleArr.push(itme3);
+                                            contentItem.push(json[item][item2][itme3]);
+                                        };
+                                        contentArr.push(contentItem);
+                                    }
+                                }else{
+                                    var titleArr = [],
+                                        contentItem = [];
+                                    for(var itme3 in json[item]) {
+                                        titleArr.push(itme3);
+                                        contentItem.push(json[item][itme3]);
+                                    };
+                                    contentArr.push(contentItem);
+                                }
+                                data["title"] = titleArr;
+                                data["content"] = contentArr;
+                            };
+
+                            //插入表格
+                            console.log(json);
+                            var html = bt('t:reply_content', data);
+                            content.html(html);
+                        }catch(e) {
+                            // 如果回复内容为不是json格式的字符串, 不做处理
+                        }
+                        
+                    });
+                }
+            })();
+
+        })
+    </script>
 
 </body>
-<script src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
-<script src="js/jquery.form.js"></script>
-<script>
-
-    /* 跳转到修改页 */
-    $(".js-edit").on('click',function () {
-        var id  = $(this).data('id');
-        var url = 'wx_reply.php?act=edit&id=' + id;
-        window.location.href = url;
-    });
-
-    /* 删除操作 */
-    $(".js-delete").on('click',function () {
-        var id  = $(this).data('id');
-        var url = 'wx_reply.php?act=delete&id=' + id;
-        var p = $(this).parent().parent();
-        $.getJSON(url,function (data) {
-            if (data.status) {
-                p.remove();
-            } else {
-                alert(data.info);
-                console.log(data);
-            }
-        });
-    });
-
-</script>
 </html>
 
 
