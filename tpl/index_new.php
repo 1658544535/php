@@ -28,8 +28,8 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 <section class="swiper-container index-class">
                     <div class="swiper-wrapper">
                         <a class="swiper-slide active" data-id="0">首页</a>
-                        <?php foreach($cates as $_cate){?>
-                            <a class="swiper-slide" data-id="<?php echo $_cate['id'];?>"><?php echo $_cate['name'];?></a>
+                        <?php foreach($classification as $class){?>
+                            <a class="swiper-slide" data-id="<?php echo $class['oneId'];?>"><?php echo $class['oneName'];?></a>
                         <?php }?>           
                     </div>
                 </section>
