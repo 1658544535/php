@@ -58,12 +58,13 @@ switch ($act)
                         ajaxReturn(0,'第'.$k.'链接图片为空，请上传');
                     } else {
                         //图片上传并生成链接
+                        !file_exists(WX_UPLOAD) && mkdir(WX_UPLOAD, 0777, true);
                         $array    = explode('.',$_FILES['pic']['name'][$i]);
                         $suffix   = end($array); //后缀
                         $filename = date('YmdHi',time()) . rand(1,100) . '.' . $suffix; //文件名
                         $result   = move_uploaded_file($_FILES["pic"]["tmp_name"][$i], WX_UPLOAD . $filename);
                         if ($result) {
-                            $picUrlArr[] = 'http://' . $site . 'upfiles/wx/' . $filename;
+                            $picUrlArr[] = $site . 'upfiles/wx/' . $filename;
                         } else {
                             ajaxReturn(0,'图片上传失败');
                         }
@@ -96,9 +97,9 @@ switch ($act)
         $result = $db->insert($data);
 
         if ($result) {
-            echo json_encode(array('status' => 1, 'info'=>'保存成功！'));
+            ajaxReturn(1, '保存成功');
         } else {
-            echo json_encode(array('status' => 0, 'info'=>$db->lastErrorMsg()));
+            ajaxReturn(0, $db->lastErrorMsg());
         }
 
         break;
@@ -145,15 +146,37 @@ switch ($act)
                 ));
                 break;
             case 'news':
-                $arr = array();
+                $arr       = array();
+                $picUrlArr = array();
                 for ($i=0;$i<count($_POST['title']);$i++) {
+                    $k = $i+1;
+                    if (!$_FILES['pic']['name'][$i]) {
+                        ajaxReturn(0,'第'.$k.'链接图片为空，请上传');
+                    } else {
+                        //图片上传并生成链接
+                        !file_exists(WX_UPLOAD) && mkdir(WX_UPLOAD, 0777, true);
+                        $array    = explode('.',$_FILES['pic']['name'][$i]);
+                        $suffix   = end($array); //后缀
+                        $filename = date('YmdHi',time()) . rand(1,100) . '.' . $suffix; //文件名
+                        $result   = move_uploaded_file($_FILES["pic"]["tmp_name"][$i], WX_UPLOAD . $filename);
+                        if ($result) {
+                            $picUrlArr[] = $site . 'upfiles/wx/' . $filename;
+                        } else {
+                            ajaxReturn(0,'图片上传失败');
+                        }
+                    }
+                    if (!$_POST['title'][$i]) ajaxReturn(0,'保存失败，第'. $k .'个链接内容为空');
+                    if (!$_POST['desc'][$i])  ajaxReturn(0,'保存失败，第'. $k .'个链接描述为空');
+                    if (!$_POST['url'][$i])   ajaxReturn(0,'保存失败，第'. $k .'个链接链接为空');
+
                     $arr[] =  array(
                         'Title'       => $_POST['title'][$i],
                         'Description' => $_POST['desc'][$i],
                         'Url'         => $_POST['url'][$i],
-                        'PicUrl'      => $_POST['picurl'][$i],
+                        'PicUrl'      => $picUrlArr[$i],
                     );
                 }
+
                 $content = json_encode_custom(array(
                     $_POST['replyType'] => $arr
                 ));
@@ -183,6 +206,7 @@ switch ($act)
             exit;
         }
         echo json_encode(array('status'=>1,'info'=>'删除成功'));
+        exit;
         break;
 
     case 'test':
