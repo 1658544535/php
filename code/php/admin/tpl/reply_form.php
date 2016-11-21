@@ -69,32 +69,32 @@
             </tr>
         </table>
 
-        <?php if (isset($isEdit) && $replyType == 'news') {
-            $i = 0;?>
+        <?php if (isset($isEdit) && $replyType == 'news') { ?>
             <?php foreach ($replyContent as $item) { ?>
                 <hr>
                 <table class="js-news" style="<?php if (isset($isEdit)) { echo ($replyType == 'text') ? 'display: none;':''; } ?>">
                     <tr class="js-news">
                         <th>标题：</th>
-                        <th><input class="js-news-input" type="text" name="title_<?php echo $i; ?>" value="<?php echo $item['Title']; ?>"></th>
+                        <th><input class="js-news-input" type="text" name="title[]" value="<?php echo $item['Title']; ?>"></th>
                     </tr>
 
                     <tr>
                         <th>描述：</th>
-                        <th><input class="js-news-input" type="text" name="desc_<?php echo $i; ?>" value="<?php echo $item['Description']; ?>"></th>
+                        <th><input class="js-news-input" type="text" name="desc[]" value="<?php echo $item['Description']; ?>"></th>
                     </tr>
 
                     <tr>
                         <th>链接：</th>
-                        <th><input class="js-news-input" type="text" name="url_<?php echo $i; ?>" value="<?php echo $item['Url']; ?>"></th>
+                        <th><input class="js-news-input" type="text" name="url[]" value="<?php echo $item['Url']; ?>"></th>
                     </tr>
 
                     <tr>
                         <th>图片链接：</th>
                         <th><input type="file">上传缩略图</th>
+<!--                        <th><input class="js-news-input" type="text" name="picurl[]" value="--><?php //echo $item['PicUrl']; ?><!--"></th>-->
                     </tr>
                 </table>
-                <?php  $i++; ?>
+
             <?php } ?>
         <?php } ?>
 

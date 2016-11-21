@@ -39,36 +39,41 @@ switch ($act)
             exit;
         }
 
-
-//        if (!$_POST['content'])  {
-//            echo json_encode(array('status'=>0,'info'=>'保存失败，内容不能为空'));
-//            exit;
-//        }
-
         checkExistKey(array('key'=>trim($_POST['key']), 'event'=>$_POST['event']));//判断是否存在相同关键字
 
         switch($_POST['replyType'])
         {
             case 'text':
+                if (!$_POST['content'])  ajaxReturn(0,'保存失败，内容不能为空');
                 $content = json_encode_custom(array(
                     $_POST['replyType'] => array(
                         'msg' => $_POST['content'],
                     ),
                 ));
                 break;
+
             case 'news':
                 $arr       = array();
                 $picUrlArr = array();
                 for ($i=0;$i<count($_POST['title']);$i++) {
-                    if (!$_FILES['pic']) {
-                        ajaxReturn(0,'请上传图片');
+                    if (!$_FILES['pic']['name'][$i]) {
+                        ajaxReturn(0,'第'.$i.'链接图片为空，请上传');
                     } else {
-                        $array    = explode('.',$_FILES['pic']['name']);
-                        $suffix   = end($array);
-                        $filename = date('YmdHi',time()) . rand(1,100) . '.' . $suffix; //文件名
-                        move_uploaded_file($_FILES["pic"]["tmp_name"], WX_UPLOAD . $filename);
-                        $picUrlArr[] = 'http://' . $_SERVER['HTTP_HOST'] . '/upfiles/wx/' . $filename;
+                        //图片上传并生成链接
+                        for ($j=0;$j<count($_POST['title']);$j++) {
+                            $array    = explode('.',$_FILES['pic']['name'][$j]);
+                            $suffix   = end($array); //后缀
+                            $filename = date('YmdHi',time()) . rand(1,100) . '.' . $suffix; //文件名
+                            move_uploaded_file($_FILES["pic"]["tmp_name"][$j], WX_UPLOAD . $filename);
+                            $host        = 'jasper.tunnel.phpor.me/pindehao'; //$_SERVER['HTTP_HOST']
+                            $picUrlArr[] = 'http://' . $host . '/upfiles/wx/' . $filename;
+                        }
                     }
+                    $k = $i+1;
+                    if (!$_POST['title'][$i]) ajaxReturn(0,'保存失败，第'. $k .'个链接内容为空');
+                    if (!$_POST['desc'][$i])  ajaxReturn(0,'保存失败，第'. $k .'个链接描述为空');
+                    if (!$_POST['url'][$i])   ajaxReturn(0,'保存失败，第'. $k .'个链接链接为空');
+
                     $arr[] =  array(
                         'Title'       => $_POST['title'][$i],
                         'Description' => $_POST['desc'][$i],
@@ -77,7 +82,6 @@ switch ($act)
                     );
                 }
 
-                print_r($arr);die;
                 $content = json_encode_custom(array(
                     $_POST['replyType'] => $arr
                 ));
@@ -87,7 +91,7 @@ switch ($act)
         $data = array(
             'key'         => ' ' . trim($_POST['key']) . ' ', //事件Key值
             'event'       => $_POST['event'], //事件类型
-            'content'     => htmlentities($content,ENT_NOQUOTES,"utf-8"),
+            'content'     => htmlentities($content,ENT_QUOTES,"utf-8"),
             'create_time' => time(),
         );
 
