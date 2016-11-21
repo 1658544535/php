@@ -1,4 +1,5 @@
 <?php include_once('header_web.php');?>
+<script src="http://static.geetest.com/static/tools/gt.js"></script>
 <?php include_once('wxshare_web.php');?>
 
 <body>
