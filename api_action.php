@@ -73,7 +73,7 @@ switch($act){
 		$cateId = intval($_REQUEST['id']);
 		$page = max(1, intval($_POST['page']));
 		if($cateId){
-			$result = apiData('findGroupByTypeId.do', array('id'=>$cateId, 'pageNo'=>$page));
+			$result = apiData('findProductListApi.do', array('id'=>$cateId,'level'=>1,'pageNo'=>$page));
 			$arr = array(
 				'code' => 1,
 				'msg' => '成功',
