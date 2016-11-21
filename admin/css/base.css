@@ -24,6 +24,24 @@ ul, li {
 form {
 	display: block;
 }
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table td, .table th {
+    padding:8px;
+    border-bottom: 1px solid #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    word-break: break-all; 
+    word-wrap: break-word;
+}
+.table th {
+    padding: 12px 8px;
+    font-size: 15px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.25);
+}
 a:link, a:visited {
 	color: #fff;
 	text-decoration: none;

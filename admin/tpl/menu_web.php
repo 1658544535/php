@@ -6,9 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="css/base.css" />
     <link rel="stylesheet" type="text/css" href="css/content.css" />
-    <script src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
-    <script src="js/baiduTemplate.js"></script>
-    <script src="js/jquery.form.js"></script>
     <title>微信自定菜单</title>
 </head>
 <body>
@@ -36,7 +33,6 @@
         <section class="content bounceInUp bounceInUp-2 animated">
 
             <form action="wx_menu.php?act=update" method="post" id="wechatMenuForm">
-
                 <?php foreach ($buttons_arr as $k => $v) { ?>
                 <dl class="wx-menu clearfix" data-id="<?php echo $k+1 ?>">
                     <dt class="key">
@@ -174,6 +170,9 @@
     </script>
 
 </body>
+<script src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script src="js/baiduTemplate.js"></script>
+<script src="js/jquery.form.js"></script>
 <script>    
     $(function(){
 
@@ -190,6 +189,11 @@
             }
         });
         $('#wechatMenuForm').on("submit", function(){
+            $(".form-control:visible").each(function(index, el) {
+                if($(el).is(":hidden") || $(el).parent().is(":hidden")){
+                    $(el).val("");
+                }
+            });
             var _this = $(this);
             if(doValidate()){
                 $(".form-submit .btn").hide();
