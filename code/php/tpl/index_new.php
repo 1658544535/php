@@ -8,6 +8,9 @@ var title ="拼得好";
 var desc = "1毛夺好礼，拼享新玩法";
 wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 </script>
+<style>
+    .content{-webkit-overflow-scrolling:inherit;}
+</style>
 
 <body>
     <div class="page-group" id="page-index">
