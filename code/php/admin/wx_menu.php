@@ -147,7 +147,7 @@ switch ($act)
         $token = (isset($_GET['token'])) ? $_GET['token'] : '';
         //验证
         if ($token !== USER_TOKEN) {
-            ajaxReturn(0,验证失败);
+            ajaxReturn(0,'验证失败');
         } else {
             $CreateNewMenu_JSON = file_get_contents($localMenu_file);
             $CreateNewMenu      = json_decode($CreateNewMenu_JSON, true);

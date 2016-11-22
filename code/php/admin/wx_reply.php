@@ -202,11 +202,9 @@ switch ($act)
             if ($id == '1') ajaxReturn(1, '该条数据无法删除'); //id => 1 为关注回复，不能删除
             $db->delete($id);
         } else {
-            echo json_encode(array('status'=>0,'info'=>'参数错误'));
-            exit;
+            ajaxReturn(0,'参数错误');
         }
-        echo json_encode(array('status'=>1,'info'=>'删除成功'));
-        exit;
+        ajaxReturn(1,'删除成功');
         break;
 
     case 'test':
