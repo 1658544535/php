@@ -72,7 +72,9 @@
 
         </section>
 
-        <?php echo $nav; //输出分页?>
+        <?php if($totalPage>1){
+            echo $nav; //输出分页
+        }?>
 
     </div>
 

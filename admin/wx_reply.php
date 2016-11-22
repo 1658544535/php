@@ -43,9 +43,7 @@ switch ($act)
             case 'text':
                 if (!$_POST['content'])  ajaxReturn(0,'保存失败，内容不能为空');
                 $content = json_encode_custom(array(
-                    $_POST['replyType'] => array(
-                        'msg' => $_POST['content'],
-                    ),
+                    'msg' => $_POST['content'],
                 ));
                 break;
 
@@ -73,7 +71,7 @@ switch ($act)
                     if (!$_POST['desc'][$i])  ajaxReturn(0,'保存失败，第'. $k .'个链接描述为空');
                     if (!$_POST['url'][$i])   ajaxReturn(0,'保存失败，第'. $k .'个链接链接为空');
 
-                    $arr[] =  array(
+                    $content[] =  array(
                         'Title'       => $_POST['title'][$i],
                         'Description' => $_POST['desc'][$i],
                         'Url'         => $_POST['url'][$i],
@@ -81,16 +79,14 @@ switch ($act)
                     );
                 }
 
-                $content = json_encode_custom(array(
-                    $_POST['replyType'] => $arr
-                ));
                 break;
         }
 
         $data = array(
             'key'         => ' ' . trim($_POST['key']) . ' ', //事件Key值
             'event'       => $_POST['event'], //事件类型
-            'content'     => htmlentities($content,ENT_QUOTES,"utf-8"),
+            'reply_type'  => $_POST['replyType'],
+            'content'     => htmlentities(json_encode_custom($content),ENT_QUOTES,"utf-8"),
             'create_time' => time(),
         );
 
@@ -139,12 +135,12 @@ switch ($act)
         switch($_POST['replyType'])
         {
             case 'text':
+                if (!$_POST['content'])  ajaxReturn(0,'保存失败，内容不能为空');
                 $content = json_encode_custom(array(
-                    $_POST['replyType'] => array(
-                        'msg' => $_POST['content'],
-                    ),
+                    'msg' => $_POST['content'],
                 ));
                 break;
+
             case 'news':
                 $arr       = array();
                 $picUrlArr = array();
@@ -169,7 +165,7 @@ switch ($act)
                     if (!$_POST['desc'][$i])  ajaxReturn(0,'保存失败，第'. $k .'个链接描述为空');
                     if (!$_POST['url'][$i])   ajaxReturn(0,'保存失败，第'. $k .'个链接链接为空');
 
-                    $arr[] =  array(
+                    $content[] =  array(
                         'Title'       => $_POST['title'][$i],
                         'Description' => $_POST['desc'][$i],
                         'Url'         => $_POST['url'][$i],
@@ -177,16 +173,14 @@ switch ($act)
                     );
                 }
 
-                $content = json_encode_custom(array(
-                    $_POST['replyType'] => $arr
-                ));
                 break;
         }
 
         $data = array(
             'key'         => ' ' . trim($_POST['key']) . ' ', //事件Key值
             'event'       => $_POST['event'], //事件类型
-            'content'     => htmlentities($content,ENT_QUOTES,"utf-8"),
+            'reply_type'  => $_POST['replyType'],
+            'content'     => htmlentities(json_encode_custom($content),ENT_QUOTES,"utf-8"),
             'create_time' => time(),
         );
 
@@ -209,12 +203,14 @@ switch ($act)
 
     case 'test':
         echo '测试页<hr>';
-
+        $data = $db->page(3);
+        $array = dataToKeyMap($data); //转换成二维数组
         break;
 
     default:
-        $lists  = $db->page(6); //分页，里面填输出数目
-        $nav    = $db->getPageNav();
+        $lists     = $db->page(5); //分页，里面填输出数目
+        $totalPage = $db->totalPage; //总页数
+        $nav       = $db->getPageNav();
         $subscribe_data = current($lists); //默认关注的回复数据
         array_shift($lists); //默认关注回复的数据出栈
 

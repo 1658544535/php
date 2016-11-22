@@ -39,22 +39,28 @@ class CustomReplyDB extends SQLite3
     {
         $sql = <<<EOF
         --
--- 由SQLiteStudio v3.1.1 产生的文件 周四 十一月 17 14:43:40 2016
+--
+-- 由SQLiteStudio v3.1.1 产生的文件 周二 十一月 22 11:36:21 2016
 --
 -- 文本编码：System
 --
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
+
 -- 表：CustomReply
 CREATE TABLE CustomReply (
     id          INTEGER      PRIMARY KEY AUTOINCREMENT,
     event       VARCHAR (60) NOT NULL,
     [key]       VARCHAR (60) NOT NULL,
+    reply_type  VARCHAR (60) NOT NULL,
     content     TEXT         NOT NULL,
     create_time INT          NOT NULL
 );
--- 插入默认的订阅回复
-INSERT INTO CustomReply (id,event,[key],content,create_time) VALUES (1,'subscribe','sub','{&quot;text&quot;:{&quot;msg&quot;:&quot;欢迎关注我的公众号哟哟哟&quot;}}',1479282098); 
+
+-- 插入表中默认数据
+INSERT INTO CustomReply (id,event,[key],reply_type,content,create_time)
+VALUES (1,'subscribe',' sub ','text','{&quot;text&quot;:{&quot;msg&quot;:&quot;欢迎关注我的公众号哟哟哟&quot;}}',1479282098);
+
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;
 
@@ -219,9 +225,9 @@ EOF;
             }
         } else {
             $firstUrl = $beforeUrl . '?p=1'; //首页
-            $preUrl   = $beforeUrl . '?p=' . ($this->currentPage-1);
-            $nextUrl  = $beforeUrl . '?p=' . ($this->currentPage+1);
-            $endUrl   = $beforeUrl . '?p=' . $this->totalPage;
+            $preUrl   = $beforeUrl . '?p=' . ($this->currentPage-1); //上一页
+            $nextUrl  = $beforeUrl . '?p=' . ($this->currentPage+1); //下一页
+            $endUrl   = $beforeUrl . '?p=' . $this->totalPage; //最后一页
         }
 
         //分页样式
@@ -240,6 +246,7 @@ EOF;
     {
         
     }
+
     /*
      * 获取指定种类的自定义回复内容
      */
