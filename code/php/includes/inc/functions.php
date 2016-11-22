@@ -1440,24 +1440,34 @@ function dataToKeyMap($datas)
             if ($k == 'event') {
                 switch ($v) {
                     case 'subscribe': //关注事件
-                        $arr['subscribe'][trim($data['key'])] = html_entity_decode($data['content']);
+                        $arr['subscribe'][trim($data['key'])] = array(
+                            $data['reply_type']=>html_entity_decode($data['content'])
+                        );
                         break;
                     case 'text': //文本事件
                         //判断是否存在空格分割
                         if (strpos(trim($data['key']), " ")) {
                             $key_arr = explode(" ", $data['key']);
                             foreach ($key_arr as $value) {
-                                $arr['text'][$value] = html_entity_decode($data['content']);
+                                $arr['text'][trim($data['key'])] = array(
+                                    $data['reply_type']=>html_entity_decode($data['content'])
+                                );
                             }
                         } else {
-                            $arr['text'][trim($data['key'])] = html_entity_decode($data['content']);
+                            $arr['text'][trim($data['key'])] = array(
+                                $data['reply_type']=>html_entity_decode($data['content'])
+                            );
                         }
                         break;
                     case 'scan': //扫码事件
-                        $arr['scan'][trim($data['key'])]  = html_entity_decode($data['content']);
+                        $arr['scan'][trim($data['key'])] = array(
+                            $data['reply_type']=>html_entity_decode($data['content'])
+                        );
                         break;
                     case 'click': //点击事件
-                        $arr['click'][trim($data['key'])] = html_entity_decode($data['content']);
+                        $arr['click'][trim($data['key'])] = array(
+                            $data['reply_type']=>html_entity_decode($data['content'])
+                        );
                         break;
                 }
             }
@@ -1482,11 +1492,10 @@ function checkExistKey($array, $id = ''){
     return false;
 }
 
-//将JSON数据进行处理
-function jsonDataHandle($json){
-    $json = html_entity_decode($json);
-    $arr  = json_decode($json, true);
-    foreach ($arr as $k => $v) {
+//处理回复数据 content 字段的json数组
+function replyDataHandle($array){
+    foreach ($array as $k => $v) {
+        $v = json_decode($v, true);
         switch ($k) {
             case 'text': //文本消息回复
                 return array('type' => $k , 'content' => $v['msg']);
