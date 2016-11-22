@@ -33,15 +33,15 @@ $site_name		= '拼得好';//网站名称
 
 /*============================== 微信配置信息  =============================================*/
 
-$app_info = array(
-	'appid' => 'wx9d700af5085c2b6a',
-	'secret' => 'd582b0f73e82a729391ffbd9f6c75c1c'
-);
-
 //$app_info = array(
-//    'appid' => 'wx3eea553d8ab21caa',
-//    'secret' => '8a8eaaeda77febffb186e26e42572df6'
+//	'appid' => 'wx9d700af5085c2b6a',
+//	'secret' => 'd582b0f73e82a729391ffbd9f6c75c1c'
 //);
+
+$app_info = array(
+    'appid' => 'wx3eea553d8ab21caa',
+    'secret' => '8a8eaaeda77febffb186e26e42572df6'
+);
 
 /*============================== 基本配置  =============================================*/
 
