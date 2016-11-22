@@ -81,6 +81,19 @@
   color: #333;
   font-size: 0.7rem;
 }
+.bar-nav .img-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0.4rem auto;
+  height: 1.4rem;
+  text-align: center;
+}
+.bar-nav .img-title img {
+  height: 100%;
+}
 /*底部菜单图标*/
 .bar-tab .tab-item .icon {
   width: 24px;
@@ -333,6 +346,48 @@
 .index-class-placeholder {
   display: none;
   height: 2.0rem;
+}
+/*首页二级菜单*/
+.index-subClass {
+  background: #fff;
+}
+.index-subClass ul {
+  margin: 0 0.5rem;
+  padding: 0.4rem 0;
+  overflow: hidden;
+}
+.index-subClass ul:after {
+  display: table;
+  content: ' ';
+  clear: both;
+}
+.index-subClass li {
+  float: left;
+  width: 25%;
+  list-style: none;
+}
+.index-subClass li a {
+  display: block;
+  padding: 0.4rem 0;
+  font-size: 0.65rem;
+  color: #464646;
+  text-align: center;
+}
+.index-subClass li .img {
+  width: 100%;
+  height: 2.9rem;
+}
+.index-subClass li .img img {
+  display: block;
+  width: 2.9rem;
+  height: 2.9rem;
+  margin: 0 auto;
+}
+.index-subClass li .txt {
+  line-height: 1.2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 /*首页主页banner*/
 .index-banner.swiper-container {
@@ -2958,8 +3013,8 @@
   text-align: center;
   width: 81%;
   padding: 0.75rem 0 0;
-  margin: 1.35rem auto 0;
-  font-size: 0.85rem;
+  margin: 1.05rem auto 0.3rem;
+  font-size: 0.75rem;
   color: #858585;
 }
 .user-header .orderTips {
@@ -5169,4 +5224,114 @@
   border: 1px solid #c9c9c9;
   border-radius: 0.2rem;
   margin-bottom: 0.2rem;
+}
+/* 分类 */
+.class-one {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4.3rem;
+  height: 100%;
+  background: #f2f2f2;
+}
+.class-one ul {
+  margin: 0;
+  padding: 0;
+}
+.class-one li {
+  list-style: none;
+}
+.class-one li a {
+  display: block;
+  margin: 0 0.25rem;
+  padding: 1.0rem 0;
+  font-size: 0.7rem;
+  color: #606060;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.class-one li.active {
+  background: #fff;
+}
+.class-one li.active a {
+  color: #c0504d;
+}
+.class-two {
+  position: absolute;
+  top: 0;
+  left: 4.3rem;
+  right: 0;
+  bottom: 0;
+  padding-bottom: 1.0rem;
+  overflow-y: auto;
+  background: #fff;
+}
+.class-two dl {
+  margin: 1.2rem 0.5rem 0 0.8rem;
+}
+.class-two dl dt {
+  position: relative;
+  margin: 0;
+}
+.class-two dl dt .title1 {
+  margin: 0 3.5rem 0 0;
+  font-size: 0.7rem;
+  color: #151515;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.class-two dl dt .more {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 0.65rem;
+  color: #949494;
+}
+.class-two dl dd {
+  margin: 0;
+}
+.class-two dl dd ul {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.class-two dl dd ul li {
+  float: left;
+  width: 31.333333%;
+  margin: 0.5rem 1% 0;
+  list-style: none;
+}
+.class-two dl dd ul li a {
+  display: block;
+  font-size: 0.65rem;
+  color: #606060;
+  text-align: center;
+}
+.class-two dl dd ul li a .img {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+.class-two dl dd ul li a .img img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.class-two dl dd ul li a .txt {
+  line-height: 1.2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.class-two dl dd ul:after {
+  display: table;
+  content: ' ';
+  clear: both;
 }
