@@ -1347,8 +1347,8 @@ function getLastArr($array){
  *
  */
 function createConditionSql($array){
-    if (!is_array($array)) {
-        return false;
+    if (!is_array($array) || empty($array)) {
+        return '';
     }
 
     if (count($array)>1) {

@@ -209,18 +209,17 @@ switch ($act)
 
     case 'test':
         echo '测试页<hr>';
-//        $lists  = $db->getAll();
-//        $info = jsonDataHandle($json);
+
         break;
 
     default:
-        $lists  = $db->getAll();
+        $lists  = $db->page(6); //分页，里面填输出数目
+        $nav    = $db->getPageNav();
         $subscribe_data = current($lists); //默认关注的回复数据
         array_shift($lists); //默认关注回复的数据出栈
 
         include_once('tpl/reply_list.php');
         break;
-
 }
 
 $db->close(); //断开数据库链接
