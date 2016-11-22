@@ -19,14 +19,14 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 <h1 class="title"><img class="title-img" src="images/logo.png" alt="<?php echo $site_name;?>" /></h1>
             </header> -->
             
-            <section class="index-download">
+            <!-- <section class="index-download">
                 <span class="close"></span>
                 <a class="link" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.ruiyu.taozhuma"></a>
-            </section>
+            </section> -->
 
             <section class="swiper-container index-class">
                 <div class="swiper-wrapper">
-                    <a class="swiper-slide active" href="index.php?id=0" data-id="0">首页</a>
+                    <a class="swiper-slide" href="index.php?id=0" data-id="0">首页</a>
                     <?php foreach($classification as $class){?>
                         <a href="index.php?id=<?php echo $class['oneId'];?>" class="swiper-slide" data-id="<?php echo $class['oneId'];?>"><?php echo $class['oneName'];?></a>
                     <?php }?>           
@@ -38,17 +38,13 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 
             <div class="content native-scroll" style="top:2.0rem;">
 
-                <div class="swiper-container index-page" data-href="api_action.php?act=index">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <section class="index-pro infinite-scroll infinite-scroll-bottom" data-distance="30">
-                                <!-- 加载提示符 -->
-                                <div class="infinite-scroll-preloader">
-                                    <div class="preloader"></div>
-                                </div>
-                            </section>
+                <div id="index_page" class="swiper-container index-page" data-href="api_action.php?act=index">
+                    <section class="index-pro infinite-scroll infinite-scroll-bottom" data-distance="30">
+                        <!-- 加载提示符 -->
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </div>
 
@@ -73,6 +69,17 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             </script>
 
             <script id='tpl_proBox' type="text/template">
+                <!-- <section class="index-subClass">
+                    <ul>
+                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
+                    </ul>
+                </section> -->
                 <section class="index-pro infinite-scroll infinite-scroll-bottom" data-distance="30">
                 <ul class="list-container"></ul>
                 <div class="infinite-scroll-preloader">
