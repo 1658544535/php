@@ -17,19 +17,25 @@ $site_admin 	= 'http://pinwx.taozhuma.com/doLogin.do';									// 网站后台�
 $site_image		= 'http://pinwx.taozhuma.com/upfiles/';									// 获取图片地址
 $site_name		= '拼得好';//网站名称
 
-
-
 /*============================== 微信配置信息  =============================================*/
 
+$app_info = array(
+	'appid' => 'wx3eea553d8ab21caa',
+	'secret' => '8a8eaaeda77febffb186e26e42572df6'
+);
+
+// === 我自己的
 //$app_info = array(
-//	'appid' => 'wx3eea553d8ab21caa',
-//	'secret' => '8a8eaaeda77febffb186e26e42572df6'
+//	'appid' => 'wxf47337e9d960e867',
+//	'secret' => 'd0033914647c2924375edd9f4df6a1a6',
+//    'encodingaeskey' => 'p9Hxd1yYgcXJIOCCsSrBvNLMuoSBYbJ7zBaIxsR6p4w',
+//    'token' => 'weixin123',
 //);
 
-$app_info = array(
-	'appid' => 'wx9d700af5085c2b6a',
-	'secret' => 'd582b0f73e82a729391ffbd9f6c75c1c'
-);
+//$app_info = array(
+//	'appid' => 'wx9d700af5085c2b6a',
+//	'secret' => 'd582b0f73e82a729391ffbd9f6c75c1c'
+//);
 
 ///*============================== 基本配置  =============================================*/
 //$jssdk 	= new JSSDK($app_info['appid'], $app_info['secret']);			// 微信JS SDK

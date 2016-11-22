@@ -59,7 +59,7 @@ CREATE TABLE CustomReply (
 
 -- 插入表中默认数据
 INSERT INTO CustomReply (id,event,[key],reply_type,content,create_time)
-VALUES (1,'subscribe',' sub ','text','{&quot;text&quot;:{&quot;msg&quot;:&quot;欢迎关注我的公众号哟哟哟&quot;}}',1479282098);
+VALUES (1,'subscribe',' sub ','text','{&quot;msg&quot;:&quot;欢迎关注我的公众号哟哟哟哟&quot;}',1479282098);
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;
