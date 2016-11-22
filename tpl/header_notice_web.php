@@ -49,7 +49,7 @@
 		                    $(".page-group").append(pushTxt);
 		                    setTimeout(function(){
 		                        $(".message-push").remove();
-		                    }, 8000);
+		                    }, 4000);
 		                    degree++;
 		                }else{
 		                    clearInterval(timer);
