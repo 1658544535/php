@@ -71,12 +71,12 @@ switch ($act)
                     if (!$_POST['desc'][$i])  ajaxReturn(0,'保存失败，第'. $k .'个链接描述为空');
                     if (!$_POST['url'][$i])   ajaxReturn(0,'保存失败，第'. $k .'个链接链接为空');
 
-                    $content[] =  array(
+                    $content[] =  json_encode_custom(array(
                         'Title'       => $_POST['title'][$i],
                         'Description' => $_POST['desc'][$i],
                         'Url'         => $_POST['url'][$i],
                         'PicUrl'      => $picUrlArr[$i],
-                    );
+                    ));
                 }
 
                 break;
@@ -86,7 +86,7 @@ switch ($act)
             'key'         => ' ' . trim($_POST['key']) . ' ', //事件Key值
             'event'       => $_POST['event'], //事件类型
             'reply_type'  => $_POST['replyType'],
-            'content'     => htmlentities(json_encode_custom($content),ENT_QUOTES,"utf-8"),
+            'content'     => htmlentities($content,ENT_QUOTES,"utf-8"),
             'create_time' => time(),
         );
 
