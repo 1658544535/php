@@ -189,9 +189,9 @@
             }
         });
         $('#wechatMenuForm').on("submit", function(){
-            $(".form-control:visible").each(function(index, el) {
+            $(".form-control:hidden").each(function(index, el) {
                 if($(el).is(":hidden") || $(el).parent().is(":hidden")){
-                    $(el).val("");
+                    $(el).attr("disabled", true);
                 }
             });
             var _this = $(this);
@@ -209,6 +209,7 @@
                             $(".form-submit .btn").show();
                             $(".form-submit .loading").hide();
                         }
+                        $(".form-control").attr("disabled", false);
                     }
                 });
             }
