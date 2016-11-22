@@ -71,13 +71,14 @@ switch ($act)
                     if (!$_POST['desc'][$i])  ajaxReturn(0,'保存失败，第'. $k .'个链接描述为空');
                     if (!$_POST['url'][$i])   ajaxReturn(0,'保存失败，第'. $k .'个链接链接为空');
 
-                    $content[] =  json_encode_custom(array(
+                    $arr[] =  array(
                         'Title'       => $_POST['title'][$i],
                         'Description' => $_POST['desc'][$i],
                         'Url'         => $_POST['url'][$i],
                         'PicUrl'      => $picUrlArr[$i],
-                    ));
+                    );
                 }
+                $content = json_encode_custom($arr);
 
                 break;
         }
