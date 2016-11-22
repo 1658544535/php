@@ -19,7 +19,7 @@
 						</div>
                     </div>
                     <?php if($bLogin){?>
-                    <div class="name"><?php echo $info['name']; ?></div>
+                    <div class="name">pdh<?php echo $info['userName']; ?></div>
                     <?php }else{?>
                     <div class="name"><?php echo $_wxUserInfo['nickname']; ?></div>
                     <?php }?>
