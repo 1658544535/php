@@ -1323,6 +1323,7 @@ function getWechatMenuData($OptionWX, $type = '') {
     }
     return $result;
 }
+
 /*
  * 获取传过来的数组的开始的键值
  */
@@ -1348,7 +1349,7 @@ function getLastArr($array){
  */
 function createConditionSql($array){
     if (!is_array($array) || empty($array)) {
-        return '';
+        return ' ';
     }
 
     if (count($array)>1) {
@@ -1449,7 +1450,7 @@ function dataToKeyMap($datas)
                         if (strpos(trim($data['key']), " ")) {
                             $key_arr = explode(" ", $data['key']);
                             foreach ($key_arr as $value) {
-                                $arr['text'][trim($data['key'])] = array(
+                                $arr['text'][$value] = array(
                                     $data['reply_type']=>html_entity_decode($data['content'])
                                 );
                             }
