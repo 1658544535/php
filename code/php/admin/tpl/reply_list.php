@@ -72,6 +72,8 @@
 
         </section>
 
+        <?php echo $nav; //输出分页?>
+
     </div>
 
     <script id="t:reply_content" type="text/html">
@@ -105,6 +107,8 @@
             <%}%>
         </table>
     </script>
+
+
 
     <script src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
     <script src="js/baiduTemplate.js"></script>

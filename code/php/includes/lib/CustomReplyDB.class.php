@@ -16,6 +16,10 @@ class CustomReplyDB extends SQLite3
     );
     protected $table_name = 'CustomReply';
 
+    public $pageSize    = ''; //单页数据显示
+    public $totalPage   = ''; //总页数
+    public $currentPage = ''; //当前页数
+
     function __construct()
     {
         $this->CustomReply_db = DATA_DIR . 'CustomReply.db';
@@ -155,9 +159,86 @@ EOF;
         if ($type) $sql.= ' AND event=' . '"' . $type . '"';
         if ($id)   $sql.= ' AND id!=' . '"' . $id . '"';
 
-        $result = $this->query($sql)->fetchArray(SQLITE3_ASSOC);
+            $result = $this->query($sql)->fetchArray(SQLITE3_ASSOC);
 
         return $result;
+    }
+
+    /*
+     * 分页
+     * sql = "select * from tabName where "+条件+" order by "+排序+" limit "+要显示多少条记录+" offset "+跳过多少条记录;
+     * $page_size 每页数据数
+     * $condition_arr 条件数组
+     * 条件查询尚未完成
+     */
+    public function page($pageSize, $condition_arr = array())
+    {
+        $sql_condition = createConditionSql($condition_arr); //生成查询条件部分sql
+
+        $this->pageSize    = $pageSize; //单页数据
+        $this->totalPage   = $this->getTotalPage(); //总页数
+        $this->currentPage = (!isset($_GET['p'])) ? 1 : $_GET['p']; //如果没有接收到p 则设置默认页为1
+
+        if ($this->currentPage > $this->totalPage) $this->currentPage = $this->totalPage;
+        if ($this->currentPage < 1) $this->currentPage = 1;
+
+        $sql = 'SELECT * FROM ' . $this->table_name . $sql_condition . ' LIMIT ' . $this->pageSize . ' OFFSET ' . ($this->currentPage-1)*$this->pageSize;
+
+        $result = $this->query($sql);
+        while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+            $array[] = $row;
+        }
+
+        return $array;
+    }
+
+    public function getTotalPage()
+    {
+        $sql    = 'SELECT count(id) FROM ' . $this->table_name;
+        $result = $this->query($sql)->fetchArray();
+        $count  = $result['count(id)']; //总数据数
+        return ceil($count/$this->pageSize);
+    }
+
+    public function getPageNav()
+    {
+        $beforeUrl = $_SERVER["REQUEST_URI"]; //之前的url
+        $check = strpos($beforeUrl, '?');
+        if ($check) {
+            if (substr($beforeUrl, $check+1) == '') {
+                $firstUrl = $beforeUrl . 'p=1';
+            } else {
+                if (isset($_GET['p'])) {
+                    unset($_GET['p']);
+                    $beforeUrl ='http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.http_build_query($_GET);
+                }
+                $firstUrl = $beforeUrl . '&p=1'; //首页
+                $preUrl   = $beforeUrl . '&p=' . ($this->currentPage-1);
+                $nextUrl  = $beforeUrl . '&p=' . ($this->currentPage+1);
+                $endUrl   = $beforeUrl . '&p=' . $this->totalPage;
+            }
+        } else {
+            $firstUrl = $beforeUrl . '?p=1'; //首页
+            $preUrl   = $beforeUrl . '?p=' . ($this->currentPage-1);
+            $nextUrl  = $beforeUrl . '?p=' . ($this->currentPage+1);
+            $endUrl   = $beforeUrl . '?p=' . $this->totalPage;
+        }
+
+        //分页样式
+        return '  
+        <div class="page">  
+            <a>【共'.$this->totalPage.'页，第'.$this->currentPage.'页】</a>  
+            <a href="' . $firstUrl .'">首页</a>  
+            <a href="' . $preUrl   .'">上一页</a>  
+            <a href="' . $nextUrl  .'">下一页</a>  
+            <a href="' . $endUrl   .'">末页</a>  
+        </div>  
+        ';
+    }
+
+    public function count()
+    {
+        
     }
     /*
      * 获取指定种类的自定义回复内容
