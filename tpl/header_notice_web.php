@@ -45,7 +45,7 @@
 		            var timer = setInterval(fn_timer, 6000);
 		            function fn_timer(){
 		                if(degree<=data.length){
-		                    pushTxt = '<a href="groupon_join.php?aid='+data[degree-1]["attendId"]+'" class="message-push"><img src="'+data[degree-1]["icon"]+'" class="img" />最新订单来自 【'+data[degree-1]["userName"]+'】，一起拼</a>';
+		                    pushTxt = '<a href="groupon_join.php?aid='+data[degree-1]["attendId"]+'" class="message-push"><img src="'+data[degree-1]["icon"]+'" class="img" />最新订单来自 '+data[degree-1]["address"]+'的'+data[degree-1]["userName"]+'，一起拼</a>';
 		                    $(".page-group").append(pushTxt);
 		                    setTimeout(function(){
 		                        $(".message-push").remove();
