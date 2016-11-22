@@ -9,7 +9,7 @@ var desc = "1毛夺好礼，拼享新玩法";
 wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 </script>
 <style>
-    .content{-webkit-overflow-scrolling:inherit;}
+    .index-download,.content{-webkit-transition:all 0.2s;transition:all 0.2s;}
 </style>
 
 <body>
@@ -18,25 +18,25 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             <!-- <header class="bar bar-nav">
                 <h1 class="title"><img class="title-img" src="images/logo.png" alt="<?php echo $site_name;?>" /></h1>
             </header> -->
+            
+            <section class="index-download">
+                <span class="close"></span>
+                <a class="link" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.ruiyu.taozhuma"></a>
+            </section>
+
+            <section class="swiper-container index-class">
+                <div class="swiper-wrapper">
+                    <a class="swiper-slide active" data-id="0">首页</a>
+                    <?php foreach($classification as $class){?>
+                        <a class="swiper-slide" data-id="<?php echo $class['oneId'];?>"><?php echo $class['oneName'];?></a>
+                    <?php }?>           
+                </div>
+            </section>
+            <div class="index-class-placeholder"></div>
 
             <?php include_once('footer_nav_web.php');?>
 
             <div class="content native-scroll">
-            
-                <section class="index-download">
-                    <span class="close"></span>
-                    <a class="link" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.ruiyu.taozhuma"></a>
-                </section>
-
-                <section class="swiper-container index-class">
-                    <div class="swiper-wrapper">
-                        <a class="swiper-slide active" data-id="0">首页</a>
-                        <?php foreach($classification as $class){?>
-                            <a class="swiper-slide" data-id="<?php echo $class['oneId'];?>"><?php echo $class['oneName'];?></a>
-                        <?php }?>           
-                    </div>
-                </section>
-                <div class="index-class-placeholder"></div>
 
                 <div class="swiper-container index-page" data-href="api_action.php?act=index">
                     <div class="swiper-wrapper">
