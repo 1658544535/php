@@ -126,3 +126,55 @@
 .table-reply {
 	background: rgba(0,0,0,0.1);
 }
+.reply_form {
+	padding: 15px;
+	background: rgba(0,0,0,0.2);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	box-sizing: border-box;
+}
+.reply_form dl {
+	padding: 10px 0;
+	overflow: hidden;
+}
+.reply_form dl.submit {
+	margin-top: 10px;
+	padding-top: 20px;
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.reply_form dl:after {
+	display: table;
+	content: ' ';
+	clear: both;
+}
+.reply_form .label {
+	float: left;
+	width: 25%;
+	padding-right: 10px;
+	text-align: right;
+	line-height: 34px;
+	min-height: 34px;
+}
+.reply_form .main {
+	float: left;
+	width: 50%;
+	padding-left: 10px;
+}
+.reply_form2 {
+	padding: 10px;
+	background: rgba(0,0,0,0.2);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.reply_form .btn-add {
+	width: 100px;
+	margin-top: 10px;
+}
+.reply_form dl.submit input {
+	display: inline;
+	display: inline-block;
+	width: 120px;
+	margin-right: 5px;
+	zoom: 1;
+}
+.reply_form dl.submit .loading {
+	float: left;
+}

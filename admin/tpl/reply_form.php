@@ -2,116 +2,238 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <title>微信自定义回复</title>
-    <style>
-        table{
-            text-align: left;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/content.css" />
 </head>
 <body>
 
-<form action="<?php echo (isset($isEdit)) ? 'wx_reply.php?act=update&id='. $edit_id : 'wx_reply.php?act=insert' ?>" method="post" id="myForm">
+    <div class="wrap">
 
-    <div>
-        <table>
-            <?php if (isset($edit_id) && $edit_id == 1) { ?>
-                <tr>
-                    <th>关注自定义回复</th>
-                    <th>
-                        <input type="hidden" name="key" placeholder="多个关键字，请用空格隔开" value="<?php if (isset($isEdit)) echo $data['key'] ;?>" <?php if (isset($isEdit)) echo 'readonly' ;?>>
-                    </th>
-                </tr>
-            <?php } else { ?>
-                <tr>
-                    <th>key值:</th>
-                    <th>
-                        <input type="text" name="key" placeholder="多个关键字，请用空格隔开" value="<?php if (isset($isEdit)) echo $data['key'] ;?>" >
-                    </th>
-                </tr>
-            <?php } ?>
-            <tr>
-                <th>回复类型：</th>
-                <th>
-                    <select name="replyType" onchange="changeReplyType(this)">
-                        <option value="">请选择自定义回复类型</option>
-                        <option value="text" <?php echo (isset($isEdit) && $replyType == 'text') ? 'selected' : '' ?>>文本回复</option>
-                        <option value="news" <?php echo (isset($isEdit) && $replyType == 'news') ? 'selected' : '' ?>>图文回复</option>
-                    </select>
-                </th>
-            </tr>
+        <section class="header bounceInUp bounceInUp-1 animated">
+            <div class="logo"><a href="index.php">拼得好</a></div>
+            <ul class="menu">
+                <li><a href="wx_menu.php">
+                    <img src="images/index-menu-menu.png" />
+                    <p>自定义菜单</p>
+                </a></li>
+                <li><a class="active" href="wx_reply.php">
+                    <img src="images/index-menu-reply.png" />
+                    <p>自定义回复</p>
+                </a></li>
+                <li><a href="auth.php?act=logout">
+                    <img src="images/index-menu-logout.png" />
+                    <p>登 出</p>
+                </a></li>
+            </ul>
+        </section>
 
-            <tr style="<?php if (isset($edit_id) && $edit_id == 1) echo 'display:none;'; ?>">
-                <th>事件类型:</th>
-                <th>
-                    <select name="event" placeholder="">
-                        <option value="">请选择触发事件类型</option>
-                        <?php foreach ($options_arr as $key => $val) { ?>
-                            <option value="<?php echo $key;?>"<?php if (isset($isEdit)) { if ($data['event'] == $key) echo "selected"; } ?>>
-                                <?php echo $val;?>
-                            </option>
+        <section class="content bounceInUp bounceInUp-2 animated">
+            <form class="reply_form" action="<?php echo (isset($isEdit)) ? 'wx_reply.php?act=update&id='. $edit_id : 'wx_reply.php?act=insert' ?>" method="post" id="myForm">
+                <dl>
+                    <?php if (isset($edit_id) && $edit_id == 1) { ?>
+                    <dt class="label">关注自定义回复</dt>
+                    <dd class="main"><input  class="form-control" type="text" name="key" placeholder="多个关键字，请用空格隔开" value="<?php if (isset($isEdit)) echo $data['key'] ;?>" <?php if (isset($isEdit)) echo 'readonly' ;?>></dd>
+                    <?php } else { ?>
+                    <dt class="label">key值</dt>
+                    <dd class="main"><input class="form-control" type="text" name="key" placeholder="多个关键字，请用空格隔开" value="<?php if (isset($isEdit)) echo $data['key'] ;?>" ></dd>
+                    <?php } ?>
+                </dl>
+                <dl>
+                    <dt class="label">回复类型</dt>
+                    <dd class="main">
+                        <select id="replay_type" class="form-control" name="replyType" onchange="typeChange(this)">
+                            <option value="">请选择自定义回复类型</option>
+                            <option value="text" <?php echo (isset($isEdit) && $replyType == 'text') ? 'selected' : '' ?>>文本回复</option>
+                            <option value="news" <?php echo (isset($isEdit) && $replyType == 'news') ? 'selected' : '' ?>>图文回复</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl style="<?php if (isset($edit_id) && $edit_id == 1) echo 'display:none;'; ?>">
+                    <dt class="label">事件类型</dt>
+                    <dd class="main">
+                        <select class="form-control" name="event" placeholder="">
+                            <option value="">请选择触发事件类型</option>
+                            <?php foreach ($options_arr as $key => $val) { ?>
+                                <option value="<?php echo $key;?>"<?php if (isset($isEdit)) { if ($data['event'] == $key) echo "selected"; } ?>>
+                                    <?php echo $val;?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </dd>
+                </dl>
+                <dl id="v-text">
+                    <dt class="label">回复内容</dt>
+                    <dd class="main">
+                        <textarea class="form-control" name="content" rows="4" placeholder="请输入自定义回复的内容"><?php if (isset($isEdit)) { echo ($replyType == 'text') ?  $replyContent[0] : '' ; }?></textarea>
+                    </dd>
+                </dl>
+                <dl id="v-news">
+                    <dt class="label">图文回复</dt>
+                    <dd class="main">
+                        <?php if (isset($isEdit) && $replyType == 'news') { ?>
+                            <?php foreach ($replyContent as $item) { ?>
+                            <ul class="reply_form2">
+                                <li class="clearfix">
+                                    <div class="label">标题</div>
+                                    <div class="main"><input class="form-control" type="text" name="title[]" value="<?php echo $item['Title']; ?>"></div>
+                                </li>
+                                <li class="clearfix">
+                                    <div class="label">描述</div>
+                                    <div class="main"><input class="form-control" type="text" name="desc[]" value="<?php echo $item['Description']; ?>"></div>
+                                </li>
+                                <li class="clearfix">
+                                    <div class="label">链接</div>
+                                    <div class="main"><input class="form-control" type="text" name="url[]" value="<?php echo $item['Url']; ?>"></div>
+                                </li>
+                                <li class="clearfix">
+                                    <div class="label">图片链接</div>
+                                    <div class="main"><input type="file" name="pic[]">上传缩略图</div>
+                                </li>
+                            </ul>
+                            <?php } ?>
                         <?php } ?>
-                    </select>
-                </th>
-            </tr>
-        </table>
+                        <a id="news-add" href="javascript:" class="btn btn-add" onclick="addNews(this)">添加</a>
+                    </dd>
+                </dl>
+                <dl class="submit">
+                    <dt class="label"> </dt>
+                    <dd class="main">
+                        <input class="btn btn-save" type="submit" value="<?php echo (isset($isEdit)) ? '保存修改' : '新建并保存';?>" />
+                        <input class="btn btn-cancel" type="button" onclick="history.go(-1)" value="返回" />
+                    </dd>
+                    <div class="loading hide"></div>
+                </dl>
+            </form>
+        </section>
 
-        <table class="js-text" style="<?php if (isset($isEdit)) { echo ($replyType == 'news') ? 'display: none;':''; } ?>">
-            <tr class="js-text">
-                <th>回复内容：</th>
-                <th>
-                    <textarea class="js-text-input" name="content" cols="80" rows="5" placeholder="请输入自定义回复的内容"><?php if (isset($isEdit)) { echo ($replyType == 'text') ?  $replyContent['msg'] : '' ; }?></textarea>
-                </th>
-            </tr>
-        </table>
-
-        <?php if (isset($isEdit) && $replyType == 'news') { ?>
-            <?php foreach ($replyContent as $item) { ?>
-                <hr>
-                <table class="js-news" style="<?php if (isset($isEdit)) { echo ($replyType == 'text') ? 'display: none;':''; } ?>">
-                    <tr class="js-news">
-                        <th>标题：</th>
-                        <th><input class="js-news-input" type="text" name="title[]" value="<?php echo $item['Title']; ?>"></th>
-                    </tr>
-
-                    <tr>
-                        <th>描述：</th>
-                        <th><input class="js-news-input" type="text" name="desc[]" value="<?php echo $item['Description']; ?>"></th>
-                    </tr>
-
-                    <tr>
-                        <th>链接：</th>
-                        <th><input class="js-news-input" type="text" name="url[]" value="<?php echo $item['Url']; ?>"></th>
-                    </tr>
-
-                    <tr>
-                        <th>图片链接：</th>
-                        <th><input type="file">上传缩略图</th>
-<!--                        <th><input class="js-news-input" type="text" name="picurl[]" value="--><?php //echo $item['PicUrl']; ?><!--"></th>-->
-                    </tr>
-                </table>
-
-            <?php } ?>
-        <?php } ?>
-
-
-        <a href="javascript:" class="js-news js-news-input js-news-add" style="<?php if (isset($isEdit)) { echo ($replyType == 'text') ? 'display: none;':''; } ?>" onclick="addNewsInput(this)">添加</a>
     </div>
 
-    <button type="submit"><?php echo (isset($isEdit)) ? '保存修改' : '新建并保存';?></button>
-    <button type="button" onclick="history.go(-1)">返回</button>
+    <script id="t:news-item" type="text/html">
+        <ul class="reply_form2">
+            <li class="clearfix">
+                <div class="label">标题</div>
+                <div class="main"><input class="form-control" type="text" name="title[]" value=""></div>
+            </li>
+            <li class="clearfix">
+                <div class="label">描述</div>
+                <div class="main"><input class="form-control" type="text" name="desc[]" value=""></div>
+            </li>
+            <li class="clearfix">
+                <div class="label">链接</div>
+                <div class="main"><input class="form-control" type="text" name="url[]" value=""></div>
+            </li>
+            <li class="clearfix">
+                <div class="label">图片链接</div>
+                <div class="main"><input type="file" name="pic[]">上传缩略图</div>
+            </li>
+        </ul>
+    </script>
 
-</form>
+    <script src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+    <script src="js/baiduTemplate.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script>
+        $(function(){
+            // 显示回复类型相应的内容
+            typeChange($("#replay_type"));
+
+            $(document).on("change", ".form-control", function(){
+                if($(this).val() != '') {
+                    $(this).removeClass("error");
+                }
+            });
+            $('#myForm').on("submit", function(){
+                var _this = $(this);
+                $(".form-control:hidden").each(function(index, el) {
+                    if($(el).is(":hidden") || $(el).parent().is(":hidden")){
+                        $(el).attr("disabled", true);
+                    }
+                });
+                if(doValidate()){
+                    _this.find(".submit .loading").show();
+                    _this.find(".submit .main").hide();
+                    _this.ajaxSubmit({
+                        success: function (data) {
+                            data = eval("(" + data + ")");
+                            if (data.status) {
+                                history.go(-1);
+                            } else {
+                                alert(data.info);
+                                _this.find(".submit .loading").hide();
+                                _this.find(".submit .main").show();
+                            }
+                        }
+                    });
+                }
+                $(".form-control").attr("disabled", false);
+                return false;
+            });
+        });
+
+        /* 回复类型切换显示相应的内容 */
+        function typeChange(_this) {
+            var type = $(_this).val(),
+                oText = $("#v-text"),
+                oNews = $("#v-news");
+            switch (type) {
+                case "text": 
+                    oText.show();
+                    oNews.hide();
+                    break;
+                case "news": 
+                    oText.hide();
+                    oNews.show();
+                    break;
+                default: 
+                    oText.hide();
+                    oNews.hide();
+                    break;
+            }
+        }
+
+        /* 添加新闻回复 */
+        function addNews(_this){
+            var num = $("#v-news .reply_form2").length;
+            var bt = baidu.template;
+            var html = bt('t:news-item',{});
+            $(_this).before(html);
+            $("#news-add").removeClass("error");
+            if(num >= 7){
+                $(_this).hide();
+            }
+        }
+        /* 表单验证 */
+        function doValidate() {
+            var success = true;
+
+            //表单不能为空
+            $(".form-control:visible").each(function(index, el) {
+                var _this = $(el);
+                if(_this.val() == '') {
+                    success = false;
+                    _this.addClass("error");
+                }
+            });
+
+            //按钮类型为菜单对应的子菜单至少一个
+            if($("#v-news").is(":visible") && $("#v-news .reply_form2").length <= 0){
+                success = false;
+                $("#news-add").addClass("error");
+            }
+
+            return success;
+        }
+    </script>
+
+
 
     <div class="README">
         <h2>说明：</h2>
         <ul>
-            <li>文本 <br>
-                key值填入关键字（唯一，不可重复。可存在多个关键字，关键字之间用空格隔开。） <br>
+            <li>文本 <br> key值填入关键字（唯一，不可重复。可存在多个关键字，关键字之间用空格隔开。） <br>
             </li>
             <li>扫码 <br>
                 key值填入 qrcodesenceID（唯一，不可重复。） <br>
@@ -136,46 +258,44 @@
 
 </body>
 
-<script src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
-<script src="js/jquery.form.js"></script>
 <script>
-    $('#myForm').ajaxForm({
-        success: function (data) {
-            data = eval("(" + data + ")");
-            if (data.status) {
-                history.go(-1);
-            } else {
-                alert(data.info)
-            }
-        }
-    });
+    // $('#myForm').ajaxForm({
+    //     success: function (data) {
+    //         data = eval("(" + data + ")");
+    //         if (data.status) {
+    //             history.go(-1);
+    //         } else {
+    //             alert(data.info)
+    //         }
+    //     }
+    // });
     
-    function changeReplyType(_this) {
-        var type = $(_this).val();
-        if (type == 'text') {
-            $('.js-news').hide();
-            $('.js-news-input').attr('disabled', true);
-            $('.js-text').show();
-            $('.js-text-input').attr('disabled', false);
-        }
-        if (type == 'news'){
-            $('.js-text').hide();
-            $('.js-text-input').attr('disabled', true);
-            $('.js-news').show();
-            if($("table.js-news").length>7) {
-                $(".js-news-add").hide();
-            }
-            $('.js-news-input').attr('disabled', false);
-        }
-    }
+    // function changeReplyType(_this) {
+    //     var type = $(_this).val();
+    //     if (type == 'text') {
+    //         $('.js-news').hide();
+    //         $('.js-news-input').attr('disabled', true);
+    //         $('.js-text').show();
+    //         $('.js-text-input').attr('disabled', false);
+    //     }
+    //     if (type == 'news'){
+    //         $('.js-text').hide();
+    //         $('.js-text-input').attr('disabled', true);
+    //         $('.js-news').show();
+    //         if($("table.js-news").length>7) {
+    //             $(".js-news-add").hide();
+    //         }
+    //         $('.js-news-input').attr('disabled', false);
+    //     }
+    // }
 
-    function addNewsInput(_this) {
-        if($("table.js-news").length>=7) {
-            $(".js-news-add").hide();
-        }
-        var html = '<hr class="js-news"><table class="js-news"><tr class="js-news"><th>标题：</th><th><input class="js-news-input" type="text" name="title[]"></th> </tr> <tr> <th>描述：</th> <th><input class="js-news-input" type="text" name="desc[]"></th> </tr> <tr> <th>链接：</th> <th><input class="js-news-input" type="text" name="url[]"></th></tr><tr><th>图片链接：</th> <th><input type="file" name="pic[]"></th></tr></table>';
-        $(_this).before(html);
-    }
+    // function addNewsInput(_this) {
+    //     if($("table.js-news").length>=7) {
+    //         $(".js-news-add").hide();
+    //     }
+    //     var html = '<hr class="js-news"><table class="js-news"><tr class="js-news"><th>标题：</th><th><input class="js-news-input" type="text" name="title[]"></th> </tr> <tr> <th>描述：</th> <th><input class="js-news-input" type="text" name="desc[]"></th> </tr> <tr> <th>链接：</th> <th><input class="js-news-input" type="text" name="url[]"></th></tr><tr><th>图片链接：</th> <th><input type="file" name="pic[]"></th></tr></table>';
+    //     $(_this).before(html);
+    // }
 </script>
 </html>
 

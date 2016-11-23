@@ -69,7 +69,7 @@ a:active {
     -webkit-animation-timing-function: linear;
     animation-timing-function: linear;
 }
-input.form-control, select.form-control {
+input.form-control, select.form-control, textarea.form-control {
 	display: block;
 	width: 100%;
 	padding: 6px 10px;
@@ -85,13 +85,18 @@ input.form-control, select.form-control {
 	border-radius: 5px;
 	outline: none;
 }
-input.form-control:focus, select.form-control:focus {
+.form-control:focus {
 	border: 1px solid #3a87ad;
 	box-shadow: 0 0 1px 0px #3a87ad;
 }
-input.form-control.error, select.form-control.error {
+.form-control.error {
     border: 1px solid #f65047;
     box-shadow: 0 0 1px 0px #f65047;
+}
+textarea.form-control {
+  height: auto;
+  line-height: 26px;
+  resize: none;
 }
 .btn {
     display: block;
