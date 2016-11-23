@@ -29,7 +29,7 @@ switch($act)
 		break;
 		case 'plan2':
 			
-			$msg = apiData('getGrouponPushApi.do', array('num'=>43200,'pageSize'=>100));
+			$msg = apiData('getGrouponPushApi.do', array('num'=>1200,'pageSize'=>100));
 			if($msg['success'] ==1){
 				$msg = $msg['result'];
 				echo	ajaxJson( 1,'获取成功',$msg);
