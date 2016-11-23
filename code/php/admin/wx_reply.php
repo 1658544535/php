@@ -114,9 +114,10 @@ switch ($act)
         }
 
         $data['content'] = json_decode(html_entity_decode($data['content']), true); //json转为php数组
+        $replyType    = $data['reply_type']; //回复类型
+        $replyContent = array(); //回复内容
         foreach ($data['content'] as $key => $value) {
-            $replyType    = $key; //回复类型
-            $replyContent = $value; //回复内容
+            array_push($replyContent, $value); //回复内容
         }
 
         include_once('tpl/reply_form.php');
@@ -181,7 +182,7 @@ switch ($act)
             'key'         => ' ' . trim($_POST['key']) . ' ', //事件Key值
             'event'       => $_POST['event'], //事件类型
             'reply_type'  => $_POST['replyType'],
-            'content'     => htmlentities(json_encode_custom($content),ENT_QUOTES,"utf-8"),
+            'content'     => htmlentities($content,ENT_QUOTES,"utf-8"),
             'create_time' => time(),
         );
 
