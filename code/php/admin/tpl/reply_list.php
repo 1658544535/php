@@ -92,14 +92,17 @@
                     <%}else if(title[j] == "Url"){%>
                     <td align="center">链接</td>
                     <%}else if(title[j] == "PicUrl"){%>
-                    <td align="center">图片链接</td>
+                    <td align="center" width="120">图片</td>
                 <%}}%>
             </tr>
             <%for(var i=0; i<content.length; i++){%>
             <tr>
                 <%for(var j=0; j<title.length; j++){%>
-                <td align="center"><%= content[i][j]%></td>
-                <%}%>
+                    <%if(title[j] == 'PicUrl'){%>
+                    <td align="center"><img src="<%= content[i][j]%>" class="reply-table-img" /></td>
+                    <%}else{%>
+                    <td align="center"><%= content[i][j]%></td>
+                <%}}%>
             </tr>
             <%}%>
         </table>

@@ -138,9 +138,9 @@ switch ($act)
         {
             case 'text':
                 if (!$_POST['content'])  ajaxReturn(0,'保存失败，内容不能为空');
-                $content = json_encode_custom(array(
+                $content = array(
                     'msg' => $_POST['content'],
-                ));
+                );
                 break;
 
             case 'news':
@@ -182,7 +182,7 @@ switch ($act)
             'key'         => ' ' . trim($_POST['key']) . ' ', //事件Key值
             'event'       => $_POST['event'], //事件类型
             'reply_type'  => $_POST['replyType'],
-            'content'     => htmlentities($content,ENT_QUOTES,"utf-8"),
+            'content'     => htmlentities(json_encode_custom($content),ENT_QUOTES,"utf-8"),
             'create_time' => time(),
         );
 

@@ -164,6 +164,37 @@
 	background: rgba(0,0,0,0.2);
 	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
+.reply_form2 {
+	position: relative;
+}
+.reply_form2 li {
+	margin: 5px 0;
+}
+.reply_form2 .del {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 30px;
+	height: 30px;
+	margin: 0;
+	background: #f65047;
+	border-bottom-left-radius: 30px;
+	cursor: pointer;
+}
+.reply_form2 .del:hover {
+	background: #e6433b;
+}
+.reply_form2 .del span {
+	display: block;
+	width: 14px;
+	height: 3px;
+	margin: 11px 0 0 11px;
+	background: #fff;
+}
+.reply-table-img {
+	display: block;
+	width: 110px;
+}
 .reply_form .btn-add {
 	width: 100px;
 	margin-top: 10px;
@@ -177,4 +208,50 @@
 }
 .reply_form dl.submit .loading {
 	float: left;
+}
+.upLoadImg {
+	display: table;
+	position: relative;
+	width: 100%;
+	min-height: 64px; 
+	background: url(../images/uploadImg.png) no-repeat center center;
+	background-size:30px 30px;
+	background-color: #666;
+	background-color: rgba(0,0,0,0.2);
+	border-radius: 5px;
+	overflow: hidden;
+}
+.upLoadImg.has {
+	background-image: none;
+}
+.upLoadImg input{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	cursor: pointer;
+}
+.upLoadImg .view {
+	display: table-cell;
+	vertical-align: middle;
+	min-height: 64px;
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+.upLoadImg .view img{
+	display: inline-block;
+	width: 100%;
+}
+.upLoadImg.error {
+	border: 1px solid #f65047;
+    box-shadow: 0 0 1px 0px #f65047;
+}
+.upLoadImg.has .view {
+	background-image: none;
+	filter: alpha(opacity=100);
+	opacity: 1;
 }
