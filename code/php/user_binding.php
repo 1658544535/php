@@ -20,18 +20,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		'source' => 3,
 		'unionid' => $_SESSION['unionid'],
 	);
-	//头像
-	$_wxUserInfo = $objWX->getUserInfo($openid);
-	if($_wxUserInfo['headimgurl']){
-		$_dir = SCRIPT_ROOT.'upfiles/headimage/';
-		!file_exists($_dir) && mkdir($_dir, 0777, true);
-		$_headimg = $_dir.$openid.'.jpg';
-		file_put_contents($_headimg, file_get_contents($_wxUserInfo['headimgurl']));
-	}
-	$apiParam['image'] = '@'.$_headimg;
+	
 	$result = apiData('userlogin.do', $apiParam);
 	if($result['success']){
 		$result = $result['result'];
+
+		//设置微信信息
+		$_wxUserInfo = $objWX->getUserInfo($openid);
+		if($_wxUserInfo !== false){
+			$userApiParam = array('uid'=>$result['uid'], 'name'=>$_wxUserInfo['nickname']);
+			if($_wxUserInfo['headimgurl']){
+				$_dir = SCRIPT_ROOT.'upfiles/headimage/';
+				!file_exists($_dir) && mkdir($_dir, 0777, true);
+				$_headimg = $_dir.$openid.'.jpg';
+				file_put_contents($_headimg, file_get_contents($_wxUserInfo['headimgurl']));
+				$userApiParam['file'] = '@'.$_headimg;
+			}
+			apiData('editUserInfo.do', $userApiParam, 'post');
+		}
+
 		$_wxInfo = new stdClass();
 		$_wxInfo->id = $result['uid'];
 		$_wxInfo->loginname = $result['phone'];
