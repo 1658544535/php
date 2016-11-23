@@ -90,8 +90,14 @@
                                 </li>
                                 <li class="clearfix">
                                     <div class="label">图片链接</div>
-                                    <div class="main"><input type="file" name="pic[]">上传缩略图</div>
+                                    <div class="main">
+                                        <div class="upLoadImg has">
+                                            <input class="file" type="file" name="pic[]">
+                                            <div class="view"><img src="<?php echo $item['PicUrl']; ?>" /></div>
+                                        </div>
+                                    </div>
                                 </li>
+                                <li class="del" onclick="delNews(this)"><span></span></li>
                             </ul>
                             <?php } ?>
                         <?php } ?>
@@ -127,8 +133,14 @@
             </li>
             <li class="clearfix">
                 <div class="label">图片链接</div>
-                <div class="main"><input type="file" name="pic[]">上传缩略图</div>
+                <div class="main">
+                    <div class="upLoadImg">
+                        <input class="file" type="file" name="pic[]">
+                        <div class="view"><img src="" /></div>
+                    </div>
+                </div>
             </li>
+            <li class="del" onclick="delNews(this)"><span></span></li>
         </ul>
     </script>
 
@@ -139,6 +151,22 @@
         $(function(){
             // 显示回复类型相应的内容
             typeChange($("#replay_type"));
+
+            // 图片预览
+            $(document).on("change", ".upLoadImg input.file", function(){
+                var _this = $(this);
+                var url = _this.val();
+                if (window.createObjectURL != undefined) { // basic
+                    url = window.createObjectURL(_this.get(0).files[0]);
+                } else if (window.URL != undefined) { // mozilla(firefox)
+                    url = window.URL.createObjectURL(_this.get(0).files[0]);
+                } else if (window.webkitURL != undefined) { // webkit or chrome
+                    url = window.webkitURL.createObjectURL(_this.get(0).files[0]);
+                }
+                _this.next().children('img').attr("src", url);
+                _this.parent().addClass("has");
+                $(_this).parent().removeClass("error");
+            });
 
             $(document).on("change", ".form-control", function(){
                 if($(this).val() != '') {
@@ -205,6 +233,16 @@
                 $(_this).hide();
             }
         }
+
+        /* 删除新闻回复 */
+        function delNews(_this){
+            var num = $("#v-news .reply_form2").length;
+            $(_this).parent().remove();
+            if(num <= 8){
+                $("#news-add").show();
+            }
+        }
+
         /* 表单验证 */
         function doValidate() {
             var success = true;
@@ -223,6 +261,14 @@
                 success = false;
                 $("#news-add").addClass("error");
             }
+
+            // 图片必须选
+            $(".upLoadImg").each(function(index, el) {
+                if(!$(el).hasClass("has")) {
+                    success = false;
+                    $(el).addClass("error");
+                }
+            });
 
             return success;
         }
