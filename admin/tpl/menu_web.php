@@ -92,8 +92,6 @@
                 </dl>
                 <?php } ?>
 
-                <input type="hidden" value="1" name="isCreatJSON">
-
                 <div class="form-submit">
                     <?php if(count($buttons_arr)<3){?>
                     <a class="btn btn-add" href="javascript:;" onclick="addMenu(this)">添 加</a>
@@ -191,7 +189,8 @@
         $('#wechatMenuForm').on("submit", function(){
             $(".form-control:hidden").each(function(index, el) {
                 if($(el).is(":hidden") || $(el).parent().is(":hidden")){
-                    $(el).attr("disabled", true);
+                    // $(el).attr("disabled", true);
+                    $(el).val('');
                 }
             });
             var _this = $(this);
@@ -209,7 +208,7 @@
                             $(".form-submit .btn").show();
                             $(".form-submit .loading").hide();
                         }
-                        $(".form-control").attr("disabled", false);
+                        // $(".form-control").attr("disabled", false);
                     }
                 });
             }
