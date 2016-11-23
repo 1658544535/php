@@ -45,9 +45,9 @@
 								<div class="info">
 									<div class="name"><?php echo $info['products']['productName'];?></div>
 									<div class="price">
-										<div class="btn">商品详情</div>
-										<?php echo $tipPrice;?>：<span class="price1" id="price"><?php echo $info['products']['price'];?></span>
-										<span class="price2">￥<?php echo $info['products']['sellingPrice'];?></span>
+										<!-- <div class="btn">商品详情</div> -->
+										<?php echo $tipPrice;?>：<span class="price1" id="price">￥<?php echo $info['products']['price'];?></span>
+										<!-- <span class="price2">￥<?php echo $info['products']['sellingPrice'];?></span> -->
 									</div>
 								</div>
 							</a></li>
