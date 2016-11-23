@@ -69,17 +69,19 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             </script>
 
             <script id='tpl_proBox' type="text/template">
-                <!-- <section class="index-subClass">
+                <section class="index-subClass">
                     <ul>
-                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div>模型玩具</a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
+                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
                     </ul>
-                </section> -->
+                </section>
                 <section class="index-pro infinite-scroll infinite-scroll-bottom" data-distance="30">
                 <ul class="list-container"></ul>
                 <div class="infinite-scroll-preloader">
