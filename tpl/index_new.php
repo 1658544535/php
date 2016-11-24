@@ -29,7 +29,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                     <a class="swiper-slide" href="index.php?id=0" data-id="0">首页</a>
                     <?php foreach($classification as $class){?>
                         <a href="index.php?id=<?php echo $class['oneId'];?>" class="swiper-slide" data-id="<?php echo $class['oneId'];?>"><?php echo $class['oneName'];?></a>
-                    <?php }?>           
+                    <?php }?>
                 </div>
             </section>
             <div class="index-class-placeholder"></div>
@@ -69,17 +69,11 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             </script>
 
             <script id='tpl_proBox' type="text/template">
-                <section class="index-subClass">
+                <section class="index-subClass" data-more="search_class.php?act=twoClass&id=<?php echo $cateId;?>&level=2">
                     <ul>
-                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
-                        <li><a href="#"><div class="img"><img src="" /></div><div class="txt">模型玩具</div></a></li>
+                      <?php foreach ($twoClass as $two){?>
+                        <li><a href="search_class.php?act=threeClass&id=<?php echo $two['twoId'];?>&level=3"><div class="img"><img src="<?php echo $two['twoIcon'];?>" /></div><div class="txt"><?php echo $two['twoName'];?></div></a></li>
+                      <?php }?>                        
                     </ul>
                 </section>
                 <section class="index-pro infinite-scroll infinite-scroll-bottom" data-distance="30">
