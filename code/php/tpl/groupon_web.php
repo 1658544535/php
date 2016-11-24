@@ -119,6 +119,8 @@
 					</a>
 					<?php switch($info['activityType']){
 						case 5://0.1抽奖
+						case 7://免费抽奖
+							$orderUrl = ($info['activityType'] == 5) ? 'order_raffle01.php' : 'order_raffle.php';
 						?>
 							<?php if($info['activityStatus'] == 2){ ?>
 								<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>">查看中奖名单</a></div>
@@ -129,7 +131,7 @@
 									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">商品已售罄</a></div>
 							    <?php }else{?>
 									<div class="buy more1 more1-m2">
-										<a id="openSku" data-href="order_raffle01.php">
+										<a id="openSku" data-href="<?php echo $orderUrl;?>">
 											 <p>￥<b><?php echo $info['productPrice'];?></b></p>
 											 <p><?php echo $info['groupNum'];?>人成团</p>
 										</a>
