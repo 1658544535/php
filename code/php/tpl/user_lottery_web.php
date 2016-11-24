@@ -9,10 +9,10 @@
                 <h1 class="title">我的抽奖</h1>
             </header>
 
-            <section class="user-tab lottery-tab" data-href="ajaxtpl/ajax_user_lottery.php?uid=<?php echo $userid;?>" style="position:absolute;width: 100%;bottom:0;">
+            <section class="user-tab lottery-tab" data-href="ajaxtpl/ajax_user_lottery.php" style="position:absolute;width: 100%;bottom:0;">
                 <ul>
-                    <li data-type="1"><a href="/user_lottery.php?uid=<?php echo $userid;?>&type=1">0.1夺宝</a></li>
-                    <li data-type="2"><a href="/user_lottery.php?uid=<?php echo $userid;?>&type=2">免费抽奖</a></li>
+                    <li data-type="1"><a href="/user_lottery.php?type=1">0.1夺宝</a></li>
+                    <li data-type="2"><a href="/user_lottery.php?type=2">免费抽奖</a></li>
                 </ul>
             </section>
 
