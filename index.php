@@ -33,8 +33,11 @@ if(!empty($freeCpn))
 }
 
 //秒杀商品
-$seckillPro = apiData('homeSecKillListApi.do');
-$seckillPro = $seckillPro['success'] ? $seckillPro['result'] : array();
+$seckillPro = array();
+if(!$cateId){
+	$seckillPro = apiData('homeSecKillListApi.do');
+	$seckillPro = $seckillPro['success'] ? $seckillPro['result'] : array();
+}
 
 $footerNavActive = 'index';
 
