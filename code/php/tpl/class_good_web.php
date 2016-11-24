@@ -26,7 +26,7 @@
                 </ul>
             </section>
             <?php }else{?>
-            <section class="user-tab class-nav" data-href="ajaxtpl/ajax_product.php?level=<?php echo $level;?>&id=<?php echo $cId;?>" style="margin-top:2.0rem">
+            <section class="user-tab class-nav" data-href="ajaxtpl/ajax_product.php?level=<?php echo $level;?>&id=<?php echo $cId;?>">
                 <div class="show-down"></div>
                 <ul class="show">
                     <li data-type="<?php echo $cId;?>" class="active"><a>全部</a></li>
