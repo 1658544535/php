@@ -32,6 +32,10 @@ if(!empty($freeCpn))
 	$cpnEnd = date('Y.n.j', strtotime($freeCpn['endTime']));
 }
 
+//秒杀商品
+$seckillPro = apiData('homeSecKillListApi.do');
+$seckillPro = $seckillPro['success'] ? $seckillPro['result'] : array();
+
 $footerNavActive = 'index';
 
 include "tpl/index_new.php"; 
