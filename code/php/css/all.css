@@ -5410,3 +5410,31 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
 }
+.class-search {
+  display: block;
+  margin-top: 2.2rem;
+  padding: 0.35rem 0;
+  background: #fff;
+}
+.class-search > div {
+  padding: 3px 0;
+  margin: 0 1.0rem;
+  border: 1px solid #c9c9c9;
+  border-radius: .25rem;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #666;
+}
+.class-search > div i {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: 0.5rem;
+  background: url(../images/search.png) no-repeat 0 0;
+  background-size: 100% 100%;
+  vertical-align: middle;
+}
+.class-search > div span {
+  display: inline-block;
+  vertical-align: middle;
+}
