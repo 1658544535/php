@@ -33,7 +33,7 @@
 					<section class="deta-info">
 						<div class="d-i-1">
 							<span class="sales">累积销量：<?php echo $info['proSellrNum'];?>件</span>
-							￥<span class="nowPrice"><?php echo $info['productPrice'];?></span>
+							￥<span class="nowPrice"><?php echo ($info['activityType'] == 7) ? '0.0' : $info['productPrice'];?></span>
 							<span class="oldPrice">￥<?php echo $info['sellingPrice'];?></span>
 							<?php if($info['activityType'] == 5){ ?><span class="stips">团长必中 团员抽奖</span><?php } ?>
 						</div>
@@ -53,7 +53,19 @@
 							</div>
 						<?php }elseif($info['activityType'] == 6){ ?>
 							<div class="txt2">【活动说明：活动 <b class="themeColor"><?php echo $info['startTime'];?></b> 开始，限量 <b class="themeColor"><?php echo $info['limitNum'];?> </b>份，售完即止！商品售完时未能成团者即视为活动失败】</div>
-						<?php } ?>
+						<?php } elseif ($info['activityType'] == 7) { ?>
+                            <div class="txt2">
+                                <div>活动时间：<b class="themeColor"><?php echo $info['activitySTime'];?></b> 到 <b class="themeColor"><?php echo $info['activityETime'];?></b></div>
+                                <div>活动规则：</div>
+                                <div>1、0元立即开团，规定时间内邀请好友一起0元拼团，拼团成功后将进入待抽奖箱。</div>
+                                <div>2、待活动时间结束，系统将随机抽取幸运的中奖团，该团成员将获得奖品。</div>
+                                <div>3、不成团或无中奖用户均全额退款。</div>
+                                <div>4、每人均有一次参与（开团或参团）机会。</div>
+                                <div>5、活动奖品预计开奖后72小时内发放。</div>
+                                <div>温馨提醒：</div>
+                                <div>每个团组团有效期为24个小时，如团结束时间大于活动结束时间时，则按活动结束的时间。 </div>
+                            </div>
+                        <?php } ?>
 						<div class="tips"><img src="images/deta-tips.png" /></div>
 						<?php if($info['activityType'] == 6){ ?>
 							<?php $seckillStateIcons = array('notstart'=>'soon', 'end'=>'over', 'sellout'=>'out', 'selling'=>'ing'); ?>
@@ -129,10 +141,14 @@
 									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">您已参与过该活动</a></div>
 								<?php }elseif(empty($skus['validSKu'])){ ?>
 									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">商品已售罄</a></div>
-							    <?php }else{?>
+							    <?php }else{ ?>
 									<div class="buy more1 more1-m2">
 										<a id="openSku" data-href="<?php echo $orderUrl;?>">
-											 <p>￥<b><?php echo $info['productPrice'];?></b></p>
+                                            <?php if ($info['activityType'] == 5) { ?>
+                                                <p>￥<b><?php echo $info['productPrice'];?></b></p>
+                                            <?php } elseif ($info['activityType'] == 7) { ?>
+                                                <p><b>立即开团</b></p>
+                                            <?php } ?>
 											 <p><?php echo $info['groupNum'];?>人成团</p>
 										</a>
 									</div>
@@ -183,7 +199,7 @@
 										</a>
 									<?php }else{ ?>
 										<!-- <a class="more" href="order_groupon.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon">-->
-										<a class="more" data-href="order_groupon.php" id="btn-groupon" data-ref="groupon"> 
+										<a class="more" data-href="order_groupon.php" id="btn-groupon" data-ref="groupon">
 											 <p>￥<b><?php echo $info['productPrice'];?></b></p>
 											 <p><?php echo $info['groupNum'];?>人团</p>
 										</a>
@@ -202,21 +218,21 @@
 		?>
 
         <script>
-			var _apiUrl = "/api_action.php?act=";
-			document.domain='<?php echo implode('.', $_arrDomain);?>';
-			<?php if($info['productStatus'] == 1){ ?>
-			function setIframeHeight(iframe) {
-			 	if (iframe) {
-			 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-			 		if (iframeWin.document.body) {
-			 			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-			 		}
-			 	}
-			};
-			window.onload = function () {
-			 	setIframeHeight(document.getElementById('proInfo'));
-			};
-			<?php } ?>
+//			var _apiUrl = "/api_action.php?act=";
+//			document.domain='<?php //echo implode('.', $_arrDomain);?>//';
+//			<?php //if($info['productStatus'] == 1){ ?>
+//			function setIframeHeight(iframe) {
+//			 	if (iframe) {
+//			 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+//			 		if (iframeWin.document.body) {
+//			 			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+//			 		}
+//			 	}
+//			};
+//			window.onload = function () {
+//			 	setIframeHeight(document.getElementById('proInfo'));
+//			};
+//			<?php //} ?>
 
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
 
@@ -227,6 +243,7 @@
 					<?php switch($info['activityType']){
 						case 5://0.1抽奖
 						case 6://限时秒杀
+                        case 7://免费抽奖
 					?>
 							$("#openSku").on("click", function(){
 								$(".popup-sku").attr("data-href", $(this).attr("data-href"));
