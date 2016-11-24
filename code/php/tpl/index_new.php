@@ -77,7 +77,22 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                     </ul>
                 </section>
                 <section class="index-pro infinite-scroll infinite-scroll-bottom" data-distance="30">
-                <ul class="list-container"></ul>
+                <ul class="list-container">
+					<?php foreach($seckillPro as $v){ ?>
+						<li><a href="groupon.php?id=<?php echo $v['activityId'];?>">
+							<div class="img"><img src="<?php echo $v['productImage'];?>" /></div>
+							<div class="info">
+								<p class="name"><?php echo $v['productName'];?></p>
+								<span class="sales">销量：<?php echo $v['proSellrNum'];?></span>
+							</div>
+							<div class="group">
+								<span class="num"><?php echo $v['groupNum'];?>人团</span>
+								￥<span class="now-price"><?php echo $v['productPrice'];?></span>
+								<span class="old-price">￥<?php echo $v['alonePrice'];?></span>
+							</div>
+						</a></li>
+					<?php } ?>
+				</ul>
                 <div class="infinite-scroll-preloader">
                     <div class="preloader"></div>
                 </div>
