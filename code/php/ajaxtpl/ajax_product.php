@@ -7,7 +7,9 @@ $cid   = CheckDatas( 'type', '' );
 $act   = CheckDatas( 'act', 'info' );
 $page  = max(1, intval($_POST['page']));
 
+
 $productlist = apiData('findProductListApi.do', array('id'=>$cid,'pageNo'=>$page,'level'=>$level));
+		 
 
 if($productlist['result'])
 {

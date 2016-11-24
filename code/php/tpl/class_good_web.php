@@ -9,29 +9,29 @@
                 <a class="button button-link button-nav pull-left back" href="index.php">
                     <span class="icon icon-back"></span>
                 </a>
-                <?php if($level ==3){?>
+                <?php if($level ==2){?>
                 <h1 class="title"><?php echo $threeClass['twoName'];?></h1>
                 <?php }else{?>
                 <h1 class="title"><?php echo $twoClass['oneName'];?></h1>
                 <?php }?>
             </header>
-            <?php if($level ==3){?>
-            <section class="user-tab class-nav" data-href="ajaxtpl/ajax_product.php?level=<?php echo $level;?>&id=<?php echo $cId;?>" style="margin-top:2.0rem">
+            <?php if($level ==2){?>
+            <section class="user-tab class-nav" data-href="ajaxtpl/ajax_product.php?id=<?php echo $cId;?>" style="margin-top:2.0rem">
                 <div class="show-down"></div>
                 <ul class="show">
-                    <li data-type="<?php echo $cId;?>" class="active"><a>全部</a></li>
+                    <li data-type="<?php echo $cId;?>" class="active" data-level="2"><a>全部</a></li>
                     <?php foreach ($threeClass['threeLevelList'] as $three){?>
-                    <li data-type="<?php echo $three['threeId'];?>"><a><?php echo $three['threeName'];?></a></li>
+                    <li data-type="<?php echo $three['threeId'];?>" data-level="3"><a><?php echo $three['threeName'];?></a></li>
                     <?php }?>
                 </ul>
             </section>
             <?php }else{?>
-            <section class="user-tab class-nav" data-href="ajaxtpl/ajax_product.php?level=<?php echo $level;?>&id=<?php echo $cId;?>">
+            <section class="user-tab class-nav" data-href="ajaxtpl/ajax_product.php?id=<?php echo $cId;?>">
                 <div class="show-down"></div>
                 <ul class="show">
-                    <li data-type="<?php echo $cId;?>" class="active"><a>全部</a></li>
+                    <li data-type="<?php echo $cId;?>" class="active" data-level="1"><a>全部</a></li>
                     <?php foreach ($twoClass['twoLevelList'] as $two){?>
-                    <li data-type="<?php echo $two['twoId'];?>"><a><?php echo $two['twoName'];?></a></li>
+                    <li data-type="<?php echo $two['twoId'];?>" data-level="2"><a><?php echo $two['twoName'];?></a></li>
                     <?php }?>
                 </ul>
             </section>
