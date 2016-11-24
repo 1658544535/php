@@ -1,6 +1,7 @@
 <?php
 define('HN1', true);
 require_once('./global.php');
+$cateId = intval($_REQUEST['id']);
 
 //分类
 // $cates = apiData('productTypeNav.do');
@@ -11,10 +12,22 @@ $classification = apiData('productCategoryApi.do');
 $classification = $classification['result'];
 
 
+//获取首页二级分类数据
+  foreach ($classification as $k=>$v){
+	if(in_array($cateId,$v)){
+		$twoClass = $v;
+	}
+  }
+  $twoClass = $twoClass['twoLevelList'];
+
+
+
+
 //团免券
 $freeCpn = apiData('checkGroupFreeApi.do', array('userId'=>$userid));
 $freeCpn = $freeCpn['success'] ? $freeCpn['result'] : null;
-if(!empty($freeCpn)){
+if(!empty($freeCpn))
+{
 	$cpnStart = date('Y.n.j', strtotime($freeCpn['beginTime']));
 	$cpnEnd = date('Y.n.j', strtotime($freeCpn['endTime']));
 }
