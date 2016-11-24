@@ -9,9 +9,16 @@
                 <h1 class="title">我的抽奖</h1>
             </header>
 
-            <div class="content native-scroll">
+            <section class="user-tab lottery-tab" data-href="ajaxtpl/ajax_user_lottery.php?uid=<?php echo $userid;?>" style="position:absolute;width: 100%;bottom:0;">
+                <ul>
+                    <li data-type="0"><a href="/user_lottery.php?uid=<?php echo $userid;?>&type=0">0.1夺宝</a></li>
+                    <li data-type="1"><a href="/user_lottery.php?uid=<?php echo $userid;?>&type=1">免费抽奖</a></li>
+                </ul>
+            </section>
 
-                <section class="user-guess pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_user_lottery.php?uid=<?php echo $userid;?>">
+            <div class="content native-scroll" style="bottom: 40px;">
+
+                <section class="user-guess clickbox infinite-scroll infinite-scroll-bottom" data-distance="30">
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader">
@@ -21,7 +28,7 @@
 
             </div>
 
-            <script id='tpl_pull' type="text/template">
+            <script id='tpl_pull_tab' type="text/template">
                 <%if(data["data"].length>0){%>
                     <%for(var i=0;i<data["data"].length; i++){%>
                         <li>
