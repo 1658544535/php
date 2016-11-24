@@ -68,15 +68,15 @@
                 </table>
             </div>
 
+            <?php if($totalPage>1){
+                echo $nav; //输出分页
+            }?>
+
             <div class="form-submit">
                 <a class="btn btn-add" href="wx_reply.php?act=create">新建</a>
             </div>
 
         </section>
-
-        <?php if($totalPage>1){
-            echo $nav; //输出分页
-        }?>
 
     </div>
 

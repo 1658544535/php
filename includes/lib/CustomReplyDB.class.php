@@ -233,7 +233,7 @@ EOF;
         //分页样式
         return '  
         <div class="page">  
-            <a>【共'.$this->totalPage.'页，第'.$this->currentPage.'页】</a>  
+            <span>【共'.$this->totalPage.'页，第'.$this->currentPage.'页】</span>  
             <a href="' . $firstUrl .'">首页</a>  
             <a href="' . $preUrl   .'">上一页</a>  
             <a href="' . $nextUrl  .'">下一页</a>  

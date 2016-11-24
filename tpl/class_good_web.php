@@ -6,7 +6,7 @@
         <div id="page-nav-bar" class="page page-current">
         
         	<header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="index.php">
+                <a class="button button-link button-nav pull-left back" href="search_class.php">
                     <span class="icon icon-back"></span>
                 </a>
                 <?php if($level ==2){?>

@@ -115,6 +115,41 @@
             </form>
         </section>
 
+        <section class="reply-tips bounceInUp bounceInUp-3 animated">
+            <h2>说明</h2>
+            <ul class="list">
+                <li>
+                    <h3 class="title">文本</h3>key值填入关键字（唯一，不可重复。可存在多个关键字，关键字之间用空格隔开。）
+                </li>
+                <li>
+                    <h3 class="title">扫码</h3>
+                    key值填入 qrcodesenceID（唯一，不可重复。） <br>
+                    当用户已经关注公众号，扫描相关二维码的时候 <br>
+                    回复该二维码的qrcodesenceID对应的回复内容。
+                </li>
+                <li>
+                    <h3 class="title">扫码关注</h3>
+                    key值填入 qrcodesenceID（唯一，不可重复。） <br>
+                    当用户扫描二维码时没有关注该公众号时，回复该 qrcodesenceID 相对应的回复内容
+                </li>
+                <li>
+                    <h3 class="title">点击</h3>
+                    点击事件。Key值填入键值（唯一，不可重复。与自定义菜单那边键值相对应） <br>
+                    当用户点击相对应的按钮时回复相对键值的回复内容。
+                </li>
+            </ul>
+        </section>
+
+        <section class="reply-tips bounceInUp bounceInUp-3 animated">
+            <h2>链接说明：</h2>
+            <ul class="list">
+                <li>添加链接： &lt;a href=&quot;链接地址&quot;&gt;显示的文字&lt;/a&gt;</li>
+                <li>首页: http://weixin.pindegood.com</li>
+                <li>团免券激活领取: http://weixin.pindegood.com/free.php?id=团免券链接id</li>
+                <li>优惠券领取: http://weixin.pindegood.com/coupon_action.php?linkid=链接id&aid=活动id</li>
+            </ul>
+        </section>
+
     </div>
 
     <script id="t:news-item" type="text/html">
@@ -274,74 +309,7 @@
         }
     </script>
 
-
-
-    <div class="README">
-        <h2>说明：</h2>
-        <ul>
-            <li>文本 <br> key值填入关键字（唯一，不可重复。可存在多个关键字，关键字之间用空格隔开。） <br>
-            </li>
-            <li>扫码 <br>
-                key值填入 qrcodesenceID（唯一，不可重复。） <br>
-                当用户已经关注公众号，扫描相关二维码的时候 <br>
-                回复该二维码的qrcodesenceID对应的回复内容。</li>
-            <li>扫码关注 <br>
-                key值填入 qrcodesenceID（唯一，不可重复。） <br>
-                当用户扫描二维码时没有关注该公众号时，回复该 qrcodesenceID 相对应的回复内容</li>
-            <li>点击 <br>
-                点击事件。Key值填入键值（唯一，不可重复。与自定义菜单那边键值相对应） <br>
-                当用户点击相对应的按钮时回复相对键值的回复内容。</li>
-        </ul>
-    </div>
-
-    <hr>
-
-    <h2>链接说明：</h2>
-    <p>添加链接： &lt;a href=&quot;链接地址&quot;&gt;显示的文字&lt;/a&gt;</p>
-    <p>首页: http://weixin.pindegood.com </p>
-    <p>团免券激活领取: http://weixin.pindegood.com/free.php?id=团免券链接id</p>
-    <p>优惠券领取: http://weixin.pindegood.com/coupon_action.php?linkid=链接id&aid=活动id</p>
-
 </body>
 
-<script>
-    // $('#myForm').ajaxForm({
-    //     success: function (data) {
-    //         data = eval("(" + data + ")");
-    //         if (data.status) {
-    //             history.go(-1);
-    //         } else {
-    //             alert(data.info)
-    //         }
-    //     }
-    // });
-    
-    // function changeReplyType(_this) {
-    //     var type = $(_this).val();
-    //     if (type == 'text') {
-    //         $('.js-news').hide();
-    //         $('.js-news-input').attr('disabled', true);
-    //         $('.js-text').show();
-    //         $('.js-text-input').attr('disabled', false);
-    //     }
-    //     if (type == 'news'){
-    //         $('.js-text').hide();
-    //         $('.js-text-input').attr('disabled', true);
-    //         $('.js-news').show();
-    //         if($("table.js-news").length>7) {
-    //             $(".js-news-add").hide();
-    //         }
-    //         $('.js-news-input').attr('disabled', false);
-    //     }
-    // }
-
-    // function addNewsInput(_this) {
-    //     if($("table.js-news").length>=7) {
-    //         $(".js-news-add").hide();
-    //     }
-    //     var html = '<hr class="js-news"><table class="js-news"><tr class="js-news"><th>标题：</th><th><input class="js-news-input" type="text" name="title[]"></th> </tr> <tr> <th>描述：</th> <th><input class="js-news-input" type="text" name="desc[]"></th> </tr> <tr> <th>链接：</th> <th><input class="js-news-input" type="text" name="url[]"></th></tr><tr><th>图片链接：</th> <th><input type="file" name="pic[]"></th></tr></table>';
-    //     $(_this).before(html);
-    // }
-</script>
 </html>
 
