@@ -3356,6 +3356,7 @@
 }
 .user-tab ul li a {
   display: inline-block;
+  max-width: 100%;
   height: 100%;
   padding: 0 0.2rem;
   font-size: 0.75rem;
@@ -5336,14 +5337,17 @@
   clear: both;
 }
 .class-nav {
+  position: relative;
+  margin-top: 2.0rem;
+  z-index: 11;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
 }
 .class-nav ul.show {
   white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
-  height: 40px;
-  line-height: 40px;
+  height: 2.0rem;
+  line-height: 2.0rem;
   margin-right: 2.0rem;
 }
 .class-nav ul.show li {
