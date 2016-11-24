@@ -51,8 +51,7 @@ $collected = ($info['isCollect'] == 1) ? true : false;
 $likes = apiData('guessYourLikeApi.do', array('activityId'=>$info['activityId'], 'userId'=>$userid));
 $likes = $likes['result'];
 
-//获取分享内容
-//根据状态获取type值
+//根据状态获取type值 获取分享内容
 switch($info["activityType"]){
 	case 5://0.1
 		$type = 19;
@@ -62,6 +61,7 @@ switch($info["activityType"]){
 		$type = $type_arr[$info['activityStatus']];
 		break;
 }
+
 !$type && $type = 8;
 $fx = apiData('getShareContentApi.do', array('id'=>$info['activityId'], 'type'=>$type));
 $fx = $fx['result'];
@@ -80,6 +80,7 @@ switch($info['activityType']){
 		}
 		$showWaitGroupList = ($seckillState == 'selling') ? true : false;
 		break;
+
 	default:
 		$showWaitGroupList = $isFreeBuy ? false : true;
 		break;
