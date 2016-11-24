@@ -205,6 +205,27 @@ button.btn, input.btn {
 .hide {
     display: none;
 }
+.page {
+    padding: 10px 0;
+    text-align: right;
+}
+.page a {
+    display: inline;
+    display: inline-block;
+    zoom: 1;
+    padding: 0 10px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 13px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    border: 1px solid #fff;
+    text-align: center;
+}
+.page a:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
 
 
 

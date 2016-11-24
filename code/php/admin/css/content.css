@@ -255,3 +255,34 @@
 	filter: alpha(opacity=100);
 	opacity: 1;
 }
+.reply-tips {
+	margin: 20px;
+	padding: 15px;
+	background: rgba(0,0,0,0.2);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.reply-tips h2 {
+	margin-bottom: 4px;
+	padding: 0 0 10px;
+	line-height: 24px;
+	font-size: 18px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.reply-tips h2:before {
+	float: left;
+	content: ' ';
+	width: 5px;
+	height: 18px;
+	margin: 3px 10px 0 0;
+	background: #ff9d11;
+}
+.reply-tips .list li {
+	margin-left: 20px;
+	padding: 6px 0;
+	list-style: disc;
+	line-height: 24px;
+}
+.reply-tips .list .title {
+	font-size: 16px;
+	padding-bottom: 4px;
+}
