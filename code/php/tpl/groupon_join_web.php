@@ -17,30 +17,29 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                     <span class="icon icon-back"></span>
                 </a>
                 <?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
-                <h1 class="title">商品已售罄</h1>
+					<h1 class="title">商品已售罄</h1>
                 <?php }elseif($info['status'] ==2){?>
-                <h1 class="title">拼团失败</h1>
+					<h1 class="title">拼团失败</h1>
                 <?php }elseif($info['status'] ==1  && $info['isGroup'] ==1){?>
-                <h1 class="title">拼团成功</h1>
+					<h1 class="title">拼团成功</h1>
                 <?php }elseif($info['status'] ==0 && $info['isGroup'] ==0){?>
-                <h1 class="title">拼团中</h1>
+					<h1 class="title">拼团中</h1>
                 <?php }elseif($info['userIsHead'] ==0 && $info['isGroup'] ==1 ){?>
-                <h1 class="title">参团成功</h1>
+					<h1 class="title">参团成功</h1>
                 <?php }elseif($info['userIsHead'] ==1 && $info['status'] ==0 && $info['isStart'] ==1){?>
-                <h1 class="title">开团成功</h1>
+					<h1 class="title">开团成功</h1>
                 <?php }elseif($info['status'] ==1 && $info['isStart'] ==1 && $info['isGroup'] ==0){?>
-                <h1 class="title">已成团</h1>
+					<h1 class="title">已成团</h1>
                 <?php }?>
             </header>
                 
  			<section class="proTipsNew-5">
-       
        			<?php if($info['isSellOut'] ==1){?>
 	                <div>
 	                    <a href="index.php" class="white">更多拼团</a>
 	                    <a>商品已售罄</a>
 	                </div>
-      			<?php }elseif((($info['activityType'] ==5) || ($info['activityType'] ==2)) && $info['status'] ==2){?>
+      			<?php }elseif(in_array($info['activityType'], array(2,5,7)) && $info['status'] ==2){?>
 	              	<input type="hidden" id="showShare" />
 	                <div>
 	                	<a href="index.php" class="white">更多拼团</a>
@@ -55,8 +54,8 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 									<a href="index.php" class="white">更多拼团</a>
 		                            <a id="openSku" data-href="order_join.php" data-ref="groupon">
 								<!-- <a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>"> -->
-									<span class="btn">我要参团</span>
-								   </a>
+										<span class="btn">我要参团</span>
+									</a>
 								</div>
 							<?php }else{ ?>
 								<div>
@@ -64,183 +63,179 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 				                    <a id="share" href="javascript:;">还差<?php echo $info['poorNum'];?>人拼团成功</a>
 				                </div>
 			                <?php }?>
-						<?php break; ?>
+							<?php break; ?>
 						<?php case 1: ?>
-						<?php if($info['isGroup'] == 1){ ?>
-							<div>
-			                    <a href="index.php" class="white">更多拼团</a>
-			                    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
-			                </div>
-						<?php }else{ ?>
+							<?php if($info['isGroup'] == 1){ ?>
+								<div>
+									<a href="index.php" class="white">更多拼团</a>
+									<a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+								</div>
+							<?php }else{ ?>
+								<div>
+									<a href="index.php" class="white">更多拼团</a>
+									<a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+							   </div>
+							<?php } ?>
+							<?php break; ?>
+						<?php case 2: ?>
 							<div>
 								<a href="index.php" class="white">更多拼团</a>
-		                        <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
-						   </div>
-						<?php } ?>
-					<?php break; ?>
-					<?php case 2: ?>
-						<div>
-							<a href="index.php" class="white">更多拼团</a>
-	                        <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
-					   </div>
-					<?php break; ?>
-				<?php } ?>
- 			<?php }?>
+								<a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+							</div>
+							<?php break; ?>
+						<?php case 3: ?>
+							<div>
+								<a href="index.php" class="white">更多拼团</a>
+								<a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+							</div>
+							<?php break; ?>
+					<?php } ?>
+				<?php }?>
  			</section>
-
 	  
-	  <div class="content native-scroll">
-	     <?php if($info['activityType'] ==5){?>
-			<section id="rule01" class="proTipsNew-7">
-				一毛钱还能干嘛?? 点我偷偷告诉你 >>
-			</section>
-	     <?php }?>
-	    <?php if($info['activityType'] != 5 ){?>
-                 <section class="freeList proTipsNew-1">
-                    <ul class="list-container">
-                        <li><a href="javascript:;">
-                            <div class="img" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><img src="<?php echo $info['productImage'];?>"></div>
-                            <div class="info">
-                               <div class="name" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
-                                <div class="price">
-             
-                                    <span class="price1">￥<?php echo $info['groupPrice'];?></span>
-                                
-                                <?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
-						            <div class="icon"><img src="images/groupJoin-2.png" /></div>
-                                <?php }elseif($info['isGroup'] ==1 && $info['status'] ==1 ){?>
-                                    <div class="icon"><img src="images/groupJoin-3.png" /></div>
-						        <?php }elseif( $info['isGroup'] ==0 && $info['status'] ==1){?>
-						            <div class="icon"><img src="images/groupJoin-1.png" /></div>
-                                <?php }elseif( $info['status'] ==2){?>
-						            <div class="icon"><img src="images/groupJoin-4.png" /></div>
-                                <?php }?>
-                                </div>
-                            </div>
-                        </a></li>
-                    </ul>
-                </section>
-
-          <?php }else{?>
-                
-                 <section class="freeList proTipsNew-1">
-                    <ul class="list-container">
-                        <li><a href="javascript:;">
-                            <div class="img" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><img src="<?php echo $info['productImage'];?>"></div>
-                            <div class="info">
-                                <div class="name" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
-                                <div class="price">
-                                    <!-- <div class="btn" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'">商品详情</div> -->
-                                    <?php if($info['status'] !=0){?>
-                                    <div class="btn gray" onclick="location.href='lottery_new.php?act=winning&attId=<?php echo $info['recordId'];?>'">中奖详情</div>
-                                     <?php }?>                  
-                                    <span class="price1">￥<?php echo $info['groupPrice'];?></span>
-                                     <?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
-						            <div class="icon"><img src="images/groupJoin-2.png" /></div>
-	                                <?php }elseif($info['isGroup'] ==1 && $info['status'] ==1){?>
-	                                <div class="icon"><img src="images/groupJoin-3.png" /></div>
-							        <?php }elseif( $info['isGroup'] ==0 && $info['status'] ==1){?>
-							        <div class="icon"><img src="images/groupJoin-1.png" /></div>
-	                                <?php }elseif( $info['status'] ==2){?>
-							        <div class="icon"><img src="images/groupJoin-4.png" /></div>
-	                                <?php }?>
-                                </div>
-                            </div>
-                        </a></li>
-                    </ul>
-                </section>
-           <?php }?>
-                
-                 <section class="proTipsNew-2">
-                    <?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
-                    <h3 class="title1">组团失败，商品已售罄~</h3>
-                    <?php }elseif($info['status'] ==2 && $info['isSellOut'] !=1){?>
-                    <h3 class="title1">拼团期内未达到成团人数，系统会在1~3个工作日内，按原路自动退款至各位成员~</h3>
-                    <?php }elseif($info['status'] ==0 && $info['isGroup'] ==1 ){?>
-                    <h3 class="title1">还差<span class="themeColor"><?php echo $info['poorNum'];?></span>人，赶紧分享召集小伙伴组团啦~</h3>
-                    <?php }elseif($info['status'] ==0 && $info['isGroup'] ==0 && $info['isSellOut'] !=1){?>
-                    <h3 class="title1">您终于来了！还差<span class="themeColor"><?php echo $info['poorNum'];?></span>人，来参团吧！</h3>
-                    <?php }elseif($info['isStart'] ==1  && $info['isGroup'] ==0 && $info['isSellOut'] ==0){?>
-                    <h3 class="title1">您来晚了，已成团~</h3>
-                   <?php }?>
-                    <ul class="group" data-num="<?php echo $info['groupNum']?>">
-                        <?php foreach ($info['groupUserList'] as $u){?>
-                        <?php if($u['isHead'] ==1){?>
-                        <li class="head"><img src="<?php echo $u['userImage']?$u['userImage']:'/images/def_user.png';?>" /><span></span></li>
-                        <?php }else{?>
-                        <li><img src="<?php echo $u['userImage']?$u['userImage']:'/images/def_user.png';?>" /></li>
-                        <?php }}?>
-                    </ul>
-               
-                </section>
-                
-                <?php if($info['status'] ==0 && $info['isSellOut'] ==0){?>
-                 <section class="proTipsNew-6">
-                    <div>
-                                       剩余<div id="downTime" data-timer="<?php echo $info['remainSec'];?>"></div>结束
-                    </div>
-                </section>
-                <?php }?>
-                
-                
-                
-                 <section class="proTips-3 proTipsNew-3">
-                    <div class="btn">查看全部参团详情</div>
-                    <ul class="list">
-                        	<?php foreach($info['groupUserList'] as $v){ ?>
-							<li>
-								<div class="img"><img src="<?php echo $v['userImage']?$v['userImage']:'/images/def_user.png';?>" /></div>
-								<div class="name">
-									<?php if($v['isHead']){ ?><span>团长</span><?php } ?>
-									<p><?php echo $v['userName'];?></p>
-								</div>
-								<div class="time"><?php echo $v['joinTime'];?></div>
-							</li>
-						<?php } ?>
-						<?php switch($info['status']){
-							case 0: ?>
-								<li class="join">
-									<div class="img"></div>
-									<div class="tips">
-										已有<?php echo $info['joinNum'];?>人参团，还差<?php echo $info['poorNum'];?>人，快加入我们吧！
+			<div class="content native-scroll">
+				<?php if($info['activityType'] ==5){?>
+					<section id="rule01" class="proTipsNew-7">
+						一毛钱还能干嘛?? 点我偷偷告诉你 >>
+					</section>
+				<?php }?>
+				<?php if($info['activityType'] != 5 ){?>
+					<section class="freeList proTipsNew-1">
+						<ul class="list-container">
+							<li><a href="javascript:;">
+								<div class="img" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><img src="<?php echo $info['productImage'];?>"></div>
+								<div class="info">
+									<div class="name" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
+									<div class="price">
+										<span class="price1">￥<?php echo $info['groupPrice'];?></span>
+										<?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
+											<div class="icon"><img src="images/groupJoin-2.png" /></div>
+										<?php }elseif($info['isGroup'] ==1 && $info['status'] ==1 ){?>
+											<div class="icon"><img src="images/groupJoin-3.png" /></div>
+										<?php }elseif( $info['isGroup'] ==0 && $info['status'] ==1){?>
+											<div class="icon"><img src="images/groupJoin-1.png" /></div>
+										<?php }elseif( $info['status'] ==2){?>
+											<div class="icon"><img src="images/groupJoin-4.png" /></div>
+										<?php }?>
 									</div>
+								</div>
+							</a></li>
+						</ul>
+					</section>
+				<?php }else{?>
+					<section class="freeList proTipsNew-1">
+						<ul class="list-container">
+							<li><a href="javascript:;">
+								<div class="img" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><img src="<?php echo $info['productImage'];?>"></div>
+								<div class="info">
+									<div class="name" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
+									<div class="price">
+										<!-- <div class="btn" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'">商品详情</div> -->
+										<?php if($info['status'] !=0){?>
+											<div class="btn gray" onclick="location.href='lottery_new.php?act=winning&attId=<?php echo $info['recordId'];?>'">中奖详情</div>
+										<?php }?>                  
+										<span class="price1">￥<?php echo $info['groupPrice'];?></span>
+										<?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
+											<div class="icon"><img src="images/groupJoin-2.png" /></div>
+										<?php }elseif($info['isGroup'] ==1 && $info['status'] ==1){?>
+											<div class="icon"><img src="images/groupJoin-3.png" /></div>
+										<?php }elseif( $info['isGroup'] ==0 && $info['status'] ==1){?>
+											<div class="icon"><img src="images/groupJoin-1.png" /></div>
+										<?php }elseif( $info['status'] ==2){?>
+											<div class="icon"><img src="images/groupJoin-4.png" /></div>
+										<?php }?>
+									</div>
+								</div>
+							</a></li>
+						</ul>
+					</section>
+				<?php }?>
+						
+					<section class="proTipsNew-2">
+						<?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
+							<h3 class="title1">组团失败，商品已售罄~</h3>
+						<?php }elseif($info['status'] ==2 && $info['isSellOut'] !=1){?>
+							<h3 class="title1">拼团期内未达到成团人数，系统会在1~3个工作日内，按原路自动退款至各位成员~</h3>
+						<?php }elseif($info['status'] ==0 && $info['isGroup'] ==1 ){?>
+							<h3 class="title1">还差<span class="themeColor"><?php echo $info['poorNum'];?></span>人，赶紧分享召集小伙伴组团啦~</h3>
+						<?php }elseif($info['status'] ==0 && $info['isGroup'] ==0 && $info['isSellOut'] !=1){?>
+							<h3 class="title1">您终于来了！还差<span class="themeColor"><?php echo $info['poorNum'];?></span>人，来参团吧！</h3>
+						<?php }elseif($info['isStart'] ==1  && $info['isGroup'] ==0 && $info['isSellOut'] ==0){?>
+							<h3 class="title1">您来晚了，已成团~</h3>
+						<?php }?>
+						<ul class="group" data-num="<?php echo $info['groupNum']?>">
+							<?php foreach ($info['groupUserList'] as $u){?>
+							<?php if($u['isHead'] ==1){?>
+								<li class="head"><img src="<?php echo $u['userImage']?$u['userImage']:'/images/def_user.png';?>" /><span></span></li>
+							<?php }else{?>
+								<li><img src="<?php echo $u['userImage']?$u['userImage']:'/images/def_user.png';?>" /></li>
+							<?php }}?>
+						</ul>
+					</section>
+					
+					<?php if($info['status'] ==0 && $info['isSellOut'] ==0){?>
+					<section class="proTipsNew-6">
+						<div>
+						   剩余<div id="downTime" data-timer="<?php echo $info['remainSec'];?>"></div>结束
+						</div>
+					</section>
+					<?php }?>
+					
+					<section class="proTips-3 proTipsNew-3">
+						<div class="btn">查看全部参团详情</div>
+						<ul class="list">
+							<?php foreach($info['groupUserList'] as $v){ ?>
+								<li>
+									<div class="img"><img src="<?php echo $v['userImage']?$v['userImage']:'/images/def_user.png';?>" /></div>
+									<div class="name">
+										<?php if($v['isHead']){ ?><span>团长</span><?php } ?>
+										<p><?php echo $v['userName'];?></p>
+									</div>
+									<div class="time"><?php echo $v['joinTime'];?></div>
 								</li>
-							<?php break; ?>
-							<?php case 2: ?>
-								<li class="fail">
-									<div class="tips">组团时间到，未召集到相应人数的小伙伴！</div>
-								</li>
-							<?php break; ?>
-						<?php } ?>
-                    </ul> 
-                </section>
-                <?php if(($wxUser !== false) && !$wxUser['subscribe']){?> 
-                <section class="proTipsNew-4">
-                    <img src="images/code-follow.jpg" />
-                </section>
-                <?php }?>
-                <section class="pro-like">
-                    <h3 class="title1"><!--猜你喜欢--></h3>
-                    <ul>
-                        <?php foreach ($pList as $p){?>
-                        <li>
-                            <a class="img" href="groupon.php?id=<?php echo $p['activityId'];?>"><img src="<?php echo $p['productImage'];?>" /></a>
-                            <a class="name" href="groupon.php?id=<?php echo $p['activityId'];?>"><?php echo $p['productName'];?></a>
-                            <div class="price">
-                                 <a href="javascript:;" class="collect<?php if($p['isCollect']==1){?> active<?php } ?>" data-collect="<?php echo ($p['isCollect']==1)?'1':'0';?>" data-actid="<?php echo $p['activityId'];?>" data-pid="<?php echo $p['productId'];?>"><!--收藏--></a>
-                                ￥<span><?php echo $p['price'];?></span>
-                            </div>
-                        </li>
-                        <?php }?>
-                    </ul>
-                </section>
-                
-                <section id="rule" class="groupJoin-rule"></section>
-    
-            </div>
-			
-        </div>
-    </div>
+							<?php } ?>
+							<?php switch($info['status']){
+								case 0: ?>
+									<li class="join">
+										<div class="img"></div>
+										<div class="tips">
+											已有<?php echo $info['joinNum'];?>人参团，还差<?php echo $info['poorNum'];?>人，快加入我们吧！
+										</div>
+									</li>
+								<?php break; ?>
+								<?php case 2: ?>
+									<li class="fail">
+										<div class="tips">组团时间到，未召集到相应人数的小伙伴！</div>
+									</li>
+								<?php break; ?>
+							<?php } ?>
+						</ul> 
+					</section>
+					<?php if(($wxUser !== false) && !$wxUser['subscribe']){?> 
+						<section class="proTipsNew-4">
+							<img src="images/code-follow.jpg" />
+						</section>
+					<?php }?>
+					<section class="pro-like">
+						<h3 class="title1"><!--猜你喜欢--></h3>
+						<ul>
+							<?php foreach ($pList as $p){?>
+							<li>
+								<a class="img" href="groupon.php?id=<?php echo $p['activityId'];?>"><img src="<?php echo $p['productImage'];?>" /></a>
+								<a class="name" href="groupon.php?id=<?php echo $p['activityId'];?>"><?php echo $p['productName'];?></a>
+								<div class="price">
+									 <a href="javascript:;" class="collect<?php if($p['isCollect']==1){?> active<?php } ?>" data-collect="<?php echo ($p['isCollect']==1)?'1':'0';?>" data-actid="<?php echo $p['activityId'];?>" data-pid="<?php echo $p['productId'];?>"><!--收藏--></a>
+									￥<span><?php echo $p['price'];?></span>
+								</div>
+							</li>
+							<?php }?>
+						</ul>
+					</section>
+					
+					<section id="rule" class="groupJoin-rule"></section>
+				</div>
+			</div>
+		</div>
         <script>
             $(document).on("pageInit", "#page-proTips", function(e, pageId, page) {
 				<?php if($info['productStatus'] == 1){ ?>
@@ -498,41 +493,41 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 
             var _apiUrl = "/api_action.php?act=";
             //猜你喜欢收藏
-                $(".pro-like .collect").on("click", function(){
-                    var _this = $(this);
-					opCollect(_this, _this.attr("data-actid"), _this.attr("data-pid"));
-                });
+			$(".pro-like .collect").on("click", function(){
+				var _this = $(this);
+				opCollect(_this, _this.attr("data-actid"), _this.attr("data-pid"));
+			});
 
-				function opCollect(_this,actid, pid){
-					var _collected = ((_this.attr("data-collect") != "undefined") && (_this.attr("data-collect") == "1")) ? true : false;
-					$.showIndicator();
-                    $.ajax({
-                        url: _apiUrl+(_collected ? "uncollect" : "collect"),
-                        type: 'POST',
-                        dataType: 'json',
-                        data: {"id":actid,"pid":pid},
-                        success: function(res){
-							$.hideIndicator();
+			function opCollect(_this,actid, pid){
+				var _collected = ((_this.attr("data-collect") != "undefined") && (_this.attr("data-collect") == "1")) ? true : false;
+				$.showIndicator();
+				$.ajax({
+					url: _apiUrl+(_collected ? "uncollect" : "collect"),
+					type: 'POST',
+					dataType: 'json',
+					data: {"id":actid,"pid":pid},
+					success: function(res){
+						$.hideIndicator();
 
-							if(res.code == 1){
-								if(_collected){
-									_this.removeClass("active");
-									_this.attr("data-collect", 0);
-								}else{
-									_this.addClass("active");
-									_this.attr("data-collect", 1);
-								}
+						if(res.code == 1){
+							if(_collected){
+								_this.removeClass("active");
+								_this.attr("data-collect", 0);
 							}else{
-								if((typeof(res.data.data.r) != "undefined") && (res.data.data.r == 'login')){
-									window.location.href = "user_binding.php";
-								}
+								_this.addClass("active");
+								_this.attr("data-collect", 1);
 							}
-							$.toast(res.msg);
-                        }
-                    });
-				}
+						}else{
+							if((typeof(res.data.data.r) != "undefined") && (res.data.data.r == 'login')){
+								window.location.href = "user_binding.php";
+							}
+						}
+						$.toast(res.msg);
+					}
+				});
+			}
 
-       </script>
+		</script>
 
 		<?php if(!empty($skus)){ ?>
         <div class="popup popup-sku" style="display:none">
@@ -590,12 +585,11 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 
         <div class="popup popup-rule01">
             <div class="main">
-                <img src="images/0.1-rule.png">
+                <img src="images/0.1-rule.png" />
                 <a class="close-popup"></a>
                 <a href="groupon.php?id=<?php echo $info['activityId']; ?>" class="goDeta"></a>
             </div>
         </div>
-
     </div>
 </body>
 

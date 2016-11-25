@@ -33,7 +33,7 @@
 					<section class="deta-info">
 						<div class="d-i-1">
 							<span class="sales">累积销量：<?php echo $info['proSellrNum'];?>件</span>
-							￥<span class="nowPrice"><?php echo ($info['activityType'] == 7) ? '0.0' : $info['productPrice'];?></span>
+							￥<span class="nowPrice"><?php echo $info['productPrice'];?></span>
 							<span class="oldPrice">￥<?php echo $info['sellingPrice'];?></span>
 							<?php if($info['activityType'] == 5){ ?><span class="stips">团长必中 团员抽奖</span><?php } ?>
 						</div>
@@ -218,21 +218,21 @@
 		?>
 
         <script>
-//			var _apiUrl = "/api_action.php?act=";
-//			document.domain='<?php //echo implode('.', $_arrDomain);?>//';
-//			<?php //if($info['productStatus'] == 1){ ?>
-//			function setIframeHeight(iframe) {
-//			 	if (iframe) {
-//			 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-//			 		if (iframeWin.document.body) {
-//			 			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-//			 		}
-//			 	}
-//			};
-//			window.onload = function () {
-//			 	setIframeHeight(document.getElementById('proInfo'));
-//			};
-//			<?php //} ?>
+			var _apiUrl = "/api_action.php?act=";
+			document.domain='<?php echo implode('.', $_arrDomain);?>';
+			<?php if($info['productStatus'] == 1){ ?>
+			function setIframeHeight(iframe) {
+			 	if (iframe) {
+			 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+			 		if (iframeWin.document.body) {
+			 			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+			 		}
+			 	}
+			};
+			window.onload = function () {
+			 	setIframeHeight(document.getElementById('proInfo'));
+			};
+			<?php } ?>
 
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
 
