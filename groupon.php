@@ -17,7 +17,6 @@ if($act == 'guess'){
 	$apiParam['activityId'] = $grouponId;
 }
 $info = apiData('openGroupActivityApi.do', $apiParam);
-print_r($info);die;
 !$info['success'] && redirect($backUrl, $info['error_msg']);
 
 
