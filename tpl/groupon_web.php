@@ -35,7 +35,14 @@
 							<span class="sales">累积销量：<?php echo $info['proSellrNum'];?>件</span>
 							￥<span class="nowPrice"><?php echo $info['productPrice'];?></span>
 							<span class="oldPrice">￥<?php echo $info['sellingPrice'];?></span>
-							<?php if($info['activityType'] == 5){ ?><span class="stips">团长必中 团员抽奖</span><?php } ?>
+							<?php switch($info['activityType']){
+								case 5: ?>
+									<span class="stips">团长必中 团员抽奖</span>
+									<?php break; ?>
+								<?php case 7: ?>
+									<span class="stips">免费抽奖</span>
+									<?php break; ?>
+							<?php } ?>
 						</div>
 						<div class="name"><?php echo $info['productName'];?></div>
 						<div class="txt"><?php echo $info['productSketch'];?></div>
@@ -135,7 +142,18 @@
 							$orderUrl = ($info['activityType'] == 5) ? 'order_raffle01.php' : 'order_raffle.php';
 						?>
 							<?php if($info['activityStatus'] == 2){ ?>
-								<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>">查看中奖名单</a></div>
+								<?php if($info['activityType'] == 5){ ?>
+									<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>">查看中奖名单</a></div>
+								<?php }else{ ?>
+									<?php switch($info['isWaitOpen']){ ?>
+										<?php case 1: ?>
+											<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">等待开奖中</a></div>
+											<?php break; ?>
+										<?php case 2: ?>
+											<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>">查看中奖名单</a></div>
+											<?php break; ?>
+									<?php } ?>
+								<?php } ?>
 							<?php }elseif($info['activityStatus'] == 1){ ?>
 								<?php if($info['isOpen'] == 1){ ?>
 									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">您已参与过该活动</a></div>
