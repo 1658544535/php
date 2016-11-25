@@ -11,7 +11,7 @@
                 <a class="button button-link button-nav pull-right search" onclick="$('#searchForm').submit()">搜索</a>
                 <div class="bar-search">
                     <form id="searchForm" action="search_product.php">
-                        <div class="txt"><input type="text" name="name" placeholder="搜索商品" /></div>
+                        <div class="txt"><input type="text" name="name" value="<?php echo $name;?>" placeholder="搜索商品" /></div>
                         <span class="clearTxt"></span>
                     </form>
                 </div>

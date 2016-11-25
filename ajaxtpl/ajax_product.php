@@ -11,7 +11,7 @@ $page  = max(1, intval($_POST['page']));
 $productlist = apiData('findProductListApi.do', array('id'=>$cid,'pageNo'=>$page,'level'=>$level));
 		 
 
-if($productlist['result'])
+if($productlist['success'])
 {
 	echo	ajaxJson( 1,'获取成功',$productlist['result'],$page);
 }
