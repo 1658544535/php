@@ -145,8 +145,8 @@
 								<?php if($info['activityType'] == 5){ ?>
 									<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>">查看中奖名单</a></div>
 								<?php }else{ ?>
-									<?php switch($info['isWaitOpen']){ ?>
-										<?php case 1: ?>
+									<?php switch($info['isWaitOpen']){
+										case 1: ?>
 											<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">等待开奖中</a></div>
 											<?php break; ?>
 										<?php case 2: ?>
