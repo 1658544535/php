@@ -15,10 +15,10 @@ switch($act)
 		$classList = $classList['result'];
 	
 		foreach ($classList as $k=>$v){
-				if(in_array($cId,$v)){
-					$twoClass = $v;
-				}
-			  }
+			if(in_array($cId,$v)){
+				$twoClass = $v;
+			}
+		}
 	
 		include_once('tpl/class_good_web.php');
 		break;
@@ -33,19 +33,17 @@ switch($act)
 				}
 			}
 		}
-
 		
 		include_once('tpl/class_good_web.php');
 		break;
-		default:
-			
-			//获取搜索页面分类数据
-			$oneClass = apiData('productCategoryApi.do');
-			$oneClass = $oneClass['result'];
-			
-			
-			$footerNavActive = 'search';
-			include_once('tpl/search_class_web.php');
+	default:
+		//获取搜索页面分类数据
+		$oneClass = apiData('productCategoryApi.do');
+		$oneClass = $oneClass['result'];
+		
+		$footerNavActive = 'search';
+		include_once('tpl/search_class_web.php');
+		break;
 }
 
 
