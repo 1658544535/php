@@ -76,10 +76,12 @@ function __getReplyByKeyword($keyword){
 		'0.1' => '<a href="http://weixin.pindegood.com/free.php?id=18">戳 >> 0元夺宝，成团必中，开团即得好礼！</a>',
 		'水画布' => '<a href="http://weixin.pindegood.com/coupon_action.php?linkid=37&aid=148">水画布低至9.9元新用户秒杀开抢中，您还在犹豫点不点的时候，已经有1689人领取了！☞链接！</a>',
 		'领玩具' => '<a href="http://weixin.pindegood.com/free.php?id=18">双十一返场，狂欢不打烊！1000份 免费玩具再狂送，点击马上领取☞☞☞+领</a>',
+		'纸巾' => '<a href="http://weixin.pindegood.com/groupon.php?id=771">湿水不易破 ，6包维达抽取式三层纸巾，狂欢免费送，已有2626人领取成功！快戳 ☞链接！</a>',
 	);
 	$keywordMap['1毛'] = $keywordMap['0.1夺宝'] = $keywordMap['夺宝'] = $keywordMap['0.1'];
 	$keywordMap['优惠券'] = $keywordMap['水画布活动'] = $keywordMap['优惠券活动'] = $keywordMap['水画布'];
 	$keywordMap['免费领玩具'] = $keywordMap['送玩具'] = $keywordMap['领'] = $keywordMap['免费送玩具'] = $keywordMap['免费拿玩具'] = $keywordMap['免费玩具'] = $keywordMap['免费'] = $keywordMap['领玩具'];
+	$keywordMap['免费送'] = $keywordMap['湿水不易破'] = $keywordMap['纸巾活动'] = $keywordMap['纸巾'];
 	$result = isset($keywordMap[$keyword]) ? array('kw'=>true, 'msg'=>$keywordMap[$keyword]) : array('kw'=>false);
 	$time = time();
 	$content = $keywordMap[$keyword] ? "{$keywordMap[$keyword]}\r\n\r\n" : "\r\n";
