@@ -69,6 +69,7 @@ $fx = $fx['result'];
 
 switch($info['activityType']){
 	case 5://0.1抽奖
+	case 7://免费抽奖
 		$showWaitGroupList = true;
 		$notQuantity = true;
 		break;
@@ -81,7 +82,6 @@ switch($info['activityType']){
 		}
 		$showWaitGroupList = ($seckillState == 'selling') ? true : false;
 		break;
-
 	default:
 		$showWaitGroupList = $isFreeBuy ? false : true;
 		break;
