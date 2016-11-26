@@ -167,7 +167,7 @@
                                             <?php } elseif ($info['activityType'] == 7) { ?>
                                                 <p><b>立即开团</b></p>
                                             <?php } ?>
-											 <p><?php echo $info['groupNum'];?>人成团</p>
+											<p><?php echo $info['groupNum'];?>人成团</p>
 										</a>
 									</div>
 								<?php } ?>
@@ -531,10 +531,7 @@
 						<div class="list"></div>
 					</div>
 				<?php } ?>
-				<?php //if(!$notQuantity){ ?>
-				<!-- 0.1抽奖/限时秒杀不显示数量 -->
-				<?php if($info['activityType'] != 5 && $info['activityType'] != 6){?>
-
+				<?php if(!$notQuantity){ ?>
                 <div class="sku-number">
                     <span class="label">购买数量</span>
                     <div class="quantity">
