@@ -463,6 +463,9 @@
 .index-menu a span.index-menu-i4 {
   background-position: 0 -135px;
 }
+.index-menu a span.index-menu-i5 {
+  background-position: 0 -180px;
+}
 .index-menu a span.txt {
   display: block;
   padding-top: 0.6rem;
