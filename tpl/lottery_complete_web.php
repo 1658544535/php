@@ -4,16 +4,13 @@
     <div class="page-group" id="page-evaluate-success">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="user_lottery.php">
+                <a class="button button-link button-nav pull-left back" href="user.php">
                     <span class="icon icon-back"></span>
                 </a>
                 <h1 class="title">评价成功</h1>
             </header>
-
             <div class="content native-scroll">
-
                 <section class="evaluate-null"></section>
-
                 <section class="pro-like">
                     <h3 class="title1"><!--猜你喜欢--></h3>
                     <ul>
@@ -29,9 +26,7 @@
                         <?php }?>
                     </ul>
                 </section>
-
             </div>
-
         </div>
          <script>
             var _apiUrl = "/api_action.php?act=";
@@ -51,7 +46,6 @@
                         data: {"id":actid,"pid":pid},
                         success: function(res){
 							$.hideIndicator();
-
 							if(res.code == 1){
 								if(_collected){
 									_this.removeClass("active");
@@ -69,8 +63,6 @@
                         }
                     });
 				}
-
-           
         </script>
     </div>
 </body>

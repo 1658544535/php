@@ -20,11 +20,10 @@ define('IMAGE_UPLOAD_URL', 'upfiles/activityProductComment/');
 $fx = apiData('getShareContentApi.do', array('id'=>18, 'type'=>18));
 $fx = $fx["result"];
 
+
 switch($act)
 {
 	case 'detail':
-	    //获取活动详情数据
-		
 		//获取猜你喜欢数据
 		$LikeList = apiData('guessYourLikeApi.do', array('activityId'=>$aId,'userId'=>$userid));
 		$LikeList = $LikeList['result'];
@@ -118,7 +117,8 @@ switch($act)
     	//获取中奖数据
     	$aId 	        = CheckDatas( 'aid', '' );
     	$attId  	    = CheckDatas( 'attId', '' );
-    	$winInfo = apiData('prizeDetail.do', array('activityId'=>$aId,'attendId'=>$attId));
+    	$Type 	        = CheckDatas( 'type', '' );
+    	$winInfo = apiData('prizeDetail.do', array('activityId'=>$aId,'attendId'=>$attId,'activityType'=>$Type));
     	$winInfo = $winInfo['result'];
     	include_once('tpl/lottery_win_web.php');
     	break;
