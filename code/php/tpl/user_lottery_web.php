@@ -48,14 +48,14 @@
                                 <span class="state">未中奖，待返款</span>                               
                                <%}else if(data["data"][i]["orderStatus"] ==7){%>
                                 <span class="state">未中奖，已返款</span>                               
-                               <%}else if(data["data"][i]["orderStatus"] ==8){%>
-                                <span class="state">已成团，待开奖</span>                               
                                <%}else if(data["data"][i]["orderStatus"] ==9){%>
                                 <span class="state">已中奖，已完成</span>                               
                                <%}else if(data["data"][i]["orderStatus"] ==10){%>
                                 <span class="state">已中奖，待发货</span>                               
                                <%}else if(data["data"][i]["orderStatus"] ==11){%>
-                                <span class="state">已中奖，待收货</span>                               
+                                <span class="state">已中奖，待收货</span>   
+                               <%}else if(data["data"][i]["orderStatus"] ==12){%>
+                                <span class="state">已成团，待开奖</span>                                 
                                <%}%>                            
                             </div>
                             <a href="order_detail.php?oid=<%=data["data"][i]["orderId"]%>" class="u-g-2">
@@ -69,9 +69,10 @@
                                 </div>
                             </a>
                             <div class="u-g-3">
-                                <%if(data["data"][i]["isShow"] ==1 && data["data"][i]["orderStatus"] ==9){%>
-                                 <a class="gray" href="lottery_new.php?act=comment&attId=<%=data["data"][i]["attendId"]%>&aid=<%=data["data"][i]["activityId"]%>&proimage=<%=data["data"][i]["productImage"]%>&proname=<%=data["data"][i]["productName"]%>">我要晒图</a>
-                                <%}%>
+                                <%if(data["data"][i]["isShow"] ==1 && data["data"][i]["orderStatus"] ==9 ){%>
+                                  <%if(type ==1){%>
+                                   <a class="gray" href="lottery_new.php?act=comment&attId=<%=data["data"][i]["attendId"]%>&aid=<%=data["data"][i]["activityId"]%>&proimage=<%=data["data"][i]["productImage"]%>&proname=<%=data["data"][i]["productName"]%>">我要晒图</a>
+                                  <%}}%>
                                 <%if(data["data"][i]["isPrize"] ==1 && ((data["data"][i]["orderStatus"] ==3) || (data["data"][i]["orderStatus"] ==4) || (data["data"][i]["orderStatus"] ==6)||　(data["data"][i]["orderStatus"] ==7) || (data["data"][i]["orderStatus"] ==9) || (data["data"][i]["orderStatus"] ==10) || (data["data"][i]["orderStatus"] ==11))){%>
                                  <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>">中奖信息</a>
                                 <%}%>
