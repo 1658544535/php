@@ -74,8 +74,11 @@
                                    <a class="gray" href="lottery_new.php?act=comment&attId=<%=data["data"][i]["attendId"]%>&aid=<%=data["data"][i]["activityId"]%>&proimage=<%=data["data"][i]["productImage"]%>&proname=<%=data["data"][i]["productName"]%>">我要晒图</a>
                                   <%}}%>
                                 <%if(data["data"][i]["isPrize"] ==1 && ((data["data"][i]["orderStatus"] ==3) || (data["data"][i]["orderStatus"] ==4) || (data["data"][i]["orderStatus"] ==6)||　(data["data"][i]["orderStatus"] ==7) || (data["data"][i]["orderStatus"] ==9) || (data["data"][i]["orderStatus"] ==10) || (data["data"][i]["orderStatus"] ==11))){%>
-                                 <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>">中奖信息</a>
-                                <%}%>
+                                  <%if(type==1){%>
+                                    <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>&type=5">中奖信息</a>
+                                  <%}else{%>
+                                    <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>&type=7">中奖信息</a>
+                                <%}}%>
                             </div>
                         </li>
                     <%}%>

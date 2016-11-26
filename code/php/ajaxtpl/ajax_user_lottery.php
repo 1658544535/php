@@ -4,6 +4,7 @@ require_once('../global.php');
 $page = max(1, intval($_POST['page']));
 
 $Type  = CheckDatas( 'type', '' );
+
 $userLottery = apiData('getDrawApi.do', array('pageNo'=>$page,'userId'=>$userid,'type'=>$Type));
 if(!empty($userLottery['result']))
 {
