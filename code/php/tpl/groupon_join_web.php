@@ -132,7 +132,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 									<div class="price">
 										<!-- <div class="btn" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'">商品详情</div> -->
 										<?php if($info['status'] !=0){?>
-											<div class="btn gray" onclick="location.href='lottery_new.php?act=winning&attId=<?php echo $info['recordId'];?>'">中奖详情</div>
+											<div class="btn gray" onclick="location.href='lottery_new.php?act=winning&attId=<?php echo $info['recordId'];?>&type=<?php if($info['activityType'] ==5){?>5<?php }elseif($info['activityType'] ==7){?>7<?php }?>'">中奖详情</div>
 										<?php }?>                  
 										<span class="price1">￥<?php echo $info['groupPrice'];?></span>
 										<?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
