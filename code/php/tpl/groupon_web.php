@@ -143,14 +143,14 @@
 						?>
 							<?php if($info['activityStatus'] == 2){ ?>
 								<?php if($info['activityType'] == 5){ ?>
-									<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>">查看中奖名单</a></div>
+									<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>&type=<?php if($info['activityType'] ==5){?>5<?php }elseif($info['activityType'] ==7){?>7<?php }?>">查看中奖名单</a></div>
 								<?php }else{ ?>
 									<?php switch($info['isWaitOpen']){
 										case 1: ?>
 											<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">等待开奖中</a></div>
 											<?php break; ?>
 										<?php case 2: ?>
-											<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>">查看中奖名单</a></div>
+											<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>&type=<?php if($info['activityType'] ==5){?>5<?php }elseif($info['activityType'] ==7){?>7<?php }?>">查看中奖名单</a></div>
 											<?php break; ?>
 									<?php } ?>
 								<?php } ?>
@@ -165,7 +165,7 @@
                                             <?php if ($info['activityType'] == 5) { ?>
                                                 <p>￥<b><?php echo $info['productPrice'];?></b></p>
                                             <?php } elseif ($info['activityType'] == 7) { ?>
-                                                <p><b>立即开团</b></p>
+                                                <p>￥<b><?php echo $info['productPrice'];?></b></p>
                                             <?php } ?>
 											<p><?php echo $info['groupNum'];?>人成团</p>
 										</a>
