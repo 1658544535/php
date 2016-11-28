@@ -39,15 +39,31 @@
                                <%}else if(data["data"][i]["orderStatus"] ==2){%>                            
                                 <span class="state">拼团中，差<%=data["data"][i]["poorNum"]%>人</span>                           	   
                                <%}else if(data["data"][i]["orderStatus"] ==3){%>
-                                <span class="state">未成团，退款中</span> 							   
+                                <%if(type ==1){%>
+                                 <span class="state">未成团，退款中</span> 							   
+                                <%}else{%>
+                                 <span class="state">拼团失败</span>
+                                <%}%>
                                <%}else if(data["data"][i]["orderStatus"] ==4){%>
-                                <span class="state">未成团，已退款</span>                               
+                                <%if(type ==1){%>
+                                 <span class="state">未成团，已退款</span> 							   
+                                <%}else{%>
+                                 <span class="state">拼团失败</span>
+                                <%}%>                               
                                <%}else if(data["data"][i]["orderStatus"] ==5){%>
                                 <span class="state">交易已取消</span>                               
                                <%}else if(data["data"][i]["orderStatus"] ==6){%>
-                                <span class="state">未中奖，待返款</span>                               
+                                <%if(type ==1){%>
+                                 <span class="state">>未中奖，待返款</span> 							   
+                                <%}else{%>
+                                 <span class="state">已成团，未中奖</span>
+                                <%}%>                               
                                <%}else if(data["data"][i]["orderStatus"] ==7){%>
-                                <span class="state">未中奖，已返款</span>                               
+                                <%if(type ==1){%>
+                                 <span class="state">>未中奖，已返款</span> 							   
+                                <%}else{%>
+                                 <span class="state">已成团，未中奖</span>
+                                <%}%>                               
                                <%}else if(data["data"][i]["orderStatus"] ==9){%>
                                 <span class="state">已中奖，已完成</span>                               
                                <%}else if(data["data"][i]["orderStatus"] ==10){%>
