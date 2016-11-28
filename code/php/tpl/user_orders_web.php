@@ -57,10 +57,14 @@
                                                                              未成团，退款中  
                                <%}else if(((data["data"][i].source !=5) || (data["data"][i].source !=7)) && data["data"][i].isSuccess ==2 && data["data"][i].isRefund ==2){%>
                                                                              未成团，已退款 
-                               <%}else if(((data["data"][i].source ==5) || (data["data"][i].source ==7)) &&  data["data"][i].isPrize ==0 && data["data"][i].isRefund ==2){%>
+                               <%}else if(data["data"][i].source ==5 &&  data["data"][i].orderStatus ==7){%>
                                                                              未中奖，已返款
-                               <%}else if(((data["data"][i].source ==5) || (data["data"][i].source ==7)) && data["data"][i].orderStatus ==6){%>
+                               <%}else if(data["data"][i].source ==7 &&  data["data"][i].orderStatus ==7){%>
+                                                                             已成团，未中奖
+                               <%}else if(data["data"][i].source ==5 && data["data"][i].orderStatus ==6){%>
                                                                              未中奖，待返款
+                               <%}else if(data["data"][i].source ==7 && data["data"][i].orderStatus ==6){%>
+                                                                             已成团，未中奖
                                <%}else if(((data["data"][i].source ==5) || (data["data"][i].source ==7)) && data["data"][i].isPrize ==1 && data["data"][i].orderStatus ==9){%>
                                                                              已中奖，已完成 
                                <%}else if(((data["data"][i].source ==5) || (data["data"][i].source ==7)) && data["data"][i].isPrize ==1 && data["data"][i].orderStatus ==10){%>
@@ -73,10 +77,14 @@
                                                                              拼团中，还差<%=data["data"][i].oweNum %>人
                                <%}else if(((data["data"][i].source ==5) || (data["data"][i].source ==7)) && data["data"][i].orderStatus ==5   && data["data"][i].isCancel ==1){%>
                                                                              交易已取消       
-                               <%}else if(((data["data"][i].source ==5) || (data["data"][i].source ==7)) && data["data"][i].orderStatus ==3 && data["data"][i].isSuccess ==2 && ((data["data"][i].isRefund ==0) || (data["data"][i].isRefund ==1)) ){%>
+                               <%}else if(data["data"][i].source ==5 && data["data"][i].orderStatus ==3 ){%>
                                                                              未成团，退款中  
-                               <%}else if(((data["data"][i].source ==5) || (data["data"][i].source ==7)) && data["data"][i].orderStatus ==4 && data["data"][i].isSuccess ==2 && data["data"][i].isRefund ==2){%>
+                               <%}else if(data["data"][i].source ==7 && data["data"][i].orderStatus ==3 ){%>
+                                                                             拼团失败   
+                               <%}else if(data["data"][i].source ==5 && data["data"][i].orderStatus ==4 ){%>
                                                                              未成团，已退款 
+                               <%}else if(data["data"][i].source ==7 && data["data"][i].orderStatus ==4 ){%>
+                                                                             拼团失败 
                                <%}else if(data["data"][i].source ==7 && data["data"][i].orderStatus ==12){%>
                                                                              已成团，待开奖
                                <%}%>
