@@ -75,14 +75,22 @@
                  <div class="oc-state"><span>交易已取消</span><i class="o-icon o-icon-5"></i></div>
                 <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==9){?>
                 <div class="oc-state"><span>交易成功！</span><i class="o-icon o-icon-6"></i></div>
-                <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==3){?>
+                <?php }else if($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] ==3){?>
                 <div class="oc-state"><span>未成团，退款中</span><i class="o-icon o-icon-8"></i></div>
-                <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==4){?>
+                 <?php }else if($OrderDetail['result']['source'] ==7 && $OrderDetail['result']['orderStatus'] ==3){?>
+                <div class="oc-state"><span>拼团失败</span><i class="o-icon o-icon-8"></i></div>
+                <?php }else if($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] ==4){?>
                 <div class="oc-state"><span>未成团，退款成功</span><i class="o-icon o-icon-7"></i></div>
-                <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==6){?>
+                <?php }else if($OrderDetail['result']['source'] ==7 && $OrderDetail['result']['orderStatus'] ==4){?>
+                <div class="oc-state"><span>拼团失败</span><i class="o-icon o-icon-7"></i></div>
+                <?php }else if($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] ==6){?>
                 <div class="oc-state"><span>未中奖，待返款</span><i class="o-icon o-icon-8"></i></div>
-                <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==7){?>
+                <?php }else if($OrderDetail['result']['source'] ==7 && $OrderDetail['result']['orderStatus'] ==6){?>
+                <div class="oc-state"><span>已成团，未中奖</span><i class="o-icon o-icon-8"></i></div>
+                <?php }else if($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] ==7){?>
                 <div class="oc-state"><span>未中奖，已返款</span><i class="o-icon o-icon-7"></i></div>
+                 <?php }else if($OrderDetail['result']['source'] ==7 && $OrderDetail['result']['orderStatus'] ==7){?>
+                <div class="oc-state"><span>已成团，未中奖</span><i class="o-icon o-icon-7"></i></div>
                 <?php }?>
             
                 <section class="oc-adress oc-adress-disable">
