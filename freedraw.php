@@ -11,6 +11,11 @@ require_once('./global.php');
 $act  = CheckDatas('act', '');
 $Type = CheckDatas('type', 1);
 
+//获取分享内容
+$fx = apiData('getShareContentApi.do',array('type'=>21,'id'=>21));
+$fx = $fx['result'];
+
+
 switch ($act)
 {
     default:
