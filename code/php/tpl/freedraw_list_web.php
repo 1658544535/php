@@ -54,7 +54,7 @@
                        <?php if($Type ==1){?>                        
                          <a href="groupon.php?id=<%=data["data"][i]["activityId"]%>">
                        <?php }else{?>     
-                         <a href="lottery_new.php?act=comment_list&aid=<%=data["data"][i]["activityId"]%>">
+                         <a href="lottery_new.php?act=winning&aid=<%=data["data"][i]["activityId"]%>&type=7">
                        <?php }?>
                            <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
                             <div class="info">
@@ -66,7 +66,7 @@
                                 <?php if($Type ==1){?>
                                     <span class="red">立即开团</span>
                                 <?php }else{?>
-                                    <span class="red">查看评论</span>
+                                    <span class="red">中奖信息</span>
                                 <?php }?>
                                 </div>
                             </div>

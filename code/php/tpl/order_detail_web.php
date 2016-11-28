@@ -8,19 +8,19 @@
                 <a class="button button-link button-nav pull-left back" href="javascript:history.back(-1);">
                     <span class="icon icon-back"></span>
                 </a>
-                <?php if((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
+                <?php if(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
                 <h1 class="title">确认订单</h1>
-                <?php }elseif((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==1 ){?>
+                <?php }elseif(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==1 ){?>
                 <h1 class="title">拼团成功</h1>
-                <?php }elseif((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['orderStatus'] ==3){?>
+                <?php }elseif(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==3){?>
                 <h1 class="title">待收货</h1>
-                <?php }elseif((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==0){?>
+                <?php }elseif(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==0){?>
                 <h1 class="title">拼团中</h1>
-                <?php }elseif((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['isCancel'] ==1 && $OrderDetail['result']['orderStatus'] ==1){?>
+                <?php }elseif(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['isCancel'] ==1 && $OrderDetail['result']['orderStatus'] ==1){?>
                 <h1 class="title">交易已取消</h1>
-                <?php }elseif((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['orderStatus'] ==4){?>
+                <?php }elseif(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==4){?>
                 <h1 class="title">已签收</h1>
-                <?php }elseif((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['isSuccess'] ==2){?>
+                <?php }elseif(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['isSuccess'] ==2){?>
                 <h1 class="title">拼团失败</h1>
                 <?php }elseif((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==1){?>
                 <h1 class="title">确认订单</h1>
@@ -45,21 +45,21 @@
                 <?php }?>
             </header>
           <div class="content native-scroll" style="bottom:2.75rem;">
-                <?php if((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==1){?>
+                <?php if(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==1){?>
                 <div class="oc-state"><span>拼团成功，等待卖家发货！</span><i class="o-icon o-icon-1"></i></div>
-                <?php }elseif((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
+                <?php }else if(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
                 <div class="oc-state"><span>等待买家付款</span><i class="o-icon o-icon-2"></i></div>
-                <?php }elseif((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['orderStatus'] ==3){?>
+                <?php }else if(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==3){?>
                 <div class="oc-state"><span>卖家已发货</span><i class="o-icon o-icon-3"></i></div>
-                <?php }elseif((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==0){?>
+                <?php }else if(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==0){?>
                 <div class="oc-state"><span>拼团还未成功，赶快召唤小伙伴！</span><i class="o-icon o-icon-4"></i></div>
-                <?php }elseif((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['isCancel'] ==1 && $OrderDetail['result']['orderStatus'] ==1 ){?>
+                <?php }else if(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['isCancel'] ==1 && $OrderDetail['result']['orderStatus'] ==1 ){?>
                 <div class="oc-state"><span>交易已取消</span><i class="o-icon o-icon-5"></i></div>
-                <?php }elseif((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['orderStatus'] ==4){?>
+                <?php }else if(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==4){?>
                 <div class="oc-state"><span>交易成功！</span><i class="o-icon o-icon-6"></i></div>
-                <?php }elseif((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['isSuccess'] ==2 ){?>
+                <?php }else if(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['isSuccess'] ==2 ){?>
                 <div class="oc-state"><span>未成团，退款中</span><i class="o-icon o-icon-8"></i></div>
-                <?php }elseif((($OrderDetail['result']['source'] !=5) || ($OrderDetail['result']['source'] !=7)) && $OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==2){?>
+                <?php }else if(((!$OrderDetail['result']['source'] ==5) || (!$OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==2){?>
                 <div class="oc-state"><span>未成团，退款成功</span><i class="o-icon o-icon-7"></i></div>
                 <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==10){?>
                 <div class="oc-state"><span>拼团成功，等待卖家发货！</span><i class="o-icon o-icon-1"></i></div>
@@ -77,7 +77,7 @@
                 <div class="oc-state"><span>交易成功！</span><i class="o-icon o-icon-6"></i></div>
                 <?php }else if($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] ==3){?>
                 <div class="oc-state"><span>未成团，退款中</span><i class="o-icon o-icon-8"></i></div>
-                 <?php }else if($OrderDetail['result']['source'] ==7 && $OrderDetail['result']['orderStatus'] ==3){?>
+                <?php }else if($OrderDetail['result']['source'] ==7 && $OrderDetail['result']['orderStatus'] ==3){?>
                 <div class="oc-state"><span>拼团失败</span><i class="o-icon o-icon-8"></i></div>
                 <?php }else if($OrderDetail['result']['source'] ==5 && $OrderDetail['result']['orderStatus'] ==4){?>
                 <div class="oc-state"><span>未成团，退款成功</span><i class="o-icon o-icon-7"></i></div>
