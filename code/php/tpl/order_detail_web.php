@@ -142,7 +142,6 @@
                         </a></li>
                     </ul>
                    <?php if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7){?>
-                    <?php echo '1111';?>
                     <div class="option">
                      <?php if($OrderDetail['result']['orderStatus'] !=1){?>
                        <?php if($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['orderStatus'] ==2){?>
