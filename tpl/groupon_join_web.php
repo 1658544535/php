@@ -30,6 +30,8 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					<h1 class="title">开团成功</h1>
                 <?php }elseif($info['status'] ==1 && $info['isStart'] ==1 && $info['isGroup'] ==0){?>
 					<h1 class="title">已成团</h1>
+				<?php }elseif($info['status'] ==3 && $info['activityType'] ==7){?>
+					<h1 class="title">拼团成功，待开奖</h1>
                 <?php }?>
             </header>
                 
