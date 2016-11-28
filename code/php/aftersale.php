@@ -73,11 +73,14 @@ switch($act){
 		empty($orderId) && redirect($backUrl, '参数错误');
 		if(IS_POST()){
 			$name = trim($_POST['type']);
+			$logisticsNo = trim($_POST['no']);
+			empty($name) && redirect($backUrl, '请填写物流类型');
+			empty($logisticsNo) && redirect($backUrl, '请填写运单编号');
 			$dataParam = array(
 				'oid' => $orderId,
 				'uid' => $userid,
 				'logisticsName' => $_SESSION['aftersale_tracking'][$name]['nameEn'],
-				'logisticsNum' => trim($_POST['no']),
+				'logisticsNum' => $logisticsNo,
 			);
 			$result = apiData('submitLogistics.do', $dataParam);
 			if(empty($_SESSION['backurl_aftersale'])){
