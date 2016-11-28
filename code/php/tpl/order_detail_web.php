@@ -129,6 +129,8 @@
 	                <h3 class="title1">拼团商品<span class="tips">未中奖，返款中</span></h3>
 	                <?php }elseif((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==7 ){?>
 	                <h3 class="title1">拼团商品<span class="tips">未中奖，返款成功</span></h3>
+	                <?php }elseif($OrderDetail['result']['source'] ==7 && $OrderDetail['result']['orderStatus'] ==12 ){?>
+	                <h3 class="title1">拼团商品<span class="tips">已成团，待开奖</span></h3>
                     <?php }?>
                     <ul class="list-container">
                         <li><a href="/groupon.php?act=guess&id=<?php echo $OrderDetail['result']['activityId'];?>&pid=<?php echo $OrderDetail['result']['productInfo']['productId'];?>">
@@ -140,6 +142,7 @@
                         </a></li>
                     </ul>
                    <?php if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7){?>
+                    <?php echo '1111';?>
                     <div class="option">
                      <?php if($OrderDetail['result']['orderStatus'] !=1){?>
                        <?php if($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['orderStatus'] ==2){?>
@@ -195,7 +198,7 @@
 	                    <?php }else if($OrderDetail['result']['orderStatus'] ==11){?>
 	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=<?php if($OrderDetail['result']['source']==5){?>5<?php }elseif($OrderDetail['result']['source']==7){?>7<?php }?>">查看中奖记录</a>
 	                       <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
-	                       <?php if($OrderDetail['result']['refundStatus'] ==0 ){?>
+	                       <?php if($OrderDetail['result']['refundStatus'] ==0 && $OrderDetail['result']['source'] ==5){?>
                            <a href="aftersale.php?act=apply&oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>">申请退款</a>
                            <?php }else if($OrderDetail['result']['refundStatus'] ==1 || $OrderDetail['result']['refundStatus'] ==2 || $OrderDetail['result']['refundStatus'] ==3){?>
                            <a class="txt">售后申请中...</a>
