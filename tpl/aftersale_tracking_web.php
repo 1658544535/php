@@ -13,7 +13,7 @@
 
             <div class="content native-scroll bgWhite">
 
-                <form action="aftersale.php?act=tracking" accept-charset="utf-8" method="post">
+                <form id="submitForm" action="aftersale.php?act=tracking" accept-charset="utf-8" method="post">
 					<input type="hidden" name="oid" value="<?php echo $orderId;?>" />
                     <section class="afterSales-form">
                         <ul>
@@ -33,7 +33,7 @@
                                         <span class="themeColor">* </span>运单编号
                                     </div>
                                     <div class="main">
-                                        <textarea name="no" rows="1" class="txt" placeholder="请输入运单编号" ></textarea>
+                                        <textarea id="no" name="no" rows="1" class="txt" placeholder="请输入运单编号" ></textarea>
                                     </div>
                                 </div>
                             </li>
@@ -41,7 +41,7 @@
                     </section>
 
                     <div class="afterSales-submit">
-                        <input type="submit" value="提交申请" />
+                        <input type="button" value="提交申请" />
                     </div>
                 </form>
 
@@ -57,9 +57,23 @@
                         cols: [
                         {
                           textAlign: 'center',
-                          values: ["<?php echo implode('","', $trackList);?>"]
+                          values: ["11"]
                         }
                         ]
+                    });
+
+                    //提交
+                    $(".afterSales-submit input").on("click", function(){
+                        if($.trim($("#type").val()) == ""){
+                            $.toast("请选择退款类型");
+                            return false;
+                        }
+                        if($.trim($("#no").val()) == ""){
+                            $.toast("请填写运单编号");
+                            return false;
+                        }
+                        
+                        $("#submitForm").submit();
                     });
                 });
             </script>
