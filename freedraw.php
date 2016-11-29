@@ -20,7 +20,7 @@ switch ($act)
 {
     default:
 //        获取顶端banner图
-        $Banner = apiData('activityBannerApi.do',array('type'=>1));
+        $Banner = apiData('activityBannerApi.do',array('type'=>4));
         $Banner = $Banner['result'];
         include_once('tpl/freedraw_list_web.php');
         break;
