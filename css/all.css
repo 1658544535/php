@@ -5473,3 +5473,9 @@
   display: inline-block;
   vertical-align: middle;
 }
+.freeDraw-null {
+  margin-top: 40%;
+  padding-bottom: 45.411%;
+  background: url(../images/freeDraw-null.png) center center no-repeat;
+  background-size: 100% auto;
+}
