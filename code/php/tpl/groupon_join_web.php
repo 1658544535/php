@@ -72,12 +72,6 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 	                    <a href="index.php" class="white">更多拼团</a>
 	                    <a>商品已售罄</a>
 	                </div>
-      			<?php }elseif(in_array($info['activityType'], array(2,5)) && $info['status'] ==2){?>
-	              	<input type="hidden" id="showShare" />
-	                <div>
-	                	<a href="index.php" class="white">更多拼团</a>
-	                    <a>您已参与过该活动</a>
-	                </div>
       			<?php }else{?>
              		<?php switch($info['status']){
 						case 0: ?>
