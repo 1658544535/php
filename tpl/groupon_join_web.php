@@ -24,7 +24,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					<h1 class="title">拼团成功</h1>
                 <?php }elseif($info['status'] ==0 && $info['isGroup'] ==0){?>
 					<h1 class="title">拼团中</h1>
-                <?php }elseif($info['userIsHead'] ==0 && $info['isGroup'] ==1 ){?>
+                <?php }elseif($info['status'] ==0 && $info['userIsHead'] ==0 && $info['isGroup'] ==1){?>
 					<h1 class="title">参团成功</h1>
                 <?php }elseif($info['userIsHead'] ==1 && $info['status'] ==0 && $info['isStart'] ==1){?>
 					<h1 class="title">开团成功</h1>
@@ -32,6 +32,8 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					<h1 class="title">已成团</h1>
 				<?php }elseif($info['status'] ==3 && $info['activityType'] ==7){?>
 					<h1 class="title">拼团成功，待开奖</h1>
+			    <?php }elseif($info['status'] ==4 && $info['activityType'] ==7){?>
+					<h1 class="title">已开奖</h1>
                 <?php }?>
             </header>
                 
@@ -91,6 +93,12 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 								<a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
 							</div>
 							<?php break; ?>
+						<?php case 4: ?>
+							<div>
+								<a href="index.php" class="white">更多拼团</a>
+								<a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+							</div>
+							<?php break; ?>
 					<?php } ?>
 				<?php }?>
  			</section>
@@ -118,6 +126,8 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 											<div class="icon"><img src="images/groupJoin-1.png" /></div>
 										<?php }elseif( $info['status'] ==2){?>
 											<div class="icon"><img src="images/groupJoin-4.png" /></div>
+										<?php }elseif( $info['status'] ==4){?>
+											<div class="icon"><img src="images/groupJoin-5.png" /></div>
 										<?php }?>
 									</div>
 								</div>
