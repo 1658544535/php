@@ -36,7 +36,9 @@
 
             <div class="content native-scroll">
                 <?php if($Type == 1){?>
-                <section class="lottery-rule"><img src="<?php echo $Banner['banner'];?>" /></section>
+                <section class="guessList-banner"><img src="<?php echo $Banner['banner'];?>" /></section>
+                <div class="freeList-tips">正在进行中<span id="rule" class="f-right">活动规则</span></div>
+                <style>.freeDraw-null{margin:10% 0;}</style>
                 <?php }?>
                 <section class="index-seckill pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_freedraw.php?type=<?php echo $Type;?>">
                     <ul class="list-container"></ul>
@@ -73,13 +75,17 @@
                         </a></li>
                     <%}%>
                 <%}else if(data["pageNow"] == 1){%>
-                    <div class="tips-null">暂无抽奖</div>
+                    <div class="freeDraw-null"></div>
                 <%}%>
             </script>
         
         </div>
 
         <div class="popup popup-share">
+            <a href="#" class="close-popup"></a>
+        </div>
+        <div class="popup popup-rule">
+            <img src="images/free-rule.png" />
             <a href="#" class="close-popup"></a>
         </div>
         <section id="goTop" class="goTop"></section>
