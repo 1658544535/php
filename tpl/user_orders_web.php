@@ -95,6 +95,8 @@
                                 </div>
                             </div>
                         </a>
+                       
+                    <%if(data["data"][i].source !=5 && data["data"][i].source !=7){%>
                         <div class="u-g-3">
                            <%if(data["data"][i].orderStatus ==1 && data["data"][i].isCancel ==0){%>  
                             <a class="gray orderCancel" data-id="<%=data["data"][i]["id"]%>">取消</a>
@@ -113,42 +115,53 @@
                             <a href="groupon_join.php?aid=<%=data["data"][i]["attendId"]%>">邀请好友拼团</a>
                            <%}else if(data["data"][i].isSuccess ==2){%> 
                             <a class="gray" href="order_detail.php?oid=<%=data["data"][i]["id"]%>">查看</a>
-                            <%if(((data["data"][i].source ==5) || (data["data"][i].source ==7))){%>
-                              <%if(data["data"][i].source ==5){%>
+                           <%}%>
+                       </div>
+                     <%}else{%> 
+                       <div class="u-g-3">
+                           <%if(data["data"][i].orderStatus ==1 && data["data"][i].isCancel ==0){%>  
+                            <a class="gray orderCancel" data-id="<%=data["data"][i]["id"]%>">取消</a>
+                            <a href="/wxpay/pay.php?oid=<%=data["data"][i]["id"]%>">去支付</a>
+                           <%}else if(data["data"][i].orderStatus ==2   && data["data"][i].isSuccess ==0 ){%> 
+                            <a class="gray" href="order_detail.php?oid=<%=data["data"][i]["id"]%>">查看</a>
+                            <a href="groupon_join.php?aid=<%=data["data"][i]["attendId"]%>">邀请好友拼团</a>
+                           <%}else if(data["data"][i].isSuccess ==2){%> 
+                            <a class="gray" href="order_detail.php?oid=<%=data["data"][i]["id"]%>">查看</a>
+                               <%if(data["data"][i].source ==5){%>
                                  <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>&type=5">中奖信息</a>
                                <%}else if(data["data"][i].source ==7){%>
                                  <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>&type=7">中奖信息</a>
                                <%}%>
-                            <%}%>
-                            <%}else if(((data["data"][i].source ==5) || (data["data"][i].source ==7)) && data["data"][i].orderStatus ==6){%> 
-                             <%if(data["data"][i].source ==5){%>
+                            <%}else if(data["data"][i].orderStatus ==6){%> 
+                               <%if(data["data"][i].source ==5){%>
                                  <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>&type=5">中奖信息</a>
                                <%}else if(data["data"][i].source ==7){%>
                                  <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>&type=7">中奖信息</a>
                                <%}%>
-                            <%}else if(((data["data"][i].source ==5) || (data["data"][i].source ==7)) && data["data"][i].orderStatus ==7){%> 
-                             <%if(data["data"][i].source ==5){%>
+                            <%}else if(data["data"][i].orderStatus ==7){%> 
+                               <%if(data["data"][i].source ==5){%>
                                  <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>&type=5">中奖信息</a>
                                <%}else if(data["data"][i].source ==7){%>
                                  <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>&type=7">中奖信息</a>
                                <%}%>
-                            <%}else if(((data["data"][i].source ==5) || (data["data"][i].source ==7)) && data["data"][i].orderStatus ==10){%> 
-                             <%if(data["data"][i].source ==5){%>
+                            <%}else if(data["data"][i].orderStatus ==10){%> 
+                               <%if(data["data"][i].source ==5){%>
                                  <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>&type=5">中奖信息</a>
                                <%}else if(data["data"][i].source ==7){%>
                                  <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>&type=7">中奖信息</a>
                                <%}%>
-                            <%}else if(((data["data"][i].source ==5) || (data["data"][i].source ==7)) && data["data"][i].orderStatus ==11){%> 
-                             <%if(data["data"][i].source ==5){%>
+                            <%}else if(data["data"][i].orderStatus ==11){%> 
+                               <%if(data["data"][i].source ==5){%>
                                  <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>&type=5">中奖信息</a>
                                <%}else if(data["data"][i].source ==7){%>
                                  <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>&type=7">中奖信息</a>
                                <%}%>
                               <a class="gray" href="logistics.php?oid=<%=data["data"][i]["id"]%>">查看物流</a>                             
                               <a class="check" data-id="<%=data["data"][i]["id"]%>" data-status="<%=data["data"][i]["orderStatus"]%>">确认收货</a>
-                           <%}%>                         
-                       </div>
-                    </li>
+                            <%}%> 
+                        </div>
+                     <%}%> 
+                  </li>
                 <%}%>
             <%}else if(data["pageNow"] == 1){%>
                 <li class="null"></li>

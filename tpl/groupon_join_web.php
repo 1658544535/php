@@ -16,18 +16,47 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 <a class="button button-link button-nav pull-left back" href="index.php">
                     <span class="icon icon-back"></span>
                 </a>
+                <!--<?php switch($info['status']){
+						case 0: ?>
+	                <?php if($info['isGroup'] ==0){?>
+	                <h1 class="title">拼团中</h1>
+	                <?php }elseif($info['userIsHead'] ==0 && $info['isGroup'] ==1){?>
+	                <h1 class="title">参团成功</h1>
+	                <?php }elseif($info['userIsHead'] ==1 &&  $info['isStart'] ==1){?>
+	                <h1 class="title">开团成功</h1>
+	                <?php }?>
+                <?php break; ?>
+                <?php case 1: ?>
+	                <?php if($info['isGroup'] ==1){?>
+	                <h1 class="title">拼团成功</h1>
+	                <?php }elseif($info['isStart'] ==1 && $info['isGroup'] ==0){?>
+	                <h1 class="title">已成团</h1>
+	                <?php }?>
+                <?php break; ?>
+                <?php case 2: ?>
+                   	<h1 class="title">拼团失败</h1>
+                <?php break;?>
+                <?php case 3: ?>
+                   	<h1 class="title">拼团成功，待开奖</h1>
+                <?php break;?>
+                <?php case 4: ?>
+                    <h1 class="title">已开奖</h1>
+                <?php break;?>
+                <?php }?>
+                <h1 class="title">商品已售罄</h1>-->
+                
                 <?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
 					<h1 class="title">商品已售罄</h1>
                 <?php }elseif($info['status'] ==2){?>
 					<h1 class="title">拼团失败</h1>
-                <?php }elseif($info['status'] ==1  && $info['isGroup'] ==1){?>
+                <?php }elseif($info['status'] ==1 && $info['isGroup'] ==1){?>
 					<h1 class="title">拼团成功</h1>
-                <?php }elseif($info['status'] ==0 && $info['isGroup'] ==0){?>
-					<h1 class="title">拼团中</h1>
+                <?php }elseif($info['status'] ==0 && $info['userIsHead'] ==1 &&  $info['isStart'] ==1 ){?>
+					<h1 class="title">开团成功</h1>
                 <?php }elseif($info['status'] ==0 && $info['userIsHead'] ==0 && $info['isGroup'] ==1){?>
 					<h1 class="title">参团成功</h1>
-                <?php }elseif($info['userIsHead'] ==1 && $info['status'] ==0 && $info['isStart'] ==1){?>
-					<h1 class="title">开团成功</h1>
+                <?php }elseif($info['status'] ==0 && $info['isGroup'] ==0){?>
+					<h1 class="title">拼团中</h1>
                 <?php }elseif($info['status'] ==1 && $info['isStart'] ==1 && $info['isGroup'] ==0){?>
 					<h1 class="title">已成团</h1>
 				<?php }elseif($info['status'] ==3 && $info['activityType'] ==7){?>
@@ -43,7 +72,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 	                    <a href="index.php" class="white">更多拼团</a>
 	                    <a>商品已售罄</a>
 	                </div>
-      			<?php }elseif(in_array($info['activityType'], array(2,5,7)) && $info['status'] ==2){?>
+      			<?php }elseif(in_array($info['activityType'], array(2,5)) && $info['status'] ==2){?>
 	              	<input type="hidden" id="showShare" />
 	                <div>
 	                	<a href="index.php" class="white">更多拼团</a>
@@ -53,7 +82,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
              		<?php switch($info['status']){
 						case 0: ?>
 							<input type="hidden" id="showShare" />
-							<?php if($info['isGroup'] == 0){ ?>
+							<?php if($info['isGroup'] == 0 && $info['userIsHead'] == 0){ ?>
 								<div>
 									<a href="index.php" class="white">更多拼团</a>
 		                            <a id="openSku" data-href="order_join.php" data-ref="groupon">

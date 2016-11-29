@@ -260,7 +260,7 @@
              
             
             </div>
-          <?php if($OrderDetail['result']['source'] !=5 || $OrderDetail['result']['source'] !=7){?>
+          <?php if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7){?>
             <div class="oc-footer2">
             	<?php if($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
                     <!-- <a class="one" id="orderCancel"> href="order_detail.php?act=cancel&oid=<?php echo $OrderDetail['result']['orderId'] ;?>">取消订单</a> -->
