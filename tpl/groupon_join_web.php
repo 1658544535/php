@@ -22,8 +22,10 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					<h1 class="title">拼团失败</h1>
                 <?php }elseif($info['status'] ==1 && $info['isGroup'] ==1){?>
 					<h1 class="title">拼团成功</h1>
-                <?php }elseif((($info['isGroup'] ==1) || ($info['isGroup'] ==0)) && $info['userIsHead'] ==0){?>
+                <?php }elseif((($info['activityType'] ==7) || ($info['activityType'] ==5)) && $info['isGroup'] ==0 && $info['userIsHead'] ==0){?>
 					<h1 class="title">拼团中</h1>
+				<?php }elseif($info['isGroup'] ==0 && $info['userIsHead'] ==0){?>
+					<h1 class="title">拼团中</h1>	
                 <?php }elseif($info['status'] ==0 && $info['userIsHead'] ==1 ){?>
 					<h1 class="title">开团成功</h1>
                 <?php }elseif($info['status'] ==0 && $info['userIsHead'] ==0 ){?>
