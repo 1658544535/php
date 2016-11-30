@@ -22,9 +22,9 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					<h1 class="title">拼团失败</h1>
                 <?php }elseif($info['status'] ==1 && $info['isGroup'] ==1){?>
 					<h1 class="title">拼团成功</h1>
-                <?php }elseif((($info['activityType'] ==5) || ($info['activityType'] ==7)) && $info['status'] ==0  && $info['isGroup'] ==1){?>
+                <?php }elseif((($info['activityType'] ==5) || ($info['activityType'] ==7)) && $info['isGroup'] ==1){?>
 					<h1 class="title">拼团中</h1>
-			   <?php }elseif($info['activityType'] !=5 && $info['activityType'] !=7 && $info['status'] ==0 ){?>
+			    <?php }elseif($info['activityType'] !=5 && $info['activityType'] !=7){?>
 					<h1 class="title">拼团中</h1>
                 <?php }elseif($info['status'] ==0 && $info['userIsHead'] ==1 && $info['isGroup'] ==1){?>
 					<h1 class="title">开团成功</h1>
@@ -51,7 +51,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 							<input type="hidden" id="showShare" />
 								<div>
 									<a href="index.php" class="white">更多拼团</a>
-		                            <?php if((($info['activityType'] ==5) || ($info['activityType'] ==7)) && $info['isGroup'] == 1 && $info['userIsHead'] == 0){ ?>
+		                            <?php if((($info['activityType'] ==5) || ($info['activityType'] ==7)) && $info['isGroup'] == 1){ ?>
 		                            <a id="openSku" data-href="order_join.php" data-ref="groupon">
 								<!-- <a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>"> -->
 										<span class="btn">我要参团</span>
