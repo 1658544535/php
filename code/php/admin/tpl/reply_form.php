@@ -44,7 +44,7 @@
                 <dl>
                     <dt class="label">回复类型</dt>
                     <dd class="main">
-                        <select id="replay_type" class="form-control" name="replyType" onchange="typeChange(this)">
+                        <select id="replay_type" class="form-control" name="replyType">
                             <option value="">请选择自定义回复类型</option>
                             <option value="text" <?php echo (isset($isEdit) && $replyType == 'text') ? 'selected' : '' ?>>文本回复</option>
                             <option value="news" <?php echo (isset($isEdit) && $replyType == 'news') ? 'selected' : '' ?>>图文回复</option>
@@ -97,11 +97,11 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="del" onclick="delNews(this)"><span></span></li>
+                                <li class="del"><span></span></li>
                             </ul>
                             <?php } ?>
                         <?php } ?>
-                        <a id="news-add" href="javascript:" class="btn btn-add" onclick="addNews(this)">添加</a>
+                        <a id="news-add" href="javascript:" class="btn btn-add">添加</a>
                     </dd>
                 </dl>
                 <dl class="submit">
@@ -175,139 +175,11 @@
                     </div>
                 </div>
             </li>
-            <li class="del" onclick="delNews(this)"><span></span></li>
+            <li class="del"><span></span></li>
         </ul>
     </script>
 
-    <script src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
-    <script src="js/baiduTemplate.js"></script>
-    <script src="js/jquery.form.js"></script>
-    <script>
-        $(function(){
-            // 显示回复类型相应的内容
-            typeChange($("#replay_type"));
-
-            // 图片预览
-            $(document).on("change", ".upLoadImg input.file", function(){
-                var _this = $(this);
-                var url = _this.val();
-                if (window.createObjectURL != undefined) { // basic
-                    url = window.createObjectURL(_this.get(0).files[0]);
-                } else if (window.URL != undefined) { // mozilla(firefox)
-                    url = window.URL.createObjectURL(_this.get(0).files[0]);
-                } else if (window.webkitURL != undefined) { // webkit or chrome
-                    url = window.webkitURL.createObjectURL(_this.get(0).files[0]);
-                }
-                _this.next().children('img').attr("src", url);
-                _this.parent().addClass("has");
-                $(_this).parent().removeClass("error");
-            });
-
-            $(document).on("change", ".form-control", function(){
-                if($(this).val() != '') {
-                    $(this).removeClass("error");
-                }
-            });
-            $('#myForm').on("submit", function(){
-                var _this = $(this);
-                $(".form-control:hidden").each(function(index, el) {
-                    if($(el).is(":hidden") || $(el).parent().is(":hidden")){
-                        $(el).attr("disabled", true);
-                    }
-                });
-                if(doValidate()){
-                    _this.find(".submit .loading").show();
-                    _this.find(".submit .main").hide();
-                    _this.ajaxSubmit({
-                        success: function (data) {
-                            data = eval("(" + data + ")");
-                            if (data.status) {
-                                history.go(-1);
-                            } else {
-                                alert(data.info);
-                                _this.find(".submit .loading").hide();
-                                _this.find(".submit .main").show();
-                            }
-                        }
-                    });
-                }
-                $(".form-control").attr("disabled", false);
-                return false;
-            });
-        });
-
-        /* 回复类型切换显示相应的内容 */
-        function typeChange(_this) {
-            var type = $(_this).val(),
-                oText = $("#v-text"),
-                oNews = $("#v-news");
-            switch (type) {
-                case "text": 
-                    oText.show();
-                    oNews.hide();
-                    break;
-                case "news": 
-                    oText.hide();
-                    oNews.show();
-                    break;
-                default: 
-                    oText.hide();
-                    oNews.hide();
-                    break;
-            }
-        }
-
-        /* 添加新闻回复 */
-        function addNews(_this){
-            var num = $("#v-news .reply_form2").length;
-            var bt = baidu.template;
-            var html = bt('t:news-item',{});
-            $(_this).before(html);
-            $("#news-add").removeClass("error");
-            if(num >= 7){
-                $(_this).hide();
-            }
-        }
-
-        /* 删除新闻回复 */
-        function delNews(_this){
-            var num = $("#v-news .reply_form2").length;
-            $(_this).parent().remove();
-            if(num <= 8){
-                $("#news-add").show();
-            }
-        }
-
-        /* 表单验证 */
-        function doValidate() {
-            var success = true;
-
-            //表单不能为空
-            $(".form-control:visible").each(function(index, el) {
-                var _this = $(el);
-                if(_this.val() == '') {
-                    success = false;
-                    _this.addClass("error");
-                }
-            });
-
-            //按钮类型为菜单对应的子菜单至少一个
-            if($("#v-news").is(":visible") && $("#v-news .reply_form2").length <= 0){
-                success = false;
-                $("#news-add").addClass("error");
-            }
-
-            // 图片必须选
-            $(".upLoadImg").each(function(index, el) {
-                if(!$(el).hasClass("has")) {
-                    success = false;
-                    $(el).addClass("error");
-                }
-            });
-
-            return success;
-        }
-    </script>
+    <script src="js/require.js" data-main="js/app/reply_form"></script>
 
 </body>
 
