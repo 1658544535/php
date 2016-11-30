@@ -40,7 +40,7 @@
 									<span class="stips">团长必中 团员抽奖</span>
 									<?php break; ?>
 								<?php case 7: ?>
-									<span class="stips">免费抽奖</span>
+									<span class="stips">免费开团</span>
 									<?php break; ?>
 							<?php } ?>
 						</div>
