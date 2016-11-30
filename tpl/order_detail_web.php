@@ -70,7 +70,7 @@
                 <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==2){?>
                 <div class="oc-state"><span>拼团还未成功，赶快召唤小伙伴！</span><i class="o-icon o-icon-4"></i></div>
                 <?php }else if($OrderDetail['result']['source'] ==7 && $OrderDetail['result']['orderStatus'] ==12){?>
-                <div class="oc-state"><span>已成团，待开奖</span><i class="o-icon o-icon-4"></i></div>
+                <div class="oc-state"><span>待开奖</span><i class="o-icon o-icon-4"></i></div>
                 <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==5){?>
                  <div class="oc-state"><span>交易已取消</span><i class="o-icon o-icon-5"></i></div>
                 <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==9){?>
@@ -82,7 +82,7 @@
                 <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==6){?>
                 <div class="oc-state"><span>未中奖，已返款</span><i class="o-icon o-icon-7"></i></div>
                  <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==7){?>
-                <div class="oc-state"><span>已成团，未中奖</span><i class="o-icon o-icon-7"></i></div>
+                <div class="oc-state"><span>未中奖，已返款</span><i class="o-icon o-icon-7"></i></div>
                 <?php }?>
                 <section class="oc-adress oc-adress-disable">
                     <a >
@@ -109,7 +109,7 @@
 	                <?php }elseif($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7 && $OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==2){?>
 	                <h3 class="title1">拼团商品<span class="tips">未成团，退款成功</span></h3>
 	                <?php }elseif((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==10 ){?>
-                    <h3 class="title1">拼团商品<span class="tips">已成团，待发货</span></h3>
+                    <h3 class="title1">拼团商品<span class="tips">已中奖，待发货</span></h3>
                     <?php }elseif((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==1  ){?>               
                     <h3 class="title1">拼团商品<span class="tips">待支付</span></h3>
                     <?php }elseif((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==11 ){?>
@@ -133,7 +133,7 @@
 	                <?php }elseif((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==7 ){?>
 	                <h3 class="title1">拼团商品<span class="tips">未中奖，已返款</span></h3>
 	                <?php }elseif($OrderDetail['result']['source'] ==7 && $OrderDetail['result']['orderStatus'] ==12 ){?>
-	                <h3 class="title1">拼团商品<span class="tips">已成团，待开奖</span></h3>
+	                <h3 class="title1">拼团商品<span class="tips">待开奖</span></h3>
                     <?php }?>
                     <ul class="list-container">
                         <li><a href="/groupon.php?act=guess&id=<?php echo $OrderDetail['result']['activityId'];?>&pid=<?php echo $OrderDetail['result']['productInfo']['productId'];?>">
