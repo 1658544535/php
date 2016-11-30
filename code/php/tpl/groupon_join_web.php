@@ -16,18 +16,17 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 <a class="button button-link button-nav pull-left back" href="index.php">
                     <span class="icon icon-back"></span>
                 </a>
-           <?php if($info['activityType'] ==5 || $info['activityType'] ==7){?>
                 <?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
 					<h1 class="title">商品已售罄</h1>
                 <?php }elseif($info['status'] ==2){?>
 					<h1 class="title">拼团失败</h1>
                 <?php }elseif($info['status'] ==1 && $info['isGroup'] ==1){?>
 					<h1 class="title">拼团成功</h1>
-                <?php }elseif($info['isGroup'] ==1){?>
+                <?php }elseif((($info['isGroup'] ==1) || ($info['isGroup'] ==0)) && $info['userIsHead'] ==0){?>
 					<h1 class="title">拼团中</h1>
-                <?php }elseif($info['status'] ==0 && $info['userIsHead'] ==1 && $info['isGroup'] ==1){?>
+                <?php }elseif($info['status'] ==0 && $info['userIsHead'] ==1 ){?>
 					<h1 class="title">开团成功</h1>
-                <?php }elseif($info['status'] ==0 && $info['userIsHead'] ==0 && $info['isGroup'] ==1){?>
+                <?php }elseif($info['status'] ==0 && $info['userIsHead'] ==0 ){?>
 					<h1 class="title">参团成功</h1>
                 <?php }elseif($info['status'] ==1 && $info['isStart'] ==1 && $info['isGroup'] ==0){?>
 					<h1 class="title">已成团</h1>
@@ -36,27 +35,6 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 			    <?php }elseif($info['status'] ==4 && $info['activityType'] ==7){?>
 					<h1 class="title">已开奖</h1>
                 <?php }?>
-            <?php }else{?>
-                <?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
-					<h1 class="title">商品已售罄</h1>
-                <?php }elseif($info['status'] ==2){?>
-					<h1 class="title">拼团失败</h1>
-                <?php }elseif($info['status'] ==1 && $info['isGroup'] ==1){?>
-					<h1 class="title">拼团成功</h1>
-                <?php }elseif($info['status'] ==0){?>
-					<h1 class="title">拼团中</h1>
-                <?php }elseif($info['userIsHead'] ==1 && $info['isGroup'] ==1){?>
-					<h1 class="title">开团成功</h1>
-                <?php }elseif($info['userIsHead'] ==0 && $info['isGroup'] ==1){?>
-					<h1 class="title">参团成功</h1>
-                <?php }elseif($info['status'] ==1 && $info['isStart'] ==1 && $info['isGroup'] ==0){?>
-					<h1 class="title">已成团</h1>
-				<?php }elseif($info['status'] ==3 && $info['activityType'] ==7){?>
-					<h1 class="title">待开奖</h1>
-			    <?php }elseif($info['status'] ==4 && $info['activityType'] ==7){?>
-					<h1 class="title">已开奖</h1>
-			    <?php }?>
-            <?php }?>
             </header>
                 
  			<section class="proTipsNew-5">
@@ -71,16 +49,13 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 							<input type="hidden" id="showShare" />
 								<div>
 									<a href="index.php" class="white">更多拼团</a>
-		                            <?php if((($info['activityType'] ==5) || ($info['activityType'] ==7)) && $info['isGroup'] == 1){ ?>
+		                            <?php if($info['isGroup'] ==0 && $info['userIsHead'] ==0){ ?>
 		                            <a id="openSku" data-href="order_join.php" data-ref="groupon">
 								<!-- <a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>"> -->
 										<span class="btn">我要参团</span>
 									</a>
-								    <?php }elseif($info['activityType'] !=5 && $info['activityType'] !=7 && $info['userIsHead'] == 0){ ?>
-								     <a id="openSku" data-href="order_join.php" data-ref="groupon">
-								<!-- <a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>"> -->
-										<span class="btn">我要参团</span>
-									</a>
+									<?php }elseif($info['isGroup'] ==1 && $info['userIsHead'] ==0){?>
+									<a href="groupon.php?id=<?php echo $info['activityId'];?>"><span class="btn">我要参团</span></a>
 									<?php }else{?>
 								    <a id="share" href="javascript:;">还差<?php echo $info['poorNum'];?>人拼团成功</a>
 								    <?php }?>
