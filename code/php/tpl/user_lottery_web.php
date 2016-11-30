@@ -42,13 +42,13 @@
                                 <%if(type ==1){%>
                                  <span class="state">未成团，退款中</span> 							   
                                 <%}else{%>
-                                 <span class="state">拼团失败</span>
+                                 <span class="state">未成团，已退款</span>
                                 <%}%>
                                <%}else if(data["data"][i]["orderStatus"] ==4){%>
                                 <%if(type ==1){%>
                                  <span class="state">未成团，已退款</span> 							   
                                 <%}else{%>
-                                 <span class="state">拼团失败</span>
+                                 <span class="state">未成团，已退款</span>
                                 <%}%>                               
                                <%}else if(data["data"][i]["orderStatus"] ==5){%>
                                 <span class="state">交易已取消</span>                               
@@ -56,13 +56,13 @@
                                 <%if(type ==1){%>
                                  <span class="state">>未中奖，待返款</span> 							   
                                 <%}else{%>
-                                 <span class="state">已成团，未中奖</span>
+                                 <span class="state">未中奖，已返款</span>
                                 <%}%>                               
                                <%}else if(data["data"][i]["orderStatus"] ==7){%>
                                 <%if(type ==1){%>
                                  <span class="state">>未中奖，已返款</span> 							   
                                 <%}else{%>
-                                 <span class="state">已成团，未中奖</span>
+                                 <span class="state">未中奖，已返款</span>
                                 <%}%>                               
                                <%}else if(data["data"][i]["orderStatus"] ==9){%>
                                 <span class="state">已中奖，已完成</span>                               
