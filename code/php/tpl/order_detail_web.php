@@ -70,7 +70,7 @@
                 <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==2){?>
                 <div class="oc-state"><span>拼团还未成功，赶快召唤小伙伴！</span><i class="o-icon o-icon-4"></i></div>
                 <?php }else if($OrderDetail['result']['source'] ==7 && $OrderDetail['result']['orderStatus'] ==12){?>
-                <div class="oc-state"><span>待开奖</span><i class="o-icon o-icon-4"></i></div>
+                <div class="oc-state"><span>已成团，待开奖</span><i class="o-icon o-icon-4"></i></div>
                 <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==5){?>
                  <div class="oc-state"><span>交易已取消</span><i class="o-icon o-icon-5"></i></div>
                 <?php }else if((($OrderDetail['result']['source'] ==5) || ($OrderDetail['result']['source'] ==7)) && $OrderDetail['result']['orderStatus'] ==9){?>
