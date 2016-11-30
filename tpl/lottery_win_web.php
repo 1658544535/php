@@ -20,7 +20,7 @@
                         <?php if($winInfo['status'] ==1){?>
                         <div class="btn">已开奖</div>
 	                    <?php }elseif($winInfo['status'] ==0){?>
-	                    <div class="btn">待开奖</div>
+	                    <div class="btn">未开奖</div>
 	                    <?php }?>
                     </div>
                 </section>
