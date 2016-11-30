@@ -18,26 +18,43 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 </a>
                 <?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
 					<h1 class="title">商品已售罄</h1>
-                <?php }elseif($info['status'] ==2){?>
-					<h1 class="title">拼团失败</h1>
-                <?php }elseif($info['status'] ==1 && $info['isGroup'] ==1){?>
-					<h1 class="title">拼团成功</h1>
-                <?php }elseif((($info['activityType'] ==7) || ($info['activityType'] ==5)) && $info['isGroup'] ==1 && $info['userIsHead'] ==0){?>
+				<?php }else{?>
+                <?php switch($info['status']){
+						case 0: ?>
+                <?php if($info['isGroup'] ==0){?>
 					<h1 class="title">拼团中</h1>
-				<?php }elseif($info['isGroup'] ==0 && $info['userIsHead'] ==0){?>
-					<h1 class="title">拼团中</h1>	
-                <?php }elseif($info['status'] ==0 && $info['userIsHead'] ==1 ){?>
+                <?php }elseif($info['userIsHead'] ==1 ){?>
 					<h1 class="title">开团成功</h1>
-                <?php }elseif($info['status'] ==0 && $info['userIsHead'] ==0 ){?>
+                <?php }elseif($info['userIsHead'] ==0 ){?>
 					<h1 class="title">参团成功</h1>
-                <?php }elseif($info['status'] ==1 && $info['isStart'] ==1 && $info['isGroup'] ==0){?>
+				<?php }?>
+                <?php break; ?>
+                <?php case 1: ?>
+                <?php if($info['isGroup'] ==1){?>
+					<h1 class="title">拼团成功</h1>
+                <?php }elseif($info['isStart'] ==1 && $info['isGroup'] ==0){?>
 					<h1 class="title">已成团</h1>
-				<?php }elseif($info['status'] ==3 && $info['activityType'] ==7){?>
+				<?php }?>
+                <?php break; ?>
+                <?php case 2:?>
+                    <h1 class="title">拼团失败</h1>
+                <?php break;?>
+                <?php case 3:?>
+                <?php if($info['activityType'] ==7){?>
 					<h1 class="title">待开奖</h1>
-			    <?php }elseif($info['status'] ==4 && $info['activityType'] ==7){?>
-					<h1 class="title">已开奖</h1>
                 <?php }?>
+                <?php break;?>
+                <?php case 4:?>
+                <?php if($info['activityType'] ==7){?>
+					<h1 class="title">已开奖</h1>
+				<?php }?>
+                <?php break;?>
+               <?php }?>
+               <?php }?>
+                
             </header>
+                
+                
                 
  			<section class="proTipsNew-5">
        			<?php if($info['isSellOut'] ==1){?>
