@@ -17,7 +17,7 @@
                     <div class="info">
                         <div class="name"><?php echo $winInfo['productName'];?></div>
                         <div class="price">￥<span><?php echo $winInfo['productPrice'];?></span></div>
-                        <?php if($winInfo['status'] ==1){?>
+                        <?php if($winInfo['status'] ==1 || $winInfo['status'] ==2){?>
                         <div class="btn">已开奖</div>
 	                    <?php }elseif($winInfo['status'] ==0){?>
 	                    <div class="btn">未开奖</div>
