@@ -126,6 +126,7 @@
                             <a class="gray" href="order_detail.php?oid=<%=data["data"][i]["id"]%>">查看</a>
                             <a href="groupon_join.php?aid=<%=data["data"][i]["attendId"]%>">邀请好友拼团</a>
                            <%}else if(data["data"][i].isSuccess ==2){%> 
+                             <a class="gray" href="order_detail.php?oid=<%=data["data"][i]["id"]%>">查看</a>
                                <%if(data["data"][i].source ==5){%>
                                  <a href="lottery_new.php?act=winning&attId=<%=data["data"][i]["attendId"]%>&type=5">中奖信息</a>
                                <%}else if(data["data"][i].source ==7){%>
