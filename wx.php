@@ -77,7 +77,7 @@ function __getReplyByKeyword($keyword){
 		'水画布' => '<a href="http://weixin.pindegood.com/coupon_action.php?linkid=37&aid=148">水画布低至9.9元新用户秒杀开抢中，您还在犹豫点不点的时候，已经有1689人领取了！☞链接！</a>',
 		'领玩具' => '<a href="http://weixin.pindegood.com/free.php?id=18">双十一返场，狂欢不打烊！1000份 免费玩具再狂送，点击马上领取☞☞☞+领</a>',
 		'纸巾' => '<a href="http://weixin.pindegood.com/groupon.php?id=771">湿水不易破 ，6包维达抽取式三层纸巾，狂欢免费送，已有2626人领取成功！快戳 ☞链接！</a>',
-		'兑奖' => '游戏兑奖规则：请回复“兑奖码+注册手机号码”可领取相应游戏奖品兑换券 ，点击右下角<我的奖品>兑换，已有3214人领奖成功！赶紧回复吧！如有疑问，详询客服！',
+		'兑奖' => "①点击<a href=\"http://weixin.pindegood.com/user_binding.php\">注册</a>拼得好帐号\r\n②回复“兑奖码+注册手机号”\r\n③点击<a href=\"http://weixin.pindegood.com/user_info.php?act=coupon\">马上领取！</a>",
 	);
 	$keywordMap['1毛'] = $keywordMap['0.1夺宝'] = $keywordMap['夺宝'] = $keywordMap['0.1'];
 	$keywordMap['优惠券'] = $keywordMap['水画布活动'] = $keywordMap['优惠券活动'] = $keywordMap['水画布'];
