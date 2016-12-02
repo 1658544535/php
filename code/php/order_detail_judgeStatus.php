@@ -8,12 +8,12 @@
  */
 
 if($OrderDetail['result']['source'] != 5 && $OrderDetail['result']['source'] != 7) {
-    if ($OrderDetail['result']['isSuccess'] ==2) {
+    if ($OrderDetail['result']['isSuccess'] == 2) {
         $statusTitle = '拼团失败';
         $statusState = '未成团，退款中';
         $statusTips  = '未成团，退款中';
         $statusImg   = 8;
-        if ($OrderDetail['result']['refPriStatus'] ==2) {
+        if ($OrderDetail['result']['refPriStatus'] == 2) {
             $statusState = '未成团，退款成功';
             $statusTips  = '未成团，退款成功';
             $statusImg   = 7;
@@ -113,14 +113,15 @@ if ($OrderDetail['result']['source'] == 7 || $OrderDetail['result']['source'] ==
     $statusTips  = $tipsArr[$OrderDetail['result']['orderStatus']];
     $statusImg   = getStatusImg($OrderDetail['result']['orderStatus']);
 
-    if ($OrderDetail['result']['source'] ==7 && $OrderDetail['result']['orderStatus'] ==3) {
-        $statusState = '未成团，已退款';
-        $statusTips  = '未成团，已退款';
-    };
-    if ($OrderDetail['result']['source'] ==7 && $OrderDetail['result']['orderStatus'] ==6){
-        $statusState = '未中奖，已返款';
-        $statusTips  = '未中奖，已返款';
-    };
+    if ($OrderDetail['result']['source'] ==7) {
+        if ($OrderDetail['result']['orderStatus'] ==3) {
+            $statusState = '未成团，已退款';
+            $statusTips  = '未成团，已退款';
+        } elseif ($OrderDetail['result']['orderStatus'] ==6) {
+            $statusState = '未中奖，已返款';
+            $statusTips  = '未中奖，已返款';
+        }
+    }
 
 }
 
