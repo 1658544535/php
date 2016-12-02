@@ -51,7 +51,8 @@ switch($wxReqType){
 						$subscribeMsg = '<a href="'.$siteUrl.'free.php?id=17">0元开团，点击领券</a>';
 						break;
 					default:
-						$subscribeMsg = '终于等到您~欢迎来到火遍朋友圈、汇聚全球玩具的拼得好，我们为您准备了7.7专区、品牌特卖等好玩实惠的玩具拼团，<a href="'.$siteUrl.'">☞点击进入商城</a>';
+//						$subscribeMsg = '终于等到您~欢迎来到火遍朋友圈、汇聚全球玩具的拼得好，我们为您准备了7.7专区、品牌特卖等好玩实惠的玩具拼团，<a href="'.$siteUrl.'">☞点击进入商城</a>';
+						$subscribeMsg = '终于等到你！我们已经为你准备了猜价格、9.9特卖、掌上秒杀、0.1夺宝等好玩实惠的活动。拼靓价得好货，一切尽在拼得好，<a href="'.$siteUrl.'">☞点击进入商城</a>';
 						break;
 				}
 				$objWX->text($subscribeMsg)->reply();
