@@ -185,7 +185,7 @@
 		                    $.post("user_orders.php",{act: "edit", oid:_this.attr("data-id"), status:_this.attr("data-status")},function(req){
 		                    	req =  eval("(" + req + ")");;
 		                        $.toast(req.data.data.error_msg);
-								location.href=document.location;
+								location.href='user_orders.php?type=4';
 		                    },"JSON");
 	                	});
 	                });
