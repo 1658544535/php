@@ -21,15 +21,6 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 				<?php }else{?>
 	                <?php switch($info['status']){
 							case 0: ?>
-		                <?php if($info['activityType'] ==7 || $info['activityType'] ==5){?>
-			                <?php if($info['userIsHead'] ==1){?>
-								<h1 class="title">开团成功</h1>
-			                <?php }elseif($info['isGroup'] ==0 || $info['isGroup'] ==1){?>
-								<h1 class="title">拼团中</h1>
-			                <?php }elseif($info['userIsHead'] ==0){?>
-								<h1 class="title">参团成功</h1>
-							<?php }?>
-		                <?php }else{?>
 			                <?php if($info['userIsHead'] ==1){?>
 								<h1 class="title">开团成功</h1>
 			                <?php }elseif($info['isGroup'] ==0){?>
@@ -37,12 +28,11 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 				            <?php }elseif($info['userIsHead'] ==0){?>
 								<h1 class="title">参团成功</h1>
 						    <?php }?>
-		                <?php }?>
 		                <?php break; ?>
 		                <?php case 1: ?>
 		                <?php if($info['isGroup'] ==1){?>
 							<h1 class="title">拼团成功</h1>
-		                <?php }elseif($info['isGroup'] ==0){?>
+		                <?php }else{?>
 							<h1 class="title">已成团</h1>
 						<?php }?>
 		                <?php break; ?>
@@ -81,11 +71,6 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 									<a href="index.php" class="white">更多拼团</a>
 		                            <?php if($info['isGroup'] ==0 && $info['userIsHead'] ==0){ ?>
 		                            <a id="openSku" data-href="order_join.php" data-ref="groupon">
-								<!-- <a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>"> -->
-										<span class="btn">我要参团</span>
-									</a>
-									<?php }elseif(($info['activityType'] ==7 || $info['activityType'] ==5) &&  ($info['isGroup'] ==1 || $info['isGroup'] ==0) && $info['userIsHead'] ==0){?>
-									<a id="openSku" data-href="order_join.php" data-ref="groupon">
 								<!-- <a href="order_join.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>&free=<?php echo $isGrouponFree;?>&aid=<?php echo $attendId;?>"> -->
 										<span class="btn">我要参团</span>
 									</a>
