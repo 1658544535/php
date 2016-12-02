@@ -84,14 +84,14 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 </section>
             </script>
 
-            <script id='tpl_proBox' type="text/template">
-                <section class="index-subClass" data-more="search_class.php?act=twoClass&id=<?php echo $cateId;?>&level=1">
+           <script id='tpl_proBox' type="text/template">
+                <!--<section class="index-subClass" data-more="search_class.php?act=twoClass&id=<?php echo $cateId;?>&level=1">
                     <ul>
                       <?php foreach ($twoClass as $two){?>
                         <li><a href="search_class.php?act=threeClass&id=<?php echo $two['twoId'];?>&level=2"><div class="img"><img src="<?php echo $two['twoIcon'];?>" /></div><div class="txt"><?php echo $two['twoName'];?></div></a></li>
                       <?php }?>                        
                     </ul>
-                </section>
+                </section>-->
                 <section class="index-pro infinite-scroll infinite-scroll-bottom" data-distance="30">
                 <ul class="list-container"></ul>
                 <div class="infinite-scroll-preloader">
@@ -110,7 +110,6 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                         <a class="swiper-slide" href="product_guess_price.php">
                     <%}else if(data["banner"][i]["type"] == 4){%>
 						<%if(data["banner"][i].typeId == 0){%>
-							<a class="swiper-slide" href="specials.php">
 						<%}else{%>
 							<a class="swiper-slide" href="special.php?id=<%=data["banner"][i].typeId%>">
 						<%}%>
