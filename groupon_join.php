@@ -44,9 +44,6 @@ $skus = array();
 if(($info['status'] == 0) && ($info['userIsHead'] != 1) && ($info['isGroup'] == 0)){
 	$skus = apiData('getProductSkus.do', array('pid'=>$info['productId']));
 	$skus['success'] && $skus = $skus['result'];
-}else{
-	$skus = apiData('getProductSkus.do', array('pid'=>$info['productId']));
-	$skus['success'] && $skus = $skus['result'];
 }
 
 
