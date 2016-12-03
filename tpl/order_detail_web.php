@@ -44,7 +44,7 @@
                 <h1 class="title">拼团失败</h1>
                 <?php }?>
             </header>
-			<div class="content native-scroll" style="bottom:2.75rem;">
+			<div class="content native-scroll">
                 <?php if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7 && $OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==1){?>
                 <div class="oc-state"><span>拼团成功，等待卖家发货！</span><i class="o-icon o-icon-1"></i></div>
                 <?php }else if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7 && $OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
