@@ -1141,7 +1141,7 @@ function getPrevUrl(){
  * @param string $method 接口调用方式，get/post
  * @return array
  */
-function apiData($url, $param, $method='get', $exit=false){
+function apiData($url, $param=array(), $method='get', $exit=false){
 	$method = strtolower($method);
 	!in_array($method, array('get', 'post')) && $method = 'get';
 
