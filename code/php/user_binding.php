@@ -27,13 +27,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 		//设置微信信息
 		$_wxUserInfo = $objWX->getUserInfo($openid);
+		if($_wxUserInfo == false){
+			echo $objWX->errCode.'：'.$objWX->errMsg;
+			die;
+		}
 		if($_wxUserInfo !== false){
 			$userApiParam = array('uid'=>$result['uid'], 'name'=>$_wxUserInfo['nickname']);
 			if($_wxUserInfo['headimgurl']){
 				$_dir = SCRIPT_ROOT.'upfiles/headimage/';
 				!file_exists($_dir) && mkdir($_dir, 0777, true);
 				$_headimg = $_dir.$openid.'.jpg';
-				file_put_contents($_headimg, file_get_contents($_wxUserInfo['headimgurl']));
+//				file_put_contents($_headimg, file_get_contents($_wxUserInfo['headimgurl']));
+				$ch = curl_init($_wxUserInfo['headimgurl']);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
+				$avatar = curl_exec($ch);
+				curl_close($ch);
+				file_put_contents($_headimg, $avatar);
 				$userApiParam['file'] = '@'.$_headimg;
 			}
 			apiData('editUserInfo.do', $userApiParam, 'post');
@@ -45,10 +55,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$_wxInfo->openid = $openid;
 		$_wxInfo->name = $result['name'];
 		$_wxInfo->image = $result['image'];
+		$referUrl = empty($_SESSION['loginReferUrl']) ? '/' : urldecode($_SESSION['loginReferUrl']);
 		$_SESSION['is_login'] = true;
 		$_SESSION['userinfo'] = $_wxInfo;
-
-		$referUrl = empty($_SESSION['loginReferUrl']) ? '/' : urldecode($_SESSION['loginReferUrl']);
 		unset($_SESSION['loginReferUrl']);
 		redirect($referUrl);
 	}else{
