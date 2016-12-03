@@ -80,22 +80,22 @@
             <tr>
                 <%for(var j=0; j<title.length; j++){%>
                     <%if(title[j] == "Title"){%>
-                    <td align="center">标题</td>
+                    <td>标题</td>
                     <%}else if(title[j] == "Description"){%>
-                    <td align="center">描述</td>
+                    <td>描述</td>
                     <%}else if(title[j] == "Url"){%>
-                    <td align="center">链接</td>
+                    <td>链接</td>
                     <%}else if(title[j] == "PicUrl"){%>
-                    <td align="center" width="120">图片</td>
+                    <td width="120">图片</td>
                 <%}}%>
             </tr>
             <%for(var i=0; i<content.length; i++){%>
             <tr>
                 <%for(var j=0; j<title.length; j++){%>
                     <%if(title[j] == 'PicUrl'){%>
-                    <td align="center"><img src="<%= content[i][j]%>" class="reply-table-img" /></td>
+                    <td><img src="<%= content[i][j]%>" class="reply-table-img" /></td>
                     <%}else{%>
-                    <td align="center"><%= content[i][j]%></td>
+                    <td><%= content[i][j]%></td>
                 <%}}%>
             </tr>
             <%}%>
