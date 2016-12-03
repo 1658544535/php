@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="btn">
                                 <?php if($Type ==1){?>
-                                    <span class="red">立即开团</span>
+                                    <span class="red">免费开团</span>
                                 <?php }else{?>
                                     <span class="red">中奖信息</span>
                                 <?php }?>
