@@ -213,8 +213,8 @@ switch ($act)
         $lists     = $db->page(5); //分页，里面填输出数目
         $totalPage = $db->totalPage; //总页数
         $nav       = $db->getPageNav();
-        $subscribe_data = current($lists); //默认关注的回复数据
-        array_shift($lists); //默认关注回复的数据出栈
+//        $subscribe_data = current($lists); //默认关注的回复数据
+//        array_shift($lists); //默认关注回复的数据出栈
 
         include_once('tpl/reply_list.php');
         break;
