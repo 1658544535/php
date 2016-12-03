@@ -33,6 +33,7 @@ requirejs(['../config'], function(config){
 	        // 处理回复内容的数据
 	        (function() {
 	            var bt = baidu.template;
+	            baidu.template.ESCAPE = false;
 	            var otr = $(".reply-list .table tr");
 	            if(otr.length > 1){
 	                $(".reply-list .table tr:gt(0)").each(function(index, el) {
