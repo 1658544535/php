@@ -44,7 +44,7 @@
                 <h1 class="title">拼团失败</h1>
                 <?php }?>
             </header>
-          <div class="content native-scroll" style="bottom:2.75rem;">
+			<div class="content native-scroll" style="bottom:2.75rem;">
                 <?php if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7 && $OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==1){?>
                 <div class="oc-state"><span>拼团成功，等待卖家发货！</span><i class="o-icon o-icon-1"></i></div>
                 <?php }else if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7 && $OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
@@ -95,7 +95,7 @@
                         <div><?php echo $OrderDetail['result']['addressInfo']['address'];?></div>
                     </a>
                 </section>
-            <section class="freeList proTips-2 oc-pro">
+				<section class="freeList proTips-2 oc-pro">
                     <?php if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7 && $OrderDetail['result']['orderStatus'] ==2  && $OrderDetail['result']['isSuccess'] ==1){?>
                     <h3 class="title1">拼团商品<span class="tips">已成团，待发货</span></h3>
                     <?php }elseif($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7 && $OrderDetail['result']['orderStatus'] ==1  && $OrderDetail['result']['isCancel'] ==0){?>               
@@ -278,7 +278,7 @@
                      <div>运单编号：<?php echo $OrderDetail['result']['orderInfo']['logisticsNo'];?></div>
                     <?php }?>
                 </section>
-          <?php if($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
+			<?php if($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
                 <section class="oc-pay">
                     <ul class="list">
                         <li>
@@ -299,43 +299,51 @@
                         </li>-->
                     </ul>
                 </section>
-             <?php }?>
+            <?php }?>
              
             
             </div>
           <?php if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7){?>
-            <div class="oc-footer2">
-            	<?php if($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
-                    <!-- <a class="one" id="orderCancel"> href="order_detail.php?act=cancel&oid=<?php echo $OrderDetail['result']['orderId'] ;?>">取消订单</a> -->
-                    <a class="btn gray" id="orderCancel">取消订单</a>
-                    <a class="btn" href="/wxpay/pay.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>">去支付</a>
-              <?php }else if($OrderDetail['result']['orderStatus'] ==3){?>
-                    <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn gray">查看物流</a>
-                   <?php if($OrderDetail['result']['refundStatus'] ==0 || $OrderDetail['result']['refundStatus'] ==6 || $OrderDetail['result']['refundStatus'] ==5){?>
-                    <a id="check" class="btn" data-id="<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>" data-status="<?php echo $OrderDetail['result']['orderStatus']  ;?>">确认收货</a>
-                   <?php }else if($OrderDetail['result']['refundStatus'] ==1 || $OrderDetail['result']['refundStatus'] ==2 || $OrderDetail['result']['refundStatus'] ==3){?>
-                    <a class="txt">售后申请中...</a>
-                   <?php }?>
-             <?php }else if($OrderDetail['result']['orderStatus'] ==4){?>
-                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn">查看物流</a>
-             <?php }?>
-            </div>
+			<?php if($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
+				<div class="oc-footer2">
+					<!-- <a class="one" id="orderCancel"> href="order_detail.php?act=cancel&oid=<?php echo $OrderDetail['result']['orderId'] ;?>">取消订单</a> -->
+					<a class="btn gray" id="orderCancel">取消订单</a>
+					<a class="btn" href="/wxpay/pay.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>">去支付</a>
+				</div>
+			<?php }else if($OrderDetail['result']['orderStatus'] ==3){?>
+				<div class="oc-footer2">
+					<a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn gray">查看物流</a>
+					<?php if($OrderDetail['result']['refundStatus'] ==0 || $OrderDetail['result']['refundStatus'] ==6 || $OrderDetail['result']['refundStatus'] ==5){?>
+						<a id="check" class="btn" data-id="<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>" data-status="<?php echo $OrderDetail['result']['orderStatus']  ;?>">确认收货</a>
+					<?php }else if($OrderDetail['result']['refundStatus'] ==1 || $OrderDetail['result']['refundStatus'] ==2 || $OrderDetail['result']['refundStatus'] ==3){?>
+						<a class="txt">售后申请中...</a>
+					<?php }?>
+				</div>
+			<?php }else if($OrderDetail['result']['orderStatus'] ==4){?>
+				<div class="oc-footer2">
+					<a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn">查看物流</a>
+				</div>
+			<?php }?>
 		<?php }else{?>
-			<div class="oc-footer2">
-	            	<?php if($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
-	                    <a class="btn gray" id="orderCancel">取消订单</a>
-	                    <a class="btn" href="/wxpay/pay.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>">去支付</a>
-	              <?php }else if($OrderDetail['result']['orderStatus'] ==11){?>
-	                    <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn gray">查看物流</a>
-	                   <?php if($OrderDetail['result']['refundStatus'] ==0 || $OrderDetail['result']['refundStatus'] ==6 || $OrderDetail['result']['refundStatus'] ==5){?>
-	                    <a id="check" class="btn" data-id="<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>" data-status="<?php echo $OrderDetail['result']['orderStatus']  ;?>">确认收货</a>
-	                   <?php }else if($OrderDetail['result']['refundStatus'] ==1 || $OrderDetail['result']['refundStatus'] ==2 || $OrderDetail['result']['refundStatus'] ==3){?>
-	                    <a class="txt">售后申请中...</a>
-	                   <?php }?>
-	             <?php }else if($OrderDetail['result']['orderStatus'] ==9){?>
-	                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn">查看物流</a>
-	             <?php }?>
-	            </div>
+			<?php if($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
+				<div class="oc-footer2">
+					<a class="btn gray" id="orderCancel">取消订单</a>
+					<a class="btn" href="/wxpay/pay.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>">去支付</a>
+				</div>
+			<?php }else if($OrderDetail['result']['orderStatus'] ==11){?>
+				<div class="oc-footer2">
+					<a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn gray">查看物流</a>
+					<?php if($OrderDetail['result']['refundStatus'] ==0 || $OrderDetail['result']['refundStatus'] ==6 || $OrderDetail['result']['refundStatus'] ==5){?>
+						<a id="check" class="btn" data-id="<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>" data-status="<?php echo $OrderDetail['result']['orderStatus']  ;?>">确认收货</a>
+					<?php }else if($OrderDetail['result']['refundStatus'] ==1 || $OrderDetail['result']['refundStatus'] ==2 || $OrderDetail['result']['refundStatus'] ==3){?>
+						<a class="txt">售后申请中...</a>
+					<?php }?>
+				</div>
+			<?php }else if($OrderDetail['result']['orderStatus'] ==9){?>
+				<div class="oc-footer2">
+					<a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn">查看物流</a>
+				</div>
+			<?php }?>
 		<?php }?>
             <script>
                 $(document).on("pageInit", "#page-orderCofirm", function(e, pageId, page) {
@@ -343,7 +351,7 @@
                     	var _this = $(this);
 	                	$.confirm("是否取消订单？", function(){
 	                        $.post("order_detail.php",{act: "cancel", oid:"<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>"},function(req){
-	                        	req =  eval("(" + req + ")");;
+	                        	req =  eval("(" + req + ")");
 	                            $.toast(req.data.data.error_msg);
 	                            history.back(-1);
 	                        },"JSON");
