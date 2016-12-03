@@ -51,8 +51,8 @@
                     <%for(var i=0;i<data["data"].length; i++){%>
                        <li>
                        <?php if($Type ==1){?>                        
-                         <!--<a href="groupon.php?id=<%=data["data"][i]["activityId"]%>">-->
-						 <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qunyu.taoduoduo">
+                         <a href="groupon.php?id=<%=data["data"][i]["activityId"]%>">
+						 <!--<a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qunyu.taoduoduo">-->
                        <?php }else{?>     
                          <a href="lottery_new.php?act=comment_list&aid=<%=data["data"][i]["activityId"]%>">
                        <?php }?>
