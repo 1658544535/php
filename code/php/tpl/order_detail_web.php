@@ -140,7 +140,12 @@
 	                <h3 class="title1">拼团商品<span class="tips">待开奖</span></h3>
                     <?php }?>
                     <ul class="list-container">
-                        <li><a href="/groupon.php?act=guess&id=<?php echo $OrderDetail['result']['activityId'];?>&pid=<?php echo $OrderDetail['result']['productInfo']['productId'];?>">
+                        <li>
+                           <?php if($OrderDetail['result']['source'] ==3){?>
+                            <a href="/groupon.php?act=guess&id=<?php echo $OrderDetail['result']['activityId'];?>&pid=<?php echo $OrderDetail['result']['productInfo']['productId'];?>">
+                           <?php }else{?>
+                            <a href="/groupon.php?id=<?php echo $OrderDetail['result']['activityId'];?>&pid=<?php echo $OrderDetail['result']['productInfo']['productId'];?>">
+                           <?php }?>
                             <div class="img"><img src="<?php echo $OrderDetail['result']['productInfo']['productImage'];?>"></div>
                             <div class="info">
                                 <div class="name"><?php echo $OrderDetail['result']['productInfo']['productName'];?></div>
@@ -148,7 +153,7 @@
                             </div>
                         </a></li>
                     </ul>
-                   <?php if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7){?>
+                   <?php if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7 ){?>
                     <div class="option">
                      <?php if($OrderDetail['result']['orderStatus'] !=1){?>
                        <?php if($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['orderStatus'] ==2){?>
@@ -167,7 +172,9 @@
                            <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
                            <?php }?>
 					  <?php }else if( $OrderDetail['result']['isSuccess'] ==2 && ($OrderDetail['result']['refPriStatus'] ==1) || ($OrderDetail['result']['refPriStatus'] ==0)){?>
+						    <?php if($OrderDetail['result']['source'] !=4 && $OrderDetail['result']['source'] !=3){?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
+				            <?php }?>
 				       <?php }else if($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==2){?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 					   <?php }else if($OrderDetail['result']['isSuccess'] ==1 && $OrderDetail['result']['orderStatus'] ==2){?>
