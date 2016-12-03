@@ -40,23 +40,18 @@
                         <th align="left">回复内容</th>
                         <th align="center" width="120">操作</th>
                     </tr>
-                    <tr>
-                        <td>subscribe</td>
-                        <td>自定义关注回复</td>
-                        <td><?php echo $subscribe_data['reply_type'] ?></td>
-                        <td><?php echo $subscribe_data['content']; ?></td>
-                        <td align="center"><a class="btn btn-save js-edit" data-id="1" href="javascript:;">修改</a></td>
-                    </tr>
-                    <?php if ($lists) {?>
+                    <?php if (!empty($lists)) {?>
                         <?php foreach ($lists as $reply) { ?>
                             <tr>
-                                <td><?php echo $reply['event'] ?></td>
-                                <td><?php echo $reply['key'] ?></td>
-                                <td><?php echo $reply['reply_type'] ?></td>
-                                <td><?php echo $reply['content'] ?></td>
+                                <td><?php echo ($reply['id'] !== 1) ? $reply['event'] : 'subscribe';?></td>
+                                <td><?php echo ($reply['id'] !== 1) ? $reply['key'] : '自定义关注回复'; ?></td>
+                                <td><?php echo $reply['reply_type']; ?></td>
+                                <td><?php echo $reply['content']; ?></td>
                                 <td align="center">
                                     <a class="btn btn-save js-edit" data-id="<?php echo $reply['id']; ?>" href="javascript:;">修改</a>
-                                    <a class="btn btn-del js-delete" data-id="<?php echo $reply['id']; ?>" href="javascript:;">删除</a>
+                                    <?php if ($reply['id'] !== 1) { ?>
+                                        <a class="btn btn-del js-delete" data-id="<?php echo $reply['id']; ?>" href="javascript:;">删除</a>
+                                    <?php } ?>
                                 </td>
                             </tr>
                         <?php } ?>
