@@ -36,7 +36,8 @@ if(!empty($freeCpn))
 $seckillPro = array();
 if(!$cateId){
 	$seckillPro = apiData('homeSecKillListApi.do');
-	$seckillPro = $seckillPro['success'] ? $seckillPro['result'] : array();
+//	$seckillPro = $seckillPro['success'] ? $seckillPro['result'] : array();
+	$seckillPro = $seckillPro['result'];
 }
 
 $footerNavActive = 'index';
