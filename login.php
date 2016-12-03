@@ -53,7 +53,13 @@ switch($act)
 							$_dir = SCRIPT_ROOT.'upfiles/headimage/';
 							!file_exists($_dir) && mkdir($_dir, 0777, true);
 							$_headimg = $_dir.$wxInfo['openid'].'.jpg';
-							file_put_contents($_headimg, file_get_contents($_wxUserInfo['headimgurl']));
+//							file_put_contents($_headimg, file_get_contents($_wxUserInfo['headimgurl']));
+							$ch = curl_init($_wxUserInfo['headimgurl']);
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+							curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
+							$avatar = curl_exec($ch);
+							curl_close($ch);
+							file_put_contents($_headimg, $avatar);
 							$editResult = apiData('editUserInfo.do', array('uid'=>$userInfo['uid'],'file'=>'@'.$_headimg), 'post');
 							$editResult['success'] && $userInfo['image'] = $_wxUserInfo['headimgurl'];
 						}
