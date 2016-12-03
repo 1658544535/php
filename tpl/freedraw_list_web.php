@@ -19,7 +19,7 @@
                 <a class="button button-link button-nav pull-right share">
                     <span class="icon icon-share"></span>
                 </a>
-                <h1 class="title">免费抽奖</h1>
+                <h1 class="title">免费试用</h1>
             </header>
 
             <!-- 底部导航 -->
