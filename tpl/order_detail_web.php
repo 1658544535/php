@@ -187,29 +187,61 @@
 	                    <?php if($OrderDetail['result']['orderStatus'] ==2){?>
 	                       <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 	                    <?php }else if($OrderDetail['result']['orderStatus'] ==3 ){?>
-	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=<?php if($OrderDetail['result']['source']==5){?>5<?php }elseif($OrderDetail['result']['source']==7){?>7<?php }?>">查看中奖记录</a>
+	                      <?php if($OrderDetail['result']['source']==5){?>
+	                       <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=5">查看中奖记录</a>
+	                      <?php }elseif($OrderDetail['result']['source']==7){?>
+	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&type=7">查看中奖记录</a>
+	                      <?php }?>
 	                       <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 	                    <?php }else if($OrderDetail['result']['orderStatus'] ==4){?>
-	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=<?php if($OrderDetail['result']['source']==5){?>5<?php }elseif($OrderDetail['result']['source']==7){?>7<?php }?>">查看中奖记录</a>
+	                       <?php if($OrderDetail['result']['source']==5){?>
+	                       <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=5">查看中奖记录</a>
+	                      <?php }elseif($OrderDetail['result']['source']==7){?>
+	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&type=7">查看中奖记录</a>
+	                      <?php }?>
 	                       <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 	                    <?php }else if($OrderDetail['result']['orderStatus'] ==5){?>
-	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=<?php if($OrderDetail['result']['source']==5){?>5<?php }elseif($OrderDetail['result']['source']==7){?>7<?php }?>">查看中奖记录</a>
+	                        <?php if($OrderDetail['result']['source']==5){?>
+	                       <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=5">查看中奖记录</a>
+	                      <?php }elseif($OrderDetail['result']['source']==7){?>
+	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&type=7">查看中奖记录</a>
+	                      <?php }?>
 	                    <?php }else if($OrderDetail['result']['orderStatus'] ==6){?>
-	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=<?php if($OrderDetail['result']['source']==5){?>5<?php }elseif($OrderDetail['result']['source']==7){?>7<?php }?>">查看中奖记录</a>
+	                        <?php if($OrderDetail['result']['source']==5){?>
+	                       <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=5">查看中奖记录</a>
+	                      <?php }elseif($OrderDetail['result']['source']==7){?>
+	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&type=7">查看中奖记录</a>
+	                      <?php }?>
 	                       <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 	                    <?php }else if($OrderDetail['result']['orderStatus'] ==7){?>
-	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=<?php if($OrderDetail['result']['source']==5){?>5<?php }elseif($OrderDetail['result']['source']==7){?>7<?php }?>">查看中奖记录</a>
+	                       <?php if($OrderDetail['result']['source']==5){?>
+	                       <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=5">查看中奖记录</a>
+	                      <?php }elseif($OrderDetail['result']['source']==7){?>
+	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&type=7">查看中奖记录</a>
+	                      <?php }?>
 	                       <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 	                    <?php }else if($OrderDetail['result']['orderStatus'] ==12){?>
 	                       <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 	                    <?php }else if($OrderDetail['result']['orderStatus'] ==9){?>
-	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=<?php if($OrderDetail['result']['source']==5){?>5<?php }elseif($OrderDetail['result']['source']==7){?>7<?php }?>">查看中奖记录</a>
+	                        <?php if($OrderDetail['result']['source']==5){?>
+	                       <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=5">查看中奖记录</a>
+	                      <?php }elseif($OrderDetail['result']['source']==7){?>
+	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&type=7">查看中奖记录</a>
+	                      <?php }?>
 	                       <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>   
 	                    <?php }else if($OrderDetail['result']['orderStatus'] ==10 ){?>
-                           <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=<?php if($OrderDetail['result']['source']==5){?>5<?php }elseif($OrderDetail['result']['source']==7){?>7<?php }?>">查看中奖记录</a>
+                            <?php if($OrderDetail['result']['source']==5){?>
+	                       <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=5">查看中奖记录</a>
+	                      <?php }elseif($OrderDetail['result']['source']==7){?>
+	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&type=7">查看中奖记录</a>
+	                      <?php }?>
                            <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 	                    <?php }else if($OrderDetail['result']['orderStatus'] ==11){?>
-	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=<?php if($OrderDetail['result']['source']==5){?>5<?php }elseif($OrderDetail['result']['source']==7){?>7<?php }?>">查看中奖记录</a>
+	                        <?php if($OrderDetail['result']['source']==5){?>
+	                       <a href="lottery_new.php?act=winning&attId=<?php echo $OrderDetail['result']['attendId']; ?>&type=5">查看中奖记录</a>
+	                      <?php }elseif($OrderDetail['result']['source']==7){?>
+	                       <a href="lottery_new.php?act=winning&aid=<?php echo $OrderDetail['result']['activityId']; ?>&type=7">查看中奖记录</a>
+	                      <?php }?>
 	                       <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
 	                       <?php if($OrderDetail['result']['refundStatus'] ==0 && $OrderDetail['result']['source'] ==5){?>
                            <a href="aftersale.php?act=apply&oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>">申请退款</a>
