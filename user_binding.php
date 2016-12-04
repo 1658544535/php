@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			die;
 		}
 		if($_wxUserInfo !== false){
-			$userApiParam = array('uid'=>$result['uid'], 'name'=>$_wxUserInfo['nickname']);
+			$userApiParam = array('uid'=>$result['uid'], 'name'=>filterEmoji($_wxUserInfo['nickname']));
 			if($_wxUserInfo['headimgurl']){
 				$_dir = SCRIPT_ROOT.'upfiles/headimage/';
 				!file_exists($_dir) && mkdir($_dir, 0777, true);
