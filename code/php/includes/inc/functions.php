@@ -1509,4 +1509,20 @@ function replyDataHandle($array){
         }
     }
 }
+
+/**
+ * 过滤emoji表情
+ *
+ * @param string $str 要过滤的字符串
+ * @return string
+ */
+function filterEmoji($str){
+    $str = preg_replace_callback('/./u', function (array $match) {
+											$_str = '';
+											$_str .= strlen($match[0]) >= 4 ? '' : $match[0];
+											return $_str;
+										}, $str);
+
+    return $str;
+}
 ?>
