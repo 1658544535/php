@@ -9,14 +9,14 @@
                 <h1 class="title">我的抽奖</h1>
             </header>
 
-            <section class="user-tab lottery-tab" data-href="ajaxtpl/ajax_user_lottery.php" style="position:absolute;width: 100%;bottom:0;height:0">
+            <section class="user-tab lottery-tab" data-href="ajaxtpl/ajax_user_lottery.php" style="position:absolute;width: 100%;bottom:0;">
                 <ul>
                     <li data-type="1"><a href="/user_lottery.php?type=1">0.1夺宝</a></li>
                     <li data-type="2"><a href="/user_lottery.php?type=2">免费试用</a></li>
                 </ul>
             </section>
 
-            <div class="content native-scroll">
+            <div class="content native-scroll" style="bottom: 40px;">
 
                 <section class="user-guess clickbox infinite-scroll infinite-scroll-bottom" data-distance="30">
                     <ul class="list-container"></ul>
@@ -36,43 +36,43 @@
                                 <span class="type">拼团商品</span>
                                <%if(data["data"][i]["orderStatus"] ==1){%>
                                 <span class="state">待支付</span>
-                               <%}else if(data["data"][i]["orderStatus"] ==2){%>                            
-                                <span class="state">拼团中，差<%=data["data"][i]["poorNum"]%>人</span>                           	   
+                               <%}else if(data["data"][i]["orderStatus"] ==2){%>
+                                <span class="state">拼团中，差<%=data["data"][i]["poorNum"]%>人</span>
                                <%}else if(data["data"][i]["orderStatus"] ==3){%>
                                 <%if(type ==1){%>
-                                 <span class="state">未成团，退款中</span> 							   
+                                 <span class="state">未成团，退款中</span>
                                 <%}else{%>
                                  <span class="state">未成团，已退款</span>
                                 <%}%>
                                <%}else if(data["data"][i]["orderStatus"] ==4){%>
                                 <%if(type ==1){%>
-                                 <span class="state">未成团，已退款</span> 							   
+                                 <span class="state">未成团，已退款</span>
                                 <%}else{%>
                                  <span class="state">未成团，已退款</span>
-                                <%}%>                               
+                                <%}%>
                                <%}else if(data["data"][i]["orderStatus"] ==5){%>
-                                <span class="state">交易已取消</span>                               
+                                <span class="state">交易已取消</span>
                                <%}else if(data["data"][i]["orderStatus"] ==6){%>
                                 <%if(type ==1){%>
-                                 <span class="state">未中奖，待返款</span> 							   
+                                 <span class="state">未中奖，待返款</span>
                                 <%}else{%>
                                  <span class="state">未中奖，已返款</span>
-                                <%}%>                               
+                                <%}%>
                                <%}else if(data["data"][i]["orderStatus"] ==7){%>
                                 <%if(type ==1){%>
-                                 <span class="state">>未中奖，已返款</span> 							   
+                                 <span class="state">>未中奖，已返款</span>
                                 <%}else{%>
                                  <span class="state">未中奖，已返款</span>
-                                <%}%>                               
+                                <%}%>
                                <%}else if(data["data"][i]["orderStatus"] ==9){%>
-                                <span class="state">已中奖，已完成</span>                               
+                                <span class="state">已中奖，已完成</span>
                                <%}else if(data["data"][i]["orderStatus"] ==10){%>
-                                <span class="state">已中奖，待发货</span>                               
+                                <span class="state">已中奖，待发货</span>
                                <%}else if(data["data"][i]["orderStatus"] ==11){%>
-                                <span class="state">已中奖，待收货</span>   
+                                <span class="state">已中奖，待收货</span>
                                <%}else if(data["data"][i]["orderStatus"] ==12){%>
-                                <span class="state">已成团，待开奖</span>                                 
-                               <%}%>                            
+                                <span class="state">已成团，待开奖</span>
+                               <%}%>
                             </div>
                             <a href="order_detail.php?oid=<%=data["data"][i]["orderId"]%>" class="u-g-2">
                                 <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>

@@ -18,7 +18,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             <!-- <header class="bar bar-nav">
                 <h1 class="title"><img class="title-img" src="images/logo.png" alt="<?php echo $site_name;?>" /></h1>
             </header> -->
-            
+
             <section class="index-download">
                 <span class="close"></span>
                 <a class="link" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qunyu.taoduoduo"></a>
@@ -54,7 +54,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                     <div class="swiper-pagination"></div>
                 </section>
                 <section class="index-menu">
-                    <!-- <a href="freedraw.php"><span class="index-menuIcon index-menu-i5"></span><span class="txt">免费试用</span></a> -->
+                    <a href="freedraw.php"><span class="index-menuIcon index-menu-i5"></span><span class="txt">免费试用</span></a>
                     <a href="product_guess_price.php"><span class="index-menuIcon index-menu-i1"></span><span class="txt">猜价格</span></a>
                     <a href="special_77.php"><span class="index-menuIcon index-menu-i2"></span><span class="txt">9.9特卖</span></a>
                     <a href="seckill.php"><span class="index-menuIcon index-menu-i3"></span><span class="txt">掌上秒杀</span></a>
@@ -89,7 +89,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                     <ul>
                       <?php foreach ($twoClass as $two){?>
                         <li><a href="search_class.php?act=threeClass&id=<?php echo $two['twoId'];?>&level=2"><div class="img"><img src="<?php echo $two['twoIcon'];?>" /></div><div class="txt"><?php echo $two['twoName'];?></div></a></li>
-                      <?php }?>                        
+                      <?php }?>
                     </ul>
                 </section>-->
                 <section class="index-pro infinite-scroll infinite-scroll-bottom" data-distance="30">
@@ -116,7 +116,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					<%}else if(data["banner"][i]["type"] == 5){%>
 						<a class="swiper-slide" href="specials.php">
                     <%}else if(data["banner"][i]["type"] == 6){%>
-						<a class="swiper-slide" href="special_77.php">					
+						<a class="swiper-slide" href="special_77.php">
                     <%}else{%>
 						<a class="swiper-slide">
                     <%}%>
