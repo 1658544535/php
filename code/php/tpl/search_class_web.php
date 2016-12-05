@@ -28,7 +28,7 @@
                         <dd>
                             <ul>
                                <?php foreach ($one['twoLevelList'] as $two){?>
-                                 <li><a href="search_class.php?act=threeClass&id=<?php echo $two['twoId'];?>&level=2"><div class="img"><img src="<?php echo $two['twoIcon'];?>" /></div><div class="txt"><?php echo $two['twoName'];?></div></a></li>
+                                 <li><a href="search_class.php?act=threeClass&id=<?php echo $two['twoId'];?>&level=2"><div class="img"><img src="<?php echo $two['twoIcom'];?>" /></div><div class="txt"><?php echo $two['twoName'];?></div></a></li>
                                <?php }?>
                             </ul>
                         </dd>
