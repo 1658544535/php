@@ -1179,7 +1179,7 @@ function apiData($url, $param=array(), $method='get', $exit=false){
 		($method == 'post') && PD($param, false);
 		PD(json_decode($data, true));
 	}
-	return json_decode($data, true);
+	return ($data === false) ? array('exception'=>1) : json_decode($data, true);
 
 }
 
