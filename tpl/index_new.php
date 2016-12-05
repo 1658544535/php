@@ -54,7 +54,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                     <div class="swiper-pagination"></div>
                 </section>
                 <section class="index-menu">
-                    <a href="freedraw.php"><span class="index-menuIcon index-menu-i5"></span><span class="txt">免费试用</span></a>
+                    <!-- <a href="freedraw.php"><span class="index-menuIcon index-menu-i5"></span><span class="txt">免费试用</span></a> -->
                     <a href="product_guess_price.php"><span class="index-menuIcon index-menu-i1"></span><span class="txt">猜价格</span></a>
                     <a href="special_77.php"><span class="index-menuIcon index-menu-i2"></span><span class="txt">9.9特卖</span></a>
                     <a href="seckill.php"><span class="index-menuIcon index-menu-i3"></span><span class="txt">掌上秒杀</span></a>
