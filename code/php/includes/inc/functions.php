@@ -104,7 +104,7 @@ function redirect($url = '', $msg = '') {
 
 	$strs = '<script type="text/javascript">location.href="' . $url . '";</script>';
 	if($msg != '')
-		$strs = '<script type="text/javascript">alert("' . $msg . '");location.href="' . $url . '";</script>';
+		$strs = '<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=0" name="viewport"><link rel="stylesheet" href="css/sm.min.css" /><script type="text/javascript" src="js/zepto.js" charset="utf-8"></script><script type="text/javascript" src="js/sui/sm.min.js" charset="utf-8"></script><script type="text/javascript">$(function(){$.alert("' . $msg . '", function(){location.href="' . $url . '"});});</script>';
 
 	echo $strs;
 	exit();
@@ -1179,7 +1179,7 @@ function apiData($url, $param=array(), $method='get', $exit=false){
 		($method == 'post') && PD($param, false);
 		PD(json_decode($data, true));
 	}
-	return ($data === false) ? array('exception'=>1) : json_decode($data, true);
+	return json_decode($data, true);
 
 }
 
