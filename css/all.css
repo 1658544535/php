@@ -50,6 +50,16 @@
   background-size: 100% auto;
   z-index: 2001;
 }
+.redPacked {
+  position: fixed;
+  bottom: 6.1rem;
+  right: 0.5rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  background: url(../images/redpacket-btn.png) no-repeat 0 0;
+  background-size: 100% auto;
+  z-index: 2001;
+}
 /*顶部*/
 .bar-nav .icon {
   width: 2.2rem;
@@ -776,6 +786,31 @@
 }
 .freeCoupon.invalid .price {
   background-image: url(../images/index-popup2.png);
+}
+.popup-red > div {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 90%;
+  transform: translate(-50%, -50%);
+}
+.popup-red > div img {
+  display: block;
+  width: 100%;
+}
+.popup-red > div .close-popup {
+  position: absolute;
+  right: 5%;
+  top: 9.5%;
+  width: 10.8%;
+  padding-bottom: 10.8%;
+}
+.popup-red > div .go {
+  position: absolute;
+  width: 60%;
+  height: 12.1%;
+  bottom: 12.4%;
+  left: 18.7%;
 }
 /*详情页返回*/
 .deta-back {
