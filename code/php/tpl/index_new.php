@@ -183,7 +183,15 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 </div>
             </div>
         <?php }?>
+        <div class="popup popup-red">
+            <div>
+                <a href="javascript:;" class="close-popup"></a>
+                <img src="images/redpacket.png" />
+                <a href="#" class="go"></a>
+            </div>
+        </div>
         <section id="goTop" class="goTop"></section>
+        <section id="redPacked" class="redPacked"></section>
     </div>
 </body>
 

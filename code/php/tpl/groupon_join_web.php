@@ -56,7 +56,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 	                <?php }?>
                 <?php }?>
             </header>
-                
+
  			<section class="proTipsNew-5">
        			<?php if($info['isSellOut'] ==1){?>
 	                <div>
@@ -113,7 +113,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					<?php } ?>
 				<?php }?>
  			</section>
-	  
+
 			<div class="content native-scroll">
 				<?php if($info['activityType'] ==5){?>
 					<section id="rule01" class="proTipsNew-7">
@@ -158,7 +158,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 										   <?php }elseif($info['activityType'] ==7){?>
 										    <div class="btn gray" onclick="location.href='lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>&type=7'">中奖详情</div>
 										   <?php }?>
-										<?php }?>                  
+										<?php }?>
 										<span class="price1">￥<?php echo $info['groupPrice'];?></span>
 										<?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
 											<div class="icon"><img src="images/groupJoin-2.png" /></div>
@@ -177,7 +177,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 						</ul>
 					</section>
 				<?php }?>
-						
+
 				<section class="proTipsNew-2">
 					<?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
 						<h3 class="title1">组团失败，商品已售罄~</h3>
@@ -216,7 +216,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 						<?php }}?>
 					</ul>
 				</section>
-				
+
 				<?php if($info['status'] ==0 && $info['isSellOut'] ==0){?>
 				<section class="proTipsNew-6">
 					<div>
@@ -224,7 +224,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					</div>
 				</section>
 				<?php }?>
-				
+
 				<section class="proTips-3 proTipsNew-3">
 					<div class="btn">查看全部参团详情</div>
 					<ul class="list">
@@ -253,9 +253,9 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 								</li>
 							<?php break; ?>
 						<?php } ?>
-					</ul> 
+					</ul>
 				</section>
-				<?php if(($wxUser !== false) && !$wxUser['subscribe']){?> 
+				<?php if(($wxUser !== false) && !$wxUser['subscribe']){?>
 					<section class="proTipsNew-4">
 						<img src="images/code-follow.jpg" />
 					</section>
@@ -275,7 +275,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 						<?php }?>
 					</ul>
 				</section>
-				
+
 				<section id="rule" class="groupJoin-rule"></section>
 			</div>
 		</div>
@@ -328,11 +328,11 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					function skuOpen(){
 						$.showIndicator();          //打开加载指示器
 						$("#buy").attr("href", "javascript:;").addClass("gray");
-						
+
 						 var req = {
 							 msg: "",
 							 code: 1,
-							 data:  <?php echo empty($skus) ? '{}' : json_encode($skus);?> 
+							 data:  <?php echo empty($skus) ? '{}' : json_encode($skus);?>
 						 }
 						 if(req["data"]["validSKu"].length > 0){
 						 	$(".popup-sku .info .img img").attr("src", req["data"]["validSKu"][0]["skuImg"]);
@@ -456,7 +456,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 						}else{
 							$.toast(req.msg);
 						}
-						
+
 						$.popup(".popup-sku");      //弹出弹窗
 						$("#buy-num").val(1);
 						$.hideIndicator();          //关闭加载指示器
@@ -474,12 +474,12 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 						}
 						return $(".popup-sku").attr("data-href")+"?"+_arr.join("&");
 					}
-				
+
 				<?php } ?>
 
             });
 
-            
+
             $(document).on("pageInit", "#page-proTips", function(e, pageId, page) {
                 //用户头像
                 (function(){
@@ -633,6 +633,14 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 <a href="groupon.php?id=<?php echo $info['activityId']; ?>" class="goDeta"></a>
             </div>
         </div>
+        <div class="popup popup-red">
+            <div>
+                <a href="javascript:;" class="close-popup"></a>
+                <img src="images/redpacket.png" />
+                <a href="#" class="go"></a>
+            </div>
+        </div>
+        <section style="bottom:8.1rem" id="redPacked" class="redPacked"></section>
     </div>
 </body>
 
