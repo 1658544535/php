@@ -54,8 +54,8 @@
   position: fixed;
   bottom: 6.1rem;
   right: 0.5rem;
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 3rem;
+  height: 3rem;
   background: url(../images/redpacket-btn.png) no-repeat 0 0;
   background-size: 100% auto;
   z-index: 2001;
@@ -791,7 +791,7 @@
   position: absolute;
   top: 45%;
   left: 50%;
-  width: 90%;
+  width: 76%;
   transform: translate(-50%, -50%);
 }
 .popup-red > div img {
