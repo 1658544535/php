@@ -74,6 +74,7 @@ switch($info['activityType']){
 		$notQuantity = true;
 		break;
 	case 6://限时秒杀
+		$notQuantity = true;
 		if($info['isSellOut'] == 1){
 			$seckillState = 'sellout';
 		}else{
@@ -86,6 +87,17 @@ switch($info['activityType']){
 		$showWaitGroupList = $isFreeBuy ? false : true;
 		break;
 }
+
+//限购判断
+$num = intval($_GET['num']);
+$num = max(1, $num);
+
+$skuId = intval($_GET['skuid']);
+empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
+$d = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$info['productId'],'source'=>1,'uid'=>$userid));
+
+
+
 
 include_once('tpl/groupon_web.php');
 ?>
