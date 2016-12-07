@@ -5352,14 +5352,14 @@
   background: #fff;
 }
 .class-two dl {
-  margin: 1.2rem 0.5rem 0 0.8rem;
+  margin: 1.2rem 0 0;
 }
 .class-two dl dt {
   position: relative;
   margin: 0;
 }
 .class-two dl dt .title1 {
-  margin: 0 3.5rem 0 0;
+  margin: 0 3.5rem 0 0.8rem;
   font-size: 0.7rem;
   color: #151515;
   overflow: hidden;
@@ -5368,7 +5368,7 @@
 }
 .class-two dl dt .more {
   position: absolute;
-  right: 0;
+  right: 0.5rem;
   top: 0;
   font-size: 0.65rem;
   color: #949494;
@@ -5383,8 +5383,8 @@
 }
 .class-two dl dd ul li {
   float: left;
-  width: 31.333333%;
-  margin: 0.5rem 1% 0;
+  width: 18.6%;
+  margin: 0.5rem 7% 0;
   list-style: none;
 }
 .class-two dl dd ul li a {
@@ -5497,10 +5497,12 @@
   background: rgba(0, 0, 0, 0.4);
 }
 .class-search {
+  position: relative;
   display: block;
-  margin-top: 2.2rem;
   padding: 0.35rem 0;
   background: #fff;
+  z-index: 2;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
 }
 .class-search > div {
   padding: 3px 0;
