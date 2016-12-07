@@ -110,7 +110,8 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                         <a class="swiper-slide" href="product_guess_price.php">
                     <%}else if(data["banner"][i]["type"] == 4){%>
 						<%if(data["banner"][i].typeId == 0){%>
-						<%}else{%>
+						    <a class="swiper-slide">
+                       <%}else{%>
 							<a class="swiper-slide" href="special.php?id=<%=data["banner"][i].typeId%>">
 						<%}%>
 					<%}else if(data["banner"][i]["type"] == 5){%>
