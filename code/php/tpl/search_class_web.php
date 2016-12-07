@@ -4,12 +4,9 @@
 <body>
     <div class="page-group" id="page-class">
         <div id="page-nav-bar" class="page page-current">
-            <header class="bar bar-nav">
-                <p class="img-title"><img src="images/logo.png" /></p>
-            </header>
             <a href="search.php" class="class-search"><div><i></i><span>搜索商品</span></div></a>
            <?php include_once('footer_nav_web.php');?>
-            <div class="content native-scroll" style="top: 4.5rem;">
+            <div class="content native-scroll" style="top: 2.2rem;">
                 <div class="class-one">
                     <ul>
                         <?php foreach ($oneClass as $one){?>
