@@ -104,7 +104,7 @@ function redirect($url = '', $msg = '') {
 
 	$strs = '<script type="text/javascript">location.href="' . $url . '";</script>';
 	if($msg != '')
-		$strs = '<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=0" name="viewport"><link rel="stylesheet" href="css/sm.min.css" /><script type="text/javascript" src="js/zepto.js" charset="utf-8"></script><script type="text/javascript" src="js/sui/sm.min.js" charset="utf-8"></script><script type="text/javascript">$(function(){$.alert("' . $msg . '", function(){location.href="' . $url . '"});});</script>';
+		$strs = '<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=0" name="viewport"><link rel="stylesheet" href="/css/sm.min.css" /><script type="text/javascript" src="/js/zepto.js" charset="utf-8"></script><script type="text/javascript" src="/js/sui/sm.min.js" charset="utf-8"></script><script type="text/javascript">$(function(){$.alert("' . $msg . '", function(){location.href="' . $url . '"});});</script>';
 
 	echo $strs;
 	exit();
