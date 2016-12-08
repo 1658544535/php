@@ -35,30 +35,35 @@
         <div class="content native-scroll">
             <section class="message-type">
                 <ul>
-                    <li><a href="message.php?act=scroll">
-                            <div class="img"><img src="images/message1.png" /><span class="new"></span></div>
-                            <div class="info">
-                                <h3 class="title1">系统消息</h3>
-                                <p class="txt">文章标题</p>
-                            </div>
-                            <span class="time">星期三</span>
-                        </a></li>
-                    <li><a href="#">
-                            <div class="img"><img src="images/message2.png" /></div>
-                            <div class="info">
-                                <h3 class="title1">每日推荐</h3>
-                                <p class="txt">1元！小狗智能扫地机器人，小....</p>
-                            </div>
-                            <span class="time">16-10-08</span>
-                        </a></li>
-                    <li><a href="#">
-                            <div class="img"><img src="images/message3.png" /></div>
-                            <div class="info">
-                                <h3 class="title1">订单消息</h3>
-                                <p class="txt">0.1夺宝！您已经开团....</p>
-                            </div>
-                            <span class="time">16-04-20</span>
-                        </a></li>
+                    <?php foreach ($MessageList as $item) { ?>
+                        <li>
+                            <a href="message.php?act=scroll&type=<?php echo $item['type'];?>">
+                                <div class="img"><img src="<?php echo $item['images'];?>" /><span class="new"></span></div>
+                                <div class="info">
+                                    <h3 class="title1"><?php echo $item['name'];?></h3>
+                                    <p class="txt"><?php echo $item['title'];?></p>
+                                </div>
+                                <span class="time"><?php echo $item['time'];?></span>
+                            </a>
+                        </li>
+                    <?php } ?>
+<!---->
+<!--                    <li><a href="#">-->
+<!--                            <div class="img"><img src="images/message2.png" /></div>-->
+<!--                            <div class="info">-->
+<!--                                <h3 class="title1">每日推荐</h3>-->
+<!--                                <p class="txt">1元！小狗智能扫地机器人，小....</p>-->
+<!--                            </div>-->
+<!--                            <span class="time">16-10-08</span>-->
+<!--                        </a></li>-->
+<!--                    <li><a href="#">-->
+<!--                            <div class="img"><img src="images/message3.png" /></div>-->
+<!--                            <div class="info">-->
+<!--                                <h3 class="title1">订单消息</h3>-->
+<!--                                <p class="txt">0.1夺宝！您已经开团....</p>-->
+<!--                            </div>-->
+<!--                            <span class="time">16-04-20</span>-->
+<!--                        </a></li>-->
                 </ul>
             </section>
         </div>
