@@ -49,7 +49,7 @@
 						<?php if($info['activityType'] == 5){ ?>
 							<div class="txt2">
 								<div>活动时间：<b class="themeColor"><?php echo $info['activitySTime'];?></b> 到 <b class="themeColor"><?php echo $info['activityETime'];?></b></div>
-                                <div>活动规则：</div>								
+                                <div>活动规则：</div>
 								<div>1、0.1元支付开团，规定时间内邀请好友支付0.1元参团，成团即开奖。</div>
 								<div>2、团长必中，并从每个成团中抽取一个幸运团成员，获得奖品。</div>
 								<div>3、不成团或无中奖用户均全额退款。</div>
@@ -237,20 +237,20 @@
 
         <script>
 			var _apiUrl = "/api_action.php?act=";
-			document.domain='<?php echo implode('.', $_arrDomain);?>';
-			<?php if($info['productStatus'] == 1){ ?>
-			function setIframeHeight(iframe) {
-			 	if (iframe) {
-			 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-			 		if (iframeWin.document.body) {
-			 			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-			 		}
-			 	}
-			};
-			window.onload = function () {
-			 	setIframeHeight(document.getElementById('proInfo'));
-			};
-			<?php } ?>
+			// document.domain='<?php echo implode('.', $_arrDomain);?>';
+			// <?php if($info['productStatus'] == 1){ ?>
+			// function setIframeHeight(iframe) {
+			//  	if (iframe) {
+			//  		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+			//  		if (iframeWin.document.body) {
+			//  			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+			//  		}
+			//  	}
+			// };
+			// window.onload = function () {
+			//  	setIframeHeight(document.getElementById('proInfo'));
+			// };
+			// <?php } ?>
 
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
 
@@ -312,16 +312,16 @@
 					function skuOpen(){
 						$.showIndicator();          //打开加载指示器
 						$("#buy").attr("href", "javascript:;").addClass("gray");
-						
+
 						 var req = {
 							 msg: "",
 							 code: 1,
-							 data:  <?php echo empty($skus) ? '{}' : json_encode($skus);?> 
+							 data:  <?php echo empty($skus) ? '{}' : json_encode($skus);?>
 						 }
 						 if(req["data"]["validSKu"].length > 0){
 						 	$(".popup-sku .info .img img").attr("src", req["data"]["validSKu"][0]["skuImg"]);
 						 }
-						 
+
 
 						if(req.code>0){
 							var data = req.data;
@@ -390,7 +390,7 @@
 								}
 
 								if(!!skuFormat){
-									$("#sku-format .list a.active").siblings('a').addClass("disable");
+									// $("#sku-format .list a.active").siblings('a').addClass("disable");
 									$("#sku-color .list a").not(".active").addClass("disable");
 									for(var item in skuData){
 										if(skuData[item]["skuFormat"] == skuFormat){
@@ -403,7 +403,7 @@
 									}
 								}
 								if(!!skuColor){
-									$("#sku-color .list a.active").siblings('a').addClass("disable");
+									// $("#sku-color .list a.active").siblings('a').addClass("disable");
 									$("#sku-format .list a").not(".active").addClass("disable");
 									for(var item in skuData){
 										if(skuData[item]["skuColor"] == skuColor){
@@ -415,6 +415,9 @@
 										}
 									}
 								}
+                                if($(".sku-item a.active").length == 1){
+                                    $(".sku-item a.active").siblings('a').removeClass("disable");
+                                }
 
 								if(!!skuFormat && !!skuColor){
 									var url = $(".popup-sku").attr("data-href"),
@@ -443,7 +446,7 @@
 						}else{
 							$.toast(req.msg);
 						}
-						
+
 						$.popup(".popup-sku");      //弹出弹窗
 						$("#buy-num").val(1);
 						$.hideIndicator();          //关闭加载指示器
@@ -461,8 +464,8 @@
 						}
 						return $(".popup-sku").attr("data-href")+"?"+_arr.join("&");
 					}
-				
-				
+
+
 					//收藏
 					$(".goCollection").on("click", function(){
 						opCollect($(this), "<?php echo $info['activityId'];?>", "<?php echo $info['productId'];?>");
@@ -550,16 +553,8 @@
             <a href="javascript:;" class="close-popup"></a>
         </div>
 
-        
+
     </div>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
