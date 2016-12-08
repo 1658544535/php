@@ -39,44 +39,9 @@
                 <div class="pull-to-refresh-arrow"></div>
             </div>
 
-            <section class="message-list" data-href="http://www.baidu.com">
-                <ul>
-                    <li class="message-list-item">
-                        <div class="time">2016年11月19日 下午7：14</div>
-                        <div class="main">
-                            <a href="message.php?act=detail">
-                                <h3 class="title1">宜家做了个25㎡的破烂样板房，却让无数人流下眼泪，过富氧生活</h3>
-                                <div class="time">11月19日</div>
-                                <div class="img"><img src="images/img/banner.jpg" /></div>
-                                <div class="txt">有爱的样板房才是最温馨的样板房！</div>
-                                <div class="go">阅读全文</div>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="message-list-item">
-                        <div class="time">2016年11月19日 下午7：14</div>
-                        <div class="main">
-                            <a href="#">
-                                <h3 class="title1">组团失败退款通知</h3>
-                                <div class="good">
-                                    <div class="g-img"><img src="images/img/index-class.jpg" /></div>
-                                    <div class="g-title">【18个月】auby 澳贝生活体验馆1-3岁幼儿童玩具 早教 婴儿玩具</div>
-                                </div>
-                                <div class="order">
-                                    <p>你好，你有一笔退款。</p>
-                                    <p>退款金额：100元</p>
-                                    <p>退款项目：拼团失败</p>
-                                    <p>退款时间：2014年7月21日 18：36</p>
-                                    <p>订单号：1002922919</p>
-                                    <p>如有疑问，请联系客服</p>
-                                </div>
-                                <div class="go">订单详情</div>
-                            </a>
-                        </div>
-                    </li>
-                </ul>
+            <section class="message-list" data-href="/ajaxtpl/ajax_message_scroll.php?type=<?php echo $messageType;?>">
                 <div class="infinite-scroll-preloader">
-<!--                    <div class="preloader"></div>-->
+                    <div class="preloader"></div>
                 </div>
             </section>
         </div>
