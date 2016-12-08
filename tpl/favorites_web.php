@@ -32,7 +32,7 @@
                             <div class="option">
                                 <a href="groupon.php?id=<%=data["data"][i]["activityId"]%>" class="group">
                                     <%=data["data"][i]["groupNum"]%>人团&nbsp;&nbsp;<font class="themeColor">￥<span class="price"><%=data["data"][i]["productPrice"]%></span></font>
-                                    <span class="btn">去开团&nbsp;&gt;</span>
+                                    <span class="btn">去开团</span>
                                 </a>
                                 <a href="javascript:;" class="collecting" data-actid="<%=data["data"][i]["activityId"]%>" data-pid="<%=data["data"][i]["productId"]%>"></a>
                             </div>
