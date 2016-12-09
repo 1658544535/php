@@ -19,7 +19,7 @@
                 <a class="button button-link button-nav pull-right share">
                     <span class="icon icon-share"></span>
                 </a>
-                <h1 class="title">0.1夺宝</h1>
+                <h1 class="title">抽奖团</h1>
             </header>
 
             <nav class="bar bar-tab">
@@ -45,15 +45,15 @@
                     </div>
                 </section>
             </div>
-        
+
             <script id='tpl_pull' type="text/template">
                 <%if(data["data"].length>0){%>
                     <%for(var i=0;i<data["data"].length; i++){%>
                        <li>
-                       <?php if($Type ==1){?>                        
+                       <?php if($Type ==1){?>
                          <a href="groupon.php?id=<%=data["data"][i]["activityId"]%>">
 						 <!--<a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qunyu.taoduoduo">-->
-                       <?php }else{?>     
+                       <?php }else{?>
                          <a href="lottery_new.php?act=comment_list&aid=<%=data["data"][i]["activityId"]%>">
                        <?php }?>
                            <div class="img"><img src="<%=data["data"][i]["productImage"]%>" /></div>
@@ -76,7 +76,7 @@
                     <div class="tips-null">暂无抽奖</div>
                 <%}%>
             </script>
-        
+
         </div>
 
         <div class="popup popup-share">

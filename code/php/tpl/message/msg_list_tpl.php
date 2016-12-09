@@ -60,7 +60,7 @@
 <!--                            <div class="img"><img src="images/message3.png" /></div>-->
 <!--                            <div class="info">-->
 <!--                                <h3 class="title1">订单消息</h3>-->
-<!--                                <p class="txt">0.1夺宝！您已经开团....</p>-->
+<!--                                <p class="txt">抽奖团！您已经开团....</p>-->
 <!--                            </div>-->
 <!--                            <span class="time">16-04-20</span>-->
 <!--                        </a></li>-->
