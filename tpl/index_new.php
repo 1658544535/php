@@ -58,7 +58,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                     <a href="product_guess_price.php"><span class="index-menuIcon index-menu-i1"></span><span class="txt">猜价格</span></a>
                     <a href="special_77.php"><span class="index-menuIcon index-menu-i2"></span><span class="txt">9.9特卖</span></a>
                     <a href="seckill.php"><span class="index-menuIcon index-menu-i3"></span><span class="txt">掌上秒杀</span></a>
-                    <a href="lottery_new.php"><span class="index-menuIcon index-menu-i4"></span><span class="txt">0.1夺宝</span></a>
+                    <a href="lottery_new.php"><span class="index-menuIcon index-menu-i4"></span><span class="txt">抽奖团</span></a>
                 </section>
                 <section class="index-index infinite-scroll infinite-scroll-bottom" data-distance="30">
                     <h2 class="index-pro-title"></h2>
