@@ -190,6 +190,11 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					        <h3 class="title1">您终于来了！还差<span class="themeColor"><?php echo $info['poorNum'];?></span>人，来参团吧！</h3>
 					       <?php }?>
 					    <?php break;?>
+					    <?php case 1:?>
+						   <?php if($info['isGroup'] ==0){?>
+							<h3 class="title1">您来晚了，已成团~</h3>
+					       <?php }?>
+					    <?php break;?> 
 					    <?php case 2:?>
 						   <?php if($info['isSellOut'] ==0){?>
 							<h3 class="title1">拼团期内未达到成团人数，系统会在1~3个工作日内，按原路自动退款至各位成员~</h3>
