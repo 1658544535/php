@@ -389,14 +389,14 @@
 }
 .index-subClass li {
   float: left;
-  width: 13.6%;
-  margin: 0 5.7%;
+  width: 15.6%;
+  margin: 0 4.7%;
   list-style: none;
 }
 .index-subClass li a {
   display: block;
   padding: 0.4rem 0;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   color: #464646;
   text-align: center;
 }
