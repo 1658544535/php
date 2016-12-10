@@ -378,7 +378,7 @@
   background: #fff;
 }
 .index-subClass ul {
-  margin: 0 0.5rem;
+  margin: 0;
   padding: 0.4rem 0;
   overflow: hidden;
 }
@@ -389,7 +389,8 @@
 }
 .index-subClass li {
   float: left;
-  width: 25%;
+  width: 13.6%;
+  margin: 0 5.7%;
   list-style: none;
 }
 .index-subClass li a {
@@ -400,14 +401,16 @@
   text-align: center;
 }
 .index-subClass li .img {
+  position: relative;
   width: 100%;
-  height: 2.9rem;
+  padding-bottom: 100%;
 }
 .index-subClass li .img img {
-  display: block;
-  width: 2.9rem;
-  height: 2.9rem;
-  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 .index-subClass li .txt {
   line-height: 1.2rem;
@@ -5328,7 +5331,7 @@
   display: block;
   margin: 0 0.25rem;
   padding: 1.0rem 0;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: #606060;
   text-align: center;
   overflow: hidden;
