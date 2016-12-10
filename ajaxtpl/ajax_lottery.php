@@ -7,7 +7,7 @@ $page = max(1, intval($_POST['page']));
 //获取活动列表数据
 $LotteryList = apiData('getDrawListApi.do', array('type'=>$Type,'pageNo'=>$page));
 
-if(!$LotteryList['result'])
+if($LotteryList['result'] !='')
 {
 	echo	ajaxJson( 1,'获取成功',$LotteryList['result'],$page);
 }
