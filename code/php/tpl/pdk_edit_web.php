@@ -146,7 +146,7 @@
                             return false;
                         }
                         var _tel = $("#phone").val();
-                        var _re = /((^1\d{10}$)|(^(\d{3,4}-)?\d{7,8}$))/;
+                        var _re = /(^1\d{10}$)/;
                         if(!_re.test(_tel)){
                             $.toast("请正确填写手机号码");
                             return false;

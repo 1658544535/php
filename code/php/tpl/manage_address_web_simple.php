@@ -111,7 +111,7 @@
 						return;
 					}
 					var _tel = _this.find("input.p-a-1").val();
-					var _re = /((^1\d{10}$)|(^(\d{3,4}-)?\d{7,8}$))/;
+					var _re = /(^1\d{10}$)/;
 					if($.trim(_tel) == ""){
 						$.toast("请填写联系方式");
 						return;
