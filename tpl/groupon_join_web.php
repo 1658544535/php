@@ -405,7 +405,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 								}
 
 								if(!!skuFormat){
-									$("#sku-format .list a.active").siblings('a').addClass("disable");
+									// $("#sku-format .list a.active").siblings('a').addClass("disable");
 									$("#sku-color .list a").not(".active").addClass("disable");
 									for(var item in skuData){
 										if(skuData[item]["skuFormat"] == skuFormat){
@@ -418,7 +418,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 									}
 								}
 								if(!!skuColor){
-									$("#sku-color .list a.active").siblings('a').addClass("disable");
+									// $("#sku-color .list a.active").siblings('a').addClass("disable");
 									$("#sku-format .list a").not(".active").addClass("disable");
 									for(var item in skuData){
 										if(skuData[item]["skuColor"] == skuColor){
@@ -430,6 +430,9 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 										}
 									}
 								}
+                                if($(".sku-item a.active").length == 1){
+                                    $(".sku-item a.active").siblings('a').removeClass("disable");
+                                }
 
 								if(!!skuFormat && !!skuColor){
 									var url = $(".popup-sku").attr("data-href"),
