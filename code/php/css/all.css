@@ -2748,15 +2748,6 @@
 .oc-pro .subTotal .price {
   font-size: 0.8rem;
 }
-.oc-pro .message {
-  margin: 0 0.5rem;
-  line-height: 1.4rem;
-  padding: 0.45rem 0;
-  border-top: 1px solid #e7e7e7;
-  font-size: 0.7rem;
-  color: #1c1c1c;
-}
-
 .quantity {
   display: inline-block;
   vertical-align: middle;
@@ -3105,7 +3096,7 @@
 }
 .user-header .orderTab li a {
   display: block;
-  color: #666666;
+  color: #666;
   text-align: center;
 }
 .user-header .orderTab li a p {
@@ -4468,6 +4459,23 @@
 .pdk-form ul li.last .item {
   border-bottom: none;
 }
+.pdk-form ul li.photo .img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-top: 2px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+.pdk-form ul li.photo .file {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
 .pdk-submit {
   position: fixed;
   bottom: 0;
@@ -5122,6 +5130,12 @@
 .lottery-rule img {
   display: block;
   width: 100%;
+}
+.lottery-null {
+  margin-top: 20%;
+  padding-bottom: 45.411%;
+  background: url(../images/lottery-null.png) no-repeat center center;
+  background-size: 100% auto;
 }
 .lotteryresult-pro {
   margin-top: 0.5rem;
