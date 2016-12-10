@@ -202,7 +202,7 @@
                             return false;
                         }
                         var _tel = $("input[name='m[phone]']").val();
-                        var _re = /((^1\d{10}$)|(^(\d{3,4}-)?\d{7,8}$))/;
+                        var _re = /(^1\d{10}$)/;
                         if(!_re.test(_tel)){
                             $.toast("请正确填写联系方式");
                             return false;
@@ -210,7 +210,7 @@
                         $(".uploadImg img").each(function(index, el) {
                             $("#submitForm").append('<input type="hidden" name="img[]" value="'+ $(el).attr("data-file") +'" />');
                         });
-                        
+
                         $("#submitForm").submit();
                     });
                 });
