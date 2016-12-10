@@ -2748,6 +2748,15 @@
 .oc-pro .subTotal .price {
   font-size: 0.8rem;
 }
+.oc-pro .message {
+  margin: 0 0.5rem;
+  line-height: 1.4rem;
+  padding: 0.45rem 0;
+  border-top: 1px solid #e7e7e7;
+  font-size: 0.7rem;
+  color: #1c1c1c;
+}
+
 .quantity {
   display: inline-block;
   vertical-align: middle;
@@ -3096,7 +3105,7 @@
 }
 .user-header .orderTab li a {
   display: block;
-  color: #8f8f8f;
+  color: #666666;
   text-align: center;
 }
 .user-header .orderTab li a p {
