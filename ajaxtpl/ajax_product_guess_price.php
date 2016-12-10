@@ -2,15 +2,6 @@
 define('HN1', true);
 require_once('../global.php');
 
-$GrouponActivityModel         = M('groupon_activity');
-$GrouponActivityRecordModel   = M('groupon_activity_record');
-$GrouponUserRecordModel       = M('groupon_user_record');
-$FocusSettingModel            = M('focus_setting');
-$UserInfoModel 				  = M('user_info');
-$ProductFocusImagesModel      = M('product_focus_images');
-
-
-
 $act  = CheckDatas( 'act', 'info' );
 $productId   	= CheckDatas( 'pid', '' );
 $uId   	        = CheckDatas( 'uid', '' );
@@ -19,11 +10,6 @@ $Prize   	    = CheckDatas( 'type', '' );
 $Price          = CheckDatas( 'price', '' );
 $as             = CheckDatas( 'activity_status', '' );
 $page           = max(1, intval($_POST['page']));
-
-
-
-
-
 
 
 switch($act)
@@ -85,34 +71,29 @@ switch($act)
 	     
 	    
  		        //显示活动倒计时
-		 		foreach ($ObjGrouponList['result'] as $gro){
-		 		
-		 			$seckillTimeDiff[] = strtotime($gro['endTime']) - strtotime($gro['nowTime']);
-		 		
-		 			
-// 		 			if($gro !='' )
-// 		 			{
-// 		 				$date 	= DataTip( $gro['endTime'], '-' );
-// 		 			}
-// 		 			$dateTip[]  			= $date['date_tip'];
-// 		 			$seckillTimeDiff[] 	    = $date['date_time'];
-		 			 
-		 		}
+	foreach ($ObjGrouponList['result'] as $gro)
+	{
+			$seckillTimeDiff[] = strtotime($gro['endTime']) - strtotime($gro['nowTime']);
+	}
 		 	   
 		 	   $Data =array(
 	 				'data'=>$ObjGrouponList['result'],
 	 				'TimeDiff'=>$seckillTimeDiff,
 		 		);
 
-			if($ObjGrouponList['success']){
-				if(empty($ObjGrouponList['result'])){
-					ajaxJson(1,'获取失败', array('data'=>array()), 1);
-				}else{
-					ajaxJson(1,'获取成功', empty($Data['data']) ? array() : $Data, $page);
-				}
-			}else{
-				ajaxJson(1,'获取失败', array('data'=>array()), 1);
-			}		 	
+		 	   
+		 	   $arr = array(
+		 	   		'code' => 1,
+		 	   		'msg' => '成功',
+		 	   		'data' => array(
+		 	   				'proData' => array(
+		 	   						'pageNow' => $page,
+		 	   						'ifLoad' => empty($ObjGrouponList['result']) ? 0 : 1,
+		 	   						'listData' => $Data,
+		 	   				),
+		 	   		),
+		 	   );
+		 	   echo json_encode($arr);
 }
 
 
