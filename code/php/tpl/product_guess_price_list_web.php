@@ -64,8 +64,6 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 <%}%>
             <%}else if(data["proData"]["pageNow"] == 1){%>
                 <div class="tips-null">品类齐聚  新品来袭<br/>猜价好礼  静候良机</div>
-            <%}else{%>
-                <div class="tips-null">暂无猜价</div>
             <%}%>
             </script>
         </div>
