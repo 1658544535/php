@@ -36,6 +36,7 @@
             <div class="content native-scroll">
                 <?php if($Type ==1){?>
                 <section class="lottery-rule"><img src="<?php echo $Banner['banner'];?>" /></section>
+                <div class="freeList-tips">正在进行中<span id="rule" class="f-right">活动规则</span></div>
                 <?php }?>
                 <section class="index-seckill pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_lottery.php?type=<?php echo $Type;?>">
                     <ul class="list-container"></ul>
@@ -80,6 +81,10 @@
         </div>
 
         <div class="popup popup-share">
+            <a href="#" class="close-popup"></a>
+        </div>
+        <div class="popup popup-rule">
+            <img src="images/0.1-rule2.png" />
             <a href="#" class="close-popup"></a>
         </div>
         <section id="goTop" class="goTop"></section>
