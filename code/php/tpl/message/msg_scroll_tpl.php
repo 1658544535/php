@@ -54,7 +54,7 @@
                         <li class="message-list-item">
                             <div class="time"><%=data["data"][i]["time"]%></div>
                             <div class="main">
-                                <a href="message.php?act=detail&linkParam<%=data["data"][i]["linkParam"]%>">
+                                <a href="<%=data["data"][i]["url"]%>">
                                     <h3 class="title1"><%=data["data"][i]["title"]%></h3>
                                     <div class="good">
                                         <div class="g-img"><img src="<%=data['data'][i]['productImage']%>" /></div>
