@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="email=no" name="format-detection" />
     <title><?php echo $site_name;?></title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=0" name="viewport">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,10 +21,10 @@
     <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/app.min.js?v=<?php echo SOURCE_VERSOIN;?>' charset='utf-8'></script>
     <script>
-//	    $.ajax({  
+//	    $.ajax({
 //		        url: "msg.php",
-//		        data: {"act":"plan2"},  
-//		        dataType: "json",  
+//		        data: {"act":"plan2"},
+//		        dataType: "json",
 //		        success: function (data) {
 //		            var data = data["data"]["data"],
 //		                degree = 1,
@@ -40,7 +42,7 @@
 //                        newDataArr.push(data[keyArr[j]]);
 //                    };
 //                    data = newDataArr;
-//                    
+//
 //		            fn_timer();
 //		            var timer = setInterval(fn_timer, 6000);
 //		            function fn_timer(){
@@ -55,7 +57,7 @@
 //		                    clearInterval(timer);
 //		                }
 //		            }
-//		        }  
+//		        }
 //		    });
         </script>
 </head>
