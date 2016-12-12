@@ -171,105 +171,27 @@ switch($act)
 	/*----------------------------------------------------------------------------------------------------
 		-- 更新用户信息操作
 	-----------------------------------------------------------------------------------------------------*/
-	case "user_info_save":
-
-		if( ! IS_POST() )
-		{
-			redirect('/user_info','非法操作！');
-		}
-
-    	$name 		= trim($_POST['name']);
-    	$sex 		= intval($_POST['sex']);
-    	$babySex 	= intval($_POST['baby_sex']);
-    	$babyBirth 	= trim($_POST['baby_birthday']);
-
-    	empty($name) && redirect('user_edit.php', '请填写昵称');
-
-    	$_babyBirthday = explode('-', $babyBirth);
-
-	    foreach($_babyBirthday as $v)
-	    {
-	        if(empty($v))
-	        {
-	            redirect('user_edit.php', '请正确选择出生日期');
-	            break;
-	        }
-	    }
-
-    	$avatar = '';
-
-   		$avatarFile = isset($_POST['avatar']) ? $_POST['avatar'] : '';
-    
-    	if(!empty($avatarFile))
-    	{
-        	$avatarFileLen = intval($_POST['avatarFileLen']);
-        	($avatarFileLen != strlen($avatarFile)) && redirect('user_edit.php', '头像上传失败');
-
-       		$uptypes = array('image/jpg','image/jpeg','image/png','image/pjpeg','image/gif','image/bmp','image/x-png');
-        	$avatarType = $_POST['avatarType'];
-        	!in_array($avatarType, $uptypes) && redirect('user_edit.php', '头像必须为图片');
-
-        	$avatarMax = 1024*500;//头像大小限制，最大500k
-        	$avatarFileSize = intval($_POST['avatarFileSize']);
-//        	($avatarFileSize > $avatarMax) && redirect('user_edit.php', '头像大小不超过'.($avatarMax/1024).'K');
-
-        	$avatarFile = str_replace('data:'.$avatarType.';base64,', '', $avatarFile);
-        	$avatarFile = base64_decode($avatarFile);
-        	$avatarFileName = $_POST['avatarFileName'];
-        	$avatarFileExt = strrchr($avatarFileName, '.');
-
-        	$_tmpAvatarDir = SCRIPT_ROOT.'data/tmp_avatar/';
-        	$_tmpAvatarName = $userid.'_'.time().$avatarFileExt;
-        	!file_exists($_tmpAvatarDir) && mkdir($_tmpAvatarDir, 0777, true);
-        	$avatar = $_tmpAvatarDir.$_tmpAvatarName;
-        	(file_put_contents($avatar, $avatarFile) === false) && redirect('user_edit.php', '头像上传失败');
-    	}
-
-//    	http://b2c.taozhuma.com/editUserInfo.do?uid=22&file=xx&name=xx&sex=1&birth=xx
-//       	$iUrl = 'http://ext1.taozhuma.com/v3.0/editProfile.do';    //本地测试用
-//       	$iUrl = 'http://ext1.taozhuma.com/v3.3/editUserInfo.do';    //本地测试用
-     	$iUrl = 'http://b2c.taozhuma.com/v3.3/editUserInfo.do';    //线上
-    	$iData = array(
-	        'uid'       => $userid,
-	        'name'      => $name,
-	        'sex'       => $sex,
-	        'babySex'   => $babySex,
-	        'babyBirthday' => $babyBirth,
-    	);
-
-
-    	!empty($avatar) && $iData['file'] = '@'.$avatar;
-
-	    $ch = curl_init();
-	    curl_setopt($ch, CURLOPT_URL, $iUrl);
-	 
-	    curl_setopt($ch, CURLOPT_POSTFIELDS, $iData);
-	   
-	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	  
-	    curl_setopt($ch, CURLOPT_USERAGENT,'MicroMessenger');
-	    
-	    $result = curl_exec($ch);
-
-	    $result = json_decode($result);
-	   
-	    @unlink($avatar);
-	
-	    if($result->success == "1")
-	    
-	    {
-//	    	$UserInfoModel = M('user_info');
-//	    	$_SESSION['userinfo'] = $UserInfoModel->get(array('user_id'=>$userid));
-	        redirect('user.php', '修改成功');
-	    }
-	    else
-	    {
-	   
-	    	redirect('user', $result->error_msg);
-	   
-	    }
+	case "user_edit":
+		$info = apiData('myInfoApi.do', array('userId'=>$userid));
+		$info = $info['result'];
+		include "tpl/user_edit_web.php";
 	break;
-
+	case "user_edit_save":
+		$username = CheckDatas( 'username', '' );
+		$upfile   = $_FILES['userimage'];
+		$arr=array();
+		$upfile = '@'.$upfile['tmp_name'];
+		if($upfile !='@'){
+			$arr['file'] = $upfile;
+		}
+		$arr['name']   = $username;
+		$arr['uid']    = $userid;
+		
+		$user = apiData('editUserInfo.do', $arr,'post');
+		redirect('user.php', $user['error_msg']);
+	
+	break;
+	
 	/*----------------------------------------------------------------------------------------------------
 		-- 用户钱包
 	-----------------------------------------------------------------------------------------------------*/
@@ -277,6 +199,7 @@ switch($act)
 	case 'wallet':
 		$UserWalletModel 		= M('user_wallet');
 		$UserWalletLogModel 	= M('user_wallet_log');
+		
 		$objUserWalletInfo 		= $UserWalletModel->get( array( 'user_id'=>$userid ) );
 		$objUserWalletLogList	= $UserWalletLogModel->getAll( array( 'user_id'=>$userid ) );
 		include "tpl/user_wallet_web.php";
