@@ -56,7 +56,7 @@
   right: 0.5rem;
   width: 3rem;
   height: 3rem;
-  background: url(../images/redpacket-btn2.png) no-repeat 0 0;
+  background: url(../images/redpacket-btn.png) no-repeat 0 0;
   background-size: 100% auto;
   z-index: 2001;
 }
@@ -794,7 +794,7 @@
   position: absolute;
   top: 45%;
   left: 50%;
-  width: 76%;
+  width: 100%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
@@ -804,17 +804,17 @@
 }
 .popup-red > div .close-popup {
   position: absolute;
-  right: 5%;
-  top: 9.5%;
+  right: 10%;
+  top: 20.5%;
   width: 10.8%;
   padding-bottom: 10.8%;
 }
 .popup-red > div .go {
   position: absolute;
-  width: 60%;
-  height: 12.1%;
-  bottom: 12.4%;
-  left: 18.7%;
+  width: 32%;
+  height: 9%;
+  bottom: 13%;
+  left: 34%;
 }
 /*详情页返回*/
 .deta-back {
@@ -987,7 +987,7 @@
   padding-bottom: 1rem;
 }
 .deta-group .list li {
-  height: 3.7rem;
+  height: 2.5rem;
   margin-top: 0.5rem;
   border: 1px solid #ff464e;
   border-radius: 0.5rem;
@@ -1000,19 +1000,19 @@
   text-align: center;
   font-size: 0.75rem;
   color: #fff;
-  line-height: 3.7rem;
+  line-height: 2.5rem;
   background: #ff464e;
 }
 .deta-group .list li .info {
   position: relative;
-  margin-right: 4.2rem;
+  margin-right: 4rem;
 }
 .deta-group .list li .info .img {
   position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  width: 2.5rem;
-  height: 2.5rem;
+  top: 0.35rem;
+  left: 0.35rem;
+  width: 1.75rem;
+  height: 1.75rem;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -1023,8 +1023,8 @@
 }
 .deta-group .list li .info .name {
   position: absolute;
-  top: 0.5rem;
-  left: 3.5rem;
+  top: 0;
+  left: 2.35rem;
   width: 2.5rem;
   height: 2.5rem;
   line-height: 2.5rem;
@@ -1037,24 +1037,25 @@
 .deta-group .list li .info .num,
 .deta-group .list li .info .timer {
   color: #737373;
-  font-size: 0.75rem;
+  font-size: 0.6rem;
   text-align: right;
-  padding: 0.25rem 0;
+  padding: 0.05rem 0;
 }
 .deta-group .list li .info .num {
-  padding-top: 0.5rem;
+  padding-top: 0.3rem;
 }
 .deta-group .list li .info .timer {
   padding-bottom: 0.5rem;
 }
 .deta-group .list li .info .timer .icon-timer {
   display: inline-block;
+  vertical-align: middle;
   margin-right: 0.2rem;
   width: 0.8rem;
   height: 0.8rem;
   background: url(../images/timer.png) no-repeat 0 0;
   background-size: 100% 100%;
-  vertical-align: middle;
+  vertical-align: sub;
 }
 .deta-group .list-container {
   margin: 0;
