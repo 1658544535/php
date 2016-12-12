@@ -3164,6 +3164,9 @@
 .user-list ul li a .u-l-6 {
   background-position: 0 -87px;
 }
+.user-list ul li a .u-l-7 {
+  background-position: 0 -174px;
+}
 .user-list ul li::after {
   position: absolute;
   right: 0;

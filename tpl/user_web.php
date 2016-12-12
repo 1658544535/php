@@ -91,6 +91,7 @@
                         <li><a href="/user_lottery.php?uid=<?php echo $userid;?>"><i class="u-l-6"></i>我的抽奖</a></li>
                         <li><a href="/user_info?act=product_collect"><i class="u-l-4"></i>我的收藏</a></li>
                         <li><a href="/address?act=manage"><i class="u-l-5"></i>收货地址</a></li>
+                        <li><a href="#"><i class="u-l-7"></i>设置</a></li>
                     </ul>
                 </section>
             </div>
