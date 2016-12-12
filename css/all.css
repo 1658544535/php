@@ -795,6 +795,7 @@
   top: 45%;
   left: 50%;
   width: 76%;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 .popup-red > div img {
