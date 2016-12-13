@@ -32,7 +32,7 @@
                 <div class="getCoupon">
                     <div class="bg-header"></div>
                     <div class="bg-footer"></div>
-                    <form class="form" action="user_coupon.php" method="post" onsubmit="return tgSubmit()">
+                    <form class="form">
                         <?php if($bLogin ==''){?>
                         <div class="formItem">
                             <input id="mobile" class="form-control" type="tel" name="mobile" value="" placeholder="输入手机号码" />
@@ -55,7 +55,51 @@
         </div>
         <script>
             $(document).on("pageInit", "#page-getCoupon", function(e, pageId, page) {
-
+                $(".getCoupon .form").on("submit", function(){
+                    var _form = $(this);
+                    if(tgSubmit()){
+                        $.ajax({
+                            url: 'user_coupon.php',
+                            data: _form.serialize(),
+                            dataType: 'json',
+                            success: function(req){
+                                if(req.code > 0){
+                                    // 弹成功弹窗
+                                    $.modal({
+                                        'title': '亲, 您的优惠券已兑换成功!您可到个人中心 - 我的优惠券 查看',
+                                        buttons: [
+                                            {
+                                                text: '去看看',
+                                                onClick: function(){
+                                                    location.href="/user_info.php?act=coupon";
+                                                }
+                                            },
+                                            {
+                                                text: '继续逛逛',
+                                                onClick: function(){
+                                                    location.href="/index.php";
+                                                }
+                                            }
+                                        ]
+                                    })
+                                    $(".code_btn").show();
+                     				$("#time").hide();
+                                }else{
+                                    // 提示失败
+                                    $.toast(req.data.data);
+                                    $(".code_btn").show();
+                     				$("#time").hide();
+                                }
+                            },
+                            error: function(req){
+                                $.toast('领取失败, 请重试');
+                                $(".code_btn").show();
+                 				$("#time").hide();
+                            }
+                        });
+                    }
+                    return false;
+                });
             })
             function get_code(){
                 if(!_checkMobile($("#mobile").val())){
@@ -65,7 +109,7 @@
     			$.ajax({
     				type: "POST",
     				dataType: "json",
-                 	url: "/user_registered",
+                 	url: "/user_registered.php",
                  	data:{
                         'act': 'get_code',
     	          		'tel' :  $("#mobile").val()
