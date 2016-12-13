@@ -54,7 +54,7 @@ $(function(){
                         <div class="seckill-null1"></div>
 					<?php }else{ ?>
 						<?php foreach($info as $_info){ ?>
-							<h3 class="seckill-title<?php if($_info['isStart']==1){ ?> active<?php } ?>"><?php echo $_info['time'];?><?php if($_info['isStart']==1){ ?> 正在进行中<?php } ?></h3>
+							<h3 class="seckill-title<?php if($_info['isStart']==1){ ?> active<?php } ?>" style="font-weight:bold;font-size:15px"><?php echo $_info['time'];?><?php if($_info['isStart']==1){ ?> 正在进行中<?php } ?></h3>
 							<ul class="list-container">
 								<?php foreach($_info['secKillList'] as $v){ ?>
 									<li>
@@ -65,15 +65,15 @@ $(function(){
 												<div class="price">
 													<span class="price1">￥<?php echo $v['productPrice'];?></span>
 													<span class="price2">￥<?php echo $v['alonePrice'];?></span>
+												<?php if($_info['isStart']==1){?>
 													<div class="range">
 														<div class="range-main" style="width:<?php echo $v['salePerce'];?>%"></div>
 														<div class="num"><?php echo $v['salePerce'];?>%</div>
 													</div>
+												<?php }?>
 												</div>
 												<div class="btn">
-													<?php if($v['isSellOut'] == 1){ ?>
-														<span class="gray">已售罄</span>
-													<?php }elseif($_info['isStart'] == 1){ ?>
+													<?php if($_info['isStart'] == 1){ ?>
 														<span class="red">去抢购</span>
 													<?php }else{ ?>
 														<span class="orange">即将开抢</span>
