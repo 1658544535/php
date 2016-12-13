@@ -37,7 +37,7 @@
             <div class="content native-scroll">
                 <?php if($Type == 1){?>
                 <section class="guessList-banner"><img src="<?php echo $Banner['banner'];?>" /></section>
-                <div class="freeList-tips">正在进行中<span id="rule" class="f-right">活动规则</span></div>
+                <div class="freeList-tips">正在进行中<strong id="rule" class="f-right" style="color: #666666;font-size:14px">活动规则</strong></div>
                 <style>.freeDraw-null{margin:10% 0;}</style>
                 <?php }?>
                 <section class="index-seckill pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_freedraw.php?type=<?php echo $Type;?>">

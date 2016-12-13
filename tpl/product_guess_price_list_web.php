@@ -35,7 +35,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 
                 <div class="guessList-banner"><img src="<?php echo $ObjBanner['result']['banner'] ;?>" style="width:100%;" /></div>
 
-                <div class="freeList-tips">正在进行中<span id="rule" class="f-right">活动规则</span></div>
+                <div class="freeList-tips">正在进行中<strong id="rule" class="f-right" style="color: #666666;font-size:14px">活动规则</strong></div>
 
                 <section class="guessList pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_product_guess_price.php">
                     <ul class="list-container"></ul>
