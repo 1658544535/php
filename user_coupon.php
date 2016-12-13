@@ -3,11 +3,12 @@ define('HN1', true);
 require_once('./global.php');
 
 if(empty($bLogin)){
-	$mobile = trim($_POST['mobile']);
-	$code   = trim($_POST['code']);
+	$mobile = trim($_GET['mobile']);
+	$code   = trim($_GET['code']);
+
 	$apiParam = array(
 			'captcha' => $code,
-			'openid' => 'oQ1Yut9AASTaSpFOtEkaWFp08ZnQ',
+			'openid' => $openid,
 			'phone' => $mobile,
 			'source' => 3,
 			'unionid' => $_SESSION['unionid'],
