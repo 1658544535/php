@@ -206,6 +206,7 @@
 			$("#fact-amount").html(totalPrice.toFixed(2));
 		}
     });
+	var clickSubmit = true;
 	function submitPay(e){
 		<?php if(empty($address)){ ?>
 			$.toast("请设置收货地址");
@@ -215,7 +216,9 @@
 		<?php if(!$canDispatch){ ?>
 			return false;
 		<?php } ?>
-		return true;
+		var submit = clickSubmit;
+		if(clickSubmit) clickSubmit = false;
+		return submit;
 	}
 	</script>
 </body>
