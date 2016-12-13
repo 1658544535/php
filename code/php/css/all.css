@@ -5784,3 +5784,95 @@
   font-size: 0.7rem;
   color: #464646;
 }
+.getCoupon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url(../images/coupon-bg.jpg) no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+}
+.getCoupon .bg-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-bottom: 81.321%;
+  background: url(../images/coupon-gb-header.png) no-repeat 0 0;
+  background-size: 100% 100%;
+  z-index: 3;
+}
+.getCoupon .bg-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-bottom: 56.361%;
+  background: url(../images/coupon-bg-footer.png) no-repeat 0 0;
+  background-size: 100% 100%;
+  z-index: 2;
+}
+.getCoupon .form {
+  position: absolute;
+  width: 78.26%;
+  top: 43.66%;
+  left: 10.87%;
+  z-index: 4;
+}
+.getCoupon .form .formItem {
+  height: 2.4rem;
+  margin-bottom: 0.4rem;
+}
+.getCoupon .form .formItem2 {
+  height: 2.4rem;
+  overflow: hidden;
+  margin-bottom: 0.4rem;
+}
+.getCoupon .form .formItem2 .control {
+  margin-right: 6.4rem;
+}
+.getCoupon .form .formItem2 .btn,
+.getCoupon .form .formItem2 #time {
+  float: right;
+  width: 5.8rem;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  border: 2px solid #bd0900;
+  border-radius: 6px;
+  background: #00b9ef;
+  font-size: 0.85rem;
+  text-align: center;
+}
+.getCoupon .form .formItem2 .btn a,
+.getCoupon .form .formItem2 #time a {
+  color: #fff;
+}
+.getCoupon .form .formItem2 #time {
+  display: none;
+  background: #ccc;
+  border-color: #ccc;
+}
+.getCoupon .form .form-control {
+  display: block;
+  width: 100%;
+  line-height: 1.2rem;
+  padding: 0.4rem 0.5rem;
+  background: #fff;
+  border: 2px solid #bd0900;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #666;
+}
+.getCoupon .form .form-submit {
+  display: block;
+  width: 100%;
+  height: 3rem;
+  line-height: 3rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  border: 2px solid #bd0900;
+  border-radius: 2rem;
+  background: #ffd900;
+  color: #7c0a00;
+  font-size: 1.2rem;
+}
