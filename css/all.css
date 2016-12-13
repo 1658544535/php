@@ -5764,3 +5764,23 @@
   font-size: 0.7rem;
   color: #575656;
 }
+.about-code {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: #fff;
+}
+.about-code .img {
+  width: 30%;
+  margin: 0 auto;
+}
+.about-code .img img {
+  display: block;
+  width: 100%;
+}
+.about-code .txt {
+  padding-bottom: 0.5rem;
+  margin: 0;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #464646;
+}
