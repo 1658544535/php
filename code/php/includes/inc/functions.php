@@ -1101,7 +1101,7 @@ function apireturn($phone, $source, $arrGeetestParam )
 
 	$url 	= APIURL . '/captcha.do?phone=' . $phone . '&source=' . $source . '&sign=' . $sign . '&geetest_challenge=' . $arrGeetestParam['geetest_challenge'] . '&geetest_validate=' . $arrGeetestParam['geetest_validate'] . '&geetest_seccode=' . $arrGeetestParam['geetest_seccode'];
 	$ch 	= curl_init($url) ;
-	curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']) ; 					// 获取数据返回
+	curl_setopt($ch, CURLOPT_USERAGENT, 'MicroMessenger') ; 					// 获取数据返回
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true) ; 									// 获取数据返回
 	curl_setopt($ch, CURLOPT_BINARYTRANSFER, true) ; 									// 在启用 CURLOPT_RETURNTRANSFER 时候将获取数据返回
     curl_setopt($ch, CURLOPT_COOKIEFILE, $validateCodeFile);
