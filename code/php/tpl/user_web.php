@@ -25,9 +25,9 @@
                     <?php }else{?>
                     <div class="name"><?php echo $_wxUserInfo['nickname']; ?></div>
                     <?php }?>
-                    <div class="orderTips">
+                    <div class="orderTips" style="font-size: 14px">
                     <?php if($info['waitPayNum'] > 0){ ?>
-                        <a href="user_orders.php?type=1">还有<span class="themeColor" style="font-size: 14px" ><?php echo $info['waitPayNum'];?>个订单</span>未付款 ></a>
+                        <a href="user_orders.php?type=1">还有<span class="themeColor"><?php echo $info['waitPayNum'];?>个订单</span>未付款 ></a>
                     <?php } ?>
                     </div>
                     <ul class="orderTab">
