@@ -40,7 +40,7 @@
                                     <div class="main">
                                         <div class="txt">修改头像</div>
                                     </div>
-                                    <input type="file" id="photo" class="file" accept="images/*" name="userimage" />
+                                    <input type="file" id="photo" class="file" capture="camera" name="userimage" />
                                 </div>
                             </li>
                             <li class="last">
