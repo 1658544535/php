@@ -4,14 +4,8 @@
 <body>
     <div class="page-group" id="page-getCoupon">
         <div id="page-nav-bar" class="page page-current">
-            <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="">
-                    <span class="icon icon-back"></span>
-                </a>
-                <h1 class="title">领取优惠券</h1>
-            </header>
-
             <div class="content">
+            <a href="javascript:history.back(-1);" class="back deta-back" style="z-index: 4;"></a>
                 <div class="getCoupon">
                     <div class="bg-header"></div>
                     <div class="bg-footer"></div>
@@ -27,7 +21,7 @@
                         </div>
                         <?php }?>
                         <div class="formItem">
-                            <input id="coupon" class="form-control" type="text" name="number" value="" placeholder="输入兑换码" />
+                            <input id="coupon" class="form-control" type="tel" name="number" value="" placeholder="输入兑换码" />
                         </div>
                         <div class="formSubmit">
                             <input class="form-submit" type="submit" value="领取优惠券" />
@@ -46,7 +40,7 @@
                             data: _form.serialize(),
                             dataType: 'json',
                             success: function(req){
-                                if(req.code > 0){
+                                if(req.code == 1){
                                     // 弹成功弹窗
                                     $.modal({
                                         'title': '亲, 您的优惠券已兑换成功!您可到个人中心 - 我的优惠券 查看',
@@ -67,6 +61,10 @@
                                     })
                                     $(".code_btn").show();
                      				$("#time").hide();
+                                }else if(req.code == 6){
+                                    $.toast(req.data.data);
+                                    $("#mobile").parent().remove();
+                                    $("#code").parent().parent().remove();
                                 }else{
                                     // 提示失败
                                     $.toast(req.data.data);
