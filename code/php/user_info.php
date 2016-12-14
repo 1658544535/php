@@ -274,7 +274,7 @@ switch($act)
 			$Type = CheckDatas( 'type', '' );
 			
 			$coupon = apiData('getUserCouponList.do', array('type'=>1,'uid'=>$userid,'pageNo'=>$page));
-         
+            
 
 
 		include "tpl/user_coupon_web.php";
