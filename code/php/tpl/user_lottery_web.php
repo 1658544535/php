@@ -99,7 +99,7 @@
                         </li>
                     <%}%>
                 <%}else if(data["pageNow"] == 1){%>
-                    <div class="tips-null">暂无抽奖</div>
+                    <div class="list-null">您的的记录为空</div>
                 <%}%>
             </script>
 

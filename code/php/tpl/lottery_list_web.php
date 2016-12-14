@@ -74,7 +74,7 @@
                         </a></li>
                     <%}%>
                 <%}else if(data["pageNow"] == 1){%>
-                    <div class="lottery-null"></div>
+                    <div class="list-null">暂无抽奖团的商品</div>
                 <%}%>
             </script>
 

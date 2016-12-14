@@ -39,7 +39,7 @@
                         </a></li>
                     <%}%>
                 <%}else if(data["pageNow"] == 1){%>
-                    <div class="seckill-null"></div>
+                    <div class="list-null">暂无售罄的商品</div>
                 <%}%>
             </script>
         </div>

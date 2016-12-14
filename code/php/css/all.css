@@ -28,6 +28,14 @@
 .f-right {
   float: right;
 }
+.list-null {
+  padding-top: 41.063%;
+  background: url(../images/list-null.png) no-repeat center 0;
+  background-size: 100%;
+  font-size: 0.8rem;
+  color: #8c8c8c;
+  text-align: center;
+}
 .goTop {
   display: none;
   position: fixed;
@@ -5119,27 +5127,22 @@
 .index-seckill .list-container li:last-child a .info {
   border-bottom: none;
 }
-.seckill-null {
+#page-seckill-out .list-null {
   margin-top: 40%;
-  padding-bottom: 45.411%;
-  background: url(../images/seckill-null.png) no-repeat center center;
-  background-size: 100% auto;
 }
-.seckill-null1 {
+#page-seckill .list-null {
   margin-top: 40%;
-  padding-bottom: 45.411%;
-  background: url(../images/seckill-null1.png) no-repeat center center;
-  background-size: 100% auto;
+}
+#page-myGroup .list-null,
+#page-myLottery .list-null,
+#page-guess .list-null,
+#page-collection .list-null,
+#page-address .list-null {
+  margin-top: 40%;
 }
 .lottery-rule img {
   display: block;
   width: 100%;
-}
-.lottery-null {
-  margin-top: 20%;
-  padding-bottom: 45.411%;
-  background: url(../images/lottery-null.png) no-repeat center center;
-  background-size: 100% auto;
 }
 .lotteryresult-pro {
   margin-top: 0.5rem;
@@ -5556,11 +5559,8 @@
   display: inline-block;
   vertical-align: middle;
 }
-.freeDraw-null {
-  margin-top: 40%;
-  padding-bottom: 45.411%;
-  background: url(../images/freeDraw-null.png) center center no-repeat;
-  background-size: 100% auto;
+#page-lottery .list-null {
+  margin-top: 15%;
 }
 /* 消息 */
 .message-type {
