@@ -4973,7 +4973,7 @@
 }
 .index-seckill .seckill-out {
   position: absolute;
-  top: 0;
+  top: 0.5rem;
   right: 0.5rem;
   font-size: 0.6rem;
   color: #979797;
@@ -4983,6 +4983,8 @@
   margin: 0;
   margin-bottom: -0.5rem;
   padding-left: 2.0rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
   line-height: 1.8rem;
   font-weight: normal;
   font-size: 0.65rem;

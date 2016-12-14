@@ -8,7 +8,7 @@
                 <a class="button button-link button-nav pull-left back" href="user.php">
                     <span class="icon icon-back"></span>
                 </a>
-                <h1 class="title">资料编辑</h1>
+                <h1 class="title">拼得好</h1>
                 <a id="save" href="javascript:;" class="button button-link button-nav pull-right search">保存</a>
             </header>
 
