@@ -14,9 +14,19 @@ if(empty($bLogin)){
 			'unionid' => $_SESSION['unionid'],
 	);
 	$result = apiData('userlogin.do', $apiParam,'post');
-	if($result['success'] !=''){
+	if($result['success']){
+			$_wxInfo = new stdClass();
+			$_wxInfo->id = $result['result']['uid'];
+			$_wxInfo->loginname = $result['result']['phone'];
+			$_wxInfo->openid = $openid;
+			$_wxInfo->name = $result['result']['name'];
+			$_wxInfo->image = $result['result']['image'];
+			$_SESSION['is_login'] = true;
+			$_SESSION['userinfo'] = $_wxInfo;
+			echo ajaxJson( 2,'获取成功',$result['error_msg']);
+		//兑换优惠券操作
 		$couponNo = CheckDatas( 'number', '' );
-		$coupon = apiData('addUserCoupon.do', array('couponNo'=>$couponNo,'uid'=>$result['result']['uid']),'post');
+		$coupon = apiData('addUserCoupon.do', array('couponNo'=>$couponNo,'uid'=>$result['result']['uid']),'post',true);
 		if($coupon['success'] !=''){
 			echo ajaxJson( 1,'获取成功',$coupon['error_msg']);
 		}else{
@@ -28,7 +38,7 @@ if(empty($bLogin)){
 }else{
 	$couponNo = CheckDatas( 'number', '' );
 	$coupon = apiData('addUserCoupon.do', array('couponNo'=>$couponNo,'uid'=>$userid),'post');
-	if($coupon['success'] !=''){
+	if($coupon['success']){
 	    echo	ajaxJson( 1,'获取成功',$coupon['error_msg']);
 	}else{
 		echo	ajaxJson( 0,'获取成功',$coupon['error_msg']);

@@ -61,7 +61,7 @@
                                     })
                                     $(".code_btn").show();
                      				$("#time").hide();
-                                }else if(req.code == 6){
+                                }else if(req.code == 2){
                                     $.toast(req.data.data);
                                     $("#mobile").parent().remove();
                                     $("#code").parent().parent().remove();
