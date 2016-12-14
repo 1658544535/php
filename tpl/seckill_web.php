@@ -51,7 +51,7 @@ $(function(){
                     <?php if($type == 1){ ?><a href="sellout.php" class="seckill-out">查看今天已售罄商品</a><?php } ?>
                     <?php if(empty($info)){ ?>
                         <div style="height:1px;"></div>
-                        <div class="seckill-null1"></div>
+                        <div class="list-null">暂无秒杀的商品</div>
 					<?php }else{ ?>
 						<?php foreach($info as $_info){ ?>
 							<h3 class="seckill-title<?php if($_info['isStart']==1){ ?> active<?php } ?>" style="font-weight:bold;font-size:15px"><?php echo $_info['time'];?><?php if($_info['isStart']==1){ ?> 正在进行中<?php } ?></h3>

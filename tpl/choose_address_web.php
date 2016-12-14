@@ -45,7 +45,7 @@
                     </li>
                 <%}%>
             <%}else{%>
-                <div class="tips-null">暂无地址</div>
+                <div class="list-null">您的的记录为空</div>
             <%}%>
             </script>
 
