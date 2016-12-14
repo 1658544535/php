@@ -23,14 +23,13 @@ if(empty($bLogin)){
 			$_wxInfo->image = $result['result']['image'];
 			$_SESSION['is_login'] = true;
 			$_SESSION['userinfo'] = $_wxInfo;
-			echo ajaxJson( 2,'获取成功',$result['error_msg']);
 		//兑换优惠券操作
 		$couponNo = CheckDatas( 'number', '' );
-		$coupon = apiData('addUserCoupon.do', array('couponNo'=>$couponNo,'uid'=>$result['result']['uid']),'post',true);
+		$coupon = apiData('addUserCoupon.do', array('couponNo'=>$couponNo,'uid'=>$result['result']['uid']),'post');
 		if($coupon['success'] !=''){
 			echo ajaxJson( 1,'获取成功',$coupon['error_msg']);
 		}else{
-			echo ajaxJson( 0,'获取成功',$coupon['error_msg']);
+			echo ajaxJson( 2,'获取成功',$coupon['error_msg']);
 		}
 	}else{
 		echo ajaxJson( 0,'获取成功',$result['error_msg']);
@@ -41,7 +40,7 @@ if(empty($bLogin)){
 	if($coupon['success']){
 	    echo	ajaxJson( 1,'获取成功',$coupon['error_msg']);
 	}else{
-		echo	ajaxJson( 0,'获取成功',$coupon['error_msg']);
+		echo	ajaxJson( 2,'获取成功',$coupon['error_msg']);
 	}
 }
 
