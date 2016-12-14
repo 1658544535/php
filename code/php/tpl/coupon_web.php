@@ -62,7 +62,7 @@
                                     $(".code_btn").show();
                      				$("#time").hide();
                                 }else if(req.code == 2){
-                                    $.toast("未查到该优惠券码！");
+                                    $.toast(req.data.data);
                                     $("#mobile").parent().remove();
                                     $("#code").parent().parent().remove();
                                 }else{
