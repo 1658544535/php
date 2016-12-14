@@ -5139,6 +5139,8 @@
 #page-collection .list-null,
 #page-address .list-null {
   margin-top: 40%;
+  padding-top: 48.148%;
+  background-image: url(../images/list-null2.png);
 }
 .lottery-rule img {
   display: block;
