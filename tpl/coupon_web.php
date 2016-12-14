@@ -52,7 +52,7 @@
                                                 }
                                             },
                                             {
-                                                text: '继续逛逛',
+                                                text: '继续逛',
                                                 onClick: function(){
                                                     location.href="/index.php";
                                                 }
@@ -62,7 +62,7 @@
                                     $(".code_btn").show();
                      				$("#time").hide();
                                 }else if(req.code == 2){
-                                    $.toast(req.data.data);
+                                    $.toast("未查到该优惠券码！");
                                     $("#mobile").parent().remove();
                                     $("#code").parent().parent().remove();
                                 }else{
