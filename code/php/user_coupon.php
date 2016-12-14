@@ -15,7 +15,30 @@ if(empty($bLogin)){
 	);
 	$result = apiData('userlogin.do', $apiParam,'post');
 	if($result['success']){
-			$_wxInfo = new stdClass();
+			$_wxUserInfo = $objWX->getUserInfo($openid);
+			if($_wxUserInfo == false){
+				echo $objWX->errCode.'：'.$objWX->errMsg;
+				die;
+			}
+			if($_wxUserInfo !== false){
+				$userApiParam = array('uid'=>$result['result']['uid'], 'name'=>filterEmoji($_wxUserInfo['nickname']));
+				if($_wxUserInfo['headimgurl']){
+					$_dir = SCRIPT_ROOT.'upfiles/headimage/';
+					!file_exists($_dir) && mkdir($_dir, 0777, true);
+					$_headimg = $_dir.$openid.'.jpg';
+					//				file_put_contents($_headimg, file_get_contents($_wxUserInfo['headimgurl']));
+					$ch = curl_init($_wxUserInfo['headimgurl']);
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+					curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
+					$avatar = curl_exec($ch);
+					curl_close($ch);
+					file_put_contents($_headimg, $avatar);
+					$userApiParam['file'] = '@'.$_headimg;
+				}
+				apiData('editUserInfo.do', $userApiParam, 'post');
+			}	
+		
+		    $_wxInfo = new stdClass();
 			$_wxInfo->id = $result['result']['uid'];
 			$_wxInfo->loginname = $result['result']['phone'];
 			$_wxInfo->openid = $openid;
