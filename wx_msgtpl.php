@@ -39,8 +39,37 @@ $_logDir = LOG_INC.'msgtpl/'.$act.'/';
 !file_exists($_logDir) && mkdir($_logDir, 0777, true);
 $_logFile = $_logDir.$act.'_'.date('Y-m-d', $time).'.txt';
 
+//测试版本
+$isDemo =  in_array($_SERVER['SERVER_NAME'], array('weixin.pindegood.com')) ? false : true;
+
+//各操作对应的模板id
+$tplMap = array(
+	//正式环境
+	'online' => array(
+		'pay' => 'HijtVshBey8vWEiheh97ih_VCMndYZv28ouP2lnyTa0',
+		'open' => 'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
+		'join' => 'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
+		'delivery' => 'EGztXez9id31kHrJZo6i-pY6523kx15PDgvC80Qw658',
+		'raffle01' => '',
+		'guess' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',
+		'join_fail' => 'pP41fxH24PzPaKArwxh9LixWfluEI5gu328xix46MWM',
+	),
+	//测试环境
+	'demo' => array(
+		'pay' => 'VccXSm9yOGQf5wh134ZJU1WeRScWhi1MIjRBcWOAA20',
+		'open' => 'kzB9_8I5Dl3nByE1AZy8-qrVuLVXXZD7uZJDhifDqPI',
+		'join' => '8z5eCo87R5RO6EATUlbP1O6WjKRLLdgPzPt89K6VyZ8',
+		'delivery' => 'kehyZ0py0ftUpe56CiUqs-rR9VsP1BII5Cb49x5JrMk',
+		'raffle01' => '',
+		'guess' => '8DpmIFPjeiY4qHV932XN8oLTN1F2UgFd_Cepy94p_XM',
+		'join_fail' => 'aYY7dRR0oH8X3kDUjIsgkutJRyPzJkbJT3UWWk-agMM',
+	),
+);
+$tplIds = $isDemo ? $tplMap['demo'] : $tplMap['online'];
+
 switch($act){
     case 'pay'://支付
+		exit();
 		$tplParam = array(
 			'openid' => trim($_REQUEST['openid']),
 			'factPrice' => trim($_REQUEST['factPrice']),
@@ -50,7 +79,7 @@ switch($act){
 		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		$data = array(
 			'touser' => $tplParam['openid'],
-			'template_id' => 'HijtVshBey8vWEiheh97ih_VCMndYZv28ouP2lnyTa0',
+			'template_id' => $tplIds['pay'],//'HijtVshBey8vWEiheh97ih_VCMndYZv28ouP2lnyTa0',
 			'url' => $site,//.'order_detail.php?oid='.$orderId,
 			'topcolor' => '#000000',
 			'data' => array(
@@ -96,7 +125,7 @@ switch($act){
 		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		$data = array(
 			'touser' => $tplParam['openid'],
-			'template_id' => 'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
+			'template_id' => $tplIds['open'],//'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
 			'url' => $site,//.'order_detail.php?oid='.$orderId,
 			'topcolor' => '#000000',
 			'data' => array(
@@ -121,7 +150,7 @@ switch($act){
 					'color' => '#000000',
 				),
 				'remark' => array(
-					'value' => '拼得好上新了海量质优价廉好货，一站式为你提供打造更优质生活，肯定有你喜欢的，手快有，手慢无，点进来逛逛吧>>>',
+					'value' => '双旦狂欢趴！年终大扫货！拼得好低价年货嗨购中，更有88元红包礼包大放送，抢新年第一份好礼，GO>>>',
 					'color' => '#ff0000',
 				),
 			),
@@ -153,7 +182,7 @@ switch($act){
 		}
 
 		$data = array(
-			'template_id' => 'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
+			'template_id' => $tplIds['join'],//'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
 			'url' => $site.'free.php?id=16',
 			'topcolor' => '#000000',
 			'data' => array(
@@ -168,7 +197,7 @@ switch($act){
 					'color' => '#000000',
 				),
 				'remark' => array(
-					'value' => '优质好货，0元开团，预购从速，点击领券>>>',
+					'value' => '拼得好年货季，0元开团，全场好货疯抢，一件不留！马上点击抢拼吧>>>',
 					'color' => '#ff0000',
 				),
 			),
@@ -203,7 +232,7 @@ switch($act){
 
 		$data = array(
 			'touser' => $tplParam['openid'],
-			'template_id' => 'EGztXez9id31kHrJZo6i-pY6523kx15PDgvC80Qw658',
+			'template_id' => $tplIds['delivery'],//'EGztXez9id31kHrJZo6i-pY6523kx15PDgvC80Qw658',
 			'url' => $site,//.'order_detail.php?oid='.$orderId,
 			'topcolor' => '#000000',
 			'data' => array(
@@ -228,7 +257,7 @@ switch($act){
 					'color' => '#000000',
 				),
 				'remark' => array(
-					'value' => '拼得好上新了海量质优价廉好货，一站式为你提供打造更优质生活，肯定有你喜欢的，手快有，手慢无，点进来逛逛吧>>>',
+					'value' => '亲的宝贝已经启程送往您怀抱！等待过程中，欢迎加入拼得好年终扫货，更有海量大牌免费试用等着您，GO>>>',
 					'color' => '#ff0000',
 				),
 			),
@@ -398,7 +427,7 @@ switch($act){
 //		file_put_contents($_logFile, "\r\n", FILE_APPEND);
 //		break;
 	case 'guess'://猜价中奖
-		$templateId = 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig';
+		$templateId = $tplIds['guess'];//'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig';
 		$prizeLevelMap = array(
 			1 => array(
 				'name' => '一等奖',
@@ -481,6 +510,63 @@ switch($act){
 				$_logInfo = "【".date('Y-m-d H:i:s', $time)."】猜价开奖通知发送成功，openid:{$v['openid']}，【抽奖时间:{$v['prizeTime']}】{$prizeLevelMap[$type]['name']}：{$prizeLevelMap[$type]['prize']}，商品【ID:{$v['productId']}】：{$v['productName']}，活动ID：{$v['activityId']}\r\n";
 			}
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
+		file_put_contents($_logFile, "\r\n", FILE_APPEND);
+		break;
+	case 'join_fail'://拼团失败
+		$paramData = trim($_REQUEST['data']);
+		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送拼团失败通知开始\r\n";
+		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+
+		if(empty($paramData)){
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送拼团失败通知，参数为空\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
+
+		$tplParam = json_decode($paramData, true);
+		if($tplParam === false){
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送拼团失败通知，参数转为json失败，传递参数data值为{$paramData}\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
+
+		$data = array(
+			'template_id' => $tplIds['join_fail'],//'pP41fxH24PzPaKArwxh9LixWfluEI5gu328xix46MWM',
+			'url' => $site,
+			'topcolor' => '#000000',
+			'data' => array(
+				'first' => array(
+					'value' => '您参加的拼团因人数不足而组团失败。我们将在3个工作日内为您安排退款事宜。',
+					'color' => '#000000',
+				),
+				'keyword1' => array(
+					'color' => '#000000',
+				),
+				'keyword2' => array(
+					'color' => '#000000',
+				),
+				'keyword3' => array(
+					'color' => '#000000',
+				),
+				'remark' => array(
+					'value' => '年终扫货，不仅秒杀！百货特惠，还有红包88！2016年最后一次扫货，进站狂购>>>',
+					'color' => '#ff0000',
+				),
+			),
+		);
+
+		foreach($tplParam as $v){
+			$data['touser'] = $v['openid'];
+			$data['data']['keyword1']['value'] = $v['productName'];
+			$data['data']['keyword2']['value'] = $v['productPrice'];
+			$data['data']['keyword3']['value'] = $v['factPrice'];
+			$sendResult = $objWX->sendTemplateMessage($data);
+			if($sendResult === false){
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】拼团通知发送失败，openid:{$v['openid']}，商品金额：{$v['productPrice']}，退款金额：{$v['factPrice']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+				file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+			}else{
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】拼团通知发送成功，openid:{$v['openid']}，商品金额：{$v['productPrice']}，退款金额：{$v['factPrice']}\r\n";
+				file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+			}
 		}
 		file_put_contents($_logFile, "\r\n", FILE_APPEND);
 		break;
