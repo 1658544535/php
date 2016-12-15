@@ -1,5 +1,17 @@
 <?php include_once('header_web.php');?>
 <?php include_once('wxshare_web.php');?>
+<style>
+    .modal.modal-in{
+        width: 90.625%;
+        margin-left: -45.3125%;
+    }
+    .modal-inner{
+        padding: 1.2rem;
+    }
+    .modal-button{
+        color: #3d4145;
+    }
+</style>
 
 <body>
     <div class="page-group" id="page-getCoupon">
@@ -43,7 +55,7 @@
                                 if(req.code == 1){
                                     // 弹成功弹窗
                                     $.modal({
-                                        'title': '亲, 您的优惠券已兑换成功!您可到个人中心 - 我的优惠券 查看',
+                                        'title': '亲, 您的优惠券已兑换成功!<br/>您可到个人中心 - 我的优惠券 查看',
                                         buttons: [
                                             {
                                                 text: '去看看',

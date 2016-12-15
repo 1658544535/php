@@ -1875,7 +1875,7 @@
   position: relative;
   min-height: 2.3rem;
   margin-bottom: 0.7rem;
-  padding: 0.25rem 1.0rem;
+  padding: 0.25rem 1.0rem 0.25rem 0.5rem;
   border: 1px solid #ff464e;
   border-radius: 0.25rem;
   overflow: hidden;
@@ -1896,7 +1896,7 @@
 .proTips-3 .list li .name {
   position: absolute;
   width: 3.0rem;
-  left: 3.1rem;
+  left: 2.6rem;
   top: 55%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -1916,7 +1916,7 @@
   text-overflow: ellipsis;
 }
 .proTips-3 .list li .time {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: #3e3e3e;
   line-height: 1.8rem;
   text-align: right;
@@ -3126,7 +3126,7 @@
 .user-list {
   background: #fff;
   margin-top: 0.5rem;
-  padding: 0.3rem 0.3rem;
+  padding: 0 0.3rem;
 }
 .user-list ul {
   margin: 0;
@@ -3141,7 +3141,7 @@
 }
 .user-list ul li a {
   display: block;
-  padding: 0.65rem 0;
+  padding: 0.5rem 0;
   font-size: 0.6rem;
   color: #757575;
   text-align: center;
@@ -5816,13 +5816,14 @@
 .getCoupon .form {
   position: absolute;
   width: 78.26%;
+  /*top: 43.66%;*/
   top: 50%;
   left: 10.87%;
   z-index: 4;
 }
 .getCoupon .form .formItem {
   height: 2.4rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.1rem;
 }
 .getCoupon .form .formItem2 {
   height: 2.4rem;
