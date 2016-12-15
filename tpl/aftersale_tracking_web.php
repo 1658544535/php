@@ -57,7 +57,7 @@
                         cols: [
                         {
                           textAlign: 'center',
-                          values: ["11"]
+                          values: ["<?php echo implode('","', $trackList);?>"]
                         }
                         ]
                     });
