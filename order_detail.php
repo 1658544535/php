@@ -44,6 +44,10 @@ switch($act)
 		break;
 
 }
-//include_once('order_detail_judgeStatus.php'); //订单状态判断
+
+//返回的地址
+$backStep = isset($_GET['bs']) ? -intval($_GET['bs']) : 0;
+$backStep--;
+
 include_once('tpl/order_detail_web.php');
 ?>

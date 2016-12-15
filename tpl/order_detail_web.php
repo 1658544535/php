@@ -5,7 +5,7 @@
     <div class="page-group" id="page-orderCofirm">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="javascript:history.back(-1);">
+                <a class="button button-link button-nav pull-left back" href="javascript:history.go(<?php echo $backStep;?>);">
                     <span class="icon icon-back"></span>
                 </a>
                 <?php if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7 && $OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>

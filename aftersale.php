@@ -54,6 +54,7 @@ switch($act){
 				foreach($upImgs as $v){
 					file_exists(IMAGE_UPLOAD_DIR.$v) && unlink(IMAGE_UPLOAD_DIR.$v);
 				}
+				$prevUrl .= ((strpos($prevUrl, '?') === false) ? '?' : '&').'bs=3';
 				redirect($prevUrl, '申请成功');
 			}else{
 				redirect($backUrl, $result['error_msg']);
