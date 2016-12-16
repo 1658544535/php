@@ -3821,7 +3821,8 @@
 .popup-sku > div .sku-item .list a.active,
 .popup-sku > div .sku-item .list span.active {
   border-color: #ff464e;
-  color: #ff464e;
+  color: #fff;
+  background: #ff464e;
 }
 .popup-sku > div .sku-item .list a.disable,
 .popup-sku > div .sku-item .list span.disable {
