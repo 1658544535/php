@@ -56,7 +56,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                     </section>
 
         <div class="deta-iframe">
-	       <iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $productId?>" frameborder="0" width="100%"></iframe>
+	       <iframe id="proInfo" src="<?php echo API_URL;?>/getProductInfoView.do?id=<?php echo $ObjGrouponInfo['result']['productId'];?>" frameborder="0" width="100%"></iframe>
         </div>
            <?php
 				$_arrDomain = explode('.', $_SERVER['SERVER_NAME']);
@@ -429,7 +429,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                             <?php if ($ObjGrouponInfo['result']['prize'] == 1){
                                 //一等奖}?>
                                 <div class="more2">
-                                    <a class="btn" href="groupon.php?act=guess&pid=<?php echo $productId;?>"><span>我想购买</span></a>
+                                    <a class="btn" href="groupon.php?act=guess&pid=<?php echo $ObjGrouponInfo['result']['productId'];?>"><span>我想购买</span></a>
                                     <?php if($ObjGrouponInfo['result']['isRecCoupon']  == 0){
                                         //是否分发优惠券 0-否 1-是 ?>
                                         <div class="txt" id="openSku" data-href="order_guess.php">
@@ -447,7 +447,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                                     <a class="btn" href="product_guess_price.php">
                                         <span>查看更多</span>
                                     </a>
-                                    <div class="txt" onClick="location.href='groupon.php?act=guess&pid=<?php echo $productId;?>'">
+                                    <div class="txt" onClick="location.href='groupon.php?act=guess&pid=<?php echo $ObjGrouponInfo['result']['productId'];?>'">
                                         <span>恭喜您获得<?php echo $ObjGrouponInfo['result']['couponPrice'];?>元抵用券，点击马上购买</span>
                                     </div>
                                 </div>
@@ -465,7 +465,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                         <?php } else {
                             // 已经结束 已开奖 未中奖?>
                             <div class="more3">
-                                <a class="btn" href="groupon.php?act=guess&pid=<?php echo $productId;?>"><span>购买商品</span></a>
+                                <a class="btn" href="groupon.php?act=guess&pid=<?php echo $ObjGrouponInfo['result']['productId'];?>"><span>购买商品</span></a>
                                 <a class="btn light" href="product_guess_price.php"><span>查看更多</span></a>
                                 <div class="txt"><span>活动已结束</span></div>
                             </div>
@@ -772,7 +772,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 	                <h3 class="title1">恭喜您获取<span class="themeColor"><?php echo $ObjGrouponInfo['result']['couponPrice'];?>元</span>抵扣券</h3>
 	                <div class="tips1">本抵扣券用于购买此商品，请点击进行购买</div>
 	                <div class="tips2">注意：本券有效期为24小时</div>
-	                <a href="groupon.php?act=guess&pid=<?php echo $productId;?>" class="go">立即前往</a>
+	                <a href="groupon.php?act=guess&pid=<?php echo $ObjGrouponInfo['result']['productId'];?>" class="go">立即前往</a>
 	            </div>
 	            <div class="bg-footer"></div>
 	        </div>

@@ -33,11 +33,11 @@ switch($act)
     	$seckillTimeDiff  = strtotime($ObjGrouponInfo['result']['endTime']) - strtotime($ObjGrouponInfo['result']['nowTime']);
     	               	
     	//获取产品详情
-    	$content = apiData('getProductInfoView.do', array('id'=>$productId));
+    	$content = apiData('getProductInfoView.do', array('id'=>$ObjGrouponInfo['result']['productId']));
     
     	//获取产品详情图
     	$ProductImagesModel = M('product_images');
-    	$imageList 	= $ProductImagesModel->getAll( array('product_id'=>$productId, 'status'=>1), 'images', '`Sorting` ASC');
+    	$imageList 	= $ProductImagesModel->getAll( array('product_id'=>$ObjGrouponInfo['result']['productId'], 'status'=>1), 'images', '`Sorting` ASC');
 
         //获取参与人信息(进行中)
 	    $ObjUserList    = apiData('userJoinInfoApi.do', array('activityId'=>$gId,'pageNo'=>$page,'pageSize'=>5));
