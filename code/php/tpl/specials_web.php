@@ -74,7 +74,7 @@ wxshare(false, wxappId, wxtimestamp, wxnonceStr, wxsignature, imgUrl, link, titl
 											</a>
 										</li>
 									<%}%>
-									<%if(jlen>6){%>
+									<%if(jlen>=6){%>
 									<li>
                                         <a href="special.php?id=<%=data["data"]["list"][i].specialId%>" class="special-more"></a>
                                     </li>
