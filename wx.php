@@ -50,6 +50,8 @@ switch($wxReqType){
 					case '1'://赠免券
 						$subscribeMsg = '<a href="'.$siteUrl.'free.php?id=17">0元开团，点击领券</a>';
 						break;
+					case '2'://落地页来源
+						recordSourceQrcode();
 					default:
 //						$subscribeMsg = '终于等到您~欢迎来到火遍朋友圈、汇聚全球玩具的拼得好，我们为您准备了7.7专区、品牌特卖等好玩实惠的玩具拼团，<a href="'.$siteUrl.'">☞点击进入商城</a>';
 						$subscribeMsg = '终于等到你！我们已经为你准备了猜价格、9.9特卖、掌上秒杀、0.1夺宝等好玩实惠的活动。拼靓价得好货，一切尽在拼得好，<a href="'.$siteUrl.'">☞点击进入商城</a>';
@@ -58,7 +60,13 @@ switch($wxReqType){
 				$objWX->text($subscribeMsg)->reply();
     			break;
 			case Wechat::EVENT_SCAN://扫描带参数二维码
-				$text = '<a href="'.$siteUrl.'">优质玩具，预购从速，点击进入</a>';
+				switch($eventType['key']){
+					case '2'://落地页来源
+						recordSourceQrcode();
+					default:
+						$text = '<a href="'.$siteUrl.'">优质玩具，预购从速，点击进入</a>';
+						break;
+				}
 				$objWX->text($text)->reply();
 				break;
     	}
@@ -90,5 +98,23 @@ function __getReplyByKeyword($keyword){
 	$content = $keywordMap[$keyword] ? "{$keywordMap[$keyword]}\r\n\r\n" : "\r\n";
 	file_put_contents($_dir.date('Y-m-d', $time).'.txt', "【".date('Y-m-d H:i:s', $time)."】关键字：{$keyword}\r\n{$content}", FILE_APPEND);
 	return $result;
+}
+
+function recordSourceQrcode(){
+	global $dbHost, $dbUser, $dbPass, $dbName;
+	include_once(APP_INC.'ez_sql_core.php');
+	include_once(APP_INC.'ez_sql_mysql.php');
+	include_once(APP_INC.'Model.class.php');
+
+	$db	= new ezSQL_mysql($dbUser, $dbPass, $dbName, $dbHost);
+	$db->query('SET character_set_connection='.$dbCharset.', character_set_results='.$dbCharset.', character_set_client=binary');
+
+	$data = array(
+		'flag' => 2,
+		'ip' => GetIP(),
+		'time' => time(),
+		'source' => 1,
+	);
+	$Model->add($data);
 }
 ?>
