@@ -61,7 +61,7 @@ switch( $act )
 				$_url = 'order_raffle01.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
 				break;
 			case 'raffle':
-				$_url = 'order_raffle01.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
+				$_url = 'order_raffle.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
 				break;
 		}
 		redirect($_url);
