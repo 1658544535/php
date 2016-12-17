@@ -115,6 +115,7 @@ function recordSourceQrcode(){
 		'time' => time(),
 		'source' => 1,
 	);
+	$Model = new Model($db, 'external_link_log');
 	$Model->add($data);
 }
 ?>
