@@ -331,7 +331,7 @@
 									itemList = data["skuList"][item]["skuValue"],
 									itemHtml = '';
 								for(var list in itemList){
-									itemHtml += '<a>' + itemList[list]["optionValue"] + '</a>';
+									itemHtml += '<a href="javascript:;">' + itemList[list]["optionValue"] + '</a>';
 								}
 								switch (itemType){
 									case 1:
