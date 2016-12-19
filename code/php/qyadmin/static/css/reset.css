@@ -1,0 +1,18 @@
+body{font-family:"Microsoft YaHei","微软雅黑",tahoma,arial,simsun,"宋体";}
+.content-wrapper{position:relative;margin:0;}
+.content{position:absolute;top:50px;left:15px;right:15px;bottom:15px;padding:0;margin:0;}
+.content>iframe{display:block;width:100%;height:100%;}
+.nav{overflow:hidden;}
+.nav:before{display:table;content:'';clear:both;}
+.nav>div{float:right;}
+.nav>div>*{position:relative;float:left;width:35px;height:35px;line-height:34px;font-size:13px;text-align:center;margin-left:-1px;color:#666;text-decoration:none;background-color:#fff;border:1px solid #ddd;}
+.nav>div>*.current{color:#fff;cursor:default;background-color:#337ab7;border-color:#337ab7;}
+.nav>div>*:first-child{border-top-left-radius:4px;border-bottom-left-radius:4px;}
+.nav>div>*:last-child{border-top-right-radius:4px;border-bottom-right-radius:4px;}
+.nav>div>a:hover{background-color:#eee;}
+.uploadImg{position:relative;width:120px;height:120px;overflow:hidden;border:1px solid #ddd;border-radius:3px;}
+.upload-file{position:absolute;left:0;top:0;right:0;bottom:0;z-index:9;opacity:0;filter:alpha(opacity=0);cursor:pointer;}
+.upload-img{display:none;width:100%;height:100%;}
+.upload-tip{display:block;width:100%;height:100%;line-height:120px;text-align:center;font-size:13px;color:#666;}
+.uploadImg.has .upload-img{display:block;}
+.uploadImg.has .upload-tip{display:none;}
