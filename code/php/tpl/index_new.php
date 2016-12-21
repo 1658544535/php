@@ -1,5 +1,5 @@
 <?php include_once('header_notice_web.php');?>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="/js/wxshare.js"></script>
 <script type="text/javascript">
 var imgUrl = "<?php echo $site;?>images/200.jpg";
@@ -171,7 +171,6 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                     <div class="tips-null">没有更多商品</div>
                 <%}%>
             </script>
-
         </div>
         <?php if(!empty($freeCpn)){?>
             <div class="popup popup-coupon">

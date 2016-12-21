@@ -7,7 +7,7 @@
 <title>淘竹马</title>
 <link href="/css/common.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="/js/wxshare.js"></script>
 <script>
 	imgUrl 	= '<?php echo $site_image?>shop/<?php echo $shop->images;?>';

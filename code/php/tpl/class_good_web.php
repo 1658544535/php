@@ -62,7 +62,7 @@
                             </div>
                         </a></li>
                     <%}%>
-                <%}else if(data["pageNow"] == 1){%>
+                <%}else{%>
                     <div class="tips-null">暂无产品</div>
                 <%}%>
             </script>
