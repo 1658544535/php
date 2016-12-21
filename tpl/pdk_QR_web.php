@@ -1,5 +1,5 @@
 <?php include_once('header_web.php');?>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="/js/wxshare.js"></script>
 <script type="text/javascript">
 var imgUrl = "<?php echo $site;?>images/wxLOGO.png";
