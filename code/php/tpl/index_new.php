@@ -28,7 +28,13 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 <div class="swiper-wrapper">
                     <a class="swiper-slide" href="index.php?id=0" data-id="0">首页</a>
                     <?php foreach($classification as $class){?>
-                        <a href="index.php?id=<?php echo $class['oneId'];?>" class="swiper-slide" data-id="<?php echo $class['oneId'];?>"><?php echo $class['oneName'];?></a>
+                        <a href="index.php?id=<?php echo $class['oneId'];?>" class="swiper-slide" data-id="<?php echo $class['oneId'];?>">
+                        <?php if($class['oneFlag'] == 0){?>
+                            <?php echo $class['oneName'];?>
+                        <?php }else{?>
+                            <img src="images/nianhuo.png" alt="年货" />
+                        <?php } ?>
+                        </a>
                     <?php }?>
                 </div>
             </section>
