@@ -592,6 +592,11 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                               break;
                           }
                         }
+                        $(".sku-item").each(function(index, el) {
+                            if($(el).find(".list").html() == ''){
+                                $(el).remove();
+                            }
+                        });
 
                         //将可选的sku存入一个全局变量
                         skuData = data["validSKu"];
@@ -640,29 +645,57 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                           }
 
                           if(!!skuFormat){
-                            // $("#sku-format .list a.active").siblings('a').addClass("disable");
-                            $("#sku-color .list a").not(".active").addClass("disable");
-                            for(var item in skuData){
-                              if(skuData[item]["skuFormat"] == skuFormat){
-                                $("#sku-color .list a").each(function(index, el) {
-                                  if($(el).html() == skuData[item]["skuColor"]){
-                                    $(el).removeClass("disable");
+                            // 只有规格时
+                            if(data["skuList"].length==1 && data["skuList"][0]["skuType"] == 2){
+                                var url = $(".popup-sku").attr("data-href"),
+                                    skuId = '';
+                                var skuImg = '';
+                                for(var item in skuData){
+                                    if(skuData[item]["skuFormat"] == skuFormat){
+                                        skuId = skuData[item]["id"];
+                                        skuImg = skuData[item]["skuImg"];
+                                    }
+                                }
+                                setSkuInfo(skuId, skuImg);
+                                clickBuy = true;
+                            }else{
+                                $("#sku-color .list a").not(".active").addClass("disable");
+                                for(var item in skuData){
+                                  if(skuData[item]["skuFormat"] == skuFormat){
+                                    $("#sku-color .list a").each(function(index, el) {
+                                      if($(el).html() == skuData[item]["skuColor"]){
+                                        $(el).removeClass("disable");
+                                      }
+                                    });
                                   }
-                                });
-                              }
+                                }
                             }
                           }
                           if(!!skuColor){
-                            // $("#sku-color .list a.active").siblings('a').addClass("disable");
+                            // 只有颜色时
+                            if(data["skuList"].length==1 && data["skuList"][0]["skuType"] == 1){
+                                var url = $(".popup-sku").attr("data-href"),
+                                    skuId = '';
+                                var skuImg = '';
+                                for(var item in skuData){
+                                    if(skuData[item]["skuColor"] == skuColor){
+                                        skuId = skuData[item]["id"];
+                                        skuImg = skuData[item]["skuImg"];
+                                    }
+                                }
+                                setSkuInfo(skuId, skuImg);
+                                clickBuy = true;
+                            }else{
                             $("#sku-format .list a").not(".active").addClass("disable");
-                            for(var item in skuData){
-                              if(skuData[item]["skuColor"] == skuColor){
-                                $("#sku-format .list a").each(function(index, el) {
-                                  if($(el).html() == skuData[item]["skuFormat"]){
-                                    $(el).removeClass("disable");
+                                for(var item in skuData){
+                                  if(skuData[item]["skuColor"] == skuColor){
+                                    $("#sku-format .list a").each(function(index, el) {
+                                      if($(el).html() == skuData[item]["skuFormat"]){
+                                        $(el).removeClass("disable");
+                                      }
+                                    });
                                   }
-                                });
-                              }
+                                }
                             }
                           }
                           if($(".sku-item a.active").length == 1){
@@ -680,11 +713,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                                 skuImg = skuData[item]["skuImg"];
                               }
                             }
-                            _genUrl({"skuid":skuId});
-                            if(skuImg !="" && skuImg != null){
-                              $(".popup-sku .info .img img").attr("src", skuImg);
-                            }
-                            $("#buy").removeClass("gray");
+                            setSkuInfo(skuId, skuImg);
                             clickBuy = true;
                           }else if(!skuFormat && !skuColor){
                             $("#sku-color .list a, #sku-format .list a").removeClass("disable");
@@ -698,6 +727,14 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                       $.popup(".popup-sku");      //弹出弹窗
                       $("#buy-num").val(1);
                       $.hideIndicator();          //关闭加载指示器
+                    }
+
+                    function setSkuInfo(skuId, skuImg){
+                        _genUrl({"skuid":skuId});
+                        if(skuImg !="" && skuImg != null){
+                            $(".popup-sku .info .img img").attr("src", skuImg);
+                        }
+                        $("#buy").removeClass("gray");
                     }
 
                     function _genUrl(_json){
