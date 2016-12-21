@@ -15,10 +15,10 @@
 		<span class="icon i-search"></span>
 		<span class="tab-label">搜索</span>
 	</a>
-	<!-- <a class="tab-item <?php echo ($footerNavActive=='guess')?'active':'';?>" href="product_guess_price.php">
-		<span class="icon i-price"></span>
+	<a class="tab-item <?php echo ($footerNavActive=='msg')?'active':'';?>" href="message.php">
+		<span class="icon i-message"></span>
 		<span class="tab-label">我的消息</span>
-	</a> -->
+	</a>
 	<a class="tab-item <?php echo ($footerNavActive=='user')?'active':'';?>" href="user.php">
 		<span class="icon i-user"></span>
 		<span class="tab-label">个人中心</span>
