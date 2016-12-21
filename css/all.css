@@ -366,6 +366,10 @@
   color: #1c1c1c;
   text-align: center;
 }
+.index-class.swiper-container .swiper-slide img {
+  display: block;
+  height: 100%;
+}
 .index-class.swiper-container .swiper-slide.active {
   color: #ff464e;
   border-bottom: 2px solid #ff464e;
