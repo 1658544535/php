@@ -62,16 +62,16 @@ function createUrl($linkType, $linkParam) {
             $url = '/freedraw.php';
             break;
         case 8:
-            $url = '/groupon.php?id=' . $linkParam;
-            break;
-        case 9:
             $url = '/special.php?id=' . $linkParam;
             break;
+        case 9:
+            $url = '/specials.php';
+            break;
         case 10:
-            $url = '/groupon.php?id=' . $linkParam;
+            $url = '/special_77.php';
             break;
         case 11:
-            $url = '/groupon.php?id=' . $linkParam;
+            $url = '/lottery_new.php';
             break;
         default:
             $url = '#';
