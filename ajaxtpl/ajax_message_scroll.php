@@ -18,7 +18,7 @@ $apiNameArr  = array(
 $getMessage = apiData($apiNameArr[$messageType], array('userId'=>$userid, 'pageNo'=>$pageNo));
 
 if ($getMessage['success'] != false && $getMessage['result']) {
-    $messageList = $getMessage['result'];
+    $messageList = array_reverse($getMessage['result']);
     foreach ($messageList as $key => $val) {
         $messageList[$key]['url'] = createUrl($val['linkType'], $val['linkParam']);
     }
