@@ -60,7 +60,7 @@
                                     <div class="g-title"><%=data["data"][i]["productName"]%></div>
                                 </div>
                                 <div class="order">
-                                    <p><%=data["data"][i]["content"]%></p>
+                                    <p><%= handleStr(data["data"][i]["content"]); %></p>
                                 </div>
                                 <div class="go"><%=data["data"][i]["linkName"]%></div>
                             </a>
@@ -70,6 +70,11 @@
             <%}else if(data["pageNow"] == 1){%>
                 <div class="tips-null">没有更多消息</div>
             <%}%>
+        </script>
+        <script>
+            function handleStr(str){
+                return str.replace(/\n/g, '<br/>');
+            }
         </script>
 
         <!-- <li class="message-list-item">
