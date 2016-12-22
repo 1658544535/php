@@ -5,6 +5,7 @@
 define('HN1', true);
 require_once('./global.php');
 
+$footerNavActive = 'msg';
 $act = CheckDatas('act', '');
 
 switch ($act) {
@@ -44,5 +45,4 @@ switch ($act) {
         break;
 }
 
-$footerNavActive = 'msg';
 ?>
