@@ -13,6 +13,7 @@ switch ($act) {
      ---------------------------------------------------------------------------*/
     case 'scroll':
         $messageType = CheckDatas('type', 0);
+
         include_once ('./tpl/message/msg_scroll_tpl.php');
         break;
     /*---------------------------------------------------------------------------
@@ -22,13 +23,23 @@ switch ($act) {
         include_once ('./tpl/message/msg_detail_tpl.php');
         break;
     /*---------------------------------------------------------------------------
+        --  将count存入session
+     ---------------------------------------------------------------------------*/
+    case 'saveCount':
+        $messageType  = CheckDatas('type', 0);
+        $messageCount = CheckDatas('count', 0);
+        $_SESSION['message'][$messageType] = $messageCount;
+        break;
+    /*---------------------------------------------------------------------------
         --  消息列表
      ---------------------------------------------------------------------------*/
     default:
         $getMessageList = apiData('myNoticeApi.do', array('userId' => $userid));
         if ($getMessageList['success'] != false) {
             $MessageList = $getMessageList['result'];
+            $countArr = $_SESSION['message'];
         }
+
         include_once ('./tpl/message/msg_list_tpl.php');
         break;
 }

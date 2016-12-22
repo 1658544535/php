@@ -56,10 +56,10 @@ function createUrl($linkType, $linkParam) {
             $url = '/groupon.php?id=' . $linkParam;
             break;
         case 6:
-            $url = '/product_guess_price.php?act=detail&gid=' . $linkParam;
+            $url = '/product_guess_price.php';
             break;
         case 7:
-            $url = '/special.php';
+            $url = '/freedraw.php';
             break;
         case 8:
             $url = '/groupon.php?id=' . $linkParam;
