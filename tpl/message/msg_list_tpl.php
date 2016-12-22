@@ -37,8 +37,17 @@
                 <ul>
                     <?php foreach ($MessageList as $item) { ?>
                         <li>
-                            <a href="message.php?act=scroll&type=<?php echo $item['type'];?>">
-                                <div class="img"><img src="<?php echo $item['images'];?>" /><span class="new"></span></div>
+                            <a href="message.php?act=scroll&type=<?php echo $item['type'];?>"
+                               data-type="<?php echo $item['type'];?>"
+                               data-count="<?php echo $item['count'];?>"
+                               onclick="saveCount(this)">
+                                <div class="img">
+                                    <img src="<?php echo $item['images'];?>" />
+                                    <?php if ($countArr[$item['type']] != $item['count']) { ?>
+                                        <span class="new">
+                                    <?php } ?>
+                                    </span>
+                                </div>
                                 <div class="info">
                                     <h3 class="title1"><?php echo $item['name'];?></h3>
                                     <p class="txt"><?php echo $item['title'];?></p>
@@ -70,6 +79,24 @@
 
     </div>
 </div>
+
+<script>
+    //将当前的消息数量存入session
+    function saveCount(_this) {
+        var type  = $(_this).data('type'),
+            count = $(_this).data('count');
+        $.ajax({
+            url:  '/message.php?act=saveCount',
+            type: 'post',
+            data:　{
+                type:  type,
+                count: count,
+            },
+            dataType: 'json'
+        });
+    }
+</script>
+
 </body>
 
 </html>
