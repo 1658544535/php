@@ -50,29 +50,28 @@
         <script id='tpl_pull' type="text/template">
             <%if(data["data"].length>0){%>
                 <%for(var i=0;i<data["data"].length; i++){%>
-                    <%if(data["data"][i]["linkType"] == 1){%>
-                        <li class="message-list-item">
-                            <div class="time"><%=data["data"][i]["time"]%></div>
-                            <div class="main">
-                                <a href="<%=data["data"][i]["url"]%>">
-                                    <h3 class="title1"><%=data["data"][i]["title"]%></h3>
-                                    <div class="good">
-                                        <div class="g-img"><img src="<%=data['data'][i]['productImage']%>" /></div>
-                                        <div class="g-title"><%=data["data"][i]["productName"]%></div>
-                                    </div>
-                                    <div class="order">
-                                        <p><%=data["data"][i]["content"]%></p>
-                                    </div>
-                                    <div class="go">订单详情</div>
-                                </a>
-                            </div>
-                        </li>
-                    <%}%>
+                    <li class="message-list-item">
+                        <div class="time"><%=data["data"][i]["time"]%></div>
+                        <div class="main">
+                            <a href="<%=data["data"][i]["url"]%>">
+                                <h3 class="title1"><%=data["data"][i]["title"]%></h3>
+                                <div class="good">
+                                    <div class="g-img"><img src="<%=data['data'][i]['productImage']%>" /></div>
+                                    <div class="g-title"><%=data["data"][i]["productName"]%></div>
+                                </div>
+                                <div class="order">
+                                    <p><%=data["data"][i]["content"]%></p>
+                                </div>
+                                <div class="go"><%=data["data"][i]["linkName"]%></div>
+                            </a>
+                        </div>
+                    </li>
                 <%}%>
             <%}else if(data["pageNow"] == 1){%>
                 <div class="tips-null">没有更多消息</div>
             <%}%>
         </script>
+
         <!-- <li class="message-list-item">
             <div class="time">2016年11月19日 下午7：14</div>
             <div class="main">
