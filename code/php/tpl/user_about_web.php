@@ -26,7 +26,7 @@
 
                 <section class="about-code">
                     <div class="img"><img src="images/qrcode2.png" alt="拼得好" /></div>
-                    <p class="txt">扫描下载拼得好客户端</p>
+                    <p class="txt">扫描下载拼得好app</p>
                 </section>
 
             </div>
