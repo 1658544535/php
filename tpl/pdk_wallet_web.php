@@ -34,6 +34,10 @@
                                 <p>成团数</p>
                             </li>
                             <li>
+                                <p class="themeColor">999</p>
+                                <p>冻结余额</p>
+                            </li>
+                            <li>
                                 <?php if(!empty($Objwallet['result']['balance'])){?>
                                 <p class="themeColor"><?php echo $Objwallet['result']['balance'];?></p>
                                 <?php }else{?>
