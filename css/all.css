@@ -4323,7 +4323,7 @@
 }
 .user-pdk ul li {
   display: inline-block;
-  width: 33.33333%;
+  width: 25%;
   font-size: 0.6rem;
   text-align: center;
 }
@@ -4349,6 +4349,9 @@
 }
 .user-pdk ul li a .u-p-3 {
   background-position: 0 -66px;
+}
+.user-pdk ul li a .u-p-4 {
+  background-position: 0 -88px;
 }
 .pdk-form ul {
   margin: 0.5rem 0;
