@@ -59,5 +59,13 @@ $pList = $pList['result'];
 
 $wxUser = $objWX->getUserInfo($openid);
 
+
+//返回的地址
+if($info['activityType'] == 8){
+	$backStep = '-2';
+}else{
+	$backStep = '-1';
+}
+
 include_once('tpl/groupon_join_web.php');
 ?>
