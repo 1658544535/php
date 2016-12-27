@@ -25,8 +25,7 @@ wxshare(false, wxappId, wxtimestamp, wxnonceStr, wxsignature, imgUrl, link, titl
             </header>
 
             <?php include_once('footer_nav_web.php');?>
-
-            <section class="swiper-container special-class">
+            <section class="swiper-container special-class" <?php if(count($cates) == 1){echo 'style="height:0;overflow:hidden;"';}?>>
                 <div class="swiper-wrapper">
 					<?php $i=1;?>
 					<?php foreach($cates as $v){ ?>
@@ -36,7 +35,7 @@ wxshare(false, wxappId, wxtimestamp, wxnonceStr, wxsignature, imgUrl, link, titl
                 </div>
             </section>
 
-            <div class="content native-scroll" style="top:4.2rem;">
+            <div class="content native-scroll" style="<?php if(count($cates) == 1){echo 'top:2.2rem;';}else{echo 'top:4.2rem;';}?>">
                 <div class="swiper-container special-page" data-href="api_action.php?act=specials">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
