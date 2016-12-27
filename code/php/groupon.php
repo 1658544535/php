@@ -16,6 +16,7 @@ if($act == 'guess'){
 }else{
 	$apiParam['activityId'] = $grouponId;
 }
+
 $info = apiData('openGroupActivityApi.do', $apiParam);
 !$info['success'] && redirect($backUrl, $info['error_msg']);
 
@@ -70,6 +71,10 @@ $fx = $fx['result'];
 switch($info['activityType']){
 	case 5://0.1抽奖
 	case 7://免费抽奖
+		$showWaitGroupList = true;
+		$notQuantity = true;
+		break;
+	case 8://免费抽奖
 		$showWaitGroupList = true;
 		$notQuantity = true;
 		break;
