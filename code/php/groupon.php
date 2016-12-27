@@ -74,7 +74,7 @@ switch($info['activityType']){
 		$showWaitGroupList = true;
 		$notQuantity = true;
 		break;
-	case 8://免费抽奖
+	case 8://拼得客
 		$showWaitGroupList = true;
 		$notQuantity = true;
 		break;
