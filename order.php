@@ -9,7 +9,7 @@ $addressId = $_SESSION['order']['addressId'];
 $attendId = $_SESSION['order']['attendId'];
 
 //下单的类型
-$ORDER_TYPES = array('free', 'groupon', 'join', 'alone', 'guess', 'raffle01', 'seckill', 'raffle');
+$ORDER_TYPES = array('free', 'groupon', 'join', 'alone', 'guess', 'raffle01', 'seckill', 'raffle','pdk');
 (!in_array($orderType, $ORDER_TYPES) || (($orderType != 'alone') && empty($grouponId))) && redirect('/', '非法下单');
 
 $prevUrl = getPrevUrl();
@@ -19,7 +19,7 @@ $num = max(1, $num);
 
 $cpnNo = trim($_POST['cpnno']);
 $buyer_message   = CheckDatas( 'buyer_message', '' );
-$mapSource = array('groupon'=>1, 'free'=>2, 'guess'=>3, 'alone'=>4, 'raffle01'=>5, 'seckill'=>6, 'raffle'=>7);
+$mapSource = array('groupon'=>1, 'free'=>2, 'guess'=>3, 'alone'=>4, 'raffle01'=>5, 'seckill'=>6, 'raffle'=>7,'pdk'=>8);
 $source = ($orderType == 'join') ? $_SESSION['order']['source'] : $mapSource[$orderType];
 
 $skuId = intval($_POST['skuid']);

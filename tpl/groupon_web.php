@@ -79,7 +79,7 @@
 							<div class="icon"><img src="images/seckill-<?php echo $seckillStateIcons[$seckillState];?>.png" /></div>
 						<?php } ?>
 					</section>
-
+                 <?php if($info['activityType'] !=8){?>
 					<?php if($showWaitGroupList && !empty($info['waitGroupList'])){ ?>
 					<section class="deta-group">
 						<h3 class="title1">欢迎您直接参与其他小伙伴发起的拼团</h3>
@@ -98,7 +98,7 @@
 						</ul>
 					</section>
 					<?php } ?>
-
+                 <?php }?>
 					<section class="deta-tips">
 						<h3>活动说明</h3>
 						<div><img src="images/deta-tips2.png" /></div>
@@ -212,6 +212,11 @@
 									<?php if($isFreeBuy){ ?>
 										<!-- <a class="more" href="order_free.php?id=<?php echo $grouponId;?>&pid=<?php echo $info['productId'];?>" id="btn-groupon"> -->
 										<a class="more" data-href="order_free.php" id="btn-groupon" data-ref="free">
+											 <p>￥<b>0.00</b></p>
+											 <p><?php echo $info['groupNum'];?>人团</p>
+										</a>
+									<?php } elseif($info['activityType'] == 8){?>
+										<a class="more" data-href="order_pdk.php" id="btn-groupon" data-ref="pdk">
 											 <p>￥<b>0.00</b></p>
 											 <p><?php echo $info['groupNum'];?>人团</p>
 										</a>
