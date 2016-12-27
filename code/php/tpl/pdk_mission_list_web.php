@@ -1,4 +1,13 @@
 <?php include_once('header_notice_web.php');?>
+<script type="text/javascript" src="/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="/js/wxshare.js"></script>
+<script type="text/javascript">
+var imgUrl = "<?php echo $site;?>images/200.jpg";
+var link = "<?php echo $site;?>";
+var title ="拼得好";
+var desc = "1毛夺好礼，拼享新玩法";
+wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
+</script>
 
 <body>
     <div class="page-group" id="page-taskList">
