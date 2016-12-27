@@ -41,7 +41,7 @@ $info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'pi
 if($info['success']){
 	$info = $info['result'];
 }else{
-//	redirect($prevUrl, $info['error_msg']);
+	redirect($prevUrl, $info['error_msg']);
 }
 
 
