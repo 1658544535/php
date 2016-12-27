@@ -217,11 +217,7 @@
 										</a>
 									<?php } elseif($info['activityType'] == 8){?>
 										<a class="more" data-href="order_pdk.php" id="btn-groupon" data-ref="pdk">
-											<?php if($info['isPdk'] == 1){?>
-											 <p>￥<b>0.00</b></p>
-											<?php }else{?> 
-											 <p>￥<b><?php echo $info['productPrice'];?></b></p>
-											<?php }?>
+											  <p>￥<b>0.00</b></p>
 											 <p><?php echo $info['groupNum'];?>人团</p>
 										</a>
 									<?php }else{ ?>
@@ -245,21 +241,21 @@
 		?>
 
         <script>
-			var _apiUrl = "/api_action.php?act=";
-			document.domain='<?php echo implode('.', $_arrDomain);?>';
-			<?php if($info['productStatus'] == 1){ ?>
-			function setIframeHeight(iframe) {
-			 	if (iframe) {
-			 		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-			 		if (iframeWin.document.body) {
-			 			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-			 		}
-			 	}
-			};
-			window.onload = function () {
-			 	setIframeHeight(document.getElementById('proInfo'));
-			};
-			<?php } ?>
+			// var _apiUrl = "/api_action.php?act=";
+			// document.domain='<?php echo implode('.', $_arrDomain);?>';
+			// <?php if($info['productStatus'] == 1){ ?>
+			// function setIframeHeight(iframe) {
+			//  	if (iframe) {
+			//  		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+			//  		if (iframeWin.document.body) {
+			//  			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+			//  		}
+			//  	}
+			// };
+			// window.onload = function () {
+			//  	setIframeHeight(document.getElementById('proInfo'));
+			// };
+			// <?php } ?>
 
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
 

@@ -124,9 +124,17 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					<section class="freeList proTipsNew-1">
 						<ul class="list-container">
 							<li><a href="javascript:;">
-								<div class="img" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><img src="<?php echo $info['productImage'];?>"></div>
+								<?php if($info['activityType'] ==8){?>
+								  <div class="img" onclick="location.href='groupon.php?act=guess&pid=<?php echo $productId;?>'"><img src="<?php echo $info['productImage'];?>"></div>
+								<?php }else{?>
+								  <div class="img" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><img src="<?php echo $info['productImage'];?>"></div>
+								<?php }?>
 								<div class="info">
-									<div class="name" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
+								 <?php if($info['activityType'] ==8){?>
+									<div class="name" onclick="location.href='groupon.php?act=guess&pid=<?php echo $productId;?>'"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
+								 <?php }else{?>
+								    <div class="name" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
+								 <?php }?>
 									<div class="price">
 										<span class="price1">￥<?php echo $info['groupPrice'];?></span>
 										<?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
