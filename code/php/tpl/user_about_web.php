@@ -18,7 +18,7 @@
                         <li class="last"><a href="javascript:;">
                             <div class="item">
                                 <div class="label">当前版本</div>
-                                <div class="main">V1.4</div>
+                                <div class="main">V1.5</div>
                             </div>
                         </a></li>
                     </ul>

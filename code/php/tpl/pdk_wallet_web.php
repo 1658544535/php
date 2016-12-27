@@ -33,8 +33,12 @@
                                 <?php }?>
                                 <p>成团数</p>
                             </li>
-                            <li>
-                                <p class="themeColor">999</p>
+                             <li>
+                                <?php if(!empty($Objwallet['result']['fzPrice'])){?>
+                                <p class="themeColor"><?php echo $Objwallet['result']['fzPrice'];?></p>
+                                <?php }else{?>
+                                 <p class="themeColor">0</p>
+                                <?php }?>
                                 <p>冻结余额</p>
                             </li>
                             <li>

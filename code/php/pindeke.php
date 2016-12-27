@@ -15,7 +15,6 @@ $endTime 		        = CheckDatas( 'endTime', '' );
 $status 		        = CheckDatas( 'status', '' );
 
 
-
 switch($act)
 {
 	//拼得客信息
@@ -27,23 +26,15 @@ switch($act)
 		include_once('tpl/pdk_info_web.php');
 	break;
     
-	//拼得客信息修改
-// 	case 'pdkInfo_edit':
-// 		include_once('tpl/pdk_edit_web.php');
-// 	break;
-		
-//     case 'pdkInfo_save':
-//     	$Objpdk = apiData('pdkUpdateApi.do',array('cardNo'=>$cardNo,'channel'=>$Content,'image1'=>3,'image2'=>4,'image3'=>5,'image4'=>6,'image5'=>7,'name'=>$Name,'phone'=>$Phone,'userId'=>$userid));
-//     	if($Objpdk !=null)
-//     	{
-//     		echo	ajaxJson('1','',$Objpdk);
-//     	}
-//     	else
-//     	{
-//     		echo    ajaxJson('0','');
-//     	}
-//     break;
-
+	//拼得客任务清单
+	case 'mission':
+		//获取拼得客信息
+ 		$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
+		if($pdkInfo['success'] ==''){
+			redirect('index.php',您无法访问该页面！);
+		}
+		include_once('tpl/pdk_mission_list_web.php');
+	break;
 
     //获取钱包信息
     case 'wallet':
@@ -55,7 +46,7 @@ switch($act)
 
     //获取收入列表数据
     case 'incomes':
-    	$page        = max(1, intval($_POST['page']));
+    	 $page       = max(1, intval($_POST['page']));
     	 $Objincomes = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>1,'userId'=>$userid));
     	  include_once('tpl/pdk_incomes_web.php');
     break;
@@ -125,8 +116,6 @@ switch($act)
     	include_once('tpl/pdk_QR_web.php');
     	break;
 }
-    	
-
 
 
 ?>

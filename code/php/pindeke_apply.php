@@ -38,9 +38,6 @@ switch($act){
 			$result = apiData('pdkApplyApi.do',$apiParam,'post');
 
 			
-			
-			
-			
 			if(empty($_SESSION['backurl_aftersale'])){
 				$prevUrl = '/';
 			}else{
@@ -142,7 +139,7 @@ switch($act){
 					$userId = intval($_GET['uid']);
 					!file_exists(IMAGE_UPLOAD_DIR) && mkdir(IMAGE_UPLOAD_DIR, 0777, true);
 					$destFile = $userId.'_'.time().'.'.$fileInfo['extension'];
-					if(move_uploaded_file($upfile['tmp_name'][0], IMAGE_UPLOAD_DIR.$destFile)){
+					if(move_uploaded_file($upfile['tmp_name'][0],IMAGE_UPLOAD_DIR.$destFile)){
 						ajaxResponse(true, $destFile, array('url'=>IMAGE_UPLOAD_URL.$destFile));
 					}else{
 						ajaxResponse(false, '上传失败');
@@ -150,10 +147,14 @@ switch($act){
 			break;
 			default:
 					$info = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
-					   if(!empty($info['result'])){
-							if($info['result']['status'] ==1){
+					   if(!empty($info['result']))
+					   {
+							if($info['result']['status'] ==1)
+							{
 								redirect('user.php');
-							}elseif(($info['result']['status'] ==0) || ($info['result']['status'] ==2) || ($info['result']['status'] ==3)){
+							}
+							elseif(($info['result']['status'] ==0) || ($info['result']['status'] ==2) || ($info['result']['status'] ==3))
+							{
 								redirect('pindeke.php?act=pdkInfo&uid='.$userid);
 							}
 					   } 
