@@ -13,7 +13,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
     <div class="page-group" id="page-proTips">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="index.php">
+                <a class="button button-link button-nav pull-left back" href="javascript:history.go(<?php echo $backStep;?>);">
                     <span class="icon icon-back"></span>
                 </a>
                 <?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
@@ -636,7 +636,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 								规格
 							<?php }elseif($_sku['skuType'] == 2){ ?>
 								套餐类型
-							<?php } ?>
+							<?php } ?> 
 						</h4>
 						<div class="list"></div>
 					</div>
