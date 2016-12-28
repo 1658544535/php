@@ -4387,6 +4387,7 @@
 }
 .pdk-form ul li .item .main .txt {
   display: inline-block;
+  width: 100%;
   vertical-align: middle;
   border: none;
   background: none;
