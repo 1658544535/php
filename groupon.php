@@ -101,8 +101,12 @@ $skuId = intval($_GET['skuid']);
 empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
 $d = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$info['productId'],'source'=>1,'uid'=>$userid));
 
-
-
+//判断是否拼得客&&活动是否已结束
+(($info['activityType'] == 8) && ($info['activityStatus'] == 2)) && redirect('/index.php', '活动已结束');
+$pdkinfo = apiData('pindekeUserInfo.do', $apiParam);
+if($pdkinfo['success'] ==''){
+	redirect('index.php',您无法访问该页面！);
+}
 
 include_once('tpl/groupon_web.php');
 ?>
