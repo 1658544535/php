@@ -12,7 +12,7 @@ $status 		        = CheckDatas( 'status', '' );
 
 
 
-		$Objrecord = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>2,'status'=>$status,'userId'=>$userid),'post');
+		$Objrecord = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>2,'status'=>$status,'userId'=>$userid));
 
 		if($Objrecord['result'] !='')
 		{
@@ -23,7 +23,7 @@ $status 		        = CheckDatas( 'status', '' );
 			echo	ajaxJson( 0,'获取失败');
 
 		}
-		break;
+		
 
 
 

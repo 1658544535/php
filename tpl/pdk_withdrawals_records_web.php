@@ -49,8 +49,10 @@
                           <a href="pindeke.php?act=withdrawals_record&id=<%=data["data"]["tranList"][i]["id"]%>">                            
                             <%if(data["data"]["tranList"][i]["status"] ==0 ){%>
                             <p class="type">提现(待审核)</p>
-                            <%}else if(data["data"]["tranList"][i]["status"] ==1 || data["data"]["tranList"][i]["status"] ==3){%>
+                            <%}else if(data["data"]["tranList"][i]["status"] ==3){%>
                             <p class="type">提现(转账完成)</p>
+                            <%}else if(data["data"]["tranList"][i]["status"] ==1){%>
+                            <p class="type">提现(审核通过)</p>
                             <%}else if(data["data"]["tranList"][i]["status"] ==2){%>
                             <p class="type">提现(审核不通过)</p>
                             <%}%>
@@ -72,8 +74,8 @@
                     $("#type").picker({
                         cols: [{
                           textAlign: 'center',
-                          displayValues: ['全部', '待处理', '已完成'],
-                          values: [0, 1, 3]
+                          displayValues: ['全部', '待审核', '审核通过','转账完成'],
+                          values: ['', 0,1,3]
                         }],
                         formatValue: function(picker, values, displayValues){
                             $("#type-value").val(values);
