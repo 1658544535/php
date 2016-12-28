@@ -83,31 +83,51 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 							<?php if($info['isGroup'] == 1){ ?>
 								<div>
 									<a href="index.php" class="white">更多拼团</a>
-									<a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+								 <?php if($info['activityType'] ==8){?>
+									<a href="groupon.php?act=guess&pid=<?php echo $productId;?>">我要开团</a>
+								 <?php }else{?>
+								    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+								 <?php }?>
 								</div>
 							<?php }else{ ?>
 								<div>
 									<a href="index.php" class="white">更多拼团</a>
-									<a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+								 <?php if($info['activityType'] ==8){?>
+									<a href="groupon.php?act=guess&pid=<?php echo $productId;?>">我要开团</a>
+								 <?php }else{?>
+								    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+								 <?php }?>
 							    </div>
 							<?php } ?>
 							<?php break; ?>
 						<?php case 2: ?>
-							<div>
-								<a href="index.php" class="white">更多拼团</a>
-								<a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+							   <div>
+								    <a href="index.php" class="white">更多拼团</a>
+								 <?php if($info['activityType'] ==8){?>
+									<a href="groupon.php?act=guess&pid=<?php echo $productId;?>">我要开团</a>
+								 <?php }else{?>
+								    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+								 <?php }?>
 							</div>
 							<?php break; ?>
 						<?php case 3: ?>
 							<div>
 								<a href="index.php" class="white">更多拼团</a>
-								<a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+								<?php if($info['activityType'] ==8){?>
+									<a href="groupon.php?act=guess&pid=<?php echo $productId;?>">我要开团</a>
+								 <?php }else{?>
+								    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+								 <?php }?>
 							</div>
 							<?php break; ?>
 						<?php case 4: ?>
 							<div>
 								<a href="index.php" class="white">更多拼团</a>
-								<a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+								<?php if($info['activityType'] ==8){?>
+									<a href="groupon.php?act=guess&pid=<?php echo $productId;?>">我要开团</a>
+								 <?php }else{?>
+								    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
+								 <?php }?>
 							</div>
 							<?php break; ?>
 					<?php } ?>
