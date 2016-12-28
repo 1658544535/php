@@ -14,30 +14,50 @@
             <div class="content native-scroll">
                 <section class="pdkRecordDeta">
                     <ul>
-                        <li class="header">
-                            <div class="label">入账金额</div>
-                            <div class="main">￥<?php echo $Objwithdrawals['result']['price'];?></div>
-                        </li>
-                        <li>
-                            <div class="label">类型</div>
-                            <div class="main">支出</div>
-                        </li>
-                        <li>
-                            <div class="label">时间</div>
-                            <div class="main"><?php echo $Objwithdrawals['result']['date'];?></div>
-                        </li>
-                        <li>
-                            <div class="label">交易单号</div>
-                            <div class="main"><?php echo $Objwithdrawals['result']['orderNo'];?></div>
-                        </li>
-                        <li>
-                            <div class="label">剩余金额</div>
-                            <div class="main"><?php echo $Objwithdrawals['result']['surpluPrice'];?></div>
-                        </li>
-                        <li>
-                            <div class="label">备注</div>
-                            <div class="main"><?php echo $Objwithdrawals['result']['remark'];?></div>
-                        </li>
+	                        <li class="header">
+	                            <div class="label">出账金额</div>
+	                            <div class="main">￥<?php echo $Objwithdrawals['price'];?></div>
+	                        </li>
+	                        <li>
+	                            <div class="label">类型</div>
+	                            <div class="main">支出</div>
+	                        </li>
+	                        <li>
+	                            <div class="label">申请时间</div>
+	                            <div class="main"><?php echo $Objwithdrawals['date'];?></div>
+	                        </li>
+                        <?php if($Objwithdrawals['status'] ==3){?>
+	                        <li>
+	                            <div class="label">完成时间</div>
+	                            <div class="main"><?php echo $Objwithdrawals['overTime'];?></div>
+	                        </li>
+                        <?php }?>
+	                        <li>
+	                            <div class="label">交易单号</div>
+	                            <div class="main"><?php echo $Objwithdrawals['orderNo'];?></div>
+	                        </li>
+                        <?php if($Objwithdrawals['status'] ==2){?>
+	                        <li>
+	                            <div class="label">确认审核时间</div>
+	                            <div class="main"><?php echo $Objwithdrawals['falseDate'];?></div>
+	                        </li>
+                        <?php }?>
+                        <?php if($Objwithdrawals['status'] !=0 && $Objwithdrawals['status'] !=2){?>
+	                        <li>
+	                            <div class="label">剩余金额</div>
+	                            <div class="main"><?php echo $Objwithdrawals['surpluPrice'];?></div>
+	                        </li>
+                        <?php }?>
+	                        <li>
+	                            <div class="label">备注</div>
+	                            <div class="main"><?php echo $Objwithdrawals['remark'];?></div>
+	                        </li>
+                        <?php if($Objwithdrawals['status'] ==2){?>
+	                        <li>
+	                            <div class="label">审核不通过理由</div>
+	                            <div class="main"><?php echo $Objwithdrawals['reason'];?></div>
+	                        </li>
+                        <?php }?>
                     </ul>
                 </section>
                 
