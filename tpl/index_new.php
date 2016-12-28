@@ -19,10 +19,10 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 <h1 class="title"><img class="title-img" src="images/logo.png" alt="<?php echo $site_name;?>" /></h1>
             </header> -->
 
-            <section class="index-download">
+            <!-- <section class="index-download">
                 <span class="close"></span>
                 <a class="link" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qunyu.taoduoduo"></a>
-            </section>
+            </section> -->
 
             <section class="swiper-container index-class">
                 <div class="swiper-wrapper">
