@@ -48,19 +48,18 @@
 	                            <div class="main"><?php echo $Objwithdrawals['surpluPrice'];?></div>
 	                        </li>
                         <?php }?>
-	                        <li>
-	                            <div class="label">备注</div>
-	                            <div class="main"><?php echo $Objwithdrawals['remark'];?></div>
-	                        </li>
-                        <?php if($Objwithdrawals['status'] ==2){?>
+	                    <?php if($Objwithdrawals['status'] ==2){?>
 	                        <li>
 	                            <div class="label">审核不通过理由</div>
 	                            <div class="main"><?php echo $Objwithdrawals['reason'];?></div>
 	                        </li>
                         <?php }?>
-                    </ul>
+	                        <li>
+	                            <div class="label">备注</div>
+	                            <div class="main"><?php echo $Objwithdrawals['remark'];?></div>
+	                        </li>
+                     </ul>
                 </section>
-                
             </div>
         </div>
     </div>
