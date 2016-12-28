@@ -68,7 +68,7 @@ switch($act)
     case 'withdrawals_save':
     	$Price 		            = CheckDatas( 'price', '' );
     	$Type 		            = CheckDatas( 'type', '' );
-    	$Objwd = apiData('wdApplyApi.do',array('account'=>$Number,'name'=>$Name,'price'=>$Price,'taType'=>1,'userId'=>$userid),'post');
+    	$Objwd = apiData('wdApplyApi.do',array('account'=>$Number,'name'=>$Name,'price'=>$Price,'taType'=>$Type,'userId'=>$userid),'post');
     	if(!empty($Objwd['success'])){
     	    redirect('pindeke.php?act=wallet&uid='.$userid,申请成功！);
     	}else{
