@@ -121,7 +121,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 							<a class="swiper-slide" href="special.php?id=<%=data["banner"][i].typeId%>">
 						<%}%>
 					<%}else if(data["banner"][i]["type"] == 5){%>
-						<a class="swiper-slide" href="specials.php">
+						<a class="swiper-slide" href="specials.php?id=<%=data['banner'][i].typeId%>">
                     <%}else if(data["banner"][i]["type"] == 6){%>
 						<a class="swiper-slide" href="special_77.php">
                     <%}else{%>
