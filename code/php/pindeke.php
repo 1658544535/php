@@ -79,7 +79,7 @@ switch($act)
     //获取提现记录列表数据
     case 'withdrawals_records':
     	$page      = max(1, intval($_POST['page']));
-    	$Oldprice 	   = CheckDatas( 'price', '' );
+    	$Oldprice  = CheckDatas( 'price', '' );
     	$Objrecord = apiData('pdkTranRecListApi.do',array('type'=>2,'userId'=>$userid));
     	include_once('tpl/pdk_withdrawals_records_web.php');
     break;
@@ -88,6 +88,7 @@ switch($act)
     case 'withdrawals_record':
     	$Id 		        = CheckDatas( 'id', '' );
     	$Objwithdrawals = apiData('tranDetailApi.do',array('id'=>$Id));
+    	$Objwithdrawals = $Objwithdrawals['result'];
     	include_once('tpl/pdk_withdrawals_record_web.php');
     break;
 
