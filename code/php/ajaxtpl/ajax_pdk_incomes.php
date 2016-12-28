@@ -11,7 +11,7 @@ $startTime 		        = CheckDatas( 'startTime', '' );
 $endTime 		        = CheckDatas( 'endTime', '' );
 
 
-      $Objincomes = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>1,'userId'=>$userid),'post');
+      $Objincomes = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>1,'userId'=>$userid));
       
       if($Objincomes['result'])
       {
