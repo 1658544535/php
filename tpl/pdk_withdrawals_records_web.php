@@ -24,8 +24,8 @@
                         <li>
                             <div class="label">审核状态：</div>
                             <div class="main">
-                                <input id="type" type="text" placeholder="选择审核状态" />
                                 <input id="type-value" name="status" rel="req" type="hidden" />
+                                <input id="type" type="text" placeholder="选择审核状态" />
                             </div>
                         </li>
                     </ul>
