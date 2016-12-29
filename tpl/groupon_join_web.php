@@ -293,6 +293,35 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 						<img src="images/code-follow.jpg" />
 					</section>
 				<?php }?>
+				<section class="swiper-container index-banner" data-space-between="0">
+                    <div class="swiper-wrapper"></div>
+                    <div class="swiper-pagination"></div>
+                </section>
+				<script id='tpl_indexBanner' type="text/template">
+	                <%for(var i=0;i<data["banner"].length; i++){%>
+	                    <%if(data["banner"][i]["type"] == 2){%>
+							<a class="swiper-slide" href="groupon.php?id=<%=data["banner"][i].typeId%>">
+	                    <%}else if(data["banner"][i]["type"] == 3 && data["banner"][i].typeId !=0 ){%>
+							<a class="swiper-slide" href="product_guess_price.php?act=detail&gid=<%=data["banner"][i].typeId%>">
+						<%}else if(data["banner"][i]["type"] == 3 && data["banner"][i].typeId == 0){%>
+	                        <a class="swiper-slide" href="product_guess_price.php">
+	                    <%}else if(data["banner"][i]["type"] == 4){%>
+							<%if(data["banner"][i].typeId == 0){%>
+							    <a class="swiper-slide">
+	                       <%}else{%>
+								<a class="swiper-slide" href="special.php?id=<%=data["banner"][i].typeId%>">
+							<%}%>
+						<%}else if(data["banner"][i]["type"] == 5){%>
+							<a class="swiper-slide" href="specials.php?id=<%=data['banner'][i].typeId%>">
+	                    <%}else if(data["banner"][i]["type"] == 6){%>
+							<a class="swiper-slide" href="special_77.php">
+	                    <%}else{%>
+							<a class="swiper-slide">
+	                    <%}%>
+	                        <img src="<%=data["banner"][i].banner%>">
+	                    </a>
+	                <%}%>
+	            </script>
 				<section class="pro-like">
 					<h3 class="title1"><!--猜你喜欢--></h3>
 					<ul>
@@ -314,6 +343,26 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 		</div>
         <script>
             $(document).on("pageInit", "#page-proTips", function(e, pageId, page) {
+            	// 轮播
+            	$.ajax({
+            		url: 'api_action.php?act=index',
+            		data: {id: 0, page: 1},
+	            	type: 'POST',
+	            	dataType: 'json',
+            		success: function(res){
+            			if(res.code == 1){
+            				var html=baidu.template('tpl_indexBanner',res);
+            				$(".index-banner .swiper-wrapper").html(html);
+            				var swiperIndexBanner = new Swiper('.index-banner', {
+						        spaceBetween: 0,
+						        pagination: '.swiper-pagination',
+						        autoplay : 5000,
+						        observer: true
+						    });
+            			}
+            		}
+            	});
+
 				<?php if($info['productStatus'] == 1){ ?>
 					var jsonUrlParam = {"id":"<?php echo $grouponId;?>","pid":"<?php echo $info['productId'];?>","skuid":"","num":1,"free":"<?php echo $isGrouponFree;?>","aid":"<?php echo $attendId;?>","as":"<?php echo $info['activityType'];?>"};
 					var clickBuy = false;

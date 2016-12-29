@@ -2254,6 +2254,7 @@
   height: 40px;
   background: url(../images/rule-btn.png) no-repeat 0 0;
   background-size: 100% 100%;
+  z-index: 2;
 }
 /* 猜价格 */
 .guessList-banner {
