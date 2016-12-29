@@ -58,8 +58,12 @@
 								<%}%>
 							</span>
                         </div>
+                       <%if(data["data"][i]["refundStatus"] == 4 || data["data"][i]["refundStatus"] == 7){%>
+                        <a href="/order_detail.php?oid=<%=data["data"][i]["orderId"]%>" class="u-g-2">
+                       <%}else{%> 
                         <a href="/groupon.php?act=guess&pid=<%=data["data"][i]["productId"]%>" class="u-g-2">
-                            <div class="img"><img src="<%=data["data"][i].productImage%>" /></div>
+                       <%}%> 
+                           <div class="img"><img src="<%=data["data"][i].productImage%>" /></div>
                             <div class="info">
                                 <div class="name"><%=data["data"][i].productName%></div>
                                 <div class="price">
