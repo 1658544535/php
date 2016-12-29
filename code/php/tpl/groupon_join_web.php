@@ -135,7 +135,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
  			</section>
 
 			<div class="content native-scroll">
-				<?php if($info['activityType'] ==5 && $info['status'] ==0 && $info['userIsHead'] ==0){?>
+				<?php if($info['activityType'] ==5 && $info['status'] ==0 && $info['userIsHead'] ==0 && $info['isGroup'] ==1){?>
 					<section id="rule01" class="proTipsNew-7">
 						一毛钱还能干嘛?? 点我偷偷告诉你 >>
 					</section>
