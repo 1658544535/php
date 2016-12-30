@@ -76,10 +76,10 @@ switch($info['activityType']){
 		$showWaitGroupList = true;
 		$notQuantity = true;
 		break;
-	case 8://拼得客
-		$showWaitGroupList = true;
-		$notQuantity = true;
-		break;
+// 	case 8://拼得客
+// 		$showWaitGroupList = true;
+// 		$notQuantity = true;
+// 		break;
 	case 6://限时秒杀
 		$notQuantity = true;
 		if($info['isSellOut'] == 1){
@@ -106,11 +106,11 @@ $d = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'skuLi
 //判断拼得客活动是否已结束
 (($info['activityType'] == 8) && ($info['activityStatus'] == 2)) && redirect('/index.php', '活动已结束');
 //判断是否拼得客
-if($info['activityType'] == 8){
-$pdkinfo = apiData('pindekeUserInfo.do', $apiParam);
-if($pdkinfo['success'] ==''){
-	redirect('index.php',您无法访问该页面！);
-}
-}
+// if($info['activityType'] == 8){
+// $pdkinfo = apiData('pindekeUserInfo.do', $apiParam);
+// if($pdkinfo['success'] ==''){
+// 	redirect('index.php',您无法访问该页面！);
+// }
+// }
 include_once('tpl/groupon_web.php');
 ?>
