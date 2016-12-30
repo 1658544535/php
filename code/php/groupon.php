@@ -6,6 +6,8 @@ $backUrl = getPrevUrl();
 
 $grouponId = intval($_GET['id']);
 $productId = intval($_GET['pid']);
+$pdkUid    = intval($_GET['pdkUid']);
+
 //empty($grouponId) && redirect('/');
 
 

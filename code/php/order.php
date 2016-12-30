@@ -6,7 +6,8 @@ $orderType = $_SESSION['order']['type'];
 $productId = $_SESSION['order']['productId'];
 $grouponId = $_SESSION['order']['grouponId'];
 $addressId = $_SESSION['order']['addressId'];
-$attendId = $_SESSION['order']['attendId'];
+$attendId  = $_SESSION['order']['attendId'];
+$pdkUid    = $_SESSION['order']['pdkUid'];
 
 //下单的类型
 $ORDER_TYPES = array('free', 'groupon', 'join', 'alone', 'guess', 'raffle01', 'seckill', 'raffle','pdk');
@@ -36,6 +37,7 @@ $apiParam = array(
 	'channel' => 2,
 	'couponNo' => $cpnNo,
     'ip' => GetIP(),
+    'pdkUid' =>$pdkUid
 );
 $apiParam['skuLinkId'] = $skuId;
 
@@ -66,8 +68,13 @@ if(!$skuId){
 
 if($result['result']['fullpay'] == 1){
 	$orderInfo = apiData('orderdetail.do', array('oid'=>$result['result']['orderId']));
-	$_refreUrl = $orderInfo['result']['attendId'] ? '/groupon_join.php?aid='.$orderInfo['result']['attendId'] : '/user_orders.php';
-	redirect($_refreUrl, '下单成功');
+	
+	if($orderInfo['result']['source'] == 8){
+		$_refreUrl = '/groupon_join.php?aid='.$orderInfo['result']['attendId'].'&pdkUid='.$orderInfo['result']['orderInfo']['pdkUid'];
+	}else{
+		$_refreUrl = $orderInfo['result']['attendId'] ? '/groupon_join.php?aid='.$orderInfo['result']['attendId'] : '/user_orders.php';
+	}
+	redirect($_refreUrl,'下单成功');
 }else{
 	$url = '/wxpay/pay.php?appid='.$payInfo['appId'].'&timestamp='.$payInfo['timeStamp'].'&noncestr='.$payInfo['nonceStr'].'&package='.$payInfo['package'].'&outno='.$payInfo['out_trade_no'].'&signtype='.$payInfo['signType'].'&sign='.$payInfo['paySign'].'&oid='.$result['result']['orderId'].'&buy=1';
 	redirect($url);

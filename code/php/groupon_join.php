@@ -10,6 +10,7 @@ IS_USER_LOGIN();
 $backUrl = getPrevUrl();
 
 $attendId = intval($_GET['aid']);
+$pdkUid   = intval($_GET['pdkUid']);
 empty($attendId) && redirect($backUrl, '参数错误');
 
 $info = apiData('groupDetailApi.do', array('recordId'=>$attendId, 'userId'=>$userid));
@@ -38,7 +39,6 @@ if($info['activityType'] == 2){//团免，需用户有免团券
 	$isGrouponFree = 0;
 	$jumpProduct = true;
 }
-
 //sku
 $skus = array();
 if(($info['status'] == 0) && ($info['userIsHead'] != 1) && ($info['isGroup'] == 0)){
@@ -48,9 +48,13 @@ if(($info['status'] == 0) && ($info['userIsHead'] != 1) && ($info['isGroup'] == 
 
 
 //获取分享内容
-$fx = apiData('getShareContentApi.do', array('id'=>$attendId, 'type'=>9));
-$fx = $fx['result'];
-
+if($info['activityType'] == 8){
+	$fx = apiData('getShareContentApi.do', array('id'=>$attendId,'pdkUid'=>$userid,'type'=>9));
+	$fx = $fx['result'];
+}else{
+	$fx = apiData('getShareContentApi.do', array('id'=>$attendId, 'type'=>9));
+	$fx = $fx['result'];
+}
 
 //猜你喜欢
 
