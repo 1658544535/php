@@ -108,14 +108,74 @@ class Weixin extends Wechat{
         }
     }
 
+	/**
+	 * GET 请求
+	 * @param string $url
+	 */
+	private function httpGet($url){
+		$oCurl = curl_init();
+		if(stripos($url,"https://")!==FALSE){
+			curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+			curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, FALSE);
+			curl_setopt($oCurl, CURLOPT_SSLVERSION, 1); //CURL_SSLVERSION_TLSv1
+		}
+		curl_setopt($oCurl, CURLOPT_URL, $url);
+		curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1 );
+		$sContent = curl_exec($oCurl);
+		$aStatus = curl_getinfo($oCurl);
+		curl_close($oCurl);
+		if(intval($aStatus["http_code"])==200){
+			return $sContent;
+		}else{
+			return false;
+		}
+	}
+
+	/**
+	 * POST 请求
+	 * @param string $url
+	 * @param array $param
+	 * @param boolean $post_file 是否文件上传
+	 * @return string content
+	 */
+	private function httpPost($url,$param,$post_file=false){
+		$oCurl = curl_init();
+		if(stripos($url,"https://")!==FALSE){
+			curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+			curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, false);
+			curl_setopt($oCurl, CURLOPT_SSLVERSION, 1); //CURL_SSLVERSION_TLSv1
+		}
+		if (is_string($param) || $post_file) {
+			$strPOST = $param;
+		} else {
+			$aPOST = array();
+			foreach($param as $key=>$val){
+				$aPOST[] = $key."=".urlencode($val);
+			}
+			$strPOST =  join("&", $aPOST);
+		}
+		curl_setopt($oCurl, CURLOPT_URL, $url);
+		curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1 );
+		curl_setopt($oCurl, CURLOPT_POST,true);
+		curl_setopt($oCurl, CURLOPT_POSTFIELDS,$strPOST);
+		$sContent = curl_exec($oCurl);
+		$aStatus = curl_getinfo($oCurl);
+		curl_close($oCurl);
+		if(intval($aStatus["http_code"])==200){
+			return $sContent;
+		}else{
+			return false;
+		}
+	}
+
     /**
 	 * 获取标签列表
      *
 	 * @return boolean|array
 	 */
 	public function getTag(){
-		if (!$this->access_token && !$this->checkAuth()) return false;
-		$result = $this->http_get(self::API_URL_PREFIX.self::TAG_GET_URL.'access_token='.$this->access_token);
+		if (!$this->access_token && !$atoken = $this->checkAuth()) return false;
+		$result = $this->httpGet(self::API_URL_PREFIX.self::TAG_GET_URL.'access_token='.$atoken);
 		if ($result)
 		{
 			$json = json_decode($result,true);
@@ -124,7 +184,7 @@ class Weixin extends Wechat{
 				$this->errMsg = $json['errmsg'];
 				return false;
 			}
-			return $json;
+			if(isset($json['tags'])) return $json['tags'];
 		}
 		return false;
 	}
@@ -136,11 +196,11 @@ class Weixin extends Wechat{
 	 * @return boolean|array
 	 */
 	public function createTag($name){
-		if (!$this->access_token && !$this->checkAuth()) return false;
+		if (!$this->access_token && !$atoken = $this->checkAuth()) return false;
 		$data = array(
 			'tag'=>array('name'=>$name)
 		);
-		$result = $this->http_post(self::API_URL_PREFIX.self::TAG_CREATE_URL.'access_token='.$this->access_token,self::json_encode($data));
+		$result = $this->httpPost(self::API_URL_PREFIX.self::TAG_CREATE_URL.'access_token='.$atoken,self::json_encode($data));
 		if ($result)
 		{
 			$json = json_decode($result,true);
@@ -162,11 +222,11 @@ class Weixin extends Wechat{
 	 * @return boolean
 	 */
 	public function updateTag($tagid,$name){
-		if (!$this->access_token && !$this->checkAuth()) return false;
+		if (!$this->access_token && !$atoken = $this->checkAuth()) return false;
 		$data = array(
 			'tag'=>array('id'=>$tagid,'name'=>$name)
 		);
-		$result = $this->http_post(self::API_URL_PREFIX.self::TAG_UPDATE_URL.'access_token='.$this->access_token,self::json_encode($data));
+		$result = $this->httpPost(self::API_URL_PREFIX.self::TAG_UPDATE_URL.'access_token='.$atoken,self::json_encode($data));
 		if ($result)
 		{
 			$json = json_decode($result,true);
@@ -186,11 +246,11 @@ class Weixin extends Wechat{
      * @return boolean
      */
     public function deleteTag($tagid){
-        if (!$this->access_token && !$this->checkAuth()) return false;
+        if (!$this->access_token && !$atoken = $this->checkAuth()) return false;
         $data = array(
 			'tag'=>array('id'=>$tagid,'name'=>$name)
 		);
-        $result = $this->http_post(self::API_URL_PREFIX.self::TAG_DELETE_URL.'access_token='.$this->access_token,self::json_encode($data));
+        $result = $this->httpPost(self::API_URL_PREFIX.self::TAG_DELETE_URL.'access_token='.$atoken,self::json_encode($data));
 		if ($result)
 		{
 			$json = json_decode($result,true);
@@ -212,12 +272,12 @@ class Weixin extends Wechat{
 	 * @return boolean|array
 	 */
 	public function getUserTag($tagid, $openid=''){
-	    if (!$this->access_token && !$this->checkAuth()) return false;
+	    if (!$this->access_token && !$atoken = $this->checkAuth()) return false;
 	    $data = array(
             'tagid' => $tagid,
 	        'next_openid'=>$openid
 	    );
-	    $result = $this->http_post(self::API_URL_PREFIX.self::TAG_USER_URL.'access_token='.$this->access_token,self::json_encode($data));
+	    $result = $this->httpPost(self::API_URL_PREFIX.self::TAG_USER_URL.'access_token='.$atoken,self::json_encode($data));
 	    if ($result)
 	    {
 	        $json = json_decode($result,true);
@@ -239,12 +299,12 @@ class Weixin extends Wechat{
      * @return boolean
      */
     public function memberBatchTag($tagid, $openids){
-        if (!$this->access_token && !$this->checkAuth()) return false;
+        if (!$this->access_token && !$atoken = $this->checkAuth()) return false;
         $data = array(
             'tagid' => $tagid,
 	        'openid_list' => $openids
 	    );
-        $result = $this->http_post(self::API_URL_PREFIX.self::TAG_MEMBER_BATCHTAG_URL.'access_token='.$this->access_token,self::json_encode($data));
+        $result = $this->httpPost(self::API_URL_PREFIX.self::TAG_MEMBER_BATCHTAG_URL.'access_token='.$atoken,self::json_encode($data));
         if ($result)
 	    {
 	        $json = json_decode($result,true);
@@ -266,12 +326,12 @@ class Weixin extends Wechat{
      * @return boolean
      */
     public function memberBatchUnTag($tagid, $openids){
-        if (!$this->access_token && !$this->checkAuth()) return false;
+        if (!$this->access_token && !$atoken = $this->checkAuth()) return false;
         $data = array(
             'tagid' => $tagid,
 	        'openid_list' => $openids
 	    );
-        $result = $this->http_post(self::API_URL_PREFIX.self::TAG_MEMBER_BATCHUNTAG_URL.'access_token='.$this->access_token,self::json_encode($data));
+        $result = $this->httpPost(self::API_URL_PREFIX.self::TAG_MEMBER_BATCHUNTAG_URL.'access_token='.$atoken,self::json_encode($data));
         if ($result)
 	    {
 	        $json = json_decode($result,true);
@@ -292,11 +352,11 @@ class Weixin extends Wechat{
      * @return array
      */
     public function memberTagidList($openid){
-        if (!$this->access_token && !$this->checkAuth()) return false;
+        if (!$this->access_token && !$atoken = $this->checkAuth()) return false;
         $data = array(
             'openid' => $openid
 	    );
-        $result = $this->http_post(self::API_URL_PREFIX.self::TAG_MEMBER_IDLIST_URL.'access_token='.$this->access_token,self::json_encode($data));
+        $result = $this->httpPost(self::API_URL_PREFIX.self::TAG_MEMBER_IDLIST_URL.'access_token='.$atoken,self::json_encode($data));
         if ($result)
 	    {
 	        $json = json_decode($result,true);
