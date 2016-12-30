@@ -32,7 +32,11 @@ $attendId = intval($_GET['aid']);//参团id
 //防止下单后点击手机物理返回按钮
 if(isset($_SESSION['order_success']) && $_SESSION['order_success']){
 	unset($_SESSION['order_success']);
-	redirect('groupon_join.php?aid='.$attendId);
+	if($pdkUid !=''){
+		redirect('groupon_join.php?aid='.$attendId.'&pdkUid='.$pdkUid);
+	}else{
+		redirect('groupon_join.php?aid='.$attendId);
+	}
 }
 
 $num = intval($_GET['num']);
@@ -48,7 +52,7 @@ if(isset($_GET['as'])){
 }
 $skuId = intval($_GET['skuid']);
 empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
-$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>$activeSource,'uid'=>$userid,'pdkUid'=>$pdkUid));
+$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>$activeSource,'uid'=>$userid,'pdkUid'=>$pdkUid),'post',true);
 empty($info) && redirect($prevUrl, '网络异常，请稍候访问');
 if($info['success']){
 	$info = $info['result'];
@@ -60,6 +64,7 @@ if($info['success']){
 $_SESSION['order']['type'] = 'join';
 $_SESSION['order']['grouponId'] = $grouponId;
 $_SESSION['order']['attendId'] = $attendId;
+$_SESSION['order']['pdkUid'] = $pdkUid;
 //$_SESSION['order']['isfree'] = $isGrouponFree ? 1 : 0;//参加的团的类型
 
 include_once('order_common.php');

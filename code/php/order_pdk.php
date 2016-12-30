@@ -36,7 +36,7 @@ if(isset($_SESSION['order_success']) && $_SESSION['order_success']){
 $productId = intval($_GET['pid']);
 $time = time();
 
-$num = 1;
+$num = intval($_GET['num']);;
 
 $skuId = intval($_GET['skuid']);
 empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
