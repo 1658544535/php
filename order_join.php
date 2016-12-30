@@ -23,6 +23,8 @@ if($referer){
 $grouponId = intval($_GET['id']);
 empty($grouponId) && redirect($prevUrl);
 
+$pdkUid    = intval($_GET['pdkUid']);
+
 $productId = intval($_GET['pid']);
 
 $attendId = intval($_GET['aid']);//参团id
@@ -44,10 +46,9 @@ if(isset($_GET['as'])){
 }else{
 	$activeSource = $_SESSION['order']['source'] ? $_SESSION['order']['source'] : '';
 }
-
 $skuId = intval($_GET['skuid']);
 empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
-$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>$activeSource,'uid'=>$userid));
+$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>$activeSource,'uid'=>$userid,'pdkUid'=>$pdkUid));
 empty($info) && redirect($prevUrl, '网络异常，请稍候访问');
 if($info['success']){
 	$info = $info['result'];

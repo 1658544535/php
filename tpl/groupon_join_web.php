@@ -83,51 +83,31 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 							<?php if($info['isGroup'] == 1){ ?>
 								<div>
 									<a href="index.php" class="white">更多拼团</a>
-								 <?php if($info['activityType'] ==8){?>
-									<a href="groupon.php?act=guess&pid=<?php echo $productId;?>">我要开团</a>
-								 <?php }else{?>
-								    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
-								 <?php }?>
+								    <a href="groupon.php?id=<?php echo $info['activityId'];?>&pdkUid=<?php echo $pdkUid; ?>">我要开团</a>
 								</div>
 							<?php }else{ ?>
 								<div>
 									<a href="index.php" class="white">更多拼团</a>
-								 <?php if($info['activityType'] ==8){?>
-									<a href="groupon.php?act=guess&pid=<?php echo $productId;?>">我要开团</a>
-								 <?php }else{?>
-								    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
-								 <?php }?>
+								    <a href="groupon.php?id=<?php echo $info['activityId'];?>&pdkUid=<?php echo $pdkUid; ?>">我要开团</a>
 							    </div>
 							<?php } ?>
 							<?php break; ?>
 						<?php case 2: ?>
 							   <div>
 								    <a href="index.php" class="white">更多拼团</a>
-								 <?php if($info['activityType'] ==8){?>
-									<a href="groupon.php?act=guess&pid=<?php echo $productId;?>">我要开团</a>
-								 <?php }else{?>
-								    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
-								 <?php }?>
+								    <a href="groupon.php?id=<?php echo $info['activityId'];?>&pdkUid=<?php echo $pdkUid; ?>">我要开团</a>
 							</div>
 							<?php break; ?>
 						<?php case 3: ?>
 							<div>
 								<a href="index.php" class="white">更多拼团</a>
-								<?php if($info['activityType'] ==8){?>
-									<a href="groupon.php?act=guess&pid=<?php echo $productId;?>">我要开团</a>
-								 <?php }else{?>
-								    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
-								 <?php }?>
+								<a href="groupon.php?id=<?php echo $info['activityId'];?>&pdkUid=<?php echo $pdkUid; ?>">我要开团</a>
 							</div>
 							<?php break; ?>
 						<?php case 4: ?>
 							<div>
 								<a href="index.php" class="white">更多拼团</a>
-								<?php if($info['activityType'] ==8){?>
-									<a href="groupon.php?act=guess&pid=<?php echo $productId;?>">我要开团</a>
-								 <?php }else{?>
-								    <a href="groupon.php?id=<?php echo $info['activityId'];?>">我要开团</a>
-								 <?php }?>
+								<a href="groupon.php?id=<?php echo $info['activityId'];?>&pdkUid=<?php echo $pdkUid; ?>">我要开团</a>
 							</div>
 							<?php break; ?>
 					<?php } ?>
@@ -144,17 +124,9 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					<section class="freeList proTipsNew-1">
 						<ul class="list-container">
 							<li><a href="javascript:;">
-								<?php if($info['activityType'] ==8){?>
-								  <div class="img" onclick="location.href='groupon.php?act=guess&pid=<?php echo $productId;?>'"><img src="<?php echo $info['productImage'];?>"></div>
-								<?php }else{?>
 								  <div class="img" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><img src="<?php echo $info['productImage'];?>"></div>
-								<?php }?>
 								<div class="info">
-								 <?php if($info['activityType'] ==8){?>
-									<div class="name" onclick="location.href='groupon.php?act=guess&pid=<?php echo $productId;?>'"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
-								 <?php }else{?>
 								    <div class="name" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
-								 <?php }?>
 									<div class="price">
 										<span class="price1">￥<?php echo $info['groupPrice'];?></span>
 										<?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
@@ -364,7 +336,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             	});
 
 				<?php if($info['productStatus'] == 1){ ?>
-					var jsonUrlParam = {"id":"<?php echo $grouponId;?>","pid":"<?php echo $info['productId'];?>","skuid":"","num":1,"free":"<?php echo $isGrouponFree;?>","aid":"<?php echo $attendId;?>","as":"<?php echo $info['activityType'];?>"};
+					var jsonUrlParam = {"id":"<?php echo $grouponId;?>","pid":"<?php echo $info['productId'];?>","skuid":"","num":1,"free":"<?php echo $isGrouponFree;?>","aid":"<?php echo $attendId;?>","as":"<?php echo $info['activityType'];?>","pdkUid":"<?php echo $pdkUid;?>"};
 					var clickBuy = false;
 
 					$("#openSku").on("click", function(){

@@ -217,7 +217,13 @@
 										</a>
 									<?php } elseif($info['activityType'] == 8){?>
 										<a class="more" data-href="order_pdk.php" id="btn-groupon" data-ref="pdk">
+											 <?php if($info['isPdk'] ==1 && $pdkUid ==''){?> 
 											  <p>￥<b>0.00</b></p>
+											 <?php }elseif($info['isPdk'] ==1 && $pdkUid ==$userid){?>
+											  <p>￥<b>0.00</b></p>
+											 <?php }else{?>
+											  <p>￥<b><?php echo $info['productPrice'];?></b></p>
+											 <?php }?>
 											 <p><?php echo $info['groupNum'];?>人团</p>
 										</a>
 									<?php }else{ ?>
@@ -260,7 +266,7 @@
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
 
 				<?php if($info['productStatus'] == 1){ ?>
-					var jsonUrlParam = {"id":"<?php echo $grouponId;?>","pid":"<?php echo $info['productId'];?>","skuid":"","num":1};
+					var jsonUrlParam = {"id":"<?php echo $grouponId;?>","pid":"<?php echo $info['productId'];?>","skuid":"","num":1,"pdkUid":"<?php echo $pdkUid;?>"};
 					var clickBuy = false;
 
 					<?php switch($info['activityType']){

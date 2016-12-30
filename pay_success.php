@@ -14,7 +14,7 @@ $orderId = intval($_GET['oid']);
 $orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
 if($orderInfo['result']['attendId']){
     if($state && in_array($_SESSION['order']['type'], array('free', 'groupon', 'join', 'raffle01', 'seckill'))){
-        $referUrl = 'groupon_join.php?aid='.$orderInfo['result']['attendId'];
+        $referUrl = 'groupon_join.php?aid='.$orderInfo['result']['attendId'].'&pdkUid='.$orderInfo['result']['orderInfo']['pdkUid'];
     }
 }
 unset($_SESSION['order']);

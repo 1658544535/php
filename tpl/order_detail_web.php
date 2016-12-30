@@ -180,10 +180,10 @@
                     <div class="option">
                      <?php if($OrderDetail['result']['orderStatus'] !=1){?>
                        <?php if($OrderDetail['result']['isSuccess'] ==0 && $OrderDetail['result']['orderStatus'] ==2 ){?>
-                           <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
+                           <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>&pdkUid=<?php echo $OrderDetail['result']['orderInfo']['pdkUid']; ?>">查看团详情</a>
                       <?php }else if($OrderDetail['result']['orderStatus'] ==3 ){?>                  
                            <?php if($OrderDetail['result']['source'] !=4 && $OrderDetail['result']['source'] !=3){?>
-                           <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
+                           <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>&pdkUid=<?php echo $OrderDetail['result']['orderInfo']['pdkUid']; ?>" class="gray">查看团详情</a>
                            <?php }?>
                            <?php if($OrderDetail['result']['refundStatus'] ==0 ){?>
                            <a href="aftersale.php?act=apply&oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>">申请退款</a>
@@ -194,16 +194,16 @@
                            <?php }?>
                       <?php }else if($OrderDetail['result']['orderStatus'] ==4){?>
 						   <?php if($OrderDetail['result']['source'] !=4 && $OrderDetail['result']['source'] !=3){?>
-                           <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>" class="gray">查看团详情</a>
+                           <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>&pdkUid=<?php echo $OrderDetail['result']['orderInfo']['pdkUid']; ?>" class="gray">查看团详情</a>
                            <?php }?>
 					  <?php }else if( $OrderDetail['result']['isSuccess'] ==2 && (($OrderDetail['result']['refPriStatus'] ==1) || ($OrderDetail['result']['refPriStatus'] ==0))){?>
 						    <?php if($OrderDetail['result']['source'] !=4 && $OrderDetail['result']['source'] !=3){?>
-						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
+						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>&pdkUid=<?php echo $OrderDetail['result']['orderInfo']['pdkUid']; ?>">查看团详情</a>
 				            <?php }?>
 				       <?php }else if($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==2){?>
-						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
+						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>&pdkUid=<?php echo $OrderDetail['result']['orderInfo']['pdkUid']; ?>">查看团详情</a>
 					   <?php }else if($OrderDetail['result']['isSuccess'] ==1 && $OrderDetail['result']['orderStatus'] ==2 ){?>
-						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>">查看团详情</a>
+						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>&pdkUid=<?php echo $OrderDetail['result']['orderInfo']['pdkUid']; ?>">查看团详情</a>
 				      <?php }?>
                     <?php }?>
                     </div>
