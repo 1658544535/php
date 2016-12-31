@@ -30,7 +30,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 						    <?php }?>
 		                <?php break; ?>
 		                <?php case 1: ?>
-		                <?php if($info['isGroup'] ==1){?>
+		                <?php if($info['isGroup'] ==1 || $info['isOpen'] ==1){?>
 							<h1 class="title">拼团成功</h1>
 		                <?php }else{?>
 							<h1 class="title">已成团</h1>
@@ -131,7 +131,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 										<span class="price1">￥<?php echo $info['groupPrice'];?></span>
 										<?php if($info['isSellOut'] ==1 && $info['isGroup'] ==0){?>
 											<div class="icon"><img src="images/groupJoin-2.png" /></div>
-										<?php }elseif($info['isGroup'] ==1 && $info['status'] ==1 ){?>
+										<?php }elseif(($info['isGroup'] ==1 || $info['isOpen'] ==1)  && $info['status'] ==1 ){?>
 											<div class="icon"><img src="images/groupJoin-3.png" /></div>
 										<?php }elseif( $info['isGroup'] ==0 && $info['status'] ==1){?>
 											<div class="icon"><img src="images/groupJoin-1.png" /></div>
@@ -191,7 +191,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					       <?php }?>
 					    <?php break;?>
 					    <?php case 1:?>
-						   <?php if($info['isGroup'] ==0){?>
+						   <?php if($info['isGroup'] ==0 && $info['isOpen'] !=1){?>
 							<h3 class="title1">您来晚了，已成团~</h3>
 					       <?php }?>
 					    <?php break;?> 
