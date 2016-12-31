@@ -21,9 +21,9 @@ $isTest = true;
 //数据接口
 //define('API_URL', 'http://rap.taozhuma.com/mockjsdata/2');
 if($_SERVER['SERVER_NAME'] == 'pdh.choupinhui.net'){
-	define('API_URL', 'http://pdh.choupinhui.net/v3.5');
+	define('API_URL', 'http://pdh.choupinhui.net/v3.6');
 }else{
-	define('API_URL', 'http://pin.taozhuma.com/v3.5');
+	define('API_URL', 'http://pin.taozhuma.com/v3.6');
 }
 
 /*============================== 加载基本文件 =============================================*/
