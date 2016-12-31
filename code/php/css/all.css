@@ -4323,8 +4323,8 @@
   font-size: 0;
 }
 .user-pdk ul li {
-  display: inline-block;
-  width: 25%;
+  display: table-cell;
+  width: 1%;
   font-size: 0.6rem;
   text-align: center;
 }
