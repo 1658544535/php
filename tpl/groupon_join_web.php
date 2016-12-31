@@ -124,7 +124,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					<section class="freeList proTipsNew-1">
 						<ul class="list-container">
 							<li><a href="javascript:;">
-								  <div class="img" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>'"><img src="<?php echo $info['productImage'];?>&pdkUid=<?php echo $pdkUid;?>"></div>
+								  <div class="img" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>&pdkUid=<?php echo $pdkUid;?>'"><img src="<?php echo $info['productImage'];?>"></div>
 								<div class="info">
 								    <div class="name" onclick="location.href='groupon.php?id=<?php echo $grouponId;?>&pdkUid=<?php echo $pdkUid;?>'"><span class="num"><?php echo $info['groupNum']?>人团</span><?php echo $info['productName'];?></div>
 									<div class="price">
