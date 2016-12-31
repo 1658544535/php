@@ -106,9 +106,10 @@ $d = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'skuLi
 //判断拼得客活动是否已结束
 (($info['activityType'] == 8) && ($info['activityStatus'] == 2)) && redirect('/index.php', '活动已结束');
 //判断是否拼得客
-if($info['activityType'] == 8 && $info['isPdk'] ==0 && $pdkUid =='' ){
+if($info['activityType'] == 8 ){
+	if($info['isPdk'] ==0 && $pdkUid ==''){
 	redirect('index.php',您无法访问该页面！);
+	}
 }
-
 include_once('tpl/groupon_web.php');
 ?>
