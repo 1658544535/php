@@ -226,8 +226,7 @@ switch($act){
 		}
 
 		$sortoutFile = DATA_FILE_DIR.DATA_TAG_USER_FILE;
-		$sortoutData = include($sortoutFile);
-		
+		$sortoutData = file_exists($sortoutFile) ? include($sortoutFile) : array();
 
         $opList = array();
         $unopList = array();
@@ -245,7 +244,7 @@ switch($act){
             $endIndex = $total;
             TagManagePage::toManage();
         }
-        
+
 		for($i=$startIndex; $i<$endIndex; $i++){
 			if(!empty($data[$i]['openid'])){
 				if($data[$i]['money'] > 100){
@@ -279,6 +278,7 @@ switch($act){
 			foreach($sortoutData as $_tagid => $v){
 				$sortoutData[$_tagid]['setted'] = 0;
 			}
+            file_put_contents($sortoutFile, "<?php\r\nreturn ".var_export($sortoutData, true).";\r\n?>");
             echo '归类完成<br />';
 			echo '<a href="'.URL_BASE.'?act=batchSet">现在去设置</a>';
         }else{
