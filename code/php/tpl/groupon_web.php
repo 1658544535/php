@@ -217,9 +217,9 @@
 										</a>
 									<?php } elseif($info['activityType'] == 8){?>
 										<a class="more" data-href="order_pdk.php" id="btn-groupon" data-ref="pdk">
-											 <?php if($info['isPdk'] ==1 && $pdkUid ==''){?> 
+											 <?php if($info['isPdk'] ==1 && $pdkUid ==$userid){?> 
 											  <p>￥<b>0.00</b></p>
-											 <?php }elseif($info['isPdk'] ==1 && $pdkUid ==$userid){?>
+											 <?php }elseif($info['isPdk'] ==1 && $pdkUid ==''){?>
 											  <p>￥<b>0.00</b></p>
 											 <?php }else{?>
 											  <p>￥<b><?php echo $info['productPrice'];?></b></p>
