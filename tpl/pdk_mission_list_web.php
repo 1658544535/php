@@ -16,7 +16,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 <a href="user.php" class="button button-link button-nav pull-left">
                     <span class="icon icon-back"></span>
                 </a>
-                <h1 class="title">拼得好</h1>
+                <h1 class="title">任务清单</h1>
             </header>
 
             <div class="content native-scroll">
@@ -38,6 +38,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                             <div class="info">
                                 <div class="name"><span class="num"><%=data["data"][i]["groupNum"]%>人团</span><%=data["data"][i]["productName"]%></div>
                                 <div class="price">
+                                    <div class="price1">赚: ￥11</div>
                                     <span class="price1">￥<%=data["data"][i]["productPrice"]%></span>
                                     <span class="price2">￥<%=data["data"][i]["alonePrice"]%></span>
                                 </div>
