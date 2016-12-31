@@ -65,7 +65,8 @@ switch($wxReqType){
 					case '2'://落地页来源
 						recordSourceQrcode();
 					default:
-						$text = '<a href="'.$siteUrl.'">优质玩具，预购从速，点击进入</a>';
+//						$text = '<a href="'.$siteUrl.'">优质玩具，预购从速，点击进入</a>';
+						$text = "欢迎关注【拼得好】商城！\r\n①点击【进入商城】右下方领取88元新年红包！\r\n②千元抽奖仅花一毛，一团两人必中！<a href='http://weixin.pindegood.com/lottery_new.php'>立即开团</a>";
 						break;
 				}
 				$objWX->text($text)->reply();
