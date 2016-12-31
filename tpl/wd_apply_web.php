@@ -77,8 +77,10 @@
                         cols: [
                         {
                           textAlign: 'center',
-                          displayValues: ['支付宝', '微信', '银行'],
-                          values: [1,2,3]
+                          // displayValues: ['支付宝', '微信', '银行'],
+                          // values: [1,2,3],
+                          displayValues: ['支付宝', '银行'],
+                          values: [1,3]
                         }
                         ],
                         formatValue: function(picker, values, displayValues){
