@@ -38,7 +38,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                             <div class="info">
                                 <div class="name"><span class="num"><%=data["data"][i]["groupNum"]%>人团</span><%=data["data"][i]["productName"]%></div>
                                 <div class="price">
-                                    <div class="price1">赚: ￥<%=data["data"][i]["rebatePrice"]%></div>
+                                    <div class="price3">赚: ￥<%=data["data"][i]["rebatePrice"]%></div>
                                     <span class="price1">￥<%=data["data"][i]["productPrice"]%></span>
                                 </div>
                                 <div class="btn">

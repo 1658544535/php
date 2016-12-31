@@ -5079,6 +5079,10 @@
   color: #8c8c8c;
   text-decoration: line-through;
 }
+.index-seckill .list-container li a .info .price .price3 {
+  font-size: 0.9rem;
+  color: #333;
+}
 .index-seckill .list-container li a .info .price .range {
   position: relative;
   width: 4.4rem;
@@ -5365,6 +5369,7 @@
   width: 4.3rem;
   height: 100%;
   background: #f2f2f2;
+  overflow-y: auto;
 }
 .class-one ul {
   margin: 0;
