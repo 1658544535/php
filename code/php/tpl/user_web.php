@@ -80,7 +80,7 @@
                     <ul>
                         <li><a href="/pindeke.php?act=pdkInfo&uid=<?php echo $userid;?>"><i class="u-p-1"></i>我的信息</a></li>
                         <li><a href="/pindeke.php?act=wallet&uid=<?php echo $userid;?>"><i class="u-p-2"></i>我的钱包</a></li>
-                        <li><a href="/pindeke.php?act=QRcode&uid=<?php echo $userid;?>"><i class="u-p-3"></i>团免链接</a></li>
+                        <!--  <li><a href="/pindeke.php?act=QRcode&uid=<?php echo $userid;?>"><i class="u-p-3"></i>团免链接</a></li>-->
                         <li><a href="/pindeke.php?act=mission&uid=<?php echo $userid;?>"><i class="u-p-4"></i>任务清单</a></li>
                     </ul>
                 </section>
