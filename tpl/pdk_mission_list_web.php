@@ -155,7 +155,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                         </a></li>
                     <%}%>
                 <%}else if(pageNow == 1){%>
-                    <div class="list-null">暂无任务</div>
+                    <div class="pdk-list-null">暂无商品</div>
                 <%}%>
             </script>
         

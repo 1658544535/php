@@ -36,6 +36,13 @@
   color: #8c8c8c;
   text-align: center;
 }
+.pdk-list-null {
+  padding-top: 41.063%;
+  text-align:center;
+  font-size: 0.8rem;
+  color: #8c8c8c;
+  text-align: center;
+}
 .goTop {
   display: none;
   position: fixed;
