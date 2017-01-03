@@ -36,13 +36,6 @@
   color: #8c8c8c;
   text-align: center;
 }
-.pdk-list-null {
-  padding-top: 41.063%;
-  text-align:center;
-  font-size: 0.8rem;
-  color: #8c8c8c;
-  text-align: center;
-}
 .goTop {
   display: none;
   position: fixed;
@@ -4530,7 +4523,7 @@
   background: none;
 }
 .pdk-submit2 {
-  margin: 2.5rem 1.0rem 0;
+  margin: 4.3rem 1.0rem 0;
 }
 .pdk-submit2 input {
   display: block;
@@ -5903,4 +5896,94 @@
   background: #ffd900;
   color: #7c0a00;
   font-size: 1.2rem;
+}
+.page-taskList .user-tab {
+  position: absolute;
+  width: 100%;
+  top: 2.2rem;
+  z-index: 11;
+}
+.page-taskList .user-tab:after {
+  content: ' ';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #e7e7e7;
+}
+.page-taskList .user-tab ul li.double.active-type1:after {
+  display: inline-block;
+  vertical-align: top;
+  width: 0.5rem;
+  height: 100%;
+  background: url(../images/active-down.png) no-repeat 0 center;
+  background-size: 100% auto;
+  content: ' ';
+}
+.page-taskList .user-tab ul li.double.active-type2:after {
+  display: inline-block;
+  vertical-align: top;
+  width: 0.5rem;
+  height: 100%;
+  background: url(../images/active-up.png) no-repeat 0 center;
+  background-size: 100% auto;
+  content: ' ';
+}
+.page-taskList .user-tab ul li.active a {
+  border-bottom: none;
+}
+.page-taskList .index-seckill .list-container {
+  margin-top: 2px;
+}
+.popup-class .main {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+}
+.popup-class .main .title1 {
+  margin: 0;
+  height: 2.0rem;
+  line-height: 2.0rem;
+  font-size: .75rem;
+  color: #818181;
+  font-weight: 400;
+  text-indent: 1.0rem;
+  background: #e9e9e9;
+}
+.popup-class .main .info {
+  margin: 1.5rem 1rem;
+  overflow: hidden;
+}
+.popup-class .main .info .item {
+  float: left;
+  width: 30%;
+  margin: 0 1.5%;
+}
+.popup-class .main .info .item input {
+  display: block;
+  width: 100%;
+  height: 1.7rem;
+  line-height: 1.8rem;
+  border: 1px solid #c8c8c8;
+  border-radius: 5px;
+  text-align: center;
+}
+.popup-class .main .btn {
+  overflow: hidden;
+}
+.popup-class .main .btn a {
+  float: left;
+  width: 50%;
+  height: 2.25rem;
+  line-height: 2.25rem;
+  font-size: .8rem;
+  color: #fff;
+  text-align: center;
+  background: #ff464e;
+}
+.popup-class .main .btn a.gray {
+  background: #979797;
 }
