@@ -33,9 +33,35 @@ switch($act)
 		if($pdkInfo['success'] ==''){
 			redirect('index.php',您无法访问该页面！);
 		}
+		//分类筛选
+		$classOne = apiData('productCategoryApi.do');
+		
+		$classOne = $classOne['result'];
+		
+// 		foreach ($classOne as $k=>$v1){
+// 			if(in_array($classOne['oneId'],$v1)){
+// 				$classTwo = $v1;
+// 			}
+// 		}
+	
+		
+// 		foreach ($classOne as $classTwo){
+// 			foreach ($classTwo['twoLevelList'] as $k=>$v2){
+// 				if(in_array($classTwo['twoLevelList']['twoId'],$v2)){
+// 					$classThree = $v2;
+// 				}
+// 			}
+// 		}
+		
+		
 		include_once('tpl/pdk_mission_list_web.php');
 	break;
 
+	//拼得客任务清单搜索
+	case 'mission_search':
+		include_once('tpl/pdk_mission_search_web.php');
+	break;
+    
     //获取钱包信息
     case 'wallet':
     	IS_USER_LOGIN();
