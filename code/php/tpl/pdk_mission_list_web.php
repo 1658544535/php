@@ -11,10 +11,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 
 <body>
     <div class="page-group" id="page-taskList">
-        <div id="page-nav-bar" class="page page-current page-taskList">
-            <script>
-                var classJson = <?php echo json_encode($classOne);?>;
-            </script>
+        <div id="page-nav-bar" class="page page-current page-taskList">            
             <header class="bar bar-nav">
                 <a class="button button-link button-nav pull-left back" href="javascript:history.back(-1);">
                     <span class="icon icon-back"></span>
@@ -71,6 +68,8 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             <div class="main">
                 <h3 class="title1">分类</h3>
                 <div class="info">
+                    <input id="class-picker" type="text" readonly="readonly" />
+                    <input id="class-picker-value" type="hidden" />
                     <div class="item"><input id="class1" type="text" placeholder="一级分类"  readonly="readonly" /></div>
                     <div class="item"><input id="class2" type="text" placeholder="二级分类"  readonly="readonly" /></div>
                     <div class="item"><input id="class3" type="text" placeholder="三级分类"  readonly="readonly" /></div>
@@ -81,6 +80,10 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="js/lArea/LArea.js" charset="utf-8"></script>
+        <script>
+            var classData = <?php echo json_encode($classOne);?>;
+        </script>
     </div>
 </body>
 
