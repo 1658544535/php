@@ -20,8 +20,9 @@ $orderId = intval($_GET['oid']);
 $orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
 !$orderInfo['success'] && redirect($prevUrl, $orderInfo['error_msg']);
 $orderInfo = $orderInfo['result'];
+$payWay = CheckDatas( 'payWay', '' );
 if(empty($isBuy)){//订单列表进来支付
-    $result = apiData('payOrder.do', array('orderNo'=>$orderInfo['orderInfo']['orderNo'],'payMethod'=>8,'uid'=>$userid,'pdkUid'=>$orderInfo['orderInfo']['pdkUid']));
+    $result = apiData('payOrder.do', array('orderNo'=>$orderInfo['orderInfo']['orderNo'],'payMethod'=>$payWay,'uid'=>$userid,'pdkUid'=>$orderInfo['orderInfo']['pdkUid']));
 	!$result['success'] && redirect($prevUrl, $result['error_msg']);
 	$payParam = $result['result']['wxpay'];
 	$refUrl .= 'url='.urlencode($prevUrl);
