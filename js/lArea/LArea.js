@@ -366,6 +366,7 @@ window.LArea = (function() {
                 this.valueTo.value= provinceCode +((cityCode)?(',' + cityCode):('')) + ((countyCode)?(',' + countyCode):(''));
             }
             _self.close(e);
+            if(!!_self.callback) _self.callback();
         },
         close: function(e) {
             e.preventDefault();
@@ -374,7 +375,8 @@ window.LArea = (function() {
             _self.trigger.dispatchEvent(evt);
             document.body.removeChild(_self.gearArea);
             _self.gearArea=null;
-        }
+        },
+        callback: null
     }
     return MobileArea;
 })()

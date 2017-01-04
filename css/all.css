@@ -5912,23 +5912,22 @@
   height: 1px;
   background: #e7e7e7;
 }
-.page-taskList .user-tab ul li.double.active-type1:after {
+.page-taskList .user-tab ul li.double:after {
+  content: ' ';
   display: inline-block;
   vertical-align: top;
   width: 0.5rem;
   height: 100%;
-  background: url(../images/active-down.png) no-repeat 0 center;
+  background-repeat: no-repeat;
+  background-position: 0 center;
   background-size: 100% auto;
-  content: ' ';
+  background-image: url(../images/tzm_266.png);
+}
+.page-taskList .user-tab ul li.double.active-type1:after {
+  background-image: url(../images/active-down.png);
 }
 .page-taskList .user-tab ul li.double.active-type2:after {
-  display: inline-block;
-  vertical-align: top;
-  width: 0.5rem;
-  height: 100%;
-  background: url(../images/active-up.png) no-repeat 0 center;
-  background-size: 100% auto;
-  content: ' ';
+  background-image: url(../images/active-up.png);
 }
 .page-taskList .user-tab ul li.active a {
   border-bottom: none;
@@ -5954,8 +5953,18 @@
   background: #e9e9e9;
 }
 .popup-class .main .info {
+  position: relative;
   margin: 1.5rem 1rem;
   overflow: hidden;
+}
+#class-picker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 3;
 }
 .popup-class .main .info .item {
   float: left;
