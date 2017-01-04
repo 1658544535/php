@@ -89,11 +89,20 @@
 								<p>微信支付</p>
 								<span class="label">推荐</span>
 							</li>
+
+							<?php if($infowallet['balance'] >= $info['products']['price']){?>
 							<li>
 								<input type="radio" name="payWay" value="4"/>
 								<img src="images/user-wallet.png" />
 								<p>使用钱包金额</p>
 							</li>
+						    <?php }else{?>
+						    <li class="disabled">
+								<input type="radio" name="payWay" value="4" disabled="disabled"/>
+								<img src="images/user-wallet.png" />
+								<p>使用钱包金额</p>
+							</li>
+						    <?php }?>
 						</ul>
 					</section>
 
