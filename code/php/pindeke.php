@@ -48,7 +48,7 @@ switch($act)
     //获取钱包信息
     case 'wallet':
     	IS_USER_LOGIN();
-    	$userid    = CheckDatas( 'uid', '' );
+
     	$Objwallet = apiData('pindekeUserInfo.do',array('userId'=>$userid));
     	include_once('tpl/pdk_wallet_web.php');
     break;
@@ -57,7 +57,7 @@ switch($act)
     case 'incomes':
     	 $page       = max(1, intval($_POST['page']));
     	 $Objincomes = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>1,'userId'=>$userid));
-    	  include_once('tpl/pdk_incomes_web.php');
+    	 include_once('tpl/pdk_incomes_web.php');
     break;
     
     //获取收入详情数据
