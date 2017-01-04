@@ -79,17 +79,19 @@
                     <h3 class="title1"><i></i>拼得客管理中心</h3>
                     <ul>
                         <li><a href="/pindeke.php?act=pdkInfo&uid=<?php echo $userid;?>"><i class="u-p-1"></i>我的信息</a></li>
-                        <li><a href="/pindeke.php?act=wallet&uid=<?php echo $userid;?>"><i class="u-p-2"></i>我的钱包</a></li>
+                        <li><a href="/pindeke.php?act=wallet"><i class="u-p-2"></i>我的钱包</a></li>
                         <!--  <li><a href="/pindeke.php?act=QRcode&uid=<?php echo $userid;?>"><i class="u-p-3"></i>团免链接</a></li>-->
-                        <li><a href="/pindeke.php?act=mission&uid=<?php echo $userid;?>"><i class="u-p-4"></i>任务清单</a></li>
+                        <li><a href="/pindeke.php?act=mission"><i class="u-p-4"></i>任务清单</a></li>
                     </ul>
                 </section>
                <?php }?>
 
-                <section class="user-wallet">
+                <!--<section class="user-wallet">
+                    <a href="/user_wallet.php">
                     <h3 class="title1"><i></i>我的钱包</h3>
-                    <div class="txt">余额: <span class="price">0.00</span></div>
-                </section>
+                    <div class="txt">余额: <?php if($userWallet['balance']){?><span class="price"><?php echo $userWallet['balance'];?></span><?php }else{?><span class="price">0.0</span><?php }?></div>
+                    </a>
+                </section>-->
 
                 <section class="user-list">
                     <ul>
