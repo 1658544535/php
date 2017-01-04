@@ -89,6 +89,11 @@
 								<p>微信支付</p>
 								<span class="label">推荐</span>
 							</li>
+							<li>
+								<input type="radio" name="payWay" />
+								<img src="images/user-wallet.png" />
+								<p>使用钱包金额</p>
+							</li>
 						</ul>
 					</section>
 

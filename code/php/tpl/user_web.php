@@ -86,6 +86,11 @@
                 </section>
                <?php }?>
 
+                <section class="user-wallet">
+                    <h3 class="title1"><i></i>我的钱包</h3>
+                    <div class="txt">余额: <span class="price">0.00</span></div>
+                </section>
+
                 <section class="user-list">
                     <ul>
                         <li><a href="/user_info.php?act=coupon"><i class="u-l-1"></i>我的优惠券</a></li>
