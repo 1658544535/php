@@ -71,9 +71,9 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             <div class="main">
                 <h3 class="title1">分类</h3>
                 <div class="info">
-                    <div class="item"><input id="class1" type="text" placeholder="一级分类" /></div>
-                    <div class="item"><input id="class2" type="text" placeholder="二级分类" /></div>
-                    <div class="item"><input id="class3" type="text" placeholder="三级分类" /></div>
+                    <div class="item"><input id="class1" type="text" placeholder="一级分类"  readonly="readonly" /></div>
+                    <div class="item"><input id="class2" type="text" placeholder="二级分类"  readonly="readonly" /></div>
+                    <div class="item"><input id="class3" type="text" placeholder="三级分类"  readonly="readonly" /></div>
                 </div>
                 <div class="btn">
                     <a class="gray close-popup" href="javascript:;">取消</a>
