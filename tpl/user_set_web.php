@@ -27,6 +27,12 @@
                                 <div class="main">&nbsp;</div>
                             </div>
                         </a></li>
+                        <li class="last"><a href="user_wallet.php?act=wallet">
+                            <div class="item">
+                                <div class="label">兑换礼券</div>
+                                <div class="main">&nbsp;</div>
+                            </div>
+                        </a></li>
                     </ul>
                 </section>
 

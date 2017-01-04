@@ -45,6 +45,10 @@ if($info['success']){
 	redirect($prevUrl, $_errMsg);
 }
 
+//获取钱包余额信息
+$infowallet = apiData('userWelletBalance.do', array('uid'=>$userid));
+$infowallet = $infowallet['result'];
+
 $_SESSION['order']['grouponId'] = $grouponId;
 $_SESSION['order']['type'] = 'guess';
 

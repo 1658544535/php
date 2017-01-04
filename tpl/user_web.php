@@ -86,12 +86,12 @@
                 </section>
                <?php }?>
 
-                <!--<section class="user-wallet">
+                <section class="user-wallet">
                     <a href="/user_wallet.php">
                     <h3 class="title1"><i></i>我的钱包</h3>
                     <div class="txt">余额: <?php if($userWallet['balance']){?><span class="price"><?php echo $userWallet['balance'];?></span><?php }else{?><span class="price">0.0</span><?php }?></div>
                     </a>
-                </section>-->
+                </section>
 
                 <section class="user-list">
                     <ul>
