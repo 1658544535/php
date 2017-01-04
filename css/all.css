@@ -2863,13 +2863,11 @@
 }
 .oc-pay .list {
   list-style: none;
-  margin: 0 0.5rem;
   padding: 0;
 }
 .oc-pay .list li {
   position: relative;
-  padding: 0.65rem 0;
-  border-bottom: 1px solid #e7e7e7;
+  padding: 0.65rem 0.5rem;
   line-height: 1.1rem;
   font-size: 0.7rem;
   color: #1c1c1c;
@@ -2899,8 +2897,20 @@
   line-height: 0.8rem;
   border-radius: 0.15rem;
 }
-.oc-pay .list li:last-child {
-  border-bottom: none;
+.oc-pay .list li:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0.5rem;
+  right: 0.5rem;
+  height: 1px;
+  background: #e7e7e7;
+}
+.oc-pay .list li.disabled {
+  background: #f1f1f1;
+}
+.oc-pay .list li:last-child:after {
+  display: none;
 }
 .oc-pay .list li.active {
   background: url(../images/checkbox.png) no-repeat right center;
