@@ -37,7 +37,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 <section class="index-seckill pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_pdk_mission.php">
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->
-                    <div class="infinite-scroll-preloader">
+                    <div class="infinite-scroll-preloader" style="display: none;">
                         <div class="preloader"></div>
                     </div>
                 </section>
