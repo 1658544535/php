@@ -45,6 +45,11 @@ if($info['success']){
 	redirect($prevUrl, $_errMsg);
 }
 
+//获取钱包余额信息
+$infowallet = apiData('userWelletBalance.do', array('uid'=>$userid));
+$infowallet = $infowallet['result'];
+
+
 $_SESSION['order']['type'] = 'alone';
 
 include_once('order_common.php');
