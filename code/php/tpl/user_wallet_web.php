@@ -1,62 +1,55 @@
-<!doctype html>
-<html lang="zh">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
-<title>我的钱包</title>
-<link href="/css/common.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script type="text/javascript" src="/js/wxshare.js"></script>
-<script>
-	wxshare( <?php echo WXJSDEBUG;?>, '<?php echo WXJSAPPID;?>', <?php echo WXJSTIMESTAMP;?>, '<?php echo WXJSNONCESTR;?>', '<?php echo WXJSSIGNATURE;?>', '<?php echo WEBLOGO;?>', '<?php echo $SHARP_URL;?>', '<?php echo WEBTITLE;?>', '<?php echo WEBDESC;?>' )
-</script>
-</head>
+<?php include_once('header_web.php');?>
+<?php include_once('wxshare_web.php');?>
+
 <body>
-<div id="header">
-	<a href="javascript:history.back(-1);" class="header_back"></a>
-	<p class="header_title">我的钱包</p>
-</div>
-<div class="wallet_money">
-	<h3>我的钱包月(元)</h3>
-	<p><?php echo sprintf('%.2f', $objUserWalletInfo->balance); ?></p>
-</div>
+    <div class="page-group" id="page-pdk-record">
+        <div id="page-nav-bar" class="page page-current">
+            <header class="bar bar-nav">
+                <a class="button button-link button-nav pull-left back" href="javascript:history.back(-1);">
+                    <span class="icon icon-back"></span>
+                </a>
+                <h1 class="title">我的钱包</h1>
+            </header>
 
-<div class="wallet_list">
-	<ul>
-		<li>
-			<div class="left">记录</div>
-			<div class="right">余额明细</div>
-		</li>
+            <div class="content native-scroll">
+                <section class="wallet-header">
+                    <div>剩余金额(元)</div>
+                    <?php if($walletInfo['balance']){?>
+                    <div class="price"><?php echo $walletInfo['balance'];?></div>
+	                <?php }else{?>
+	                <div class="price">0.0</div>
+	                <?php }?>
+                </section>
 
-		<?php if( $objUserWalletLogList != NULL ){ ?>
-			<?php foreach( $objUserWalletLogList as $UserWalletLog ){ ?>
-				<li>
-					<div class="left">
-						<h3>我</h3>
-						<p><?php echo $UserWalletLog->remarks; ?></p>
-					</div>
-					<div class="right">
-						<span><?php echo $UserWalletLog->create_date; ?></span>
-						<p>
-							<?php echo $UserWalletLog->type == 0 ? '获得' : '扣除'; ?>
-							<?php echo $UserWalletLog->trade_amt; ?>元
-						</p>
-					</div>
-				</li>
-			<?php } ?>
-		<?php } ?>
-	</ul>
-</div>
+                <section class="pdkRecord-list pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="ajaxtpl/ajax_user_wallet.php">
+                    <ul class="list-container list"></ul>
+                    <!-- 加载提示符 -->
+                    <div class="infinite-scroll-preloader">
+                        <div class="preloader"></div>
+                    </div>
+                </section>
+                
+            </div>
+            <script id='tpl_pull' type="text/template">
+                <%if(data["data"].length>0){%>
+                    <%for(var i=0;i<data["data"].length; i++){%>
+                        <li>
+                            <p class="type"><%=data["data"][i]["digest"]%></p>
+                            <p class="time"><%=data["data"][i]["addTime"]%></p>
+                           <%if(data["data"][i]["type"] ==0){%>
+                            <p class="price">+<%=data["data"][i]["receive"]%></p>
+                           <%}else{%>
+                            <p class="price">-<%=data["data"][i]["receive"]%></p>
+                           <%}%>
+                        </li>
+                    <%}%>
+                <%}else if(data["pageNow"] == 1){%>
+                    <div class="tips-null">暂无记录</div>
+                <%}%>
+            </script>
 
-<?php include "footer_web.php";?>
-<script>
-	$(function(){
-		$(window).scroll(function(event) {
-			var tabTop = $(".wallet_list").offset().top;
-			$(window).scrollTop()>tabTop ? $(".wallet_list ul li:eq(0)").addClass("active") : $(".wallet_list ul li:eq(0)").removeClass("active");
-		});
-	});
-</script>
+        </div>
+    </div>
 </body>
+
 </html>

@@ -84,13 +84,13 @@
 					<section class="oc-pay">
 						<ul class="list">
 							<li>
-								<input type="radio" name="payWay" checked />
+								<input type="radio" name="payWay" checked value="8"/>
 								<img src="images/pay-wx.png" />
 								<p>微信支付</p>
 								<span class="label">推荐</span>
 							</li>
 							<li>
-								<input type="radio" name="payWay" />
+								<input type="radio" name="payWay" value="4"/>
 								<img src="images/user-wallet.png" />
 								<p>使用钱包金额</p>
 							</li>

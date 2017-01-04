@@ -19,7 +19,17 @@ $_wxUserInfo = $objWX->getUserInfo($openid);
 if($info['userImage'] == ''){
 	$info['userImage'] = $_wxUserInfo['headimgurl'] ? $_wxUserInfo['headimgurl'] : '/images/def_user.png';
 }
+
 //(($info['userImage'] == '') && $_wxUserInfo['headimgurl']) && $info['userImage'] = $_wxUserInfo['headimgurl'];
+
+
+//获取拼得客信息
+$pdkinfo = apiData('pindekeUserInfo.do', array('userId'=>$userid));
+$pdkinfo = $pdkinfo['result'];
+
+//获取用户钱包余额
+$userWallet = apiData('userWelletBalance.do', array('uid'=>$userid));
+$userWallet = $userWallet['result'];
 
 $footerNavActive = 'user';
 include "tpl/user_web.php";

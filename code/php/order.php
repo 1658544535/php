@@ -24,13 +24,14 @@ $mapSource = array('groupon'=>1, 'free'=>2, 'guess'=>3, 'alone'=>4, 'raffle01'=>
 $source = ($orderType == 'join') ? $_SESSION['order']['source'] : $mapSource[$orderType];
 
 $skuId  = intval($_POST['skuid']);
+$payWay = CheckDatas( 'payWay', '' );
 
 $apiParam = array(
 	'uid' => $userid,
 	'pid' => $productId,
 	'num' => $num,
 	'consigneeType' => 1,
-	'payMethod' => 8,
+	'payMethod' => $payWay,
 	'addressId' => $addressId,
 	'buyer_message' => $buyer_message,
 	'activityId' => ($orderType == 'alone') ? 0 : $grouponId,
@@ -69,7 +70,7 @@ if(!$skuId){
 
 if($result['result']['fullpay'] == 1){
 	$orderInfo = apiData('orderdetail.do', array('oid'=>$result['result']['orderId']));
-	
+	//判断是否为拼得客订单
 	if($orderInfo['result']['source'] == 8){
 		$_refreUrl = '/groupon_join.php?aid='.$orderInfo['result']['attendId'].'&pdkUid='.$orderInfo['result']['orderInfo']['pdkUid'];
 	}else{
