@@ -20,6 +20,10 @@ switch($act)
 	//拼得客信息
 	case 'pdkInfo':
 		IS_USER_LOGIN();
+		$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
+		if($pdkInfo['success'] ==''){
+			redirect('index.php',您无法访问该页面！);
+		}
 		$userid  = CheckDatas( 'uid', '' );
 		$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
 		$Objinfo = $Objinfo['result'];
@@ -40,21 +44,24 @@ switch($act)
 		include_once('tpl/pdk_mission_list_web.php');
 	break;
 
-	//拼得客任务清单搜索
-	case 'mission_search':
-		include_once('tpl/pdk_mission_search_web.php');
-	break;
     
     //获取钱包信息
     case 'wallet':
     	IS_USER_LOGIN();
-
+    	$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
+    	if($pdkInfo['success'] ==''){
+    		redirect('index.php',您无法访问该页面！);
+    	}
     	$Objwallet = apiData('pindekeUserInfo.do',array('userId'=>$userid));
     	include_once('tpl/pdk_wallet_web.php');
     break;
 
     //获取收入列表数据
     case 'incomes':
+    	$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
+    	if($pdkInfo['success'] ==''){
+    		redirect('index.php',您无法访问该页面！);
+    	}
     	 $page       = max(1, intval($_POST['page']));
     	 $Objincomes = apiData('pdkTranRecListApi.do',array('beginTime'=>$startTime,'endTime'=>$endTime,'pageNo'=>$page,'type'=>1,'userId'=>$userid));
     	 include_once('tpl/pdk_incomes_web.php');
@@ -62,6 +69,10 @@ switch($act)
     
     //获取收入详情数据
     case 'income':
+    	$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
+    	if($pdkInfo['success'] ==''){
+    		redirect('index.php',您无法访问该页面！);
+    	}
     	$Id 	   = CheckDatas( 'id', '' );
     	$Objincome = apiData('tranDetailApi.do',array('id'=>$Id));
     	include_once('tpl/pdk_income_web.php');
@@ -69,6 +80,10 @@ switch($act)
 
     //提现操作
     case 'withdrawals':
+    	$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
+    	if($pdkInfo['success'] ==''){
+    		redirect('index.php',您无法访问该页面！);
+    	}
     	$Uid 		   = CheckDatas( 'uid', '' );
     	$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$Uid));
     	include_once('tpl/wd_apply_web.php');
@@ -87,6 +102,10 @@ switch($act)
 
     //获取提现记录列表数据
     case 'withdrawals_records':
+    	$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
+    	if($pdkInfo['success'] ==''){
+    		redirect('index.php',您无法访问该页面！);
+    	}
     	$page      = max(1, intval($_POST['page']));
     	$Oldprice  = CheckDatas( 'price', '' );
     	$Objrecord = apiData('pdkTranRecListApi.do',array('type'=>2,'userId'=>$userid));
@@ -95,6 +114,10 @@ switch($act)
     
     //获取提现记录详情数据
     case 'withdrawals_record':
+    	$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
+    	if($pdkInfo['success'] ==''){
+    		redirect('index.php',您无法访问该页面！);
+    	}
     	$Id 		        = CheckDatas( 'id', '' );
     	$Objwithdrawals = apiData('tranDetailApi.do',array('id'=>$Id));
     	$Objwithdrawals = $Objwithdrawals['result'];
