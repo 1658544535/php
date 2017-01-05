@@ -202,7 +202,7 @@
 				            <?php }?>
 				       <?php }else if($OrderDetail['result']['isSuccess'] ==2 && $OrderDetail['result']['refPriStatus'] ==2){?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>&pdkUid=<?php echo $OrderDetail['result']['orderInfo']['pdkUid']; ?>">查看团详情</a>
-					   <?php }else if($OrderDetail['result']['isSuccess'] ==1 && $OrderDetail['result']['orderStatus'] ==2 ){?>
+					   <?php }else if($OrderDetail['result']['isSuccess'] ==1 && $OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['source'] !=4){?>
 						    <a href="groupon_join.php?aid=<?php echo $OrderDetail['result']['attendId']; ?>&pdkUid=<?php echo $OrderDetail['result']['orderInfo']['pdkUid']; ?>">查看团详情</a>
 				      <?php }?>
                     <?php }?>
