@@ -21,7 +21,7 @@
                                 <div class="main">&nbsp;</div>
                             </div>
                         </a></li>
-                        <li class="last"><a href="user_set.php?act=about">
+                        <li><a href="user_set.php?act=about">
                             <div class="item">
                                 <div class="label">关于拼得好</div>
                                 <div class="main">&nbsp;</div>
