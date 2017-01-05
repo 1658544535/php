@@ -164,7 +164,7 @@
                     <?php }?>
                     <ul class="list-container">
                         <li>
-                           <?php if($OrderDetail['result']['source'] ==3){?>
+                           <?php if($OrderDetail['result']['source'] ==3 || $OrderDetail['result']['source'] ==4){?>
                             <a href="/groupon.php?act=guess&id=<?php echo $OrderDetail['result']['activityId'];?>&pid=<?php echo $OrderDetail['result']['productInfo']['productId'];?>">
                            <?php }else{?>
                             <a href="/groupon.php?id=<?php echo $OrderDetail['result']['activityId'];?>&pid=<?php echo $OrderDetail['result']['productInfo']['productId'];?>&pdkUid=<?php echo $OrderDetail['result']['orderInfo']['pdkUid'];?>">
