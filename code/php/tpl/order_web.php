@@ -90,7 +90,7 @@
 								<span class="label">推荐</span>
 							</li>
 
-							<?php if($infowallet['balance'] >= $info['products']['price']){?>
+							<?php if($infowallet['balance'] >= $info['sumPrice']){?>
 							<li>
 								<input type="radio" name="payWay" value="4"/>
 								<img src="images/user-wallet.png" />
