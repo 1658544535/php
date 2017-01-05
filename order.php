@@ -25,7 +25,6 @@ $source = ($orderType == 'join') ? $_SESSION['order']['source'] : $mapSource[$or
 
 $skuId  = intval($_POST['skuid']);
 $payWay = CheckDatas( 'payWay', '' );
-
 $apiParam = array(
 	'uid' => $userid,
 	'pid' => $productId,
