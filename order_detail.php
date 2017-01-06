@@ -49,5 +49,8 @@ switch($act)
 $backStep = isset($_GET['bs']) ? -intval($_GET['bs']) : 0;
 $backStep--;
 
+//获取钱包余额信息
+$infowallet = apiData('userWelletBalance.do', array('uid'=>$userid));
+$infowallet = $infowallet['result'];
 include_once('tpl/order_detail_web.php');
 ?>
