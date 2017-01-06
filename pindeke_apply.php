@@ -151,16 +151,13 @@ switch($act){
 					   {
 							if($info['result']['status'] ==1)
 							{
-								redirect('user.php');
+								redirect('pindeke.php?act=mission');
 							}
-							elseif($info['result']['status'] ==0 || $info['result']['status'] ==3)
+							elseif($info['result']['status'] ==0 || $info['result']['status'] ==3 || $info['result']['status'] ==2)
 							{
 								redirect('pindeke.php?act=pdkInfo&uid='.$userid);
 							}
-							elseif($info['result']['status'] ==2)
-							{
-								redirect('pindeke.php?act=mission');
-							}
+							
 					   } 
 						include_once('tpl/pdk_apply_web.php');
 				   break;
