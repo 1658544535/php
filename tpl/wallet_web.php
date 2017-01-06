@@ -33,7 +33,7 @@
                         </div>
                         <?php }?>
                         <div class="formItem">
-                            <input id="coupon" class="form-control" type="tel" name="number" value="" placeholder="输入兑换码" />
+                            <input id="coupon" class="form-control" type="text" name="number" value="" placeholder="输入兑换码" />
                         </div>
                         <div class="formSubmit">
                             <input class="form-submit" type="submit" value="兑换钱包" />
