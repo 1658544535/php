@@ -69,9 +69,9 @@ switch($act){
 				if($i >= $csvRowStartIndex){
 					$data[] = array(
 						'openid' => $row[$csvColOpenidIndex],
-						'cpn_no' => $row[$csvColCpnNoIndex],
-						'cpn_name' => iconv('gbk', 'utf8', $row[$csvColCpnNameIndex]),
-						'product_name' => iconv('gbk', 'utf8', $row[$csvColProductNameIndex]),
+						'cpn_no' => strval($row[$csvColCpnNoIndex]),
+						'cpn_name' => $row[$csvColCpnNameIndex],
+						'product_name' => $row[$csvColProductNameIndex],
 						'valid_start' => $row[$csvColValidStartIndex],
 						'valid_end' => $row[$csvColValidEndIndex],
 					);
