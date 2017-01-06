@@ -306,21 +306,25 @@
                 <section class="oc-pay">
                     <ul class="list">
                         <li>
-                            <input type="radio" name="payWay" checked />
+                            <input type="radio" name="payWay" checked value="8"/>
                             <img src="images/pay-wx.png" />
                             <p>微信支付</p>
                             <span class="label">推荐</span>
                         </li>
-                        <!--  <li>
-                            <input type="radio" name="payWay" />
-                            <img src="images/pay-zfb.png" />
-                            <p>支付宝支付</p>
-                        </li>
+
+                        <?php if($infowallet['balance'] >= $info['sumPrice']){?>
                         <li>
-                            <input type="radio" name="payWay" />
-                            <img src="images/pay-qq.png" />
-                            <p>QQ钱包</p>
-                        </li>-->
+                            <input type="radio" name="payWay" value="4"/>
+                            <img src="images/user-wallet.png" />
+                            <p>使用钱包金额</p>
+                        </li>
+                        <?php }else{?>
+                        <li class="disabled">
+                            <input type="radio" name="payWay" value="4" disabled="disabled"/>
+                            <img src="images/user-wallet.png" />
+                            <p>使用钱包金额</p>
+                        </li>
+                        <?php }?>
                    </ul>
                 </section>
              <?php }?>
