@@ -2867,6 +2867,7 @@
 }
 .oc-pay .list li {
   position: relative;
+  margin-right: 0.5rem;
   padding: 0.65rem 0.5rem;
   line-height: 1.1rem;
   font-size: 0.7rem;
@@ -2902,7 +2903,7 @@
   position: absolute;
   bottom: 0;
   left: 0.5rem;
-  right: 0.5rem;
+  right: 0;
   height: 1px;
   background: #e7e7e7;
 }
