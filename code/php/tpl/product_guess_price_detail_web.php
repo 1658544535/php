@@ -549,6 +549,10 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                       _genUrl({"num":num});
                       $(this).prev().val(num);
                     });
+                    $(".quantity .num").on("change", function(){
+                        var num = parseInt($(this).val());
+                        _genUrl({"num":num});
+                    });
 
                     $("#buy").on("click", function(){
                       // if(clickBuy) $("#buy").attr("href", _genUrl());
