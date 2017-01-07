@@ -250,20 +250,20 @@
 
         <script>
 			 var _apiUrl = "/api_action.php?act=";
-			 document.domain='<?php echo implode('.', $_arrDomain);?>';
-			 <?php if($info['productStatus'] == 1){ ?>
-			 function setIframeHeight(iframe) {
-			  	if (iframe) {
-			  		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-			  		if (iframeWin.document.body) {
-			  			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-			  		}
-			  	}
-			 };
-			 window.onload = function () {
-			  	setIframeHeight(document.getElementById('proInfo'));
-			 };
-			 <?php } ?>
+			 // document.domain='<?php echo implode('.', $_arrDomain);?>';
+			 // <?php if($info['productStatus'] == 1){ ?>
+			 // function setIframeHeight(iframe) {
+			 //  	if (iframe) {
+			 //  		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+			 //  		if (iframeWin.document.body) {
+			 //  			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+			 //  		}
+			 //  	}
+			 // };
+			 // window.onload = function () {
+			 //  	setIframeHeight(document.getElementById('proInfo'));
+			 // };
+			 // <?php } ?>
 
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
 
@@ -313,6 +313,10 @@
 						++num;
 						_genUrl({"num":num});
 						$(this).prev().val(num);
+					});
+					$(".quantity .num").on("change", function(){
+						var num = parseInt($(this).val());
+						_genUrl({"num":num});
 					});
 
 					$("#buy").on("click", function(){
