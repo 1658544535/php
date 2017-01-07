@@ -336,7 +336,7 @@
             	<?php if($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
                     <!-- <a class="one" id="orderCancel"> href="order_detail.php?act=cancel&oid=<?php echo $OrderDetail['result']['orderId'] ;?>">取消订单</a> -->
                     <a class="btn gray" id="orderCancel">取消订单</a>
-                    <a class="btn" href="/wxpay/pay.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>">去支付</a>
+                    <a class="btn" id="orderSubmit">去支付</a>
               <?php }else if($OrderDetail['result']['orderStatus'] ==3){?>
                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn gray">查看物流</a>
                    <?php if($OrderDetail['result']['refundStatus'] ==0 || $OrderDetail['result']['refundStatus'] ==6 || $OrderDetail['result']['refundStatus'] ==5){?>
@@ -356,7 +356,7 @@
 			<div class="oc-footer2" id="page-footer-cont">
 	            	<?php if($OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
 	                    <a class="btn gray" id="orderCancel">取消订单</a>
-	                    <a class="btn" href="/wxpay/pay.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>">去支付</a>
+	                    <a class="btn" id="orderSubmit">去支付</a>
 	              <?php }else if($OrderDetail['result']['orderStatus'] ==11){?>
 	                    <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn gray">查看物流</a>
 	                   <?php if($OrderDetail['result']['refundStatus'] ==0 || $OrderDetail['result']['refundStatus'] ==6 || $OrderDetail['result']['refundStatus'] ==5){?>
@@ -384,6 +384,11 @@
 	                            history.back(-1);
 	                        },"JSON");
 	                	})
+                    });
+                    $("#orderSubmit").on("click", function(){
+                        var payWay = $(".oc-pay li.active input").val(),
+                        	oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>;
+                        location.href = "/wxpay/pay.php?oid="+oid+"&payway="+payWay;
                     });
                 })
                 $(document).on("click", "#check", function(){
