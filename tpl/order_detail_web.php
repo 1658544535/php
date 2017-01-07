@@ -388,7 +388,7 @@
                     $("#orderSubmit").on("click", function(){
                         var payWay = $(".oc-pay li.active input").val(),
                         	oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'] ;?>;
-                        location.href = "/wxpay/pay.php?oid="+oid+"&payway="+payWay;
+                        location.href = "/user_order_pay.php?oid="+oid+"&payway="+payWay;
                     });
                 })
                 $(document).on("click", "#check", function(){
