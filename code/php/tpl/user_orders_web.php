@@ -100,7 +100,7 @@
                         <div class="u-g-3">
                            <%if(data["data"][i].orderStatus ==1 && data["data"][i].isCancel ==0){%>  
                             <a class="gray orderCancel" data-id="<%=data["data"][i]["id"]%>">取消</a>
-                            <a href="/wxpay/pay.php?oid=<%=data["data"][i]["id"]%>">去支付</a>
+                            <a href="/order_detail.php?oid=<%=data["data"][i]["id"]%>">去支付</a>
                            <%}else if(data["data"][i].orderStatus ==3){%>
                             <a class="gray" href="logistics.php?oid=<%=data["data"][i]["id"]%>">查看物流</a>
                              <%if(data["data"][i].refundStatus ==0 || data["data"][i].refundStatus ==6 || data["data"][i].refundStatus ==5){%>
@@ -121,7 +121,7 @@
                        <div class="u-g-3">
                            <%if(data["data"][i].orderStatus ==1 && data["data"][i].isCancel ==0){%>  
                             <a class="gray orderCancel" data-id="<%=data["data"][i]["id"]%>">取消</a>
-                            <a href="/wxpay/pay.php?oid=<%=data["data"][i]["id"]%>">去支付</a>
+                            <a href="/order_detail.php?oid=<%=data["data"][i]["id"]%>">去支付</a>
                            <%}else if(data["data"][i].orderStatus ==2   && data["data"][i].isSuccess ==0 ){%> 
                             <a class="gray" href="order_detail.php?oid=<%=data["data"][i]["id"]%>">查看</a>
                             <a href="groupon_join.php?aid=<%=data["data"][i]["attendId"]%>&pdkUid=<%=data["data"][i]["pdkUid"]%>">邀请好友拼团</a>
