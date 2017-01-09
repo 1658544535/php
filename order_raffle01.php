@@ -31,10 +31,10 @@ if(isset($_SESSION['order_success']) && $_SESSION['order_success']){
 
 $num = intval($_GET['num']);
 $num = max(1, $num);
-
+$invCode =CheckDatas('code','');
 $skuId = intval($_GET['skuid']);
 empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
-$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>5,'uid'=>$userid));
+$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>5,'invCode'=>$invCode,'uid'=>$userid));
 empty($info) && redirect($prevUrl, '网络异常，请稍候访问');
 if($info['success']){
 	$info = $info['result'];
@@ -52,6 +52,6 @@ $infowallet = $infowallet['result'];
 
 $_SESSION['order']['type'] = 'raffle01';
 $_SESSION['order']['grouponId'] = $grouponId;
-
+$_SESSION['order']['code'] = $invCode;
 include_once('order_common.php');
 ?>

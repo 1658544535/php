@@ -123,6 +123,15 @@ switch($act)
     	include_once('tpl/lottery_win_web.php');
     	break;
 
+    case 'red':
+    	//获取红包口令
+    	$code = CheckDatas( 'code', '' );
+    	
+    	$red = apiData('receiveRedApi.do', array('invCode'=>$code,'uid'=>$userid));
+    	$red = $red['result'];
+    	include_once('tpl/lottery_red_web.php');
+    	break;
+    	
     
     	default:
     		//获取顶部图片数据

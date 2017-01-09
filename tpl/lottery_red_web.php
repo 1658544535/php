@@ -7,7 +7,7 @@
             <div class="content">
 
                 <a href="javascript:history.back(-1);" class="back deta-back"></a>
-                <div class="getCoupon" style="background-image: url(../images/coupon-bg.jpg)"></div>
+                <div class="getCoupon" style="background-image: url(<?php echo $red['url'];?>)"></div>
 
                 <input type="hidden" name="noGoIndex" value="1">
             </div>

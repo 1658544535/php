@@ -8,6 +8,7 @@ $grouponId = $_SESSION['order']['grouponId'];
 $addressId = $_SESSION['order']['addressId'];
 $attendId  = $_SESSION['order']['attendId'];
 $pdkUid    = $_SESSION['order']['pdkUid'];
+$invCode    = $_SESSION['order']['code'];
 
 //下单的类型
 $ORDER_TYPES = array('free', 'groupon', 'join', 'alone', 'guess', 'raffle01', 'seckill', 'raffle','pdk');
@@ -27,6 +28,7 @@ $skuId  = intval($_POST['skuid']);
 $payWay = CheckDatas( 'payWay', '' );
 $apiParam = array(
 	'uid' => $userid,
+	'invCode'=>$invCode,
 	'pid' => $productId,
 	'num' => $num,
 	'consigneeType' => 1,
