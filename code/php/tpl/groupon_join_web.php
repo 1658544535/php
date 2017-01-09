@@ -184,7 +184,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					<?php }else{?>
 					  <?php switch($info['status']){
 								case 0: ?>
-						   <?php if($info['isGroup'] ==1){?>
+						   <?php if($info['isGroup'] ==1 || $info['isOpen'] ==1){?>
 							<h3 class="title1">还差<span class="themeColor"><?php echo $info['poorNum'];?></span>人，赶紧分享召集小伙伴组团啦~</h3>
 					       <?php }elseif($info['isGroup'] ==0 && $info['isSellOut'] ==0){?>
 					        <h3 class="title1">您终于来了！还差<span class="themeColor"><?php echo $info['poorNum'];?></span>人，来参团吧！</h3>
