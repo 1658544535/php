@@ -60,11 +60,9 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                     <div class="swiper-pagination"></div>
                 </section>
                 <section class="index-menu">
-                    <a href="freedraw.php"><span class="index-menuIcon" style="background-image:url(http://maduoduo/images/index-menu.png);"></span><span class="txt">免费试用</span></a>
-                    <!-- <a href="product_guess_price.php"><span class="index-menuIcon index-menu-i1"></span><span class="txt">猜价格</span></a>
-                    <a href="special_77.php"><span class="index-menuIcon index-menu-i2"></span><span class="txt">9.9特卖</span></a>
-                    <a href="seckill.php"><span class="index-menuIcon index-menu-i3"></span><span class="txt">掌上秒杀</span></a>
-                    <a href="lottery_new.php"><span class="index-menuIcon index-menu-i4"></span><span class="txt">抽奖团</span></a> -->
+                  <?php foreach ($iconList as $icon){?> 
+                     <a href=" <?php if($icon['type'] ==1){?>freedraw.php<?php }elseif($icon['type'] ==2){?>product_guess_price.php<?php }elseif($icon['type'] ==3){?>special_77.php<?php }elseif($icon['type'] ==4){?>seckill.php<?php }else{ ?>lottery_new.php<?php }?>"><span class="index-menuIcon" style="background-image:url(<?php echo $icon['image']; ?>);"></span><span class="txt"><?php echo $icon['title']; ?></span></a>
+                  <?php }?>                    
                 </section>
                 <section class="index-index infinite-scroll infinite-scroll-bottom" data-distance="30">
                     <h2 class="index-pro-title"></h2>

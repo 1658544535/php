@@ -11,7 +11,6 @@ $cateId = intval($_REQUEST['id']);
 $classification = apiData('productCategoryApi.do');
 $classification = $classification['result'];
 
-
 //获取首页二级分类数据
   foreach ($classification as $k=>$v){
 	if(in_array($cateId,$v)){
@@ -39,6 +38,11 @@ if(!$cateId){
 //	$seckillPro = $seckillPro['success'] ? $seckillPro['result'] : array();
 	$seckillPro = $seckillPro['result'];
 }
+
+//首页图标
+$iconList = apiData('homePageIcon.do');
+$iconList = $iconList['result'];
+
 
 $footerNavActive = 'index';
 
