@@ -51,8 +51,9 @@ if(isset($_GET['as'])){
 	$activeSource = $_SESSION['order']['source'] ? $_SESSION['order']['source'] : '';
 }
 $skuId = intval($_GET['skuid']);
+$invCode =intval($_GET['code']);
 empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
-$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>$activeSource,'uid'=>$userid,'pdkUid'=>$pdkUid));
+$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'attendId'=>$attendId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>$activeSource,'invCode'=>$invCode,'uid'=>$userid,'pdkUid'=>$pdkUid));
 empty($info) && redirect($prevUrl, '网络异常，请稍候访问');
 if($info['success']){
 	$info = $info['result'];

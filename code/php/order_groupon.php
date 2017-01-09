@@ -36,9 +36,10 @@ $time = time();
 $num = intval($_GET['num']);
 $num = max(1, $num);
 
-$skuId = intval($_GET['skuid']);
+$skuId   = intval($_GET['skuid']);
+$invCode =intval($_GET['code']);
 empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
-$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>1,'uid'=>$userid));
+$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>1,'invCode'=>$invCode,'uid'=>$userid));
 empty($info) && redirect($prevUrl, '网络异常，请稍候访问');
 if($info['success']){
 	$info = $info['result'];

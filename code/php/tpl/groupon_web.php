@@ -618,7 +618,11 @@
                     </div>
                 </div>
 				<?php } ?>
-                <a id="buy" href="javascript:;" class="go" data-isinv="1">确定</a>
+				<?php if($info['activityType'] == 5){?>
+                  <a id="buy" href="javascript:;" class="go" data-isinv="<?php echo $info['isInv']?>">确定</a>
+	            <?php }else{?>
+	              <a id="buy" href="javascript:;" class="go" >确定</a>
+	            <?php }?>
             </div>
         </div>
 		<?php } ?>

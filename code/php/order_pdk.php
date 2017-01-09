@@ -39,8 +39,9 @@ $time = time();
 $num = intval($_GET['num']);;
 
 $skuId = intval($_GET['skuid']);
+$invCode =intval($_GET['code']);
 empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
-$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'pid'=>$productId,'skuLinkId'=>$skuId,'source'=>8,'uid'=>$userid,'pdkUid'=>$pdkUid));
+$info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'pid'=>$productId,'skuLinkId'=>$skuId,'source'=>8,'uid'=>$userid,'invCode'=>$invCode,'pdkUid'=>$pdkUid));
 if($info['success']){
 	$info = $info['result'];
 }else{
