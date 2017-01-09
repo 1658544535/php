@@ -497,23 +497,24 @@
   width: 45px;
   height: 45px;
   margin: 0 auto;
-  background: url(../images/index-menu.png) no-repeat 0 0;
-  background-size: 100% auto;
-}
-.index-menu a span.index-menu-i1 {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   background-position: 0 0;
 }
+.index-menu a span.index-menu-i1 {
+  background-image: url(../images/index-menu-i1.png);
+}
 .index-menu a span.index-menu-i2 {
-  background-position: 0 -45px;
+  background-image: url(../images/index-menu-i2.png);
 }
 .index-menu a span.index-menu-i3 {
-  background-position: 0 -90px;
+  background-image: url(../images/index-menu-i3.png);
 }
 .index-menu a span.index-menu-i4 {
-  background-position: 0 -135px;
+  background-image: url(../images/index-menu-i4.png);
 }
 .index-menu a span.index-menu-i5 {
-  background-position: 0 -180px;
+  background-image: url(../images/index-menu-i5.png);
 }
 .index-menu a span.txt {
   display: block;
