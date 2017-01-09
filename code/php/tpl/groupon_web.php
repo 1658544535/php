@@ -322,16 +322,21 @@
 					$("#buy").on("click", function(){
 						// var url = _genUrl();
 						// if(clickBuy) location.href = url;
-						if($(this).data("isinv") == 1 && clickBuy){
-							$.prompt('请输入邀请码', function(txt){
-								if($.trim(txt) == ''){
-									$.toast('请输入邀请码');
-								}else{
-									_genUrl({"code":txt});
-									var url = _genUrl();
-									location.href = url;
-								}
-							})
+						if(clickBuy){
+							if($(this).data("isinv") == 1){
+								$.prompt('请输入邀请码', function(txt){
+									if($.trim(txt) == ''){
+										$.toast('请输入邀请码');
+									}else{
+										_genUrl({"code":txt});
+										var url = _genUrl();
+										location.href = url;
+									}
+								})
+							}else{
+								var url = _genUrl();
+								location.href = url;
+							}
 						}
 					});
 
