@@ -129,20 +129,31 @@
   background: #ff464e;
   border-radius: 100%;
 }
-.bar-tab .tab-item .i-home {
+.bar-tab .tab-item .i-home,
+.bar-tab .tab-item .i-new,
+.bar-tab .tab-item .i-search,
+.bar-tab .tab-item .i-message,
+.bar-tab .tab-item .i-user {
+  background-size: 100% auto;
   background-position: 0 0;
+}
+.bar-tab .tab-item .i-home {
+  background-image: url(../images/bar-tab-home.png);
+}
+.bar-tab .tab-item .i-new {
+  background-image: url(../images/bar-tab-new.png);
+}
+.bar-tab .tab-item .i-search {
+  background-image: url(../images/bar-tab-search.png);
+}
+.bar-tab .tab-item .i-message {
+  background-image: url(../images/bar-tab-message.png);
+}
+.bar-tab .tab-item .i-user {
+  background-image: url(../images/bar-tab-user.png);
 }
 .bar-tab .tab-item .i-price {
   background-position: 0 -24px;
-}
-.bar-tab .tab-item .i-search {
-  background-position: 0 -48px;
-}
-.bar-tab .tab-item .i-user {
-  background-position: 0 -72px;
-}
-.bar-tab .tab-item .i-new {
-  background-position: 0 -216px;
 }
 .bar-tab .tab-item .i-seckill-today {
   background-position: 0 -96px;
@@ -159,23 +170,23 @@
 .bar-tab .tab-item .i-lotteryed {
   background-position: 0 -192px;
 }
-.bar-tab .tab-item .i-message {
-  background-position: 0 -240px;
-}
 .bar-tab .tab-item.active .i-home {
-  background-position: -24px 0;
+  background-image: url(../images/bar-tab-home-active.png);
+}
+.bar-tab .tab-item.active .i-new {
+  background-image: url(../images/bar-tab-new-active.png);
+}
+.bar-tab .tab-item.active .i-search {
+  background-image: url(../images/bar-tab-search-active.png);
+}
+.bar-tab .tab-item.active .i-message {
+  background-image: url(../images/bar-tab-message-active.png);
+}
+.bar-tab .tab-item.active .i-user {
+  background-image: url(../images/bar-tab-user-active.png);
 }
 .bar-tab .tab-item.active .i-price {
   background-position: -24px -24px;
-}
-.bar-tab .tab-item.active .i-search {
-  background-position: -24px -48px;
-}
-.bar-tab .tab-item.active .i-user {
-  background-position: -24px -72px;
-}
-.bar-tab .tab-item.active .i-new {
-  background-position: -24px -216px;
 }
 .bar-tab .tab-item.active .i-seckill-today {
   background-position: -24px -96px;
@@ -191,9 +202,6 @@
 }
 .bar-tab .tab-item.active .i-lotteryed {
   background-position: -24px -192px;
-}
-.bar-tab .tab-item.active .i-message {
-  background-position: -24px -240px;
 }
 .bar-tab .tab-item2 {
   color: #1a1a64;
