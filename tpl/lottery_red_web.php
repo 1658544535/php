@@ -11,8 +11,6 @@
     <div class="page-group">
         <div id="page-nav-bar" class="page page-current">
             <div class="content">
-
-                <a href="javascript:history.back(-1);" class="back deta-back"></a>
                 <img class="redImg" src="<?php echo $red['url'];?>" />
                 <input type="hidden" name="noGoIndex" value="1">
             </div>
