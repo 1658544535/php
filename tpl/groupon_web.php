@@ -249,20 +249,20 @@
 		?>
 
         <script>
-			 var _apiUrl = "/api_action.php?act=";
-			document.domain='<?php echo implode('.', $_arrDomain);?>';
-			 <?php if($info['productStatus'] == 1){ ?>
-			 function setIframeHeight(iframe) {
-			  	if (iframe) {
-			  		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-			  		if (iframeWin.document.body) {
-			  			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-			  		}
-			  	}
-			 };
-			 window.onload = function () {
-			  	setIframeHeight(document.getElementById('proInfo'));
-			 };
+			//  var _apiUrl = "/api_action.php?act=";
+			// document.domain='<?php echo implode('.', $_arrDomain);?>';
+			//  <?php if($info['productStatus'] == 1){ ?>
+			//  function setIframeHeight(iframe) {
+			//   	if (iframe) {
+			//   		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+			//   		if (iframeWin.document.body) {
+			//   			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+			//   		}
+			//   	}
+			//  };
+			//  window.onload = function () {
+			//   	setIframeHeight(document.getElementById('proInfo'));
+			//  };
 			 <?php } ?>
 
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
@@ -320,9 +320,19 @@
 					});
 
 					$("#buy").on("click", function(){
-						// if(clickBuy) $("#buy").attr("href", _genUrl());
-						var url = _genUrl();
-						if(clickBuy) location.href = url;
+						// var url = _genUrl();
+						// if(clickBuy) location.href = url;
+						if($(this).data("isinv") == 1 && clickBuy){
+							$.prompt('请输入邀请码', function(txt){
+								if($.trim(txt) == ''){
+									$.toast('请输入邀请码');
+								}else{
+									_genUrl({"code":txt});
+									var url = _genUrl();
+									location.href = url;
+								}
+							})
+						}
 					});
 
 					//打开sku弹窗
@@ -603,7 +613,7 @@
                     </div>
                 </div>
 				<?php } ?>
-                <a id="buy" href="javascript:;" class="go">确定</a>
+                <a id="buy" href="javascript:;" class="go" data-isinv="1">确定</a>
             </div>
         </div>
 		<?php } ?>
