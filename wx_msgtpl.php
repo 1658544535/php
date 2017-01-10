@@ -315,7 +315,7 @@ switch($act){
 				'tplid' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',//kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig//cb_Dmqcz5sJSkVw1spO4-Ao4bkUUhLxmzdQmx_0VtKM
 				'name' => '已中奖',
 				'first' => '恭喜您，终于成团啦！奖品正在打包送到您手上，敬请期待！',
-				'remark' => '点击了解更多0.1元抽奖活动>>>',
+				'remark' => '点击领取拼得好给您新年专属红包>>>',
 				'link' => $site.'lottery_new.php?act=red&code=',
 			),
 			//未中奖
