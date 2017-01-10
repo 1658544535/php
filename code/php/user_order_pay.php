@@ -16,7 +16,7 @@ if($payWay == 4){
 		redirect($_refreUrl,'支付失败');
 	}
 }else{
-	$url = '/wxpay/pay.php?oid='.$orderInfo['orderInfo']['orderId'].'&payway='.$payWay.'&buy=1';
+	$url = '/wxpay/pay.php?oid='.$orderInfo['orderInfo']['orderId'].'&payway='.$payWay;
 	redirect($url);
 }
 exit();
