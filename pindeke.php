@@ -20,13 +20,9 @@ switch($act)
 	//拼得客信息
 	case 'pdkInfo':
 		IS_USER_LOGIN();
-		$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
-		if($pdkInfo['success'] ==''){
-			redirect('index.php',您无法访问该页面！);
-		}
-		$userid  = CheckDatas( 'uid', '' );
 		$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
 		$Objinfo = $Objinfo['result'];
+		
 		include_once('tpl/pdk_info_web.php');
 	break;
     
@@ -140,7 +136,45 @@ switch($act)
     			$data = $site . 'pdk_code_action.php?minfo=' . $minfo['result']['invitationCode'];
     			get_qrcode($data, SCRIPT_ROOT."upfiles/pdkcode/", $userid . '.png');
     		}
+    	}
+    	else
+    	{
+    		$imgPath = '';
+    	}
+    	include_once('tpl/pdk_QR_web.php');
+    	break;
     	
+    //拼得客排行榜
+    case 'ranking':
+    	IS_USER_LOGIN();
+    		 
+        $pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
+    	if($pdkInfo['success'] ==''){
+    		redirect('index.php',您无法访问该页面！);
+    	}
+    	
+    	
+    	
+    	include_once('tpl/pdk_ranking_web.php');
+    	break;
+    	
+    	
+    	
+    //拼得客邀请二维码
+    case 'QRcodeNew':
+    	IS_USER_LOGIN();
+    		 
+    	$minfo = apiData('myInfoApi.do',array('userId'=>$userid));
+    		 
+    	if(!empty($minfo['result']['invitationCode']))
+    	{
+    		$imgPath = AGENT_QRCODE_DIR."{$userid}.png";
+    		if(!file_exists(SCRIPT_ROOT."upfiles/pdkcode/{$userid}.png"))
+    		{
+    			global $site;
+    			$data = $site . 'pindeke_apply.php?minfo=' . $minfo['result']['invitationCode'];
+    			get_qrcode($data, SCRIPT_ROOT."upfiles/pdkcode/", $userid . '.png');
+    		}
     	}
     	else
     	{

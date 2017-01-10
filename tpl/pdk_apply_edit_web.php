@@ -24,14 +24,14 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
+                            <!--  <li>
                                 <div class="item">
                                     <div class="label">手机号码</div>
                                     <div class="main">
                                         <input id="phone" type="text" name="phone" class="txt" placeholder="填写手机号码" value="<?php echo $infoEdit['phone'];?>" />
                                     </div>
                                 </div>
-                            </li>
+                            </li>-->
                             <li class="last">
                                 <div class="item">
                                     <div class="label">身份证号码</div>
@@ -157,10 +157,10 @@
                             $.toast("请正确填写手机号码");
                             return false;
                         }
-                        if($.trim($("#number").val()) == ""){
+                        <!-- if($.trim($("#number").val()) == ""){
                             $.toast("请填写身份证号码");
                             return false;
-                        }
+                        }-->
                         if($.trim($("#way").val()) == ""){
                             $.toast("请填写推广渠道");
                             return false;

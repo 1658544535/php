@@ -29,7 +29,7 @@ switch($act){
 				$i++;
 			}
 			
-			$apiParam['cardNo']     = $cardNo;
+// 			$apiParam['cardNo']     = $cardNo;
 			$apiParam['extChannel'] = $Content;
 			$apiParam['name']       = $Name;
 			$apiParam['userId']     = $userid;
@@ -81,7 +81,7 @@ switch($act){
 						$i++;
 					}
 					
-					$apiParam['cardNo']     = $cardNo;
+// 					$apiParam['cardNo']     = $cardNo;
 					$apiParam['extChannel'] = $Content;
 					$apiParam['name']       = $Name;
 					$apiParam['userId']     = $userid;
