@@ -50,7 +50,7 @@ $tplMap = array(
 		'open' => 'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
 		'join' => 'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
 		'delivery' => 'EGztXez9id31kHrJZo6i-pY6523kx15PDgvC80Qw658',
-		'raffle01' => '',
+		'raffle01' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',
 		'guess' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',
 		'join_fail' => 'pP41fxH24PzPaKArwxh9LixWfluEI5gu328xix46MWM',
 	),
@@ -60,7 +60,7 @@ $tplMap = array(
 		'open' => 'kzB9_8I5Dl3nByE1AZy8-qrVuLVXXZD7uZJDhifDqPI',
 		'join' => '8z5eCo87R5RO6EATUlbP1O6WjKRLLdgPzPt89K6VyZ8',
 		'delivery' => 'kehyZ0py0ftUpe56CiUqs-rR9VsP1BII5Cb49x5JrMk',
-		'raffle01' => '',
+		'raffle01' => 'cb_Dmqcz5sJSkVw1spO4-Ao4bkUUhLxmzdQmx_0VtKMs',
 		'guess' => '8DpmIFPjeiY4qHV932XN8oLTN1F2UgFd_Cepy94p_XM',
 		'join_fail' => 'aYY7dRR0oH8X3kDUjIsgkutJRyPzJkbJT3UWWk-agMM',
 	),
@@ -273,159 +273,162 @@ switch($act){
 		}        
 		file_put_contents($_logFile, "\r\n", FILE_APPEND);
         break;
-//	case 'raffle01'://0.1抽奖
-//		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】开始发送0.1抽奖通知\r\n";
-//		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-//
-//		$typeValueMap = array(
-//			1 => 'open',
-//			2 => 'join',
-//			3 => 'group',
-//			4 => 'win',
-//			5 => 'unwin',
-//			6 => 'failure',
-//		);
-//		$typeMap = array(
-//			//开团
-//			'open' => array(
-//				'tplid' => 'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
-//				'name' => '开团',
-//				'first' => '恭喜您，开团成功啦！邀请好友参与，成团即拿奖品哦！',
-//				'remark' => '告诉您小妙招，分享至好友加速成团哦！点击马上分享>>>',
+	case 'raffle01'://0.1抽奖
+		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】开始发送0.1抽奖通知\r\n";
+		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+
+		$typeValueMap = array(
+			1 => 'open',
+			2 => 'join',
+			3 => 'group',
+			4 => 'win',
+			5 => 'unwin',
+			6 => 'failure',
+		);
+		$typeMap = array(
+			//开团
+			'open' => array(
+				'tplid' => 'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
+				'name' => '开团',
+				'first' => '恭喜您，开团成功啦！邀请好友参与，成团即拿奖品哦！',
+				'remark' => '告诉您小妙招，分享至好友加速成团哦！点击马上分享>>>',
+				'link' => $site.'groupon_join.php?aid=',
+			),
+//			//参团
+//			'join' => array(
+//				'tplid' => '',
+//				'name' => '参团',
+//				'first' => '恭喜您，参团成功啦！邀请好友参与，成团即有机会获得奖品哦！',
+//				'remark' => '告诉您小妙招，分享至好友加入成团哦！点击马上分享>>>',
 //				'link' => $site.'groupon_join.php?aid=',
 //			),
-////			//参团
-////			'join' => array(
-////				'tplid' => '',
-////				'name' => '参团',
-////				'first' => '恭喜您，参团成功啦！邀请好友参与，成团即有机会获得奖品哦！',
-////				'remark' => '告诉您小妙招，分享至好友加入成团哦！点击马上分享>>>',
-////				'link' => $site.'groupon_join.php?aid=',
-////			),
-//			//成团
-//			'group' => array(
-//				'tplid' => 'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
-//				'name' => '成团',
-//				'first' => '恭喜您，拼团成功啦！稍后留意开奖信息哦！',
+			//成团
+			'group' => array(
+				'tplid' => 'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
+				'name' => '成团',
+				'first' => '恭喜您，拼团成功啦！稍后留意开奖信息哦！',
+				'remark' => '[劲爆]优质好货，0元开团，预购从速，点击领券>>>',
+				'link' => $site.'free.php?id=16',
+			),
+			//中奖
+			'win' => array(
+				'tplid' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',//kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig//cb_Dmqcz5sJSkVw1spO4-Ao4bkUUhLxmzdQmx_0VtKM
+				'name' => '已中奖',
+				'first' => '恭喜您，终于成团啦！奖品正在打包送到您手上，敬请期待！',
+				'remark' => '点击了解更多0.1元抽奖活动>>>',
+				'link' => $site.'lottery_new.php?act=red&code=',
+			),
+			//未中奖
+			'unwin' => array(
+				'tplid' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',//kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig//cb_Dmqcz5sJSkVw1spO4-Ao4bkUUhLxmzdQmx_0VtKM
+				'name' => '未中奖',
+				'first' => '您没有中奖！您的款项正在退款中！',
+				'remark' => '不要灰心，马上开团获得更多0.1元抽奖机会>>>',
+				'link' => $site.'lottery_new.php?act=red&code=',
+			),
+//			//参团失败
+//			'failure' => array(
+//				'tplid' => '',
+//				'name' => '参团失败',
+//				'first' => '很遗憾，您参与的团人数不足未成团，正在退款中！',
 //				'remark' => '[劲爆]优质好货，0元开团，预购从速，点击领券>>>',
 //				'link' => $site.'free.php?id=16',
 //			),
-//			//中奖
-//			'win' => array(
-//				'tplid' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',
-//				'name' => '已中奖',
-//				'first' => '恭喜您，终于成团啦！奖品正在打包送到您手上，敬请期待！',
-//				'remark' => '点击了解更多0.1元抽奖活动>>>',
-//				'link' => $site.'lottery_new.php',
-//			),
-//			//未中奖
-//			'unwin' => array(
-//				'tplid' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',
-//				'name' => '未中奖',
-//				'first' => '您没有中奖！您的款项正在退款中！',
-//				'remark' => '不要灰心，马上开团获得更多0.1元抽奖机会>>>',
-//				'link' => $site.'lottery_new.php',
-//			),
-////			//参团失败
-////			'failure' => array(
-////				'tplid' => '',
-////				'name' => '参团失败',
-////				'first' => '很遗憾，您参与的团人数不足未成团，正在退款中！',
-////				'remark' => '[劲爆]优质好货，0元开团，预购从速，点击领券>>>',
-////				'link' => $site.'free.php?id=16',
-////			),
-//		);
-//
-//		$_type = trim($_REQUEST['type']);
-//		$type = $typeValueMap[$_type];
-//
-//		//参团和参团失败目前不发送，后期需要时，将此代码去除
-//		if(in_array($type, array('join', 'failure'))){
-//			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】0.1抽奖【{$typeMap[$type]['name']} {$type}】此类型操作不需要发送通知\r\n";
-//			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-//			exit();
-//		}
-//
-//		$paramData = trim($_REQUEST['data']);
-//		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送0.1抽奖【{$typeMap[$type]['name']} {$type}】通知开始，接收的参数data内容为{$paramData}\r\n";
-//		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-//		
-//		if(empty($paramData)){
-//			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送0.1抽奖【{$typeMap[$type]['name']} {$type}】通知，参数为空\r\n";
-//			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-//		}
-//
-//		$tplParam = json_decode($paramData, true);
-//		if($tplParam === false){
-//			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送0.1抽奖【{$typeMap[$type]['name']} {$type}】通知，参数转为json失败，接收参数data值为{$paramData}\r\n";
-//			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-//		}
-//		
-//		$data = array(
-//			'template_id' => $typeMap[$type]['tplid'],
-//			'topcolor' => '#000000',
-//			'data' => array(
-//				'first' => array(
-//					'value' => $typeMap[$type]['first'],
-//					'color' => '#000000',
-//				),
-//				'keyword1' => array(
-//					'color' => '#000000',
-//				),
-//				'keyword2' => array(
-//					'color' => '#000000',
-//				),
-//				'keyword3' => array(
-//					'color' => '#000000',
-//				),
-//				'keyword4' => array(
-//					'color' => '#000000',
-//				),
-//				'remark' => array(
-//					'value' => $typeMap[$type]['remark'],
-//					'color' => '#ff0000',
-//				),
-//			),
-//		);
-//		foreach($tplParam as $v){
-//			$_data = $data;
-//			$_data['touser'] = $v['openid'];
-//			$_msg = '';
-//			switch($type){
-//				case 'open'://开团
-//					$_data['url'] = $typeMap[$type]['link'].$v['attendId'];
-//					$_data['data']['keyword1']['value'] = $v['factPrice'];
-//					$_data['data']['keyword2']['value'] = $v['productName'];
-//					$_data['data']['keyword3']['value'] = $v['consignee'].' '.$v['consigneePhone'].' '.$v['consigneeAddress'];
-//					$_data['data']['keyword4']['value'] = $v['orderNo'];
-//					$_msg = "，商品：{$v['productName']}";
-//					break;
-//				case 'group'://成团
-//					$_data['url'] = $typeMap[$type]['link'];
-//					$_data['data']['keyword1']['value'] = $v['orderNo'];
-//					$_data['data']['keyword2']['value'] = $v['factPrice'];
-//					unset($_data['data']['keyword3'], $_data['data']['keyword4']);
-//					break;
-//				case 'win'://中奖
-//				case 'unwin'://未中奖
-//					$_data['url'] = $typeMap[$type]['link'];
-//					$_data['data']['keyword1']['value'] = $v['productName'];
-//					$_data['data']['keyword2']['value'] = $v['factPrice'];
-//					$_data['data']['keyword3']['value'] = $v['groupDate'];
-//					$_data['data']['keyword4']['value'] = $typeMap[$type]['name'];
-//					$_msg = "，商品：{$v['productName']}，成团时间：{$v['groupDate']}";
-//					break;
-//			}
-//			$sendResult = $objWX->sendTemplateMessage($_data);
-//			if($sendResult === false){
-//				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】0.1抽奖【{$typeMap[$type]['name']} {$type}】通知发送失败，openid:{$v['openid']}，实付金额：{$v['factPrice']}{$_msg}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
-//			}else{
-//				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】0.1抽奖【{$typeMap[$type]['name']} {$type}】通知发送成功，openid:{$v['openid']}，实付金额：{$v['factPrice']}{$_msg}\r\n";
-//			}
-//			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
-//		}
-//		file_put_contents($_logFile, "\r\n", FILE_APPEND);
-//		break;
+		);
+
+		$_type = trim($_REQUEST['type']);
+		$type = $typeValueMap[$_type];
+
+		//参团和参团失败目前不发送，后期需要时，将此代码去除
+		if(in_array($type, array('join', 'failure'))){
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】0.1抽奖【{$typeMap[$type]['name']} {$type}】此类型操作不需要发送通知\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+			exit();
+		}
+
+		$paramData = trim($_REQUEST['data']);
+		$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送0.1抽奖【{$typeMap[$type]['name']} {$type}】通知开始，接收的参数data内容为{$paramData}\r\n";
+		file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		
+		if(empty($paramData)){
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送0.1抽奖【{$typeMap[$type]['name']} {$type}】通知，参数为空\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
+
+		$tplParam = json_decode($paramData, true);
+		if($tplParam === false){
+			$_logInfo = "【".date('Y-m-d H:i:s', $time)."】发送0.1抽奖【{$typeMap[$type]['name']} {$type}】通知，参数转为json失败，接收参数data值为{$paramData}\r\n";
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
+		
+		$data = array(
+			'template_id' => $typeMap[$type]['tplid'],
+			'topcolor' => '#000000',
+			'data' => array(
+				'first' => array(
+					'value' => $typeMap[$type]['first'],
+					'color' => '#000000',
+				),
+				'keyword1' => array(
+					'color' => '#000000',
+				),
+				'keyword2' => array(
+					'color' => '#000000',
+				),
+				'keyword3' => array(
+					'color' => '#000000',
+				),
+				'keyword4' => array(
+					'color' => '#000000',
+				),
+				'remark' => array(
+					'value' => $typeMap[$type]['remark'],
+					'color' => '#ff0000',
+				),
+			),
+		);
+		foreach($tplParam as $v){
+			$_data = $data;
+			$_data['touser'] = $v['openid'];
+			$_msg = '';
+			switch($type){
+				case 'open'://开团
+					$_data['url'] = $typeMap[$type]['link'].$v['attendId'];
+					$_data['data']['keyword1']['value'] = $v['factPrice'];
+					$_data['data']['keyword2']['value'] = $v['productName'];
+					$_data['data']['keyword3']['value'] = $v['consignee'].' '.$v['consigneePhone'].' '.$v['consigneeAddress'];
+					$_data['data']['keyword4']['value'] = $v['orderNo'];
+					$_msg = "，商品：{$v['productName']}";
+					break;
+				case 'group'://成团
+					$_data['url'] = $typeMap[$type]['link'];
+					$_data['data']['keyword1']['value'] = $v['orderNo'];
+					$_data['data']['keyword2']['value'] = $v['factPrice'];
+					unset($_data['data']['keyword3'], $_data['data']['keyword4']);
+					break;
+				case 'win'://中奖
+				case 'unwin'://未中奖
+					$_data['url'] = $typeMap[$type]['link'].$v['invCode'];
+					$_data['data']['keyword1']['value'] = $v['productName'];
+					$_data['data']['keyword2']['value'] = $v['factPrice'];
+					$_data['data']['keyword3']['value'] = $v['groupDate'];
+					$_data['data']['keyword4']['value'] = $typeMap[$type]['name'];
+					$_msg = "，商品：{$v['productName']}，成团时间：{$v['groupDate']}";
+					break;
+			}
+			
+			$sendResult = $objWX->sendTemplateMessage($_data);
+		 if($type =='unwin'){
+			if($sendResult === false){
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】0.1抽奖【{$typeMap[$type]['name']} {$type}】通知发送失败，openid:{$v['openid']}，实付金额：{$v['factPrice']}{$_msg}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+			}else{
+				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】0.1抽奖【{$typeMap[$type]['name']} {$type}】通知发送成功，openid:{$v['openid']}，实付金额：{$v['factPrice']}{$_msg}\r\n";
+			}
+		 }
+			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
+		}
+		file_put_contents($_logFile, "\r\n", FILE_APPEND);
+		break;
 	case 'guess'://猜价中奖
 		$templateId = $tplIds['guess'];//'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig';
 		$prizeLevelMap = array(
