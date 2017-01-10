@@ -1310,8 +1310,8 @@
   line-height: 1.2rem;
   padding-top: 0;
   padding-bottom: 0;
-  background: url(../images/bar-tab.png) no-repeat;
-  background-size: 2.4rem auto;
+  background: url(../images/bar-tab-home.png) no-repeat;
+  background-size: 100% 100%;
 }
 .deta-footer .goIndex .tab-label {
   display: block;
