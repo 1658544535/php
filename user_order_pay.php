@@ -7,7 +7,6 @@ $orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
 $orderInfo = $orderInfo['result'];
 $payWay = intval($_GET['payway']);
 
-if($payWay == 4){
 	$orderpay = apiData('payOrder.do', array('orderNo'=>$orderInfo['orderInfo']['orderNo'],'payMethod'=>$payWay,'pdkUid'=>$orderInfo['orderInfo']['pdkUid'],'uid'=>$userid));
 	$_refreUrl = 'order_detail.php?oid='.$orderInfo['orderInfo']['orderId'];
 	if($orderpay['success'] !=''){
@@ -15,9 +14,5 @@ if($payWay == 4){
 	}else{
 		redirect($_refreUrl,'支付失败');
 	}
-}else{
-	$url = '/wxpay/pay.php?oid='.$orderInfo['orderInfo']['orderId'].'&payway='.$payWay;
-	redirect($url);
-}
-exit();
+
 ?>
