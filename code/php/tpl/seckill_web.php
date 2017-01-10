@@ -73,7 +73,9 @@ $(function(){
 												<?php }?>
 												</div>
 												<div class="btn">
-													<?php if($_info['isStart'] == 1){ ?>
+													<?php if($v['isSellOut'] == 1){ ?>
+														<span class="gray">已售罄</span>
+													<?php }elseif($_info['isStart'] == 1){ ?>
 														<span class="red">去抢购</span>
 													<?php }else{ ?>
 														<span class="orange">即将开抢</span>
