@@ -32,14 +32,14 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="last">
+                            <!-- <li class="last">
                                 <div class="item">
                                     <div class="label">身份证号码</div>
                                     <div class="main">
                                         <input id="number" type="text" name="cardNo" class="txt" placeholder="填写身份证号码" />
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
                             <li>
                                 <div class="item">
                                     <div class="label">推广渠道</div>
@@ -144,10 +144,10 @@
                             $.toast("请正确填写手机号码");
                             return false;
                         }
-                        if($.trim($("#number").val()) == ""){
+                       <!-- if($.trim($("#number").val()) == ""){
                             $.toast("请填写身份证号码");
                             return false;
-                        }
+                        }-->
                         if($.trim($("#way").val()) == ""){
                             $.toast("请填写推广渠道");
                             return false;
