@@ -55,7 +55,8 @@ switch($wxReqType){
 					default:
 //						$subscribeMsg = '终于等到您~欢迎来到火遍朋友圈、汇聚全球玩具的拼得好，我们为您准备了7.7专区、品牌特卖等好玩实惠的玩具拼团，<a href="'.$siteUrl.'">☞点击进入商城</a>';
 //						$subscribeMsg = '终于等到你！我们已经为你准备了猜价格、9.9特卖、掌上秒杀、0.1夺宝等好玩实惠的活动。拼靓价得好货，一切尽在拼得好，<a href="'.$siteUrl.'">☞点击进入商城</a>';
-                        $subscribeMsg = "欢迎关注【拼得好】商城！\r\n①点击【进入商城】右下方领取88元新年红包！\r\n②千元抽奖仅花一毛，一团两人必中！<a href='http://weixin.pindegood.com/lottery_new.php'>立即开团</a>";
+//                        $subscribeMsg = "欢迎关注【拼得好】商城！\r\n①点击【进入商城】右下方领取88元新年红包！\r\n②千元抽奖仅花一毛，一团两人必中！<a href='http://weixin.pindegood.com/lottery_new.php'>立即开团</a>";
+						$subscribeMsg = "欢迎关注【拼得好】购物商城！\r\n您还有新年红包未领取！<a href='http://weixin.pindegood.com/transfer.php'>点击领取</a>";
 						break;
 				}
 				$objWX->text($subscribeMsg)->reply();
@@ -66,7 +67,8 @@ switch($wxReqType){
 						recordSourceQrcode();
 					default:
 //						$text = '<a href="'.$siteUrl.'">优质玩具，预购从速，点击进入</a>';
-						$text = "欢迎关注【拼得好】商城！\r\n①点击【进入商城】右下方领取88元新年红包！\r\n②千元抽奖仅花一毛，一团两人必中！<a href='http://weixin.pindegood.com/lottery_new.php'>立即开团</a>";
+//						$text = "欢迎关注【拼得好】商城！\r\n①点击【进入商城】右下方领取88元新年红包！\r\n②千元抽奖仅花一毛，一团两人必中！<a href='http://weixin.pindegood.com/lottery_new.php'>立即开团</a>";
+						$text = "欢迎关注【拼得好】购物商城！\r\n您还有新年红包未领取！<a href='http://weixin.pindegood.com/transfer.php'>点击领取</a>";
 						break;
 				}
 				$objWX->text($text)->reply();
@@ -90,6 +92,7 @@ function __getReplyByKeyword($keyword){
 		'纸巾' => '<a href="http://weixin.pindegood.com/groupon.php?id=771">湿水不易破 ，6包维达抽取式三层纸巾，狂欢免费送，已有2626人领取成功！快戳 ☞链接！</a>',
 		'兑奖' => "①点击<a href=\"http://weixin.pindegood.com/user_binding.php\">注册</a>拼得好帐号\r\n②回复“兑奖码+注册手机号”\r\n③点击<a href=\"http://weixin.pindegood.com/user_info.php?act=coupon\">马上领取！</a>\r\n（兑奖时间：09:00-17:30）",
 //        '领年货' => "【好友联盟领年货】活动规则：\r\n①点击左下方菜单【领年货】-【专属海报】\r\n②发给好友/朋友圈，获得扫码支持，攒福气值\r\n③福气值达到即可点击左下角菜单【领年货】-【我的年货】兑换\r\n温馨提示：福气值越高，可兑换年货更高级哦！更有<a href='http://weixin.pindegood.com/lottery_new.php'>1毛团长必中夺宝</a>等着您！",
+		'领取' => "恭喜您兑换成功！点击兑换的礼包进行开团领取！\r\n<a href='http://weixin.pindegood.com/groupon.php?id=8873'>坚果年货礼包>>>戳</a>\r\n<a href='http://weixin.pindegood.com/groupon.php?id=8895'>水画布>>>戳</a>\r\n【特别注意】组团成功后！公众号回复开团注册手机号码！我们会根据开团填写的地址安排发货！\r\n【福利加强】我们还会在所有成团列表中，抽取整团中奖哦！您跟参团的亲都有可能再中奖！",
 	);
 	$keywordMap['1毛'] = $keywordMap['0.1夺宝'] = $keywordMap['夺宝'] = $keywordMap['0.1'];
 	$keywordMap['优惠券'] = $keywordMap['水画布活动'] = $keywordMap['优惠券活动'] = $keywordMap['水画布'];
