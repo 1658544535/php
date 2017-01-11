@@ -157,18 +157,18 @@
                             $.toast("请正确填写手机号码");
                             return false;
                         }
-                        <!-- if($.trim($("#number").val()) == ""){
-                            $.toast("请填写身份证号码");
-                            return false;
-                        }-->
+//                         if($.trim($("#number").val()) == ""){
+//                             $.toast("请填写身份证号码");
+//                             return false;
+//                         }
                         if($.trim($("#way").val()) == ""){
                             $.toast("请填写推广渠道");
                             return false;
                         }
-                        if($(".uploadImg img").length<=0){
-                            $.toast("请上传推广证明");
-                            return false;
-                        }
+//                         if($(".uploadImg img").length<=0){
+//                             $.toast("请上传推广证明");
+//                             return false;
+//                         }
                         $(".uploadImg img").each(function(index, el) {
                             var url = $(el).attr("data-file");
                             url = url.split("/");
