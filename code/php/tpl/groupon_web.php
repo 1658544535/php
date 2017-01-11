@@ -157,7 +157,7 @@
 									<?php } ?>
 								<?php } ?>
 							<?php }elseif($info['activityStatus'] == 1){ ?>
-								<?php if(($info['isOpen'] == 1) || (($info['activityType'] == 7) && ($info['isGroup'] == 1))){ ?>
+								<?php if($info['activityType'] == 7 && $info['isGroup'] == 1 && $info['isOpen'] == 1){ ?>
 									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">您已参与过该活动</a></div>
 								<?php }elseif(empty($skus['validSKu'])){ ?>
 									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">商品已售罄</a></div>
@@ -249,20 +249,20 @@
 		?>
 
         <script>
-			 var _apiUrl = "/api_action.php?act=";
-			document.domain='<?php echo implode('.', $_arrDomain);?>';
+// 			 var _apiUrl = "/api_action.php?act=";
+	//		document.domain='<?php echo implode('.', $_arrDomain);?>';
 			 <?php if($info['productStatus'] == 1){ ?>
-			 function setIframeHeight(iframe) {
-			  	if (iframe) {
-			  		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-			  		if (iframeWin.document.body) {
-			  			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-			  		}
-			  	}
-			 };
-			 window.onload = function () {
-			  	setIframeHeight(document.getElementById('proInfo'));
-			 };
+// 			 function setIframeHeight(iframe) {
+// 			  	if (iframe) {
+// 			  		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+// 			  		if (iframeWin.document.body) {
+// 			  			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+// 			  		}
+// 			  	}
+// 			 };
+// 			 window.onload = function () {
+// 			  	setIframeHeight(document.getElementById('proInfo'));
+// 			 };
 			 <?php } ?>
 
             $(document).on("pageInit", "#page-deta", function(e, pageId, page) {
