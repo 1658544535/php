@@ -31,14 +31,14 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="last">
+                        <!--  <li class="last">
                             <div class="item">
                                 <div class="label">身份证号码</div>
                                 <div class="main">
                                     <div class="txt"><?php echo $Objinfo['cardNo'];?></div>
                                 </div>
                             </div>
-                        </li>
+                        </li>-->
                         <li>
                             <div class="item">
                                 <div class="label">推广渠道</div>
@@ -84,14 +84,14 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="last">
+                        <!-- <li class="last">
                             <div class="item">
                                 <div class="label">身份证号码</div>
                                 <div class="main">
                                     <div class="txt"><?php echo $Objinfo['cardNo'];?></div>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                         <li>
                             <div class="item">
                                 <div class="label">推广渠道</div>
