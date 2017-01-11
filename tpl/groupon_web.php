@@ -157,7 +157,7 @@
 									<?php } ?>
 								<?php } ?>
 							<?php }elseif($info['activityStatus'] == 1){ ?>
-								<?php if($info['activityType'] == 7 && $info['isGroup'] == 1 && $info['isOpen'] == 1){ ?>
+								<?php if($info['activityType'] == 7  && $info['isOpen'] == 1){ ?>
 									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">您已参与过该活动</a></div>
 								<?php }elseif(empty($skus['validSKu'])){ ?>
 									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">商品已售罄</a></div>
