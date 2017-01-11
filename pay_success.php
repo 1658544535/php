@@ -12,6 +12,14 @@ $referUrl = urldecode($_GET['url']);
 
 $orderId = intval($_GET['oid']);
 $orderInfo = apiData('orderdetail.do', array('oid'=>$orderId));
+
+//记录
+$str = "【".date('Y-m-d H:i:s', time())."】订单id：{$orderId}，订单号：{$orderInfo['result']['orderInfo']['orderNo']}，attendId：{$orderInfo['result']['attendId']}，sessionType：{$_SESSION['order']['type']}，state：{$state}\r\n";
+$logDir = LOG_INC.'pay/';
+!file_exists($logDir) && mkdir($logDir, 0777, true);
+$logFile = $logDir.'pay_result_'.date('Y-m-d', time()).'.log';
+file_put_contents($logFile, $str, FILE_APPEND);
+
 if($orderInfo['result']['attendId']){
     if($state && in_array($_SESSION['order']['type'], array('free', 'groupon', 'join', 'raffle01', 'seckill','pdk'))){
         $referUrl = 'groupon_join.php?aid='.$orderInfo['result']['attendId'].'&pdkUid='.$orderInfo['result']['orderInfo']['pdkUid'];

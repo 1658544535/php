@@ -6,6 +6,7 @@ $page = max(1, intval($_POST['page']));
 
 //获取活动列表数据
 $LotteryList = apiData('getDrawListPhpApi.do', array('type'=>$Type,'pageNo'=>$page));
+//$LotteryList = apiData('getDrawListApi.do', array('type'=>$Type,'pageNo'=>$page));
 
 if($LotteryList['result'] !='')
 {
