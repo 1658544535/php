@@ -24,22 +24,22 @@
                                     </div>
                                 </div>
                             </li>
-                            <!--  <li>
+                            <li>
                                 <div class="item">
                                     <div class="label">手机号码</div>
                                     <div class="main">
                                         <input id="phone" type="text" name="phone" class="txt" placeholder="填写手机号码" value="<?php echo $infoEdit['phone'];?>" />
                                     </div>
                                 </div>
-                            </li>-->
-                            <li class="last">
+                            </li>
+                           <!--  <li class="last">
                                 <div class="item">
                                     <div class="label">身份证号码</div>
                                     <div class="main">
                                         <input id="number" type="text" name="cardNo" class="txt" placeholder="填写身份证号码" value="<?php echo $infoEdit['cardNo'];?>" />
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
                             <li>
                                 <div class="item">
                                     <div class="label">推广渠道</div>
@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                             </li>
-                        <?php if(($infoEdit['image1']!='') || ($infoEdit['image2']!='') || ($infoEdit['image3']!='') || ($infoEdit['image4']!='') || ($infoEdit['image5']!='')){ ?>
+                        
                         <li class="last">
                             <div class="item">
                                 <div class="label">推广证明</div>
@@ -71,7 +71,7 @@
 							<?php } ?>
                                 </div>
                             </li>
-                        <?php }?>
+                      
                         </form>
                     </ul>
                 </section>
