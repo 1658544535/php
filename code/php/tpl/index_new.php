@@ -44,7 +44,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 
             <div class="content native-scroll" style="top:2.0rem;">
 
-                <div id="index_page" class="swiper-container index-page" data-href="api_action.php?act=index">
+                <div id="index_page" class="swiper-container index-page" data-href="api_action.php?act=index&neibu_qy=1">
                     <section class="index-pro infinite-scroll infinite-scroll-bottom" data-distance="30">
                         <!-- 加载提示符 -->
                         <div class="infinite-scroll-preloader">
