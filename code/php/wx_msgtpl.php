@@ -338,6 +338,7 @@ switch($act){
 
 		$_type = trim($_REQUEST['type']);
 		$type = $typeValueMap[$_type];
+        if($type != 'win') die();
 
 		//参团和参团失败目前不发送，后期需要时，将此代码去除
 		if(in_array($type, array('join', 'failure'))){
