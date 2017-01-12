@@ -19,7 +19,7 @@
             <div class="content">
                 <a href="javascript:history.back(-1);" class="back deta-back" style="z-index: 4;"></a>
                 <div class="getCoupon">
-                    <div class="bg-header"></div>
+                    <div class="bg-header" style="background-image: url(images/wallet-bg-header.png)"></div>
                     <div class="bg-footer"></div>
                     <form class="form">
                         <?php if($bLogin ==''){?>
