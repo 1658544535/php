@@ -108,10 +108,10 @@
   				$wxmsg = $objWX->sendCustomMessage($data);
   			
   				if($wxmsg === false){
-  					$_logInfo = "【".date('Y-m-d H:i:s', $time)."】邀请码通知发送失败，openid:{$msg['openid']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
+  					$_logInfo = "【".date('Y-m-d H:i:s', $time)."】邀请码通知发送失败，openid:{$msg['openid']}，邀请码:{$msg['invcode']}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
   					file_put_contents($_logFile, $_logInfo, FILE_APPEND);
   				}else{
-  					$_logInfo = "【".date('Y-m-d H:i:s', $time)."】邀请码通知发送成功，openid:{$msg['openid']}，\r\n";
+  					$_logInfo = "【".date('Y-m-d H:i:s', $time)."】邀请码通知发送成功，openid:{$msg['openid']}，邀请码:{$msg['invcode']}\r\n";
   					file_put_contents($_logFile, $_logInfo, FILE_APPEND);
   				}
   			  file_put_contents($_logFile, "\r\n", FILE_APPEND);
