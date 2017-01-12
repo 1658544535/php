@@ -33,11 +33,13 @@ switch( $act )
 	-----------------------------------------------------------------------------------------------------*/
 	case 'address_add':
 //		$_SESSION['order']['addressId']	= CheckDatas('aids', '');
+		$address_choose = $_GET['address_choose'];
 		$addr = $_COOKIE['orderaddr'];
 		$addr = json_decode(urldecode($addr), true);
 		$_SESSION['order']['addressId'] = $addr['id'];
 		$_SESSION['order']['address'] = $addr;
-		unset($_COOKIE['orderaddr']);
+		unset($_COOKIE['orderaddr'
+			]);
 		switch($_SESSION['order']['type']){
 			case 'free':
 				$_url = 'order_free.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
@@ -67,7 +69,7 @@ switch( $act )
 				$_url = 'order_pdk.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
 				break;
 		}
-		redirect($_url);
+		redirect($_url.'&address_choose='.$address_choose);
 	break;
 
 	/*----------------------------------------------------------------------------------------------------

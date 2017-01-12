@@ -1,7 +1,8 @@
 <?php
 (!defined('ORDER_IN') || !ORDER_IN) && redirect('/');
 
-if(isset($_SESSION['order']['address'])){
+$address_choose = $_GET['address_choose'];
+if(isset($_SESSION['order']['address']) && $address_choose == 1){
 	$address = $_SESSION['order']['address'];
 	$addrId = $address['id'];
 }else{
