@@ -63,6 +63,9 @@ switch( $act )
 			case 'raffle':
 				$_url = 'order_raffle.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
 				break;
+			case 'pdk':
+				$_url = 'order_pdk.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
+				break;
 		}
 		redirect($_url);
 	break;
