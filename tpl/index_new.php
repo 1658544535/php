@@ -2,7 +2,7 @@
 <script type="text/javascript" src="/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="/js/wxshare.js"></script>
 <script type="text/javascript">
-var imgUrl = "<?php echo $site;?>images/200.jpg";
+var imgUrl = "<?php echo $site;?>images/wxLOGO.png";
 var link = "<?php echo $site;?>";
 var title ="拼得好";
 var desc = "1毛夺好礼，拼享新玩法";
