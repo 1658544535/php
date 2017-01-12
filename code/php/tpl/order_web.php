@@ -12,7 +12,7 @@
 				</header>
 
 				<div class="content native-scroll" style="bottom:2.75rem;">
-					<?php if(!$canDispatch){ ?>
+					<?php if($address['isremote'] == 1){ ?>
 						<div class="oc-tips themeColor">当前地址不在配送范围内</div>
 					<?php } ?>
 
@@ -22,7 +22,7 @@
 								<div>您的地址信息为空，点击进行添加</div>
 							<?php }else{ ?>
 								<div><?php echo $address['name']; ?>&nbsp;&nbsp;&nbsp;<?php echo $address['tel']; ?></div>
-								<div><?php if(!$canDispatch){ ?><strong>（无法配送至该地址）</strong><?php } ?><?php echo $address['address']; ?></div>
+								<div><?php if($address['isremote'] == 1){ ?><strong>（无法配送至该地址）</strong><?php } ?><?php echo $address['address']; ?></div>
 							<?php } ?>
 						</a>
 					</section>
@@ -110,7 +110,7 @@
 
 				<div class="oc-footer">
 					实付款：<font class="themeColor">￥<span class="price" id="fact-amount"><?php echo $info['sumPrice'];?></span></font>
-					<input type="submit" value="立即支付" class="btn<?php if(!$canDispatch){ ?> gray<?php } ?>" />
+					<input type="submit" value="立即支付" class="btn<?php if($address['isremote'] == 1){ ?> gray<?php } ?>" />
 				</div>
 			</div>
 	        <div class="popup popup-oc-coupon">
