@@ -142,7 +142,7 @@
 
 				$(document).on("click", "ul.list-container li .txt", function(){
 					var _this = $(this).parent();
-					var addr = {"id":_this.attr("data-id"),"isremote":_this.attr("data-isremote"),"name":_this.attr("data-name"),"tel":_this.attr("data-tel"),"address":_this.attr("data-address"),"province":_this.attr("data-province")};
+					var addr = {"id":_this.attr("data-id"),"isRemote":_this.attr("data-isremote"),"name":_this.attr("data-name"),"tel":_this.attr("data-tel"),"address":_this.attr("data-address"),"province":_this.attr("data-province")};
 					document.cookie = "orderaddr="+encodeURIComponent(JSON.stringify(addr));
 					location.href = "orders.php?act=address_add&from=orders&aids="+addr.id;
 				});
