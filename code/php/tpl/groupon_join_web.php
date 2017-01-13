@@ -53,6 +53,9 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 							<h1 class="title">已开奖</h1>
 						<?php }?>
 		                <?php break;?>
+		                <?php case 5:?>
+		                    <h1 class="title">拼团失败</h1>
+		                <?php break;?>
 	                <?php }?>
                 <?php }?>
             </header>
@@ -110,6 +113,12 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 								<a href="groupon.php?id=<?php echo $info['activityId'];?>&pdkUid=<?php echo $pdkUid; ?>">我要开团</a>
 							</div>
 							<?php break; ?>
+					    <?php case 5: ?>
+							   <div>
+								    <a href="index.php" class="white">更多拼团</a>
+								    <a href="groupon.php?id=<?php echo $info['activityId'];?>&pdkUid=<?php echo $pdkUid; ?>">我要开团</a>
+							</div>
+							<?php break; ?>
 					<?php } ?>
 				<?php }?>
  			</section>
@@ -135,7 +144,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 											<div class="icon"><img src="images/groupJoin-3.png" /></div>
 										<?php }elseif( $info['isGroup'] ==0 && $info['status'] ==1){?>
 											<div class="icon"><img src="images/groupJoin-1.png" /></div>
-										<?php }elseif( $info['status'] ==2){?>
+										<?php }elseif( $info['status'] ==2 || $info['status'] ==5){?>
 											<div class="icon"><img src="images/groupJoin-4.png" /></div>
 										<?php }?>
 									</div>
@@ -166,7 +175,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 											<div class="icon"><img src="images/groupJoin-3.png" /></div>
 										<?php }elseif( $info['isGroup'] ==0 && $info['status'] ==1){?>
 											<div class="icon"><img src="images/groupJoin-1.png" /></div>
-										<?php }elseif( $info['status'] ==2){?>
+										<?php }elseif( $info['status'] ==2 || $info['status'] ==5){?>
 											<div class="icon"><img src="images/groupJoin-4.png" /></div>
 										<?php }elseif( $info['status'] ==4 && ($info['isGroup'] !=0 || $info['isOpen'] ==1)){?>
 											<div class="icon"><img src="images/groupJoin-5.png" /></div>
@@ -208,6 +217,11 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					    <?php case 4:?>
 					       <?php if($info['activityType'] ==7 && $info['isGroup'] ==0 && $info['isOpen'] !=1){?>
 					        <h3 class="title1">您来晚了，已成团~</h3>
+					       <?php }?>
+					    <?php break;?>
+					    <?php case 5:?>
+						   <?php if($info['isSellOut'] ==0){?>
+							<h3 class="title1">支付成功！但由于该团失效导致拼团失败，您的款项将到1-3个工作日内原路返回</h3>
 					       <?php }?>
 					    <?php break;?>
 					   <?php }?>
@@ -287,7 +301,9 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 							<a class="swiper-slide" href="specials.php?id=<%=data['banner'][i].typeId%>">
 	                    <%}else if(data["banner"][i]["type"] == 6){%>
 							<a class="swiper-slide" href="special_77.php">
-	                    <%}else{%>
+                        <%}else if(data["banner"][i]["type"] == 7){%>
+						    <a class="swiper-slide" href="<%=data["banner"][i].typeId%>">	                    
+                        <%}else{%>
 							<a class="swiper-slide">
 	                    <%}%>
 	                        <img src="<%=data["banner"][i].banner%>">
