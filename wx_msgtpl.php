@@ -63,7 +63,7 @@ $tplMap = array(
 		'join' => '8z5eCo87R5RO6EATUlbP1O6WjKRLLdgPzPt89K6VyZ8',
 		'delivery' => 'kehyZ0py0ftUpe56CiUqs-rR9VsP1BII5Cb49x5JrMk',
 		'raffle01' => array(
-			'win' => 'cb_Dmqcz5sJSkVw1spO4-Ao4bkUUhLxmzdQmx_0VtKMs',
+			'win' => 'cb_Dmqcz5sJSkVw1spO4-Ao4bkUUhLxmzdQmx_0VtKM',
 		),
 		'guess' => '8DpmIFPjeiY4qHV932XN8oLTN1F2UgFd_Cepy94p_XM',
 		'join_fail' => 'aYY7dRR0oH8X3kDUjIsgkutJRyPzJkbJT3UWWk-agMM',
