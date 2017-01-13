@@ -50,7 +50,9 @@ $tplMap = array(
 		'open' => 'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
 		'join' => 'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
 		'delivery' => 'EGztXez9id31kHrJZo6i-pY6523kx15PDgvC80Qw658',
-		'raffle01' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',
+		'raffle01' => array(
+			'win' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',
+		),
 		'guess' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',
 		'join_fail' => 'pP41fxH24PzPaKArwxh9LixWfluEI5gu328xix46MWM',
 	),
@@ -60,7 +62,9 @@ $tplMap = array(
 		'open' => 'kzB9_8I5Dl3nByE1AZy8-qrVuLVXXZD7uZJDhifDqPI',
 		'join' => '8z5eCo87R5RO6EATUlbP1O6WjKRLLdgPzPt89K6VyZ8',
 		'delivery' => 'kehyZ0py0ftUpe56CiUqs-rR9VsP1BII5Cb49x5JrMk',
-		'raffle01' => 'cb_Dmqcz5sJSkVw1spO4-Ao4bkUUhLxmzdQmx_0VtKMs',
+		'raffle01' => array(
+			'win' => 'cb_Dmqcz5sJSkVw1spO4-Ao4bkUUhLxmzdQmx_0VtKMs',
+		),
 		'guess' => '8DpmIFPjeiY4qHV932XN8oLTN1F2UgFd_Cepy94p_XM',
 		'join_fail' => 'aYY7dRR0oH8X3kDUjIsgkutJRyPzJkbJT3UWWk-agMM',
 	),
@@ -288,7 +292,7 @@ switch($act){
 		$typeMap = array(
 			//开团
 			'open' => array(
-				'tplid' => 'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
+				'tplid' => $tplIds['raffle01']['open'],// 'q6Kaj6ncMMCNAXWniidB8yH0AOgdSjuQ_b3J9dreWiI',
 				'name' => '开团',
 				'first' => '恭喜您，开团成功啦！邀请好友参与，成团即拿奖品哦！',
 				'remark' => '告诉您小妙招，分享至好友加速成团哦！点击马上分享>>>',
@@ -304,7 +308,7 @@ switch($act){
 //			),
 			//成团
 			'group' => array(
-				'tplid' => 'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
+				'tplid' => $tplIds['raffle01']['group'],// 'JUakJR3M_mE7MnrDGf_1kbWsmNAjTnUb458XYwn6aSM',
 				'name' => '成团',
 				'first' => '恭喜您，拼团成功啦！稍后留意开奖信息哦！',
 				'remark' => '[劲爆]优质好货，0元开团，预购从速，点击领券>>>',
@@ -312,7 +316,7 @@ switch($act){
 			),
 			//中奖
 			'win' => array(
-				'tplid' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',//kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig//cb_Dmqcz5sJSkVw1spO4-Ao4bkUUhLxmzdQmx_0VtKM
+				'tplid' => $tplIds['raffle01']['win'],
 				'name' => '已中奖',
 				'first' => '恭喜您，终于成团啦！奖品正在打包送到您手上，敬请期待！',
 				'remark' => '点击领取拼得好给您新年专属红包>>>',
@@ -320,7 +324,7 @@ switch($act){
 			),
 			//未中奖
 			'unwin' => array(
-				'tplid' => 'kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig',//kbBLSKrbhq4niAIZ9_HnsYOicBKPADhouKpHvknmvig//cb_Dmqcz5sJSkVw1spO4-Ao4bkUUhLxmzdQmx_0VtKM
+				'tplid' => $tplIds['raffle01']['unwin'],
 				'name' => '未中奖',
 				'first' => '您没有中奖！您的款项正在退款中！',
 				'remark' => '不要灰心，马上开团获得更多0.1元抽奖机会>>>',
