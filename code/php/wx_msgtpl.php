@@ -419,13 +419,11 @@ switch($act){
 			}
 			
 			$sendResult = $objWX->sendTemplateMessage($_data);
-		 if($type =='unwin'){
 			if($sendResult === false){
 				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】0.1抽奖【{$typeMap[$type]['name']} {$type}】通知发送失败，openid:{$v['openid']}，实付金额：{$v['factPrice']}{$_msg}，失败信息：".$objWX->errMsg."【".$objWX->errCode."】\r\n";
 			}else{
 				$_logInfo = "【".date('Y-m-d H:i:s', $time)." 订单号:{$v['orderNo']}】0.1抽奖【{$typeMap[$type]['name']} {$type}】通知发送成功，openid:{$v['openid']}，实付金额：{$v['factPrice']}{$_msg}\r\n";
 			}
-		 }
 			file_put_contents($_logFile, $_logInfo, FILE_APPEND);
 		}
 		file_put_contents($_logFile, "\r\n", FILE_APPEND);
