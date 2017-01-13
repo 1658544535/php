@@ -19,7 +19,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             </header>
 
             <div class="content native-scroll">
-                <iframe src="<?php echo $url;?>" borderStyle="none" width="100%" height="100%"></iframe>
+                <iframe src="<?php echo $url;?>" frameborder="0" width="100%" height="100%"></iframe>
                 <input type="hidden" name="noGoIndex" value="1" />
             </div>
         
