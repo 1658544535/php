@@ -95,13 +95,6 @@ switch($info['activityType']){
 		break;
 }
 
-//限购判断
-$num = intval($_GET['num']);
-$num = max(1, $num);
-
-$skuId = intval($_GET['skuid']);
-empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
-$d = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$info['productId'],'source'=>1,'uid'=>$userid));
 
 //判断拼得客活动是否已结束
 (($info['activityType'] == 8) && ($info['activityStatus'] == 2)) && redirect('/index.php', '活动已结束');

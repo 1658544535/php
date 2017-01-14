@@ -66,10 +66,10 @@ switch( $act )
 				$_url = 'order_raffle.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
 				break;
 			case 'pdk':
-				$_url = 'order_pdk.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
+				$_url = 'order_pdk.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'].'&pdkUid='.$_SESSION['order']['pdkUid'];
 				break;
 		}
-		redirect($_url.'&address_choose='.$address_choose);
+		redirect($_url.'&address_choose='.$address_choose.'&num='.$_SESSION['order']['num']);
 	break;
 
 	/*----------------------------------------------------------------------------------------------------
