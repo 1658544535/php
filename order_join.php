@@ -73,6 +73,7 @@ $_SESSION['order']['type'] = 'join';
 $_SESSION['order']['grouponId'] = $grouponId;
 $_SESSION['order']['attendId'] = $attendId;
 $_SESSION['order']['pdkUid'] = $pdkUid;
+$_SESSION['order']['num'] = $num;
 //$_SESSION['order']['isfree'] = $isGrouponFree ? 1 : 0;//参加的团的类型
 
 include_once('order_common.php');
