@@ -76,7 +76,10 @@
 
                <?php if($info['pindeke'] ==1){?>
                 <section class="user-pdk">
-                    <h3 class="title1"><i></i>拼得客管理中心</h3>
+                    <h3 class="title1">
+                        <a class="go" href="#">查看排行榜 ></a>
+                        <i></i>拼得客管理中心
+                    </h3>
                     <ul>
                         <li><a href="/pindeke.php?act=pdkInfo&uid=<?php echo $userid;?>"><i class="u-p-1"></i>我的信息</a></li>
                         <li><a href="/pindeke.php?act=wallet"><i class="u-p-2"></i>我的钱包</a></li>
