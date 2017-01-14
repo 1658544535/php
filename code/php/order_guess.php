@@ -52,6 +52,6 @@ $infowallet = $infowallet['result'];
 
 $_SESSION['order']['grouponId'] = $grouponId;
 $_SESSION['order']['type'] = 'guess';
-$_SESSION['order']['num'] = $num;
+
 include_once('order_common.php');
 ?>
