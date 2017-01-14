@@ -58,7 +58,7 @@ $_SESSION['order']['type'] = 'pdk';
 
 $_SESSION['order']['grouponId'] = $grouponId;
 $_SESSION['order']['pdkUid'] = $pdkUid;
-$_SESSION['order']['num'] = $num;
+
 
 include_once('order_common.php');
 ?>

@@ -20,7 +20,7 @@ if(isset($_SESSION['order']['address']) && $address_choose == 1){
 
 //地址是否可配送
 $canDispatch = (!empty($address) && in_array($address['province'])) ? false : true;
-
+$_SESSION['order']['num']       = $num;
 $_SESSION['order']['productId'] = $productId;
 $_SESSION['order']['addressId'] = $addrId;
 $_SESSION['order']['sku'] = $skuId;

@@ -52,6 +52,6 @@ $infowallet = $infowallet['result'];
 
 
 $_SESSION['order']['type'] = 'alone';
-$_SESSION['order']['num'] = $num;
+
 include_once('order_common.php');
 ?>
