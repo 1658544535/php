@@ -416,7 +416,7 @@ switch($act){
 					break;
 				case 'win'://中奖
 				case 'unwin'://未中奖
-					$_data['url'] = $typeMap[$type]['link'].$v['invCode'];
+					$_data['url'] = $typeMap[$type]['link'];//.$v['invCode'];
 					$_data['data']['keyword1']['value'] = $v['productName'];
 					$_data['data']['keyword2']['value'] = $v['factPrice'];
 					$_data['data']['keyword3']['value'] = $v['groupDate'];
