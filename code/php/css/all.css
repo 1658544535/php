@@ -70,6 +70,7 @@
 }
 /*顶部*/
 .bar-nav .icon {
+  display: block;
   width: 2.2rem;
   height: 2.2rem;
 }
@@ -83,6 +84,12 @@
   background-image: url(../images/share.png);
   background-repeat: no-repeat;
   background-size: 0.9rem auto;
+  background-position: 50% 50%;
+}
+.bar-nav .icon-message {
+  background-image: url(../images/contact.png);
+  background-repeat: no-repeat;
+  background-size: 1rem auto;
   background-position: 50% 50%;
 }
 .bar-nav .search {
@@ -6214,6 +6221,7 @@
 .ranking .code .txt {
   font-size: 0.7rem;
   color: #555454;
+  text-align: justify;
 }
 .ranking .code .img {
   display: block;

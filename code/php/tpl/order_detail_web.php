@@ -7,6 +7,9 @@
                 <a class="button button-link button-nav pull-left back" href="javascript:history.go(<?php echo $backStep;?>);">
                     <span class="icon icon-back"></span>
                 </a>
+                <a class="button button-link button-nav pull-right" href="/meiqia.php?m=<?php echo $_SESSION['userinfo']->loginname;?>&ono=<?php echo $OrderDetail['result']['orderInfo']['orderNo'];?>">
+                    <span class="icon icon-message"></span>
+                </a>
                 <?php if($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7 && $OrderDetail['result']['orderStatus'] ==1 && $OrderDetail['result']['isCancel'] ==0){?>
                 <h1 class="title">确认订单</h1>
                 <?php }elseif($OrderDetail['result']['source'] !=5 && $OrderDetail['result']['source'] !=7&& $OrderDetail['result']['orderStatus'] ==2 && $OrderDetail['result']['isSuccess'] ==1 ){?>
