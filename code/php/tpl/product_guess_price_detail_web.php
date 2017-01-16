@@ -411,7 +411,11 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                     </div>
                 <?php  }elseif($ObjGrouponInfo['result']['isJoin']  ==0 && $ObjGrouponInfo['result']['isStart']  ==1 ){
                     //未参与 未结束?>
-                    <div class="more1">
+                    <a class="goContact" href="/meiqia.php?pid=<?php echo $info['productId'];?>&m=<?php echo $_SESSION['userinfo']->loginname;?>">
+                        <span class="icon i-message"></span>
+                        <span class="tab-label">客服</span>
+                    </a>
+                    <div class="more1 buy-m2">
                           <a id="guess-join" class="btn" href="javascript:;"><span>我要参与</span></a>
                     </div>
                 <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==1 ){
