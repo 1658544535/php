@@ -105,6 +105,7 @@
                         <li><a href="/user_info?act=product_collect"><i class="u-l-4"></i>我的收藏</a></li>
                         <li><a href="/address?act=manage"><i class="u-l-5"></i>收货地址</a></li>
                         <li><a href="/user_set.php"><i class="u-l-7"></i>设置</a></li>
+                        <li><a href="/meiqia.php?m=<?php echo $_SESSION['userinfo']->loginname;?>"><i class="u-l-8"></i>客服</a></li>
                     </ul>
                 </section>
             </div>

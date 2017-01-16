@@ -138,6 +138,10 @@
 						<span class="icon i-collection"></span>
 						<span class="tab-label">收藏</span>
 					</a>
+					<a class="goContact" href="/meiqia.php?pid=<?php echo $info['productId'];?>&m=<?php echo $_SESSION['userinfo']->loginname;?>">
+						<span class="icon i-message"></span>
+						<span class="tab-label">客服</span>
+					</a>
 					<?php switch($info['activityType']){
 						case 5://0.1抽奖
 						case 7://免费抽奖
