@@ -31,7 +31,7 @@ if(isset($_SESSION['order_success']) && $_SESSION['order_success']){
 
 $num = intval($_GET['num']);
 $num = max(1, $num);
-$invCode =CheckDatas('code','');
+$invCode =CheckDatas('invcode','');
 $skuId = intval($_GET['skuid']);
 empty($skuId) && $skuId = $_SESSION['order']['sku'] ? $_SESSION['order']['sku'] : '';
 $info = apiData('addPurchase.do', array('activityId'=>$grouponId,'num'=>$num,'skuLinkId'=>$skuId,'pid'=>$productId,'source'=>5,'invCode'=>$invCode,'uid'=>$userid));
