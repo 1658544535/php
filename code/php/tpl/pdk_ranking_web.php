@@ -35,7 +35,13 @@
                                         <img width="28" src="images/ranking/03.png" alt="<?php echo $list['ranking'];?>" />
                                     <?php }else{echo $list['ranking'];}?>
                                 </td>
-	                            <td><img class="img" src="<?php echo $list['userLogo'];?>" /></td>
+	                            <td>
+	                             <?php if($list['userLogo'] !=''){?>
+	                                <img class="img" src="<?php echo $list['userLogo'];?>" />
+	                             <?php }else{?>
+	                                <img class="img" src="/images/def_user.png" />  
+	                             <?php }?>
+	                            </td>
 	                            <td><?php echo $list['userName'];?></td>
 	                            <td>￥ <?php echo $list['price'];?></td>
 	                        </tr>
