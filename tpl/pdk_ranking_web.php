@@ -13,7 +13,7 @@
 
             <div class="content native-scroll ranking">
                 <section class="date">
-                    <input type="text" id="date" value="<?php echo $year;?>年<?php echo $month;?>月" />
+                    <input type="text" id="date" value="<?php echo $year;?>年 <?php echo $month;?>月" />
                 </section>
                 <section class="list">
                     <h3 class="title1">我的排名: <span class="themeColor"><?php echo $rankList['result']['myRanking'];?></span></h3>
@@ -26,7 +26,15 @@
 	                        </tr>
                         <?php foreach ($rankList['result']['list'] as $list){?>
 	                        <tr>
-	                            <td class="serial"><img width="28" src="<?php if($list['ranking'] ==1){?>images/ranking/01.png<?php }elseif($list['ranking'] ==2){?>images/ranking/02.png<?php }elseif($list['ranking'] ==3){?>images/ranking/03.png<?php }?>" alt="<?php echo $list['ranking'];?>" /></td>
+	                            <td class="serial">
+                                    <?php if($list['ranking'] ==1){?>
+                                        <img width="28" src="images/ranking/01.png" alt="<?php echo $list['ranking'];?>" />
+                                    <?php }elseif($list['ranking'] ==2){?>
+                                        <img width="28" src="images/ranking/02.png" alt="<?php echo $list['ranking'];?>" />
+                                    <?php }elseif($list['ranking'] ==3){?>
+                                        <img width="28" src="images/ranking/03.png" alt="<?php echo $list['ranking'];?>" />
+                                    <?php }else{echo $list['ranking'];}?>
+                                </td>
 	                            <td><img class="img" src="<?php echo $list['userLogo'];?>" /></td>
 	                            <td><?php echo $list['userName'];?></td>
 	                            <td>￥ <?php echo $list['price'];?></td>
