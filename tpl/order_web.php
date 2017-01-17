@@ -227,7 +227,7 @@
 			return false;
 		<?php } ?>
 
-		<?php if(!$canDispatch){ ?>
+		<?php if($address['isRemote'] == 1){ ?>
 			return false;
 		<?php } ?>
 		var submit = clickSubmit;
