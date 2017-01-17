@@ -146,14 +146,10 @@ switch($act)
     //拼得客排行榜
     case 'ranking':
     	IS_USER_LOGIN();
-    		 
-        $pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
-    	if($pdkInfo['success'] ==''){
-    		redirect('index.php',您无法访问该页面！);
-    	}
-    	
-    	
-    	
+    	$month 		            = CheckDatas( 'm', '01' );
+    	$year 		            = CheckDatas( 'y', '2017' );
+    	$page                   = max(1, intval($_POST['page']));
+    	$rankList = apiData('pdkSellRankingList.do',array('pageSize'=>10,'pageNo'=>$page,'month'=>$month,'year'=>$year,'userId'=>$userid));
     	include_once('tpl/pdk_ranking_web.php');
     	break;
     	
@@ -167,12 +163,12 @@ switch($act)
     		 
     	if(!empty($minfo['result']['invitationCode']))
     	{
-    		$imgPath = AGENT_QRCODE_DIR."{$userid}.png";
-    		if(!file_exists(SCRIPT_ROOT."upfiles/pdkcode/{$userid}.png"))
+    		$imgPath = "../upfiles/pdkcodeNew/{$userid}.png";
+    		if(!file_exists(SCRIPT_ROOT."upfiles/pdkcodeNew/{$userid}.png"))
     		{
     			global $site;
     			$data = $site . 'pindeke_apply.php?act=binding&minfo=' . $minfo['result']['invitationCode'];
-    			get_qrcode($data, SCRIPT_ROOT."upfiles/pdkcode/", $userid . '.png');
+    			get_qrcode($data, SCRIPT_ROOT."upfiles/pdkcodeNew/", $userid . '.png');
     		}
     	}
     	else

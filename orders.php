@@ -48,7 +48,7 @@ switch( $act )
 				$_url = 'order_groupon.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];
 				break;
 			case 'join':
-				$_url = 'order_join.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'].'&aid='.$_SESSION['order']['attendId'];
+				$_url = 'order_join.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'].'&aid='.$_SESSION['order']['attendId'].'&pdkUid='.$_SESSION['order']['pdkUid'];
 				break;
 			case 'alone':
 				$_url = 'order_alone.php?id='.$_SESSION['order']['grouponId'].'&pid='.$_SESSION['order']['productId'];

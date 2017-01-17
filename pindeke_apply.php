@@ -18,7 +18,7 @@ define('IMAGE_UPLOAD_URL', 'upfiles/userpindeke/');
 
 switch($act){
 	case 'apply'://申请
-
+		$minfo  = CheckDatas( 'minfo', '' );
 		if(IS_POST()){
 			set_time_limit(0);
 			$apiParam = array();
@@ -34,9 +34,9 @@ switch($act){
 			$apiParam['name']       = $Name;
 			$apiParam['userId']     = $userid;
 			$apiParam['phone']      = $Phone;
-
-			$result = apiData('pdkApplyApi.do',$apiParam,'post');
-
+			$apiParam['code']       = $minfo;
+			
+			$result  = apiData('pdkApplyApi.do',$apiParam,'post');
 			
 			if(empty($_SESSION['backurl_aftersale'])){
 				$prevUrl = '/';
@@ -126,8 +126,6 @@ switch($act){
 						ajaxResponse(false, $result['error_msg']);
 					}
 				break;
-			
-			
 
 			case 'uploadimg'://上传图片
 					$upfile = $_FILES['files'];
@@ -145,6 +143,20 @@ switch($act){
 						ajaxResponse(false, '上传失败');
 					}
 			break;
+			
+			case 'binding'://绑定拼得客
+				$minfo  = CheckDatas( 'minfo', '' );
+				
+				$bindinginfo = apiData('registerPdkByInvitCode.do',array('code'=>$minfo,'userId'=>$userid));
+				
+				if($bindinginfo['result']['status'] ==1){
+					redirect('pindeke_apply.php?minfo='.$minfo, $bindinginfo['error_msg']);
+				}else{
+					redirect('index.php', $bindinginfo['error_msg']);
+				}
+				
+				break;
+			
 			default:
 					$info = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
 					   if(!empty($info['result']))
