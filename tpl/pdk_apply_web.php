@@ -15,7 +15,7 @@
 
                 <section class="pdk-form">
                     <ul>
-                        <form id="submitForm" action="pindeke_apply.php?act=apply" accept-charset="utf-8" enctype="multipart/form-data" method="post">
+                        <form id="submitForm" action="pindeke_apply.php?act=apply&minfo=<?php echo $minfo;?>" accept-charset="utf-8" enctype="multipart/form-data" method="post">
                             <li>
                                 <div class="item">
                                     <div class="label">真实姓名</div>

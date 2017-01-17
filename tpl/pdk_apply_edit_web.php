@@ -15,7 +15,7 @@
 
                 <section class="pdk-form">
                     <ul>
-                        <form id="submitForm" action="pindeke_apply.php?act=edit_save&uid=<?php echo $userid ;?>&id=<?php echo $infoEdit['pdkId'];?>" accept-charset="utf-8" enctype="multipart/form-data" method="post">
+                        <form id="submitForm" action="pindeke_apply.php?act=edit_save&uid=<?php echo $userid ;?>&id=<?php echo $infoEdit['pdkId'];?>&minfo=<?php echo $minfo;?>" accept-charset="utf-8" enctype="multipart/form-data" method="post">
                             <li>
                                 <div class="item">
                                     <div class="label">真实姓名</div>

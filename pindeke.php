@@ -20,6 +20,7 @@ switch($act)
 	//拼得客信息
 	case 'pdkInfo':
 		IS_USER_LOGIN();
+		$minfo   = CheckDatas( 'minfo', '' );
 		$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
 		$Objinfo = $Objinfo['result'];
 		include_once('tpl/pdk_info_web.php');

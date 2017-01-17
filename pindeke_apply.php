@@ -7,7 +7,7 @@ $Name 		            = CheckDatas( 'name', '' );
 $Phone		            = CheckDatas( 'phone', '' );
 $cardNo 		        = CheckDatas( 'cardNo', '' );
 $Content 		        = CheckDatas( 'content', '' );
-
+$minfo                  = CheckDatas( 'minfo', '' );
 //判断是否登录
 IS_USER_LOGIN();
 
@@ -18,8 +18,8 @@ define('IMAGE_UPLOAD_URL', 'upfiles/userpindeke/');
 
 switch($act){
 	case 'apply'://申请
-		$minfo  = CheckDatas( 'minfo', '' );
 		if(IS_POST()){
+			$minfo  = CheckDatas( 'minfo', '' );
 			set_time_limit(0);
 			$apiParam = array();
 			$upImgs = $_POST['img'];
@@ -60,6 +60,7 @@ switch($act){
 		
 		case 'edit'://修改
 			$Uid = intval($_GET['uid']);
+			$minfo = CheckDatas( 'minfo', '' );
 			$infoEdit = apiData('pdkApplyInfoApi.do',array('userId'=>$Uid));
 			$infoEdit = $infoEdit['result'];
 			include_once('tpl/pdk_apply_edit_web.php');
@@ -69,7 +70,7 @@ switch($act){
         
 	     $Uid = intval($_GET['uid']);
 	     $Id  = intval($_GET['id']);
-	  
+	     $minfo = CheckDatas( 'minfo', '' );
 	  
 			if(IS_POST()){
 					set_time_limit(0);
@@ -87,8 +88,8 @@ switch($act){
 					$apiParam['userId']     = $userid;
 					$apiParam['id']         = $Id;
 					$apiParam['phone']      = $Phone;
-		
-					$result = apiData('pdkUpdateApi.do',$apiParam,'post');
+					$apiParam['code']       = $minfo;
+					$result = apiData('pdkUpdateApi.do',$apiParam,'post',true);
 
 			
 			if(empty($_SESSION['backurl_aftersale'])){
@@ -146,9 +147,7 @@ switch($act){
 			
 			case 'binding'://绑定拼得客
 				$minfo  = CheckDatas( 'minfo', '' );
-				
 				$bindinginfo = apiData('registerPdkByInvitCode.do',array('code'=>$minfo,'userId'=>$userid));
-				
 				if($bindinginfo['result']['status'] ==1){
 					redirect('pindeke_apply.php?minfo='.$minfo, $bindinginfo['error_msg']);
 				}else{
@@ -167,7 +166,7 @@ switch($act){
 							}
 							elseif($info['result']['status'] ==0 || $info['result']['status'] ==3 || $info['result']['status'] ==2)
 							{
-								redirect('pindeke.php?act=pdkInfo&uid='.$userid);
+								redirect('pindeke.php?act=pdkInfo&uid='.$userid.'&minfo='.$minfo);
 							}
 							
 					   } 
