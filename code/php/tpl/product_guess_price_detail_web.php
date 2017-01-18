@@ -415,7 +415,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                         <span class="icon i-message"></span>
                         <span class="tab-label">客服</span>
                     </a>
-                    <div class="more1 buy-m2">
+                    <div class="more1 more1-m2">
                           <a id="guess-join" class="btn" href="javascript:;"><span>我要参与</span></a>
                     </div>
                 <?php }elseif($ObjGrouponInfo['result']['isJoin']  ==1 && $ObjGrouponInfo['result']['isStart']  ==1 ){
