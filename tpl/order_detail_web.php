@@ -210,7 +210,9 @@
 				      <?php }?>
                     <?php }?>
                     </div>
-                    <div>客服留言：<?php echo $OrderDetail['result']['orderInfo']['csRemarks'];?></div>
+                    <section class="oc-info" style="margin-top:0;padding-top:0;">
+                        <div>客服留言：<?php echo $OrderDetail['result']['orderInfo']['csRemarks'];?></div>
+                    </section>
                    <?php }else{?> 
 	                  <div class="option">
 	                    <?php if($OrderDetail['result']['orderStatus'] ==2){?>
@@ -279,7 +281,9 @@
                            <?php }?>
 	                    <?php }?>
 	                   </div>
-                       <div>客服留言：<?php echo $OrderDetail['result']['orderInfo']['csRemarks'];?></div>
+                        <section class="oc-info" style="margin-top:0;padding-top:0;">
+                           <div>客服留言：<?php echo $OrderDetail['result']['orderInfo']['csRemarks'];?></div>
+                       </section>
                     <?php }?>
                 </section>
 
