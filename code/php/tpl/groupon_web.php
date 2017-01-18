@@ -149,24 +149,24 @@
 						?>
 							<?php if($info['activityStatus'] == 2){ ?>
 								<?php if($info['activityType'] == 5){ ?>
-									<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>&type=5">查看中奖名单</a></div>
+									<div class="more1 more1-m3"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>&type=5">查看中奖名单</a></div>
 								<?php }else{ ?>
 									<?php switch($info['isWaitOpen']){
 										case 1: ?>
-											<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">等待开奖中</a></div>
+											<div class="more1 more1-m3" style="background: #7D7D7D;"><a href="javascript:;" class="gray">等待开奖中</a></div>
 											<?php break; ?>
 										<?php case 2: ?>
-											<div class="more1 more1-m2"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>&type=7">查看中奖名单</a></div>
+											<div class="more1 more1-m3"><a href="lottery_new.php?act=winning&aid=<?php echo $info['activityId'];?>&type=7">查看中奖名单</a></div>
 											<?php break; ?>
 									<?php } ?>
 								<?php } ?>
 							<?php }elseif($info['activityStatus'] == 1){ ?>
 								<?php if($info['activityType'] == 7  && $info['isOpen'] == 1){ ?>
-									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">您已参与过该活动</a></div>
+									<div class="more1 more1-m3" style="background: #7D7D7D;"><a href="javascript:;" class="gray">您已参与过该活动</a></div>
 								<?php }elseif(empty($skus['validSKu'])){ ?>
-									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">商品已售罄</a></div>
+									<div class="more1 more1-m3" style="background: #7D7D7D;"><a href="javascript:;" class="gray">商品已售罄</a></div>
 							    <?php }else{ ?>
-									<div class="buy more1 more1-m2">
+									<div class="buy more1 more1-m3">
 										<a id="openSku" data-href="<?php echo $orderUrl;?>">
                                             <?php if ($info['activityType'] == 5) { ?>
                                                 <p>￥<b><?php echo $info['productPrice'];?></b></p>
@@ -184,16 +184,16 @@
 								case 'end': ?>
 								<?php case 'sellout': ?>
 								  <?php if(empty($skus['validSKu'])){ ?>
-									<div class="more1 more1-m2" style="background: #7D7D7D;"><a href="javascript:;" class="gray">商品已售罄</a></div>
+									<div class="more1 more1-m3" style="background: #7D7D7D;"><a href="javascript:;" class="gray">商品已售罄</a></div>
 							    <?php }else{?>
-									<div class="more1 more1-m2"><a href="seckill.php">更多拼团</a></div>
+									<div class="more1 more1-m3"><a href="seckill.php">更多拼团</a></div>
 								<?php }?>
 								<?php break; ?>
 								<?php case 'notstart': ?>
-									<div class="more1 more1-m2"><a href="seckill.php">即将开始</a></div>
+									<div class="more1 more1-m3"><a href="seckill.php">即将开始</a></div>
 								<?php break; ?>
 								<?php case 'selling': ?>
-									<div class="buy more1 more1-m2">
+									<div class="buy more1 more1-m3">
 										<a id="openSku" data-href="order_seckill.php">
 											<p>￥<b><?php echo $info['productPrice'];?></b></p>
 											<p><?php echo $info['groupNum'];?>人成团</p>
@@ -203,7 +203,7 @@
 							<?php } ?>
 						<?php break; ?>
 						<?php default: ?>
-							<div class="buy buy-m2">
+							<div class="buy buy-m3">
 								<?php if($info['productStatus'] == 0){ ?>
 									<a style="background-color:#999">已下架</a>
 									<a class="more" href="/">查看更多</a>
