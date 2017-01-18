@@ -37,10 +37,10 @@ $ctComment = empty($comment) ? '' : implode('，', $comment);
 		_MEIQIA('entId', 36305);
 
 		var customData = {};
-		<?php if($ctTel){ ?>customData["tel"] = "11474144";<?php } ?>
+		<?php if($ctTel){ ?>customData["tel"] = "<?php echo $ctTel;?>";<?php } ?>
 		<?php if($ctNickname){ ?>customData["name"] = "<?php echo $ctNickname;?>";<?php } ?>
 		<?php if($ctAvatar){ ?>customData["avatar"] = "<?php echo $ctAvatar;?>";<?php } ?>
-		<?php if($ctComment){ ?>customData["comment"] = "<?php echo $ctComment;?>";<?php } ?>
+		customData["comment"] = "<?php echo $ctComment;?>";
 
 		// 传递顾客信息
 		_MEIQIA('metadata', customData);
