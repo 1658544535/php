@@ -19,7 +19,7 @@ include_once(APP_INC.'functions.php');
 
 //微信相关配置信息(用于微信类)
 $wxOption = array(
-    'appid' => '',// 'wxf22334936bd11aa7',//更新到正式时启用此appid
+    'appid' => 'wxf22334936bd11aa7',//更新到正式时启用此appid
     'appsecret' => '264db318e2af00dfc7d20503f18e4117',
     'token' => 'pindehaowx',
     'encodingaeskey' => 'ZhZsBgwdt4sFjhkgfxJmnGDOo8DbdFAiAOjXAiPUE2m',
@@ -34,13 +34,15 @@ $wxReqType = $objWX->getRev()->getRevType();
 
 switch($wxReqType){
 	case Wechat::MSGTYPE_TEXT://文本
-		$content = $objWX->getRevContent();
+//		$content = $objWX->getRevContent();
+        $objWX->transfer_customer_service()->reply();
 		break;
 	case Wechat::MSGTYPE_EVENT://事件
 		$eventType = $objWX->getRevEvent();
 		switch($eventType['key']){
 			case 'vcode':
-				$text = getInviteCode($objWX->getRevFrom());
+                $openid = $objWX->getRevFrom();
+				$text = getInviteCode($openid);
 				$objWX->text($text)->reply();
 				break;
 			case 'contact':
