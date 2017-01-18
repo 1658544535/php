@@ -6232,3 +6232,19 @@
   width: 5.8rem;
   margin: 0.7rem auto 0;
 }
+.contact-msg {
+  overflow: hidden;
+}
+.contact-msg label {
+  float: left;
+  width: 3.75rem;
+  color: #1c1c1c;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.contact-msg .main {
+  margin-left: 3.75rem;
+  font-size: 0.7rem;
+  color: #727171;
+}

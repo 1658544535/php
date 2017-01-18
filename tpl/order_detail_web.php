@@ -212,7 +212,10 @@
                     </div>
                     <section class="oc-info" style="margin-top:0;padding-top:0;">
                          <?php if($OrderDetail['result']['orderInfo']['csRemarks']){?>
-                           <div>客服留言：<?php echo $OrderDetail['result']['orderInfo']['csRemarks'];?></div>
+                            <div class="contact-msg">
+                                <label>客服留言：</label>
+                                <div class="main"><?php echo $OrderDetail['result']['orderInfo']['csRemarks'];?></div>
+                            </div>
                          <?php }?>
                     </section>
                    <?php }else{?> 
@@ -285,7 +288,10 @@
 	                   </div>
                         <section class="oc-info" style="margin-top:0;padding-top:0;">
                           <?php if($OrderDetail['result']['orderInfo']['csRemarks']){?>
-                           <div>客服留言：<?php echo $OrderDetail['result']['orderInfo']['csRemarks'];?></div>
+                            <div class="contact-msg">
+                                <label>客服留言：</label>
+                                <div class="main"><?php echo $OrderDetail['result']['orderInfo']['csRemarks'];?></div>
+                            </div>
                           <?php }?>
                        </section>
                     <?php }?>
