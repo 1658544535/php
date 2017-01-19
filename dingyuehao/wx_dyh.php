@@ -34,8 +34,12 @@ $wxReqType = $objWX->getRev()->getRevType();
 
 switch($wxReqType){
 	case Wechat::MSGTYPE_TEXT://文本
-//		$content = $objWX->getRevContent();
-        $objWX->transfer_customer_service()->reply();
+		$content = $objWX->getRevContent();
+		if($content == '调试'){
+			$objWX->text('这是调试内容')->reply();
+		}else{
+			$objWX->transfer_customer_service()->reply();
+		}
 		break;
 	case Wechat::MSGTYPE_EVENT://事件
 		$eventType = $objWX->getRevEvent();
