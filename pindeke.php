@@ -161,15 +161,14 @@ switch($act)
     	IS_USER_LOGIN();
     		 
     	$minfo = apiData('myInfoApi.do',array('userId'=>$userid));
-    		 
     	if(!empty($minfo['result']['invitationCode']))
     	{
-    		$imgPath = "../upfiles/pdkcodeNew/{$userid}.png";
-    		if(!file_exists(SCRIPT_ROOT."upfiles/pdkcodeNew/{$userid}.png"))
+    		$imgPath = "../upfiles/pdkcodeNew/{$minfo['result']['invitationCode']}.png";
+    		if(!file_exists(SCRIPT_ROOT."upfiles/pdkcodeNew/{$minfo['result']['invitationCode']}.png"))
     		{
     			global $site;
     			$data = $site . 'pindeke_apply.php?act=binding&minfo=' . $minfo['result']['invitationCode'];
-    			get_qrcode($data, SCRIPT_ROOT."upfiles/pdkcodeNew/", $userid . '.png');
+    			get_qrcode($data, SCRIPT_ROOT."upfiles/pdkcodeNew/", $minfo['result']['invitationCode'] . '.png');
     		}
     	}
     	else
