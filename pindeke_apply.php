@@ -89,7 +89,7 @@ switch($act){
 					$apiParam['id']         = $Id;
 					$apiParam['phone']      = $Phone;
 					$apiParam['code']       = $minfo;
-					$result = apiData('pdkUpdateApi.do',$apiParam,'post',true);
+					$result = apiData('pdkUpdateApi.do',$apiParam,'post');
 
 			
 			if(empty($_SESSION['backurl_aftersale'])){
