@@ -43,15 +43,24 @@ switch($wxReqType){
 		break;
 	case Wechat::MSGTYPE_EVENT://事件
 		$eventType = $objWX->getRevEvent();
-		switch($eventType['key']){
-			case 'vcode':
-                $openid = $objWX->getRevFrom();
-				$text = getInviteCode($openid);
+		switch($eventType['event']){
+			case Wechat::EVENT_SUBSCRIBE://关注订阅号
+			case Wechat::EVENT_SCAN://扫描带参数二维码
+				$text = "亲，欢迎光临”一起拼得好“！\r\n跟我们一起拼靓价、得好货吧！\r\n拼得好的活动会第一时间发布在此！";
 				$objWX->text($text)->reply();
 				break;
-			case 'contact':
-				$text = "活动咨询，反馈建议以及投诉等问题，您可以直接微信上联系我们。\r\n——开放时间：8:30~17:30（其他时间段直接留言，看到后会立马回复）";
-				$objWX->text($text)->reply();
+			default:
+				switch($eventType['key']){
+					case 'vcode':
+						$openid = $objWX->getRevFrom();
+						$text = getInviteCode($openid);
+						$objWX->text($text)->reply();
+						break;
+					case 'contact':
+						$text = "活动咨询，反馈建议以及投诉等问题，您可以直接微信上联系我们。\r\n——开放时间：8:30~17:30（其他时间段直接留言，看到后会立马回复）";
+						$objWX->text($text)->reply();
+						break;
+				}
 				break;
 		}
 		break;
