@@ -46,7 +46,7 @@ switch($wxReqType){
 		switch($eventType['event']){
 			case Wechat::EVENT_SUBSCRIBE://关注订阅号
 			case Wechat::EVENT_SCAN://扫描带参数二维码
-				$text = "亲，欢迎光临”一起拼得好“！\r\n跟我们一起拼靓价、得好货吧！\r\n拼得好的活动会第一时间发布在此！";
+				$text = "亲，欢迎光临”一起拼得好“！\r\n跟我们一起拼靓价、得好货吧！\r\n【新春红包】收货人、电话，请填写支付宝！";
 				$objWX->text($text)->reply();
 				break;
 			default:
@@ -85,7 +85,7 @@ function getInviteCode($openid){
 	foreach($vcodes as $_code => $val){
 		if($val['openid'] == $openid){
 			$have = true;
-			$result = '亲，这是您的邀请码：'.$val['vcode'];
+			$result = '亲，这是您的邀请码：'.$val['vcode']."\r\n【注意】收货人、电话，请填写支付宝！\r\n一旦订单提交系统便进入发红包流程，所以无法修改！";
 			break;
 		}
 		if(empty($val['openid'])){
