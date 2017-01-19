@@ -50,9 +50,9 @@
                 </section>
                 <seciotn class="reward">
                     <h3 class="title1">奖励金额</h3>
-                    <p><img width="22" src="images/ranking/01.png" />第一名：奖励现金<span class="themeColor">￥1000.0</span></p>
-                    <p><img width="22" src="images/ranking/02.png" />第二名：奖励现金<span class="themeColor">￥500.0</span></p>
-                    <p><img width="22" src="images/ranking/03.png" />第三名：奖励现金<span class="themeColor">￥300.0</span></p>
+                    <p><img width="22" src="images/ranking/01.png" />第一名：奖励现金<span class="themeColor">￥1000.00</span></p>
+                    <p><img width="22" src="images/ranking/02.png" />第二名：奖励现金<span class="themeColor">￥500.00</span></p>
+                    <p><img width="22" src="images/ranking/03.png" />第三名：奖励现金<span class="themeColor">￥300.00</span></p>
                 </seciotn>
                 <section class="rule">
                     <h3 class="title1">排名&奖励说明</h3>
