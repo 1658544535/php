@@ -148,7 +148,7 @@ switch($act){
 			case 'binding'://绑定拼得客
 				$minfo  = CheckDatas( 'minfo', '' );
 				$bindinginfo = apiData('registerPdkByInvitCode.do',array('code'=>$minfo,'userId'=>$userid));
-				if($bindinginfo['result']['status'] ==1){
+				if($bindinginfo['result']['status'] !=0){
 					redirect('pindeke_apply.php?minfo='.$minfo, $bindinginfo['error_msg']);
 				}else{
 					redirect('index.php', $bindinginfo['error_msg']);
