@@ -149,15 +149,17 @@ switch($act){
 				$minfo  = CheckDatas( 'minfo', '' );
 				$bindinginfo = apiData('registerPdkByInvitCode.do',array('code'=>$minfo,'userId'=>$userid));
 				$pdkinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
-				if($bindinginfo['result']['status'] !=0){
-					redirect('pindeke_apply.php?minfo='.$minfo, $bindinginfo['error_msg']);
-				}elseif($pdkinfo['result']['status'] ==0){
-					redirect('pindeke_apply.php?minfo='.$minfo, $bindinginfo['error_msg']);
+				if($bindinginfo['result']['status'] !=0)
+				{
+					redirect('pindeke_apply.php?minfo='.$minfo);
+				}
+				elseif($pdkinfo['result']['status'] ==0)
+				{
+					redirect('pindeke_apply.php?minfo='.$minfo);
 				}
 				else
 				{
-					
-					redirect('index.php', $bindinginfo['error_msg']);
+					redirect('index.php');
 				}
 				
 				break;
