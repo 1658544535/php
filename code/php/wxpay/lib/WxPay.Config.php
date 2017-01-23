@@ -2,10 +2,10 @@
 /**
 * 	配置账号信息
 */
-define('_WX_CFG_APPID_', $gSetting['appid']);
-define('_WX_CFG_APPSECRET_', $gSetting['appsecret']);
-define('_WX_CFG_MCHID_', $gSetting['wx_pay_mchid']);
-define('_WX_CFG_MCHKEY_', $gSetting['wx_pay_key']);
+define('_WX_CFG_APPID_', 'wxa89116e3866d5fed');
+define('_WX_CFG_APPSECRET_', '');
+define('_WX_CFG_MCHID_', '1401117102');
+define('_WX_CFG_MCHKEY_', '9376eb2001db97805d6e48b8d933e016');
 
 define('_WX_SSLCERT_PATH_',  dirname(dirname(__FILE__)).'/cert/apiclient_cert.pem');
 define('_WX_SSLKEY_PATH_',  dirname(dirname(__FILE__)).'/cert/apiclient_key.pem');
