@@ -15,11 +15,6 @@ $endTime = strtotime($endTime);
 //虚拟数量
 $num = 200;
 
-//显示的领取人数
-$mdlLog = M('wxhb_receive_log');
-$realNum = $mdlLog->getCount();
-$showNum = $realNum+$num;
-
 //时间范围开始
 $timeStart = 3600 * 4;
 $timeRangeEnd = $time;
@@ -28,6 +23,11 @@ $timeRangeStart = max($timeRangeStart, $startTime);
 $timeRangeEnd = min($timeRangeEnd, $endTime);
 
 if($timeRangeEnd > $timeRangeStart){
+	//显示的领取人数
+	$mdlLog = M('wxhb_receive_log');
+	$realNum = $mdlLog->getCount();
+	$showNum = $realNum+$num;
+
 	$timeRange = range($timeRangeStart, $timeRangeEnd);
 
 	//金额选项
@@ -68,6 +68,8 @@ if($timeRangeEnd > $timeRangeStart){
 		);
 	}
 	asort($list);
+}else{
+	$showNum = 0;
 }
 
 include "tpl/wx_hongbao_log_web.php";
