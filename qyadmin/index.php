@@ -2,7 +2,7 @@
 /**
  * 后台入口
  */
-define('DEBUG', false);
+define('DEBUG', true);
 define('HN1', true);
 define('MODULE_ROOT', dirname(__FILE__).'/');
 define('SYSTEM_ROOT', MODULE_ROOT.'../');
