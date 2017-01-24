@@ -6,7 +6,7 @@
             <div class="content record">
                 <section class="header">
                     <img src="images/record/header.png" />
-                    <p class="total">已有<span class="txt">1</span>人领取新春红包</p>
+                    <p class="total">已有<span class="txt"><?php echo $showNum;?></span>人领取新春红包</p>
                 </section>
 
                 <section class="view">
