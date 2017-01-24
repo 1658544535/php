@@ -37,8 +37,21 @@ $wxReqType = $objWX->getRev()->getRevType();
 
 switch($wxReqType){
 	case Wechat::MSGTYPE_TEXT://文本
-		$replyInfo = __getReplyByKeyword($objWX->getRevContent());
-		$replyInfo['kw'] ? $objWX->text($replyInfo['msg'])->reply() : $objWX->transfer_customer_service()->reply();
+		$keyword = $objWX->getRevContent();
+		$wxhbKwId = getWxhbKeywordId($keyword);
+		$notExit = true;
+		if($wxhbKwId){
+			$text = receiveWXHB($wxhbKwId, $objWX->getRevFrom());
+			if($text == ''){
+				$notExit = false;
+			}else{
+				$objWX->text($text)->reply();
+			}
+		}
+		if($notExit){
+			$replyInfo = __getReplyByKeyword($keyword);
+			$replyInfo['kw'] ? $objWX->text($replyInfo['msg'])->reply() : $objWX->transfer_customer_service()->reply();
+		}
 		break;
 	case Wechat::MSGTYPE_EVENT://事件
 		$eventType = $objWX->getRevEvent();
@@ -124,5 +137,131 @@ function recordSourceQrcode(){
 	);
 	$Model = new Model($db, 'external_link_log');
 	$Model->add($data);
+}
+
+function getWxhbKeywordId($keyword){
+	$file = SYS_ROOT.'data/weixin_hongbao_password.php';
+	if(file_exists($file)){
+		$list = include_once($file);
+	}else{
+		global $dbHost, $dbUser, $dbPass, $dbName, $dbCharset;
+		include_once(APP_INC.'ez_sql_core.php');
+		include_once(APP_INC.'ez_sql_mysql.php');
+		include_once(APP_INC.'Model.class.php');
+
+		$db	= new ezSQL_mysql($dbUser, $dbPass, $dbName, $dbHost);
+		$db->query('SET character_set_connection='.$dbCharset.', character_set_results='.$dbCharset.', character_set_client=binary');
+		$mdl = new Model($db, 'wxhb_password');
+		$rs = $mdl->getAll(array(), 'id,password', array('id'=>'asc'));
+		$list = array();
+		foreach($rs as $v){
+			$list[$v->password] = $v->id;
+		}
+		file_put_contents($file, "<?php\r\nreturn ".var_export($list, true).";\r\n?>");
+	}
+	return isset($list[$keyword]) ? $list[$keyword] : 0;
+}
+
+function receiveWXHB($kwid, $openid){
+	global $dbHost, $dbUser, $dbPass, $dbName, $dbCharset;
+
+	$time = time();
+	$_dir = LOG_INC.'wxhb_receive/';
+	!file_exists($_dir) && mkdir($_dir, 0777, true);
+	$logFile = $_dir.date('Y-m-d', $time).'.txt';
+
+	include_once(APP_INC.'ez_sql_core.php');
+	include_once(APP_INC.'ez_sql_mysql.php');
+	include_once(APP_INC.'Model.class.php');
+
+	$db	= new ezSQL_mysql($dbUser, $dbPass, $dbName, $dbHost);
+	$db->query('SET character_set_connection='.$dbCharset.', character_set_results='.$dbCharset.', character_set_client=binary');
+	file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】openid[{$openid}]，口令id：{$kwid}，创建数据库连接\r\n", FILE_APPEND);
+
+	$mdlUser = new Model($db, 'sys_login');
+	$userInfo = $mdlUser->get(array('openid'=>$openid), 'id,loginname,openid', ARRAY_A);
+	if(empty($userInfo)) return '<a href="http://weixin.pindegood.com/user_binding.php">请先注册</a>';
+	file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】openid[{$openid}]，口令id：{$kwid}，判断用户是否已注册\r\n", FILE_APPEND);
+
+	$mdlReceiveLog = new Model($db, 'wxhb_receive_log');
+	$receiveLog = $mdlReceiveLog->get(array('openid'=>$openid));
+	if(!empty($receiveLog)) return '您已参与该活动！';
+	file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】openid[{$openid}]，口令id：{$kwid}，判断用户是否已参与\r\n", FILE_APPEND);
+
+	$mdlWxHBPwd = new Model($db, 'wxhb_password');
+	$mdlWxHBPwd->startTrans();
+	$sql = "SELECT * FROM `wxhb_password` WHERE `id`={$kwid} FOR UPDATE";
+	$wxhb = $db->get_row($sql, ARRAY_A);
+	if(empty($wxhb)) return '';
+	file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】openid[{$openid}]，获取口令信息\r\n".var_export($wxhb, true)."\r\n", FILE_APPEND);
+
+	if($wxhb['total'] <= 0) return '该口令已领取完啦！请更换别的拜年口令';
+	$sql = 'UPDATE `wxhb_password` SET `total`=`total`-1 WHERE `id`='.$kwid;
+	$db->query($sql);
+	$mdlWxHBPwd->commit();
+	file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】openid[{$openid}]，口令{$wxhb['password']}，减少口令领取红包次数\r\n", FILE_APPEND);
+
+	$time = time();	
+	$success = false;
+	
+	include_once('./wxpay/lib/WxHongBao.Api.php');
+	$hongbao = array(
+		'openid' => $openid,
+		'sendName' => '拼得好',
+		'amount' => $wxhb['money']*100,
+		'num' => 1,
+		'wishing' => '拼得好祝大家身体健康，财源广进',
+		'activityName' => '新春红包',
+		'remark' => '拼得好祝大家身体健康，财源广进',
+	);
+	file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】openid[{$openid}]，口令{$wxhb['password']}，设置红包信息参数\r\n".var_export($hongbao, true)."\r\n", FILE_APPEND);
+	$hbApi = new WxHongBaoApi();
+	$result = $hbApi->sendRedPack($hongbao);
+	file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】openid[{$openid}]，口令{$wxhb['password']}，发送红包结果\r\n".var_export($result, true)."\r\n", FILE_APPEND);
+
+	$mdlReceiveLog->startTrans();
+	if($result['return_code'] != 'SUCCESS'){
+		$content = "openid[{$openid}]口令[{$wxhb['password']}]领取红包失败[return_code:{$result['return_code']}]：{$result['return_msg']}";
+		file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】{$content}\r\n", FILE_APPEND);
+	}elseif($result['result_code'] != 'SUCCESS'){
+		$content = "openid[{$openid}]口令[{$wxhb['password']}]领取红包失败[result_code:{$result['err_code']}]：{$result['err_code_des']}";
+		file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】{$content}\r\n", FILE_APPEND);
+	}else{
+		$rLog = array(
+			'openid' => $result['re_openid'],
+			'loginname' => $userInfo['loginname'],
+			'time' => $time,
+			'password' => $wxhb['password'],
+			'money' => $result['total_amount']/100,
+		);
+		if($mdlReceiveLog->add($rLog) !== false){
+			$mdlSendLog = new Model($db, 'wxhb_send_log');
+			$sendLog = array(
+				're_openid' => $result['re_openid'],
+				'total_amount' => $result['total_amount']/100,
+				'send_listid' => $result['send_listid'],
+				'mch_billno' => $result['mch_billno'],
+				'time' => $time,
+			);
+			if($mdlSendLog->add($sendLog) !== false){
+				$success = true;
+				$mdlReceiveLog->commit();
+			}else{
+				$mdlReceiveLog->rollback();
+			}
+		}else{
+			$mdlReceiveLog->rollback();
+		}
+	}
+	if($success){
+		$content = "openid[{$openid}]口令[{$wxhb['password']}]领取红包成功：".($result['total_amount']/100).'元';
+		file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】{$content}\r\n", FILE_APPEND);
+		return $wxhb['money'].'元红包已发送';
+	}else{
+		$sql = 'UPDATE `wxhb_password` SET `total`=`total`+1 WHERE `id`='.$kwid;
+		$db->query($sql);
+		file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】口令领取失败，openid[{$openid}]，口令：{$wxhb['password']}\r\n", FILE_APPEND);
+		return '该口令已领取完啦！请更换别的拜年口令';
+	}
 }
 ?>
