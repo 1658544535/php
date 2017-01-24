@@ -179,7 +179,7 @@ function receiveWXHB($kwid, $openid){
 	file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】openid[{$openid}]，口令id：{$kwid}，创建数据库连接\r\n", FILE_APPEND);
 
 	$mdlUser = new Model($db, 'sys_login');
-	$userInfo = $mdlUser->get(array('openid'=>$openid), 'id,loginname,openid', ARRAY_A);
+	$userInfo = $mdlUser->get(array('openid'=>$openid), 'id,loginname,openid,name', ARRAY_A);
 	if(empty($userInfo)) return '<a href="http://weixin.pindegood.com/user_binding.php">请先注册</a>';
 	file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】openid[{$openid}]，口令id：{$kwid}，判断用户是否已注册\r\n", FILE_APPEND);
 
@@ -230,6 +230,7 @@ function receiveWXHB($kwid, $openid){
 		$rLog = array(
 			'openid' => $result['re_openid'],
 			'loginname' => $userInfo['loginname'],
+			'nickname' => $userInfo['name'],
 			'time' => $time,
 			'password' => $wxhb['password'],
 			'money' => $result['total_amount']/100,
