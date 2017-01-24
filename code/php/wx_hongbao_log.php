@@ -69,7 +69,7 @@ if($timeRangeEnd > $timeRangeStart){
 	}
 	asort($list);
 }
-PD($list);
+// PD($list);
 
 include "tpl/wx_hongbao_log_web.php";
 ?>

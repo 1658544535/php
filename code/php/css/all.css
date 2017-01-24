@@ -6248,3 +6248,92 @@
   font-size: 0.7rem;
   color: #727171;
 }
+/* 兑换记录 */
+.record {
+  background: url(../images/record/bg.jpg) no-repeat center center;
+  background-size: cover;
+}
+.record .header {
+  position: relative;
+}
+.record .header img {
+  display: block;
+  width: 100%;
+}
+.record .header .total {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+}
+.record .header .total .txt {
+  padding: 0 10px;
+}
+.record .footer {
+  position: absolute;
+  bottom: 0;
+  left: 2.5%;
+  width: 95%;
+  text-align: center;
+  padding: 0.5rem 0;
+  border-top: 1px solid #fee17b;
+  font-size: 0.6rem;
+  color: #fee17b;
+}
+.record .view {
+  position: absolute;
+  top: 0;
+  left: 2.5%;
+  width: 95%;
+  margin-top: 60%;
+  bottom: 2.25rem;
+  font-size: 0.75rem;
+  text-align: center;
+  color: #fee17b;
+  overflow: hidden;
+}
+.record .view .top,
+.record .view .main li {
+  margin: 0;
+  list-style: none;
+  padding: 3px 0;
+  overflow: hidden;
+}
+.record .view .top {
+  border-top: 1px solid #fee17b;
+  border-bottom: 1px solid #fee17b;
+}
+.record .view .main {
+  position: absolute;
+  top: 1.5rem;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+.record .view .main ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 3px 0;
+}
+.record .view .top > div,
+.record .view .main li > div {
+  float: left;
+}
+.record .view .time {
+  width: 40%;
+}
+.record .view .user {
+  width: 40%;
+}
+.record .view .price {
+  width: 20%;
+}
