@@ -187,13 +187,18 @@ function getWxhbKeywordId($keyword){
 }
 
 function receiveWXHB($kwid, $openid){
+	//不受活动时间限制的openid
+	$desideOpenid = array('oHqROv4FOiKC1qggINBi5IMRiagI', 'oHqROv1t_J6ftl8daZB4p90-5xCA', 'oHqROvzCmm4Mot2SlC3iBf0DOeT0');
+
 	$time = time();
-	$startTime = '2017-01-27 0:0:0';
-	$endTime = '2017-02-06 0:0:0';
-	if($time < strtotime($startTime)){
-		return "活动时间：2017年1月27日至2017年2月5日\r\n红包雨即将来临！数量有限，发完即止！\r\n记得静守拼得好拿红包哦！";
-	}elseif($time > strtotime($endTime)){
-		return '活动已经结束';
+	if(!in_array($openid, $desideOpenid)){
+		$startTime = '2017-01-27 0:0:0';
+		$endTime = '2017-02-06 0:0:0';
+		if($time < strtotime($startTime)){
+			return "活动时间：2017年1月27日至2017年2月5日\r\n红包雨即将来临！数量有限，发完即止！\r\n记得静守拼得好拿红包哦！";
+		}elseif($time > strtotime($endTime)){
+			return '活动已经结束';
+		}
 	}
 
 	global $dbHost, $dbUser, $dbPass, $dbName, $dbCharset;
