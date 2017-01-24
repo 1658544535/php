@@ -7,8 +7,8 @@ $time = time();
 $list = array();
 
 //活动时间
-$startTime = '2017-01-24 0:0:0';
-$endTime = '2020-12-30 0:0:0';
+$startTime = '2017-01-27 0:0:0';
+$endTime = '2017-02-06 0:0:0';
 $startTime = strtotime($startTime);
 $endTime = strtotime($endTime);
 

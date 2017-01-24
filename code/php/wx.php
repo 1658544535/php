@@ -86,6 +86,30 @@ switch($wxReqType){
 				}
 				$objWX->text($text)->reply();
 				break;
+			default:
+				switch($eventType['key']){
+					case 'wxklhb'://微信口令红包
+//						$mediaId = '9ujKDpcRJ9L-ix75OwpMp7A_6cC-z6qqFWUmSkJVb8TnyGiP9Nxf9oJ1LZOqXG4f';//本地开发测试
+						$mediaId = 'UyXgGjy3Y53PE5IHJORFRDX1yFz-YrtBcpZECktaLxe4bDuXF8OrQ_VdUSQSp0pl';//正式
+						$data = array(
+							'touser' => $objWX->getRevFrom(),
+							'msgtype' => 'image',
+							'image' => array(
+								'media_id' => $mediaId,
+							),
+						);
+						$objWX->writeLog('image');
+						$result = $objWX->sendCustomMessage($data);
+						if($result === false){
+							$objWX->writeLog($data['touser'].' 口令红包海报失败，errcode：'.$objWX->errCode.'，errmsg：'.$objWX->errMsg);
+						}
+						break;
+					case 'contact'://联系客服
+						$text = "值此新春佳节，拼得好祝您新春快乐！\r\n至1月底，拼得好客服暂停服务！\r\n2月1日起（8:30-23:00）接受咨询！\r\n带来不便，还请见谅！\r\n\r\n另，拼得好新春红包大派送！\r\n点击左下角菜单“新春红包”领取红包吧！";
+						$objWX->text($text)->reply();
+						break;
+				}
+				break;
     	}
 		break;
 	default:
@@ -163,6 +187,15 @@ function getWxhbKeywordId($keyword){
 }
 
 function receiveWXHB($kwid, $openid){
+	$time = time();
+	$startTime = '2017-01-27 0:0:0';
+	$endTime = '2017-02-06 0:0:0';
+	if($time < strtotime($startTime)){
+		return "活动时间：2017年1月27日至2017年2月5日\r\n红包雨即将来临！数量有限，发完即止！\r\n记得静守拼得好拿红包哦！";
+	}elseif($time > strtotime($endTime)){
+		return '活动已经结束';
+	}
+
 	global $dbHost, $dbUser, $dbPass, $dbName, $dbCharset;
 
 	$time = time();

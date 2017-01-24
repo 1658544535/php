@@ -37,7 +37,7 @@
                     var mainHei = parseFloat($("#scroll").height())/2;
 
                     function rep(){
-                        var _top = parseFloat($("#scroll").css("top"))-40;
+                        var _top = parseFloat($("#scroll").css("top"))-10;
 
                         jQuery("#scroll").animate({
                             top: _top
