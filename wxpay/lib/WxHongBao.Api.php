@@ -201,7 +201,6 @@ class WxHongBaoApi{
 	 * 发送普通红包
 	 *
 	 * @param array $data 数据
-	 *	billNo 商户订单号
 	 *	openid 红包接收者openid
 	 *	sendName 红包发送者名称(商户名称)
 	 *	amount 金额，单位分
@@ -213,7 +212,7 @@ class WxHongBaoApi{
 	public function sendRedPack($data){
 		$this->values['mch_id'] = WxPayConfig::MCHID;
 		$this->values['wxappid'] = WxPayConfig::APPID;
-		$this->values['mch_billno'] = $data['billNo'];
+		$this->values['mch_billno'] = WxPayConfig::MCHID.date('YmdHis', time()).$this->generateRandStr(4, 1);
 		$this->values['re_openid'] = $data['openid'];
 		$this->values['send_name'] = $data['sendName'];
 		$this->values['total_amount'] = $data['amount'];
