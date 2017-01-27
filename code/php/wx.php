@@ -41,12 +41,14 @@ switch($wxReqType){
 		$wxhbKwId = getWxhbKeywordId($keyword);
 		$notExit = true;
 		if($wxhbKwId){
-			$text = receiveWXHB($wxhbKwId, $objWX->getRevFrom());
-			if($text == ''){
-				$notExit = false;
-			}else{
-				$objWX->text($text)->reply();
-			}
+            $objWX->text('红包已经领取完了')->reply();
+            exit();
+//			$text = receiveWXHB($wxhbKwId, $objWX->getRevFrom());
+//			if($text == ''){
+//				$notExit = false;
+//			}else{
+//				$objWX->text($text)->reply();
+//			}
 		}
 		if($notExit){
 			$replyInfo = __getReplyByKeyword($keyword);
