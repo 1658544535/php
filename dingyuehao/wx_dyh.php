@@ -46,7 +46,8 @@ switch($wxReqType){
 		switch($eventType['event']){
 			case Wechat::EVENT_SUBSCRIBE://关注订阅号
 			case Wechat::EVENT_SCAN://扫描带参数二维码
-				$text = "亲，欢迎光临”一起拼得好“！\r\n跟我们一起拼靓价、得好货吧！\r\n【新春红包】收货人、电话，请填写支付宝！";
+//				$text = "亲，欢迎光临”一起拼得好“！\r\n跟我们一起拼靓价、得好货吧！\r\n【新春红包】收货人、电话，请填写支付宝！";
+                $text = "开工大吉，新年一起拼！百货特惠依旧持续，花样活动不断来袭！更有元宵红包在【拼得好】等着您，亲们留意公众号活动通知一起参与喲！";
 				$objWX->text($text)->reply();
 				break;
 			default:
