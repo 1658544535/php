@@ -365,8 +365,6 @@
                    <?php }else if($OrderDetail['result']['refundStatus'] ==4 || $OrderDetail['result']['refundStatus'] ==7){?>
                     <a class="txt">售后完成</a>
                    <?php }?>
-             <?php }else if($OrderDetail['result']['orderStatus'] ==4){?>
-                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn">查看物流</a>
 			 <?php }else{ ?>
 				<?php $_curHideFooter = true; ?>
              <?php }?>
@@ -385,8 +383,6 @@
 	                   <?php }else if($OrderDetail['result']['refundStatus'] ==4 || $OrderDetail['result']['refundStatus'] ==7){?>
                         <a class="txt">售后完成</a>
 	                   <?php }?>
-	             <?php }else if($OrderDetail['result']['orderStatus'] ==9){?>
-	                     <a href="logistics.php?oid=<?php echo $OrderDetail['result']['orderInfo']['orderId'];?>" class="btn">查看物流</a>
 				 <?php }else{ ?>
 					<?php $_curHideFooter = true; ?>
 	             <?php }?>
