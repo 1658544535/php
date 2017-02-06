@@ -8,15 +8,16 @@ require_once('./global.php');
 //IS_USER_LOGIN();
 $isLogin = $bLogin;
 
+$lotInfo = __getTurntableInfo();
+
 $act = CheckDatas('act', '');
 switch($act){
 	case 'lottery'://抽奖
-		$lotInfo = __getTurntableInfo();
-		empty($lotInfo) && ajaxResponse(false, '活动尚未开始或已结束');
+		empty($lotInfo) && ajaxReturn(0, '活动尚未开始或已结束');
 
 		$chance = apiData('getTurntableNumApi.do', array('uid'=>$userid));
 		$chance = (empty($chance) || !$chance['success']) ? 0 : $chance['result'];
-		!$chance && ajaxResponse(false, '您的机会已用完');
+		!$chance && ajaxReturn(0, '您的机会已用完');
 
 		$mdlLog = M('wxhd_luck_draw_log');
 		
@@ -65,17 +66,24 @@ switch($act){
 			($mdlLog->add($logData) !== false) && $success = true;
 		}
 		if($success){
+			$updateChance = apiData('turntNumMinusApi.do', array('uid'=>$userid));
+			if(empty($updateChance) || !$updateChance['success'] || ($updateChance['result'] == 0)){
+				$success = false;
+			}
+		}
+
+		if($success){
 			$mdlLog->commit();
-			ajaxResponse(true, $prize['name'], array('angle'=>$prize['angle']));
+			ajaxReturn(1, $prize['name'], array('angle'=>$prize['angle']));
 		}else{
 			$mdlLog->rollback();
-			ajaxResponse(false, '活动已结束');
+			ajaxReturn(0, '活动已结束');
 		}
 
 		break;
 	case 'send'://发放
 		if($isLogin){
-			$sql = 'SELECT * FROM `wxhd_luck_draw_log` WHERE `hd_id`='.$hdId.' AND `uid`='.$userid.' AND `item_type`=1 AND `status`=1 ORDER BY `time` ASC';
+			$sql = 'SELECT * FROM `wxhd_luck_draw_log` WHERE `hd_id`='.$lotInfo['id'].' AND `uid`='.$userid.' AND `item_type`=1 AND `status`=1 ORDER BY `time` ASC';
 			$list = $db->get_results($sql, ARRAY_A);
 			$count = count($list);
 			if($count > 1){
@@ -87,9 +95,9 @@ switch($act){
 				$hongbao = array(
 					'sendName' => '拼得好',
 					'num' => 1,
-					'wishing' => '拼得好祝大家身体健康，财源广进',
-					'activityName' => '新春红包',
-					'remark' => '拼得好祝大家身体健康，财源广进',
+					'wishing' => '恭喜中奖',
+					'activityName' => '抽奖红包',
+					'remark' => '拼得好祝恭喜您抽中红包',
 				);
 				include_once('./wxpay/lib/WxHongBao.Api.php');
 				$hbApi = new WxHongBaoApi();
