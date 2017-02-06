@@ -198,7 +198,7 @@ function __getTurntableInfo(){
 	global $db;
 
 	$time = time();
-	$sql = 'SELECT * FROM `wxhd_turntable` WHERE `status`=1 AND `start_time`<='.$time.' AND `end_time`>='.$time.' ORDER BY `start_time` ASC LIMIT 1';
+	$sql = 'SELECT * FROM `wxhd_turntable` WHERE `status`=1 AND `verify`=1 AND `start_time`<='.$time.' AND `end_time`>='.$time.' ORDER BY `start_time` ASC LIMIT 1';
 	$info = $db->get_row($sql, ARRAY_A);
 	return $info;
 }

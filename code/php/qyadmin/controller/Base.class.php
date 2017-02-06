@@ -64,4 +64,18 @@ class Base{
     protected function renderTpl($tpl){
         renderTpl($tpl, $this->assigns);
     }
+
+    /**
+     * 返回异步请求
+     *
+     * @param integer $state 状态码
+     * @param string $msg 信息
+     * @param array $data 额外数据
+     */
+    protected function ajaxResponse($state, $msg, $data=array()){
+        $info = array('state'=>$state, 'msg'=>$msg);
+        !empty($data) && $info = array_merge($info, $data);
+        echo json_encode($info);
+        exit();
+    }
 }
