@@ -74,16 +74,16 @@
 				</script>
 				<?php } ?>
 
-               <?php if($info['pindeke'] ==1){?>
+               <?php if($info['pindeke'] ==1 && $pdkinfo['isFrozen'] ==0){?>
                 <section class="user-pdk">
                     <h3 class="title1">
-                        <a class="go" href="#">查看排行榜 ></a>
+                        <a class="go" href="pindeke.php?act=ranking">查看排行榜 ></a>
                         <i></i>拼得客管理中心
                     </h3>
                     <ul>
-                        <li><a href="/pindeke.php?act=pdkInfo&uid=<?php echo $userid;?>"><i class="u-p-1"></i>我的信息</a></li>
+                        <li><a href="/pindeke.php?act=pdkInfo"><i class="u-p-1"></i>我的信息</a></li>
                         <li><a href="/pindeke.php?act=wallet"><i class="u-p-2"></i>我的钱包</a></li>
-                        <!--  <li><a href="/pindeke.php?act=QRcode&uid=<?php echo $userid;?>"><i class="u-p-3"></i>团免链接</a></li>-->
+                        <!--<li><a href="/pindeke.php?act=QRcodeNew"><i class="u-p-3"></i>我的链接</a></li>-->
                         <li><a href="/pindeke.php?act=mission"><i class="u-p-4"></i>任务清单</a></li>
                     </ul>
                 </section>
@@ -101,7 +101,7 @@
                         <li><a href="/user_info.php?act=coupon"><i class="u-l-1"></i>我的优惠券</a></li>
                         <li><a href="/user_info.php?act=groupon"><i class="u-l-2"></i>我的拼团</a></li>
                         <li><a href="/user_info.php?act=guess"><i class="u-l-3"></i>我的猜价</a></li>
-                        <li><a href="/user_lottery.php?uid=<?php echo $userid;?>"><i class="u-l-6"></i>我的抽奖</a></li>
+                        <li><a href="/user_lottery.php"><i class="u-l-6"></i>我的抽奖</a></li>
                         <li><a href="/user_info?act=product_collect"><i class="u-l-4"></i>我的收藏</a></li>
                         <li><a href="/address?act=manage"><i class="u-l-5"></i>收货地址</a></li>
                         <li><a href="/user_set.php"><i class="u-l-7"></i>设置</a></li>
@@ -114,3 +114,4 @@
 </body>
 
 </html>
+

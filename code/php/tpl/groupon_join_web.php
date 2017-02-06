@@ -210,7 +210,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
 					       <?php }?>
 					    <?php break;?>
 					    <?php case 3:?>
-					       <?php if($info['activityType'] ==7 && $info['isGroup'] ==0){?>
+					       <?php if($info['activityType'] ==7 && $info['isGroup'] ==0 && $info['isOpen'] !=1){?>
 					        <h3 class="title1">您来晚了，已成团~</h3>
 					       <?php }?>
 					    <?php break;?>
