@@ -6,7 +6,7 @@
 </style>
 
 <body>
-    <div class="page-group" id="page-lottery">
+    <div class="page-group" id="page-a-lottery">
         <div id="page-nav-bar" class="page page-current">
 
             <div class="content native-scroll">
@@ -31,7 +31,7 @@
                         <?php if($isLogin){?>
                             <div class="button1">
                                 <a href="/index.php"><img src="images/lottery/btn2.png" alt="进入商城" /></a>
-                                <a href="#"><img src="images/lottery/btn3.png" alt="参与记录" /></a>
+                                <a href="javascript:;" class="turntable-log"><img src="images/lottery/btn3.png" alt="参与记录" /></a>
                             </div>
                         <?php }?>
 
@@ -151,7 +151,7 @@
             <a href="javascript:;" class="close-popup"></a>
         </div>
         <script>
-            $(document).on("pageInit", "#page-lottery", function(e, pageId, page) {
+            $(document).on("pageInit", "#page-a-lottery", function(e, pageId, page) {
                 var aid = '活动id';
                 // 没有登录
                 <?php if(!$isLogin){?>
@@ -162,7 +162,9 @@
                     $(".turntable-main .pointer,.turntable-again").on("click", turntable_start);
                 <?php }?>
                 
-                $(".turntable-log").on("click", function(){});
+                $(".turntable-log").on("click", function(){
+                    location.href="/turntable.php?act=log";
+                });
                 $(".turntable-share").on("click", function(){
                     $.closeModal();
                     $.popup(".popup-share");
@@ -179,7 +181,6 @@
                     $.showIndicator();
                     $.ajax({
                         url: '/turntable.php?act=lottery',
-                        data: {},
                         dataType: 'json',
                         success: function(res){
                             // res = {
