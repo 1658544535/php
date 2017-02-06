@@ -4,7 +4,7 @@
     <div class="page-group" id="page-pdeForm">
         <div id="page-nav-bar" class="page page-current">
             <header class="bar bar-nav">
-                <a class="button button-link button-nav pull-left back" href="pindeke.php?act=wallet&uid=<?php echo $userid;?>">
+                <a class="button button-link button-nav pull-left back" href="pindeke.php?act=wallet">
                     <span class="icon icon-back"></span>
                 </a>
                 <h1 class="title">余额提现</h1>

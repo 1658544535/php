@@ -56,7 +56,7 @@
                     <div class="btn">
                         <a href="/pindeke.php?act=incomes" class="red">查看明细</a>
                         <?php if($Objwallet['result']['isFrozen'] !=1){?>
-                        <a href="/pindeke.php?act=withdrawals&uid=<?php echo $userid;?>" class="gray">我要提现</a>
+                        <a href="/pindeke.php?act=withdrawals" class="gray">我要提现</a>
                         <?php }else{?>
                         <a href="javascript:;" class="gray" style="background:#b5b5b6;">我要提现</a>
                         <?php }?>

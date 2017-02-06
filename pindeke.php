@@ -30,9 +30,11 @@ switch($act)
 	case 'mission':
 		//获取拼得客信息
  		$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
-		if($pdkInfo['success'] ==''){
-			redirect('index.php',您无法访问该页面！);
-		}
+        if($pdkInfo['success'] ==''){
+        	redirect('index.php',您无法访问该页面！);
+    	}elseif($pdkInfo['result']['isFrozen'] == 1){
+    		redirect('index.php',您无法访问该页面！);
+    	}
 		//分类筛选
 		$classOne = apiData('productCategoryApi.do');
 		$classOne = $classOne['result'];
@@ -44,11 +46,10 @@ switch($act)
     //获取钱包信息
     case 'wallet':
     	IS_USER_LOGIN();
-    	$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
-    	if($pdkInfo['success'] ==''){
+    	$Objwallet = apiData('pindekeUserInfo.do',array('userId'=>$userid));
+    	if($Objwallet['success'] ==''){
     		redirect('index.php',您无法访问该页面！);
     	}
-    	$Objwallet = apiData('pindekeUserInfo.do',array('userId'=>$userid));
     	include_once('tpl/pdk_wallet_web.php');
     break;
 
@@ -56,6 +57,8 @@ switch($act)
     case 'incomes':
     	$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
     	if($pdkInfo['success'] ==''){
+    		redirect('index.php',您无法访问该页面！);
+    	}elseif($pdkInfo['result']['isFrozen'] == 1){
     		redirect('index.php',您无法访问该页面！);
     	}
     	 $page       = max(1, intval($_POST['page']));
@@ -66,7 +69,9 @@ switch($act)
     //获取收入详情数据
     case 'income':
     	$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
-    	if($pdkInfo['success'] ==''){
+        if($pdkInfo['success'] ==''){
+        	redirect('index.php',您无法访问该页面！);
+    	}elseif($pdkInfo['result']['isFrozen'] == 1){
     		redirect('index.php',您无法访问该页面！);
     	}
     	$Id 	   = CheckDatas( 'id', '' );
@@ -77,11 +82,12 @@ switch($act)
     //提现操作
     case 'withdrawals':
     	$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
-    	if($pdkInfo['success'] ==''){
+        if($pdkInfo['success'] ==''){
+        	redirect('index.php',您无法访问该页面！);
+    	}elseif($pdkInfo['result']['isFrozen'] == 1){
     		redirect('index.php',您无法访问该页面！);
     	}
-    	$Uid 		   = CheckDatas( 'uid', '' );
-    	$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$Uid));
+    	$Objinfo = apiData('pdkApplyInfoApi.do',array('userId'=>$userid));
     	include_once('tpl/wd_apply_web.php');
     break;
    
@@ -99,7 +105,9 @@ switch($act)
     //获取提现记录列表数据
     case 'withdrawals_records':
     	$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
-    	if($pdkInfo['success'] ==''){
+        if($pdkInfo['success'] ==''){
+        	redirect('index.php',您无法访问该页面！);
+    	}elseif($pdkInfo['result']['isFrozen'] == 1){
     		redirect('index.php',您无法访问该页面！);
     	}
     	$page      = max(1, intval($_POST['page']));
@@ -111,7 +119,9 @@ switch($act)
     //获取提现记录详情数据
     case 'withdrawals_record':
     	$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
-    	if($pdkInfo['success'] ==''){
+        if($pdkInfo['success'] ==''){
+        	redirect('index.php',您无法访问该页面！);
+    	}elseif($pdkInfo['result']['isFrozen'] == 1){
     		redirect('index.php',您无法访问该页面！);
     	}
     	$Id 		        = CheckDatas( 'id', '' );
@@ -124,7 +134,6 @@ switch($act)
     case 'QRcode':
     	IS_USER_LOGIN();
     	
-    	$userid= CheckDatas( 'uid', '' );
     	$minfo = apiData('myInfoApi.do',array('userId'=>$userid));
     	
     	if(!empty($minfo['result']['invitationCode']))
