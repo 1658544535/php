@@ -153,7 +153,7 @@ switch($act){
         $list = array();
         foreach($rs['DataSet'] as $v){
             $list[] = array(
-                'mobile' => $v->loginname,
+                'mobile' => replaceStrToStar($v->loginname, 3, 4),
                 'time' => date('y-m-d H:i', $v->time),
                 'prize' => $v->item_name,
             );
@@ -168,13 +168,14 @@ switch($act){
         $mdlLog = M('wxhd_luck_draw_log');
         $cond = array('hd_id'=>$lotInfo['id'], 'uid'=>$userid);
         $order = array('time'=>'desc');
-        $rs = $mdlLog->gets($cond, 'loginname,time,item_name', $order, $page, $persize);
+        $rs = $mdlLog->gets($cond, 'time,item_name,status', $order, $page, $persize);
         $list = array();
+        $statusMap = array(1=>'未发放', 2=>'已发放', 3=>'待发货', 4=>'已发货');
         foreach($rs['DataSet'] as $v){
             $list[] = array(
-                'mobile' => $v->loginname,
                 'time' => date('y-m-d H:i', $v->time),
                 'prize' => $v->item_name,
+                'status' => $statusMap[$v->status],
             );
         }
         echo json_encode($list);

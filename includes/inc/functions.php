@@ -1526,4 +1526,16 @@ function filterEmoji($str){
 
     return $str;
 }
+
+/**
+ * 将字符串中的子串以星号代替
+ *
+ * @param string $str 待替换的字符串
+ * @param integer $start 子串相对于待替串的开始位置，从0开始
+ * @param integer $len 替换的长度，0不替换，负数则为子串相对于待替串结尾的位数，从1开始
+ * @return string
+ */
+function replaceStrToStar($str, $start, $len=0){
+    return empty($len) ? $str : substr_replace($str, str_repeat('*', ($len > 0) ? $len : (strlen($str) - $start + $len)), $start, $len);
+}
 ?>
