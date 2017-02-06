@@ -17,7 +17,7 @@ switch($act){
 
 		$chance = apiData('getTurntableNumApi.do', array('uid'=>$userid));
 		$chance = (empty($chance) || !$chance['success']) ? 0 : $chance['result'];
-		!$chance && ajaxReturn(0, '您的机会已用完');
+		!$chance && ajaxReturn(2, '您的机会已用完');
 
 		$mdlLog = M('wxhd_luck_draw_log');
 		
@@ -82,6 +82,7 @@ switch($act){
 
 		break;
 	case 'send'://发放
+		error_reporting(E_ALL);
 		if($isLogin){
 			$sql = 'SELECT * FROM `wxhd_luck_draw_log` WHERE `hd_id`='.$lotInfo['id'].' AND `uid`='.$userid.' AND `item_type`=1 AND `status`=1 ORDER BY `time` ASC';
 			$list = $db->get_results($sql, ARRAY_A);
@@ -99,42 +100,86 @@ switch($act){
 					'activityName' => '抽奖红包',
 					'remark' => '拼得好祝恭喜您抽中红包',
 				);
-				include_once('./wxpay/lib/WxHongBao.Api.php');
-				$hbApi = new WxHongBaoApi();
-				$mdlSendLog = new Model($db, 'wxhb_send_log');
-				$endIndex = ($count % 2 == 0) ? ($count-1) : floor($count/2)*2;
-				for($i=0; $i<=$endIndex; $i++){
-					$hongbao['openid'] = $list[$i]['openid'];
-					$hongbao['amount'] = $list[$i]['item_value'];
 
-					$result = $hbApi->sendRedPack($hongbao);
-					if($result['return_code'] != 'SUCCESS'){
-						$content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包失败[return_code:{$result['return_code']}]：{$result['return_msg']}";
-					}elseif($result['result_code'] != 'SUCCESS'){
-						$content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包失败[result_code:{$result['err_code']}]：{$result['err_code_des']}";
-					}else{
-						$content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包成功";
-						file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】{$content}\r\n", FILE_APPEND);
-						$sql = 'UPDATE `wxhd_luck_draw_log` SET `status`=2 WHERE `id`='.$list[$i]['id'];
-						if($db->query($sql) === false){
-							$content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包成功，更改发放状态失败";
-						}else{
-							$content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包成功，更改发放状态成功";
-						}
-						$sendLog = array(
-							're_openid' => $result['re_openid'],
-							'total_amount' => $result['total_amount']/100,
-							'send_listid' => $result['send_listid'],
-							'mch_billno' => $result['mch_billno'],
-							'time' => $time,
-						);
-						$mdlSendLog->add($sendLog);
-					}
-					file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】{$content}\r\n", FILE_APPEND);
-				}
+				try{
+                    include_once('./wxpay/lib/WxHongBao.Api.php');
+                    $hbApi = new WxHongBaoApi();
+                    $mdlSendLog = new Model($db, 'wxhb_send_log');
+                    $endIndex = ($count % 2 == 0) ? ($count-1) : floor($count/2)*2;
+                    for($i=0; $i<=$endIndex; $i++){
+                        $hongbao['openid'] = $list[$i]['openid'];
+                        $hongbao['amount'] = $list[$i]['item_value'];
+
+                        $result = $hbApi->sendRedPack($hongbao);
+                        if($result['return_code'] != 'SUCCESS'){
+                            $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包失败[return_code:{$result['return_code']}]：{$result['return_msg']}";
+                        }elseif($result['result_code'] != 'SUCCESS'){
+                            $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包失败[result_code:{$result['err_code']}]：{$result['err_code_des']}";
+                        }else{
+                            $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包成功";
+                            file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】{$content}\r\n", FILE_APPEND);
+                            $sql = 'UPDATE `wxhd_luck_draw_log` SET `status`=2 WHERE `id`='.$list[$i]['id'];
+                            if($db->query($sql) === false){
+                                $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包成功，更改发放状态失败";
+                            }else{
+                                $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包成功，更改发放状态成功";
+                            }
+                            $sendLog = array(
+                                're_openid' => $result['re_openid'],
+                                'total_amount' => $result['total_amount']/100,
+                                'send_listid' => $result['send_listid'],
+                                'mch_billno' => $result['mch_billno'],
+                                'time' => $time,
+                            );
+                            $mdlSendLog->add($sendLog);
+                        }
+                        file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】{$content}\r\n", FILE_APPEND);
+                    }
+                }catch(Exception $e){
+                    $content = "帐号[{$user->loginname}]，openid[{$user->openid}]触发发放红包失败，原因：{$e->getMessage()}[{$e->getCode()}]";
+                    file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】{$content}\r\n", FILE_APPEND);
+                }
 			}
 		}
 		break;
+    case 'list'://获奖列表
+        $persize = 50;
+        $page = CheckDatas('page', 1);
+        $page = Max(1, $page);
+        $mdlLog = M('wxhd_luck_draw_log');
+        $cond = array('hd_id'=>$lotInfo['id']);
+        $order = array('time'=>'desc');
+        $rs = $mdlLog->gets($cond, 'loginname,time,item_name', $order, $page, $persize);
+        $list = array();
+        foreach($rs['DataSet'] as $v){
+            $list[] = array(
+                'mobile' => $v->loginname,
+                'time' => date('y-m-d H:i', $v->time),
+                'prize' => $v->item_name,
+            );
+        }
+        echo json_encode($list);
+        exit();
+        break;
+    case 'log'://参与记录
+        $persize = 10;
+        $page = CheckDatas('page', 1);
+        $page = Max(1, $page);
+        $mdlLog = M('wxhd_luck_draw_log');
+        $cond = array('hd_id'=>$lotInfo['id'], 'uid'=>$userid);
+        $order = array('time'=>'desc');
+        $rs = $mdlLog->gets($cond, 'loginname,time,item_name', $order, $page, $persize);
+        $list = array();
+        foreach($rs['DataSet'] as $v){
+            $list[] = array(
+                'mobile' => $v->loginname,
+                'time' => date('y-m-d H:i', $v->time),
+                'prize' => $v->item_name,
+            );
+        }
+        echo json_encode($list);
+        exit();
+        break;
 	default:
 		$chance = apiData('getTurntableNumApi.do', array('uid'=>$userid));
 		$chance = (empty($chance) || !$chance['success']) ? 0 : $chance['result'];
