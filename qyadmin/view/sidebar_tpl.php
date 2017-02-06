@@ -15,5 +15,15 @@
 				<li><a href="<?php echo url('WxHongbao', 'receiveLog');?>" target="iFrameContent">领取记录</a></li>
 			</ul>
 		</li>
+        <li>
+            <a href="#"><i class="fa fa-tachometer"></i> <span>转盘抽奖</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo url('Turntable');?>" target="iFrameContent">活动</a></li>
+            </ul>
+        </li>
     </ul>
 </section>
