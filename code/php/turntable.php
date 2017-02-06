@@ -130,6 +130,7 @@ switch($act){
                                 'send_listid' => $result['send_listid'],
                                 'mch_billno' => $result['mch_billno'],
                                 'time' => $time,
+                                'source' => 1,
                             );
                             $mdlSendLog->add($sendLog);
                         }
