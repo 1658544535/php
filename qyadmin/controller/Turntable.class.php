@@ -101,9 +101,22 @@ class Turntable extends Common{
         $id = CheckDatas('id');
         $status = CheckDatas('status', 0);
 
-        !is_array($id) && $id = array($id);
+        $id = explode(',', $id);
 
         $mdl = M('wxhd_turntable');
         ($mdl->modify(array('status'=>$status), array('__IN__'=>array('id'=>$id))) === false) ? $this->ajaxResponse(0, '操作失败') : $this->ajaxResponse(1, '操作成功');
+    }
+
+    /**
+     * 更改审核状态
+     */
+    public function switchTurntableVerify(){
+        $id = CheckDatas('id');
+        $verify = CheckDatas('verify', 0);
+
+        $id = explode(',', $id);
+
+        $mdl = M('wxhd_turntable');
+        ($mdl->modify(array('verify'=>$verify), array('__IN__'=>array('id'=>$id))) === false) ? $this->ajaxResponse(0, '操作失败') : $this->ajaxResponse(1, '操作成功');
     }
 }
