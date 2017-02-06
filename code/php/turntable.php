@@ -162,7 +162,11 @@ switch($act){
         echo json_encode($list);
         exit();
         break;
-    case 'log'://参与记录
+    case 'log': // 参与记录页面
+    	include_once('tpl/turntable_log.php');
+        exit();
+        break;
+    case 'ajax_log'://参与记录
         $persize = 10;
         $page = CheckDatas('page', 1);
         $page = Max(1, $page);
@@ -179,7 +183,8 @@ switch($act){
                 'status' => $statusMap[$v->status],
             );
         }
-        echo json_encode($list);
+        // echo json_encode($list);
+        echo ajaxJson( 1,'获取成功',$list, $page);
         exit();
         break;
 	default:
