@@ -6337,3 +6337,166 @@
 .record .view .price {
   width: 20%;
 }
+.a-lottery {
+  height: 1000px;
+  background-image: url(../images/lottery/bg.jpg);
+  background-color: #c43a20;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: 0 0;
+}
+.a-lottery .places {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  margin-top: 67.5%;
+  text-align: center;
+}
+.a-lottery .places .total {
+  position: relative;
+  width: 43.75%;
+  margin: 0 auto;
+  padding-bottom: 6.383%;
+  background: url(../images/lottery/btn1.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.a-lottery .places .deta {
+  padding-top: 0.25rem;
+  font-size: 0.5rem;
+  color: #fecd3d;
+}
+.a-lottery .places .total div {
+  position: absolute;
+  left: 0%;
+  top: 50%;
+  width: 100%;
+  font-size: 0.7rem;
+  color: #f9750b;
+  font-weight: bold;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.a-lottery .places .total div span {
+  padding: 0 0.2rem;
+}
+.a-lottery .turntable-main {
+  position: relative;
+  width: 87.65625%;
+  padding-bottom: 90%;
+  margin: 81.5625% auto 0;
+  overflow: hidden;
+}
+.a-lottery .turntable-main .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../images/lottery/turntable.png) no-repeat 0 0;
+  background-size: 100% 100%;
+  transition: all 2s;
+}
+.a-lottery .turntable-main .pointer {
+  position: absolute;
+  left: 50%;
+  top: 27.43%;
+  margin-left: -14.795%;
+  width: 29.59%;
+  height: 35.069%;
+  background: url(../images/lottery/turntable-pointer.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.a-lottery .turntable-main .adorn {
+  position: absolute;
+  right: 6.5%;
+  bottom: 3.6%;
+  width: 17.5%;
+  padding-bottom: 7.8125%;
+  background: url(../images/lottery/turntable-adorn.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.a-lottery .chance {
+  line-height: 1.7rem;
+  height: 1.7rem;
+  width: 61.5625%;
+  margin: 4% auto 5.93%;
+  background: #fff;
+  font-size: 0.9rem;
+  color: #5b1609;
+  text-align: center;
+}
+.a-lottery .button1 {
+  width: 88.4375%;
+  margin: 0 auto 3.1%;
+  overflow: hidden;
+}
+.a-lottery .button1 a {
+  float: left;
+  width: 50%;
+}
+.a-lottery .button1 a img {
+  display: block;
+  width: 100%;
+}
+.a-lottery .rule1 img,
+.a-lottery .rule2 img {
+  display: block;
+  width: 100%;
+}
+.a-lottery .list {
+  position: relative;
+  padding-bottom: 80.46875%;
+  background: url(../images/lottery/list.jpg) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.a-lottery .list .view {
+  position: absolute;
+  width: 98.5%;
+  top: 24.85%;
+  left: 0.75%;
+  bottom: 6.99%;
+  font-size: 0.75rem;
+  text-align: center;
+  color: #5b1609;
+  overflow: hidden;
+}
+.a-lottery .list .view .top,
+.a-lottery .list .view .main li {
+  margin: 0;
+  list-style: none;
+  padding: 3px 0;
+  overflow: hidden;
+}
+.a-lottery .list .view .top {
+  padding-top: 6px;
+  padding-bottom: 0;
+}
+.a-lottery .list .view .main {
+  position: absolute;
+  top: 1.5rem;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+.a-lottery .list .view .main ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.a-lottery .list .view .top > div,
+.a-lottery .list .view .main li > div {
+  float: left;
+}
+.a-lottery .list .view .time {
+  width: 35%;
+}
+.a-lottery .list .view .user {
+  width: 35%;
+}
+.a-lottery .list .view .price {
+  width: 30%;
+}
