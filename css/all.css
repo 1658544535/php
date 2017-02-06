@@ -6500,3 +6500,30 @@
 .a-lottery .list .view .price {
   width: 30%;
 }
+.popup-turntable .main {
+  position: absolute;
+  width: 90%;
+  max-height: 90%;
+  left: 5%;
+  top: 40%;
+  padding: 2.5rem 1.0rem;
+  text-align: center;
+  background: #fff;
+  border-radius: 5px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  overflow-y: auto;
+}
+.popup-turntable .main .img {
+  width: 50%;
+  margin: 0 auto;
+}
+.popup-turntable .main .img img {
+  display: block;
+  width: 100%;
+}
+.popup-turntable .close-popup {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
