@@ -191,8 +191,17 @@ switch($act){
 	default:
 	    $inviterId = intval($_GET['inviterid']);
         $inviterId && $_SESSION['turntable_inviterid'] = $inviterId;
+
+        //剩余机会次数
 		$chance = apiData('getTurntableNumApi.do', array('uid'=>$userid));
 		$chance = (empty($chance) || !$chance['success']) ? 0 : $chance['result'];
+
+		//剩余名额
+        $reWinnerNum = 0;
+        $items = __getItems($lotInfo['id']);
+        foreach($items as $v){
+            $reWinnerNum += ($v['num'] - $v['join_num']);
+        }
 
         //微信分享脚本
         $wxJsTicket = $objWX->getJsTicket();

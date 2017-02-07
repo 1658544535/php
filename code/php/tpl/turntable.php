@@ -24,7 +24,7 @@
                         <div style="height: 1px"></div>
 
                         <div class="places">
-                            <div class="total"><div>目前还剩<span>1</span>名额</div></div>
+                            <div class="total"><div>目前还剩<span><?php echo $reWinnerNum;?></span>名额</div></div>
                             <div class="deta">200元还剩1名，100元还剩1名……</div>
                         </div>
 

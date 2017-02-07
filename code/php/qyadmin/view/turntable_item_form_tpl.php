@@ -41,7 +41,7 @@
                         <label for="nameForRule" class="col-sm-2 control-label">奖品中奖率：</label>
                         <div class="col-sm-10">
                             <input class="form-control" name="data[ratio]" id="nameForRule" placeholder="中奖率..." type="text" value="<?php echo $info['ratio'];?>" style="width:70px; display:inline;">
-                            (单位：%)
+                            %
                         </div>
                     </div>
                     <div class="form-group">
