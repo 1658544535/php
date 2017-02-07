@@ -164,7 +164,7 @@ switch($act){
         exit();
         break;
     case 'log': // 参与记录页面
-    	include_once('tpl/turntable_log.php');
+    	include_once('tpl/turntable_log_web.php');
         exit();
         break;
     case 'ajax_log'://参与记录
@@ -205,7 +205,8 @@ switch($act){
 
         //微信分享脚本
         $wxJsTicket = $objWX->getJsTicket();
-        $wxShareCBUrl = $site.'turntable.php?inviterid='.$userid;
+        $wxShareInviteUrl = $site.'turntable.php?inviterid='.$userid;
+        $wxShareCBUrl = 'http://'.$_SERVER['HTTP_HOST'].(($_SERVER['SERVER_PORT'] == '80') ? '' : ':'.$_SERVER['SERVER_PORT']).$_SERVER['REQUEST_URI'];
         $wxJsSign = $objWX->getJsSign($wxShareCBUrl);
         $wxShareParam = array(
             'appId' => $wxJsSign['appId'],
@@ -214,7 +215,7 @@ switch($act){
             'signature' => $wxJsSign['signature'],
         );
 
-		include_once('tpl/turntable.php');
+		include_once('tpl/turntable_web.php');
 		break;
 }
 
