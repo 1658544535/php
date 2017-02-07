@@ -112,6 +112,21 @@ switch($wxReqType){
 						$text = "值此新春佳节，拼得好祝您新春快乐！\r\n至1月底，拼得好客服暂停服务！\r\n2月1日起（8:30-23:00）接受咨询！\r\n带来不便，还请见谅！\r\n\r\n另，拼得好新春红包大派送！\r\n点击左下角菜单“新春红包”领取红包吧！";
 						$objWX->text($text)->reply();
 						break;
+					case 'yuanxiao':
+						$mediaId = 'fw2Cpb96HJjHqjbfMU1jdJPuye0-ie0Ul4DoOnvzAybBeoI3FrZL3oqNxa4dciel';//正式
+						$data = array(
+							'touser' => $objWX->getRevFrom(),
+							'msgtype' => 'image',
+							'image' => array(
+								'media_id' => $mediaId,
+							),
+						);
+						$objWX->writeLog('image');
+						$result = $objWX->sendCustomMessage($data);
+						if($result === false){
+							$objWX->writeLog($data['touser'].' 元宵活动海报失败，errcode：'.$objWX->errCode.'，errmsg：'.$objWX->errMsg);
+						}
+						break;
 				}
 				break;
     	}
