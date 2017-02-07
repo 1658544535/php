@@ -3,10 +3,10 @@
 <script type="text/javascript" src="/js/wxshare.js"></script>
 <script type="text/javascript">
     var imgUrl = "<?php echo $site;?>images/wxLOGO.png";
-    var link = "<?php echo $wxShareCBUrl;?>";
+    var link = "<?php echo $wxShareInviteUrl;?>";
     var title ="元宵红包";
     var desc = "元宵红包抽奖";
-    wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
+    wxshare(true, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 </script>
 
 <style type="text/css">
