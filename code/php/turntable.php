@@ -22,7 +22,7 @@ switch($act){
 		$mdlLog = M('wxhd_luck_draw_log');
 		
 		//当前第几次参与
-		$hadJoinNum = $mdlLog->getCount(array('uid'=>$userid, 'hd_id'=>$lotInfo['id']));
+		$hadJoinNum = $mdlLog->getCount(array('uid'=>$userid, 'hd_id'=>$lotInfo['id'], 'is_real'=>1));
 		$curJoinNum = $hadJoinNum+1;
 		
 		$success = false;
@@ -62,6 +62,7 @@ switch($act){
 				'status' => 1,
 				'is_prize' => $prize['is_prize'],
 				'is_virtual' => $prize['is_virtual'],
+                'is_real' => 1,
 			);
 			($mdlLog->add($logData) !== false) && $success = true;
 		}
@@ -84,7 +85,7 @@ switch($act){
 	case 'send'://发放
 		error_reporting(E_ALL);
 		if($isLogin){
-			$sql = 'SELECT * FROM `wxhd_luck_draw_log` WHERE `hd_id`='.$lotInfo['id'].' AND `uid`='.$userid.' AND `item_type`=1 AND `status`=1 ORDER BY `time` ASC';
+			$sql = 'SELECT * FROM `wxhd_luck_draw_log` WHERE `hd_id`='.$lotInfo['id'].' AND `uid`='.$userid.' AND `item_type`=1 AND `status`=1 AND `is_real`=1 ORDER BY `time` ASC';
 			$list = $db->get_results($sql, ARRAY_A);
 			$count = count($list);
 			if($count > 1){

@@ -23,6 +23,7 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="<?php echo url('Turntable');?>" target="iFrameContent">活动</a></li>
+                <li><a href="<?php echo url('Turntable', 'log');?>" target="iFrameContent">参与记录</a></li>
             </ul>
         </li>
     </ul>
