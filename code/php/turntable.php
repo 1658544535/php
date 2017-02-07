@@ -243,7 +243,7 @@ function __getRand($arr){
  */
 function __getItems($hdId, $joinNum=null){
 	global $db;
-	$sql = 'SELECT * FROM `wxhd_turntable_item` WHERE `turntable_id`='.$hdId.' AND `status`=1 AND `num`>`join_num`';
+	$sql = 'SELECT * FROM `wxhd_turntable_item` WHERE `turntable_id`='.$hdId.' AND `status`=1 AND `verify`=1 AND `num`>`join_num`';
 	!is_null($joinNum) && $sql .= " AND `win_index` LIKE ',{$joinNum},'";
 	$sql .= ' FOR UPDATE';
 	$items = $db->get_results($sql, ARRAY_A);

@@ -13,6 +13,15 @@
         </ul>
 
         <div class="box-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    <button class="btn btn-default" id="btn-verify">审核通过</button>
+                    <button class="btn btn-default" id="btn-unverify">审核不通过</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-body">
             <div class="dataTables_wrapper form-inline dt-bootstrap">
                 <div class="row">
                     <div class="col-sm-12">
@@ -46,7 +55,7 @@
                                                 <td class="sorting_1"></td>
                                                 <td class="sorting_1"><?php echo $v['desc'];?></td>
                                                 <td class="sorting_1"><?php echo $v['num'];?></td>
-                                                <td class="sorting_1"><?php echo $v['ratio'];?></td>
+                                                <td class="sorting_1"><?php echo $v['ratio'];?>%</td>
                                                 <td class="sorting_1"><?php echo $v['per_day_num'];?></td>
                                                 <td>
                                                     <a href="<?php echo url('Turntable', 'editItem', array('id'=>$v['id']));?>">编辑</a> |
@@ -68,5 +77,63 @@
         </div>
     </div>
 </section>
+
+<script src="<?php echo __JS__;?>jquery.selectall.js"></script>
+<script language="JavaScript">
+    $(function(){
+        $.selectAll({"allId":"select_all", "itemRel":"item_data"});
+
+        $("#btn-verify").on("click", function(){
+            var ids = getSelIds();
+            if(!ids) return;
+            changeVerify(ids, 1);
+        });
+
+        $("#btn-unverify").on("click", function(){
+            var ids = getSelIds();
+            if(!ids) return;
+            changeVerify(ids, 0);
+        });
+    });
+
+    function getSelIds(){
+        var ids = [], _this;
+        $(":checkbox[rel='item_data']").each(function(){
+            _this = $(this);
+            if(_this.is(":checked")){
+                ids.push(_this.val());
+            }
+        });
+        if(ids.length == 0){
+            alert("请选择要操作的数据");
+            return false;
+        }
+        return ids.join(",");
+    }
+
+    function changeStatus(id, status){
+        if(window.confirm("确定要更改状态吗？")){
+            $.post("<?php echo url('Turntable', 'switchItemStatus');?>", {"id":id,"status":status}, function(r){
+                if(r.state == 1){
+                    location.reload();
+                }else{
+                    alert('操作失败');
+                }
+            }, "json");
+        }
+    }
+
+    function changeVerify(id, verify){
+        if(window.confirm("确定要更改状态吗？")){
+            $.post("<?php echo url('Turntable', 'switchItemVerify');?>", {"id":id,"verify":verify}, function(r){
+                if(r.state == 1){
+                    location.reload();
+                }else{
+                    alert('操作失败');
+                }
+            }, "json");
+        }
+    }
+</script>
 
 <?php include_once('common_footer_tpl.php');?>
