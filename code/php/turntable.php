@@ -170,7 +170,7 @@ switch($act){
     case 'ajax_log'://参与记录
         $persize = 10;
         $page = CheckDatas('page', 1);
-        $page = Max(1, $page);
+        $page = max(1, $page);
         $mdlLog = M('wxhd_luck_draw_log');
         $cond = array('hd_id'=>$lotInfo['id'], 'uid'=>$userid);
         $order = array('time'=>'desc');
@@ -189,8 +189,22 @@ switch($act){
         exit();
         break;
 	default:
+	    $inviterId = intval($_GET['inviterid']);
+        $inviterId && $_SESSION['turntable_inviterid'] = $inviterId;
 		$chance = apiData('getTurntableNumApi.do', array('uid'=>$userid));
 		$chance = (empty($chance) || !$chance['success']) ? 0 : $chance['result'];
+
+        //微信分享脚本
+        $wxJsTicket = $objWX->getJsTicket();
+        $wxShareCBUrl = $site.'turntable.php?inviterid='.$userid;
+        $wxJsSign = $objWX->getJsSign($wxShareCBUrl);
+        $wxShareParam = array(
+            'appId' => $wxJsSign['appId'],
+            'timestamp' => $wxJsSign['timestamp'],
+            'nonceStr' => $wxJsSign['nonceStr'],
+            'signature' => $wxJsSign['signature'],
+        );
+
 		include_once('tpl/turntable.php');
 		break;
 }

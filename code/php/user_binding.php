@@ -20,6 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		'source' => 3,
 		'unionid' => $_SESSION['unionid'],
 	);
+	(isset($_SESSION['turntable_inviterid']) && $_SESSION['turntable_inviterid']) && $apiParam['invId'] = $_SESSION['turntable_inviterid'];
 	
 	$result = apiData('userlogin.do', $apiParam);
 	if($result['success']){
@@ -59,6 +60,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$_SESSION['is_login'] = true;
 		$_SESSION['userinfo'] = $_wxInfo;
 		unset($_SESSION['loginReferUrl']);
+        if(isset($_SESSION['turntable_inviterid'])) unset($_SESSION['turntable_inviterid']);
 		redirect($referUrl);
 	}else{
 		redirect('user_binding.php', $result['error_msg']);
