@@ -207,4 +207,30 @@ class Turntable extends Common{
             $this->renderTpl('turntable_item_form');
         }
     }
+
+    /**
+     * 更改奖项状态
+     */
+    public function switchItemStatus(){
+        $id = CheckDatas('id');
+        $status = CheckDatas('status', 0);
+
+        $id = explode(',', $id);
+
+        $mdl = M('wxhd_turntable_item');
+        ($mdl->modify(array('status'=>$status), array('__IN__'=>array('id'=>$id))) === false) ? $this->ajaxResponse(0, '操作失败') : $this->ajaxResponse(1, '操作成功');
+    }
+
+    /**
+     * 更改奖项审核状态
+     */
+    public function switchItemVerify(){
+        $id = CheckDatas('id');
+        $verify = CheckDatas('verify', 0);
+
+        $id = explode(',', $id);
+
+        $mdl = M('wxhd_turntable_item');
+        ($mdl->modify(array('verify'=>$verify), array('__IN__'=>array('id'=>$id))) === false) ? $this->ajaxResponse(0, '操作失败') : $this->ajaxResponse(1, '操作成功');
+    }
 }
