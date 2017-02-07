@@ -233,4 +233,85 @@ class Turntable extends Common{
         $mdl = M('wxhd_turntable_item');
         ($mdl->modify(array('verify'=>$verify), array('__IN__'=>array('id'=>$id))) === false) ? $this->ajaxResponse(0, '操作失败') : $this->ajaxResponse(1, '操作成功');
     }
+
+    /**
+     * 参与记录列表
+     */
+    public function log(){
+        $persize = 20;
+        $page = CheckDatas('p', 1);
+        $page = max(1, $page);
+        $param = array(
+            'name' => CheckDatas('n', ''),
+            'starttime' => CheckDatas('st', ''),
+            'endtime' => CheckDatas('et', ''),
+            'status' => CheckDatas('s', ''),
+        );
+
+        $statusMap = array(0=>'未中奖',1=>'未发放',2=>'已发放',3=>'待发货',4=>'已发货');
+
+        $cond = array();
+        $pageUrlParam = array();
+        if($param['name'] != ''){
+            $cond[] = "loginname LIKE '%{$param['name']}%'";
+            $pageUrlParam['n'] = urldecode($param['name']);
+        }
+        if($param['starttime'] != ''){
+            $cond[] = 'time<='.strtotime($param['starttime']);
+            $pageUrlParam['st'] = urldecode($param['starttime']);
+        }
+        if($param['endtime'] != ''){
+            $cond[] = 'time>='.strtotime($param['endtime']);
+            $pageUrlParam['et'] = urldecode($param['endtime']);
+        }
+        ($param['status'] == '') && $param['status'] = -1;
+        if(($param['status'] != -1) && in_array($param['status'], array_keys($statusMap))){
+            $cond[] = 'status='.$param['status'];
+            $pageUrlParam['s'] =  urldecode($param['status']);
+        }
+        $pageUrlParam['s'] = $param['status'];
+        $order = array('time'=>'desc', 'id'=>'desc');
+
+        $mdl = M('wxhd_luck_draw_log');
+        $rs = $mdl->gets(implode(' and ', $cond), '*', $order, $page, $persize);
+        $list = $rs['DataSet'];
+        $index = ($page - 1) * $persize + 1;
+        if(!empty($list)){
+            foreach($list as $k => $v){
+                $v->index = $index;
+                $index++;
+            }
+        }
+
+        if($rs['PageCount'] > 1){
+            $cfgPage = array(
+                'show_first_last' => false,
+            );
+            $strPage = genPageStr($rs['RecordCount'], $persize, $page, url('Turntable', 'log', $pageUrlParam).'&p', $cfgPage);
+            $this->assign('strPage', $strPage);
+        }
+
+        $this->assign('statusMap', $statusMap);
+        $this->assign('param', $param);
+        $this->assign('list', $list);
+        $this->renderTpl('turntable_log');
+    }
+
+    /**
+     * 参与记录详情
+     */
+    public function logDetail(){
+        $id = CheckDatas('id', 0);
+        empty($id) && $this->error('参数异常');
+
+        $mdl = M('wxhd_luck_draw_log');
+        $info = $mdl->get(array('id'=>$id), '*', ARRAY_A);
+        empty($info) && $this->error('数据不存在');
+
+        $statusMap = array(0=>'未中奖',1=>'未发放',2=>'已发放',3=>'待发货',4=>'已发货');
+
+        $this->assign('statusMap', $statusMap);
+        $this->assign('info', $info);
+        $this->renderTpl('turntable_log_detail');
+    }
 }
