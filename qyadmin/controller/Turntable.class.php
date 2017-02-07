@@ -92,6 +92,7 @@ class Turntable extends Common{
             $this->assign('curPageType', 'edit');
             $this->assign('action', 'editTurntable');
             $this->assign('info', $info);
+            $this->assign('hdid', $id);
             $this->renderTpl('turntable_form');
         }
     }
@@ -138,7 +139,72 @@ class Turntable extends Common{
             $this->assign('info', $info);
             $this->assign('id', $id);
             $this->assign('curPageType', 'join');
+            $this->assign('hdid', $id);
             $this->renderTpl('turntable_join_form');
+        }
+    }
+
+    /**
+     * 奖项列表
+     */
+    public function items(){
+        $id = CheckDatas('id', 0);
+        empty($id) && $this->error('参数异常');
+
+        $mdl = M('wxhd_turntable_item');
+
+        $cond = array();
+        $rs = $mdl->getAll($cond, '*', array('id'=>'asc'), '', ARRAY_A);
+        $list = array();
+        $index = 1;
+        foreach($rs as $k => $v){
+            $v['index'] = $index;
+            $v['ratio'] = $v['ratio'] / 100;
+            ($v['type'] == 1) && $v['item_value'] = sprintf("%0.2f", $v['item_value'] / 100);
+            ($v['per_day_num'] == -10) && $v['per_day_num'] = '不限';
+            $list[] = $v;
+            $index++;
+        }
+
+        $this->assign('id', $id);
+        $this->assign('list', $list);
+        $this->renderTpl('turntable_items');
+    }
+
+    /**
+     * 编辑奖项
+     */
+    public function editItem(){
+        $id = CheckDatas('id', 0);
+        empty($id) && $this->error('参数异常');
+
+        $mdl = M('wxhd_turntable_item');
+        if(IS_POST()){
+            $hdId = intval($_POST['hdid']);
+            empty($hdId) && $this->error('参数异常');
+            $data = $_POST['data'];
+            $data['num'] = intval($data['num']);
+            $data['ratio'] = $data['ratio'] * 100;
+            ($data['type'] == 1) && $data['item_value'] *= 100;
+            $data['per_day_num'] = (trim($data['per_day_num']) == '') ? -10 : intval($data['per_day_num']);
+            $data['win_index'] = trim($data['win_index']);
+            ($data['win_index'] != '') && $data['win_index'] = ','.$data['win_index'].',';
+
+            ($mdl->modify($data, array('id'=>$id)) === false) ? $this->error('编辑失败') : $this->success('编辑成功', url('Turntable', 'items', array('id'=>$hdId)));
+        }else{
+            $info = $mdl->get(array('id'=>$id), '*', ARRAY_A);
+            empty($info) && $this->error('奖品不存在');
+
+            $info['ratio'] = $info['ratio'] / 100;
+            ($info['type'] == 1) && $info['item_value'] = sprintf("%0.2f", $info['item_value'] / 100);
+            ($info['per_day_num'] == -10) && $info['per_day_num'] = '';
+            !empty($info['win_index']) && $info['win_index'] = implode(',', array_filter(explode(',', $info['win_index'])));
+
+            $this->assign('info', $info);
+            $this->assign('action', 'editItem');
+            $this->assign('curPageType', 'prize');
+            $this->assign('hdid', $info['turntable_id']);
+            $this->renderTpl('turntable_item_form');
         }
     }
 }
