@@ -113,7 +113,7 @@ switch($wxReqType){
 						$objWX->text($text)->reply();
 						break;
 					case 'yuanxiao':
-						$mediaId = 'fw2Cpb96HJjHqjbfMU1jdJPuye0-ie0Ul4DoOnvzAybBeoI3FrZL3oqNxa4dciel';//正式
+						$mediaId = '9qGub50O0Du11Z6n1CUDLll1zbZyYackPSGUfGBvSs5LsedhmMm7hDfuIa9eTCk9';//正式
 						$data = array(
 							'touser' => $objWX->getRevFrom(),
 							'msgtype' => 'image',
