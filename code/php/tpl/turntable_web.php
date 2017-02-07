@@ -6,7 +6,7 @@
     var link = "<?php echo $wxShareInviteUrl;?>";
     var title ="元宵红包";
     var desc = "元宵红包抽奖";
-    wxshare(true, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
+    wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 </script>
 
 <style type="text/css">
