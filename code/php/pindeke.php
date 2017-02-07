@@ -29,7 +29,8 @@ switch($act)
 	//拼得客任务清单
 	case 'mission':
 		//获取拼得客信息
- 		$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
+		IS_USER_LOGIN();
+		$pdkInfo = apiData('pindekeUserInfo.do',array('userId'=>$userid));
         if($pdkInfo['success'] ==''){
         	redirect('index.php',您无法访问该页面！);
     	}elseif($pdkInfo['result']['isFrozen'] == 1){
@@ -156,8 +157,10 @@ switch($act)
     //拼得客排行榜
     case 'ranking':
     	IS_USER_LOGIN();
-    	$month 		            = CheckDatas( 'm', '01' );
-    	$year 		            = CheckDatas( 'y', '2017' );
+    	$time=time();
+    	
+    	$month 		            = CheckDatas( 'm', date('m',$time) );
+    	$year 		            = CheckDatas( 'y', date('Y',$time) );
     	$page                   = max(1, intval($_POST['page']));
     	$rankList = apiData('pdkSellRankingList.do',array('pageSize'=>10,'pageNo'=>$page,'month'=>$month,'year'=>$year,'userId'=>$userid));
     	include_once('tpl/pdk_ranking_web.php');
