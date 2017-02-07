@@ -88,6 +88,8 @@ class Turntable extends Common{
             $info = $mdl->get(array('id'=>$id), '*', ARRAY_A);
             empty($info) && $this->error('信息不存在');
 
+            $this->assign('id', $id);
+            $this->assign('curPageType', 'edit');
             $this->assign('action', 'editTurntable');
             $this->assign('info', $info);
             $this->renderTpl('turntable_form');
@@ -118,5 +120,25 @@ class Turntable extends Common{
 
         $mdl = M('wxhd_turntable');
         ($mdl->modify(array('verify'=>$verify), array('__IN__'=>array('id'=>$id))) === false) ? $this->ajaxResponse(0, '操作失败') : $this->ajaxResponse(1, '操作成功');
+    }
+
+    /**
+     * 参与设置
+     */
+    public function editJoin(){
+        $id = CheckDatas('id', 0);
+        empty($id) && $this->error('参数异常');
+
+        $mdl = M('wxhd_turntable');
+        if(IS_POST()){
+            $data = $_POST['data'];
+            ($mdl->modify($data, array('id'=>$id)) === false) ? $this->error('设置失败') : $this->success('设置成功');
+        }else{
+            $info = $mdl->get(array('id'=>$id), 'id,per_day_number', ARRAY_A);
+            $this->assign('info', $info);
+            $this->assign('id', $id);
+            $this->assign('curPageType', 'join');
+            $this->renderTpl('turntable_join_form');
+        }
     }
 }
