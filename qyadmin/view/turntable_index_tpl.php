@@ -86,16 +86,18 @@
                                     <th>活动名称</th>
                                     <th>活动时间</th>
                                     <th>状态</th>
+                                    <th>审核状态</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php if(empty($list)){ ?>
                                     <tr>
-                                        <td colspan="6">没有相关信息</td>
+                                        <td colspan="7">没有相关信息</td>
                                     </tr>
                                 <?php }else{ ?>
                                     <?php $time = time();?>
+                                    <?php $verifyMap = array(0=>'未审核',1=>'审核通过',2=>'审核不通过'); ?>
                                     <?php foreach($list as $v){ ?>
                                         <tr role="row" class="odd">
                                             <td><div class="form-group"><div class="checkbox"><label><input type="checkbox" value="<?php echo $v->id;?>" rel="item_data" /></label></div></div></td>
@@ -115,6 +117,7 @@
                                                 }
                                                 ?>
                                             </td>
+                                            <td class="sorting_1"><?php echo $verifyMap[$v->verify];?></td>
                                             <td>
                                                 <a href="<?php echo url('Turntable', 'editTurntable', array('id'=>$v->id));?>">编辑</a> |
                                                 <?php if($v->status == 0){ ?>

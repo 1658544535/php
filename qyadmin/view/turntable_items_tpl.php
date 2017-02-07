@@ -37,16 +37,20 @@
                                         <th>奖品数量</th>
                                         <th>中奖概率</th>
                                         <th>每天最多派发数</th>
+                                        <th>上/下架</th>
+                                        <th>审核状态</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php if(empty($list)){ ?>
                                         <tr>
-                                            <td colspan="9">没有相关信息</td>
+                                            <td colspan="11">没有相关信息</td>
                                         </tr>
                                     <?php }else{ ?>
                                         <?php $time = time();?>
+                                        <?php $statusMap = array(0=>'下架',1=>'上架');?>
+                                        <?php $verifyMap = array(0=>'未审核',1=>'审核通过',2=>'审核不通过');?>
                                         <?php foreach($list as $v){ ?>
                                             <tr role="row" class="odd">
                                                 <td><div class="form-group"><div class="checkbox"><label><input type="checkbox" value="<?php echo $v['id'];?>" rel="item_data" /></label></div></div></td>
@@ -57,12 +61,14 @@
                                                 <td class="sorting_1"><?php echo $v['num'];?></td>
                                                 <td class="sorting_1"><?php echo $v['ratio'];?>%</td>
                                                 <td class="sorting_1"><?php echo $v['per_day_num'];?></td>
+                                                <td class="sorting_1"><?php echo $statusMap[$v['status']];?></td>
+                                                <td class="sorting_1"><?php echo $verifyMap[$v['verify']];?></td>
                                                 <td>
                                                     <a href="<?php echo url('Turntable', 'editItem', array('id'=>$v['id']));?>">编辑</a> |
                                                     <?php if($v['status'] == 0){ ?>
-                                                        <a href="javascript:;" onclick="javascript:changeStatus(<?php echo $v['id'];?>, 1)">上线</a>
+                                                        <a href="javascript:;" onclick="javascript:changeStatus(<?php echo $v['id'];?>, 1)">上架</a>
                                                     <?php }else{ ?>
-                                                        <a href="javascript:;" onclick="javascript:changeStatus(<?php echo $v['id'];?>, 0)">下线</a>
+                                                        <a href="javascript:;" onclick="javascript:changeStatus(<?php echo $v['id'];?>, 0)">下架</a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>
