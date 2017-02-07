@@ -13,6 +13,8 @@
             <h3 class="box-title">转盘抽奖编辑</h3>
         </ul>
 
+        <?php include_once('turntable_edit_bar_tpl.php');?>
+
         <div class="box-body">
             <form class="form-horizontal" action="<?php echo url('Turntable', $action);?>" method="post" id="editTypeForm">
                 <input type="hidden" name="id" value="<?php echo $info['id'];?>" />
