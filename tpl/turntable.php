@@ -1,5 +1,13 @@
 <?php include_once('header_web.php');?>
-<?php include_once('wxshare_web.php');?>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="/js/wxshare.js"></script>
+<script type="text/javascript">
+    var imgUrl = "<?php echo $site;?>images/wxLOGO.png";
+    var link = "<?php echo $wxShareCBUrl;?>";
+    var title ="元宵红包";
+    var desc = "元宵红包抽奖";
+    wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
+</script>
 
 <style type="text/css">
     
@@ -26,11 +34,11 @@
                             <div class="adorn"></div>
                         </div>
 
-                        <div class="chance"><?php if($isLogin){?>您还有 <span id="chance">2</span> 次机会<?php }else{ ?>请先进行登录<?php }?></div>
+                        <div class="chance"><?php if($isLogin){?>您还有 <span id="chance"><?php echo $chance;?></span> 次机会<?php }else{ ?>请先进行登录<?php }?></div>
 
                         <?php if($isLogin){?>
                             <div class="button1">
-                                <a href="/index.php"><img src="images/lottery/btn2.png" alt="进入商城" /></a>
+                                <a href="/"><img src="images/lottery/btn2.png" alt="进入商城" /></a>
                                 <a href="javascript:;" class="turntable-log"><img src="images/lottery/btn3.png" alt="参与记录" /></a>
                             </div>
                         <?php }?>
