@@ -9,6 +9,14 @@
     wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 </script>
 
+<style type="text/css">
+    body,.page-group,.page,.content{
+        position: relative;
+        height: auto;
+        overflow: auto;
+    }
+</style>
+
 <body>
     <div class="page-group" id="page-a-lottery">
         <div id="page-nav-bar" class="page page-current">
@@ -70,6 +78,7 @@
                     <div class="rule2">
                         <img src="images/lottery/rule2.jpg" />
                     </div>
+                    <div style="clear: both;"></div>
                 </div>
 
             </div>
@@ -329,7 +338,7 @@
 
                 // 获奖列表
                 $.ajax({
-                    url: '/turntable.php?act=list',
+                    url: 'http://10.10.66.240/maduoduo/turntable.php?act=list',
                     dataType: 'json',
                     success: function(res){
                         var bt = baidu.template;
@@ -339,7 +348,7 @@
                         $("#scroll").html(html);
                         var mainHei = parseFloat($("#scroll").height())/2;
                         function rep(){
-                            var _top = parseFloat($("#scroll").css("top"))-10;
+                            var _top = parseFloat($("#scroll").css("top"))-20;
 
                             jQuery("#scroll").animate({
                                 top: _top
