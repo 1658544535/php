@@ -198,7 +198,7 @@
                                     var angle = res.data.angle;     // 最终角度
                                     var o_angle = $(".turntable-main .bg").data("angle");
                                     if(!!o_angle){                  // 旋转圈数
-                                        var angle = angle + 360*4;
+                                        var angle = angle + 360*(o_angle%360+2);
                                     }else{
                                         angle += 360*2;
                                     }
@@ -235,7 +235,7 @@
                         $(".p-t-null1 .txt").html(_title);
                         $.popup(".p-t-null1");
                         $("#chance").html(0);
-                    }else if(chance == 1){
+                    }else if(chance >= 1){
                         // 中奖, 继续抽奖
                         $(".p-t-again2 .txt").html(_title);
                         $.popup(".p-t-again2");
