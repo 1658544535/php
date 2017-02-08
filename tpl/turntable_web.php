@@ -9,10 +9,6 @@
     wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam['timestamp'];?>, '<?php echo $wxShareParam['nonceStr'];?>', '<?php echo $wxShareParam['signature'];?>', imgUrl, link, title, desc);
 </script>
 
-<style type="text/css">
-    
-</style>
-
 <body>
     <div class="page-group" id="page-a-lottery">
         <div id="page-nav-bar" class="page page-current">
@@ -160,7 +156,7 @@
         </div>
         <script>
             $(document).on("pageInit", "#page-a-lottery", function(e, pageId, page) {
-                var aid = '活动id';
+                var aid = '<?php echo $lotInfo['id'];?>';
                 // 没有登录
                 <?php if(!$isLogin){?>
                     $(".turntable-main .pointer").on("click", function(){
@@ -191,13 +187,6 @@
                         url: '/turntable.php?act=lottery',
                         dataType: 'json',
                         success: function(res){
-                            // res = {
-                            //     status: 1,
-                            //     info: '1111',
-                            //     data: {
-                            //         angle: 40
-                            //     }
-                            // }
                             switch (res.status) {
                                 case 0:
                                     // 未中奖, 继续抽奖
@@ -241,33 +230,21 @@
                 // 发红包
                 function sendRed(_title){
                     var chance = parseInt($("#chance").text()) - 1;
-                    $.showIndicator();
+                    if(chance == 0){
+                        // 中奖, 无抽奖次数
+                        $(".p-t-null1 .txt").html(_title);
+                        $.popup(".p-t-null1");
+                        $("#chance").html(0);
+                    }else if(chance == 1){
+                        // 中奖, 继续抽奖
+                        $(".p-t-again2 .txt").html(_title);
+                        $.popup(".p-t-again2");
+                        $("#chance").html(chance);
+                    }
                     $.ajax({
                         url: '/turntable.php?act=send&id='+aid,
-                        dataType: 'json',
-                        success: function(res){
-                            // res = {
-                            //     status: 1
-                            // }
-                            if(res.status == 1){
-                                if(chance == 0){
-                                    // 中奖, 无抽奖次数
-                                    $(".p-t-null1 .txt").html(_title);
-                                    $.popup(".p-t-null1");
-                                    $("#chance").html(0);
-                                }else if(chance == 1){
-                                    // 中奖, 继续抽奖
-                                    $(".p-t-again2 .txt").html(_title);
-                                    $.popup(".p-t-again2");
-                                    $("#chance").html(chance);
-                                }
-                            }
-                        },
                         error: function(){
                             $.toast('领取失败');
-                        },
-                        complete: function(){
-                            $.hideIndicator();
                         }
                     });
                 }
