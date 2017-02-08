@@ -30,7 +30,7 @@
                             <div class="adorn"></div>
                         </div>
 
-                        <div class="chance"><?php if($isLogin){?>您还有 <span id="chance"><?php echo $chance;?></span> 次机会<?php }else{ ?>请先进行登录<?php }?></div>
+                        <div class="chance"><?php if($isLogin){?>您还有 <span id="chance"><?php echo $chance;?></span> 次机会<?php }else{ ?><a href="/user_binding.php">请先进行登录</a><?php }?></div>
 
                         <?php if($isLogin){?>
                             <div class="button1">
