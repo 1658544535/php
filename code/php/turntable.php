@@ -29,6 +29,7 @@ switch($act){
 		$mdlLog->startTrans();
 
 		//获取抽中奖品
+        $winItemIndex = null;
 		if(in_array($curJoinNum, array(1,2))){
 			$lotItems = __getItems($lotInfo['id'], $curJoinNum);
 			$itemIndexes = array();
@@ -37,7 +38,8 @@ switch($act){
 			}
 			shuffle($itemIndexes);
 			$winItemIndex = $itemIndexes[0];
-		}else{
+		}
+		if(is_null($winItemIndex)){
 			$lotItems = __getItems($lotInfo['id']);
 			$ratios = array();
 			foreach($lotItems as $k => $v){
@@ -113,17 +115,17 @@ switch($act){
 
                         $result = $hbApi->sendRedPack($hongbao);
                         if($result['return_code'] != 'SUCCESS'){
-                            $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包失败[return_code:{$result['return_code']}]：{$result['return_msg']}";
+                            $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，抽奖记录ID：{$list[$i]['id']}，发放红包失败[return_code:{$result['return_code']}]：{$result['return_msg']}";
                         }elseif($result['result_code'] != 'SUCCESS'){
-                            $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包失败[result_code:{$result['err_code']}]：{$result['err_code_des']}";
+                            $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，抽奖记录ID：{$list[$i]['id']}，发放红包失败[result_code:{$result['err_code']}]：{$result['err_code_des']}";
                         }else{
-                            $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包成功";
+                            $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，抽奖记录ID：{$list[$i]['id']}，发放红包成功";
                             file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】{$content}\r\n", FILE_APPEND);
                             $sql = 'UPDATE `wxhd_luck_draw_log` SET `status`=2 WHERE `id`='.$list[$i]['id'];
                             if($db->query($sql) === false){
-                                $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包成功，更改发放状态失败";
+                                $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，抽奖记录ID：{$list[$i]['id']}，发放红包成功，更改发放状态失败";
                             }else{
-                                $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，发放红包成功，更改发放状态成功";
+                                $content = "帐号[{$list[$i]['loginname']}]，openid[{$hongbao['openid']}]抽中“{$list[$i]['item_name']}”，抽奖记录ID：{$list[$i]['id']}，发放红包成功，更改发放状态成功";
                             }
                             $sendLog = array(
                                 're_openid' => $result['re_openid'],
