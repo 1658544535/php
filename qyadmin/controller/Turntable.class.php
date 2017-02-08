@@ -133,9 +133,12 @@ class Turntable extends Common{
         $mdl = M('wxhd_turntable');
         if(IS_POST()){
             $data = $_POST['data'];
+            $data['per_day_number'] = trim($data['per_day_number']);
+            $data['per_day_number'] = ($data['per_day_number'] == '') ? -10 : intval($data['per_day_number']);
             ($mdl->modify($data, array('id'=>$id)) === false) ? $this->error('设置失败') : $this->success('设置成功');
         }else{
             $info = $mdl->get(array('id'=>$id), 'id,per_day_number', ARRAY_A);
+            ($info['per_day_number'] == -10) && $info['per_day_number'] = '';
             $this->assign('info', $info);
             $this->assign('id', $id);
             $this->assign('curPageType', 'join');
