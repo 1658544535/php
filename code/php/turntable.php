@@ -198,7 +198,7 @@ switch($act){
         $order = array('time'=>'desc');
         $rs = $mdlLog->gets($cond, 'time,item_name,status', $order, $page, $persize);
         $list = array();
-        $statusMap = array(1=>'未发放', 2=>'已发放', 3=>'待发货', 4=>'已发货');
+        $statusMap = array(1=>'待发放', 2=>'已发放', 3=>'待发货', 4=>'已发货');
         foreach($rs['DataSet'] as $v){
             $list[] = array(
                 'time' => date('y-m-d H:i', $v->time),
