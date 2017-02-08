@@ -248,16 +248,11 @@
                                     $("#chance").html(0);
                                     break;
                                 case 3:
-                                    // 活动暂未开始
-                                    $(".p-t-over .txt").html('活动暂未开始');
-                                    $.popup(".p-t-over");
-                                    break;
                                 case 4:
+                                case 5:
+                                    // 活动暂未开始
                                     // 活动已结束
-                                    $(".p-t-over .txt").html('活动已结束');
-                                    $.popup(".p-t-over");
-                                    break;
-                                default:
+                                    // 今日名额已完
                                     $(".p-t-over .txt").html(res.info);
                                     $.popup(".p-t-over");
                                     break;
