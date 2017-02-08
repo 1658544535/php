@@ -6382,6 +6382,9 @@
 .a-lottery .places .total div span {
   padding: 0 0.2rem;
 }
+.a-lottery .turntable {
+  overflow: hidden;
+}
 .a-lottery .turntable-main {
   position: relative;
   width: 87.65625%;
