@@ -174,15 +174,19 @@
                             // 未登录
                             echo '$.popup(".p-t-login");';
                             break;
-                        case '3':
+                        case '1':
+                            // 没有信息
+                            echo '$(".p-t-over .txt").html("没有信息");$.popup(".p-t-over")';
+                            break;
+                        case '2':
                             // 未开始
                             echo '$(".p-t-over .txt").html("活动暂未开始");$.popup(".p-t-over")';
                             break;
-                        case '4':
+                        case '3':
                             // 已结束
                             echo '$(".p-t-over .txt").html("活动已结束");$.popup(".p-t-over")';
                             break;
-                        case '5':
+                        case '4':
                             // 单日参与数满
                             echo '$(".p-t-over .txt").html("单日参与数满");$.popup(".p-t-over")';
                             break;
