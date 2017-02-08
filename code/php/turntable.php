@@ -107,12 +107,30 @@ switch($act){
 	case 'send'://发放
 		error_reporting(E_ALL);
 		if($isLogin){
-            $sql = 'SELECT COUNT(*) FROM `wxhd_luck_draw_log` WHERE `hd_id`='.$lotInfo['id'].' AND `uid`='.$userid.' AND `item_type`=1 AND `status`=2 AND `is_real`=1 ORDER BY `time` ASC';
-            $hadSendCount = $db->get_var($sql);
+//            $sql = 'SELECT COUNT(*) FROM `wxhd_luck_draw_log` WHERE `hd_id`='.$lotInfo['id'].' AND `uid`='.$userid.' AND `item_type`=1 AND `status`=2 AND `is_real`=1 ORDER BY `time` ASC';
+//            $hadSendCount = $db->get_var($sql);
+//
+//			$sql = 'SELECT * FROM `wxhd_luck_draw_log` WHERE `hd_id`='.$lotInfo['id'].' AND `uid`='.$userid.' AND `item_type`=1 AND `status`=1 AND `is_real`=1 ORDER BY `time` ASC';
+//			$list = $db->get_results($sql, ARRAY_A);
+//			$count = count($list);
 
-			$sql = 'SELECT * FROM `wxhd_luck_draw_log` WHERE `hd_id`='.$lotInfo['id'].' AND `uid`='.$userid.' AND `item_type`=1 AND `status`=1 AND `is_real`=1 ORDER BY `time` ASC';
-			$list = $db->get_results($sql, ARRAY_A);
-			$count = count($list);
+
+            $sql = 'SELECT * FROM `wxhd_luck_draw_log` WHERE `hd_id`='.$lotInfo['id'].' AND `uid`='.$userid.' AND `item_type`=1 AND (`status`=1 OR `status`=2) AND `is_real`=1 ORDER BY `time` ASC';
+            $rs = $db->get_results($sql, ARRAY_A);
+            $list = array();
+            $hadSendCount = 0;
+            $count = 0;
+            foreach($rs as $v){
+                switch($v['status']){
+                    case 1://待发放
+                        $count++;
+                        $list[] = $v;
+                        break;
+                    case 2://已发放
+                        $hadSendCount++;
+                        break;
+                }
+            }
 			$total = $hadSendCount + $count;
 			if(($total > 0) && ($total % 2 == 0)){
 				$time = time();
@@ -132,8 +150,8 @@ switch($act){
                     include_once('./wxpay/lib/WxHongBao.Api.php');
                     $hbApi = new WxHongBaoApi();
                     $mdlSendLog = new Model($db, 'wxhb_send_log');
-                    $endIndex = ($count % 2 == 0) ? ($count-1) : floor($count/2)*2;
-                    for($i=0; $i<=$endIndex; $i++){
+                    $endIndex = $count;// ($count % 2 == 0) ? ($count-1) : floor($count/2)*2;
+                    for($i=0; $i<$endIndex; $i++){
                         $hongbao['openid'] = $list[$i]['openid'];
                         $hongbao['amount'] = $list[$i]['item_value'];
 
