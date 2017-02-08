@@ -338,7 +338,7 @@
 
                 // 获奖列表
                 $.ajax({
-                    url: 'http://10.10.66.240/maduoduo/turntable.php?act=list',
+                    url: '/turntable.php?act=list',
                     dataType: 'json',
                     success: function(res){
                         var bt = baidu.template;
