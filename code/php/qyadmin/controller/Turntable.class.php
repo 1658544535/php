@@ -229,7 +229,7 @@ class Turntable extends Common{
             !empty($info['win_index']) && $info['win_index'] = implode(',', array_filter(explode(',', $info['win_index'])));
             $info['win_index_ratio'] = trim($info['win_index_ratio']);
             if($info['win_index_ratio'] != ''){
-                $_wiRatios = explode(',', $info['win_index_ratio']);
+                $_wiRatios = array_filter(explode(',', $info['win_index_ratio']));
                 $_newWIRatios = array();
                 foreach($_wiRatios as $v){
                     $_newWIRatios[] = $v / 100;
