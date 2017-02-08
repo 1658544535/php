@@ -20,7 +20,7 @@
     <script type='text/javascript' src='js/baiduTemplate.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='js/scrollLoad.js' charset='utf-8'></script>
+    <!-- <script type='text/javascript' src='js/scrollLoad.js' charset='utf-8'></script> -->
     <script type='text/javascript' src='js/app.min.js?v=<?php echo SOURCE_VERSOIN;?>' charset='utf-8'></script>
     <script>
 //	    $.ajax({
