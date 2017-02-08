@@ -227,7 +227,7 @@ switch($act){
 
         //微信分享脚本
         $wxJsTicket = $objWX->getJsTicket();
-        $wxShareInviteUrl = $site.'turntable.php?inviterid='.$userid;
+        $wxShareInviteUrl = $site.'turntable.php';//?inviterid='.$userid;
         $wxShareCBUrl = 'http://'.$_SERVER['HTTP_HOST'].(($_SERVER['SERVER_PORT'] == '80') ? '' : ':'.$_SERVER['SERVER_PORT']).$_SERVER['REQUEST_URI'];
         $wxJsSign = $objWX->getJsSign($wxShareCBUrl);
         $wxShareParam = array(
