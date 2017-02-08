@@ -20,7 +20,7 @@
                         <div style="height: 1px"></div>
 
                         <div class="places">
-                            <div class="total"><div>目前还剩<span><?php echo $reWinnerNum;?></span>名额</div></div>
+                            <div class="total"><div>目前还剩<span id="places"><?php echo $reWinnerNum;?></span>名额</div></div>
                             <div class="deta">200元还剩1名，100元还剩1名……</div>
                         </div>
 
@@ -269,17 +269,20 @@
 
                 // 发红包
                 function sendRed(_title){
-                    var chance = parseInt($("#chance").text()) - 1;
+                    var chance = parseInt($("#chance").text()) - 1,
+                        places = parseInt($("#places").text()) - 1;
                     if(chance == 0){
                         // 中奖, 无抽奖次数
                         $(".p-t-null1 .txt").html('恭喜您获得 <span class="prizeTxt">' + _title + '</span>');
                         $.popup(".p-t-null1");
                         $("#chance").html(0);
+                        $("#places").html(places);
                     }else if(chance >= 1){
                         // 中奖, 继续抽奖
                         $(".p-t-again2 .txt").html('恭喜您获得 <span class="prizeTxt">' + _title + '</span>');
                         $.popup(".p-t-again2");
                         $("#chance").html(chance);
+                        $("#places").html(places);
                     }
                     $.ajax({
                         url: '/turntable.php?act=send&id='+aid,
