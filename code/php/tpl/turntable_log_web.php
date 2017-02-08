@@ -28,7 +28,8 @@
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li>
                         <span><%=data["data"][i]["time"]%></span>
-                        <span class="prize"><%=data["data"][i]["prize"]%></span>
+                        <span class="center"><%=data["data"][i]["prize"]%></span>
+                        <span class="right">待发放</span>
                     </li>
                 <%}%>
             <%}else if(data["pageNow"]==1){%>
