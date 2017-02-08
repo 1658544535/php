@@ -195,14 +195,14 @@
                                     break;
                                 case 1:
                                     // 中奖
-                                    var angle = res.data.angle;     // 最终角度
+                                    var angle = parseInt(res.data.angle);     // 最终角度
                                     var o_angle = $(".turntable-main .bg").data("angle");
                                     if(!!o_angle){                  // 旋转圈数
-                                        var angle = angle + 360*(o_angle%360+2);
+                                        var angle = angle + 360*(parseInt(o_angle/360)+3);
                                     }else{
-                                        angle += 360*2;
+                                        angle += 360*3;
                                     }
-                                    var angle_css = 'rotate('+ angle +'deg)';
+                                    var angle_css = 'rotate(-'+ angle +'deg)';
                                     jQuery(".turntable-main .bg").css({
                                         "transform": angle_css,
                                         "-webkit-transform": angle_css
