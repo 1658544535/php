@@ -41,24 +41,32 @@ switch($act){
 		$mdlLog->startTrans();
 
 		//获取抽中奖品
-        $winItemIndex = null;
-		if(in_array($curJoinNum, array(1,2))){
-			$lotItems = __getItems($lotInfo['id'], $curJoinNum);
-			$itemIndexes = array();
-			foreach($lotItems as $k => $v){
-				$itemIndexes[] = $k;
-			}
-			shuffle($itemIndexes);
-			$winItemIndex = $itemIndexes[0];
-		}
-		if(is_null($winItemIndex)){
-			$lotItems = __getItems($lotInfo['id']);
-			$ratios = array();
-			foreach($lotItems as $k => $v){
-				$ratios[$k] = $v['ratio'];
-			}
-			$winItemIndex = __getRand($ratios);
-		}
+//        $winItemIndex = null;
+//		if(in_array($curJoinNum, array(1,2))){
+//			$lotItems = __getItems($lotInfo['id'], $curJoinNum);
+//			$itemIndexes = array();
+//			foreach($lotItems as $k => $v){
+//				$itemIndexes[] = $k;
+//			}
+//			shuffle($itemIndexes);
+//			$winItemIndex = $itemIndexes[0];
+//		}
+//		if(is_null($winItemIndex)){
+//			$lotItems = __getItems($lotInfo['id']);
+//			$ratios = array();
+//			foreach($lotItems as $k => $v){
+//				$ratios[$k] = $v['ratio'];
+//			}
+//			$winItemIndex = __getRand($ratios);
+//		}
+        $mustLotIndex = array(1,2);//第几次必有可能中
+		$curJoinIndex = in_array($curJoinNum, $mustLotIndex) ? $curJoinNum : null;
+        $lotItems = __getItems($lotInfo['id'], $curJoinIndex);
+        $ratios = array();
+        foreach($lotItems as $k => $v){
+            $ratios[$k] = $v['ratio'];
+        }
+        $winItemIndex = __getRand($ratios);
 		$prize = $lotItems[$winItemIndex];
 
 		$sql = 'UPDATE `wxhd_turntable_item` SET `join_num`=`join_num`+1 WHERE `id`='.$prize['id'];
@@ -89,7 +97,7 @@ switch($act){
 
 		if($success){
 			$mdlLog->commit();
-			ajaxReturn(1, $prize['name'], array('angle'=>$prize['angle']));
+			ajaxReturn(1, $prize['name'], array('angle'=>$prize['angle'],'id'=>$prize['id']));
 		}else{
 			$mdlLog->rollback();
 			ajaxReturn(4, '活动已结束');
@@ -252,7 +260,6 @@ function __getTurntableInfo(){
 
 	$return = array('state'=>1, 'data'=>array());
 	$time = time();
-//	$sql = 'SELECT * FROM `wxhd_turntable` WHERE `status`=1 AND `verify`=1 AND `start_time`<='.$time.' AND `end_time`>='.$time.' ORDER BY `start_time` ASC LIMIT 1';
     $sql = 'SELECT * FROM `wxhd_turntable` WHERE `status`=1 AND `verify`=1 ORDER BY `start_time` ASC LIMIT 1';
 	$info = $db->get_row($sql, ARRAY_A);
 	if(!empty($info)){
@@ -261,13 +268,16 @@ function __getTurntableInfo(){
         }elseif($info['end_time'] < $time){
 	        $return['state'] = 3;
         }else{
+            $getData = true;
             if($info['per_day_number'] != -10){//判断每日参与数
                 $feTime = getFirstEndTime($time);
-                $sql = 'SELECT COUNT(*) FROM `wxhd_turntable` WHERE `start_time`<='.$feTime['first'].' AND `end_time`>='.$feTime['end'];
+                $sql = 'SELECT COUNT(*) FROM `wxhd_luck_draw_log` WHERE `hd_id`='.$info['id'].' AND `is_real`=1 AND `time`<='.$feTime['first'].' AND `time`>='.$feTime['end'];
                 if($db->get_var($sql) >= $info['per_day_number']){
                     $return['state'] = 4;
+                    $getData = false;
                 }
-            }else{
+            }
+            if($getData){
                 $return['state'] = 0;
                 $return['data'] = $info;
             }
@@ -312,9 +322,21 @@ function __getRand($arr){
 function __getItems($hdId, $joinNum=null){
 	global $db;
 	$sql = 'SELECT * FROM `wxhd_turntable_item` WHERE `turntable_id`='.$hdId.' AND `status`=1 AND `verify`=1 AND `num`>`join_num`';
-	!is_null($joinNum) && $sql .= " AND `win_index` LIKE ',{$joinNum},'";
+	!is_null($joinNum) && $sql .= " AND `win_index` LIKE '%,{$joinNum},%'";
 	$sql .= ' FOR UPDATE';
 	$items = $db->get_results($sql, ARRAY_A);
+	if(!is_null($joinNum)){
+	    foreach($items as $key => $val){
+	        $arrWinIndex = array_filter(explode(',', $val['win_index']));
+	        $arrWinIndexRatio = array_filter(explode(',', $val['win_index_ratio']));
+	        foreach($arrWinIndex as $k => $v){
+                if(($joinNum == $v) && isset($arrWinIndexRatio[$k])){
+                    $items[$key]['ratio'] = $arrWinIndexRatio[$k];
+                    break;
+                }
+            }
+        }
+    }
 	return $items;
 }
 ?>
