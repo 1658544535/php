@@ -188,7 +188,7 @@
                             break;
                         case '1':
                             // 没有信息
-                            echo '$(".p-t-over .txt").html("没有信息");$.popup(".p-t-over")';
+                            echo '$(".p-t-over .txt").html("活动已结束");$.popup(".p-t-over")';
                             break;
                         case '2':
                             // 未开始
