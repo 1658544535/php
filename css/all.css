@@ -8,6 +8,9 @@
 .themeColor {
   color: #ff464e;
 }
+.titleColor {
+  color: #1c1c1c;
+}
 .grayColor {
   color: #979797;
 }
@@ -6384,7 +6387,6 @@
   width: 87.65625%;
   padding-bottom: 90%;
   margin: 81.5625% auto 0;
-  overflow: hidden;
 }
 .a-lottery .turntable-main .bg {
   position: absolute;
@@ -6502,11 +6504,11 @@
 }
 .popup-turntable .main {
   position: absolute;
-  width: 90%;
+  width: 80%;
   max-height: 90%;
-  left: 5%;
-  top: 40%;
-  padding: 2.5rem 1.0rem;
+  left: 10%;
+  top: 50%;
+  padding: 1.5rem;
   text-align: center;
   background: #fff;
   border-radius: 5px;
@@ -6515,8 +6517,8 @@
   overflow-y: auto;
 }
 .popup-turntable .main .img {
-  width: 50%;
-  margin: 0 auto;
+  width: 60%;
+  margin: -1rem auto 0;
 }
 .popup-turntable .main .img img {
   display: block;
@@ -6524,6 +6526,103 @@
 }
 .popup-turntable .close-popup {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 0.3rem;
+  top: 0.3rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  font-size: 0;
+  background: url(../images/close.png) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+.popup-turntable .title1 {
+  margin: 1.2rem 0 0.5rem;
+  font-size: 0.9rem;
+  color: #2a2a2a;
+}
+.popup-turntable .txt {
+  font-size: 0.8rem;
+  color: #7f7f7f;
+}
+.popup-turntable .txt.tipLogin {
+  padding: 1.5rem 0 1.0rem;
+}
+.popup-turntable .txt.t-left {
+  text-align: justify;
+}
+.popup-turntable .txt.titleColor {
+  color: #2a2a2a;
+}
+.popup-turntable .tips {
+  margin-top: 1.0rem;
+  text-align: justify;
+  font-size: 0.65rem;
+  color: #7f7f7f;
+}
+.popup-turntable .prizeTxt {
+  font-size: 0.9rem;
+  color: #101010;
+}
+.popup-turntable .btn {
+  padding: 0.3rem 0;
+}
+.popup-turntable .btn a {
+  display: block;
+  height: 2.0rem;
+  line-height: 2.0rem;
+  margin-top: 5%;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #fff;
+  border-radius: 5px;
+}
+.popup-turntable .btn a.pink {
+  background: #ff464e;
+}
+.popup-turntable .btn a.yellow {
+  background: #fdd23e;
+}
+.popup-turntable .btn a.green {
+  background: #abcd03;
+}
+.popup-turntable .btn.half {
+  overflow: hidden;
+}
+.popup-turntable .btn.half a {
+  float: left;
+  width: 42%;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+.turntable-log .tips {
+  font-size: 0.65rem;
+  color: #ff464e;
+  padding: 0.6rem 0.75rem;
+}
+.turntable-log .list-container {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+.turntable-log .list-container li {
+  margin: 0 0.5rem;
+  overflow: hidden;
+  border-bottom: 1px solid #e7e7e7;
+}
+.turntable-log .list-container li:last-child {
+  border-bottom: none;
+}
+.turntable-log .list-container li span {
+  float: left;
+  width: 50%;
+  color: #3d3d3d;
+  font-size: 0.75rem;
+  height: 2.25rem;
+  line-height: 2.25rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.turntable-log .list-container li span.prize {
+  text-align: center;
 }

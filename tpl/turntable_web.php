@@ -79,21 +79,21 @@
         <div class="popup popup-turntable p-t-login">
             <div class="main">
                 <a href="javascript:;" class="close-popup">关闭</a>
-                <div class="txt">抽奖前需要进行登录哦！</div>
+                <div class="txt tipLogin">抽奖前需要进行登录哦！</div>
                 <div class="btn">
-                    <a href="/user_binding.php">前往登录</a>
+                    <a href="/user_binding.php" class="pink">前往登录</a>
                 </div>
             </div>
         </div>
 
-        <!-- 未中奖, 继续抽奖 -->
+        <!-- 点击抽奖按钮后提示 -->
         <div class="popup popup-turntable p-t-again1">
             <div class="main">
                 <a href="javascript:;" class="close-popup">关闭</a>
                 <h3 class="title1">温馨提示</h3>
                 <div class="txt">点击后将减少一次抽奖机会，是否继续？</div>
                 <div class="btn">
-                    <a href="javascript:;" class="turntable-again">继续</a>
+                    <a href="javascript:;" class="pink turntable-again">继续</a>
                 </div>
             </div>
         </div>
@@ -102,11 +102,17 @@
         <div class="popup popup-turntable p-t-again2">
             <div class="main">
                 <a href="javascript:;" class="close-popup">关闭</a>
-                <div class="img"><img src="images/lottery/turntable.png" /></div>
+                <div class="img"><img src="images/lottery/prize.png" /></div>
                 <div class="txt"></div>
                 <div class="btn">
-                    <a href="javascript:;" class="turntable-log">查看记录</a>
-                    <a href="javascript:;" class="turntable-again">继续抽奖</a>
+                    <a href="javascript:;" class="turntable-log yellow">查看记录</a>
+                    <a href="/index.php" class="pink">进入商城</a>
+                    <a href="javascript:;" class="turntable-again green">继续抽奖</a>
+                </div>
+                <div class="tips">
+                    <span class="titleColor">温馨提示：</span><br/>
+                    1、红包会在第二次抽奖后一同发放<br/>
+                    2、如何获得抽奖机会：进入商城，每个订单支付金额超过10元（含10元）并且拼团成功，即可获得多一次抽奖机会
                 </div>
             </div>
         </div>
@@ -115,12 +121,17 @@
         <div class="popup popup-turntable p-t-null1">
             <div class="main">
                 <a href="javascript:;" class="close-popup">关闭</a>
-                <div class="img"><img src="images/lottery/turntable.png" /></div>
+                <div class="img"><img src="images/lottery/prize.png" /></div>
                 <div class="txt"></div>
                 <div class="btn">
-                    <a href="javascript:;" class="turntable-log">查看记录</a>
-                    <a href="/index.php">进入商城</a>
-                    <a href="javascript:;" class="turntable-share">邀请好友</a>
+                    <a href="javascript:;" class="turntable-log yellow">查看记录</a>
+                    <a href="/index.php" class="pink">进入商城</a>
+                    <a href="javascript:;" class="turntable-share green">邀请好友</a>
+                </div>
+                <div class="tips">
+                    <span class="titleColor">温馨提示：</span><br/>
+                    1、红包会在第二次抽奖后一同发放<br/>
+                    2、如何获得抽奖机会：进入商城，每个订单支付金额超过10元（含10元）并且拼团成功，即可获得多一次抽奖机会
                 </div>
             </div>
         </div>
@@ -130,12 +141,12 @@
             <div class="main">
                 <a href="javascript:;" class="close-popup">关闭</a>
                 <h3 class="title1">温馨提示</h3>
-                <div class="txt">您的抽奖次数已用完，您可通过以下方式获得次数：</div>
-                <div class="txt">1、每个订单支付金额超过10元（含10元）即可获得多一次抽奖机会</div>
-                <div class="txt">2、每邀请5个新用户注册并参与，即可获得多一次抽奖机会</div>
-                <div class="btn">
-                    <a href="javascript:;" class="turntable-share">邀请好友</a>
-                    <a href="/index.php">进入商城</a>
+                <div class="txt t-left titleColor">您的抽奖次数已用完，您可通过以下方式获得次数：</div>
+                <div class="txt t-left">1: 每个订单支付金额超过<span class="themeColor">10元（含10元）</span>即可获得多一次抽奖机会</div>
+                <div class="txt t-left">2: 每邀请<span class="themeColor">5个</span>新用户注册并参与，即可获得多一次抽奖机会</div>
+                <div class="btn half">
+                    <a href="javascript:;" class="turntable-share yellow">邀请好友</a>
+                    <a href="/index.php" class="pink">进入商城</a>
                 </div>
             </div>
         </div>
@@ -144,9 +155,9 @@
         <div class="popup popup-turntable p-t-over">
             <div class="main">
                 <a href="javascript:;" class="close-popup">关闭</a>
-                <h3 class="title1">活动已结束 / 活动暂未开始</h3>
+                <div class="txt tipLogin">活动已结束 / 活动暂未开始</div>
                 <div class="btn">
-                    <a href="/index.php">进入商城</a>
+                    <a href="/index.php" class="pink">进入商城</a>
                 </div>
             </div>
         </div>
@@ -157,15 +168,32 @@
         <script>
             $(document).on("pageInit", "#page-a-lottery", function(e, pageId, page) {
                 var aid = '<?php echo $lotInfo['id'];?>';
-                // 没有登录
-                <?php if(!$isLogin){?>
-                    $(".turntable-main .pointer").on("click", function(){
-                        $.popup(".p-t-login");
-                    });
-                <?php }else{?>
-                    $(".turntable-main .pointer,.turntable-again").on("click", turntable_start);
-                <?php }?>
-                
+                $(".turntable-main .pointer").on("click", function(){
+                    <?php switch ($curLotStatus) {
+                        case '100':
+                            // 未登录
+                            echo '$.popup(".p-t-login");';
+                            break;
+                        case '3':
+                            // 未开始
+                            echo '$(".p-t-over .txt").html("活动暂未开始");$.popup(".p-t-over")';
+                            break;
+                        case '4':
+                            // 已结束
+                            echo '$(".p-t-over .txt").html("活动已结束");$.popup(".p-t-over")';
+                            break;
+                        case '5':
+                            // 单日参与数满
+                            echo '$(".p-t-over .txt").html("单日参与数满");$.popup(".p-t-over")';
+                            break;
+                        default:
+                            // 抽奖
+                            echo 'if(parseInt($("#chance").text()) > 0){$.popup(".p-t-again1")}';
+                            break;
+                    }?>
+                });
+
+                $(".turntable-again").on("click", turntable_start);
                 $(".turntable-log").on("click", function(){
                     location.href="/turntable.php?act=log";
                 });
@@ -189,9 +217,8 @@
                         success: function(res){
                             switch (res.status) {
                                 case 0:
-                                    // 未中奖, 继续抽奖
-                                    $.popup(".p-t-again1");
-                                    $("#chance").html(chance);
+                                    // 未登录
+                                    $.popup(".p-t-login");
                                     break;
                                 case 1:
                                     // 中奖
@@ -216,6 +243,20 @@
                                     $.popup(".p-t-null2");
                                     $("#chance").html(0);
                                     break;
+                                case 3:
+                                    // 活动暂未开始
+                                    $(".p-t-over .txt").html('活动暂未开始');
+                                    $.popup(".p-t-over");
+                                    break;
+                                case 4:
+                                    // 活动已结束
+                                    $(".p-t-over .txt").html('活动已结束');
+                                    $.popup(".p-t-over");
+                                    break;
+                                default:
+                                    $(".p-t-over .txt").html(res.info);
+                                    $.popup(".p-t-over");
+                                    break;
                             }
                         },
                         error: function(){
@@ -232,12 +273,12 @@
                     var chance = parseInt($("#chance").text()) - 1;
                     if(chance == 0){
                         // 中奖, 无抽奖次数
-                        $(".p-t-null1 .txt").html(_title);
+                        $(".p-t-null1 .txt").html('恭喜您获得 <span class="prizeTxt">' + _title + '</span>');
                         $.popup(".p-t-null1");
                         $("#chance").html(0);
                     }else if(chance >= 1){
                         // 中奖, 继续抽奖
-                        $(".p-t-again2 .txt").html(_title);
+                        $(".p-t-again2 .txt").html('恭喜您获得 <span class="prizeTxt">' + _title + '</span>');
                         $.popup(".p-t-again2");
                         $("#chance").html(chance);
                     }

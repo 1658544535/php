@@ -12,7 +12,8 @@
             </header>
             <div class="content native-scroll">
 
-                <section class="user-collection pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="/turntable.php?act=ajax_log">
+                <section class="turntable-log pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="/turntable.php?act=ajax_log">
+                    <div class="tips">温馨提示：红包会以两次为一个发放周期，即第一次获取的红包不会马上发送，会在第二次抽奖后一同发放</div>
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader">
@@ -27,7 +28,7 @@
                 <%for(var i=0;i<data["data"].length; i++){%>
                     <li>
                         <span><%=data["data"][i]["time"]%></span>
-                        <span class="pull-right"><%=data["data"][i]["prize"]%></span>
+                        <span class="prize"><%=data["data"][i]["prize"]%></span>
                     </li>
                 <%}%>
             <%}else if(data["pageNow"]==1){%>
