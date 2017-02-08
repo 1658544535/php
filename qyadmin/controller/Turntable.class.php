@@ -308,7 +308,7 @@ class Turntable extends Common{
         }
         $pageUrlParam['s'] = $param['status'];
         $order = array('time'=>'desc', 'id'=>'desc');
-        
+
         $mdl = M('wxhd_luck_draw_log');
         $rs = $mdl->gets(implode(' and ', $cond), '*', $order, $page, $persize);
         $list = $rs['DataSet'];

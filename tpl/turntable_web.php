@@ -126,7 +126,7 @@
                 <div class="btn">
                     <a href="javascript:;" class="turntable-log yellow">查看记录</a>
                     <a href="/index.php" class="pink">进入商城</a>
-                    <a href="javascript:;" class="turntable-share green">邀请好友</a>
+                    <!--<a href="javascript:;" class="turntable-share green">邀请好友</a>-->
                 </div>
                 <div class="tips">
                     <span class="titleColor">温馨提示：</span><br/>
