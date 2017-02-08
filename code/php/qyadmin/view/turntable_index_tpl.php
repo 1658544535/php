@@ -68,7 +68,7 @@
                 <div class="col-xs-6">
                     <button class="btn btn-default" id="btn-verify">审核通过</button>
                     <button class="btn btn-default" id="btn-unverify">审核不通过</button>
-                    <button class="btn btn-default" id="btn-offline">下线</button>
+                    <!--<button class="btn btn-default" id="btn-offline">下线</button>-->
                 </div>
             </div>
         </div>
@@ -186,11 +186,13 @@
             changeVerify(ids, 0);
         });
 
+        /**
         $("#btn-offline").on("click", function(){
             var ids = getSelIds();
             if(!ids) return;
             changeStatus(ids, 0);
         });
+         */
     });
 
     function getSelIds(){
@@ -209,7 +211,8 @@
     }
 
     function changeStatus(id, status){
-        if(window.confirm("确定要更改状态吗？")){
+        var map = {0:"下线",1:"上线"};
+        if(window.confirm("确定要设置"+map[status]+"吗？")){
             $.post("<?php echo url('Turntable', 'switchTurntableStatus');?>", {"id":id,"status":status}, function(r){
                 if(r.state == 1){
                     location.reload();

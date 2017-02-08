@@ -104,10 +104,26 @@ class Turntable extends Common{
         $id = CheckDatas('id');
         $status = CheckDatas('status', 0);
 
-        $id = explode(',', $id);
+//        $id = explode(',', $id);
 
         $mdl = M('wxhd_turntable');
-        ($mdl->modify(array('status'=>$status), array('__IN__'=>array('id'=>$id))) === false) ? $this->ajaxResponse(0, '操作失败') : $this->ajaxResponse(1, '操作成功');
+        if($status){//上线，只能有一个上线
+            $success = false;
+            $mdl->startTrans();
+            if($mdl->modify(array('status'=>0)) !== false){
+                ($mdl->modify(array('status'=>1), array('id'=>$id)) !== false) && $success = true;
+            }
+            if($success){
+                $mdl->commit();
+                $this->ajaxResponse(1, '操作成功');
+            }else{
+                $mdl->rollback();
+                $this->ajaxResponse(0, '操作失败');
+            }
+        }else{
+            ($mdl->modify(array('status'=>0), array('id'=>$id)) === false) ? $this->ajaxResponse(0, '操作失败') : $this->ajaxResponse(1, '操作成功');
+//            ($mdl->modify(array('status'=>$status), array('__IN__'=>array('id'=>$id))) === false) ? $this->ajaxResponse(0, '操作失败') : $this->ajaxResponse(1, '操作成功');
+        }
     }
 
     /**

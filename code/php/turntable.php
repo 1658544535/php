@@ -8,12 +8,24 @@ require_once('./global.php');
 //IS_USER_LOGIN();
 $isLogin = $bLogin;
 
-$lotInfo = __getTurntableInfo();
+$lotData = __getTurntableInfo();
+$lotInfo = $lotData['data'];
 
 $act = CheckDatas('act', '');
 switch($act){
 	case 'lottery'://抽奖
-		empty($lotInfo) && ajaxReturn(0, '活动尚未开始或已结束');
+        !$isLogin && ajaxReturn(0, '请先登录');
+	    switch($lotData['state']){
+            case 1:case 3:
+                ajaxReturn(4, '活动已结束');
+                break;
+            case 2:
+                ajaxReturn(3, '活动未开始');
+                break;
+            case 4:
+                ajaxReturn(5, '今日名额已完');
+                break;
+        }
 
 		$chance = apiData('getTurntableNumApi.do', array('uid'=>$userid));
 		$chance = (empty($chance) || !$chance['success']) ? 0 : $chance['result'];
@@ -80,7 +92,7 @@ switch($act){
 			ajaxReturn(1, $prize['name'], array('angle'=>$prize['angle']));
 		}else{
 			$mdlLog->rollback();
-			ajaxReturn(0, '活动已结束');
+			ajaxReturn(4, '活动已结束');
 		}
 
 		break;
@@ -217,6 +229,13 @@ switch($act){
             'signature' => $wxJsSign['signature'],
         );
 
+        if(!$isLogin){
+            $curLotStatus = 100;//未登录
+        }else{
+            //0正常，1没有信息，2未开始，3已结束，4当日参与数满
+            $curLotStatus = $lotData['state'];
+        }
+
 		include_once('tpl/turntable_web.php');
 		break;
 }
@@ -225,14 +244,36 @@ switch($act){
  * 获取转盘活动信息
  * 
  * @return array
+ *      state 状态码，0正常，1没有信息，2未开始，3已结束，4当日参与数满
+ *      data 活动信息数据
  */
 function __getTurntableInfo(){
 	global $db;
 
+	$return = array('state'=>1, 'data'=>array());
 	$time = time();
-	$sql = 'SELECT * FROM `wxhd_turntable` WHERE `status`=1 AND `verify`=1 AND `start_time`<='.$time.' AND `end_time`>='.$time.' ORDER BY `start_time` ASC LIMIT 1';
+//	$sql = 'SELECT * FROM `wxhd_turntable` WHERE `status`=1 AND `verify`=1 AND `start_time`<='.$time.' AND `end_time`>='.$time.' ORDER BY `start_time` ASC LIMIT 1';
+    $sql = 'SELECT * FROM `wxhd_turntable` WHERE `status`=1 AND `verify`=1 ORDER BY `start_time` ASC LIMIT 1';
 	$info = $db->get_row($sql, ARRAY_A);
-	return $info;
+	if(!empty($info)){
+	    if($info['start_time'] > $time){
+	        $return['state'] = 2;
+        }elseif($info['end_time'] < $time){
+	        $return['state'] = 3;
+        }else{
+            if($info['per_day_number'] != -10){//判断每日参与数
+                $feTime = getFirstEndTime($time);
+                $sql = 'SELECT COUNT(*) FROM `wxhd_turntable` WHERE `start_time`<='.$feTime['first'].' AND `end_time`>='.$feTime['end'];
+                if($db->get_var($sql) >= $info['per_day_number']){
+                    $return['state'] = 4;
+                }
+            }else{
+                $return['state'] = 0;
+                $return['data'] = $info;
+            }
+        }
+    }
+	return $return;
 }
 
 /**
