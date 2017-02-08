@@ -294,11 +294,11 @@ class Turntable extends Common{
             $pageUrlParam['n'] = urldecode($param['name']);
         }
         if($param['starttime'] != ''){
-            $cond[] = 'time<='.strtotime($param['starttime']);
+            $cond[] = 'time>='.strtotime($param['starttime']);
             $pageUrlParam['st'] = urldecode($param['starttime']);
         }
         if($param['endtime'] != ''){
-            $cond[] = 'time>='.strtotime($param['endtime']);
+            $cond[] = 'time<='.strtotime($param['endtime']);
             $pageUrlParam['et'] = urldecode($param['endtime']);
         }
         ($param['status'] == '') && $param['status'] = -1;
@@ -308,7 +308,7 @@ class Turntable extends Common{
         }
         $pageUrlParam['s'] = $param['status'];
         $order = array('time'=>'desc', 'id'=>'desc');
-
+        
         $mdl = M('wxhd_luck_draw_log');
         $rs = $mdl->gets(implode(' and ', $cond), '*', $order, $page, $persize);
         $list = $rs['DataSet'];
