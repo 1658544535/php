@@ -19,10 +19,10 @@
                     <div class="turntable">
                         <div style="height: 1px"></div>
 
-                        <div class="places">
+                        <!-- <div class="places">
                             <div class="total"><div>目前还剩<span id="places"><?php echo $reWinnerNum;?></span>名额</div></div>
                             <div class="deta">200元还剩1名，100元还剩1名……</div>
-                        </div>
+                        </div> -->
 
                         <div class="turntable-main">
                             <div class="bg"></div>
@@ -192,7 +192,7 @@
                             break;
                         default:
                             // 抽奖
-                            echo 'if(parseInt($("#chance").text()) > 0){$.popup(".p-t-again1")}';
+                            echo 'if(parseInt($("#chance").text()) > 0){$.popup(".p-t-again1")}else{$.popup(".p-t-null2")}';
                             break;
                     }?>
                 });
