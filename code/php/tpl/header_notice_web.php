@@ -1,4 +1,4 @@
-<?php define("SOURCE_VERSOIN", '20161212');?>
+<?php define("SOURCE_VERSOIN", '20170208');?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +10,7 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=0" name="viewport">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name ="format-detection" content="telephone=no">
     <link rel="stylesheet" href="css/sm.min.css">
     <link rel="stylesheet" href="css/all.min.css?v=<?php echo SOURCE_VERSOIN;?>">
     <link rel="stylesheet" href="js/swiper/swiper.min.css">
@@ -19,6 +20,7 @@
     <script type='text/javascript' src='js/baiduTemplate.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/sui/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/swiper/swiper.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/scrollLoad.js' charset='utf-8'></script>
     <script type='text/javascript' src='js/app.min.js?v=<?php echo SOURCE_VERSOIN;?>' charset='utf-8'></script>
     <script>
 //	    $.ajax({
