@@ -107,10 +107,14 @@ switch($act){
 	case 'send'://发放
 		error_reporting(E_ALL);
 		if($isLogin){
+            $sql = 'SELECT COUNT(*) FROM `wxhd_luck_draw_log` WHERE `hd_id`='.$lotInfo['id'].' AND `uid`='.$userid.' AND `item_type`=1 AND `status`=2 AND `is_real`=1 ORDER BY `time` ASC';
+            $hadSendCount = $db->get_var($sql);
+
 			$sql = 'SELECT * FROM `wxhd_luck_draw_log` WHERE `hd_id`='.$lotInfo['id'].' AND `uid`='.$userid.' AND `item_type`=1 AND `status`=1 AND `is_real`=1 ORDER BY `time` ASC';
 			$list = $db->get_results($sql, ARRAY_A);
 			$count = count($list);
-			if($count > 1){
+			$total = $hadSendCount + $count;
+			if(($total > 0) && ($total % 2 == 0)){
 				$time = time();
 				$_dir = LOG_INC.'wxhb_turntable/';
 				!file_exists($_dir) && mkdir($_dir, 0777, true);
