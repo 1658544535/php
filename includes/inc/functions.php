@@ -1538,4 +1538,30 @@ function filterEmoji($str){
 function replaceStrToStar($str, $start, $len=0){
     return empty($len) ? $str : substr_replace($str, str_repeat('*', ($len > 0) ? $len : (strlen($str) - $start + $len)), $start, $len);
 }
+
+/**
+ * 获取指定时间所在范围的开始(0:0:0)与结束(23:59:59)时间戳
+ *
+ * @todo 目前只在所在天/月的范围
+ * @param integer|string $time 时间(戳)
+ * @param string $rangeType 所在范围，day天，month月
+ * @return array('first'=>开始时间, 'end'=>结束时间)
+ */
+function getFirstEndTime($time, $rangeType='day'){
+    $range = array('first'=>0, 'end'=>0);
+    !is_numeric($time) && $time = strtotime($time);
+    switch($rangeType){
+        case 'day':
+            $date = date('Y-m-d', $time);
+            $range['first'] = strtotime($date.' 0:0:0');
+            $range['end'] = strtotime($date.' 23:59:59');
+            break;
+        case 'month':
+            $monthF = date('Y-m-01', $time);
+            $range['first'] = strtotime($monthF.' 0:0:0');
+            $range['end'] = strtotime($monthF." +1 month")-1;
+            break;
+    }
+    return $range;
+}
 ?>
