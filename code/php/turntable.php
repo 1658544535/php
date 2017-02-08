@@ -212,6 +212,11 @@ switch($act){
         break;
     case 'genlog'://自动生成记录(虚拟数据)
         if($lotData['state'] == 0){
+            $time = time();
+            $_dir = LOG_INC.'turntable_genlog/';
+            !file_exists($_dir) && mkdir($_dir, 0777, true);
+            $logFile = $_dir.date('Y-m-d', $time).'.txt';
+
             $mdlItem = M('wxhd_turntable_item');
             $lotItems = $mdlItem->getAll(array('turntable_id'=>$lotInfo['id'], 'status'=>1, 'verify'=>1));
             if(!empty($lotItems)){
@@ -239,6 +244,9 @@ switch($act){
                 );
                 $mdlLog = M('wxhd_luck_draw_log');
                 $mdlLog->add($logData);
+
+//                $content = "生成虚拟数据，帐号：{$virtualMobile}";
+//                file_put_contents($logFile, "【".date('Y-m-d H:i:s', $time)."】{$content}\r\n", FILE_APPEND);
             }
         }
         break;
