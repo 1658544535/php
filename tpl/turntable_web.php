@@ -140,12 +140,12 @@
         <div class="popup popup-turntable p-t-null2">
             <div class="main">
                 <a href="javascript:;" class="close-popup">关闭</a>
-                <h3 class="title1">温馨提示</h3>
+                <h3 class="title1" style="margin-top:-0.5rem;">温馨提示</h3>
                 <div class="txt t-left titleColor">您的抽奖次数已用完，您可通过以下方式获得次数：</div>
                 <div class="txt t-left">1: 每个订单支付金额超过<span class="themeColor">10元（含10元）</span>即可获得多一次抽奖机会</div>
-                <div class="txt t-left">2: 每邀请<span class="themeColor">5个</span>新用户注册并参与，即可获得多一次抽奖机会</div>
-                <div class="btn half">
-                    <a href="javascript:;" class="turntable-share yellow">邀请好友</a>
+                <!-- <div class="txt t-left">2: 每邀请<span class="themeColor">5个</span>新用户注册并参与，即可获得多一次抽奖机会</div> -->
+                <div class="btn">
+                    <!-- <a href="javascript:;" class="turntable-share yellow">邀请好友</a> -->
                     <a href="/index.php" class="pink">进入商城</a>
                 </div>
             </div>
