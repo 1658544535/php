@@ -15,6 +15,9 @@
         height: auto;
         overflow: auto;
     }
+    .popup{
+        position: fixed;
+    }
 </style>
 
 <body>
@@ -305,28 +308,28 @@
                 function setPrizeImg(_id){
                     var src = 'images/lottery/prize/';
                     switch (_id) {
-                        case 1:
+                        case '1':
                             src += '1.png';
                             break;
-                        case 2:
+                        case '2':
                             src += '2.png';
                             break;
-                        case 3:
+                        case '3':
                             src += '3.png';
                             break;
-                        case 4:
+                        case '4':
                             src += '5.png';
                             break;
-                        case 5:
+                        case '5':
                             src += '20.png';
                             break;
-                        case 6:
+                        case '6':
                             src += '50.png';
                             break;
-                        case 7:
+                        case '7':
                             src += '100.png';
                             break;
-                        case 8:
+                        case '8':
                             src += '200.png';
                             break;
                         default:
