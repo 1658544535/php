@@ -201,7 +201,7 @@ switch($act){
         $statusMap = array(1=>'待发放', 2=>'已领取', 3=>'待发货', 4=>'已发货');
         foreach($rs['DataSet'] as $v){
             $list[] = array(
-                'time' => date('y-m-d H:i', $v->time),
+                'time' => date('m-d H:i', $v->time),
                 'prize' => $v->item_name,
                 'status' => $statusMap[$v->status],
             );
