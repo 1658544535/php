@@ -344,25 +344,30 @@
                     url: '/turntable.php?act=list',
                     dataType: 'json',
                     success: function(res){
-                        var bt = baidu.template;
-                        baidu.template.ESCAPE = false;
-                        var html=bt('tpl_list', {data: res});
-                        html += html;
-                        $("#scroll").html(html);
-                        var mainHei = parseFloat($("#scroll").height())/2;
-                        function rep(){
-                            var _top = parseFloat($("#scroll").css("top"))-20;
+                        if(res.length == 0){
+                            var html = '<div style="padding-top:16%;">暂无记录</div>';
+                            $("#scroll").html(html);
+                        }else{
+                            var bt = baidu.template;
+                            baidu.template.ESCAPE = false;
+                            var html=bt('tpl_list', {data: res});
+                            html += html;
+                            $("#scroll").html(html);
+                            var mainHei = parseFloat($("#scroll").height())/2;
+                            function rep(){
+                                var _top = parseFloat($("#scroll").css("top"))-20;
 
-                            jQuery("#scroll").animate({
-                                top: _top
-                            }, 1000, 'linear', function(){
-                                if(_top <= -mainHei){
-                                    $("#scroll").css({top: 0});
-                                }
-                                rep();
-                            });
+                                jQuery("#scroll").animate({
+                                    top: _top
+                                }, 1000, 'linear', function(){
+                                    if(_top <= -mainHei){
+                                        $("#scroll").css({top: 0});
+                                    }
+                                    rep();
+                                });
+                            }
+                            rep();
                         }
-                        rep();
                     }
                 });
             })
