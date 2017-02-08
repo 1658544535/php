@@ -22,38 +22,38 @@
                     <div class="form-group">
                         <label for="nameForRule" class="col-sm-2 control-label">奖品名称：</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="data[name]" id="nameForRule" placeholder="名称..." type="text" value="<?php echo $info['name'];?>">
+                            <input class="form-control" name="data[name]" placeholder="名称..." type="text" value="<?php echo $info['name'];?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nameForRule" class="col-sm-2 control-label">奖品说明：</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="data[desc]" id="nameForRule" placeholder="说明..." type="text" value="<?php echo $info['desc'];?>">
+                            <input class="form-control" name="data[desc]" placeholder="说明..." type="text" value="<?php echo $info['desc'];?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nameForRule" class="col-sm-2 control-label">奖品数量：</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="data[num]" id="nameForRule" placeholder="数量..." type="text" value="<?php echo $info['num'];?>">
+                            <input class="form-control" name="data[num]" placeholder="数量..." type="text" value="<?php echo $info['num'];?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nameForRule" class="col-sm-2 control-label">奖品中奖率：</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="data[ratio]" id="nameForRule" placeholder="中奖率..." type="text" value="<?php echo $info['ratio'];?>" style="width:70px; display:inline;">
+                            <input class="form-control" name="data[ratio]" placeholder="中奖率..." type="text" value="<?php echo $info['ratio'];?>" style="width:70px; display:inline;">
                             %
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nameForRule" class="col-sm-2 control-label">奖品对应角度：</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="data[angle]" id="nameForRule" placeholder="角度..." type="text" value="<?php echo $info['angle'];?>">
+                            <input class="form-control" name="data[angle]" placeholder="角度..." type="text" value="<?php echo $info['angle'];?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nameForRule" class="col-sm-2 control-label">每天最多可派送：</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="data[per_day_num]" id="nameForRule" placeholder="不填为不限" type="text" value="<?php echo $info['per_day_num'];?>">
+                            <input class="form-control" name="data[per_day_num]" placeholder="不填为不限" type="text" value="<?php echo $info['per_day_num'];?>">
                         </div>
                     </div>
                     <div class="form-group" style="display:none">
@@ -81,14 +81,21 @@
                     <div class="form-group">
                         <label for="nameForRule" class="col-sm-2 control-label">红包金额：</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="data[item_value]" id="nameForRule" placeholder="金额..." type="text" value="<?php echo $info['item_value'];?>">
+                            <input class="form-control" name="data[item_value]" placeholder="金额..." type="text" value="<?php echo $info['item_value'];?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nameForRule" class="col-sm-2 control-label">第几次抽奖可中：</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="data[win_index]" id="nameForRule" type="text" value="<?php echo $info['win_index'];?>" style="display:inline;" />
+                            <input class="form-control" name="data[win_index]" type="text" value="<?php echo $info['win_index'];?>" style="display:inline;" />
                             (多次以英文逗号分隔)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nameForRule" class="col-sm-2 control-label">第几次抽奖中概率：</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="data[win_index_ratio]" type="text" value="<?php echo $info['win_index_ratio'];?>" style="display:inline;" />
+                            (多次以英文逗号分隔，不要写百分号)
                         </div>
                     </div>
                 </div>

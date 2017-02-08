@@ -208,6 +208,15 @@ class Turntable extends Common{
             $data['per_day_num'] = (trim($data['per_day_num']) == '') ? -10 : intval($data['per_day_num']);
             $data['win_index'] = trim($data['win_index']);
             ($data['win_index'] != '') && $data['win_index'] = ','.$data['win_index'].',';
+            $data['win_index_ratio'] = trim($data['win_index_ratio']);
+            if($data['win_index_ratio'] != ''){
+                $_wiRatios = explode(',', $data['win_index_ratio']);
+                $_newWIRatios = array();
+                foreach($_wiRatios as $v){
+                    $_newWIRatios[] = $v * 100;
+                }
+                $data['win_index_ratio'] = ','.implode(',', $_newWIRatios).',';
+            }
 
             ($mdl->modify($data, array('id'=>$id)) === false) ? $this->error('编辑失败') : $this->success('编辑成功', url('Turntable', 'items', array('id'=>$hdId)));
         }else{
@@ -218,6 +227,15 @@ class Turntable extends Common{
             ($info['type'] == 1) && $info['item_value'] = sprintf("%0.2f", $info['item_value'] / 100);
             ($info['per_day_num'] == -10) && $info['per_day_num'] = '';
             !empty($info['win_index']) && $info['win_index'] = implode(',', array_filter(explode(',', $info['win_index'])));
+            $info['win_index_ratio'] = trim($info['win_index_ratio']);
+            if($info['win_index_ratio'] != ''){
+                $_wiRatios = explode(',', $info['win_index_ratio']);
+                $_newWIRatios = array();
+                foreach($_wiRatios as $v){
+                    $_newWIRatios[] = $v / 100;
+                }
+                $info['win_index_ratio'] = implode(',', $_newWIRatios);
+            }
 
             $this->assign('info', $info);
             $this->assign('action', 'editItem');
