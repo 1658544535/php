@@ -72,7 +72,8 @@ switch($wxReqType){
 //						$subscribeMsg = '终于等到你！我们已经为你准备了猜价格、9.9特卖、掌上秒杀、0.1夺宝等好玩实惠的活动。拼靓价得好货，一切尽在拼得好，<a href="'.$siteUrl.'">☞点击进入商城</a>';
 //                        $subscribeMsg = "欢迎关注【拼得好】商城！\r\n①点击【进入商城】右下方领取88元新年红包！\r\n②千元抽奖仅花一毛，一团两人必中！<a href='http://weixin.pindegood.com/lottery_new.php'>立即开团</a>";
 //						$subscribeMsg = "欢迎关注【拼得好】购物商城！\r\n您还有新年红包未领取！<a href='http://weixin.pindegood.com/transfer.php'>点击领取</a>";
-                        $subscribeMsg = "开工大吉，元宵好礼！拼得好花样红包闹元宵即将开始！亲们留意公众号活动通知喲！";
+//                        $subscribeMsg = "开工大吉，元宵好礼！拼得好花样红包闹元宵即将开始！亲们留意公众号活动通知喲！";
+						$subscribeMsg = "【拼得好】提前祝您元宵节快乐！为感谢您对我们支持，我们将在元宵当天发送元宵红包（金额为1-200元随机）请点击菜单“元宵红包”获取准确的领取时间及规则！";
 						break;
 				}
 				$objWX->text($subscribeMsg)->reply();
@@ -85,7 +86,8 @@ switch($wxReqType){
 //						$text = '<a href="'.$siteUrl.'">优质玩具，预购从速，点击进入</a>';
 //						$text = "欢迎关注【拼得好】商城！\r\n①点击【进入商城】右下方领取88元新年红包！\r\n②千元抽奖仅花一毛，一团两人必中！<a href='http://weixin.pindegood.com/lottery_new.php'>立即开团</a>";
 //						$text = "欢迎关注【拼得好】购物商城！\r\n您还有新年红包未领取！<a href='http://weixin.pindegood.com/transfer.php'>点击领取</a>";
-                        $text = "开工大吉，元宵好礼！拼得好花样红包闹元宵即将开始！亲们留意公众号活动通知喲！";
+//                        $text = "开工大吉，元宵好礼！拼得好花样红包闹元宵即将开始！亲们留意公众号活动通知喲！";
+						$text = "【拼得好】提前祝您元宵节快乐！为感谢您对我们支持，我们将在元宵当天发送元宵红包（金额为1-200元随机）请点击菜单“元宵红包”获取准确的领取时间及规则！";
 						break;
 				}
 				$objWX->text($text)->reply();
@@ -113,7 +115,7 @@ switch($wxReqType){
 						$objWX->text($text)->reply();
 						break;
 					case 'yuanxiao':
-						$mediaId = 'WXjgEJ6vE1b6qivIC562REWkfha3UA1dQk3scNj8z_9zfxWpxF08LUR0swr3_uzj';//正式
+						$mediaId = 'Tq6U0K9GMJO_5aoOurzn1pQhiGZQTvDAzMxKaICLKhU-mthDgy7W8KblllOTAufu';//正式
 						$data = array(
 							'touser' => $objWX->getRevFrom(),
 							'msgtype' => 'image',
