@@ -210,6 +210,38 @@ switch($act){
         echo ajaxJson( 1,'获取成功',$list, $page);
         exit();
         break;
+    case 'genlog'://自动生成记录(虚拟数据)
+        if($lotData['state'] == 0){
+            $mdlItem = M('wxhd_turntable_item');
+            $lotItems = $mdlItem->getAll(array('turntable_id'=>$lotInfo['id'], 'status'=>1, 'verify'=>1));
+            if(!empty($lotItems)){
+                $lItemIndex = array_rand($lotItems);
+                $tmpPrize = $lotItems[$lItemIndex];
+                $range1 = range(1000, 9999);
+                $range2 = range(1000, 9999);
+                $rangeIndex1 = array_rand($range1);
+                $rangeIndex2 = array_rand($range2);
+                $virtualMobile = '137'.$range1[$rangeIndex1].$range2[$rangeIndex2];
+                $logData = array(
+                    'uid' => 0,
+                    'loginname' => $virtualMobile,
+                    'openid' => '',
+                    'hd_id' => $lotInfo['id'],
+                    'item_id' => $tmpPrize->id,
+                    'item_type' => $tmpPrize->type,
+                    'item_name' => $tmpPrize->name,
+                    'item_value' => $tmpPrize->item_value,
+                    'time' => time(),
+                    'status' => 1,
+                    'is_prize' => $tmpPrize->is_prize,
+                    'is_virtual' => $tmpPrize->is_virtual,
+                    'is_real' => 0,
+                );
+                $mdlLog = M('wxhd_luck_draw_log');
+                $mdlLog->add($logData);
+            }
+        }
+        break;
 	default:
 	    $inviterId = intval($_GET['inviterid']);
         $inviterId && $_SESSION['turntable_inviterid'] = $inviterId;
