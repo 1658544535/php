@@ -239,7 +239,7 @@
                                         "-webkit-transform": angle_css
                                     }).attr({"data-angle": angle});
                                     setTimeout(function(){
-                                        sendRed(res.info);
+                                        sendRed(res.data.id, res.info);
                                     }, 2000);
                                     break;
                                 case 2:
@@ -268,18 +268,18 @@
                 }
 
                 // 发红包
-                function sendRed(_title){
+                function sendRed(_id, _title){
                     var chance = parseInt($("#chance").text()) - 1,
                         places = parseInt($("#places").text()) - 1;
+                    $(".p-t-null1 .img img,.p-t-again2 .img img").attr("src", setPrizeImg(_id));
+                    $(".p-t-null1 .txt,.p-t-again2 .txt").html('恭喜您获得 <span class="prizeTxt">' + _title + '</span>');
                     if(chance == 0){
                         // 中奖, 无抽奖次数
-                        $(".p-t-null1 .txt").html('恭喜您获得 <span class="prizeTxt">' + _title + '</span>');
                         $.popup(".p-t-null1");
                         $("#chance").html(0);
                         $("#places").html(places);
                     }else if(chance >= 1){
                         // 中奖, 继续抽奖
-                        $(".p-t-again2 .txt").html('恭喜您获得 <span class="prizeTxt">' + _title + '</span>');
                         $.popup(".p-t-again2");
                         $("#chance").html(chance);
                         $("#places").html(places);
@@ -290,6 +290,41 @@
                             $.toast('领取失败');
                         }
                     });
+                }
+
+                // 中奖图片
+                function setPrizeImg(_id){
+                    var src = 'images/lottery/prize/';
+                    switch (_id) {
+                        case 1:
+                            src += '1.png';
+                            break;
+                        case 2:
+                            src += '2.png';
+                            break;
+                        case 3:
+                            src += '3.png';
+                            break;
+                        case 4:
+                            src += '5.png';
+                            break;
+                        case 5:
+                            src += '20.png';
+                            break;
+                        case 6:
+                            src += '50.png';
+                            break;
+                        case 7:
+                            src += '100.png';
+                            break;
+                        case 8:
+                            src += '200.png';
+                            break;
+                        default:
+                            src += '1.png';
+                            break;
+                    }
+                    return src;
                 }
 
                 // 获奖列表
