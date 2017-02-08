@@ -29,7 +29,7 @@
                     <li>
                         <span><%=data["data"][i]["time"]%></span>
                         <span class="center"><%=data["data"][i]["prize"]%></span>
-                        <span class="right">待发放</span>
+                        <span class="right"><%=data["data"][i]["status"]%></span>
                     </li>
                 <%}%>
             <%}else if(data["pageNow"]==1){%>
