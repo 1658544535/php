@@ -36,6 +36,7 @@
                                         <th>奖品说明</th>
                                         <th>奖品数量</th>
                                         <th>已抽取数量</th>
+                                        <th>指针角度</th>
                                         <th>中奖概率</th>
                                         <th>每天最多派发数</th>
                                         <th>上/下架</th>
@@ -61,6 +62,7 @@
                                                 <td class="sorting_1"><?php echo $v['desc'];?></td>
                                                 <td class="sorting_1"><?php echo $v['num'];?></td>
                                                 <td class="sorting_1"><?php echo $v['join_num'];?></td>
+                                                <td class="sorting_1"><?php echo $v['angle'];?></td>
                                                 <td class="sorting_1"><?php echo $v['ratio'];?>%</td>
                                                 <td class="sorting_1"><?php echo $v['per_day_num'];?></td>
                                                 <td class="sorting_1"><?php echo $statusMap[$v['status']];?></td>
