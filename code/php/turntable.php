@@ -216,7 +216,8 @@ switch($act){
         $page = CheckDatas('page', 1);
         $page = max(1, $page);
         $mdlLog = M('wxhd_luck_draw_log');
-        $cond = array('hd_id'=>$lotInfo['id'], 'uid'=>$userid);
+//        $cond = array('hd_id'=>$lotInfo['id'], 'uid'=>$userid);
+        $cond = array('uid'=>$userid);
         $order = array('time'=>'desc');
         $rs = $mdlLog->gets($cond, 'time,item_name,status', $order, $page, $persize);
         $list = array();
@@ -228,8 +229,18 @@ switch($act){
                 'status' => $statusMap[$v->status],
             );
         }
-        // echo json_encode($list);
-        echo ajaxJson( 1,'获取成功',$list, $page);
+
+        $arr = array(
+            'code' => 1,
+            'msg' => '获取成功',
+            'data' => array(
+                'data' => $list,
+                'pageNow' => $page,
+                'ifLoad' => ($rs['Next'] == $page) ? 0 : 1,
+            ),
+        );
+        echo json_encode($arr);
+//        echo ajaxJson( 1,'获取成功',$list, $page);
         exit();
         break;
     case 'genlog'://自动生成记录(虚拟数据)
