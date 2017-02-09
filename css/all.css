@@ -451,7 +451,7 @@
 /*首页主页banner*/
 .index-banner.swiper-container {
   position: relative;
-  padding-bottom: 54.6875%;
+  padding-bottom: 33.81%;
 }
 .index-banner.swiper-container .swiper-wrapper {
   position: absolute;
@@ -496,7 +496,7 @@
 .index-menu a {
   display: table-cell;
   width: 1%;
-  height: 4.9rem;
+  height: 4rem;
   padding: 0.7rem 0;
   font-size: .7rem;
   color: #1c1c1c;
@@ -504,8 +504,8 @@
 }
 .index-menu a span.index-menuIcon {
   display: block;
-  width: 45px;
-  height: 45px;
+  width: 30px;
+  height: 30px;
   margin: 0 auto;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -528,7 +528,7 @@
 }
 .index-menu a span.txt {
   display: block;
-  padding-top: 0.6rem;
+  padding-top: 0.3rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
