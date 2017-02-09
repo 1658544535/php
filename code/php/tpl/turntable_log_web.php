@@ -13,7 +13,7 @@
             <div class="content native-scroll">
 
                 <section class="turntable-log pullbox infinite-scroll infinite-scroll-bottom" data-distance="30" data-href="/turntable.php?act=ajax_log">
-                    <div class="tips">温馨提示：红包会以两次为一个发放周期，即第一次获取的红包不会马上发送，会在第二次抽奖后一同发放</div>
+                    <div class="tips">温馨提示：红包会以两次为一个发放周期，抽奖两次即会马上发送，即刻到账</div>
                     <ul class="list-container"></ul>
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader">
@@ -33,7 +33,7 @@
                     </li>
                 <%}%>
             <%}else if(data["pageNow"]==1){%>
-                <div class="list-null">您的记录为空</div>
+                <div style="margin-top: 20%" class="list-null">您的记录为空</div>
             <%}%>
             </script>
 

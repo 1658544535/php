@@ -6604,12 +6604,12 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  background: #fff;
 }
 .turntable-log .list-container li {
-  margin: 0 0.5rem;
+  padding: 0 0.5rem;
   overflow: hidden;
   border-bottom: 1px solid #e7e7e7;
+  background: #fff;
 }
 .turntable-log .list-container li:last-child {
   border-bottom: none;
