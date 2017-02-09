@@ -67,7 +67,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                     <a href="lottery_new.php"><span class="index-menuIcon index-menu-i5"></span><span class="txt">抽奖团</span></a>
                 </section>
                 <section class="index-index infinite-scroll infinite-scroll-bottom" data-distance="30">
-                    <h2 class="index-pro-title"></h2>
+                    <!-- <h2 class="index-pro-title"></h2> -->
                     <ul class="list-container">
 						<?php foreach($seckillPro as $v){ ?>
 							<li><a href="groupon.php?id=<?php echo $v['activityId'];?>">
@@ -199,7 +199,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
             </div>
         </div>
         <section id="goTop" class="goTop"></section>
-        <section id="redPacked" class="redPacked"></section>
+        <!-- <section id="redPacked" class="redPacked"></section> -->
     </div>
 </body>
 

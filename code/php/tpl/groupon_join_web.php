@@ -754,7 +754,7 @@ wxshare(false, '<?php echo $wxShareParam['appId'];?>', <?php echo $wxShareParam[
                 <a class="go"></a>
             </div>
         </div>
-        <section style="bottom:8.1rem" id="redPacked" class="redPacked"></section>
+        <!-- <section style="bottom:8.1rem" id="redPacked" class="redPacked"></section> -->
     </div>
 </body>
 
